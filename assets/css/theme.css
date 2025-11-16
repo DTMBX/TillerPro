@@ -1466,15 +1466,15 @@ select {
 }
 
 /* Invalid state */
-input:invalid:not(:placeholder-shown),
-textarea:invalid:not(:placeholder-shown),
-select:invalid {
+input:user-invalid,
+textarea:user-invalid,
+select:user-invalid {
   border-color: #ef4444;
 }
 
 /* Valid state */
-input:valid:not(:placeholder-shown),
-textarea:valid:not(:placeholder-shown) {
+input:user-valid,
+textarea:user-valid {
   border-color: var(--ts-primary);
 }
 
