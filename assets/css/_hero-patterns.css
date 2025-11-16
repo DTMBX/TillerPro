@@ -1,0 +1,22 @@
+/* -------------------------------------------------
+   Hero background pattern utilities
+   Auto‑generated – one class per file in
+   assets/img/patterns/
+   ------------------------------------------------- */
+
+.hero--with-pattern {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Pattern classes - one per pattern file */
+.hero-bg-default      { background-image: url('/assets/img/patterns/sacred-tile.svg'); }
+.hero-bg-sacred-tile  { background-image: url('/assets/img/patterns/sacred-tile.svg'); }
+
+/* To add a new pattern:
+   1. Add your SVG/PNG file to assets/img/patterns/ (e.g., my-pattern.svg)
+   2. Add a new line below:
+      .hero-bg-my-pattern { background-image: url('/assets/img/patterns/my-pattern.svg'); }
+   3. Reference it in page front-matter: hero_bg_pattern: "my-pattern"
+*/
