@@ -1,0 +1,61 @@
+/* ============================================
+   Form Components
+   ============================================ */
+
+.form-group {
+  margin-bottom: var(--space-4);
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+  font-size: 0.95rem;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+  
+  &:hover {
+    border-color: var(--color-border-strong);
+  }
+  
+  &:focus {
+    outline: var(--focus-ring);
+    outline-offset: 0;
+    border-color: var(--color-primary);
+    background: var(--color-surface-elevated);
+  }
+  
+  &::placeholder {
+    color: var(--color-text-subtle);
+  }
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-help {
+  font-size: 0.875rem;
+  color: var(--color-text-subtle);
+  margin-top: var(--space-2);
+}
+
+.form-error {
+  font-size: 0.875rem;
+  color: #ef4444;
+  margin-top: var(--space-2);
+}

@@ -1,0 +1,117 @@
+/* ============================================
+   Card Components
+   ============================================ */
+
+.cards {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+.card {
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: var(--color-bg);
+  padding: clamp(1.6rem, 3vw, 2.1rem);
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-med);
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+/* Stack utilities for card content */
+.stack-sm {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.stack-md {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.stack-lg {
+  display: grid;
+  gap: var(--space-5);
+}
+
+/* Blog cards */
+.blog-shell {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+.blog-cards {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+.blog-card-title a {
+  color: var(--color-heading);
+  
+  &:hover,
+  &:focus-visible {
+    color: var(--color-primary);
+  }
+}
+
+.blog-card-meta {
+  color: var(--color-text-subtle);
+}
+
+.blog-card-cta {
+  margin-top: auto;
+}
+
+/* General contractor cards */
+.gc-kpis {
+  list-style: none;
+  margin: 0 0 clamp(2rem, 5vw, 3rem);
+  padding: 0;
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 1.75rem);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.gc-kpi {
+  padding: clamp(1.4rem, 3vw, 1.8rem);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: var(--color-surface-elevated);
+  box-shadow: var(--shadow-soft);
+  color: var(--color-text-muted);
+}
+
+.gc-kpi-label {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.35rem;
+}
+
+.gc-grid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  
+  @media (min-width: 960px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.gc-card,
+.process-card,
+.expect-card,
+.docs-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: var(--color-bg);
+  padding: clamp(1.6rem, 3vw, 2.2rem);
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  gap: var(--space-3);
+}

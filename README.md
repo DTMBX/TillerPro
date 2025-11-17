@@ -189,3 +189,60 @@ Front‑matter fields supported:
 ## CI
 
 Every PR runs ESLint, HTMLHint, and a full Jekyll build. Fix any lint errors before merging.
+
+---
+
+## Changelog
+
+### 2025-11-17: Website Restructure
+**Major improvements to code organization and header styling**
+
+#### Cleanup
+- ✅ Removed `index.backup.html` (redundant backup file)
+- ✅ Removed `_archive/` directory (old theme demos and documentation)
+- ✅ Consolidated CSS loading to reduce HTTP requests
+
+#### CSS Modernization
+- ✅ Created modular SCSS structure in `src/scss/`:
+  - `_common.scss` - Base styles, reset, typography
+  - `components/` - Buttons, cards, header, footer, hero, forms
+  - `layouts/` - Page and section layouts
+  - `utilities/` - Spacing and text utilities
+- ✅ Compiled SCSS to `assets/css/theme-compiled.css`
+- ✅ Replaced multiple CSS imports with single compiled file
+- ✅ Added npm build scripts: `npm run build:css` and `npm run watch:css`
+- ✅ Maintained backward compatibility with legacy `--ts-*` tokens
+
+#### Header Enhancement
+- ✅ **Professional gradient background** with transparency (no more "ugly solid background")
+- ✅ **Backdrop blur** for modern glass effect
+- ✅ **Improved color contrast** with primary color (#1ac87a) accents
+- ✅ **Professional shadows** for elevation and depth
+- ✅ **Enhanced hover states** with smooth transitions
+- ✅ **Better mobile responsiveness** with refined breakpoints
+
+#### Documentation
+- ✅ Added `src/scss/README.md` with full SCSS structure documentation
+- ✅ Updated main README.md with changelog
+- ✅ Documented build process for CSS compilation
+
+#### Build Process
+```bash
+# Install dependencies
+npm install
+
+# Compile SCSS to CSS
+npm run build:css
+
+# Watch for SCSS changes (development)
+npm run watch:css
+
+# Run linters
+npm run lint
+```
+
+**Note**: The homepage requires Jekyll processing to render properly. Either:
+1. Build with Jekyll: `bundle exec jekyll build` (requires Ruby/Bundler)
+2. Deploy to GitHub Pages or Netlify (automatic Jekyll processing)
+3. Serve locally: `python3 -m http.server` after Jekyll build
+

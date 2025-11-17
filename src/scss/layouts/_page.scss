@@ -1,0 +1,50 @@
+/* ============================================
+   Page Layouts
+   ============================================ */
+
+.page-content {
+  padding: clamp(2rem, 5vw, 3rem) 0;
+}
+
+.page-header {
+  margin-bottom: var(--space-6);
+}
+
+.page-title {
+  font-size: var(--heading-1);
+  color: var(--color-heading);
+  margin: 0 0 var(--space-3);
+}
+
+.page-lead {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  max-width: 65ch;
+}
+
+/* Full-width pages (like homepage) */
+.page-home .page-content {
+  padding: 0;
+}
+
+/* Article/blog layouts */
+article {
+  max-width: 70ch;
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
+  
+  figure {
+    margin: var(--space-6) 0;
+  }
+  
+  figcaption {
+    font-size: 0.875rem;
+    color: var(--color-text-subtle);
+    margin-top: var(--space-2);
+    text-align: center;
+  }
+}

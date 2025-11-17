@@ -98,15 +98,14 @@ otherwise fall back to global defaults from _config.yml
         rel="stylesheet">
 </noscript>
 
-<!-- CSS: legacy styles first, unified theme last so it can normalize colors/contrast -->
-<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/assets/css/main.css'  | relative_url }}">
-<link rel="stylesheet" href="{{ '/assets/css/fixes.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/assets/css/contrast.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/assets/css/theme.css' | relative_url }}">
+<!-- Main compiled theme CSS from SCSS modules -->
+<link rel="stylesheet" href="{{ '/assets/css/theme-compiled.css' | relative_url }}">
+
+<!-- Hero patterns and special components -->
 <link rel="stylesheet" href="{{ '/assets/css/pattern-showcase.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/loading-screen.css' | relative_url }}">
 
+<!-- Page-specific styles -->
 {% if page.styles %}
   {% for href in page.styles %}
     <link rel="stylesheet"
@@ -114,6 +113,7 @@ otherwise fall back to global defaults from _config.yml
   {% endfor %}
 {% endif %}
 
+<!-- Structured data -->
 {% if page.schema %}
   {% for schema in page.schema %}
     <script type="application/ld+json">
@@ -122,8 +122,8 @@ otherwise fall back to global defaults from _config.yml
   {% endfor %}
 {% endif %}
 
-<!-- Tillerstead proprietary theme (do not remove) -->
-<link rel="stylesheet" href="{{ '/assets/css/ts-theme.v1.0.0.css' | relative_url }}" />
+<!-- Loading screen: inline for immediate execution -->
+<script src="{{ '/assets/js/loading-screen.js' | relative_url }}?v={{ site.version | default: site.github.build_revision | default: '10' }}"></script>
 
 <!-- Loading screen: inline for immediate execution -->
 <script src="{{ '/assets/js/loading-screen.js' | relative_url }}?v={{ site.version | default: site.github.build_revision | default: '10' }}"></script>

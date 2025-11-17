@@ -1,0 +1,103 @@
+/* ============================================
+   Button Components
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-med);
+  white-space: nowrap;
+  
+  &:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: var(--color-bg);
+  box-shadow: var(--shadow-soft);
+  
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift);
+    text-decoration: none;
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-secondary {
+  background: var(--color-surface-elevated);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  
+  &:hover,
+  &:focus-visible {
+    background: var(--color-surface-highlight);
+    border-color: var(--color-border-strong);
+    text-decoration: none;
+  }
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  
+  &:hover,
+  &:focus-visible {
+    background: var(--color-surface);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--color-accent) 0%, #f0d080 100%);
+  color: #1b1504;
+  box-shadow: 0 18px 36px rgba(216, 178, 90, 0.4);
+  
+  &:hover,
+  &:focus-visible {
+    color: #1b1504;
+    transform: translateY(-2px);
+    box-shadow: 0 24px 48px rgba(216, 178, 90, 0.46);
+    text-decoration: none;
+  }
+}
+
+/* Button row layout */
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  
+  &.center {
+    justify-content: center;
+    margin-block: 1rem 0.5rem;
+  }
+}
+
+/* Call button (header) */
+.call-btn {
+  @extend .btn;
+  @extend .btn-primary;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.25rem;
+}
