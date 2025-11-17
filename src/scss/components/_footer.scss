@@ -1,0 +1,49 @@
+/* ============================================
+   Footer Component
+   ============================================ */
+
+.site-footer {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.6) 0%,
+    rgba(11, 18, 36, 0.9) 100%
+  );
+  border-top: 1px solid rgba(26, 200, 122, 0.15);
+  padding: clamp(2rem, 5vw, 3rem) 0 clamp(1.5rem, 3vw, 2rem);
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+
+.footer-inner {
+  max-width: var(--shell-width);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+  display: flex;
+  gap: var(--space-6);
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.footer-name {
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 1.05rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.footer-small,
+.ts-foot-small {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+.ts-pill {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.36rem 0.6rem;
+  border-radius: 999px;
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: inline-block;
+}

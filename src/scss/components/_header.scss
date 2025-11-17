@@ -1,0 +1,274 @@
+/* ============================================
+   Site Header Component - Enhanced Professional Design
+   ============================================ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+  
+  /* Modern gradient background with transparency for depth */
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.95) 0%,
+    rgba(11, 18, 36, 0.92) 100%
+  );
+  
+  /* Subtle border for definition */
+  border-bottom: 1px solid rgba(26, 200, 122, 0.15);
+  
+  /* Backdrop blur for modern glass effect */
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  
+  /* Professional shadow for elevation */
+  box-shadow: 
+    0 4px 12px rgba(2, 6, 23, 0.25),
+    0 1px 3px rgba(2, 6, 23, 0.15);
+  
+  /* Smooth transitions */
+  transition: all var(--transition-med);
+}
+
+/* Enhanced shadow on scroll (can be added via JS) */
+.site-header.scrolled {
+  background: rgba(11, 18, 36, 0.98);
+  border-bottom-color: rgba(26, 200, 122, 0.25);
+  box-shadow: 
+    0 8px 24px rgba(2, 6, 23, 0.35),
+    0 2px 6px rgba(2, 6, 23, 0.2);
+}
+
+.site-header-inner {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem clamp(1.25rem, 4vw, 2.5rem);
+  max-width: var(--shell-width);
+  margin: 0 auto;
+}
+
+/* ============================================
+   Brand / Logo
+   ============================================ */
+
+.ts-brand {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.site-logo {
+  display: inline-block;
+  line-height: 0;
+  transition: var(--transition-fast);
+  border-radius: var(--radius-sm);
+  
+  &:hover,
+  &:focus-visible {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  
+  &:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: 4px;
+  }
+}
+
+.site-logo-img {
+  display: block;
+  height: 48px;
+  width: auto;
+  border-radius: var(--radius-sm);
+  
+  @media (max-width: 640px) {
+    height: 40px;
+  }
+}
+
+/* ============================================
+   Primary Navigation
+   ============================================ */
+
+.site-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  
+  @media (max-width: 920px) {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    flex-direction: column;
+    background: var(--color-surface-elevated);
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lift);
+    border: 1px solid rgba(26, 200, 122, 0.2);
+    min-width: 240px;
+    
+    &.active,
+    &[aria-expanded="true"] {
+      display: flex;
+    }
+  }
+}
+
+.site-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  
+  @media (max-width: 920px) {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.25rem;
+  }
+  
+  li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  a {
+    display: block;
+    color: var(--color-text-muted);
+    padding: 0.625rem 1rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: var(--transition-fast);
+    position: relative;
+    
+    /* Hover effect with subtle highlight */
+    &:hover,
+    &:focus-visible {
+      color: var(--color-primary);
+      background: rgba(26, 200, 122, 0.08);
+    }
+    
+    /* Active page indicator */
+    &[aria-current="page"] {
+      color: var(--color-primary);
+      background: rgba(26, 200, 122, 0.12);
+      
+      /* Subtle underline for active page */
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0.25rem;
+        left: 1rem;
+        right: 1rem;
+        height: 2px;
+        background: var(--color-primary);
+        border-radius: 2px;
+      }
+    }
+    
+    &:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 2px;
+    }
+    
+    @media (max-width: 920px) {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      
+      &[aria-current="page"]::after {
+        display: none;
+      }
+    }
+  }
+}
+
+/* ============================================
+   Header Actions (Call button, Menu toggle)
+   ============================================ */
+
+.site-header-actions {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Navigation toggle (mobile hamburger) */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--color-text);
+  transition: var(--transition-fast);
+  
+  @media (max-width: 920px) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  &:hover,
+  &:focus-visible {
+    background: rgba(26, 200, 122, 0.08);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+  
+  &:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: 2px;
+  }
+  
+  &[aria-expanded="true"] {
+    background: rgba(26, 200, 122, 0.12);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+}
+
+.nav-toggle-icon {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.nav-toggle-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  
+  @media (max-width: 640px) {
+    display: none;
+  }
+}
+
+/* ============================================
+   Responsive Behavior
+   ============================================ */
+
+@media (max-width: 920px) {
+  .site-header-inner {
+    padding: 0.875rem clamp(1rem, 4vw, 1.5rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .call-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}

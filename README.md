@@ -8,35 +8,64 @@ Optimized for **GitHub Pages** and **Netlify**, using pure **HTML/CSS/JS** for s
 
 ---
 
-## 🧱 Quick Preview (Local)
-Serve the site locally from the repo root:
+## 🚀 Quick Start
 
+### Local Development (Simple HTTP Server)
+For quick testing without Jekyll processing:
 ```bash
 python3 -m http.server
 # then open http://localhost:8000
 ```
 
----
+**Note**: This will show raw Liquid templates. For full rendering, use one of the methods below.
 
-## 🔧 Offline-friendly `bundle exec jekyll build`
-To keep CI and air‑gapped machines happy, the repo includes a vendored `jekyll` gem (see `vendor/gems/jekyll`). Bundler only has to resolve a path dependency, so no external gem servers are contacted.
+### Production Build (Jekyll)
+The site uses Jekyll for templating. To build locally:
 
 ```bash
-# optional: keep Bundler installs local to the repo
+# Install Ruby dependencies (vendored Jekyll)
 bundle config set --local path 'vendor/bundle'
-
-# install (purely local resolution)
 bundle install
 
-# render the site to ./_site using the custom builder
+# Build the site to ./_site
 bundle exec jekyll build
+
+# Serve the built site
+cd _site && python3 -m http.server
 ```
 
-The custom CLI currently supports the `build` command. Use any static file server (e.g., `python3 -m http.server`) to preview `_site` after a build.
+### Automatic Deployment
+When pushed to GitHub or Netlify, Jekyll processes automatically:
+- **GitHub Pages**: Automatically builds on push to main
+- **Netlify**: Configured in deploy settings
 
-If something fails inside the builder, re-run with `JEKYLL_TRACE=1 bundle exec jekyll build` to surface a full backtrace.
+---
 
-> **Heads-up:** This lightweight builder implements the Liquid features and Markdown coverage used across the site. If you introduce new Liquid tags or filters, add support inside `vendor/gems/jekyll/lib/jekyll/liquid_engine.rb` before expecting the build to pass.
+## 🎨 Building CSS from SCSS
+
+The site uses a modular SCSS structure for maintainability. CSS must be compiled before deployment.
+
+### Compile SCSS
+```bash
+# Install npm dependencies (includes sass compiler)
+npm install
+
+# Compile SCSS to CSS (one-time)
+npm run build:css
+
+# Watch mode for development (auto-compile on changes)
+npm run watch:css
+```
+
+This compiles `src/scss/theme.scss` into `assets/css/theme-compiled.css`.
+
+### SCSS Structure
+- `src/scss/_common.scss` - Base styles, reset, typography  
+- `src/scss/components/` - UI components (buttons, cards, header, footer, etc.)
+- `src/scss/layouts/` - Page and section layouts
+- `src/scss/utilities/` - Spacing and text utilities
+
+See `src/scss/README.md` for detailed documentation.
 
 ---
 
@@ -189,3 +218,60 @@ Front‑matter fields supported:
 ## CI
 
 Every PR runs ESLint, HTMLHint, and a full Jekyll build. Fix any lint errors before merging.
+
+---
+
+## Changelog
+
+### 2025-11-17: Website Restructure
+**Major improvements to code organization and header styling**
+
+#### Cleanup
+- ✅ Removed `index.backup.html` (redundant backup file)
+- ✅ Removed `_archive/` directory (old theme demos and documentation)
+- ✅ Consolidated CSS loading to reduce HTTP requests
+
+#### CSS Modernization
+- ✅ Created modular SCSS structure in `src/scss/`:
+  - `_common.scss` - Base styles, reset, typography
+  - `components/` - Buttons, cards, header, footer, hero, forms
+  - `layouts/` - Page and section layouts
+  - `utilities/` - Spacing and text utilities
+- ✅ Compiled SCSS to `assets/css/theme-compiled.css`
+- ✅ Replaced multiple CSS imports with single compiled file
+- ✅ Added npm build scripts: `npm run build:css` and `npm run watch:css`
+- ✅ Maintained backward compatibility with legacy `--ts-*` tokens
+
+#### Header Enhancement
+- ✅ **Professional gradient background** with transparency (no more "ugly solid background")
+- ✅ **Backdrop blur** for modern glass effect
+- ✅ **Improved color contrast** with primary color (#1ac87a) accents
+- ✅ **Professional shadows** for elevation and depth
+- ✅ **Enhanced hover states** with smooth transitions
+- ✅ **Better mobile responsiveness** with refined breakpoints
+
+#### Documentation
+- ✅ Added `src/scss/README.md` with full SCSS structure documentation
+- ✅ Updated main README.md with changelog
+- ✅ Documented build process for CSS compilation
+
+#### Build Process
+```bash
+# Install dependencies
+npm install
+
+# Compile SCSS to CSS
+npm run build:css
+
+# Watch for SCSS changes (development)
+npm run watch:css
+
+# Run linters
+npm run lint
+```
+
+**Note**: The homepage requires Jekyll processing to render properly. Either:
+1. Build with Jekyll: `bundle exec jekyll build` (requires Ruby/Bundler)
+2. Deploy to GitHub Pages or Netlify (automatic Jekyll processing)
+3. Serve locally: `python3 -m http.server` after Jekyll build
+
