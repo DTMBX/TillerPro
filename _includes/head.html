@@ -118,7 +118,8 @@
   body { margin:0; font-family: var(--font-sans, system-ui); background: var(--color-bg,#f5f1eb); color: var(--color-text,#1a1a1a); }
   .site-header { position:sticky; top:0; z-index:1000; background:rgba(255,250,245,.95); backdrop-filter:blur(12px); border-bottom:1px solid rgba(0,0,0,.08); }
   .site-header-inner { display:flex; align-items:center; justify-content:space-between; gap:.75rem; min-height:4rem; padding:.75rem clamp(.75rem,3vw,1.5rem); }
-  .site-logo-img { width:clamp(100px,14vw,148px); height:auto; display:block; }
+  .site-logo-img,
+  .site-logo-svg { width:clamp(100px,14vw,148px); height:auto; display:block; }
   .nav-toggle { display:inline-flex; align-items:center; gap:.5rem; border:1px solid rgba(23,31,20,.18); background:transparent; color:var(--color-text,#171f14); font-size:.875rem; font-weight:600; min-width:44px; min-height:44px; padding:.5rem .9rem; border-radius:999px; cursor:pointer; }
   .nav-toggle:hover { background:rgba(23,31,20,.08); }
   .btn { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.65rem 1.25rem; font-size:.95rem; font-weight:700; line-height:1.2; border-radius:999px; text-decoration:none; background:linear-gradient(135deg,#0f4633,#0a2f23); color:#fdfbf7; border:1px solid rgba(13,59,44,.35); box-shadow:0 6px 16px rgba(13,59,44,.22); transition:box-shadow .15s,transform .15s; min-height:44px; }

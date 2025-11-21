@@ -10,14 +10,16 @@
          href="{{ '/' | relative_url }}"
          aria-label="{{ site.title | default: 'Tillerstead LLC' }} - Return to homepage"
          rel="home">
-        <img
-          src="{{ '/assets/img/logo/tillerstead-logo-header.svg' | relative_url }}"
-          class="site-logo-img"
-          alt="{{ site.title | default: 'Tillerstead LLC' }}"
-          width="180"
-          height="56"
-          loading="eager"
-          decoding="async">
+        <svg
+          class="site-logo-img site-logo-svg"
+          role="img"
+          aria-labelledby="ts-header-logo"
+          width="200"
+          height="70"
+          focusable="false">
+          <title id="ts-header-logo">Tillerstead LLC - tile, remodeling &amp; upkeep</title>
+          <use href="{{ '/assets/img/logo/tillerstead-logo-sprite.svg#logo-full' | relative_url }}" />
+        </svg>
       </a>
     </div>
 

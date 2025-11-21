@@ -282,7 +282,8 @@ article figcaption {
   flex-shrink: 0;
 }
 
-.site-logo-img {
+.site-logo-img,
+.site-logo-svg {
   width: clamp(100px, 14vw, 148px);
   max-height: 52px;
   height: auto;
@@ -538,7 +539,8 @@ body.nav-open {
     gap: var(--ts-space-4);
   }
 
-  .site-logo-img {
+  .site-logo-img,
+  .site-logo-svg {
     width: clamp(120px, 14vw, 148px);
   }
 
