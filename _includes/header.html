@@ -1,4 +1,6 @@
 <header class="site-header ts-header ts-theme" role="banner" itemscope itemtype="https://schema.org/Organization">
+  <!-- Accessibility: Skip to main content link -->
+  <a class="skip-link" href="#main" tabindex="1">Skip to main content</a>
   <meta itemprop="name" content="{{ site.title }}">
   <meta itemprop="url" content="{{ site.url }}">
   <meta itemprop="logo" content="{{ site.logo | absolute_url }}">
@@ -32,10 +34,11 @@
            role="presentation"></div>
 
       <!-- Primary Navigation -->
-      <nav id="site-nav"
-           class="site-nav"
-           aria-label="Primary navigation"
-           aria-expanded="false">
+          <nav id="site-nav"
+            class="site-nav"
+            aria-label="Primary navigation"
+            aria-expanded="false"
+            role="navigation">
         
         <!-- Mobile drawer header -->
         <div class="site-nav-drawer-header">
