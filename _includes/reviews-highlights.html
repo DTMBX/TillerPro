@@ -28,7 +28,7 @@ Usage: {% include reviews-highlights.html limit=3 %}
             </div>
             {% if r.text %}<p class="card-quote">{{ r.text }}</p>{% endif %}
             <p class="card-author">
-              {% if r.name %}<strong>{{ r.name }}</strong>{% endif %}
+              {% if r.name %}<strong id="review--name-{{ forloop.index }}">{{ r.name }}</strong>{% endif %}
               {% if r.source %}<span class="card-role"> · {{ r.source }}</span>{% endif %}
             </p>
           </li>
