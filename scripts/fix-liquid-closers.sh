@@ -46,11 +46,11 @@ backup_file() {
 # Function to check tag balance
 check_balance() {
     local file="$1"
-    python3 << 'PYEOF'
+    python3 << PYEOF
 import sys
 import re
 
-file = sys.argv[1]
+file = "$file"
 with open(file, 'r') as f:
     content = f.read()
 
@@ -103,11 +103,11 @@ fix_file() {
             echo -e "${BLUE}  → Converting {% case %} to {% if %}...${NC}"
             
             # This is a complex transformation, so we'll use a Python script
-            python3 << 'PYEOF' "$file"
+            python3 << PYEOF
 import sys
 import re
 
-file = sys.argv[1]
+file = "$file"
 with open(file, 'r') as f:
     content = f.read()
 
@@ -134,14 +134,14 @@ for line in lines:
         new_lines.append(line)
         continue
     
-    # Convert {% when %} based on whether it's first or not
-    when_match = re.search(r'{%\s*when\s+[\'"]?(\w+)[\'"]?\s*%}', line)
+    # Convert {% when %} based on whether it's first or not - handle quoted and unquoted values
+    when_match = re.search(r'{%\s*when\s+[\'"]?([^\'"]+?)[\'"]?\s*%}', line)
     if when_match and case_var:
-        value = when_match.group(1)
+        value = when_match.group(1).strip()
         if first_when:
             # First when becomes if
             line = re.sub(
-                r'{%\s*when\s+[\'"]?(\w+)[\'"]?\s*%}',
+                r'{%\s*when\s+[\'"]?[^\'"]+?[\'"]?\s*%}',
                 rf'{{% if {case_var} == \'{value}\' %}}',
                 line
             )
@@ -149,7 +149,7 @@ for line in lines:
         else:
             # Subsequent whens become elsif
             line = re.sub(
-                r'{%\s*when\s+[\'"]?(\w+)[\'"]?\s*%}',
+                r'{%\s*when\s+[\'"]?[^\'"]+?[\'"]?\s*%}',
                 rf'{{% elsif {case_var} == \'{value}\' %}}',
                 line
             )
@@ -173,7 +173,8 @@ PYEOF
             echo -e "${BLUE}  → Converting {% unless %} to {% if %}...${NC}"
             
             # Unless is "if not", so we need to negate the condition
-            perl -i -pe 's/{%-?\s*unless\s+(.+?)\s*-?%}/{%- if \1 != true -%}/g' "$file"
+            # Note: This is a simple conversion; complex conditions may need manual review
+            perl -i -pe 's/{%-?\s*unless\s+(.+?)\s*-?%}/{%- if \1 == false -%}/g' "$file"
             perl -i -pe 's/{%-?\s*endunless\s*-?%}/{%- endif -%}/g' "$file"
             fixed=1
         fi
