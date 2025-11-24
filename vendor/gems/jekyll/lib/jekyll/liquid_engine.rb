@@ -18,10 +18,24 @@ module Jekyll
     end
 
     def render_include(name, context)
+      puts "[LiquidEngine] Attempting to include: #{name}"
       source = @includes[name] || @includes["#{name}.html"]
-      raise "Include not found: #{name}" unless source
-
-      render(source, context)
+      if source.nil?
+        puts "[LiquidEngine] Include not found: #{name}"
+        raise "Include not found: #{name}"
+      else
+        puts "[LiquidEngine] Rendering include: #{name}"
+      end
+      begin
+        result = render(source, context)
+        if name == "head.html"
+          puts "[LiquidEngine] Rendered head.html output:\n#{result}"
+        end
+        result
+      rescue => e
+        puts "[LiquidEngine] Error rendering include #{name}: #{e.message}"
+        raise
+      end
     end
   end
 

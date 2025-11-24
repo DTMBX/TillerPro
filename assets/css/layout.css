@@ -845,7 +845,7 @@ body.nav-open {
 }
 
 .site-logo {
-  padding: 0.1rem 0.3rem;
+  padding: 0;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -853,9 +853,86 @@ body.nav-open {
 
 .site-logo-img {
   max-height: 44px;
-  filter: drop-shadow(0 6px 12px rgba(12, 42, 32, 0.12));
+  filter: none;
 }
 
 .site-header-actions {
   gap: var(--space-2);
+}
+
+.site-menu {
+  gap: 0.85rem;
+}
+
+.site-menu a {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  font-weight: 600;
+  position: relative;
+  color: var(--color-heading);
+}
+
+.site-menu a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.35rem;
+  height: 2px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 160ms ease;
+}
+
+.site-menu a:hover::after,
+.site-menu a:focus-visible::after,
+.site-menu a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.site-menu a[aria-current="page"] {
+  color: var(--color-primary);
+}
+
+.call-btn {
+  background: var(--color-primary);
+  border-radius: 999px;
+  padding: 0.45rem 1.35rem;
+  min-height: 0;
+  box-shadow: var(--shadow-soft);
+}
+
+.call-btn:hover,
+.call-btn:focus-visible {
+  background: var(--color-primary-strong);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Footer polish */
+.site-footer {
+  color: #fff;
+}
+
+.site-footer a,
+.footer-heading,
+.footer-links a,
+.footer-address,
+.footer-contact,
+.footer-area,
+.footer-tagline,
+.footer-small,
+.ts-foot-small {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.footer-links a {
+  opacity: 0.9;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: #fff;
+  opacity: 1;
 }

@@ -429,3 +429,35 @@ label {
 
 
 
+/* Hero polish */
+.hero.hero--with-pattern {
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0;
+  background: var(--color-bg);
+}
+
+.hero.hero--with-pattern .hero-surface {
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto;
+  border-radius: 32px;
+  box-shadow: var(--shadow-lift);
+}
+
+.hero.hero--with-pattern .hero-inner {
+  max-width: none;
+  padding: clamp(2rem, 4vw, 3rem);
+}
+
+.hero.hero--with-pattern .hero-main {
+  max-width: none;
+  text-align: center;
+}
+
+.hero.hero--with-pattern .hero-lead,
+.hero.hero--with-pattern .hero-note {
+  color: #1f2a1c;
+  opacity: 0.92;
+}
+
+.hero.hero--with-pattern .hero-kpis {
+  justify-items: center;
+}
