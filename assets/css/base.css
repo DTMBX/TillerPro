@@ -69,7 +69,10 @@
 html.light {
   color-scheme: light;
 }
-/* Layout */
+/* ============================================
+   Core Capabilities / Services Section
+   ============================================ */
+
 .ts-services {
   padding-block: 3rem;
   background: var(--ts-surface, #f8f1e6);
@@ -101,7 +104,11 @@ html.light {
   gap: 1rem;
 }
 
-/* Card */
+/* ============================================
+   Service Card
+   Matches _includes/ts-service-card.html
+   ============================================ */
+
 .ts-service-card {
   background: #ffffff;
   border-radius: 1.25rem;
@@ -128,31 +135,37 @@ html.light {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin: 0 0 0.1rem;
-  color: var(--ts-accent-muted, #6a8863);
+  color: var(--ts-text-subtle, #6a8863);
 }
 
-.ts-service-card__title {
+.ts-service-card .heading-3 {
   margin: 0;
 }
 
-.ts-service-card__description {
+/* This matches <p class="ts-service-card__desc"> in the include */
+.ts-service-card__desc {
   margin: 0.25rem 0 0;
   font-size: 0.95rem;
   line-height: 1.6;
+  color: var(--ts-text-muted);
 }
 
-.ts-service-card__details {
-  margin: 0;
-  font-size: 0.85rem;
+/* Optional list bullets inside details */
+.ts-service-card__list {
+  margin: 0.75rem 0 0;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
   line-height: 1.5;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--ts-text-muted);
 }
 
-.ts-service-card__footer {
+.ts-service-card__item + .ts-service-card__item {
+  margin-top: 0.25rem;
+}
+
+/* CTA at bottom: <a class="ts-service-card__cta"> */
+.ts-service-card__cta {
   margin-top: auto;
-}
-
-.ts-service-card__link {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -162,12 +175,12 @@ html.light {
   color: var(--ts-primary, #0b6b4d);
 }
 
-.ts-service-card__link:hover,
-.ts-service-card__link:focus-visible {
+.ts-service-card__cta:hover,
+.ts-service-card__cta:focus-visible {
   text-decoration: underline;
 }
 
-/* SVG icons */
+/* SVG icon container matching <span class="ts-service-card__icon"> */
 .ts-service-card__icon {
   flex-shrink: 0;
   width: 3rem;
@@ -178,6 +191,7 @@ html.light {
   background: radial-gradient(circle at 30% 0%, #ffeecb, #f3e4cf);
 }
 
+/* Shared SVG geometry */
 .ts-icon {
   width: 2.25rem;
   height: 2.25rem;
@@ -489,14 +503,21 @@ select:focus-visible {
     display: none !important;
   }
 }
-  padding: 2rem 2.5rem;
 /* ============================================
    High Contrast Mode Support
    ============================================ */
+@media (forced-colors: active) {
+  .ts-service-card {
+    border-color: CanvasText;
+    box-shadow: none;
+    background: Canvas;
+  }
 
+  .ts-service-card__icon {
+    background: Canvas;
+  }
 
-/* ============================================
-   Reduced Transparency for Better Readability
-   ============================================ */
-
-/* High contrast media queries removed (feature deprecated) */
+  .ts-icon__stroke {
+    stroke: CanvasText;
+  }
+}
