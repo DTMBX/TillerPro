@@ -280,6 +280,21 @@
   }
 }
 
+.nav-cta a {
+  width: 100%;
+  justify-content: center;
+}
+
+.nav-cta--drawer {
+  display: none;
+
+  @media (max-width: 920px) {
+    display: block;
+    width: 100%;
+    margin-top: var(--space-2);
+  }
+}
+
 /* ============================================
    Header Actions (Call button, Menu toggle)
    ============================================ */
@@ -289,6 +304,17 @@
   gap: var(--space-2);
   align-items: center;
   flex-shrink: 0;
+}
+
+.header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+
+  @media (max-width: 920px) {
+    display: none;
+  }
 }
 
 /* Navigation toggle (mobile hamburger) */

@@ -85,10 +85,10 @@
   --space-4: 1rem;
   --space-5: 1.5rem;
   --space-6: 2rem;
-  --space-7: 2.5rem;
-  --space-8: 3rem;
-  --space-10: 4rem;
-  --space-12: 5rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-10: 4.5rem;
+  --space-12: 5.5rem;
 
   /* ===========================
      Border Radius
@@ -119,7 +119,7 @@
 
   /* Layout */
   --shell-width: 1140px;
-  --section-padding-y: clamp(3rem, 6vw, 5rem);
+  --section-padding-y: clamp(var(--space-7), 6vw, var(--space-12));
   --section-gap: clamp(1.5rem, 3vw, 2.5rem);
 
   /* Component aliases */

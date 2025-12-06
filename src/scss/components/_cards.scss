@@ -8,7 +8,7 @@
   background: var(--color-surface-elevated);
   padding: clamp(1.5rem, 3vw, 2.25rem);
   box-shadow: var(--shadow-soft);
-  transition: transform var(--transition-med), box-shadow var(--transition-med);
+  transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med);
   position: relative;
   overflow: hidden;
 }
@@ -24,6 +24,13 @@
   @extend %card-shell;
   display: grid;
   gap: var(--space-3);
+}
+
+.ts-card:focus-within,
+.card:focus-within {
+  outline: none;
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-lift);
 }
 
 @media (prefers-reduced-motion: no-preference) {
