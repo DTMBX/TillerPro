@@ -53,6 +53,9 @@ jobs:
           path: _site
 
   deploy:
+    # Deploy previews for internal PRs and production for default-branch pushes.
+    # Forked PRs lack Pages permissions, so we skip deployment there to avoid hard failures.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
