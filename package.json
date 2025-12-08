@@ -14,6 +14,8 @@
     "dev": "npm run build:css && bundle exec jekyll serve --host 0.0.0.0 --port 4000 --livereload --livereload-port 35729",
     "build": "npm run build:css && bundle exec jekyll build",
     "build:site": "npm run build",
+    "build:full": "npm run build:css && npm run build:logos && bundle exec jekyll build",
+    "build:logos": "node scripts/generate-png-logos.js",
     "test": "npm run build && node scripts/check-links.js",
     "images:webp": "node scripts/convert-images-to-webp.js",
     "slugify": "node scripts/slugify.js",
