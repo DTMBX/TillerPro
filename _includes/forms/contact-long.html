@@ -2,15 +2,12 @@
   name="{{ include.form_name | default: 'contact-long' }}"
   id="{{ include.form_id | default: 'contact-form-long' }}"
   class="contact-form contact-form--long"
-  data-contact-form
-  data-contact-email="{{ site.company.email }}"
-  data-contact-phone="{{ site.company.phone_display }}"
   method="post"
-  action="{{ include.action | default: page.url | relative_url }}"
-  aria-describedby="{{ include.aria_describedby | default: 'form-intro' }}"
-  aria-live="polite"
+  action="/success/"             <!-- Netlify form endpoint redirect -->
   data-netlify="true"
   netlify-honeypot="_trap"
+  aria-describedby="{{ include.aria_describedby | default: 'form-intro' }}"
+  aria-live="polite"
 >
   <input type="hidden" name="form-name" value="{{ include.form_name | default: 'contact-long' }}">
 
@@ -20,84 +17,32 @@
   </p>
 
   <div class="form-grid">
+
     <div class="form-field">
       <label for="{{ include.prefix }}name">
-        Full name<span class="sr-only"> (required)</span><span aria-hidden="true">*</span>
+        Full name <span aria-hidden="true">*</span>
       </label>
-      <input
-        id="{{ include.prefix }}name"
-        name="name"
-        type="text"
-        class="ts-input"
-        required
-        aria-required="true"
-        autocomplete="name"
-        placeholder="Your name"
-      >
+      <input id="{{ include.prefix }}name" name="name" type="text" class="ts-input" required autocomplete="name" placeholder="Your name">
     </div>
 
     <div class="form-field">
-      <label for="{{ include.prefix }}company">
-        Company / organization
-      </label>
-      <input
-        id="{{ include.prefix }}company"
-        name="company"
-        type="text"
-        class="ts-input"
-        autocomplete="organization"
-        placeholder="GC, remodeling firm, or property team"
-      >
+      <label for="{{ include.prefix }}company">Company / organization</label>
+      <input id="{{ include.prefix }}company" name="company" type="text" class="ts-input" autocomplete="organization" placeholder="GC, remodeling firm, or property team">
     </div>
 
     <div class="form-field">
-      <label for="{{ include.prefix }}email">
-        Email<span class="sr-only"> (required)</span><span aria-hidden="true">*</span>
-      </label>
-      <input
-        id="{{ include.prefix }}email"
-        name="email"
-        type="email"
-        class="ts-input"
-        required
-        aria-required="true"
-        autocomplete="email"
-        placeholder="you@example.com"
-        inputmode="email"
-      >
+      <label for="{{ include.prefix }}email">Email <span aria-hidden="true">*</span></label>
+      <input id="{{ include.prefix }}email" name="email" type="email" class="ts-input" required autocomplete="email" placeholder="you@example.com">
     </div>
 
     <div class="form-field">
-      <label for="{{ include.prefix }}phone">
-        Phone<span class="sr-only"> (required)</span><span aria-hidden="true">*</span>
-      </label>
-      <input
-        id="{{ include.prefix }}phone"
-        name="phone"
-        type="tel"
-        class="ts-input"
-        required
-        aria-required="true"
-        autocomplete="tel"
-        inputmode="tel"
-        placeholder="{{ site.company.phone_display | default: '(609) 862-8808' }}"
-      >
+      <label for="{{ include.prefix }}phone">Phone <span aria-hidden="true">*</span></label>
+      <input id="{{ include.prefix }}phone" name="phone" type="tel" class="ts-input" required autocomplete="tel" placeholder="{{ site.company.phone_display | default: '(609) 862-8808' }}">
     </div>
 
     <div class="form-field">
-      <label for="{{ include.prefix }}city">
-        City / area<span class="sr-only"> (required)</span><span aria-hidden="true">*</span>
-      </label>
-      <input
-        id="{{ include.prefix }}city"
-        name="city"
-        type="text"
-        class="ts-input"
-        required
-        aria-required="true"
-        autocomplete="address-level2"
-        placeholder="e.g., Galloway, Atlantic City, Brigantine"
-      >
+      <label for="{{ include.prefix }}city">City / area <span aria-hidden="true">*</span></label>
+      <input id="{{ include.prefix }}city" name="city" type="text" class="ts-input" required autocomplete="address-level2" placeholder="e.g., Galloway, Atlantic City, Brigantine">
     </div>
 
     <div class="form-field">
@@ -138,64 +83,35 @@
         <option>Planning for future</option>
       </select>
     </div>
+
   </div>
 
   <div class="form-field">
-    <label for="{{ include.prefix }}details">
-      Project details<span class="sr-only"> (required)</span><span aria-hidden="true">*</span>
-    </label>
-    <textarea
-      id="{{ include.prefix }}details"
-      name="details"
-      rows="6"
-      class="ts-textarea"
-      required
-      aria-required="true"
-      placeholder="Share details about your property, maintenance needs, remodeling scope, or tile project. Include address/location, property type, timeline, and any specific concerns or requirements."
-    ></textarea>
+    <label for="{{ include.prefix }}details">Project details <span aria-hidden="true">*</span></label>
+    <textarea id="{{ include.prefix }}details" name="details" rows="6" class="ts-textarea" required placeholder="Share property, maintenance, remodel, or tile scope details. Include location, timeline, concerns, and photos if available."></textarea>
   </div>
 
   <div class="form-field">
-    <label for="{{ include.prefix }}photos">
-      Link to plans, photos, or bid package (optional)
-    </label>
-    <input
-      id="{{ include.prefix }}photos"
-      name="photos"
-      type="url"
-      class="ts-input"
-      inputmode="url"
-      placeholder="Link to Google Drive, PlanGrid, Dropbox, etc."
-    >
+    <label for="{{ include.prefix }}photos">Link to plans/photos (optional)</label>
+    <input id="{{ include.prefix }}photos" name="photos" type="url" class="ts-input" placeholder="Google Drive, PlanGrid, Dropbox...">
   </div>
 
   <div class="form-field">
-    <label for="{{ include.prefix }}request-type">
-      Request type<span class="sr-only"> (required)</span><span aria-hidden="true">*</span>
-    </label>
-    <select
-      id="{{ include.prefix }}request-type"
-      name="request_type"
-      class="ts-select"
-      required
-      aria-required="true"
-    >
+    <label for="{{ include.prefix }}request-type">Request type <span aria-hidden="true">*</span></label>
+    <select id="{{ include.prefix }}request-type" name="request_type" class="ts-select" required>
       <option value="">Select a request focus</option>
       <option>Design &amp; Tile Consultation</option>
       <option>Site Visit / Estimate</option>
       <option>Monthly Property Maintenance Plan</option>
-      <option>General Contractor / Trade Partner Collaboration</option>
+      <option>General Contractor Collaboration</option>
       <option>Subcontracting Inquiry</option>
       <option>Other / Not Sure Yet</option>
     </select>
   </div>
 
   <p class="form-note" id="{{ include.prefix }}privacy-note">
-    Your information stays with Tillerstead. It’s used only to coordinate your scope,
-    prepare documentation, and keep you updated — never sold or shared.
+    Your information stays with Tillerstead—used only to coordinate your scope and updates.
   </p>
-
-  <div class="form-status sr-only" aria-live="polite" data-form-status></div>
 
   <button type="submit" class="btn btn--primary ts-button ts-button--primary" aria-describedby="{{ include.prefix }}privacy-note">
     {{ include.button_label | default: 'Submit request' }}
