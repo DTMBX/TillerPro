@@ -377,7 +377,7 @@ Valid:     ┌─────────────┐  ← Green border
 ## File Import Order
 
 ```
-main-build.scss
+main.scss
 │
 ├─ base/_tokens.scss       ← 1. Design tokens
 ├─ base/_reset.scss        ← 2. Reset & normalize

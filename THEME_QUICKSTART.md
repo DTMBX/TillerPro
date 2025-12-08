@@ -49,7 +49,7 @@ Edit `_sass/base/_tokens.scss`:
 ### Sass Build System
 The site uses a Sass-based CSS system:
 - **Source files**: `_sass/base/`, `_sass/components/`, `_sass/layout/`, `_sass/utilities/`
-- **Build entry**: `assets/css/main-build.scss`
+- **Build entry**: `assets/css/main.scss`
 - **Output**: `assets/css/main.css` (auto-generated, do not edit)
 - **Build command**: `npm run build:css` (compiles Sass to CSS)
 - **Watch mode**: `npm run watch:css` (auto-recompiles on file changes)
