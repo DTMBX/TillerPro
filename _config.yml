@@ -4,24 +4,24 @@
 
 # Site identity
 title: Tillerstead LLC
-tagline: Property Maintenance, Remodeling & Tile in South Jersey
-description: Tillerstead LLC provides monthly property maintenance, remodeling, and waterproof tile installations for South Jersey homeowners, landlords, and small commercial spaces. NJ HIC #13VH10[...]
+tagline: Professional Tile & Stone Installation in South Jersey
+description: Expert tile and stone installation specializing in custom showers, heated floors, natural stone surfaces, and waterproof assemblies. Licensed NJ contractor serving Atlantic, Ocean & Cape May Counties with precision craftsmanship.
 url: https://tillerstead.com
 baseurl: ""                 # keep empty for apex/root
 timezone: America/New_York
 
 # Global keyword focus for SEO
 keywords:
-  - South Jersey property maintenance
-  - Monthly home maintenance plans NJ
-  - Atlantic County NJ remodeling contractor
-  - New Jersey HIC licensed contractor 13VH10808800
-  - Tile installation and waterproofing specialist NJ
-  - Shower waterproofing and tile repair South Jersey
-  - Remodeling and finish work contractor South Jersey
-  - Landlord and rental property maintenance NJ
-  - Small commercial property maintenance South Jersey
-  - Owner-operated remodeling and tile contractor in South Jersey
+  - Professional tile installation South Jersey
+  - Custom shower tile specialist NJ
+  - Heated floor installation Atlantic County
+  - Natural stone installation New Jersey
+  - Marble bathroom tile contractor
+  - Large format tile installation NJ
+  - Waterproofing specialist South Jersey
+  - Schluter certified installer NJ
+  - Porcelain slab installation South Jersey
+  - Licensed tile contractor Atlantic County
 
 # Use your own layouts/includes (no injected theme)
 theme: null
