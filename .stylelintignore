@@ -5,6 +5,9 @@ build/
 assets/css/main.css
 assets/css/*.min.css
 
+# Ignore Jekyll SCSS files with front matter
+assets/css/main.scss
+
 # Ignore dependencies
 node_modules/
 vendor/

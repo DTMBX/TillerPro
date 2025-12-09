@@ -70,7 +70,9 @@ A fast, client-safe static site for Tillerstead LLC, built with Jekyll and a han
 - **Images:** Use `npm run images:webp` to generate WebP variants in-place under `assets/`.
 
 ## Quality & Linting
-- Run `npm run lint` before committing to check JavaScript, HTML, and front-end conventions.
+- Run `npm run lint` before committing to check JavaScript, HTML, CSS/SCSS, and front-end conventions.
+- Run `npm run lint:css` to validate SCSS files with stylelint.
+- Run `npm run lint:css:fix` to auto-fix common CSS formatting issues.
 - Use `npm run format` to apply Prettier formatting across the project.
 - The `build` script keeps compiled CSS compressed for fast page loads.
 
