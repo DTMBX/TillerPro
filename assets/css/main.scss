@@ -27,5 +27,5 @@
 /* Utilities Layer - Helper classes */
 @import "utilities/helpers";
 
-/* Legacy Theme Support - Backwards compatibility */
-@import "components/theme";
+/* Theme Layer - Brand-specific surfaces */
+@import "theme/tillerstead";
