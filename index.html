@@ -10,8 +10,8 @@ hero_eyebrow: Licensed South Jersey Tile Contractor
 hero_title: Waterproof tile showers that look sharp and stay solid
 hero_summary: >
   Tillerstead LLC builds and repairs showers, bathrooms, and tile floors with proper
-  waterproofing, slope, and layoutâ€”so your home, rental, or shore place stays dry.
-  You see clear photos from demo through final clean-up, and you always know whatâ€™s
+  waterproofing, slope, and layout—so your home, rental, or shore place stays dry.
+  You see clear photos from demo through final clean-up, and you always know what’s
   behind the tile in Atlantic, Ocean, and Cape May Counties.
 hero_primary_url: /contact/
 hero_primary_label: Request a tile consult
@@ -26,11 +26,11 @@ hero_project_image:
 
 hero_facts:
   - label: Waterproofing you can see
-    text: Photos of pans, drains, and membranes before tile goes onâ€”no guessing whatâ€™s under your shower.
+    text: Photos of pans, drains, and membranes before tile goes on—no guessing what’s under your shower.
   - label: Layout planned before we cut
-    text: Tile sizes, grout joints, and niche locations mocked up so you donâ€™t end up with sliver cuts or crooked lines.
+    text: Tile sizes, grout joints, and niche locations mocked up so you don’t end up with sliver cuts or crooked lines.
   - label: Clean, documented jobsites
-    text: Daily progress updates for homeowners, landlords, and GC partnersâ€”easy to save for future resale, lenders, or insurance.
+    text: Daily progress updates for homeowners, landlords, and GC partners—easy to save for future resale, lenders, or insurance.
 
 hero_bullets:
   - icon: waterproof
@@ -47,15 +47,14 @@ hero_bullets:
     detail: RedGard, KERDI, and HYDRO BAN systems installed to manufacturer specs with movement joints and flood tests.
 
 services_gallery:
-  - src: /assets/img/tillerstead-work/bathrooms/bathroom-floor-ditra-progress.jpg
-    alt: DITRA membrane locked over plywood with heat mat channels ready for self-leveling pour.
+  - src: /assets/img/tillerstead-work/bathrooms/bathroom-floor-install-progress.jpg
+    alt: Large-format porcelain tile being set over a waterproofed subfloor in a South Jersey bathroom.
     caption: Subfloor flattened, waterproofed, and photo-documented so homeowners know exactly what is beneath the tile.
+  - src: /assets/img/tillerstead-work/bathrooms/bathroom-marble-floor-finish.jpg
+    alt: Finished marble-look porcelain tile floor with grout joints aligned to shower niche and walls.
   - src: /assets/img/tillerstead-work/bathrooms/bathroom-marble-shower-niche.jpg
-    alt: Book-matched marble niche and window return with aligned grout joints and sealed shelf.
-    caption: Layout math keeps miters, shelves, and trims aligned through every plane of the shower.
-  - src: /assets/img/tillerstead-work/bathrooms/bathroom-threshold-leveling-progress.jpg
-    alt: Entry threshold leveled with gauges for a flush handoff from wet room tile to adjacent flooring.
-    caption: Thresholds are laser-leveled and waterproofed to avoid trip lips and future swelling.
+    alt: Marble-look shower with mosaic niche and window returns.
+    caption: Shower rebuild with sealed shelf, window trims, and waterproof proof photos.
 
 services:
   - icon: waterproof
@@ -79,53 +78,116 @@ services:
     description: Honest assessments, targeted repairs, and full rebuilds when old tile fails, grout cracks, or waterproofing was skipped.
     details: "Leak & moisture checks|Forensic tear-outs & reports|Landlord & GC documentation support"
 ---
-<section class="animate-in pt-6 pb-8" aria-labelledby="services-heading">
+<style>
+  /* Emerald & Parchment brand theme (scoped to home sections) */
+  :root {
+    --emerald-600: #059669; /* primary emerald */
+    --emerald-700: #047857;
+    --emerald-300: #6ee7b7;
+    --parchment-50: #f7f3e9; /* light parchment */
+    --parchment-100: #efe6d6;
+    --ink-900: #0f172a; /* deep text */
+  }
+
+  /* Base section spacing and polish */
+  section[aria-labelledby] {
+    padding-top: 2.25rem; /* pt-9 */
+    padding-bottom: 2.75rem; /* pb-11 */
+    margin-bottom: 0.75rem;
+  }
+
+  /* Subtle entrance animation refinement */
+  .animate-in { will-change: opacity, transform; }
+
+  /* Parchment surfaces */
+  .brand-parchment {
+    background: var(--parchment-50);
+    border: 1px solid var(--parchment-100);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+  }
+
+  /* Elevated parchment surfaces */
+  .brand-parchment-elevated {
+    background: linear-gradient(180deg, var(--parchment-50), #fff);
+    border: 1px solid var(--parchment-100);
+    border-radius: 0.875rem;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  }
+
+  /* Emerald accent top border for visual rhythm */
+  .brand-accent {
+    border-top: 4px solid var(--emerald-600);
+  }
+
+  /* Gradient card for portfolio highlight */
+  .brand-emerald-gradient {
+    background: linear-gradient(135deg, var(--emerald-700) 0%, var(--emerald-600) 45%, var(--emerald-300) 120%);
+    color: #07211a;
+    border-radius: 0.875rem;
+    box-shadow: 0 16px 28px rgba(4, 120, 87, 0.20);
+  }
+
+  /* Ensure nested content remains readable on gradient */
+  .brand-emerald-gradient a,
+  .brand-emerald-gradient h2,
+  .brand-emerald-gradient h3,
+  .brand-emerald-gradient p { color: #042318; }
+
+  /* Tighten vertical rhythm in lists within sections */
+  section[aria-labelledby] ul { margin-top: 0.75rem; margin-bottom: 0.25rem; }
+  section[aria-labelledby] li { padding: 0.25rem 0; }
+
+  /* Slightly stronger section titles if present */
+  [aria-labelledby] > *:first-child { scroll-margin-top: 5rem; }
+</style>
+<section class="animate-in brand-parchment brand-accent" aria-labelledby="services-heading">
   {% include ts-services.html
-    summary="Bathrooms, showers, and tile floors built to handle real South Jersey lifeâ€”salt, sand, guests, and rentalsâ€”without leaks or loose tile. From first walkthrough to final clean, you get clear pricing, honest scopes, and photo-documented work." %}
+    summary="Bathrooms, showers, and tile floors built to handle real South Jersey life—salt, sand, guests, and rentals—without leaks or loose tile. From first walkthrough to final clean, you get clear pricing, honest scopes, and photo-documented work." %}
 </section>
 
-<section class="animate-in pt-6 pb-8 bg-surface-elevated rounded-lg shadow-soft" aria-labelledby="plans-heading">
+<section class="animate-in brand-parchment-elevated brand-accent" aria-labelledby="plans-heading">
   {% include ts-plans.html
-    summary="Set up a simple check-in rhythm for your bathroom, shower, and grout. Small re-caulks, touch-ups, and moisture checks now can prevent full tear-outs laterâ€”especially in busy homes and shore rentals." %}
+    summary="Set up a simple check-in rhythm for your bathroom, shower, and grout. Small re-caulks, touch-ups, and moisture checks now can prevent full tear-outs later—especially in busy homes and shore rentals." %}
 </section>
 
-<section class="animate-in pt-6 pb-8" aria-labelledby="process-heading">
+<section class="animate-in brand-parchment brand-accent" aria-labelledby="process-heading">
   {% include ts-process.html
     summary="A clear, step-by-step process: walkthrough and estimate, scope confirmation, protection and prep, waterproofing and inspections, tile and grout, punch list, and final photos you can keep for records or resale." %}
 </section>
 
-<section class="animate-in pt-6 pb-8 bg-surface rounded-lg" aria-labelledby="deliver-heading">
+<section class="animate-in brand-parchment brand-accent" aria-labelledby="deliver-heading">
   {% include ts-deliver.html
-    summary="You donâ€™t just get a finished bathroomâ€”you get a documented project. Before-and-after photos, waterproofing shots, product info, and care notes so you know how to protect your investment for years to come." %}
+    summary="You don’t just get a finished bathroom—you get a documented project. Before-and-after photos, waterproofing shots, product info, and care notes so you know how to protect your investment for years to come." %}
 </section>
 
-<section class="animate-in pt-6 pb-8" aria-labelledby="assurance-heading">
+<section class="animate-in brand-parchment brand-accent" aria-labelledby="assurance-heading">
   {% include ts-assurance.html
     summary="Licensed, insured, and committed to doing the work the way weâ€™d want it done in our own homes. Clear communication, written scopes, realistic timelines, and respect for your property from start to finish." %}
 </section>
 
-<section class="animate-in pt-8 pb-10 bg-gradient rounded-lg shadow-lift" aria-labelledby="portfolio-heading">
+<section class="animate-in brand-emerald-gradient brand-accent" aria-labelledby="portfolio-heading">
   {% include portfolio-highlights.html
     eyebrow="Recent South Jersey projects"
     title="Custom tile and stone work from AC to Cape May"
     summary="Browse real bathrooms, shower rebuilds, and repair scopes across Atlantic, Ocean, and Cape May Counties. Every project shows how proper prep, waterproofing, and layout planning pay off in the finished room." %}
 </section>
 
-<section class="animate-in pt-6 pb-8" aria-labelledby="reviews-heading">
+<section class="animate-in brand-parchment brand-accent" aria-labelledby="reviews-heading">
   {% include reviews-highlights.html
     limit=3
     title="What homeowners and partners say"
     summary="Clients highlight clean jobsites, clear expectations, and the peace of mind that comes from knowing their shower and tile were built the right way." %}
 </section>
 
-<section class="animate-in pt-6 pb-8" aria-labelledby="blog-heading">
+<section class="animate-in brand-parchment brand-accent" aria-labelledby="blog-heading">
   {% include blog-highlights.html
     summary="Short, practical breakdowns of leaks, grout failures, waterproofing options, and what South Jersey owners should ask before hiring a tile contractor." %}
 </section>
 
-<section class="animate-in pt-8 pb-12 bg-surface-elevated rounded-lg shadow-soft" aria-labelledby="contact-heading">
+<section class="animate-in brand-parchment-elevated brand-accent" aria-labelledby="contact-heading">
   {% include ts-contact.html
-    summary="Tell us about your bathroom, shower, or tile projectâ€”whether itâ€™s a full gut, a leak youâ€™re worried about, or a rental that needs to be ready for the season. Weâ€™ll respond with a clear next step and realistic options." %}
+    summary="Tell us about your bathroom, shower, or tile project—whether it’s a full gut, a leak you’re worried about, or a rental that needs to be ready for the season. We’ll respond with a clear next step and realistic options." %}
 </section>
 
 {% comment %}

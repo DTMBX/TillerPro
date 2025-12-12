@@ -56,6 +56,7 @@
   min-width: 0;
 }
 
+
 .site-logo,
 .ts-logo-link {
   display: inline-flex;
@@ -69,11 +70,11 @@
     opacity var(--transition-fast),
     outline-color var(--transition-fast);
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     opacity: 0.96;
     transform: translateY(-1px);
   }
-
   &:focus-visible {
     outline-color: var(--color-primary);
   }
@@ -90,25 +91,23 @@
     filter var(--transition-fast),
     transform var(--transition-fast);
 
-  &--header {
+  &.ts-logo--header {
     width: clamp(150px, 28vw, 220px);
     max-height: 50px;
   }
-
-  &--footer {
+  &.ts-logo--footer {
     width: clamp(160px, 32vw, 240px);
     max-height: 56px;
     opacity: 0.95;
   }
-
-  /* Hero/heroine logo sizing moved here so header styles stay canonical */
-  &--hero {
+  &.ts-logo--hero {
     width: clamp(200px, 50vw, 300px);
     max-height: 64px;
   }
 }
 
-.ts-logo-link:hover .ts-logo {
+.ts-logo-link:hover .ts-logo,
+.ts-logo-link:focus-visible .ts-logo {
   filter: drop-shadow(0 2px 4px var(--ts-color-shadow-medium));
 }
 
@@ -119,6 +118,7 @@
   max-height: 52px;
   height: auto;
   object-fit: contain;
+  aspect-ratio: 16/4;
 }
 
 /* Optional tagline/license beside logo on desktop */
@@ -343,11 +343,14 @@
 
 @media (max-width: 920px) {
   /* Layout: brand on left, actions/toggle on right */
+
   .site-header-inner {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0.75rem clamp(1rem, 4vw, 1.5rem);
     gap: var(--space-2);
+    min-width: 0;
   }
 
   .site-branding {
@@ -355,6 +358,7 @@
   }
 
   /* Key: drawer lives in its own fixed layer, not as a flex column */
+
   .site-nav-shell {
     position: fixed;
     inset: 0;
@@ -365,15 +369,18 @@
     width: 0;
     height: 0;
     z-index: 5000;
+    background: transparent;
   }
 
   .site-nav-shell.is-open {
     pointer-events: auto;
   }
 
+
   .site-header-actions {
     margin-left: auto;
     gap: var(--ts-spacing-sm);
+    flex-shrink: 0;
   }
 
   /* Backdrop */
@@ -399,6 +406,7 @@
   }
 
   /* Drawer panel */
+
   .site-nav {
     position: fixed;
     top: 0;
@@ -419,6 +427,7 @@
     z-index: 5010;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    outline: none;
   }
 
   .site-nav-shell.is-open .site-nav {
@@ -483,25 +492,29 @@
   }
 
   /* Drawer menu */
+
   .site-menu {
     flex-direction: column;
     width: 100%;
     gap: 0.5rem;
     margin-top: var(--space-3);
-    /* provide subtle stagger when drawer opens */
     opacity: 0;
     transform: translateY(6px);
     transition: opacity 240ms ease, transform 240ms ease;
+    outline: none;
   }
+
 
   .site-menu .nav-link {
     width: 100%;
     padding: 0.875rem 1rem;
     font-size: 1.02rem;
+    border-radius: var(--radius-sm);
+    outline: none;
   }
 
+
   .site-menu .nav-link::after {
-    /* remove desktop underline bar in drawer */
     display: none;
   }
 
@@ -518,10 +531,12 @@
     }
   }
 
+
   .nav-cta--drawer {
     margin-top: var(--space-3);
     padding-top: var(--space-3);
     border-top: 1px solid var(--color-border);
+    width: 100%;
   }
 
   /* Activate list reveal when open */
@@ -548,14 +563,20 @@
   .site-nav-shell.is-open .site-menu li:nth-child(6) { transition-delay: 240ms; }
 
   /* Toggle / actions */
+
   .nav-toggle {
     display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+    align-items: center;
   }
 
+
   .header-cta {
-    /* drawer handles CTAs on mobile */
     display: none;
   }
+
 
   .call-btn {
     display: none;
@@ -564,20 +585,24 @@
 
 /* Tiny screens: tighten everything */
 @media (max-width: 640px) {
+
   .site-logo-img,
   .ts-logo {
     width: clamp(135px, 45vw, 180px);
     max-height: 48px;
   }
 
+
   .nav-toggle-label {
     display: none;
   }
+
 
   .site-nav {
     width: min(92vw, 320px);
     padding: clamp(1rem, 5vw, 1.5rem);
   }
+
 
   .site-menu .nav-link {
     padding: 0.75rem 0.875rem;
@@ -587,10 +612,12 @@
 
 /* iPhone SE-ish */
 @media (max-width: 375px) {
+
   .site-header-inner {
     padding: 0.6rem 1rem;
     gap: 0.5rem;
   }
+
 
   .site-logo-img,
   .ts-logo {
@@ -604,12 +631,13 @@
 body.nav-open {
   overflow: hidden;
   touch-action: none;
-  .site-header {
-    position: fixed;
-    width: 100%;
-    left: 0;
-    right: 0;
-  }
+}
+
+body.nav-open .site-header {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -621,7 +649,6 @@ body.nav-open {
     transition: none !important;
     animation: none !important;
   }
-
   .site-menu .nav-link:hover {
     transform: none !important;
   }

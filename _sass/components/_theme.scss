@@ -1,6 +1,10 @@
 /* ============================================
-   Deprecated Theme Entry
-   This file now proxies to theme/_tillerstead.scss
+   Tillerstead Theme Entry Point
+   --------------------------------------------
+   This file imports the main theme partial for
+   tillerstead.com. Update this import if the
+   theme structure changes in the future.
    ============================================ */
 
-@import "../theme/tillerstead";
+// Import the main theme partial
+@import "../theme/_tillerstead.scss";
