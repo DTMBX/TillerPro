@@ -653,3 +653,35 @@ body.nav-open {
     overscroll-behavior: contain;
   }
 }
+/* ============================================
+   SAFETY PATCH — prevent invisible header items
+   ============================================ */
+
+.site-header-inner {
+  min-height: var(--header-height);
+}
+
+.site-branding,
+.ts-logo-link,
+.ts-logo {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.nav-toggle {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Ensure mobile toggle always appears on small screens */
+@media (max-width: 920px) {
+  .nav-toggle {
+    display: inline-flex !important;
+  }
+}
+
+/* Prevent accidental collapse */
+.site-header-actions {
+  min-height: 44px;
+}
