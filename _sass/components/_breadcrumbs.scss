@@ -3,7 +3,6 @@
    Modern, accessible breadcrumb styles
    ============================================ */
 
-<<<<<<< HEAD
 .breadcrumbs-bar {
   width: 100%;
   background: var(--ts-color-surface-elevated, #fff);
@@ -42,7 +41,6 @@
   background: transparent;
 
   /* Hide on homepage (handled by layout logic) */
-=======
 .ts-breadcrumbs {
   display: flex;
   align-items: center;
@@ -52,45 +50,36 @@
   position: relative;
 
   /* Hidden on homepage (handled by layout logic) */
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
   .page-home & {
     display: none;
   }
 
-<<<<<<< HEAD
   nav[aria-label="Breadcrumb"] & {
     width: 100%;
   }
 
   /* Style ordered list */
-=======
   /* Style both direct ol elements and those with classes */
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
   ol,
   .ts-breadcrumbs__list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-<<<<<<< HEAD
     flex-wrap: nowrap;
     align-items: center;
     gap: 0.25rem;
     width: 100%;
-=======
     flex-wrap: wrap;
     align-items: center;
     gap: var(--space-2);
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
   }
 
   /* Style all list items */
   li,
   .ts-breadcrumbs__item {
-<<<<<<< HEAD
   display: inline-flex;
   align-items: center;
-  font-size: var(--font-size-sm);
   color: var(--color-text-muted);
   white-space: nowrap;
   min-width: 0;
@@ -124,10 +113,8 @@
   text-decoration: none;
   font-weight: 500;
   transition: color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
-=======
     display: inline-flex;
     align-items: center;
-    font-size: var(--font-size-sm);
     color: var(--color-text-muted);
 
     &:not(:last-child)::after {
@@ -146,24 +133,18 @@
   text-decoration: none;
   font-weight: 500;
   transition: var(--transition-fast);
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
   border-radius: var(--radius-sm);
   padding: 0.25rem 0.5rem;
-  display: inline-flex;
   align-items: center;
-<<<<<<< HEAD
   outline: none;
   background: transparent;
   cursor: pointer;
   box-shadow: none;
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 
   &:hover,
   &:focus-visible {
     color: var(--color-primary);
     background: var(--color-primary-soft);
-<<<<<<< HEAD
     text-decoration: underline;
     outline: none;
     box-shadow: 0 0 0 2px var(--color-primary-outline, var(--color-primary));
@@ -179,7 +160,6 @@
 
 
 
-=======
     text-decoration: none;
   }
 
@@ -189,12 +169,10 @@
   }
 }
 
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 .ts-breadcrumbs__current,
 .ts-crumb-current {
   color: var(--color-heading);
   font-weight: 600;
-<<<<<<< HEAD
   padding: 0.25rem 0.85rem;
   display: inline-flex;
   align-items: center;
@@ -276,7 +254,6 @@
   content-visibility: auto;
   contain-intrinsic-size: 40px 20px;
 }
-=======
   padding: 0.25rem 0.5rem;
   display: inline-flex;
   align-items: center;
@@ -305,4 +282,3 @@
     display: none;
   }
 }
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde

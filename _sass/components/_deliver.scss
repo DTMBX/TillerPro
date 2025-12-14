@@ -1,5 +1,4 @@
 /* ============================================
-<<<<<<< HEAD
   Deliver Section
   Modern, high-quality styling and layout
   Improved for tillerstead.com
@@ -64,7 +63,6 @@
 }
 
 
-=======
    Deliver Section
    Modern, high-quality styling and layout
    ============================================ */
@@ -101,12 +99,10 @@
   padding-left: 1.25rem;
 }
 
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 .ts-deliver__list li::before {
   content: "";
   position: absolute;
   left: 0;
-<<<<<<< HEAD
   top: 0.7em;
   width: 0.7em;
   height: 0.7em;
@@ -168,7 +164,6 @@
 }
 
 
-=======
   top: 0.45rem;
   width: 0.5rem;
   height: 0.5rem;
@@ -205,12 +200,10 @@
   padding-left: 1.25rem;
 }
 
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 .ts-deliver__features li::before {
   content: "";
   position: absolute;
   left: 0;
-<<<<<<< HEAD
   top: 0.7em;
   width: 0.7em;
   height: 0.7em;
@@ -288,7 +281,6 @@
   .ts-deliver__eyebrow {
     font-size: 0.8rem;
   }
-=======
   top: 0.45rem;
   width: 0.5rem;
   height: 0.5rem;
@@ -319,5 +311,4 @@
   background: transparent;
   border: 1px solid var(--ts-color-border);
   color: var(--ts-color-heading);
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }

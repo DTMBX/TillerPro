@@ -1,5 +1,4 @@
 /* ============================================
-<<<<<<< HEAD
    Tillerstead Theme Entry Point
    --------------------------------------------
    This file imports the main theme partial for
@@ -9,10 +8,8 @@
 
 // Import the main theme partial
 @import "../theme/_tillerstead.scss";
-=======
    Deprecated Theme Entry
    This file now proxies to theme/_tillerstead.scss
    ============================================ */
 
 @import "../theme/tillerstead";
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde

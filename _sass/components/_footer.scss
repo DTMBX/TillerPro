@@ -2,7 +2,6 @@
    Footer – Tillerstead (navy theme, high contrast)
    ============================================ */
 
-<<<<<<< HEAD
 
 // Improved footer for accessibility and clarity
 .site-footer.ts-footer {
@@ -29,7 +28,6 @@
 }
 
 
-=======
 .site-footer.ts-footer {
   background-color: var(--footer-bg);
   color: var(--footer-text);
@@ -46,31 +44,23 @@
   margin: 0 auto;
 }
 
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 .site-footer.ts-footer .footer-panel {
   background: transparent;
   border: 0;
   padding: 0;
-<<<<<<< HEAD
   width: 100%;
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 /* =========================
    Layout
    ========================= */
 
-<<<<<<< HEAD
 
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 .site-footer.ts-footer .footer-flex {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-<<<<<<< HEAD
   gap: clamp(2rem, 4vw, 3rem);
 }
 
@@ -81,7 +71,6 @@
   flex: 1 1 260px;
   min-width: 200px;
   max-width: 400px;
-=======
   gap: clamp(1.75rem, 4vw, 2.5rem);
 }
 
@@ -90,22 +79,17 @@
 .site-footer.ts-footer .footer-contact-area {
   flex: 1 1 240px;
   min-width: 220px;
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 /* =========================
    Brand block + logo
    ========================= */
 
-<<<<<<< HEAD
 
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 .site-footer.ts-footer .footer-brand-card {
   display: flex;
   align-items: center;
   gap: 1rem;
-<<<<<<< HEAD
   padding: 1.1rem 1.3rem;
   border-radius: var(--radius-md, 0.75rem);
   background: rgba(8, 32, 52, 0.98);
@@ -116,7 +100,6 @@
 }
 
 
-=======
   padding: 0.9rem 1.1rem;
   border-radius: var(--radius-md);
   background: rgba(8, 32, 52, 0.9);
@@ -125,7 +108,6 @@
   margin-bottom: 1.25rem;
 }
 
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 .site-footer.ts-footer .ts-logo--footer,
 .site-footer.ts-footer .footer-logo {
   display: block;
@@ -134,12 +116,9 @@
   width: 100%;
   height: auto;
   object-fit: contain;
-<<<<<<< HEAD
   filter: none;
   transition: filter 0.2s;
-=======
   filter: none; /* no invert hacks */
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .site-footer.ts-footer .footer-brand-meta {
@@ -148,7 +127,6 @@
   gap: 0.25rem;
 }
 
-<<<<<<< HEAD
 
 .site-footer.ts-footer .footer-tagline {
   margin: 0;
@@ -165,7 +143,6 @@
   font-size: 0.8rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
-=======
 .site-footer.ts-footer .footer-tagline {
   margin: 0;
   font-weight: 700;
@@ -180,31 +157,24 @@
   font-size: 0.75rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.8);
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 /* =========================
    Body text – descriptions
    ========================= */
 
-<<<<<<< HEAD
 
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 .site-footer.ts-footer .footer-desc,
 .site-footer.ts-footer .footer-licensing,
 .site-footer.ts-footer .footer-contact-area p,
 .site-footer.ts-footer address {
   margin: 0.35rem 0 0;
-<<<<<<< HEAD
   font-size: 1rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.93);
-=======
   font-size: 0.95rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.9);
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .site-footer.ts-footer address {
@@ -212,18 +182,15 @@
 }
 
 /* Subnote under contact block */
-<<<<<<< HEAD
 
 .site-footer.ts-footer .footer-subnote small {
   display: inline-block;
   margin-top: 0.4rem;
   font-size: 0.9rem;
-=======
 .site-footer.ts-footer .footer-subnote small {
   display: inline-block;
   margin-top: 0.4rem;
   font-size: 0.85rem;
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
   color: rgba(255, 255, 255, 0.82);
 }
 
@@ -231,7 +198,6 @@
    Nav links
    ========================= */
 
-<<<<<<< HEAD
 
 .site-footer.ts-footer .footer-title {
   font-size: 1.05rem;
@@ -243,7 +209,6 @@
 }
 
 
-=======
 .site-footer.ts-footer .footer-title {
   font-size: 0.95rem;
   font-weight: 700;
@@ -253,13 +218,11 @@
   letter-spacing: 0.12em;
 }
 
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 .site-footer.ts-footer .footer-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
-<<<<<<< HEAD
   gap: 0.7rem;
 }
 
@@ -286,7 +249,6 @@
   outline: 2.5px solid var(--ts-footer-link, #7fd1ff);
   outline-offset: 2px;
   box-shadow: 0 2px 8px 0 rgba(127, 209, 255, 0.10);
-=======
   gap: 0.6rem;
 }
 
@@ -301,14 +263,12 @@
 .site-footer.ts-footer .footer-link:focus-visible {
   color: var(--ts-footer-link-hover);
   text-decoration: underline;
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 /* =========================
    Bottom line / copyright
    ========================= */
 
-<<<<<<< HEAD
 
 
 .site-footer.ts-footer .footer-bottom {
@@ -325,7 +285,6 @@
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.93);
   letter-spacing: 0.01em;
-=======
 .site-footer.ts-footer .footer-bottom {
   margin-top: 2rem;
   padding-top: 1rem;
@@ -337,14 +296,12 @@
   margin: 0;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.82);
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 /* =========================
    Social (optional, safe defaults)
    ========================= */
 
-<<<<<<< HEAD
 
 .site-footer.ts-footer .footer-social {
   display: flex;
@@ -353,21 +310,18 @@
 }
 
 
-=======
 .site-footer.ts-footer .footer-social {
   display: flex;
   gap: 0.5rem;
   margin-top: 0.9rem;
 }
 
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 .site-footer.ts-footer .social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 2.25rem;
   height: 2.25rem;
-<<<<<<< HEAD
   border-radius: var(--radius-sm, 0.5rem);
   background: rgba(255, 255, 255, 0.10);
   border: 1.5px solid rgba(255, 255, 255, 0.22);
@@ -386,7 +340,6 @@
 
   &:focus-visible {
     outline: var(--focus-ring, 2.5px solid #7fd1ff);
-=======
   border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -404,18 +357,14 @@
 
   &:focus-visible {
     outline: var(--focus-ring);
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
     outline-offset: 2px;
   }
 
   svg {
-<<<<<<< HEAD
     width: 1.25rem;
     height: 1.25rem;
-=======
     width: 1.2rem;
     height: 1.2rem;
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
   }
 }
 
@@ -423,7 +372,6 @@
    Responsive tweaks
    ========================= */
 
-<<<<<<< HEAD
 
 @media (max-width: 900px) {
   .site-footer.ts-footer .footer-flex {
@@ -440,32 +388,26 @@
   .site-footer.ts-footer .footer-brand-card {
     flex-direction: row;
     text-align: left;
-=======
 @media (max-width: 900px) {
   .site-footer.ts-footer .footer-flex {
     flex-direction: column;
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
     align-items: flex-start;
   }
 }
 
-<<<<<<< HEAD
 
 @media (max-width: 640px) {
   .site-footer.ts-footer {
     padding: clamp(1.2rem, 6vw, 2rem) clamp(0.5rem, 5vw, 1rem);
-=======
 @media (max-width: 640px) {
   .site-footer.ts-footer {
     padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 5vw, 1.5rem);
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
   }
 
   .site-footer.ts-footer .footer-brand-card {
     flex-direction: column;
     align-items: center;
     text-align: center;
-<<<<<<< HEAD
     padding: 1rem 0.5rem;
   }
 
@@ -487,7 +429,6 @@
     padding: 0.15em 0.3em;
   }
 }
-=======
   }
 }
 .footer-nav-grid {
@@ -618,4 +559,3 @@
   .footer-acc[open] > summary::after { content: ""; }
 }
 </style>
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde

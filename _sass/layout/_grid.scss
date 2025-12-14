@@ -1,20 +1,16 @@
 /* ============================================
-<<<<<<< HEAD
   Tillerstead Grid System
   Flexible, accessible, and maintainable grid layouts
   Improved for best practices and flexibility
   ============================================ */
-=======
    Modern Grid System
    Flexible, responsive grid layouts
    ============================================ */
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 
 /* Base Grid */
 .grid {
   display: grid;
   gap: var(--grid-gap, clamp(1rem, 3vw, 1.75rem));
-<<<<<<< HEAD
   width: 100%;
   box-sizing: border-box;
   min-width: 0;
@@ -30,7 +26,6 @@
 // Support for none (single column)
 .grid-cols-none {
   grid-template-columns: none;
-=======
 }
 
 /* Column Definitions */
@@ -60,12 +55,10 @@
 
 .grid-cols-12 {
   grid-template-columns: repeat(12, minmax(0, 1fr));
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 /* Auto-fit Grids - Responsive without media queries */
 .grid-auto-fit {
-<<<<<<< HEAD
   grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--auto-grid-min, 240px)), 1fr));
 }
 
@@ -109,7 +102,6 @@
     grid-column: span #{$i} / span #{$i};
   }
 }
-=======
   grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--auto-grid-min, 280px)), 1fr));
 }
 
@@ -168,12 +160,10 @@
   grid-column: span 4 / span 4;
 }
 
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 .col-span-full {
   grid-column: 1 / -1;
 }
 
-<<<<<<< HEAD
 // Row spanning
 @for $i from 1 through 12 {
   .row-span-#{$i} {
@@ -200,7 +190,6 @@
 .place-start { place-items: start; }
 .place-end { place-items: end; }
 .place-stretch { place-items: stretch; }
-=======
 /* Grid Alignment */
 .items-center {
   align-items: center;
@@ -225,7 +214,6 @@
 .place-center {
   place-items: center;
 }
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 
 /* Card Grids */
 .cards,
@@ -233,7 +221,6 @@
   display: grid;
   gap: clamp(1.5rem, 3vw, 2.5rem);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-<<<<<<< HEAD
   width: 100%;
   min-width: 0;
 }
@@ -278,7 +265,6 @@
   .xl\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .xl\:grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .xl\:grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-=======
 }
 
 /* Responsive Grid Utilities */
@@ -318,5 +304,4 @@
   .lg\:grid-cols-6 {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }

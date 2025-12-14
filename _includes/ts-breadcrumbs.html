@@ -1,18 +1,14 @@
 {% unless page.url == '/' or page.url == '/index.html' %}
 {%- assign is_home = page.url == '/' or page.url == '/index.html' -%}
 {%- assign render_breadcrumbs = true -%}
-<<<<<<< HEAD
 {%- if is_home
     or (page.show_breadcrumbs != nil and page.show_breadcrumbs == false)
     or (page.breadcrumb != nil and page.breadcrumb == false) -%}
-=======
 {%- if is_home or page.show_breadcrumbs == false -%}
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
   {%- assign render_breadcrumbs = false -%}
 {%- endif -%}
 
 {%- if render_breadcrumbs -%}
-<<<<<<< HEAD
   {%- assign raw_url = page.url | default: '' -%}
   {%- assign clean_url = '' | append: raw_url | replace: 'index.html', '' | replace: '.html', '' -%}
   {%- assign segments = clean_url | split: '/' -%}
@@ -223,7 +219,6 @@
     {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{ json_items }}]}
     </script>
   {%- endif -%}
-=======
   {%- assign clean_url = page.url | default: '' | replace: 'index.html', '' | replace: '.html', '' -%}
   {%- assign segments = clean_url | split: '/' -%}
   {%- assign clean_segments = '' | split: '' -%}
@@ -326,6 +321,5 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{ json_items }}]}
   </script>
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 {%- endif -%}
 {% endunless %}

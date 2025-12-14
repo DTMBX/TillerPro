@@ -7,7 +7,6 @@
    New Tile-first hero shell
    ============================================ */
 
-<<<<<<< HEAD
 
 // Improved Hero Section for tillerstead.com
 
@@ -22,17 +21,14 @@
   @media (max-width: 640px) {
     padding: clamp(2rem, 8vw, 3rem) 0;
   }
-=======
 .ts-hero {
   position: relative;
   padding: var(--section-padding-y) 0;
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__inner {
   position: relative;
   background: var(--ts-color-surface);
-<<<<<<< HEAD
   border-radius: var(--ts-radius-2xl);
   border: 1.5px solid var(--ts-color-border);
   box-shadow: var(--ts-shadow-lift);
@@ -52,7 +48,6 @@
     padding: clamp(1.2rem, 6vw, 2rem);
     gap: var(--ts-spacing-md);
   }
-=======
   border-radius: var(--ts-radius-xl);
   border: 1px solid var(--ts-color-border);
   box-shadow: var(--ts-shadow-lift);
@@ -61,14 +56,12 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: clamp(1.5rem, 4vw, 3rem);
   overflow: hidden;
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__inner::before {
   content: "";
   position: absolute;
   inset: 0;
-<<<<<<< HEAD
   background-image:
     var(--ts-grid-horizontal),
     var(--ts-grid-vertical),
@@ -93,29 +86,24 @@
   opacity: 0.18;
   pointer-events: none;
   z-index: 0;
-=======
   background-image: var(--ts-bg-pattern);
   background-size: var(--ts-bg-pattern-size);
   opacity: var(--ts-bg-pattern-opacity);
   pointer-events: none;
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__body {
   position: relative;
-<<<<<<< HEAD
   z-index: 2;
   display: flex;
   flex-direction: column;
   gap: clamp(1.5rem, 3vw, 2.8rem);
   justify-content: center;
   min-width: 0;
-=======
   z-index: 1;
   display: flex;
   flex-direction: column;
   gap: var(--ts-spacing-md);
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__brand {
@@ -123,28 +111,22 @@
   flex-direction: column;
   gap: 0.5rem;
   align-items: flex-start;
-<<<<<<< HEAD
   font-size: 1.12em;
   line-height: 1.2;
   letter-spacing: 0.01em;
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__tagline {
   margin: 0;
   font-size: var(--font-size-sm);
-<<<<<<< HEAD
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--ts-color-primary);
   font-weight: 700;
   opacity: 0.92;
-=======
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ts-color-text-subtle);
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__badge {
@@ -153,7 +135,6 @@
   gap: 0.4rem;
   padding: 0.35rem 0.9rem;
   border-radius: var(--ts-radius-pill);
-<<<<<<< HEAD
   border: 1.5px solid var(--ts-color-primary);
   background: var(--ts-color-surface-elevated);
   font-size: var(--font-size-xs);
@@ -167,7 +148,6 @@
 
 .ts-hero__eyebrow {
   font-size: var(--font-size-xs);
-=======
   border: 1px solid var(--ts-color-border);
   background: var(--ts-color-surface-elevated);
   font-size: var(--font-size-xs);
@@ -178,25 +158,20 @@
 
 .ts-hero__eyebrow {
   font-size: var(--font-size-sm);
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--ts-color-primary);
   margin: 0;
-<<<<<<< HEAD
   font-weight: 700;
   opacity: 0.95;
   background: var(--ts-color-primary-soft);
   border-radius: var(--ts-radius-pill);
   padding: 0.2em 0.9em;
   display: inline-block;
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__title {
   margin: 0;
-<<<<<<< HEAD
   font-size: clamp(2.7rem, 7vw, 4.5rem);
   font-family: var(--font-heading);
   font-weight: 900;
@@ -216,7 +191,6 @@
   max-width: 62ch;
   font-weight: 500;
   opacity: 0.98;
-=======
   font-size: var(--heading-1);
   font-family: var(--font-heading);
   font-weight: 700;
@@ -231,14 +205,12 @@
   color: var(--ts-color-muted);
   margin: 0;
   max-width: 64ch;
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__bullets {
   list-style: none;
   margin: 0;
   padding: 0;
-<<<<<<< HEAD
   display: flex;
   flex-direction: column;
   gap: var(--ts-spacing-md);
@@ -289,7 +261,6 @@
   font-size: var(--font-size-sm);
   color: var(--ts-color-muted);
   line-height: 1.45;
-=======
   display: grid;
   gap: var(--ts-spacing-sm);
 }
@@ -319,25 +290,20 @@
   font-size: var(--font-size-sm);
   font-weight: 500;
   color: var(--ts-color-muted);
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__actions {
   display: flex;
   flex-wrap: wrap;
-<<<<<<< HEAD
   gap: var(--ts-spacing-lg);
   align-items: center;
   margin-top: 1.6rem;
-=======
   gap: var(--ts-spacing-sm);
   align-items: center;
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__actions .btn {
   min-width: 220px;
-<<<<<<< HEAD
   font-size: 1.13em;
   font-weight: 700;
   border-radius: var(--ts-radius-pill);
@@ -350,33 +316,24 @@
 .ts-hero__actions .btn:focus-visible {
   box-shadow: 0 0 0 3px var(--ts-color-primary), 0 2px 8px 0 rgba(26,182,153,0.13);
   border-color: var(--ts-color-primary);
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__trust-line {
   margin: 0;
   font-size: var(--font-size-sm);
   color: var(--ts-color-text-subtle);
-<<<<<<< HEAD
   opacity: 0.85;
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__trust-line strong {
   color: var(--ts-color-heading);
-<<<<<<< HEAD
   font-weight: 700;
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__aside {
   position: relative;
   background: radial-gradient(circle at 20% 20%, rgba(26, 182, 153, 0.12), transparent 60%),
               var(--ts-color-surface-muted);
-<<<<<<< HEAD
   border-radius: var(--ts-radius-xl);
   border: 1.5px solid var(--ts-color-border);
   padding: clamp(2rem, 4vw, 2.5rem);
@@ -386,7 +343,6 @@
   gap: var(--ts-spacing-lg);
   min-width: 260px;
   z-index: 2;
-=======
   border-radius: var(--ts-radius-lg);
   border: 1px solid var(--ts-color-border);
   padding: clamp(1.5rem, 4vw, 2.25rem);
@@ -394,7 +350,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--ts-spacing-md);
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__project {
@@ -404,35 +359,26 @@
   border: 1px solid var(--ts-color-border);
   box-shadow: var(--ts-shadow-soft);
   background: var(--ts-color-surface-elevated);
-<<<<<<< HEAD
   transition: box-shadow 0.2s;
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 
   img {
     display: block;
     width: 100%;
     height: auto;
     object-fit: cover;
-<<<<<<< HEAD
     transition: transform 0.2s;
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
   }
 
   figcaption {
     padding: var(--ts-spacing-sm) var(--ts-spacing-md);
     font-size: var(--font-size-sm);
     color: var(--ts-color-text);
-<<<<<<< HEAD
     background: rgba(255,255,255,0.7);
     font-weight: 500;
   }
 
   &:hover img {
     transform: scale(1.03);
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
   }
 }
 
@@ -450,12 +396,9 @@
   border-radius: var(--ts-radius-lg);
   border: 1px solid var(--ts-color-border);
   background: var(--ts-color-surface-elevated);
-<<<<<<< HEAD
   box-shadow: 0 1px 4px 0 rgba(26,182,153,0.06);
   font-size: 1.08em;
-=======
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__fact-label {
@@ -464,27 +407,20 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ts-color-primary);
-<<<<<<< HEAD
   font-weight: 700;
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__fact-body {
   margin: 0;
   color: var(--ts-color-text);
   line-height: 1.5;
-<<<<<<< HEAD
   font-weight: 500;
-=======
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
 }
 
 .ts-hero__note {
   margin: 0;
   font-size: var(--font-size-sm);
   color: var(--ts-color-muted);
-<<<<<<< HEAD
   opacity: 0.85;
 }
 
@@ -503,7 +439,6 @@
     gap: var(--ts-spacing-sm);
     margin-top: 0.8rem;
   }
-=======
 }
 
 @media (max-width: 960px) {
@@ -522,7 +457,6 @@
     align-items: stretch;
   }
 
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
   .ts-hero__actions .btn {
     width: 100%;
     min-width: 0;

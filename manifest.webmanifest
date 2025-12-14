@@ -28,7 +28,6 @@
 
   "icons": [
     {
-<<<<<<< HEAD
       "src": "/assets/img/logo/tillerstead-icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
@@ -38,7 +37,6 @@
       "src": "/assets/img/logo/tillerstead-icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-=======
       "src": "/assets/img/logo/tillerstead-logo-mark.svg",
       "sizes": "192x192",
       "type": "image/svg+xml",
@@ -60,7 +58,6 @@
       "src": "/assets/img/logo/tillerstead-logo-mark.svg",
       "sizes": "512x512",
       "type": "image/svg+xml",
->>>>>>> cd94431d4595c868507e3ce0fccbb2a3869edcde
       "purpose": "any maskable"
     }
   ]
