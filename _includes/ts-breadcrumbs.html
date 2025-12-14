@@ -27,8 +27,6 @@
     {%- assign clean_segments = '' | split: '' -%}
   {%- endif -%}
 
-  <!-- breadcrumb-debug is_home={{ is_home }} url={{ page.url }} raw_url={{ raw_url }} clean_url={{ clean_url }} segments={{ segments | join: ',' }} first_segment={{ segments | first }} segment_count={{ segments | size }} clean_list={{ clean_segments_list }} -->
-
   {%- assign is_post = false -%}
   {%- if page.collection == 'posts' or page.layout == 'post' -%}
     {%- assign is_post = true -%}
