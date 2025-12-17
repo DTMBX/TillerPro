@@ -3,7 +3,73 @@
    Simple, responsive card system for tilework, services, and testimonials
    ============================================ */
 
-// ...existing code...
+/* Grid wrappers */
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--grid-gap, 1.25rem);
+}
+
+.cards--2col {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+}
+
+.cards--3col {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+
+/* Base card */
+.card,
+.ts-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ts-spacing-md);
+  padding: var(--card-pad, clamp(1.25rem, 3vw, 2rem));
+  border-radius: var(--ts-radius-xl);
+  border: 1px solid var(--ts-color-border);
+  background: var(--ts-color-surface-elevated);
+  box-shadow: 0 10px 30px var(--shadow-soft);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  position: relative;
+  min-width: 0;
+}
+
+.card-eyebrow {
+  display: inline-block;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ts-color-primary);
+}
+
+.card-desc,
+.card-description {
+  margin: 0;
+  color: var(--ts-color-muted);
+}
+
+.card-media {
+  margin: 0;
+  overflow: hidden;
+  border-radius: calc(var(--ts-radius-xl) - 6px);
+  border: 1px solid var(--ts-color-border);
+  background: var(--ts-color-surface);
+}
+
+.card-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ts-spacing-sm);
+}
 
 .card-header {
   display: flex;
@@ -69,15 +135,14 @@
 }
 
 .card-elevated {
-  box-shadow: var(--ts-shadow-lift);
-  border-color: transparent;
+  box-shadow: 0 14px 34px var(--shadow-soft);
 }
 
 .card--primary,
 .card-primary {
-  background: var(--ts-gradient-primary);
-  color: var(--ts-white);
-  border: none;
+  background: var(--ts-color-primary-soft);
+  color: var(--ts-color-heading);
+  border-color: var(--ts-color-primary);
 }
 
 .card--accent {
@@ -87,7 +152,7 @@
 
 .card-featured {
   border-color: var(--ts-color-primary);
-  box-shadow: var(--ts-shadow-lift);
+  box-shadow: 0 14px 34px var(--shadow-soft);
 }
 
 .card-featured::before {
@@ -105,9 +170,9 @@
 
 .card:hover,
 .ts-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--ts-shadow-lift);
-  border-color: var(--ts-color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px var(--shadow-soft);
+  border-color: color-mix(in srgb, var(--ts-color-primary) 55%, var(--ts-color-border));
 }
 
 .card-image-aspect {
@@ -124,11 +189,6 @@
   border: 1px solid var(--ts-color-accent);
   background: var(--ts-color-accent-soft);
   color: var(--ts-color-accent-strong);
-}
-
-.card,
-.ts-card {
-  min-width: 0;
 }
 
 @media (max-width: 640px) {
@@ -149,6 +209,6 @@
   .card:hover,
   .ts-card:hover {
     transform: none;
-    box-shadow: var(--ts-shadow-soft);
+    box-shadow: 0 10px 30px var(--shadow-soft);
   }
 }

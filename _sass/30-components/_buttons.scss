@@ -20,11 +20,11 @@
   text-decoration: none;
   position: relative;
   white-space: nowrap;
-  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, transform 0.16s ease;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
   min-width: 2.5em;
   min-height: 2.5em;
   user-select: none;
-  box-shadow: 0 1px 5px rgb(0, 0, 0, 0.08);
+  box-shadow: 0 2px 10px var(--shadow-soft);
   outline: none;
 }
 
@@ -32,7 +32,7 @@
 .button:focus-visible {
   outline: 2.5px solid var(--ts-color-primary);
   outline-offset: 4px;
-  box-shadow: 0 0 0 4px rgb(11, 107, 92, 0.15);
+  box-shadow: var(--focus-ring);
   z-index: 2;
 }
 
@@ -49,55 +49,59 @@
 /* Variants */
 .btn-primary,
 .btn--primary {
-  background: var(--ts-gradient-primary);
-  color: var(--ts-white);
-  box-shadow: 0 2px 12px rgb(11, 107, 92, 0.3);
+  background: var(--ts-color-primary);
+  color: #ffffff;
+  box-shadow: 0 10px 24px var(--shadow-soft);
 }
 
 .btn-primary:hover:not(:disabled),
 .btn-primary:focus-visible,
 .btn--primary:hover:not(:disabled),
 .btn--primary:focus-visible {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 20px rgb(11, 107, 92, 0.35);
+  background: var(--ts-color-primary-strong);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px var(--shadow-soft);
 }
 
 .btn-secondary,
 .btn--secondary {
-  background: var(--ts-color-surface-elevated);
+  background: transparent;
   color: var(--ts-color-heading);
-  border: 1.5px solid var(--ts-color-border);
+  border: 1.5px solid var(--ts-color-primary);
 }
 
 .btn-secondary:hover:not(:disabled),
 .btn-secondary:focus-visible,
 .btn--secondary:hover:not(:disabled),
 .btn--secondary:focus-visible {
-  background: var(--ts-color-surface-highlight);
-  border-color: var(--ts-color-primary);
-  color: var(--ts-color-primary);
+  background: var(--ts-color-primary-soft);
+  border-color: var(--ts-color-primary-strong);
+  color: var(--ts-color-heading);
   transform: translateY(-1px);
 }
 
 .btn-accent,
 .btn--accent {
-  background: var(--ts-gradient-accent);
-  color: var(--ts-color-ink);
-  box-shadow: 0 4px 15px rgb(212, 175, 55, 0.25);
+  background: transparent;
+  color: var(--ts-color-heading);
+  border: 1.5px solid var(--ts-color-border);
+  box-shadow: 0 2px 10px var(--shadow-soft);
 }
 
 .btn-accent:hover:not(:disabled),
 .btn-accent:focus-visible,
 .btn--accent:hover:not(:disabled),
 .btn--accent:focus-visible {
-  transform: translateY(-2px) scale(1.02);
+  border-color: var(--ts-color-primary);
+  background: var(--ts-color-surface-highlight);
+  transform: translateY(-1px);
 }
 
 .btn-ghost,
 .btn--ghost,
 .btn-outline {
   background: transparent;
-  border: 1.5px solid var(--ts-color-border);
+  border: 1.5px solid var(--ts-color-primary);
   color: var(--ts-color-heading);
 }
 
@@ -105,9 +109,9 @@
 .btn-outline:hover:not(:disabled),
 .btn-ghost:focus-visible,
 .btn-outline:focus-visible {
-  background: var(--ts-color-surface-elevated);
-  border-color: var(--ts-color-primary);
-  color: var(--ts-color-primary);
+  background: var(--ts-color-primary-soft);
+  border-color: var(--ts-color-primary-strong);
+  color: var(--ts-color-heading);
 }
 
 .btn-text {
@@ -122,7 +126,7 @@
 .btn-text:hover:not(:disabled),
 .btn-text:focus-visible {
   text-decoration: underline;
-  background: rgb(11, 107, 92, 0.08);
+  background: var(--ts-color-primary-soft);
 }
 
 /* Sizing */

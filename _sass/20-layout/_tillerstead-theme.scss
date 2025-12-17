@@ -4,33 +4,33 @@
    ========================================================================== */
 
 :root {
-  --ts-bg-primary: #e7ede8;
+  --ts-bg-primary: var(--ts-color-bg);
   --ts-color-check: #0b5a34;
 }
 
 .ts-page,
 body.ts-theme {
-  background: var(--ts-bg-primary);
-  color: var(--ts-color-text, #0f172a);
+  background: var(--ts-color-bg);
+  color: var(--ts-color-text);
   min-height: 100vh;
 }
 
 .ts-section {
-  padding: clamp(3rem, 6vw, 4.5rem) 0;
+  padding-block: var(--section-pad-y, var(--section-padding-y, 3rem));
 }
 
 .ts-surface {
-  background: var(--ts-color-surface, #ffffff);
-  border-radius: var(--ts-radius-lg, 1rem);
-  border: 1px solid var(--ts-color-border, rgb(15, 23, 42, 0.1));
-  box-shadow: var(--ts-shadow-soft, 0 12px 24px rgb(15, 23, 42, 0.08));
+  background: var(--ts-color-surface);
+  border-radius: var(--ts-radius-xl, 1rem);
+  border: 1px solid var(--ts-color-border);
+  box-shadow: var(--ts-shadow-soft);
   position: relative;
   overflow: hidden;
 }
 
 .ts-surface--soft {
-  background: var(--ts-color-surface-light, #f7f8fa);
-  border-color: rgb(15, 23, 42, 0.05);
+  background: var(--ts-color-surface-muted);
+  border-color: var(--ts-color-border);
 }
 
 .ts-section h2,
@@ -46,7 +46,7 @@ body.ts-theme {
 }
 
 .ts-section__note {
-  color: rgb(15, 23, 42, 0.65);
+  color: var(--ts-color-muted);
   font-size: 0.95rem;
 }
 

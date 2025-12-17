@@ -1,7 +1,7 @@
 {% assign materials = include.data | default: site.data.home.materials | default: {} %}
 
 {% if materials %}
-  <section class="ts-section ts-surface ts-materials" aria-labelledby="home-materials-title">
+  <section class="ts-section ts-materials" aria-labelledby="home-materials-title">
     <div class="container">
       <header class="section-header">
         {% if materials.eyebrow %}<p class="eyebrow text-accent">{{ materials.eyebrow }}</p>{% endif %}

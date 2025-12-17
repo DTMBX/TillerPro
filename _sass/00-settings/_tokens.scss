@@ -6,6 +6,29 @@
 :root {
   color-scheme: light;
 
+   /* ===========================
+       Stone / Ink / Emerald System
+       Homepage + site-wide neutral refresh
+       =========================== */
+   --stone-50: rgb(220, 217, 210);
+   --stone-100: rgb(200, 197, 190);
+   --stone-200: rgb(189, 182, 170);
+
+   --ink-900: rgb(28, 27, 25);
+   --ink-700: rgb(58, 56, 52);
+
+   /* Prefer existing brand emerald; normalize to RGBA token */
+   --emerald-600: rgb(11, 107, 92);
+
+   /* Shadow colors (use with box-shadow declarations) */
+   --shadow-soft: rgb(120, 116, 108, 0.28);
+   --shadow-deep: rgb(92, 88, 80, 0.35);
+
+   /* Layout + rhythm */
+   --container: 1100px;
+   --section-pad-y: clamp(40px, 6vw, 84px);
+   --card-pad: clamp(18px, 2vw, 26px);
+
   /* ===========================
      Brand Palette
      =========================== */
@@ -22,27 +45,28 @@
    --ts-ink: #1c231f;
    --ts-white: #ffffff;
 
-  /* ===========================
-     Surface & Text
-     =========================== */
-   --ts-color-bg: var(--ts-parchment);
-   --ts-color-surface: #fbf7ee;
-   --ts-color-surface-muted: #f0e7d6;
-   --ts-color-surface-elevated: #ffffff;
-   --ts-color-surface-highlight: #fefbf4;
-   --ts-color-text: #1f2b24;
-   --ts-color-muted: color-mix(in srgb, var(--ts-color-text) 62%, #6f756f);
-   --ts-color-text-subtle: color-mix(in srgb, var(--ts-color-text) 48%, #8e958d);
-   --ts-color-heading: #14231d;
-   --ts-color-primary: var(--ts-emerald);
-   --ts-color-primary-strong: var(--ts-emerald-deep);
-   --ts-color-primary-soft: rgb(11, 107, 92, 0.14);
-   --ts-color-accent: var(--ts-gold);
-   --ts-color-accent-strong: #9d7936;
-   --ts-color-accent-soft: rgb(200, 157, 79, 0.18);
-   --ts-color-border: rgb(28, 35, 31, 0.16);
-   --ts-color-border-strong: rgb(28, 35, 31, 0.38);
-   --ts-color-divider: rgb(28, 35, 31, 0.18);
+   /* ===========================
+       Surface & Text
+       Stone-first, ink text, emerald accent
+       =========================== */
+    --ts-color-bg: var(--stone-100);
+    --ts-color-surface: var(--stone-50);
+    --ts-color-surface-muted: color-mix(in srgb, var(--stone-50) 84%, var(--stone-100));
+    --ts-color-surface-elevated: color-mix(in srgb, var(--stone-50) 88%, #ffffff);
+    --ts-color-surface-highlight: color-mix(in srgb, var(--stone-50) 92%, #ffffff);
+    --ts-color-text: var(--ink-900);
+    --ts-color-muted: var(--ink-700);
+    --ts-color-text-subtle: color-mix(in srgb, var(--ink-700) 75%, var(--stone-200));
+    --ts-color-heading: var(--ink-900);
+    --ts-color-primary: var(--emerald-600);
+   --ts-color-primary-strong: rgb(8, 76, 61);
+    --ts-color-primary-soft: rgb(11, 107, 92, 0.12);
+   --ts-color-accent: var(--emerald-600);
+   --ts-color-accent-strong: rgb(8, 76, 61);
+   --ts-color-accent-soft: rgb(11, 107, 92, 0.1);
+    --ts-color-border: rgb(189, 182, 170, 0.9);
+    --ts-color-border-strong: rgb(189, 182, 170, 1);
+    --ts-color-divider: rgb(189, 182, 170, 1);
 
   /* ===========================
      Semantic States
@@ -58,16 +82,13 @@
   /* ===========================
      Texture & Atmosphere
      =========================== */
-   --ts-gradient-primary: linear-gradient(135deg, #1ab699 0%, var(--ts-emerald) 60%, var(--ts-emerald-deep) 100%);
-   --ts-gradient-accent: linear-gradient(135deg, var(--ts-gold) 0%, var(--ts-emerald) 100%);
-   --ts-gradient-surface: radial-gradient(circle at 18% 22%, rgb(200, 157, 79, 0.08), transparent 36%),
-                                     radial-gradient(circle at 82% 8%, rgb(22, 163, 149, 0.12), transparent 40%),
-                                     var(--ts-parchment);
-   --ts-gradient-section: linear-gradient(180deg, #ffffff 0%, var(--ts-parchment) 55%, #fefbf4 100%);
-   --ts-bg-pattern: radial-gradient(circle at 12% 18%, rgb(11, 107, 92, 0.08) 0, transparent 32px),
-                            radial-gradient(circle at 80% 12%, rgb(200, 157, 79, 0.06) 0, transparent 28px);
+   --ts-gradient-primary: none;
+   --ts-gradient-accent: none;
+   --ts-gradient-surface: none;
+   --ts-gradient-section: none;
+   --ts-bg-pattern: none;
    --ts-bg-pattern-size: 220px 220px;
-   --ts-bg-pattern-opacity: 0.14;
+   --ts-bg-pattern-opacity: 0;
    --ts-color-overlay: rgb(9, 17, 15, 0.7);
 
   /* ===========================
@@ -114,38 +135,38 @@
   /* ===========================
      Radius & Shadows
      =========================== */
-  --radius-base: 16px;
-  --radius-large: 24px;
+   --radius-base: 16px;
+   --radius-large: 22px;
   --ts-radius-sm: 12px;
   --ts-radius-md: var(--radius-base);
-  --ts-radius-lg: var(--radius-large);
-  --ts-radius-xl: 28px;
+   --ts-radius-lg: 16px;
+   --ts-radius-xl: 22px;
   --ts-radius-pill: 999px;
   --ts-radius-card: var(--ts-radius-lg);
 
-  --ts-color-shadow-light: rgb(15, 28, 24, 0.08);
-  --ts-color-shadow-medium: rgb(20, 30, 27, 0.18);
-  --ts-color-shadow: rgb(12, 24, 18, 0.2);
-  --ts-shadow-soft: 0 14px 32px var(--ts-color-shadow);
-  --ts-shadow-lift: 0 18px 38px rgb(12, 24, 18, 0.24);
-  --ts-shadow-header: 0 8px 28px rgb(14, 24, 21, 0.12);
-  --ts-shadow-header-scrolled: 0 12px 32px rgb(14, 24, 21, 0.18);
+   --ts-color-shadow-light: var(--shadow-soft);
+   --ts-color-shadow-medium: var(--shadow-soft);
+   --ts-color-shadow: var(--shadow-soft);
+   --ts-shadow-soft: 0 10px 30px var(--shadow-soft);
+   --ts-shadow-lift: 0 14px 34px var(--shadow-soft);
+   --ts-shadow-header: 0 10px 28px var(--shadow-soft);
+   --ts-shadow-header-scrolled: 0 12px 32px var(--shadow-deep);
   --ts-shadow-drawer: -24px 0 64px rgb(0, 0, 0, 0.15), -8px 0 24px rgb(0, 0, 0, 0.1);
   --ts-shadow-glow: 0 0 0 3px rgb(11, 107, 92, 0.32);
   --ts-shadow-glow-accent: 0 0 0 3px rgb(200, 157, 79, 0.35);
-  --focus-ring: 0 0 0 3px rgb(200, 157, 79, 0.45);
+   --focus-ring: 0 0 0 3px rgb(11, 107, 92, 0.35);
   --transition-fast: 160ms ease;
   --transition-med: 240ms ease;
 
   /* ===========================
      Layout Metrics
      =========================== */
-  --layout-max: 1320px;
+   --layout-max: 1320px;
   --layout-wide: 1440px;
   --layout-narrow: 960px;
   --shell-width: var(--layout-max);
   --container-gutter: clamp(1rem, 4vw, 2.5rem);
-  --section-padding-y: clamp(var(--ts-spacing-xl), 6vw, var(--ts-spacing-3xl));
+   --section-padding-y: var(--section-pad-y);
   --section-gap: clamp(1.4rem, 2.6vw, 2.6rem);
   --header-height: 76px;
   --grid-gap: clamp(1rem, 3vw, 1.6rem);
@@ -153,8 +174,8 @@
   /* ===========================
      Header & Footer
      =========================== */
-  --header-bg: rgb(251, 247, 238, 0.9);
-  --header-border: rgb(11, 107, 92, 0.25);
+  --header-bg: rgb(220, 217, 210, 0.9);
+  --header-border: rgb(11, 107, 92, 0.22);
   --footer-bg: #111c18;
   --footer-text: #e1f0e7;
   --footer-text-muted: #9fb4a5;
@@ -186,7 +207,8 @@
   --gradient-primary: var(--ts-gradient-primary);
   --gradient-accent: var(--ts-gradient-accent);
   --gradient-surface: var(--ts-gradient-surface);
-  --shadow-soft: var(--ts-shadow-soft);
+  /* `--shadow-soft`/`--shadow-deep` are now rgba() shadow colors.
+     Use `--ts-shadow-soft`/`--ts-shadow-lift` for box-shadow presets. */
   --shadow-lift: var(--ts-shadow-lift);
   --bg-pattern: var(--ts-bg-pattern);
   --bg-pattern-size: var(--ts-bg-pattern-size);

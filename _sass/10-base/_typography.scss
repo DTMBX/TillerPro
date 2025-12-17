@@ -52,7 +52,7 @@ h6, .h6 {
 
 /* Body Text */
 p {
-  color: var(--ts-color-text);
+  color: var(--ts-color-muted);
   margin-bottom: 1rem;
   line-height: var(--line-height-base);
 }
@@ -71,6 +71,7 @@ p {
 small {
   font-size: var(--font-size-sm);
   line-height: 1.5;
+  color: var(--ts-color-muted);
 }
 
 /* Fine Print */

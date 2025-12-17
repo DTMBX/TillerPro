@@ -74,18 +74,21 @@ svg {
 /* Links */
 a {
   color: var(--ts-color-primary);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, currentColor 38%, transparent);
   transition: var(--transition-fast);
 }
 
 a:hover,
 a:focus-visible {
   color: var(--ts-color-primary-strong);
-  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 65%, transparent);
 }
 
 a:focus-visible {
-  outline: var(--focus-ring);
+  outline: 2px solid var(--ts-color-primary);
   outline-offset: 3px;
 }
 
@@ -161,7 +164,8 @@ table {
 
 .skip-link:focus {
   top: 0;
-  outline: var(--focus-ring);
+  outline: 2px solid var(--ts-color-primary);
+  outline-offset: 3px;
 }
 
 /* Reduced motion */

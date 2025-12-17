@@ -1,0 +1,268 @@
+/* ==========================================================================
+   Homepage refinements
+   Stone / Ink / Emerald system applied to layout rhythm
+   ========================================================================== */
+
+.page-home {
+  --layout-max: var(--container);
+}
+
+.page-home .site-main {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+
+/* Section rhythm + subtle alternation */
+.page-home .site-main > section {
+  padding-block: var(--section-pad-y);
+  background: transparent;
+  border-top: 1px solid color-mix(in srgb, var(--stone-200) 86%, transparent);
+}
+
+.page-home .site-main > section:nth-of-type(even) {
+  background: var(--stone-50);
+}
+
+.page-home .site-main > section:first-child {
+  border-top: none;
+}
+
+.section-header {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: clamp(1.25rem, 2.2vw, 2rem);
+  max-width: 70ch;
+}
+
+.section-action {
+  margin-top: clamp(1.25rem, 2.2vw, 2rem);
+}
+
+/* Hero (home) — keep text dark, accents emerald */
+.page-home .ts-hero {
+  background: transparent;
+  color: var(--ts-color-text);
+  padding: 0;
+  display: block;
+}
+
+.page-home .ts-hero__inner {
+  max-width: var(--layout-max);
+  margin-inline: auto;
+  padding: var(--section-pad-y) var(--container-gutter);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+
+.page-home .ts-hero__tagline {
+  margin: 0;
+  color: var(--ts-color-muted);
+  letter-spacing: 0.04em;
+}
+
+.page-home .ts-hero__badge {
+  margin: 0;
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--ts-radius-pill);
+  border: 1px solid var(--ts-color-border);
+  background: var(--ts-color-surface-elevated);
+  color: var(--ts-color-heading);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
+.page-home .ts-hero__eyebrow {
+  margin: 0;
+  color: var(--ts-color-primary);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: var(--font-size-xs);
+}
+
+.page-home .ts-hero__title {
+  margin: 0;
+  color: var(--ts-color-heading);
+  font-size: var(--heading-1);
+  line-height: var(--line-height-tight);
+}
+
+.page-home .ts-hero__lede {
+  margin: 0;
+  color: var(--ts-color-muted);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+.page-home .ts-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ts-spacing-sm);
+  margin-top: var(--ts-spacing-md);
+}
+
+.page-home .ts-hero__bullets {
+  list-style: none;
+  padding: 0;
+  margin: var(--ts-spacing-md) 0 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.page-home .ts-hero__bullet {
+  padding-left: 0;
+}
+
+.page-home .ts-hero__bullet-title {
+  color: var(--ts-color-heading);
+}
+
+.page-home .ts-hero__bullet-text {
+  color: var(--ts-color-muted);
+}
+
+.page-home .ts-hero__trust-line {
+  margin: var(--ts-spacing-md) 0 0;
+  color: var(--ts-color-muted);
+}
+
+.page-home .ts-hero__project {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--ts-radius-xl);
+  border: 1px solid var(--ts-color-border);
+  background: var(--ts-color-surface);
+  box-shadow: 0 10px 30px var(--shadow-soft);
+}
+
+.page-home .ts-hero__project img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.page-home .ts-hero__facts {
+  list-style: none;
+  margin: var(--ts-spacing-md) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--grid-gap);
+}
+
+.page-home .ts-hero__fact {
+  padding: var(--card-pad);
+  border-radius: var(--ts-radius-xl);
+  border: 1px solid var(--ts-color-border);
+  background: var(--ts-color-surface-elevated);
+  box-shadow: 0 10px 30px var(--shadow-soft);
+}
+
+.page-home .ts-hero__fact-label {
+  margin: 0;
+  color: var(--ts-color-primary);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.page-home .ts-hero__fact-body {
+  margin: 0.5rem 0 0;
+  color: var(--ts-color-muted);
+}
+
+.page-home .ts-hero__note {
+  margin: var(--ts-spacing-md) 0 0;
+  color: var(--ts-color-muted);
+}
+
+/* Testimonials */
+.ts-testimonials__header {
+  margin-bottom: clamp(1.25rem, 2.2vw, 2rem);
+}
+
+.ts-testimonials__grid {
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.ts-testimonial {
+  border-radius: var(--ts-radius-xl);
+  border: 1px solid var(--ts-color-border);
+  background: var(--ts-color-surface-elevated);
+  box-shadow: 0 10px 30px var(--shadow-soft);
+  padding: var(--card-pad);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ts-spacing-sm);
+}
+
+.ts-testimonial__quote {
+  margin: 0;
+  padding: 0;
+  border-left: 3px solid color-mix(in srgb, var(--ts-color-primary) 70%, transparent);
+  padding-left: 1rem;
+}
+
+.ts-testimonial__quote-text {
+  color: var(--ts-color-text);
+}
+
+.ts-testimonial__stars {
+  color: color-mix(in srgb, var(--ts-color-primary) 75%, var(--ts-color-muted));
+  letter-spacing: 0.08em;
+}
+
+.ts-testimonial__star {
+  font-size: 1.05rem;
+}
+
+.ts-testimonial__meta {
+  margin-top: auto;
+}
+
+.ts-testimonial__byline {
+  margin: 0;
+  color: var(--ts-color-muted);
+  font-size: var(--font-size-sm);
+}
+
+.ts-testimonial__badges {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ts-testimonial__badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--ts-radius-pill);
+  border: 1px solid var(--ts-color-border);
+  background: var(--ts-color-surface);
+  color: var(--ts-color-muted);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
+/* Small mobile stability */
+@media (max-width: 640px) {
+  .page-home .ts-hero__inner {
+    padding-inline: clamp(0.75rem, 5vw, 1.25rem);
+  }
+
+  .page-home .ts-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
