@@ -1,10 +1,7 @@
 {% unless page.url == '/' or page.url == '/index.html' %}
 {%- assign is_home = page.url == '/' or page.url == '/index.html' -%}
 {%- assign render_breadcrumbs = true -%}
-{%- if is_home
-    or (page.show_breadcrumbs != nil and page.show_breadcrumbs == false)
-    or (page.breadcrumb != nil and page.breadcrumb == false) -%}
-{%- if is_home or page.show_breadcrumbs == false -%}
+{%- if is_home or page.show_breadcrumbs == false or page.breadcrumb == false -%}
   {%- assign render_breadcrumbs = false -%}
 {%- endif -%}
 
