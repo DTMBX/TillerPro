@@ -1,17 +1,17 @@
 {%- assign hero_title = include.title | default: page.hero_title | default: page.title | default: site.title -%}
 {%- assign hero_summary = include.summary | default: page.hero_summary | default: page.description | default: site.tagline -%}
-{%- assign hero_eyebrow = include.eyebrow | default: page.hero_eyebrow | default: 'Licensed & Documented' -%}
+{%- assign hero_eyebrow = include.eyebrow | default: page.hero_eyebrow | default: 'Licensed & Insured NJ Contractor' -%}
 {%- assign hero_badge = include.badge | default: page.hero_badge | default: 'NJ HIC #13VH10808800' -%}
 
 {%- assign hero_primary_url = include.primary_url | default: page.hero_primary_url | default: '/contact/' -%}
-{%- assign hero_primary_label = include.primary_label | default: page.hero_primary_label | default: 'Request a consultation' -%}
+{%- assign hero_primary_label = include.primary_label | default: page.hero_primary_label | default: 'Schedule consultation' -%}
 {%- assign hero_secondary_url = include.secondary_url | default: page.hero_secondary_url | default: '/portfolio/' -%}
-{%- assign hero_secondary_label = include.secondary_label | default: page.hero_secondary_label | default: 'View recent work' -%}
+{%- assign hero_secondary_label = include.secondary_label | default: page.hero_secondary_label | default: 'View portfolio' -%}
 
 {%- assign hero_project = include.hero_project | default: page.hero_project_image -%}
 {%- if hero_project -%}
   {%- assign hero_project_src = hero_project.src | default: hero_project | default: page.hero_image -%}
-  {%- assign hero_project_alt = hero_project.alt | default: page.hero_image_alt | default: 'Featured tile installation' -%}
+  {%- assign hero_project_alt = hero_project.alt | default: page.hero_image_alt | default: 'Professional tile installation by Tillerstead' -%}
   {%- assign hero_project_caption = hero_project.caption | default: page.hero_image_caption -%}
 
   {%- assign hero_project_img = hero_project_src -%}
@@ -28,11 +28,11 @@
     <div class="ts-hero__body">
       <div class="ts-hero__brand">
         {% include logo-main.html class="ts-logo-link ts-logo-link--hero" img_class="ts-logo ts-logo--hero" variant="inverse" %}
-        <p class="ts-hero__tagline">Tile, remodel, and maintenance craftsmanship</p>
+        <p class="ts-hero__tagline">Professional tile installation and bathroom remodeling</p>
       </div>
 
       {% if hero_badge %}
-        <p class="ts-hero__badge">{{ hero_badge }}</p>
+        <p class="ts-hero__badge" aria-label="New Jersey Home Improvement Contractor License">{{ hero_badge }}</p>
       {% endif %}
 
       {% if hero_eyebrow %}
@@ -62,25 +62,27 @@
 
       <div class="ts-hero__actions">
         {% if hero_primary_url %}
-          <a class="btn btn--primary" href="{{ hero_primary_url | relative_url }}">{{ hero_primary_label }}</a>
+          <a class="btn btn--primary" href="{{ hero_primary_url | relative_url }}" aria-label="Schedule a free consultation">{{ hero_primary_label }}</a>
         {% endif %}
         {% if hero_secondary_url %}
-          <a class="btn btn--ghost" href="{{ hero_secondary_url | relative_url }}">{{ hero_secondary_label }}</a>
+          <a class="btn btn--ghost" href="{{ hero_secondary_url | relative_url }}" aria-label="Browse completed tile and remodeling projects">{{ hero_secondary_label }}</a>
         {% endif %}
       </div>
 
       <p class="ts-hero__trust-line">
         <strong>Licensed NJ HIC #{{ site.company.hic }}</strong>
-        &middot; TCNA-aligned processes
-        &middot; Serving Atlantic, Ocean &amp; Cape May Counties
+        <span aria-label="separator">&middot;</span> TCNA-certified techniques
+        <span aria-label="separator">&middot;</span> Serving Atlantic, Ocean &amp; Cape May Counties
       </p>
     </div>
 
     {% if hero_project %}
-    <aside class="ts-hero__aside" aria-label="Tile specialist highlights">
+    <aside class="ts-hero__aside" aria-label="Featured work and credentials">
       <figure class="ts-hero__project">
         <img src="{{ hero_project_img }}"
              alt="{{ hero_project_alt }}"
+             width="600"
+             height="800"
              loading="eager"
              fetchpriority="high"
              decoding="async">
@@ -90,7 +92,7 @@
       </figure>
 
       {% if hero_facts %}
-        <ul class="ts-hero__facts">
+        <ul class="ts-hero__facts" role="list">
           {% for fact in hero_facts %}
             <li class="ts-hero__fact">
               {% if fact.label %}<p class="ts-hero__fact-label">{{ fact.label }}</p>{% endif %}
@@ -99,24 +101,24 @@
           {% endfor %}
         </ul>
       {% else %}
-        <ul class="ts-hero__facts">
+        <ul class="ts-hero__facts" role="list">
           <li class="ts-hero__fact">
-            <p class="ts-hero__fact-label">TCNA &amp; ANSI</p>
-            <p class="ts-hero__fact-body">Flood tests, mortar coverage logs, slope math, and documentation you can reference years later.</p>
+            <p class="ts-hero__fact-label">TCNA &amp; ANSI Standards</p>
+            <p class="ts-hero__fact-body">Flood testing, proper mortar coverage, and complete documentation for every installation.</p>
           </li>
           <li class="ts-hero__fact">
-            <p class="ts-hero__fact-label">Owner-led teams</p>
-            <p class="ts-hero__fact-body">Structured scopes, transparent pricing, and respectful, low-impact crews on every site.</p>
+            <p class="ts-hero__fact-label">Owner-operated</p>
+            <p class="ts-hero__fact-body">Clear project scopes, transparent pricing, and professional crews on every job.</p>
           </li>
           <li class="ts-hero__fact">
-            <p class="ts-hero__fact-label">Service area</p>
-            <p class="ts-hero__fact-body">Atlantic, Ocean &amp; Cape May Counties with clear schedules and waterproof assemblies.</p>
+            <p class="ts-hero__fact-label">Southern New Jersey</p>
+            <p class="ts-hero__fact-body">Reliable service in Atlantic, Ocean &amp; Cape May Counties with flexible scheduling.</p>
           </li>
         </ul>
       {% endif %}
 
       <p class="ts-hero__note">
-        Laser-leveled layouts, intentional grout joints, and waterproof systems that stay solid for decades.
+        Precision layouts, waterproof assemblies, and tile installations built to last decades.
       </p>
     </aside>
     {% endif %}
