@@ -7,6 +7,12 @@ is_home: true
 breadcrumb: false
 ---
 
-{% comment %}
-  Homepage sections are composed via _layouts/home.html using _data/home.yml.
-{% endcomment %}
+{% include unified-hero.html %}
+
+{% include sections/featured-services.html %}
+
+{% include sections/process.html %}
+
+{% include sections/testimonials.html %}
+
+{% include sections/cta.html %}
