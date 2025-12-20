@@ -1,5 +1,12 @@
 # Build Troubleshooting Guide
 
+> 🔗 **SUPPLEMENTS CENTRALIZED GOVERNANCE**  
+> This troubleshooting guide supplements build instructions in **[`/.ai/OUTPUT_RULES.md`](../../.ai/OUTPUT_RULES.md)** and **[`/.ai/CODEX.md`](../../.ai/CODEX.md)**.  
+> For standard build workflows and testing requirements, see the centralized governance structure.  
+> This file contains specific troubleshooting procedures and common issues.
+
+---
+
 ## The Homepage Looks Wrong / Changes Not Appearing
 
 ### Problem

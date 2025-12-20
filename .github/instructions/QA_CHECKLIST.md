@@ -1,5 +1,12 @@
 # Tillerstead.com — Manual QA Checklist
 
+> 🔗 **SUPPLEMENTS CENTRALIZED GOVERNANCE**  
+> This manual QA checklist supplements **[`/.ai/OUTPUT_RULES.md`](../../.ai/OUTPUT_RULES.md)** testing requirements.  
+> For code quality standards and automated testing, see the centralized governance structure.  
+> This file contains human-driven verification procedures.
+
+---
+
 Use this checklist after pulling changes on a staging or local server.
 
 ## Quick Run Commands (Windows PowerShell)

@@ -1,5 +1,12 @@
 # Tillerstead LLC - Copy Voice & Persuasion Strategy
 
+> ⚠️ **DEPRECATED - MIGRATED TO CENTRALIZED GOVERNANCE**  
+> This file has been superseded by **[`/.ai/STYLE.md`](../../.ai/STYLE.md)** as part of the centralized AI instruction system.  
+> **All AI tools should reference the new structure**: `/.ai/SYSTEM.md` → `/.ai/STYLE.md`  
+> This file is preserved for historical reference only.
+
+---
+
 ## Purpose
 This instruction file defines the voice, tone, and persuasion strategy for all Tillerstead LLC website copy, marketing materials, and client communications. The goal: attract ideal clients through demonstration of mastery, personality-driven differentiation, and strategic positioning against corner-cutting competitors.
 

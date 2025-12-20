@@ -1,5 +1,12 @@
 # Tillerstead Accessibility & Developer Tools Guide (Simplified)
 
+> 🔗 **SUPPLEMENTS CENTRALIZED GOVERNANCE**  
+> This guide supplements accessibility requirements in **[`/.ai/OUTPUT_RULES.md`](../../.ai/OUTPUT_RULES.md)**.  
+> For WCAG compliance standards and testing procedures, see the centralized governance structure.  
+> This file documents specific tooling and historical context.
+
+---
+
 ## Overview
 The Tillerstead site maintains WCAG 2.1 AA accessibility through semantic HTML, high‑contrast design tokens, and manual audits. Previous automated contrast systems and a high contrast mode have been removed to simplify the stack.
 

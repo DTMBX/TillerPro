@@ -1,5 +1,12 @@
 # TCNA Compliance & NJ HIC Trade Expert Instructions
 
+> ⚠️ **DEPRECATED - MIGRATED TO CENTRALIZED GOVERNANCE**  
+> This file has been superseded by **[`/.ai/DOMAIN.md`](../../.ai/DOMAIN.md)** as part of the centralized AI instruction system.  
+> **All AI tools should reference the new structure**: `/.ai/SYSTEM.md` → `/.ai/DOMAIN.md`  
+> This file is preserved for historical reference only.
+
+---
+
 ## Purpose
 This instruction file provides domain expertise for AI agents working on Tillerstead LLC's codebase. It covers TCNA (Tile Council of North America) standards, modern tiling and carpentry practices, material specifications, and New Jersey Home Improvement Contractor (HIC) compliance requirements.
 

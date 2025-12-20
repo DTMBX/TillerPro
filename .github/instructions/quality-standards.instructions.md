@@ -1,5 +1,12 @@
 # Quality Standards & Best Practices
 
+> ⚠️ **MIGRATED TO CENTRALIZED GOVERNANCE**  
+> This file's content has been integrated into **[`/.ai/OUTPUT_RULES.md`](../../.ai/OUTPUT_RULES.md)** as part of the centralized AI instruction system.  
+> **All AI tools should reference**: `/.ai/SYSTEM.md` → `/.ai/OUTPUT_RULES.md`  
+> This file is preserved for historical reference and manual QA procedures.
+
+---
+
 ## 🎯 Quality Goals for Tillerstead Site
 When working on this repository, prioritize:
 - **HTML Modernization**: Use latest semantic HTML5 standards for better SEO and accessibility
