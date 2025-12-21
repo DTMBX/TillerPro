@@ -100,3 +100,23 @@ reviews:
 #     - Great Value
 #     - On Time
 #   url: https://www.thumbtack.com/nj/absecon/tile/tillerstead-llc/service/547437618353160199
+
+
+# ============================================================
+# FUN PERSONALITY-DRIVEN TESTIMONIALS (For Homepage Features)
+# ============================================================
+
+  - id: tillerstead-sarah-m-2025-11-15-fun
+    source: Direct
+    platform: Website
+    rating: 5
+    rating_max: 5
+    quote_html: <p>I asked for photos of the waterproofing. They sent me 47 photos. FORTY-SEVEN. These guys document everything like they're building the Sistine Chapel.</p>
+    author: Sarah M.
+    location: Egg Harbor Township, NJ
+    job_type: Master Bath Renovation
+    date: '2025-11-15'
+    badges:
+      - Documentation Excellence
+    emoji: 📸
+
