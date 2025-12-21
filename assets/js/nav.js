@@ -12,7 +12,7 @@
   const navToggle = $('.nav-toggle');
   const header = $('.site-header');
   const navShell = header?.querySelector('[data-nav-container]');
-  const nav = header?.querySelector('#site-nav');
+  const nav = header?.querySelector('#mobile-nav');
   const navClose = header?.querySelector('[data-nav-close]');
   const navOverlay = header?.querySelector('[data-nav-overlay]');
 
