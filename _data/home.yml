@@ -1,14 +1,14 @@
 hero:
   eyebrow: "🏅 Licensed NJ HIC #13VH10808800 · 📐 TCNA 2024 Compliant"
-  title: "Tile Work That Outlasts the Mortgage"
-  subtitle: "(No, really—we've seen 50-year-old TCNA installs still perfect)"
-  summary: "TCNA-compliant tile installations, waterproof shower assemblies, and code-compliant remodeling for South Jersey property owners. Substrate flatness verified, waterproofing flood-tested, and every detail documented—because 'probably fine' isn't a plan."
+  title: "Licensed NJ Tile Contractor - Zero Leaking Showers, EVER"
+  subtitle: "TCNA-Compliant Installations • 47 Photos Per Project • 2-Year Warranty"
+  summary: "Professional tile installations, flood-tested waterproofing, and code-compliant remodeling for South Jersey property owners. Every substrate measured, every waterproofing layer documented, every detail guaranteed—because your bathroom shouldn't be a gamble."
   primary:
-    label: "Let's Build Something That Won't Fall Apart →"
+    label: "🔥 GET FREE ESTIMATE (24-HOUR RESPONSE)"
     url: /contact/
   secondary:
-    label: "See the Proof (47 Photos Per Project) →"
-    url: /portfolio/
+    label: "💰 SEE TYPICAL PROJECT COSTS"
+    url: /pricing/
   facts:
     - icon: "🏅"
       label: "NJ HIC Licensed"
