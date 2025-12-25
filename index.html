@@ -7,3 +7,34 @@ permalink: /
 body_class: "home-page ts-home"
 include_faq_schema: false
 ---
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% include head.html %} {# meta tags, SEO, CSS links #}
+</head>
+
+<body class="{{ page.body_class }}">
+    {% include site-header.html %}
+
+    <main id="main" class="site-main">
+        {% comment %} Hero – first thing visitors see {% endcomment %}
+        {% include unified-hero-home.html %}
+
+        {% comment %} Highlights – reviews, blog, compliance, patterns {% endcomment %}
+        <section class="highlights">
+            {% include reviews-highlights.html %}
+            {% include blog-highlights.html %}
+            {% include compliance.html %}
+            {% include pattern-showcase.html %}
+        </section>
+
+        {% comment %} Process – step‑by‑step workflow {% endcomment %}
+        {% include ts-process.html %}
+    </main>
+
+    {% include site-footer.html %}
+    {% include scripts.html %}
+</body>
+
+</html>
