@@ -8,7 +8,7 @@
   display: inline-block;
   width: 1.5rem;
   height: 1.5rem;
-  stroke: currentColor;
+  stroke: currentcolor;
   fill: none;
   stroke-width: 2;
   stroke-linecap: round;
@@ -16,7 +16,7 @@
   vertical-align: middle;
   
   /* Smooth rendering */
-  shape-rendering: geometricPrecision;
+  shape-rendering: geometricprecision;
   transition: all var(--tiller-duration-quick) var(--tiller-ease-standard);
 }
 
@@ -31,13 +31,13 @@
 
 /* Filled icon variants */
 .ts-icon--filled {
-  fill: currentColor;
+  fill: currentcolor;
   stroke: none;
 }
 
 .ts-icon--filled-stroke {
-  fill: currentColor;
-  stroke: currentColor;
+  fill: currentcolor;
+  stroke: currentcolor;
 }
 
 /* Icon colors */
@@ -89,13 +89,13 @@
   }
   
   .ts-icon__stroke {
-    stroke: currentColor;
+    stroke: currentcolor;
     fill: none;
   }
   
   .ts-icon__fill {
     stroke: none;
-    fill: currentColor;
+    fill: currentcolor;
   }
 }
 
