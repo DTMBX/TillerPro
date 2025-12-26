@@ -1,17 +1,28 @@
 #!/usr/bin/env pwsh
-# Tillerstead Stone - Complete Site Harmony Script
-# Runs all essential maintenance, build, and optimization scripts in proper order
+# Tillerstead Stone - Intelligent Site Harmony Script
+# Audits first, then fixes issues based on scan results
 
 $ErrorActionPreference = "Continue"
 $scriptDir = $PSScriptRoot
 $projectRoot = Split-Path $scriptDir -Parent
 
 Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
-Write-Host "║  TILLERSTEAD STONE - COMPLETE SITE HARMONY BUILDER        ║" -ForegroundColor Cyan
+Write-Host "║  TILLERSTEAD STONE - INTELLIGENT SITE HARMONY BUILDER     ║" -ForegroundColor Cyan
 Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
 Write-Host ""
 
 Set-Location $projectRoot
+
+# Initialize issue tracking
+$issues = @{
+    css = $false
+    images = $false
+    config = $false
+    jekyll = $false
+    links = $false
+    navigation = $false
+    assets = $false
+}
 
 # Phase 1: Environment Setup
 Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Yellow
