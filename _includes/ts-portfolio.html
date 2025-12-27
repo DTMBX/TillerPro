@@ -35,8 +35,11 @@
                   <source type="image/webp" srcset="{{ portfolio_webp | relative_url }}">
                   <img src="{{ portfolio_image | relative_url }}" 
                        alt="{{ portfolio_alt }}" 
+                       width="800"
+                       height="600"
                        loading="lazy" 
-                       decoding="async">
+                       decoding="async"
+                       style="object-fit: cover; width: 100%; height: auto;">
                 </picture>
               </figure>
             {% endif %}
