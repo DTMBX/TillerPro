@@ -53,7 +53,7 @@ company:
 # OG/social defaults
 logo: /assets/img/logo/tillerstead-logo-header.svg
 default_og_image: /assets/img/tillerstead-work/bathrooms/bathroom-marble-floor-finish.jpg
-hero_default_image: /assets/img/tillerstead-work/bathrooms/bathroom-accent-wall-and-shower.jpg
+hero_default_image: /assets/img/tillerstead-work/bathrooms/large-format-tile-installation.jpg
 
 # Cache-busting helper
 assets_version: "2025-11-23.1"
