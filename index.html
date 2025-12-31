@@ -1,123 +1,211 @@
 ---
 layout: default
-title: TCNA-Compliant Tile, Waterproofing & Remodeling
-description: Licensed New Jersey HIC #13VH10808800. Precision tile installation, custom bathrooms, and full-service remodeling—engineered for durability and code compliance in Southern New Jersey.
+title: TCNA-Guided Tile, Waterproofing & Bathroom Remodeling | South Jersey
+description: Licensed New Jersey HIC #13VH10808800. Tile showers, wet-area waterproofing, and bathroom remodeling built
+with TCNA-referenced methods and code-aware detailing across Atlantic, Ocean & Cape May Counties.
 body_class: page-home
 is_home: true
 show_breadcrumbs: false
 hide_hero: true
 hero_project_image: /assets/img/tillerstead-work/bathrooms/after-entry-shot.jpg
-hero_image_alt: Completed bathroom tile installation by Tillerstead LLC, TCNA-compliant methods, New Jersey licensed contractor
+hero_image_alt: Completed bathroom tile installation by Tillerstead LLC in Southern New Jersey
 show_process: false
 ---
 
-{% comment %} Hero – first thing visitors see {% endcomment %}
+{%- comment -%} Structured data (uses site vars; avoids hard-coded facts) {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "{{ site.title | default: 'Tillerstead LLC' | escape }}",
+  "url": "{{ site.url | append: site.baseurl | escape }}",
+  "telephone": "{% if site.phone %}{{ site.phone | escape }}{% endif %}",
+  "areaServed": ["Atlantic County, NJ","Ocean County, NJ","Cape May County, NJ"],
+  "description": "{{ page.description | escape }}",
+  "sameAs": [{% if site.social %}{% for item in site.social %}"{{ item.url | escape }}"{% unless forloop.last %},{% endunless %}{% endfor %}{% endif %}]
+}
+</script>
+
+{%- comment -%} Hero – first thing visitors see {%- endcomment -%}
 {% include unified-hero-home.html %}
 
-{% comment %} Trust Indicators – Reviews showcase {% endcomment %}
+{%- comment -%} If hero include doesn’t emit an H1, keep an offscreen H1 for semantics {%- endcomment -%}
+<h1 class="sr-only">TCNA-Guided Tile, Waterproofing & Bathroom Remodeling in South Jersey</h1>
+
+{%- comment -%} Trust Indicators – Reviews showcase {%- endcomment -%}
 {% include reviews-highlights.html limit=3 %}
 
 {% if page.show_process != false %}
 {% include ts-process.html %}
 {% endif %}
 
-{% comment %} Services Preview – What we do {% endcomment %}
+{%- comment -%} Services Preview – What we do {%- endcomment -%}
 <section class="ts-section ts-services-preview" aria-labelledby="services-preview-title">
   <div class="container">
     <header class="section-header text-center">
       <span class="eyebrow eyebrow--dark">Our Expertise</span>
       <h2 id="services-preview-title" class="heading-2">South Jersey Tile & Remodeling Services</h2>
-      <p class="lead">From custom tile showers to complete bathroom renovations, each project is approached with a performance-first mindset—focused on proper preparation, standards-based methods, and clean execution built to last.</p>
+      <p class="lead">
+        Custom showers, wet-area waterproofing, and bathroom remodels built with a performance-first mindset:
+        correct prep, standards-referenced assemblies, and clean finishes designed to last.
+      </p>
     </header>
-    
+
     <div class="cards cards--2col">
       <article class="card card--service">
         <h3 class="heading-4">Tile Installation & Systems</h3>
-        <p>Large-format tile, detailed mosaics, and heated floor systems installed using TCNA-recognized methods. Work emphasizes proper substrate preparation, appropriate trowel selection, coverage verification during installation, and integration with waterproofing assemblies where required.</p>
-        <a href="/services/#tile" class="btn btn--ghost">Learn More</a>
+        <p>
+          Large-format tile, mosaics, and heated floors installed with method-driven prep: substrate flatness,
+          appropriate trowel selection, and coverage checks during installation. Wet areas are integrated into
+          a complete waterproofing assembly where required.
+        </p>
+        <a href="/services/#tile" class="btn btn--ghost" aria-label="Learn more about tile installation services">Learn
+          More</a>
       </article>
-      
+
       <article class="card card--service">
         <h3 class="heading-4">Bathroom Remodeling</h3>
-        <p>End-to-end bathroom renovations, from layout refinement through final fixtures. Projects are planned for functionality, accessibility, and durability, executed in compliance with New Jersey code requirements and backed by Tillerstead's written workmanship warranty.</p>
-        <a href="/services/#bathrooms" class="btn btn--ghost">Learn More</a>
+        <p>
+          Layout-to-fixture renovation planning for function and durability. We coordinate framing, surfaces,
+          and finishes with code-aware detailing and a written workmanship warranty.
+        </p>
+        <a href="/services/#bathrooms" class="btn btn--ghost"
+          aria-label="Learn more about bathroom remodeling services">Learn More</a>
       </article>
-      
+
       <article class="card card--service">
         <h3 class="heading-4">Waterproofing & Leak Mitigation</h3>
-        <p>Shower and wet-area waterproofing assemblies constructed in accordance with ANSI A118.10 standards, with controlled flood testing performed where appropriate. Focused on addressing root causes—substrate conditions, transitions, and detailing—rather than surface-level patching.</p>
-        <a href="/services/#waterproofing" class="btn btn--ghost">Learn More</a>
+        <p>
+          Shower and wet-area waterproofing using standards-rated components (e.g., ANSI A118.10 membranes where
+          applicable),
+          plus careful detailing at transitions, penetrations, and drains. Flood testing is performed where appropriate.
+        </p>
+        <a href="/services/#waterproofing" class="btn btn--ghost"
+          aria-label="Learn more about waterproofing services">Learn More</a>
       </article>
-      
+
       <article class="card card--service">
-        <h3 class="heading-4">Substrate Preparation & Structural Readiness</h3>
-        <p>Surface evaluation and preparation for tile and stone installations, including flatness correction, underlayment systems, uncoupling membranes, and deflection review where applicable. Ensures finishes are supported by assemblies designed to perform long term.</p>
-        <a href="/services/#substrate" class="btn btn--ghost">Learn More</a>
+        <h3 class="heading-4">Substrate Prep & Structural Readiness</h3>
+        <p>
+          Evaluation and prep for tile/stone: flattening, underlayment systems, uncoupling membranes, and deflection
+          review where applicable.
+          The goal is simple: an assembly that supports the finish long-term.
+        </p>
+        <a href="/services/#substrate" class="btn btn--ghost"
+          aria-label="Learn more about substrate preparation services">Learn More</a>
       </article>
     </div>
   </div>
 </section>
 
-{% comment %} Portfolio Preview – Proof of quality {% endcomment %}
+{%- comment -%} Portfolio Preview – Proof of quality {%- endcomment -%}
 <section class="ts-section ts-portfolio-preview bg-soft" aria-labelledby="portfolio-preview-title">
   <div class="container">
     <header class="section-header text-center">
       <span class="eyebrow eyebrow--dark">Our Work</span>
-      <h2 id="portfolio-preview-title" class="heading-2">Bathrooms Built to Last in Atlantic, Ocean & Cape May Counties</h2>
-      <p class="lead">Real projects. Real results. Every installation documented and verified.</p>
+      <h2 id="portfolio-preview-title" class="heading-2">Bathrooms Built for Atlantic, Ocean & Cape May Counties</h2>
+      <p class="lead">Real projects, documented details, and consistent workmanship—no stock photos.</p>
     </header>
-    
+
     <div class="section-action">
       <a href="/portfolio/" class="btn btn--primary">See Completed Projects</a>
     </div>
   </div>
 </section>
 
-{% comment %} Local Trust – NJ-specific credibility {% endcomment %}
+{%- comment -%} Local Trust – NJ-specific credibility {%- endcomment -%}
 <section class="ts-section ts-local-trust" aria-labelledby="local-trust-title">
   <div class="container">
     <header class="section-header text-center">
       <span class="eyebrow eyebrow--dark">Southern New Jersey</span>
-      <h2 id="local-trust-title" class="heading-2">Licensed, Insured & Proud to Serve Your Community</h2>
+      <h2 id="local-trust-title" class="heading-2">Licensed, Insured & Local</h2>
+      <p class="lead">Clear scope, clean execution, and standards-referenced installation choices—explained in plain
+        English.</p>
     </header>
-    
+
     <div class="cards cards--2col">
       <div class="card card--stat text-center">
-        <p class="stat-number text-primary">100%</p>
-        <p class="stat-label">TCNA Compliant Installations</p>
+        <p class="stat-number text-primary">TCNA</p>
+        <p class="stat-label">Referenced Methods & Details</p>
       </div>
-      
+
       <div class="card card--stat text-center">
         <p class="stat-number text-primary">2-Year</p>
         <p class="stat-label">Workmanship Warranty</p>
       </div>
-      
+
       <div class="card card--stat text-center">
-        <p class="stat-number text-primary">$1M</p>
-        <p class="stat-label">Liability Coverage</p>
+        <p class="stat-number text-primary">Insured</p>
+        <p class="stat-label">Liability Coverage (details on request)</p>
       </div>
-      
+
       <div class="card card--stat text-center">
-        <p class="stat-number text-primary">New Jersey HIC</p>
+        <p class="stat-number text-primary">NJ HIC</p>
         <p class="stat-label">#13VH10808800</p>
       </div>
     </div>
   </div>
 </section>
 
-{% comment %} Final CTA – Get them to act {% endcomment %}
+{%- comment -%} Quick FAQ – reduces friction & improves SEO {%- endcomment -%}
+<section class="ts-section ts-faq bg-soft" aria-labelledby="faq-title">
+  <div class="container">
+    <header class="section-header text-center">
+      <span class="eyebrow eyebrow--dark">FAQ</span>
+      <h2 id="faq-title" class="heading-2">Common Questions</h2>
+    </header>
+
+    <div class="faq">
+      <details class="faq-item">
+        <summary>Do you build full shower waterproofing systems or just tile?</summary>
+        <div class="faq-body">
+          <p>We build complete wet-area assemblies—prep, waterproofing, drains/transitions, then tile—so performance
+            isn’t dependent on “surface fixes.”</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you do flood testing?</summary>
+        <div class="faq-body">
+          <p>When the project scope and site conditions allow, flood testing is used to verify the pan/assembly before
+            tile goes in.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What areas do you serve?</summary>
+        <div class="faq-body">
+          <p>Primary service area: Atlantic, Ocean, and Cape May Counties. If you’re nearby, reach out and we’ll confirm
+            availability.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Final CTA – Get them to act {%- endcomment -%}
 <section class="ts-section ts-cta-final bg-primary text-white" aria-labelledby="final-cta-title">
   <div class="container text-center">
-    <h2 id="final-cta-title" class="heading-2">Ready for a Bathroom That's Built Right?</h2>
-    <p class="lead">Get your free, no-pressure assessment. We'll walk your space, answer every question, and show you exactly what proper installation looks like.</p>
-    
+    <h2 id="final-cta-title" class="heading-2">Ready for a Bathroom Built the Right Way?</h2>
+    <p class="lead">
+      Request a free, no-pressure estimate. We’ll walk the space, discuss options, and explain the assembly—prep,
+      waterproofing, and finish—so you know exactly what you’re getting.
+    </p>
+
     <div class="cta-actions">
       <a href="/contact/" class="btn btn--secondary">Request Free Estimate</a>
-      <a href="tel:+1-555-123-4567" class="btn btn--ghost-white">Call Now</a>
+
+      {%- if site.phone -%}
+      <a href="tel:{{ site.phone | escape }}" class="btn btn--ghost-white">
+        Call {% if site.phone_display %}{{ site.phone_display | escape }}{% else %}Now{% endif %}
+      </a>
+      {%- endif -%}
     </div>
-    
+
     <p class="trust-line">
-      <small>Licensed New Jersey HIC #13VH10808800 • Serving Atlantic, Ocean & Cape May Counties • 3-Day Rescission Right</small>
+      <small>
+        Licensed New Jersey HIC #13VH10808800 • Serving Atlantic, Ocean & Cape May Counties • 3-Day Rescission Right
+      </small>
     </p>
   </div>
 </section>
