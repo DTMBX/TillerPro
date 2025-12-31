@@ -41,23 +41,23 @@ business:
 
 
 standards:
-	tcna:
-		handbook: "TCNA 2024 Handbook for Ceramic, Glass, and Stone Tile Installation"
-		scope_notice: >
-			TCNA methods are referenced as recognized industry standards for tile
-			assemblies. Use of TCNA references does not imply certification or
-			endorsement by the Tile Council of North America.
-		references:
-			- "EJ171 – Movement Joint Guidelines"
-	ansi:
-		installation:
-			- "ANSI A108.01 – Substrates and Preparation"
-			- "ANSI A108.02 – Materials, Environmental, and Workmanship"
-			- "ANSI A108.05 – Thin-set and Modified Mortar Tile Installation"
-			- "ANSI A108.10 – Installation of Grout in Tilework"
-			- "ANSI A108.13 – Installation of Load-Bearing Bonded Waterproof Membranes"
-			- "ANSI A108.19 – Interior Installation of Gauged Porcelain Tile Panels/Slabs"
-			- "ANSI A108.20 – Exterior Installation of Gauged Porcelain Tile Panels/Slabs"
+  tcna:
+    handbook: "TCNA 2024 Handbook for Ceramic, Glass, and Stone Tile Installation"
+    scope_notice: >
+      TCNA methods are referenced as recognized industry standards for tile
+      assemblies. Use of TCNA references does not imply certification or
+      endorsement by the Tile Council of North America.
+    references:
+      - "EJ171 – Movement Joint Guidelines"
+  ansi:
+    installation:
+      - "ANSI A108.01 – Substrates and Preparation"
+      - "ANSI A108.02 – Materials, Environmental, and Workmanship"
+      - "ANSI A108.05 – Thin-set and Modified Mortar Tile Installation"
+      - "ANSI A108.10 – Installation of Grout in Tilework"
+      - "ANSI A108.13 – Installation of Load-Bearing Bonded Waterproof Membranes"
+      - "ANSI A108.19 – Interior Installation of Gauged Porcelain Tile Panels/Slabs"
+      - "ANSI A108.20 – Exterior Installation of Gauged Porcelain Tile Panels/Slabs"
 			- "ANSI A108.21 – Self-Leveling Underlayments"
 			- "ANSI A108.22 – Installation of Pre-Mixed Grout"
 		material_specifications:
