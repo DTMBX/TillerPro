@@ -151,7 +151,7 @@ const BRAND_COLORS = {
 const COMMON_COMBINATIONS = [
   // Primary on light backgrounds
   { fg: 'teal-700', bg: 'white', label: 'Primary on White' },
-  { fg: 'teal-700', bg: 'cream-100', label: 'Primary on Cream' },
+  { fg: 'teal-700', bg: 'cream-100', label: 'Primary on Cream (Avoid - Below AA)' },
   { fg: 'teal-800', bg: 'white', label: 'Primary Dark on White' },
   
   // Accent on light backgrounds
@@ -178,7 +178,7 @@ const COMMON_COMBINATIONS = [
   // Button states
   { fg: 'white', bg: 'teal-700', label: 'Button Primary' },
   { fg: 'white', bg: 'red-600', label: 'Button Accent' },
-  { fg: 'teal-700', bg: 'cream-100', label: 'Button Secondary' },
+  { fg: 'teal-700', bg: 'white', label: 'Button Secondary (Fixed - White BG)' },
   
   // Hover states
   { fg: 'white', bg: 'teal-800', label: 'Primary Hover' },
