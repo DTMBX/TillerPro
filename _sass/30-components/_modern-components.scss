@@ -78,8 +78,9 @@
   border-color: var(--color-primary);
   
   &:hover:not([disabled]) {
-    background-color: var(--color-teal-50);
+    background-color: var(--color-white);
     border-color: var(--color-primary-dark);
+    box-shadow: var(--shadow-md);
   }
 }
 
