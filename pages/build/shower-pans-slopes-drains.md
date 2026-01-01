@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Shower Pans, Slopes & Drains - Step 2"
-description: "How water is directed safely to the drain before tile is installed—and why most failures start here."
+description: "TCNA-compliant shower pan design with proper slope and drainage. How water is directed safely to drain before tile, and why most failures start here."
 permalink: /pages/build/shower-pans-slopes-drains/
 ---
 
@@ -10,6 +10,8 @@ permalink: /pages/build/shower-pans-slopes-drains/
 ## Step 2 of the Construction Order — Water Management Before Tile
 
 This page explains **how showers actually manage water**, why slope and drain selection matter more than tile, and what New Jersey inspectors are looking for *before* waterproofing and finishes.
+
+This guide follows **TCNA 2024 Handbook** guidance on pan design, pre-slope systems, and drainage—the foundation that prevents failure.
 
 Most shower failures originate here.
 

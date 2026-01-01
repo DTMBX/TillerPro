@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Framing for Benches, Seats & Niches - Step 5"
-description: "Why structural planning matters before waterproofing and tile."
+description: "TCNA-compliant structural planning for benches and niches before waterproofing and tile."
 permalink: /pages/build/framing-benches-niches/
 ---
 
@@ -10,6 +10,8 @@ permalink: /pages/build/framing-benches-niches/
 ## Step 5 of the Construction Order — Structural Planning Before Waterproofing
 
 This page explains **how benches, seats, and wall niches must be framed** so they are structurally sound, waterproofable, and acceptable to New Jersey inspectors.
+
+This guide references **TCNA 2024 Handbook** methods for integrated structural details that support tile and waterproofing systems without compromise.
 
 Most failures blamed on tile or waterproofing actually begin at framing.
 

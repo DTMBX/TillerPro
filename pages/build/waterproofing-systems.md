@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Waterproofing Systems - Step 3"
-description: "Surface-applied vs. traditional systems, compatibility, and continuity."
+description: "TCNA-compliant waterproofing: surface-applied vs. traditional systems, ANSI A118.10 membranes, compatibility, and continuity."
 permalink: /pages/build/waterproofing-systems/
 ---
 
@@ -10,6 +10,8 @@ permalink: /pages/build/waterproofing-systems/
 ## Step 3 of the Construction Order — Containment Before Finishes
 
 This page explains **how showers are waterproofed**, the two primary system types used in New Jersey residential construction, and why continuity and compatibility matter more than brand names.
+
+This guide references **TCNA 2024 Handbook** wet-area assembly methods and **ANSI A118.10** standards for bonded waterproof membranes.
 
 Waterproofing is a system—not a product.
 

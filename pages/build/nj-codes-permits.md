@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "NJ Codes, Permits & Inspections - Step 1"
-description: "Why permits exist, how inspections work, and what New Jersey actually requires for bathroom and shower renovations."
+description: "Why permits exist, how inspections work, and what New Jersey actually requires for bathroom and shower renovations. Built on TCNA standards."
 permalink: /pages/build/nj-codes-permits/
 ---
 
@@ -10,6 +10,8 @@ permalink: /pages/build/nj-codes-permits/
 ## Step 1 of the Construction Order — New Jersey Bathroom & Shower Projects
 
 This page explains **how bathroom and shower construction is regulated in New Jersey**, what permits and inspections actually do, and why skipping them creates risk—not savings.
+
+This guide follows the **TCNA 2024 Handbook** methods for tile and wet-area assemblies, coordinated with New Jersey code requirements. Permits ensure your build meets both standards.
 
 This is the starting point for any compliant build.
 

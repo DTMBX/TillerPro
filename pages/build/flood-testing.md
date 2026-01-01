@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Flood Testing & Verification - Step 7"
-description: "How waterproofing is verified before finishes conceal the work."
+description: "ASTM D5957 flood testing methods for waterproofing verification before tile conceals the system."
 permalink: /pages/build/flood-testing/
 ---
 
@@ -11,7 +11,7 @@ permalink: /pages/build/flood-testing/
 
 Flood testing is the **last opportunity to verify waterproofing performance** before tile and grout permanently conceal the system. This step is about confirmation—not correction.
 
-In New Jersey, flood testing may be **required, requested, or strongly recommended** depending on the municipality and the waterproofing method used.
+This guide references **ASTM D5957** flood testing standards and **TCNA 2024 Handbook** verification protocols. In New Jersey, flood testing may be **required, requested, or strongly recommended** depending on the municipality and the waterproofing method used.
 
 ---
 

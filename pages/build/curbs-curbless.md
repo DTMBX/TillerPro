@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Curbs & Curbless Showers - Step 4"
-description: "How showers contain water at the entry, with or without a curb."
+description: "TCNA-compliant threshold design. How showers contain water at entry with or without a curb in New Jersey."
 permalink: /pages/build/curbs-curbless/
 ---
 
@@ -10,6 +10,8 @@ permalink: /pages/build/curbs-curbless/
 ## Step 4 of the Construction Order — Containing Water at the Entry
 
 This page explains **why shower curbs exist**, how curbless showers are permitted in New Jersey, and what inspectors are evaluating when reviewing thresholds and transitions.
+
+This guide follows **TCNA 2024 Handbook** threshold design methods for curbless configurations and curb detailing.
 
 Curbs are not decorative. They are a water-containment device.
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Tile Installation Standards - Step 6"
-description: "How tile is bonded to the system—and why preparation matters more than tile choice."
+description: "TCNA and ANSI A118 tile installation standards: substrate prep, mortar selection, coverage, and movement joints."
 permalink: /pages/build/tile-installation-standards/
 ---
 
@@ -11,7 +11,9 @@ permalink: /pages/build/tile-installation-standards/
 
 Tile installation is the **final visible phase** of a bathroom or shower build—but its performance is determined entirely by the work completed before it. Tile does not correct structural issues, slope errors, or waterproofing defects. It reveals them.
 
-This guide explains how **substrate preparation, mortar selection, coverage verification, and movement accommodation** work together to produce durable tile installations that perform long after inspections are complete.
+This guide explains **TCNA 2024 Handbook** and **ANSI A108/A118** standards for substrate preparation, mortar selection, coverage verification, and movement accommodation per **EJ171** guidelines—the practices that work together to produce durable tile installations that perform long after inspections are complete.
+
+This is where builders prove they understand tile as a system, not a surface.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Common Build Failures & Red Flags - Step 8"
-description: "Where problems originate, what warning signs to watch for, and how quality builds prevent them."
+description: "TCNA-based analysis: where bathroom and shower failures originate, warning signs, and prevention."
 permalink: /pages/build/common-build-failures/
 ---
 
@@ -10,6 +10,8 @@ permalink: /pages/build/common-build-failures/
 ## Step 8 of the Construction Order — How Problems Start, and How They’re Prevented
 
 This page ties the entire Build Phase together by explaining **where bathroom and shower failures actually originate**, what warning signs homeowners can recognize early, and why shortcuts nearly always cost more later.
+
+This guide uses **TCNA 2024 Handbook** analysis of failure modes to show how each Build Phase step prevents predictable problems.
 
 Most failures are not sudden. They are the predictable result of decisions made—or skipped—earlier in the build.
 
