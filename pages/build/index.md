@@ -11,7 +11,7 @@ keywords:
   - NJ HIC compliant construction
 ---
 
-# Build Phase: Your Complete Guide to Bathroom & Shower Construction
+## Build Phase: Your Complete Guide to Bathroom & Shower Construction
 
 Welcome to the **Build Phase**—a comprehensive, 8-part guide that walks you through every stage of a properly planned, built, and verified bathroom or shower project in New Jersey.
 
@@ -46,6 +46,7 @@ Each phase builds on the one before it. Read in order for the complete picture, 
 New Jersey uses a statewide code (UCC) with local enforcement. This guide explains the permit process, inspection sequence, and what inspectors are actually looking for.
 
 **Key Topics:**
+
 - Uniform Construction Code (UCC) overview
 - When permits are required
 - Typical inspection sequence
@@ -62,6 +63,7 @@ New Jersey uses a statewide code (UCC) with local enforcement. This guide explai
 The shower pan is the foundation of a waterproof assembly. Get this wrong, and no amount of tile work will save it.
 
 **Key Topics:**
+
 - Slope requirements (¼" per foot minimum)
 - Traditional vs. bonded pan systems
 - Drain integration methods
@@ -78,6 +80,7 @@ The shower pan is the foundation of a waterproof assembly. Get this wrong, and n
 Modern waterproofing has evolved from hot-mopped pans to sheet and liquid-applied membranes. This guide covers ANSI A118.10 compliant systems and how to choose the right one.
 
 **Key Topics:**
+
 - Sheet vs. liquid-applied membranes
 - ANSI A118.10 requirements
 - System compatibility (don't mix!)
@@ -94,6 +97,7 @@ Modern waterproofing has evolved from hot-mopped pans to sheet and liquid-applie
 Curbless showers are popular for accessibility and aesthetics, but they require careful planning. This guide covers both traditional curbed and modern curbless approaches.
 
 **Key Topics:**
+
 - Curb construction methods
 - Curbless shower requirements
 - Threshold waterproofing
@@ -110,6 +114,7 @@ Curbless showers are popular for accessibility and aesthetics, but they require 
 Benches and niches need to be planned before waterproofing begins. Retrofitting them later compromises the entire assembly.
 
 **Key Topics:**
+
 - Bench framing and slope
 - Niche construction guidelines
 - Waterproofing integration
@@ -126,6 +131,7 @@ Benches and niches need to be planned before waterproofing begins. Retrofitting 
 Tile installation is where most people focus, but it's actually the last step before grout. The substrate, mortar selection, and coverage are what determine long-term performance.
 
 **Key Topics:**
+
 - ANSI A108 installation standards
 - Mortar selection (thinset types)
 - Coverage requirements (80% min, 95% wet areas)
@@ -142,6 +148,7 @@ Tile installation is where most people focus, but it's actually the last step be
 Flood testing is the only way to verify a shower pan works before tile makes repair impossible. This guide covers ASTM standards and documentation practices.
 
 **Key Topics:**
+
 - ASTM D5957 flood test procedure
 - 24-hour vs. visual inspection
 - Documentation and photography
@@ -158,6 +165,7 @@ Flood testing is the only way to verify a shower pan works before tile makes rep
 Understanding common failures helps you recognize quality work—and spot shortcuts before they become expensive problems.
 
 **Key Topics:**
+
 - Waterproofing failures
 - Tile disbonding causes
 - Grout and caulk failures
@@ -170,7 +178,7 @@ Understanding common failures helps you recognize quality work—and spot shortc
 ## Quick Reference: What Each Phase Covers
 
 | Phase | Focus | Key Standard |
-|-------|-------|--------------|
+| ----- | ----- | ------------ |
 | 1. Codes & Permits | Legal requirements | NJ UCC, IRC |
 | 2. Shower Pans | Water direction | TCNA B421, B422 |
 | 3. Waterproofing | Moisture barrier | ANSI A118.10 |
@@ -207,7 +215,7 @@ These guides can help align expectations with homeowners. Share them as part of 
 What makes this approach different from "just installing tile"?
 
 | Traditional Approach | Build Phase Methodology |
-|---------------------|------------------------|
+| --------------------- | ------------------------ |
 | Focus on tile selection | Focus on system assembly |
 | "Trust the installer" | Verify at each phase |
 | Finish hides problems | Problems addressed before finish |

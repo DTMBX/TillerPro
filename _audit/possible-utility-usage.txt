@@ -76,6 +76,8 @@ C:\Users\Devon Tyler\tillerstead\dist\QUICK_REFERENCE.md                       p
 C:\Users\Devon Tyler\tillerstead\dist\SCRIPTS_GUIDE.md                         p-
 C:\Users\Devon Tyler\tillerstead\dist\TILLERSTEAD_404_COMPREHENSIVE_FIX.md     p-
 C:\Users\Devon Tyler\tillerstead\dist\TILLERSTEAD_DEPLOYMENT_STATUS.md         p-
+C:\Users\Devon Tyler\tillerstead\docs\OLLAMA_SETUP.md                          md:
+C:\Users\Devon Tyler\tillerstead\docs\OLLAMA_SETUP.md                          p-
 C:\Users\Devon Tyler\tillerstead\icon-demo.html                                p-
 C:\Users\Devon Tyler\tillerstead\index.html                                    text-
 C:\Users\Devon Tyler\tillerstead\INDEX.md                                      py-
