@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <footer class="site-footer ts-footer" itemscope itemtype="https://schema.org/HomeAndConstructionBusiness"
   itemid="{{ site.url }}/#contractor">
   <!-- Structured‑data meta tags (Micro‑data) -->
@@ -56,7 +57,11 @@
           <span itemprop="addressRegion">{{ site.company.address_region }}</span>
           <span itemprop="postalCode">{{ site.company.address_postal_code }}</span>
         </address>
-
+<p class="trust-line">
+  <small>
+    Licensed New Jersey HIC #13VH10808800 • Serving Atlantic, Ocean & Cape May Counties • 3-Day Rescission Right
+  </small>
+</p>
         <div class="footer-contact">
           <a href="tel:{{ site.company.phone_link }}" class="footer-phone" itemprop="telephone">{{
             site.company.phone_display }}</a>
@@ -81,7 +86,6 @@
           <ul class="footer-list">
             <li><a href="{{ '/blog/' | relative_url }}" class="footer-link">Blog</a></li>
             <li><a href="{{ '/contact/' | relative_url }}" class="footer-link">Contact</a></li>
-            <li><a href="{{ '/download/nj-tile-guide/' | relative_url }}" class="footer-link">NJ Guide</a></li>
           </ul>
         </div>
       </nav>

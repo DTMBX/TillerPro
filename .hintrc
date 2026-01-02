@@ -3,6 +3,9 @@
     "development"
   ],
   "hints": {
-    "compat-api/css": "off"
+    "compat-api/css": "off",
+    "referrer-policy": "warning",
+    "permissions-policy": "warning",
+    "performance-budget": "warning"
   }
 }
