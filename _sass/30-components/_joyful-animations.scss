@@ -1,0 +1,659 @@
+/* ============================================
+   🎉 TILLERSTEAD JOYFUL ANIMATIONS
+   Cartoon-Like, Fun, Clean, Smooth Design System
+   
+   Philosophy:
+   - Delightful micro-interactions without excess
+   - Cartoon sensibility + professional polish
+   - Progress feedback with personality
+   - Respects prefers-reduced-motion
+   
+   Consultation Strategy:
+   Use sparingly—animation should enhance not distract.
+   Every animation serves a purpose:
+     • Entrance: welcome the user
+     • Feedback: confirm action
+     • Progress: show work happening
+     • Delight: celebrate milestones
+   
+   ============================================ */
+
+@import '../00-settings/tokens-modern';
+
+/* ========================================
+   🎨 JOYFUL KEYFRAME LIBRARY
+   ======================================== */
+
+/* Bounce entrance with personality */
+@keyframes bounceEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(20px);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  70% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Gentle wiggle for attention */
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-1deg);
+  }
+
+  50% {
+    transform: rotate(1deg);
+  }
+
+  75% {
+    transform: rotate(-0.5deg);
+  }
+}
+
+/* Spin with ease for loaders */
+@keyframes spinSmooth {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dash stroke animation for SVG-like effect */
+@keyframes dashFill {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Cute jump (bounce up then down) */
+@keyframes jumpJoy {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-8px);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+}
+
+/* Heartbeat pulse for CTAs */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  10%, 30% {
+    transform: scale(1.05);
+  }
+
+  20%, 40%, 60%, 80% {
+    transform: scale(1);
+  }
+
+  50%, 70% {
+    transform: scale(1.08);
+  }
+}
+
+/* Rainbow gradient sweep */
+@keyframes gradientSweep {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Success checkmark draw */
+@keyframes checkmark {
+  0% {
+    stroke-dashoffset: 25;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Confetti-like scatter (for celebrations) */
+@keyframes scatterUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) rotate(360deg) scale(0);
+  }
+}
+
+/* Bounce indicator dots */
+@keyframes dotBounce {
+  0%, 80%, 100% {
+    transform: scale(0) translateY(0);
+  }
+
+  40% {
+    transform: scale(1) translateY(-10px);
+  }
+}
+
+/* Smooth fill bar (progress) */
+@keyframes fillBar {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+/* Shimmer wave across bar */
+@keyframes shimmerWave {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* ========================================
+   📊 PROGRESS BAR COMPONENTS
+   ======================================== */
+
+.progress-bar {
+  --pg-height: 6px;
+  --pg-radius: 3px;
+  --pg-color: var(--color-primary);
+  --pg-bg: var(--color-bg-soft);
+  --pg-duration: 0.6s;
+
+  width: 100%;
+  height: var(--pg-height);
+  background-color: var(--pg-bg);
+  border-radius: var(--pg-radius);
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 2px rgb(0, 0, 0, 0.05);
+}
+
+/* Standard progress fill */
+.progress-fill {
+  height: 100%;
+  background-color: var(--pg-color);
+  border-radius: var(--pg-radius);
+  width: 0%;
+  transition: width var(--pg-duration) cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: 0 0 0 0 rgb(7, 137, 48, 0.2);
+}
+
+/* Animated shimmer effect on progress */
+.progress-fill.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--pg-color) 0%,
+    rgba(7, 137, 48, 0.8) 50%,
+    var(--pg-color) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerWave 1.5s infinite;
+}
+
+/* Animated fill bar (e.g., during upload) */
+.progress-fill.animated {
+  animation: fillBar var(--pg-duration) ease-out forwards;
+}
+
+/* Smooth indeterminate progress (unknown duration) */
+.progress-indeterminate .progress-fill {
+  width: 30%;
+  animation: indeterminateBar 1.5s infinite;
+}
+
+@keyframes indeterminateBar {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(500%);
+  }
+}
+
+/* Success state for progress bar */
+.progress-success .progress-fill {
+  background-color: var(--color-success);
+  animation: fillBar 0.6s ease-out forwards;
+}
+
+/* Progress bar with label */
+.progress-labeled {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.progress-labeled-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.progress-labeled-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  min-width: 3rem;
+  text-align: right;
+}
+
+/* Multi-segment progress bar */
+.progress-segmented {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+}
+
+.progress-segment {
+  flex: 1;
+  height: var(--pg-height);
+  background-color: var(--pg-bg);
+  border-radius: var(--pg-radius);
+  overflow: hidden;
+
+  &.completed {
+    background-color: var(--color-success);
+    animation: fillBar 0.5s ease-out forwards;
+  }
+
+  &.active {
+    background: linear-gradient(
+      90deg,
+      var(--pg-color) 0%,
+      rgba(7, 137, 48, 0.7) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmerWave 1.2s infinite;
+  }
+
+  &.pending {
+    background-color: var(--pg-bg);
+  }
+}
+
+/* ========================================
+   🎪 JOYFUL ENTRANCE ANIMATIONS
+   ======================================== */
+
+.bounce-enter {
+  animation: bounceEnter 0.6s var(--easing-elastic);
+}
+
+.bounce-enter-delay-1 { animation-delay: 0.1s; }
+.bounce-enter-delay-2 { animation-delay: 0.2s; }
+.bounce-enter-delay-3 { animation-delay: 0.3s; }
+.bounce-enter-delay-4 { animation-delay: 0.4s; }
+.bounce-enter-delay-5 { animation-delay: 0.5s; }
+
+/* ========================================
+   💫 MICRO-INTERACTIONS
+   ======================================== */
+
+/* Cute wiggle for attention (buttons, badges) */
+.wiggle {
+  animation: wiggle 0.5s ease-in-out;
+
+  &:hover {
+    animation: wiggle 0.4s ease-in-out infinite;
+  }
+}
+
+/* Gentle jump on hover */
+.jump-hover {
+  transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  &:hover {
+    animation: jumpJoy 0.6s ease-out;
+  }
+}
+
+/* Heartbeat pulse for primary CTAs */
+.cta-pulse {
+  animation: heartbeat 1.2s ease-in-out infinite;
+}
+
+.cta-pulse-gentle {
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+/* Subtle scale on interaction */
+.scale-on-tap {
+  transition: transform 0.15s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+/* ========================================
+   ✅ FEEDBACK & SUCCESS STATES
+   ======================================== */
+
+/* Success checkmark animation */
+.success-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--color-success);
+  color: white;
+  font-weight: bold;
+  animation: bounceEnter 0.5s var(--easing-elastic);
+
+  &::before {
+    content: '✓';
+    font-size: 14px;
+  }
+}
+
+/* Loading spinner with joy */
+.spinner-joy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgb(7, 137, 48, 0.2);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spinSmooth 0.8s linear infinite;
+  }
+}
+
+/* Bounce dots loader */
+.dots-loader {
+  display: inline-flex;
+  gap: 4px;
+  align-items: flex-end;
+
+  span {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    animation: dotBounce 1.4s infinite;
+
+    &:nth-child(1) { animation-delay: 0s; }
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.4s; }
+  }
+}
+
+/* ========================================
+   🎯 CTA & BUTTON ANIMATIONS
+   ======================================== */
+
+/* Primary button with bounce on hover */
+.btn-joy {
+  position: relative;
+  overflow: hidden;
+  
+  &:hover:not(:disabled) {
+    animation: jumpJoy 0.5s ease-out;
+  }
+
+  /* Ripple effect on click */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgb(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: width 0.5s, height 0.5s;
+  }
+
+  &:active::after {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* CTA with heartbeat pulse */
+.cta-primary-joy {
+  animation: heartbeat 1.5s ease-in-out infinite;
+  
+  &:hover {
+    animation: none;
+  }
+}
+
+/* ========================================
+   🎨 COLORFUL ELEMENTS
+   ======================================== */
+
+/* Animated gradient background */
+.gradient-animate {
+  background-size: 300% 300%;
+  background-image: linear-gradient(
+    -45deg,
+    var(--color-primary),
+    var(--color-accent),
+    var(--color-highlight),
+    var(--color-primary)
+  );
+  animation: gradientSweep 8s ease infinite;
+}
+
+/* ========================================
+   🎊 CELEBRATION EFFECTS
+   ======================================== */
+
+/* Success celebration (typically with JavaScript) */
+.celebration-particle {
+  position: absolute;
+  pointer-events: none;
+  font-size: 1.5rem;
+  animation: scatterUp 1s ease-out forwards;
+}
+
+/* Confetti alternatives */
+.confetti {
+  &::before,
+  &::after {
+    content: '🎉';
+    position: absolute;
+    font-size: 2rem;
+    animation: scatterUp 1s ease-out forwards;
+  }
+
+  &::before {
+    left: -10px;
+    animation-delay: 0s;
+  }
+
+  &::after {
+    right: -10px;
+    animation-delay: 0.1s;
+  }
+}
+
+/* ========================================
+   🎬 FORM ANIMATIONS
+   ======================================== */
+
+/* Input focus bounce */
+input:focus,
+textarea:focus,
+select:focus {
+  animation: bounceEnter 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Form field validation states */
+input:valid {
+  &::after {
+    content: '✓';
+    color: var(--color-success);
+    margin-left: 0.5rem;
+    animation: bounceEnter 0.4s var(--easing-elastic);
+  }
+}
+
+/* ========================================
+   📱 RESPONSIVE ANIMATIONS
+   ======================================== */
+
+/* Disable on small screens to improve performance */
+@media (max-width: 640px) {
+  .bounce-enter-delay-3,
+  .bounce-enter-delay-4,
+  .bounce-enter-delay-5 {
+    animation-delay: 0 !important;
+  }
+
+  .progress-fill.shimmer {
+    animation: none;
+  }
+}
+
+/* ========================================
+   ♿ ACCESSIBILITY
+   ======================================== */
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .progress-bar {
+    --pg-bg: var(--color-charcoal-700);
+  }
+
+  .dots-loader span {
+    background-color: var(--color-teal-400);
+  }
+
+  .spinner-joy::after {
+    border-top-color: var(--color-teal-400);
+  }
+}
+
+/* ========================================
+   🎯 UTILITY CLASSES
+   ======================================== */
+
+.animate-none { animation: none !important; }
+.transition-none { transition: none !important; }
+
+/* ========================================
+   📋 ANIMATION DESIGN CONSULTATION
+   ======================================== */
+
+/*
+WHEN TO USE JOYFUL ANIMATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ DO USE:
+  • Progress indicators (upload, form submission)
+  • Success confirmations (checkmarks, badges)
+  • Button hover states (subtle bounce)
+  • Loading states (spinner, dots)
+  • Entrance animations (fade-in on load)
+  • CTA emphasis (gentle pulse on primary actions)
+
+✗ DON'T OVERUSE:
+  • Every interaction (distracting)
+  • Long animations (respect time)
+  • Animations in loops (performance)
+  • Motion on every element (overwhelming)
+  • During critical actions (can't see what's happening)
+
+TIMINGS RECOMMENDED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Fast (0.15–0.3s):   Micro-interactions, button hover
+  Base (0.3–0.6s):    Entrance, feedback, loaders
+  Slow (0.8–1.2s):    Long-duration loops, transitions
+  Extra (1.5–2s+):    Continuous (heartbeat, pulse)
+
+PERFORMANCE NOTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • Use GPU-accelerated properties: transform, opacity
+  • Avoid animating: width, height, left, top, margin
+  • Test on real devices before deployment
+  • Disable on mobile for performance (see @media rule)
+  • Always provide prefers-reduced-motion exit
+
+TCNA/BRAND ALIGNMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Tillerstead voice: "Detailed, honest, professional with personality"
+Joyful animations should:
+  • Reinforce expertise (smooth, intentional)
+  • Show care (delightful micro-interactions)
+  • Respect user's time (quick, not slow)
+  • Guide attention (subtle, purposeful)
+  • Feel custom (not generic animations library)
+
+Example Application:
+  • Form submission → .progress-fill.animated (show work)
+  • Primary CTA → .cta-primary-joy (gentle pulse, inviting)
+  • Success state → .success-check (celebrate without noise)
+  • Loading → .spinner-joy (friendly, trustworthy)
+*/

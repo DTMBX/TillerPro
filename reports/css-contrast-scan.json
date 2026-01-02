@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-12-27T15:09:25.173Z",
+  "timestamp": "2026-01-02T04:27:59.408Z",
   "filesScanned": {},
   "issues": [
     {
@@ -19,15 +19,6 @@
       "issue": "White text at 50% opacity may fail contrast on dark backgrounds",
       "severity": "high",
       "recommendation": "Increase opacity to >= 0.85 or use semantic color variable"
-    },
-    {
-      "file": "_sass\\30-components\\_social-links.scss",
-      "line": 87,
-      "type": "Low Opacity White Text",
-      "code": "border-color: rgb(255, 255, 255, 0.6);",
-      "issue": "White text at 60% opacity may fail contrast on dark backgrounds",
-      "severity": "high",
-      "recommendation": "Increase opacity to >= 0.85 or use semantic color variable"
     }
   ],
   "warnings": [
@@ -42,7 +33,7 @@
       "file": "_sass\\00-settings\\_dark-theme-experiment.scss",
       "line": 118,
       "type": "Dark Theme Override",
-      "code": "border: 1px solid rgba(255, 255, 255, 0.08) !important;",
+      "code": "border: 1px solid rgb(255, 255, 255, 0.08) !important;",
       "note": "Using !important may override contrast fixes"
     },
     {
@@ -56,7 +47,7 @@
       "file": "_sass\\00-settings\\_dark-theme-experiment.scss",
       "line": 123,
       "type": "Dark Theme Override",
-      "code": "inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;",
+      "code": "inset 0 1px 0 rgb(255, 255, 255, 0.03) !important;",
       "note": "Using !important may override contrast fixes"
     },
     {
@@ -70,21 +61,21 @@
       "file": "_sass\\00-settings\\_dark-theme-experiment.scss",
       "line": 133,
       "type": "Dark Theme Override",
-      "code": "border-color: rgba(10, 159, 58, 0.3) !important;",
+      "code": "border-color: rgb(10, 159, 58, 0.3) !important;",
       "note": "Using !important may override contrast fixes"
     },
     {
       "file": "_sass\\00-settings\\_dark-theme-experiment.scss",
       "line": 137,
       "type": "Dark Theme Override",
-      "code": "inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;",
+      "code": "inset 0 1px 0 rgb(255, 255, 255, 0.05) !important;",
       "note": "Using !important may override contrast fixes"
     },
     {
       "file": "_sass\\00-settings\\_dark-theme-experiment.scss",
       "line": 152,
       "type": "Dark Theme Override",
-      "code": "background: linear-gradient(135deg, rgba(30, 30, 30, 0.6) 0%, rgba(40, 40, 40, 0.4) 100%) !important;",
+      "code": "background: linear-gradient(135deg, rgb(30, 30, 30, 0.6) 0%, rgb(40, 40, 40, 0.4) 100%) !important;",
       "note": "Using !important may override contrast fixes"
     },
     {
@@ -105,14 +96,14 @@
       "file": "_sass\\00-settings\\_dark-theme-experiment.scss",
       "line": 155,
       "type": "Dark Theme Override",
-      "code": "border: 1px solid rgba(255, 255, 255, 0.06) !important;",
+      "code": "border: 1px solid rgb(255, 255, 255, 0.06) !important;",
       "note": "Using !important may override contrast fixes"
     },
     {
       "file": "_sass\\00-settings\\_dark-theme-experiment.scss",
       "line": 156,
       "type": "Dark Theme Override",
-      "code": "box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;",
+      "code": "box-shadow: inset 0 1px 0 rgb(255, 255, 255, 0.03) !important;",
       "note": "Using !important may override contrast fixes"
     },
     {
@@ -182,14 +173,14 @@
       "file": "_sass\\00-settings\\_dark-theme-experiment.scss",
       "line": 198,
       "type": "Dark Theme Override",
-      "code": "background: linear-gradient(180deg, rgba(15, 15, 15, 0.98) 0%, rgba(20, 20, 20, 0.95) 100%) !important;",
+      "code": "background: linear-gradient(180deg, rgb(15, 15, 15, 0.98) 0%, rgb(20, 20, 20, 0.95) 100%) !important;",
       "note": "Using !important may override contrast fixes"
     },
     {
       "file": "_sass\\00-settings\\_dark-theme-experiment.scss",
       "line": 199,
       "type": "Dark Theme Override",
-      "code": "border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;",
+      "code": "border-bottom: 1px solid rgb(255, 255, 255, 0.08) !important;",
       "note": "Using !important may override contrast fixes"
     },
     {
@@ -238,7 +229,7 @@
       "file": "_sass\\00-settings\\_dark-theme-experiment.scss",
       "line": 222,
       "type": "Dark Theme Override",
-      "code": "border-top: 1px solid rgba(255, 255, 255, 0.08) !important;",
+      "code": "border-top: 1px solid rgb(255, 255, 255, 0.08) !important;",
       "note": "Using !important may override contrast fixes"
     },
     {
@@ -315,7 +306,7 @@
       "file": "_sass\\00-settings\\_dark-theme-experiment.scss",
       "line": 299,
       "type": "Dark Theme Override",
-      "code": "border: 1px solid rgba(10, 159, 58, 0.2) !important;",
+      "code": "border: 1px solid rgb(10, 159, 58, 0.2) !important;",
       "note": "Using !important may override contrast fixes"
     },
     {
@@ -324,19 +315,12 @@
       "type": "Dark Theme Override",
       "code": "border-radius: 12px !important;",
       "note": "Using !important may override contrast fixes"
-    },
-    {
-      "file": "_sass\\30-components\\_social-links.scss",
-      "line": 123,
-      "type": "Hardcoded Color",
-      "code": "color: #7fd1ff;",
-      "note": "Consider using CSS variable for maintainability"
     }
   ],
   "summary": {
-    "totalIssues": 3,
-    "criticalIssues": 2,
+    "totalIssues": 2,
+    "criticalIssues": 1,
     "mediumIssues": 1,
-    "warnings": 43
+    "warnings": 42
   }
 }

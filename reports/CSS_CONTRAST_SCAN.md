@@ -1,13 +1,13 @@
 # CSS Contrast Scan Report
 
-**Generated:** 12/27/2025, 10:09:25 AM
+**Generated:** 1/1/2026, 11:27:59 PM
 **Standard:** WCAG 2.1 Level AA (4.5:1)
 
 ## Summary
 
-- **Critical Issues:** 2 🚨
+- **Critical Issues:** 1 🚨
 - **Medium Issues:** 1 ⚠️
-- **Warnings:** 43
+- **Warnings:** 42
 
 ## 🚨 Critical Contrast Issues
 
@@ -36,21 +36,6 @@ color: rgb(255, 255, 255, 0.5); /* WCAG 2.1 compliant - increased from 0.3 */
 ```
 
 **Issue:** White text at 50% opacity may fail contrast on dark backgrounds
-
-**Recommendation:** Increase opacity to >= 0.85 or use semantic color variable
-
----
-
-### 3. Low Opacity White Text [HIGH]
-
-**File:** `_sass\30-components\_social-links.scss:87`
-
-**Code:**
-```scss
-border-color: rgb(255, 255, 255, 0.6);
-```
-
-**Issue:** White text at 60% opacity may fail contrast on dark backgrounds
 
 **Recommendation:** Increase opacity to >= 0.85 or use semantic color variable
 
@@ -102,8 +87,7 @@ border-color: rgb(255, 255, 255, 0.6);
 | Dark Theme Override | `_sass\00-settings\_dark-theme-experiment.scss:298` | Using !important may override contrast fixes |
 | Dark Theme Override | `_sass\00-settings\_dark-theme-experiment.scss:299` | Using !important may override contrast fixes |
 | Dark Theme Override | `_sass\00-settings\_dark-theme-experiment.scss:300` | Using !important may override contrast fixes |
-| Hardcoded Color | `_sass\30-components\_social-links.scss:123` | Consider using CSS variable for maintainability |
 
 ---
 
-**Compliance:** TCNA 2024, New Jersey HIC, WCAG 2.1
+**Compliance:** TCNA 2024, NJ HIC, WCAG 2.1

@@ -1,0 +1,195 @@
+
+> lint:css
+> stylelint "**/*.{css,scss}"
+
+
+_sass/00-settings/theme-globals.scss
+  222:1  Γ£û  Unexpected empty comment  scss/comment-no-empty
+  227:1  Γ£û  Unexpected empty comment  scss/comment-no-empty
+
+_sass/00-settings/_dark-theme-experiment.scss
+  266:9   ΓÜá  Expected selector "h3" to come before selector ".ts-card h3", at line 263  no-descending-specificity
+  266:13  ΓÜá  Expected selector "h4" to come before selector ".ts-card h4", at line 263  no-descending-specificity
+  273:1   ΓÜá  Expected selector "p" to come before selector ".ts-card p", at line 270    no-descending-specificity
+
+_sass/10-base/_animations.scss
+   13:12  Γ£û  Expected keyframe name "fadeIn" to be kebab-case                                                  keyframes-name-pattern
+   24:12  Γ£û  Expected keyframe name "slideInUp" to be kebab-case                                               keyframes-name-pattern
+   36:12  Γ£û  Expected keyframe name "slideInDown" to be kebab-case                                             keyframes-name-pattern
+   48:12  Γ£û  Expected keyframe name "slideInLeft" to be kebab-case                                             keyframes-name-pattern
+   60:12  Γ£û  Expected keyframe name "slideInRight" to be kebab-case                                            keyframes-name-pattern
+   73:12  Γ£û  Expected keyframe name "scaleIn" to be kebab-case                                                 keyframes-name-pattern
+   85:12  Γ£û  Expected keyframe name "scalePulse" to be kebab-case                                              keyframes-name-pattern
+   96:12  Γ£û  Expected keyframe name "bounceIn" to be kebab-case                                                keyframes-name-pattern
+  240:35  Γ£û  Expected no more than 1 declaration                                                               declaration-block-single-line-max-declarations
+  241:35  Γ£û  Expected no more than 1 declaration                                                               declaration-block-single-line-max-declarations
+  242:35  Γ£û  Expected no more than 1 declaration                                                               declaration-block-single-line-max-declarations
+  243:35  Γ£û  Expected no more than 1 declaration                                                               declaration-block-single-line-max-declarations
+  244:35  Γ£û  Expected no more than 1 declaration                                                               declaration-block-single-line-max-declarations
+  245:37  Γ£û  Expected no more than 1 declaration                                                               declaration-block-single-line-max-declarations
+  390:3   ΓÜá  Expected selector "> *" to come before selector ".animate-stagger > *:nth-child(1)", at line 240  no-descending-specificity
+  415:4   Γ£û  Unexpected unknown pseudo-class selector ":in-viewport"                                           selector-pseudo-class-no-unknown
+
+_sass/10-base/_reset.scss
+  142:1  ΓÜá  Expected selector "button" to come before selector "button:disabled", at line 135  no-descending-specificity
+
+_sass/20-layout/_mobile.scss
+  125:3  ΓÜá  Expected selector ".btn" to come before selector ".btn:active", at line 120  no-descending-specificity
+
+_sass/30-components/_advanced-animations.scss
+   92:3   ΓÜá  Expected selector "> *" to come before selector "[data-stagger-animate].in-view > *", at line 77                                         no-descending-specificity
+  117:3   Γ£û  Expected empty line before declaration                                                                                                   declaration-empty-line-before
+  138:27  Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  152:15  Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  158:17  Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  188:12  Γ£û  Expected keyframe name "loaderSegment" to be kebab-case                                                                                  keyframes-name-pattern
+  193:3   Γ£û  Expected empty line before rule                                                                                                          rule-empty-line-before
+  201:3   Γ£û  Custom properties must include a lowercase namespace prefix (e.g., text-scale, tiller-color-primary)                                     custom-property-pattern
+  202:3   Γ£û  Custom properties must include a lowercase namespace prefix (e.g., text-scale, tiller-color-primary)                                     custom-property-pattern
+  203:3   Γ£û  Expected empty line before declaration                                                                                                   declaration-empty-line-before
+  203:14  Γ£û  Custom properties must include a lowercase namespace prefix (e.g., text-scale, tiller-color-primary)                                     custom-property-pattern
+  204:15  Γ£û  Custom properties must include a lowercase namespace prefix (e.g., text-scale, tiller-color-primary)                                     custom-property-pattern
+  215:15  Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  229:12  Γ£û  Expected keyframe name "circleProgress" to be kebab-case                                                                                 keyframes-name-pattern
+  233:3   Γ£û  Expected empty line before rule                                                                                                          rule-empty-line-before
+  242:5   Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  243:5   Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  244:5   Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  251:12  Γ£û  Expected keyframe name "skeltonLoad" to be kebab-case                                                                                    keyframes-name-pattern
+  255:3   Γ£û  Expected empty line before rule                                                                                                          rule-empty-line-before
+  278:17  Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  288:12  Γ£û  Expected keyframe name "rippleEffect" to be kebab-case                                                                                   keyframes-name-pattern
+  294:3   Γ£û  Expected empty line before rule                                                                                                          rule-empty-line-before
+  318:3   ΓÜá  Expected selector "label" to come before selector ".toggle-switch input[type="checkbox"]:checked + label", at line 309                   no-descending-specificity
+  328:5   ΓÜá  Expected selector "&::after" to come before selector ".toggle-switch input[type="checkbox"]:checked + label::after", at line 312         no-descending-specificity
+  365:3   ΓÜá  Expected selector "label" to come before selector ".toggle-switch input[type="checkbox"]:checked + label", at line 309                   no-descending-specificity
+  375:3   ΓÜá  Expected selector "input:focus ~ label" to come before selector ".toggle-switch input[type="checkbox"]:checked + label", at line 309     no-descending-specificity
+  376:3   ΓÜá  Expected selector "input:valid ~ label" to come before selector ".toggle-switch input[type="checkbox"]:checked + label", at line 309     no-descending-specificity
+  377:3   ΓÜá  Expected selector "textarea:focus ~ label" to come before selector ".toggle-switch input[type="checkbox"]:checked + label", at line 309  no-descending-specificity
+  387:3   ΓÜá  Expected selector "input" to come before selector ".input-floating input:focus", at line 358                                             no-descending-specificity
+  387:10  ΓÜá  Expected selector "textarea" to come before selector ".input-floating textarea:focus", at line 358                                       no-descending-specificity
+  392:12  Γ£û  Expected keyframe name "errorShake" to be kebab-case                                                                                     keyframes-name-pattern
+  405:3   Γ£û  Expected empty line before declaration                                                                                                   declaration-empty-line-before
+  414:27  Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  424:12  Γ£û  Expected keyframe name "gradientShift" to be kebab-case                                                                                  keyframes-name-pattern
+  428:3   Γ£û  Expected empty line before rule                                                                                                          rule-empty-line-before
+  431:3   Γ£û  Expected empty line before rule                                                                                                          rule-empty-line-before
+  461:12  Γ£û  Expected keyframe name "attentionSeq" to be kebab-case                                                                                   keyframes-name-pattern
+  464:25  Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  466:3   Γ£û  Expected empty line before rule                                                                                                          rule-empty-line-before
+  468:28  Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  470:3   Γ£û  Expected empty line before rule                                                                                                          rule-empty-line-before
+  472:25  Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  493:12  Γ£û  Expected keyframe name "statusChange" to be kebab-case                                                                                   keyframes-name-pattern
+  498:3   Γ£û  Expected empty line before rule                                                                                                          rule-empty-line-before
+  530:12  Γ£û  Expected keyframe name "barGrow" to be kebab-case                                                                                        keyframes-name-pattern
+  534:3   Γ£û  Expected empty line before rule                                                                                                          rule-empty-line-before
+  551:12  Γ£û  Expected keyframe name "confettiFall" to be kebab-case                                                                                   keyframes-name-pattern
+  556:3   Γ£û  Expected empty line before rule                                                                                                          rule-empty-line-before
+  559:3   Γ£û  Expected empty line before rule                                                                                                          rule-empty-line-before
+  575:15  Γ£û  Expected math.random instead of random                                                                                                   scss/no-global-function-names
+  576:26  Γ£û  Expected math.random instead of random                                                                                                   scss/no-global-function-names
+  577:23  Γ£û  Custom properties must include a lowercase namespace prefix (e.g., text-scale, tiller-color-primary)                                     custom-property-pattern
+  577:36  Γ£û  Expected math.random instead of random                                                                                                   scss/no-global-function-names
+  578:20  Γ£û  Expected math.random instead of random                                                                                                   scss/no-global-function-names
+  579:21  Γ£û  Expected math.random instead of random                                                                                                   scss/no-global-function-names
+  585:12  Γ£û  Expected keyframe name "badgeExplode" to be kebab-case                                                                                   keyframes-name-pattern
+  590:3   Γ£û  Expected empty line before rule                                                                                                          rule-empty-line-before
+  618:19  Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  624:29  Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  630:7   Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  631:7   Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+  632:7   Γ£û  Expected "rgba" to be "rgb"                                                                                                              color-function-alias-notation
+
+_sass/30-components/_breadcrumbs.scss
+  89:1  ΓÜá  Expected selector ".ts-breadcrumbs__separator" to come before selector ".ts-breadcrumbs__item:last-child .ts-breadcrumbs__separator", at line 59  no-descending-specificity
+
+_sass/30-components/_buttons.scss
+   54:1  ΓÜá  Expected selector ".btn:focus-visible" to come before selector ".btn:hover:not(:disabled)", at line 47                                                     no-descending-specificity
+   55:1  ΓÜá  Expected selector ".button:focus-visible" to come before selector ".button:hover:not(:disabled)", at line 47                                               no-descending-specificity
+   93:1  ΓÜá  Expected selector ".btn-primary:focus-visible" to come before selector ".btn-primary:hover:not(:disabled)", at line 92                                     no-descending-specificity
+   95:1  ΓÜá  Expected selector ".btn--color-primary:focus-visible" to come before selector ".btn--color-primary:hover:not(:disabled)", at line 92                       no-descending-specificity
+  139:1  ΓÜá  Expected selector ".btn-secondary:focus-visible" to come before selector ".btn-secondary:hover:not(:disabled)", at line 125                                no-descending-specificity
+  140:1  ΓÜá  Expected selector ".btn--secondary:focus-visible" to come before selector ".btn--secondary:hover:not(:disabled)", at line 125                              no-descending-specificity
+  141:1  ΓÜá  Expected selector ".btn--color-secondary:focus-visible" to come before selector ".btn--color-secondary:hover:not(:disabled)", at line 125                  no-descending-specificity
+  146:1  ΓÜá  Expected selector ".btn-secondary:focus-visible::before" to come before selector ".btn-secondary:hover:not(:disabled)::before", at line 132                no-descending-specificity
+  147:1  ΓÜá  Expected selector ".btn--secondary:focus-visible::before" to come before selector ".btn--secondary:hover:not(:disabled)::before", at line 132              no-descending-specificity
+  148:1  ΓÜá  Expected selector ".btn--color-secondary:focus-visible::before" to come before selector ".btn--color-secondary:hover:not(:disabled)::before", at line 132  no-descending-specificity
+  173:1  ΓÜá  Expected selector ".btn-accent:focus-visible" to come before selector ".btn-accent:hover:not(:disabled)", at line 165                                      no-descending-specificity
+  174:1  ΓÜá  Expected selector ".btn--accent:focus-visible" to come before selector ".btn--accent:hover:not(:disabled)", at line 165                                    no-descending-specificity
+  175:1  ΓÜá  Expected selector ".btn--color-accent:focus-visible" to come before selector ".btn--color-accent:hover:not(:disabled)", at line 165                        no-descending-specificity
+  223:1  ΓÜá  Expected selector ".btn-ghost:focus-visible" to come before selector ".btn-ghost:hover:not(:disabled)", at line 208                                        no-descending-specificity
+  224:1  ΓÜá  Expected selector ".btn--ghost:focus-visible" to come before selector ".btn--ghost:hover:not(:disabled)", at line 208                                      no-descending-specificity
+  225:1  ΓÜá  Expected selector ".btn-outline:focus-visible" to come before selector ".btn-outline:hover:not(:disabled)", at line 208                                    no-descending-specificity
+  230:1  ΓÜá  Expected selector ".btn-ghost:focus-visible::before" to come before selector ".btn-ghost:hover:not(:disabled)::before", at line 216                        no-descending-specificity
+  231:1  ΓÜá  Expected selector ".btn--ghost:focus-visible::before" to come before selector ".btn--ghost:hover:not(:disabled)::before", at line 216                      no-descending-specificity
+  232:1  ΓÜá  Expected selector ".btn-outline:focus-visible::before" to come before selector ".btn-outline:hover:not(:disabled)::before", at line 216                    no-descending-specificity
+  251:1  ΓÜá  Expected selector ".btn-text:focus-visible" to come before selector ".btn-text:hover:not(:disabled)", at line 246                                          no-descending-specificity
+  362:1  ΓÜá  Expected selector ".btn-icon-bounce .btn-icon" to come before selector ".btn:hover:not(:disabled) .btn-icon", at line 358                                  no-descending-specificity
+  488:1  ΓÜá  Expected selector ".btn-icon" to come before selector ".btn .btn-icon", at line 354                                                                        no-descending-specificity
+  515:1  ΓÜá  Expected selector ".btn-group > .btn" to come before selector ".btn:hover:not(:disabled)", at line 47                                                      no-descending-specificity
+  516:1  ΓÜá  Expected selector ".btn-group > .button" to come before selector ".button:hover:not(:disabled)", at line 47                                                no-descending-specificity
+  547:1  ΓÜá  Expected selector ".btn-grid > .btn" to come before selector ".btn:hover:not(:disabled)", at line 47                                                       no-descending-specificity
+  548:1  ΓÜá  Expected selector ".btn-grid > .button" to come before selector ".button:hover:not(:disabled)", at line 47                                                 no-descending-specificity
+  559:1  ΓÜá  Expected selector ".btn-stack > .btn" to come before selector ".btn:hover:not(:disabled)", at line 47                                                      no-descending-specificity
+  560:1  ΓÜá  Expected selector ".btn-stack > .button" to come before selector ".button:hover:not(:disabled)", at line 47                                                no-descending-specificity
+  561:1  ΓÜá  Expected selector ".btn-group--stack > .btn" to come before selector ".btn:hover:not(:disabled)", at line 47                                               no-descending-specificity
+  562:1  ΓÜá  Expected selector ".btn-group--stack > .button" to come before selector ".button:hover:not(:disabled)", at line 47                                         no-descending-specificity
+
+_sass/30-components/_cards.scss
+  347:3  ΓÜá  Expected selector "p" to come before selector ".card--review .card-quote p", at line 130  no-descending-specificity
+
+_sass/30-components/_header-premium.scss
+  481:1  ΓÜá  Expected selector ".ts-logo" to come before selector ".site-header.is-scrolled .ts-logo", at line 73          no-descending-specificity
+  482:1  ΓÜá  Expected selector ".mobile-nav" to come before selector ".mobile-nav-shell.is-open .mobile-nav", at line 276  no-descending-specificity
+
+_sass/30-components/_home.scss
+  508:3  ΓÜá  Expected selector "svg" to come before selector ".ts-testimonial__read-more[aria-expanded="true"] svg", at line 421  no-descending-specificity
+
+_sass/30-components/_icons.scss
+  167:1  ΓÜá  Expected selector "a .ts-icon" to come before selector ".ts-service-card__icon .ts-icon", at line 107  no-descending-specificity
+  176:1  ΓÜá  Expected selector ".btn .ts-icon" to come before selector "a:hover .ts-icon", at line 171              no-descending-specificity
+  177:1  ΓÜá  Expected selector ".button .ts-icon" to come before selector "a:hover .ts-icon", at line 171           no-descending-specificity
+  207:5  ΓÜá  Expected selector ".ts-icon" to come before selector ".btn:hover .ts-icon", at line 184                no-descending-specificity
+
+_sass/30-components/_joyful-animations.scss
+   28:12  Γ£û  Expected keyframe name "bounceEnter" to be kebab-case       keyframes-name-pattern
+   68:12  Γ£û  Expected keyframe name "spinSmooth" to be kebab-case        keyframes-name-pattern
+   79:12  Γ£û  Expected keyframe name "dashFill" to be kebab-case          keyframes-name-pattern
+   90:12  Γ£û  Expected keyframe name "jumpJoy" to be kebab-case           keyframes-name-pattern
+  124:12  Γ£û  Expected keyframe name "gradientSweep" to be kebab-case     keyframes-name-pattern
+  150:12  Γ£û  Expected keyframe name "scatterUp" to be kebab-case         keyframes-name-pattern
+  163:12  Γ£û  Expected keyframe name "dotBounce" to be kebab-case         keyframes-name-pattern
+  174:12  Γ£û  Expected keyframe name "fillBar" to be kebab-case           keyframes-name-pattern
+  185:12  Γ£û  Expected keyframe name "shimmerWave" to be kebab-case       keyframes-name-pattern
+  231:5   Γ£û  Expected "rgba" to be "rgb"                                 color-function-alias-notation
+  249:12  Γ£û  Expected keyframe name "indeterminateBar" to be kebab-case  keyframes-name-pattern
+  309:7   Γ£û  Expected "rgba" to be "rgb"                                 color-function-alias-notation
+
+_sass/30-components/_modern-components.scss
+   43:3  ΓÜá  Expected selector "&:focus-visible" to come before selector ".btn:hover:not([disabled])", at line 31  no-descending-specificity
+  256:1  ΓÜá  Expected selector "textarea" to come before selector "textarea:focus", at line 238                    no-descending-specificity
+  318:1  ΓÜá  Expected selector "nav a" to come before selector "a:hover", at line 307                              no-descending-specificity
+  319:1  ΓÜá  Expected selector "header a" to come before selector "a:hover", at line 307                           no-descending-specificity
+
+_sass/30-components/_patterns-complimentary.scss
+   97:1  ΓÜá  Expected selector ".ts-services .container" to come before selector ".ts-section:nth-of-type(odd) .container", at line 78        no-descending-specificity
+  115:1  ΓÜá  Expected selector ".ts-portfolio .container" to come before selector ".ts-section:nth-of-type(odd) .container", at line 78       no-descending-specificity
+  116:1  ΓÜá  Expected selector ".portfolio-section .container" to come before selector ".ts-section:nth-of-type(odd) .container", at line 78  no-descending-specificity
+  117:1  ΓÜá  Expected selector ".ts-portfolio > *" to come before selector ".ts-section:nth-of-type(odd) > *", at line 83                     no-descending-specificity
+  118:1  ΓÜá  Expected selector ".portfolio-section > *" to come before selector ".ts-section:nth-of-type(odd) > *", at line 83                no-descending-specificity
+  132:1  ΓÜá  Expected selector ".ts-testimonials .container" to come before selector ".ts-section:nth-of-type(odd) .container", at line 78    no-descending-specificity
+  149:1  ΓÜá  Expected selector ".ts-process .container" to come before selector ".ts-section:nth-of-type(odd) .container", at line 78         no-descending-specificity
+  150:1  ΓÜá  Expected selector ".process-section .container" to come before selector ".ts-section:nth-of-type(odd) .container", at line 78    no-descending-specificity
+  151:1  ΓÜá  Expected selector ".ts-process > *" to come before selector ".ts-section:nth-of-type(odd) > *", at line 83                       no-descending-specificity
+  152:1  ΓÜá  Expected selector ".process-section > *" to come before selector ".ts-section:nth-of-type(odd) > *", at line 83                  no-descending-specificity
+  168:1  ΓÜá  Expected selector ".ts-cta .container" to come before selector ".ts-section:nth-of-type(odd) .container", at line 78             no-descending-specificity
+  169:1  ΓÜá  Expected selector ".cta-section .container" to come before selector ".ts-section:nth-of-type(odd) .container", at line 78        no-descending-specificity
+  170:1  ΓÜá  Expected selector ".section-cta .container" to come before selector ".ts-section:nth-of-type(odd) .container", at line 78        no-descending-specificity
+  177:1  ΓÜá  Expected selector ".ts-cta > *" to come before selector ".ts-section:nth-of-type(odd) > *", at line 83                           no-descending-specificity
+  178:1  ΓÜá  Expected selector ".cta-section > *" to come before selector ".ts-section:nth-of-type(odd) > *", at line 83                      no-descending-specificity
+  179:1  ΓÜá  Expected selector ".section-cta > *" to come before selector ".ts-section:nth-of-type(odd) > *", at line 83                      no-descending-specificity
+
+Γ£û 157 problems (83 errors, 74 warnings)
+  35 errors potentially fixable with the "--fix" option.
+

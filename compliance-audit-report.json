@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-01-01T06:48:04.332Z",
+  "timestamp": "2026-01-02T04:21:54.558Z",
   "siteUrl": "https://tillerstead.com",
   "complianceLicense": "13VH10808800",
   "results": {
@@ -129,6 +129,10 @@
         {
           "level": "warning",
           "message": "Canonical URL not specified"
+        },
+        {
+          "level": "warning",
+          "message": "No JSON-LD structured data found"
         }
       ]
     },
@@ -164,7 +168,7 @@
     }
   },
   "summary": {
-    "totalChecks": 26,
+    "totalChecks": 27,
     "passed": 4,
     "warnings": 0,
     "failures": 2

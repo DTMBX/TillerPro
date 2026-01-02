@@ -1,0 +1,637 @@
+/* ============================================
+   🎊 TILLERSTEAD ADVANCED ANIMATIONS
+   Premium Animation Patterns for Complex Interactions
+   
+   Purpose:
+   Advanced animations for sophisticated UX patterns:
+   - Scroll-triggered reveals
+   - Staggered grid animations
+   - Complex state transitions
+   - Advanced loading patterns
+   - Interactive feedback loops
+   
+   ============================================ */
+
+@import '../00-settings/tokens-modern';
+
+/* ========================================
+   🎬 SCROLL-TRIGGERED ANIMATIONS
+   ======================================== */
+
+/* Fade in as element enters viewport */
+[data-scroll-animate] {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-scroll-animate="fade-in"] {
+  transform: translateY(40px);
+  
+  &.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-scroll-animate="fade-in-left"] {
+  transform: translateX(-40px);
+  
+  &.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+[data-scroll-animate="fade-in-right"] {
+  transform: translateX(40px);
+  
+  &.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+[data-scroll-animate="scale-in"] {
+  transform: scale(0.95);
+  
+  &.in-view {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ========================================
+   🎨 STAGGERED GRID ANIMATIONS
+   ======================================== */
+
+/* Staggered children with scroll trigger */
+[data-stagger-animate] {
+  > * {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  &.in-view > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Stagger delays */
+  @for $i from 1 through 12 {
+    &.in-view > *:nth-child(#{$i}) {
+      transition-delay: #{($i - 1) * 80ms};
+    }
+  }
+}
+
+/* Grid animation with bounce */
+[data-grid-animate="bounce"] {
+  > * {
+    opacity: 0;
+    animation: bounceEnter 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+  }
+  
+  @for $i from 1 through 12 {
+    > *:nth-child(#{$i}) {
+      animation-delay: #{($i - 1) * 100ms};
+    }
+  }
+}
+
+/* ========================================
+   🔄 COMPLEX STATE TRANSITIONS
+   ======================================== */
+
+/* Smooth state transitions for modals, dropdowns */
+[data-state-transition] {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Expand/collapse with smooth height transition */
+[data-expand-toggle] {
+  --transition-height: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: var(--transition-height),
+              opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &.is-open {
+    max-height: 1000px;
+    opacity: 1;
+  }
+}
+
+/* Slide panel from side */
+[data-slide-panel] {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 400px;
+  max-width: 80vw;
+  background: white;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  
+  &.is-open {
+    transform: translateX(0);
+  }
+}
+
+/* Fade overlay behind panel */
+[data-overlay] {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+  pointer-events: none;
+  
+  &.is-active {
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: auto;
+  }
+}
+
+/* ========================================
+   📈 ADVANCED LOADING PATTERNS
+   ======================================== */
+
+/* Multi-part loader (segmented progress) */
+.loader-segmented {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  
+  span {
+    width: 4px;
+    height: 20px;
+    background: var(--color-primary);
+    border-radius: 2px;
+    animation: loaderSegment 1s ease-in-out infinite;
+  }
+  
+  @for $i from 1 through 4 {
+    span:nth-child(#{$i}) {
+      animation-delay: #{($i - 1) * 200ms};
+    }
+  }
+}
+
+@keyframes loaderSegment {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.5);
+  }
+}
+
+/* Circular progress with animated stroke */
+.circular-progress {
+  --size: 60px;
+  --stroke: 4px;
+  width: var(--size);
+  height: var(--size);
+  position: relative;
+  
+  svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  
+  circle {
+    &.background {
+      stroke: rgba(0, 0, 0, 0.1);
+      fill: none;
+    }
+    
+    &.progress {
+      stroke: var(--color-primary);
+      fill: none;
+      stroke-dasharray: 157;
+      stroke-dashoffset: 157;
+      animation: circleProgress 2s ease-out forwards;
+    }
+  }
+}
+
+@keyframes circleProgress {
+  0% {
+    stroke-dashoffset: 157;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Skeleton loading animation */
+.skeleton-loader {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeltonLoad 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes skeltonLoad {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ========================================
+   🎯 INTERACTIVE FEEDBACK LOOPS
+   ======================================== */
+
+/* Ripple effect on click (Material Design) */
+[data-ripple] {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  
+  &:active::after {
+    animation: rippleEffect 0.6s ease-out;
+  }
+}
+
+@keyframes rippleEffect {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+/* Toggle switch animation */
+.toggle-switch {
+  --toggle-size: 20px;
+  --toggle-gap: 4px;
+  
+  input[type="checkbox"] {
+    display: none;
+    
+    &:checked + label {
+      background: var(--color-primary);
+      
+      &::after {
+        transform: translateX(calc(var(--toggle-size) + var(--toggle-gap)));
+      }
+    }
+  }
+  
+  label {
+    display: inline-block;
+    width: calc((var(--toggle-size) * 2) + (var(--toggle-gap) * 3));
+    height: calc(var(--toggle-size) + (var(--toggle-gap) * 2));
+    background: var(--color-border);
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: var(--toggle-size);
+      height: var(--toggle-size);
+      background: white;
+      border-radius: 50%;
+      top: var(--toggle-gap);
+      left: var(--toggle-gap);
+      transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+  }
+}
+
+/* ========================================
+   🎪 FORM INTERACTION PATTERNS
+   ======================================== */
+
+/* Input with animated placeholder */
+.input-floating {
+  position: relative;
+  
+  input, textarea {
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    border: none;
+    border-bottom: 2px solid var(--color-border);
+    transition: border-color 0.3s ease;
+    background: transparent;
+    
+    &:focus,
+    &:valid {
+      border-bottom-color: var(--color-primary);
+      outline: none;
+    }
+  }
+  
+  label {
+    position: absolute;
+    top: 0.5rem;
+    left: 0;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left;
+  }
+  
+  input:focus ~ label,
+  input:valid ~ label,
+  textarea:focus ~ label {
+    transform: translateY(-1.2rem) scale(0.85);
+    color: var(--color-primary);
+  }
+}
+
+/* Animated form field error shake */
+[data-form-error] {
+  animation: errorShake 0.4s ease-in-out;
+  
+  input, textarea, select {
+    border-color: var(--color-error);
+  }
+}
+
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* ========================================
+   📱 SCROLL-BASED TRANSFORMATIONS
+   ======================================== */
+
+/* Parallax effect (for images/backgrounds) */
+[data-parallax] {
+  --parallax-offset: 0;
+  background-attachment: fixed;
+  background-position: center calc(50% + var(--parallax-offset));
+}
+
+/* Sticky header animation on scroll */
+[data-sticky-animate] {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &.is-scrolled {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding-block: 0.5rem;
+  }
+}
+
+/* ========================================
+   🎨 COMPLEX COLOR TRANSITIONS
+   ======================================== */
+
+/* Multi-color animated gradient */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-shift {
+  background: linear-gradient(
+    -45deg,
+    var(--color-primary),
+    var(--color-accent),
+    var(--color-highlight),
+    var(--color-primary-light)
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* ========================================
+   🎯 ATTENTION SEQUENCES
+   ======================================== */
+
+/* Complex attention sequence (pulse + scale + glow) */
+.attention-sequence {
+  animation: attentionSeq 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  
+  &:hover {
+    animation: none;
+  }
+}
+
+@keyframes attentionSeq {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(7, 137, 48, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 10px rgba(7, 137, 48, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(7, 137, 48, 0);
+  }
+}
+
+/* ========================================
+   ♿ ACCESSIBILITY ENHANCEMENTS
+   ======================================== */
+
+/* Ensure animations work with screen readers */
+[aria-busy="true"] {
+  &::after {
+    content: attr(data-loading-text, " Loading...");
+  }
+}
+
+/* Announce state changes */
+[role="status"],
+[role="alert"] {
+  animation: statusChange 0.3s ease-in-out;
+}
+
+@keyframes statusChange {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   📊 DATA VISUALIZATION ANIMATIONS
+   ======================================== */
+
+/* Animated bar chart */
+.chart-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 200px;
+  
+  .bar {
+    flex: 1;
+    background: var(--color-primary);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    animation: barGrow 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    min-height: 4px;
+    
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 60ms};
+      }
+    }
+  }
+}
+
+@keyframes barGrow {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+
+/* Animated counter/number increment */
+.counter-animate {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+/* ========================================
+   🎊 CELEBRATION PATTERNS
+   ======================================== */
+
+/* Confetti rain animation */
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-10vh) rotateZ(0deg);
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotateZ(360deg);
+    opacity: 0;
+  }
+}
+
+.confetti-piece {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--color-primary);
+  pointer-events: none;
+  animation: confettiFall 3s linear forwards;
+  
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      left: #{random(100)}%;
+      animation-delay: #{random(500) / 1000}s;
+      background: var(--color-#{if(random(2) == 1, 'primary', 'accent')});
+      width: #{2 + random(8)}px;
+      height: #{2 + random(8)}px;
+    }
+  }
+}
+
+/* Badge explosion/pop animation */
+@keyframes badgeExplode {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.badge-pop {
+  animation: badgeExplode 0.6s cubic-bezier(0.6, 0, 0.84, 0.07);
+}
+
+/* ========================================
+   ♿ MOTION PREFERENCE COMPLIANCE
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  [data-overlay] {
+    &.is-active {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  [data-slide-panel] {
+    background: var(--color-charcoal-800);
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .skeleton-loader {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+  }
+}
+
+/* End of Advanced Animations */
