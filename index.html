@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 ---
 layout: default
 title: Expert Tile & Waterproofing in New Jersey | Tillerstead
@@ -7,249 +6,40 @@ body_class: page-home
 is_home: true
 show_breadcrumbs: false
 hide_hero: true
-show_process: false
+
+# Hero Configuration
+hero_title: "TCNA-Compliant Tile & Bathroom Remodeling"
+hero_summary: "Standards-based tile installation, waterproofing assemblies, and bathroom remodeling for South Jersey homeowners. We follow the Build Phase methodology—codes, prep, waterproofing, installation, verification—so you know exactly what's happening on your project."
+hero_eyebrow: "NJ HIC #13VH10808800"
+hero_image: "/assets/img/tillerstead-work/bathrooms/bathroom-accent-wall-and-shower.jpg"
 ---
-<!doctype html>
-<html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+{%- comment -%}
+Tillerstead Homepage - Optimized modular structure
+{%- endcomment -%}
 
-  <title>{{ page.title | default: site.title | escape }}</title>
-
-  {%- assign meta_description = page.description | default: site.description | default: "" -%}
-  {%- if meta_description != "" -%}
-  <meta name="description" content="{{ meta_description | strip_html | strip_newlines | escape }}">
-  {%- endif -%}
-
-  {%- assign canonical_url = page.url | absolute_url -%}
-  <link rel="canonical" href="{{ canonical_url }}">
-
-  <!-- Open Graph -->
-  <meta property="og:locale" content="en_US">
-  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
-  <meta property="og:title" content="{{ page.title | default: site.title | strip_html | strip_newlines | escape }}">
-  {%- if meta_description != "" -%}
-  <meta property="og:description" content="{{ meta_description | strip_html | strip_newlines | escape }}">
-  {%- endif -%}
-  <meta property="og:url" content="{{ canonical_url }}">
-  <meta property="og:site_name" content="{{ site.title | escape }}">
-  {%- if page.image -%}
-  <meta property="og:image" content="{{ page.image | absolute_url }}">
-  {%- endif -%}
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ page.title | default: site.title | strip_html | strip_newlines | escape }}">
-  {%- if meta_description != "" -%}
-  <meta name="twitter:description" content="{{ meta_description | strip_html | strip_newlines | escape }}">
-  {%- endif -%}
-  {%- if page.image -%}
-  <meta name="twitter:image" content="{{ page.image | absolute_url }}">
-  {%- endif -%}
-
-  <!-- Favicons (add real files if you have them) -->
-  <link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}">
-  <link rel="apple-touch-icon" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
-
-  <!-- CSS (prefer one minified file; add SRI if served from CDN) -->
-  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
-
-  <!-- JSON-LD: Organization + WebSite (safe baseline) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "{{ site.url | append: '#org' }}",
-        "name": "{{ site.title | escape }}",
-        "url": "{{ site.url | escape }}"
-        {%- if site.logo -%},
-        "logo": "{{ site.logo | absolute_url }}"
-        {%- endif -%}
-      },
-      {
-        "@type": "WebSite",
-        "@id": "{{ site.url | append: '#website' }}",
-        "url": "{{ site.url | escape }}",
-        "name": "{{ site.title | escape }}",
-        "publisher": { "@id": "{{ site.url | append: '#org' }}" }
-      }
-    ]
-  }
-  </script>
-</head>
-
-{
-  "@context": "https://schema.org",
-  "@type": "HomeAndConstructionBusiness",
-  "name": "{{ site.title | default: 'Tillerstead LLC' | escape }}",
-  "url": "{{ site.url | append: site.baseurl | escape }}",
-  "telephone": "{% if site.phone %}{{ site.phone | escape }}{% endif %}",
-  "areaServed": ["Atlantic County, NJ","Ocean County, NJ","Cape May County, NJ"],
-  "description": "{{ page.description | escape }}",
-  "sameAs": [{% if site.social %}{% for item in site.social %}"{{ item.url | escape }}"{% unless forloop.last %},{% endunless %}{% endfor %}{% endif %}]
-}
-</script>
+{%- comment -%} Hero Section {%- endcomment -%}
 {% include hero/unified-hero-home.html %}
-{% include content/reviews-highlights.html limit=3 %}
-{% if page.show_process != false %}
-{% include content/ts-process.html %}
-{% endif %}
-<section class="ts-section ts-services-preview" aria-labelledby="services-preview-title">
-  <div class="container">
-    <header class="section-header text-center">
-      <span class="eyebrow eyebrow--dark">Professional Excellence & Trusted Craftsmanship for New Jersey</span>
-      <h2 id="services-preview-title" class="heading-2">How We Build: The Tillerstead Approach</h2>
-      <p class="lead">
-        We don't just install tile—we follow a Build Phase methodology that mirrors how properly permitted bathroom projects unfold. Codes & Permits. Substrate Prep. Waterproofing. Installation. Verification. Documentation. Learn each phase, understand what's happening on your project, and know why it matters.
-      </p>
-    </header>
 
-    <div class="cards cards--2col">
-      <article class="card card--service">
-        <h3 class="heading-4">Build Phase Guides</h3>
-        <p>
-          Understand the complete construction process through 8 educational guides. From permits and inspections to flood testing and final verification—each guide explains what's happening, why it matters, and what you should expect.
-        </p>
-        <a href="/pages/build/" class="btn btn--ghost" aria-label="Read Build Phase guides">Learn
-          More</a>
-      </article>
+{%- comment -%} Social Proof: Reviews {%- endcomment -%}
+{% include content/reviews-highlights.html
+   limit=3
+   eyebrow="Client Reviews"
+   title="What South Jersey Homeowners Say"
+   summary="Clients consistently highlight our disciplined workmanship, clear communication, and professionally managed job sites."
+%}
 
-      <article class="card card--service">
-        <h3 class="heading-4">Tile Installation & Systems</h3>
-        <p>
-        Large-format tile, mosaics, and heated floor systems installed with method-driven prep: substrate flatness control, appropriate mortar selection, and complete waterproofing assemblies where applicable.
-        </p>
-        <a href="/services/#tile" class="btn btn--ghost" aria-label="Learn more about tile installation services">Learn
-          More</a>
-      </article>
+{%- comment -%} Services Preview {%- endcomment -%}
+{% include sections/home-services-preview.html %}
 
-      <article class="card card--service">
-        <h3 class="heading-4">Waterproofing Assemblies</h3>
-        <p>
-          Shower and wet-area waterproofing built as complete systems. We detail transitions, penetrations, and drains per standards, then perform flood testing where appropriate to verify the system works before tile conceals it.
-        </p>
-        <a href="/pages/build/waterproofing-systems/" class="btn btn--ghost"
-          aria-label="Learn more about waterproofing systems">Learn More</a>
-      </article>
+{%- comment -%} Portfolio Preview {%- endcomment -%}
+{% include sections/home-portfolio-preview.html %}
 
-      <article class="card card--service">
-        <h3 class="heading-4">Substrate Prep & Verification</h3>
-        <p>
-          We evaluate structure, plan waterproofing, verify substrate flatness, and test before finishes are applied. This is where the Build Phase difference shows: inspection-level rigor on every project.
-        </p>
-        <a href="/pages/build/shower-pans-slopes-drains/" class="btn btn--ghost"
-          aria-label="Learn more about substrate preparation services">Learn More</a>
-      </article>
-    </div>
-  </div>
-</section>
+{%- comment -%} Trust Stats {%- endcomment -%}
+{% include sections/home-trust-stats.html %}
 
-<section class="ts-section ts-portfolio-preview bg-soft" aria-labelledby="portfolio-preview-title">
-  <div class="container">
-    <header class="section-header text-center">
-      <span class="eyebrow eyebrow--dark">Our Work</span>
-      <h2 id="portfolio-preview-title" class="heading-2">Bathrooms Built for Atlantic, Ocean & Cape May Counties</h2>
-    </header>
+{%- comment -%} FAQ {%- endcomment -%}
+{% include sections/home-faq.html %}
 
-    <div class="section-action">
-      <a href="/portfolio/" class="btn btn--primary">See Completed Projects</a>
-    </div>
-  </div>
-</section>
-
-<section class="ts-section ts-local-trust" aria-labelledby="local-trust-title">
-  <div class="container">
-    <header class="section-header text-center">
-      <span class="eyebrow eyebrow--dark">Southern New Jersey</span>
-      <h2 id="local-trust-title" class="heading-2">Licensed, Insured & Local</h2>
-      <p class="lead">Clear scope, clean execution, and standards-referenced installation choices—explained in plain
-        English.</p>
-    </header>
-
-    <div class="cards cards--2col">
-      <div class="card card--stat text-center">
-        <p class="stat-number text-primary">TCNA</p>
-        <p class="stat-label">Referenced Methods & Details</p>
-      </div>
-
-      <div class="card card--stat text-center">
-        <p class="stat-number text-primary">2-Year</p>
-        <p class="stat-label">Workmanship Warranty</p>
-      </div>
-
-      <div class="card card--stat text-center">
-        <p class="stat-number text-primary">Insured</p>
-        <p class="stat-label">Liability Coverage (details on request)</p>
-      </div>
-
-      <div class="card card--stat text-center">
-        <p class="stat-number text-primary">NJ HIC</p>
-        <p class="stat-label">#13VH10808800</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ts-section ts-faq bg-soft" aria-labelledby="faq-title">
-  <div class="container">
-    <header class="section-header text-center">
-      <span class="eyebrow eyebrow--dark">Best for Us Here in NJ</span>
-      <h2 id="faq-title" class="heading-2">Why Our Methods Work Best for New Jersey Homes</h2>
-      <p class="lead">
-        Our approach is tailored for New Jersey: we use TCNA and ANSI standards because they deliver lasting results in our climate and building types. Every project is documented and built to code—so you get the best, right here in NJ.
-      </p>
-    </header>
-
-    <div class="faq">
-      <details class="faq-item">
-        <summary>Do you build full shower waterproofing systems or just tile?</summary>
-        <div class="faq-body">
-          <p>We build complete wet-area assemblies—prep, waterproofing, drains/transitions, then tile—so performance
-            isn’t dependent on “surface fixes.”</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Do you do flood testing?</summary>
-        <div class="faq-body">
-          <p>When the project scope and site conditions allow, flood testing is used to verify the pan/assembly before
-            tile goes in.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>What areas do you serve?</summary>
-        <div class="faq-body">
-          <p>We proudly serve homeowners throughout Atlantic, Ocean, and Cape May Counties—right here in southern New Jersey. If you’re in the area or nearby, contact us to see how we can help with your project.</p>
-        </div>
-      </details>
-    </div>
-  </div>
-</section>
-<section class="ts-section ts-cta-final bg-primary text-white" aria-labelledby="final-cta-title">
-  <div class="container text-center">
-    <h2 id="final-cta-title" class="heading-2">Ready for a Bathroom Built the Right Way?</h2>
-    <p class="lead">
-      Request a free, no-pressure estimate. We’ll walk the space, discuss options, and explain the assembly—prep,
-      waterproofing, and finish—so you know exactly what you’re getting.
-    </p>
-
-    <div class="cta-actions">
-      <a href="/contact/" class="btn btn--secondary">Request Free Estimate</a>
-
-      {%- if site.phone -%}
-      <a href="tel:{{ site.phone | escape }}" class="btn btn--ghost-white">
-        Call {% if site.phone_display %}{{ site.phone_display | escape }}{% else %}Now{% endif %}
-      </a>
-      {%- endif -%}
-    </div>
-  </div>
-</section>
-</head>
-<body>
-</body>
-</html>
+{%- comment -%} Final CTA {%- endcomment -%}
+{% include sections/home-cta-final.html %}

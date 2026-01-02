@@ -1,132 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ hero_title | default: "TCNA-Compliant Tile & Remodeling" }}</title>
-</head>
+{%- comment -%}
+Homepage Hero Include - Tillerstead
+Displays the main hero section with title, summary, CTAs, and optional image
+Usage: {% include hero/unified-hero-home.html %}
+{%- endcomment -%}
+
 {%- assign src = include | default: page -%}
-{%- assign hero_title = src.title | default: page.title | default: "TCNA-Compliant Tile & Remodeling" -%}
-{%- assign hero_summary = src.summary | default: page.description | default: "ANSI A108 installation methods, ANSI A108.10 waterproofing assemblies, and deflection evaluated where applicable—planned, documented, and built to perform." -%}
-{%- assign hero_eyebrow = src.eyebrow | default: "#13VH10808800" -%}
-{%- assign hero_badge = src.badge | default: "" -%}
-{%- assign bullets = src.bullets | default: page.hero_bullets | default: page.services -%}
-{%- assign facts = src.facts | default: page.hero_facts -%}
-{%- assign image = src.hero_project | default: page.hero_project_image -%}
+{%- assign hero_title = src.hero_title | default: page.hero_title | default: "TCNA-Compliant Tile & Bathroom Remodeling" -%}
+{%- assign hero_summary = src.hero_summary | default: page.hero_summary | default: "Standards-based tile installation, waterproofing assemblies, and bathroom remodeling for South Jersey homeowners. Licensed NJ HIC #13VH10808800." -%}
+{%- assign hero_eyebrow = src.hero_eyebrow | default: page.hero_eyebrow | default: "NJ HIC #13VH10808800" -%}
+{%- assign bullets = src.hero_bullets | default: page.hero_bullets -%}
+{%- assign image = src.hero_image | default: page.hero_image | default: site.hero_default_image -%}
+
 {%- if image -%}
-  {%- assign img_src = image.src | default: image | relative_url -%}
-  {%- assign img_alt = image.alt | default: "TCNA-compliant tile installation by Tillerstead in New Jersey" -%}
-  {%- assign img_caption = image.caption -%}
+  {%- assign img_src = image | relative_url -%}
+  {%- assign img_alt = src.hero_image_alt | default: "TCNA-compliant tile installation by Tillerstead in New Jersey" -%}
 {%- endif -%}
-{%- assign actions = src.actions | default:
-[
-  { "url": "/contact/", "label": "Request Free Estimate", "style": "primary" },
-  { "url": "/portfolio/", "label": "See Completed Projects", "style": "ghost" }
-]
--%}
-<body>
+
+{%- assign actions = src.hero_actions | default: page.hero_actions -%}
+{%- unless actions -%}
+  {%- assign actions = "default" -%}
+{%- endunless -%}
+
 <section class="ts-hero ts-hero--home{% unless image %} ts-hero--no-image{% endunless %}" aria-labelledby="hero-title">
-  <div class="ts-hero__inner">
+  <div class="ts-hero__inner container">
 
-    <!-- HERO CONTENT -->
     <div class="ts-hero__body">
-
-      {% include layout/logo-header.html
-      symbol="logo-mark"
-      variant="default"
-      link_class="ts-logo-link ts-logo-link--hero"
-      svg_class="ts-logo ts-logo--hero"
-      %}
-
       <p class="ts-hero__eyebrow eyebrow">{{ hero_eyebrow }}</p>
 
       <h1 id="hero-title" class="ts-hero__title">{{ hero_title }}</h1>
 
       {% if hero_summary %}
-      <p class="ts-hero__lede">{{ hero_summary }}</p>
+      <p class="ts-hero__lede lead">{{ hero_summary }}</p>
       {% endif %}
 
-      {% if bullets %}
+      {% if bullets and bullets.size > 0 %}
       <ul class="ts-hero__bullets" role="list">
         {% for b in bullets limit:4 %}
         <li class="ts-hero__bullet">
-          <strong>{{ b.title | default: b.name | default: b.service }}</strong>
-          {% if b.summary or b.description %}
-          <span>{{ b.summary | default: b.description }}</span>
-          {% endif %}
+          <strong>{{ b.title | default: b.name }}</strong>
+          {% if b.description %}<span>{{ b.description }}</span>{% endif %}
         </li>
         {% endfor %}
       </ul>
       {% endif %}
 
-      {% if actions %}
       <div class="ts-hero__actions">
+        {% if actions == "default" %}
+        <a class="btn btn--primary" href="{{ '/contact/' | relative_url }}">
+          Request Free Estimate
+        </a>
+        <a class="btn btn--ghost" href="{{ '/portfolio/' | relative_url }}">
+          See Our Work
+        </a>
+        {% else %}
         {% for action in actions %}
-        <a class="btn btn--{{ action.style }}" href="{{ action.url | relative_url }}">
+        <a class="btn btn--{{ action.style | default: 'primary' }}" href="{{ action.url | relative_url }}">
           {{ action.label }}
         </a>
         {% endfor %}
+        {% endif %}
       </div>
-      {% endif %}
-
-
-
     </div>
 
-    <!-- HERO MEDIA -->
     {% if image %}
-    <aside class="ts-hero__aside" aria-label="Featured project and credentials">
-
+    <aside class="ts-hero__aside" aria-label="Featured project">
       <figure class="ts-hero__project">
-        <img src="{{ img_src }}" alt="{{ img_alt }}" width="600" height="800" loading="eager"
-          decoding="async">
-        {% if img_caption %}
-        <figcaption>{{ img_caption }}</figcaption>
-        {% endif %}
+        <img src="{{ img_src }}"
+             alt="{{ img_alt }}"
+             width="600"
+             height="800"
+             loading="eager"
+             decoding="async">
       </figure>
 
       <ul class="ts-hero__facts" role="list">
-        {% if facts %}
-        {% for fact in facts %}
-        <li class="ts-hero__fact">
-          {% if fact.label %}<p class="ts-hero__fact-label">{{ fact.label }}</p>{% endif %}
-          {% if fact.text %}<p class="ts-hero__fact-body">{{ fact.text }}</p>{% endif %}
-        </li>
-        {% endfor %}
-        {% else %}
         <li class="ts-hero__fact">
           <p class="ts-hero__fact-label">TCNA & ANSI Compliant</p>
           <p class="ts-hero__fact-body">
-            Installations follow current TCNA Handbook and ANSI A108 standards,
-            including ANSI A108.10 waterproofing and ASTM E2947 flood testing.
+            Installations follow current TCNA Handbook and ANSI A108 standards.
           </p>
         </li>
         <li class="ts-hero__fact">
           <p class="ts-hero__fact-label">Owner-Operated</p>
           <p class="ts-hero__fact-body">
-            No subcontractors. Direct communication and hands-on execution
-            from start to finish.
+            Direct communication and hands-on execution from start to finish.
           </p>
         </li>
         <li class="ts-hero__fact">
-          <p class="ts-hero__fact-label">Southern New Jersey Service</p>
+          <p class="ts-hero__fact-label">South Jersey Service</p>
           <p class="ts-hero__fact-body">
-            Serving Atlantic, Ocean, and Cape May Counties.
-            Fully licensed and insured.
+            Atlantic, Ocean & Cape May Counties. Fully licensed and insured.
           </p>
         </li>
-        {% endif %}
       </ul>
-
-      <p class="ts-hero__note">
-        Every installation engineered for longevity using ANSI A118.15 thinsets,
-        ISO 13007 C2-rated materials, and ANSI A118.10 waterproofing systems.
-      </p>
-
     </aside>
     {% endif %}
 
   </div>
-  </section>
-</body>
-</html>
+</section>
