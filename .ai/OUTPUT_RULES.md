@@ -1,220 +1,283 @@
-# OUTPUT_RULES.md — Code Quality & Compliance Standards
+---
 
-**Inherits From**: `SYSTEM.md`  
-**Scope**: Code, documentation, assets, and workflow standards  
-**Authority**: Tillerstead conventions, TCNA 2024, New Jersey HIC, WCAG 2.1, industry best practices
+# OUTPUT_RULES.md — Code Quality & Deployment-Safe Standards
+
+**Inherits From**: `SYSTEM.md`
+**Scope**: Code, documentation, assets, and workflow standards
+**Applies To**: Files modified in a given commit (context-aware)
+**Authority**: Tillerstead conventions, TCNA, NJ HIC (where applicable), WCAG 2.1, modern web standards
 
 ---
 
-## PURPOSE
+# 1) Purpose
 
-Defines non-negotiable technical, legal, and brand standards for all code, content, and assets generated or modified by AI or humans. Every output must pass these requirements before commit or deployment.
+This document defines quality, accessibility, and safety standards **without blocking unrelated deployments**.
 
----
+**Core principle**:
 
-## FILE NAMING & STRUCTURE
+> A rule only blocks deployment if the modified file type is within that rule’s scope **and** the violation presents a real functional, accessibility, security, or legal risk.
 
-### HTML
-- **Format**: `kebab-case.html`
-- **Root pages**: `index.html`, `404.html`, `success.html`
-- **Examples**: `theme-demo.html`, `about-us.html`
-- **Rule**: No underscores, no camelCase, no spaces
-
-### CSS/SCSS
-- **Format**: `kebab-case.css`, `_partial-name.scss`
-- **Partials**: Must start with underscore
-- **Compiled**: `main.css`, `theme.css`
-- **Examples**: `theme.css`, `_tokens.scss`
-
-### JavaScript
-- **Format**: `camelCase.js` or `kebab-case.js` (prefer camelCase for modules)
-- **Examples**: `nav.js`, `formValidation.js`, `scrollHandler.js`
-
-### Images & SVG
-- **Format**: `kebab-case.svg|png|jpg|webp`
-- **Patterns**: `pattern-*.svg`
-- **Icons**: `icon-*.svg`
-- **Examples**: `sacred-tile.svg`, `pattern-sacred-tile.svg`, `icon-chevron-down.svg`
-
-### Directories
-- **Format**: `kebab-case/` or `_underscore-prefix/`
-- **Jekyll**: `_includes/`, `_layouts/`, `_sass/`
-- **Examples**: `assets/`, `pages/`, `.github/workflows/`
+Formatting tweaks, copy edits, and unrelated documentation updates **must never be blocked** by CSS, JS, or HTML rules.
 
 ---
 
-## HTML STANDARDS
+## 2) Enforcement Model (Mandatory)
 
-### Semantic Structure
-- Use HTML5 landmarks: `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`
-- Avoid unnecessary `<div>`/`<span>` wrappers (“divitis”)
-- Use heading hierarchy: single `<h1>`, logical `<h2>`–`<h6>`
+All rules are classified by **severity** and **scope**.
 
-### Meta & SEO
-- Required: `<meta charset="UTF-8">`, `<meta name="viewport">`, unique `<title>`, `<meta name="description">`
-- Open Graph & Twitter Card tags for every page
-- Canonical URLs, robots.txt, sitemap.xml
-- JSON-LD for LocalBusiness schema
+### Severity Levels
 
-### Accessibility (WCAG 2.1 AA+)
-- Descriptive `alt` text for all images (no “image”, “tile”, or empty values)
-- Explicit `<label for>` on all form fields
-- ARIA labels for icon-only buttons
-- Keyboard navigation: skip links, focus states
-- Color contrast: 4.5:1 minimum for text, 3:1 for large text
+#### A. BLOCKER (must block commit/deploy)
 
-### Performance
-- Preload critical fonts and hero images
-- Inline above-the-fold CSS
-- Use `loading="lazy"` for non-critical images
-- Responsive images: `srcset`, `sizes`
-- Defer or use `type="module"` for scripts
+Used only when the issue causes:
 
-### HTMLHint Compliance
-- Must pass: `npx htmlhint '**/*.html'`
-- No duplicate IDs, all attributes lowercase, double quotes, all tags closed, special chars escaped
+* Runtime failure
+* Security exposure
+* Accessibility failure (WCAG AA regression)
+* Broken build
+* Legal/compliance violation
+
+#### B. REQUIRED (must be fixed *only if applicable*)
+
+Must be fixed **when the modified file falls within the rule’s scope**.
+
+#### C. RECOMMENDED (never blocks)
+
+Best practices, optimization goals, or stylistic consistency.
 
 ---
 
-## CSS/SCSS STANDARDS
+## 3) Scope Awareness (Non-Negotiable)
 
-### Design Tokens (see `_sass/base/_tokens.scss`)
-- **Colors**: `--color-primary`, `--color-accent`, `--color-surface`, etc.
-- **Typography**: `--font-sans`, `--heading-1`–`--heading-6`
-- **Spacing**: `--space-1`–`--space-12`
-- **Shadows**: `--shadow-soft`, `--shadow-lift`
-- **Radius**: `--radius-sm`, `--radius-pill`
-- **Gradients**: `--gradient-primary`, etc.
+A rule **only applies** if the commit modifies files in its scope.
 
-**Rule**: No hard-coded values—always use tokens.
+| Rule Type         | Applies Only If Commit Touches                     |
+| ----------------- | -------------------------------------------------- |
+| HTML rules        | `*.html`, Jekyll layouts/includes                  |
+| CSS/SCSS rules    | `*.css`, `*.scss`                                  |
+| JS rules          | `*.js`, `*.mjs`                                    |
+| Jekyll rules      | `_layouts/`, `_includes/`, pages with front matter |
+| Performance rules | HTML/CSS/JS affecting render path                  |
+| Docs rules        | `README.md`, `*.md`                                |
+| Assets            | `images/`, `svg/`, fonts                           |
 
-### Responsive & Layout
-- Mobile-first: use `@media (min-width: …)`
-- CSS Grid for 2D layouts, Flexbox for 1D
-- Utility classes for spacing, color, typography
-- BEM naming for components, low specificity
+**If no scoped files are modified → rule is skipped automatically.**
+
+---
+
+## 4) File Naming & Structure
+
+### Severity: REQUIRED (Scoped)
+
+Applies only to **new or renamed files**.
+
+#### HTML
+
+* `kebab-case.html`
+* Root pages: `index.html`, `404.html`, `success.html`
+
+#### CSS / SCSS
+
+* `kebab-case.css`
+* SCSS partials must start with `_`
+
+#### JavaScript
+
+* `camelCase.js` (preferred) or `kebab-case.js`
+* Be consistent within a directory
+
+#### Images / SVG
+
+* `kebab-case.svg|png|jpg|webp`
+* `icon-*`, `pattern-*` prefixes where applicable
+
+#### Directories
+
+* `kebab-case/`
+* Underscore-prefixed only for system dirs (`_includes`, `_layouts`, `_sass`)
+
+---
+
+## 5) HTML Standards
+
+### HTML Severity
+
+* **BLOCKER**: Broken semantics, duplicate IDs, missing labels on form controls
+* **REQUIRED**: Semantic structure, meta basics
+* **RECOMMENDED**: Advanced SEO/perf enhancements
+
+### Semantic & Accessibility (WCAG 2.1 AA)
+
+* One `<h1>` per page
+* Logical heading order
+* `<label for>` on all form inputs
+* `alt` text required for informative images
+* ARIA only when semantic HTML is insufficient
+
+### Meta & SEO (REQUIRED)
+
+* `<meta charset="UTF-8">`
+* `<meta name="viewport">`
+* Unique `<title>`
+* `<meta name="description">`
+
+### Performance (RECOMMENDED unless regression detected)
+
+* `loading="lazy"` for non-critical images
+* Defer or module-load scripts
+* Responsive images via `srcset`
+
+### HTMLHint
+
+* **BLOCKER only if HTMLHint error affects rendering or accessibility**
+* Style-only warnings → **RECOMMENDED**
+
+---
+
+## 6) CSS / SCSS Standards
+
+### CSS Severity
+
+* **BLOCKER**: Broken build, invalid CSS
+* **REQUIRED**: Token usage for theme-critical styles
+* **RECOMMENDED**: Optimization and architecture rules
+
+### Tokens
+
+* Prefer CSS variables and SCSS tokens
+* **Exception allowed** for:
+
+  * Third-party overrides
+  * One-off experimental components
+  * Temporary debug styling (must be removed before release)
+
+### Architecture
+
+* Mobile-first
+* Grid for layout, Flexbox for alignment
+* BEM-style naming preferred, not enforced
 
 ### Linting
-- (Planned) `npx stylelint "assets/css/**/*.css" "_sass/**/*.scss"`
-- No ID selectors, no `!important`, use logical properties, prefer CSS variables
+
+* Stylelint warnings do **not** block unless they cause invalid CSS or visual breakage
 
 ---
 
-## JAVASCRIPT STANDARDS
+## 7) JavaScript Standards
 
-### Syntax & Patterns
-- ES6+ only: `const`/`let`, arrow functions, template literals, destructuring
-- Prefer ES6 modules: `import`/`export`
-- CamelCase for variables/functions, kebab-case for filenames
+### JS Severity
 
-### Error Handling
-- All async code must use `try/catch` and fail gracefully (never crash UI)
-- Log errors with context, show fallback UI if needed
+* **BLOCKER**: Runtime errors, uncaught promise rejections, syntax failures
+* **REQUIRED**: ES6+, error handling in async code
+* **RECOMMENDED**: Performance optimizations
 
-### DOM & Performance
-- Batch DOM updates with fragments
-- Minimize reflows/repaints
-- Defer or module-load scripts
+### Rules
 
-### ESLint Compliance
-- Must pass: `npx eslint .`
-- Key rules: no unused vars, prefer const, arrow spacing, semicolons, single quotes
+* Use `const` / `let`
+* Wrap async logic in `try/catch`
+* Fail gracefully — UI must not hard-crash
 
----
+### ESLint
 
-## JEKYLL/LIQUID STANDARDS
-
-### Front Matter
-- Always include: `layout`, `title`, `description`
-- Use unified hero: `{% include hero/unified-hero.html ... %}` with explicit params
-- Minimal logic in templates; move complexity to data files
+* Errors that break execution → **BLOCKER**
+* Style preferences → **RECOMMENDED**
 
 ---
 
-## PERFORMANCE & TESTING
+## 8) Jekyll / Liquid
 
-### Lighthouse Targets
-- **Desktop**: Perf ≥ 90, Accessibility ≥ 95, Best Practices ≥ 95, SEO ≥ 95
-- **Mobile**: Perf ≥ 85 (goal: 90+), Accessibility/Best/SEO ≥ 95
-- **Core Web Vitals**: LCP < 2.5s, FID < 100ms, CLS < 0.1
+### Jekyll Severity: REQUIRED (Scoped)
 
-### Asset Optimization
-- Compress images (WebP preferred)
-- Inline critical CSS
-- Defer non-critical JS
-- Preload fonts, use `font-display: swap`
+Applies only to files with front matter or Liquid usage.
 
-### Pre-Commit Checklist
-1. Lint HTML: `npx htmlhint '**/*.html'`
-2. Lint JS: `npx eslint .`
-3. Jekyll build: `bundle exec jekyll build`
-4. (Optional) Check links, run visual regression
-5. Manual accessibility test: keyboard, screen reader, contrast
-
-### Browser Support
-- Chrome/Edge/Firefox/Safari: last 2 versions
-- iOS Safari 12+, Android Chrome 8+
+* Front matter must include `layout`, `title`, `description`
+* Avoid heavy logic in templates
+* Prefer data files for complexity
 
 ---
 
-## DOCUMENTATION
+## 9) Performance Targets
 
-### Code Comments
-- Explain “why”, not “what”
-- Use JSDoc for functions, SCSS comments for design decisions
+### Performance Severity
 
-### README
-- Update for new scripts, build changes, dependencies, structure, or deployment
-- Use clear, actionable sections
+* **BLOCKER**: Regressions that materially degrade UX
+* **RECOMMENDED**: Target scores
+
+### Targets (Goals, not gates)
+
+* Desktop: Perf ≥ 90
+* Mobile: Perf ≥ 85
+* Accessibility ≥ 95
+* CLS < 0.1, LCP < 2.5s
+
+Performance budgets **must not block copy-only or doc-only commits**.
 
 ---
 
-## GIT COMMIT STANDARDS
+## 10) Documentation Rules
 
-### Conventional Commits
+### Documentation Severity: REQUIRED (Scoped)
+
+* Update docs **only when behavior, structure, or usage changes**
+* No requirement to update README for cosmetic or copy edits
+
+---
+
+## 11) Git Commit Standards
+
+### Severity: REQUIRED
+
+Conventional Commits format:
+
+```text
+type(scope): subject
 ```
-<type>(<scope>): <subject>
 
-<body>
-
-<footer>
-```
-- **Types**: feat, fix, docs, style, refactor, perf, test, chore
-- **Examples**:
-  - `feat(hero): add background pattern support`
-  - `fix(nav): hide mobile drawer on desktop`
-  - `docs(ai): create governance structure`
-- **Body**: Explain what/why, reference issues
+* Enforced only on **commit message**
+* Never blocks file content changes
 
 ---
 
-## SECURITY & COMPLIANCE
+## 12) Security
 
-### Sensitive Data
-- Never commit API keys, credentials, or personal info
-- Use `.env` (gitignored) for secrets
+### Severity: BLOCKER
 
-### Content Security Policy
-- Target: strict CSP, only self and trusted sources
+* Secrets, API keys, credentials
+* Personal data
+* Private client information
 
----
-
-## OUTPUT VERIFICATION CHECKLIST
-
-- [ ] File/directory naming follows conventions
-- [ ] HTML is semantic, accessible, and SEO-optimized
-- [ ] CSS uses tokens, no hard-coded values
-- [ ] JS is ES6+, error-handled, and modular
-- [ ] All linter/build checks pass
-- [ ] Lighthouse and accessibility targets met
-- [ ] Documentation updated if needed
-- [ ] Commit message is Conventional Commits compliant
+Use `.env` (gitignored) and environment config.
 
 ---
 
-**Version**: 1.1.0  
-**Last Updated**: June 2024  
-**Authority**: SYSTEM.md, STYLE.md, DOMAIN.md, COMPLIANCE.md, OUTPUT_RULES.md  
-**Legal**: TCNA 2024, New Jersey HIC, WCAG 2.1, modern web standards
+## 13) Mandatory Failure Behavior (Critical Fix)
 
+If a rule fails, the enforcement system **must output**:
 
+1. **Severity**
+2. **File(s) and line range**
+3. **Why it failed (plain English)**
+4. **Exact proposed fix**
+5. **Minimal-change alternative**
+
+> A failure without a proposed fix is itself non-compliant.
+
+---
+
+## 14) Fast Verification Checklist
+
+### Only check what changed
+
+* [ ] Scope applies to modified files
+* [ ] No BLOCKER issues introduced
+* [ ] REQUIRED issues fixed where applicable
+* [ ] RECOMMENDED issues logged, not blocked
+
+---
+
+**Version**: 2.0.0 (deployment-safe)
+**Last Updated**: 2026-01-02
+**Authority**: SYSTEM.md, STYLE.md, DOMAIN.md, COMPLIANCE.md
+**Intent**: Enforce quality **without sabotaging velocity**
+
+---
