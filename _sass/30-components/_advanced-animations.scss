@@ -22,7 +22,6 @@
   transition:
     opacity var(--duration-base) var(--easing-in-out),
     transform var(--duration-base) var(--easing-in-out);
-}
 
 [data-scroll-animate="fade-in"] {
   transform: translateY(40px);
@@ -31,7 +30,6 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
 
 [data-scroll-animate="fade-in-left"] {
   transform: translateX(-40px);
@@ -50,6 +48,7 @@
     transform: translateX(0);
   }
 }
+}
 
 [data-scroll-animate="scale-in"] {
   transform: scale(0.95);
@@ -59,6 +58,7 @@
     opacity: 1;
     transform: scale(1);
   }
+}
 }
 
 /* ========================================
@@ -75,12 +75,14 @@
       transform var(--duration-base) var(--easing-in-out);
     will-change: transform, opacity;
   }
+}
 
   &.in-view > * {
     opacity: 1;
     transform: translateY(0);
     will-change: auto;
   }
+}
 
   /* Optimized stagger delays - balanced for smoothness */
   @for $i from 1 through 12 {
@@ -88,6 +90,7 @@
       transition-delay: #{($i - 1) * 60ms};
     }
   }
+}
 }
 
 /* Grid animation with bounce effect */
@@ -97,16 +100,19 @@
     animation: bounceEnter var(--duration-base) var(--easing-bounce) both;
     will-change: transform, opacity;
   }
+}
 
   @for $i from 1 through 12 {
     > *:nth-child(#{$i}) {
       animation-delay: #{($i - 1) * 75ms};
     }
   }
+}
 
   &.animation-complete > * {
     will-change: auto;
   }
+}
 }
 
 /* Fade up stagger for large lists */
@@ -118,17 +124,20 @@
       opacity var(--duration-base) var(--easing-out),
       transform var(--duration-base) var(--easing-out);
   }
+}
 
   &.in-view > * {
     opacity: 1;
     transform: translateY(0);
   }
+}
 
   @for $i from 1 through 20 {
     &.in-view > *:nth-child(#{$i}) {
       transition-delay: #{($i - 1) * 40ms};
     }
   }
+}
 }
 
 /* ========================================
@@ -156,6 +165,7 @@
     opacity: 1;
   }
 }
+}
 
 /* Slide panel from side (GPU accelerated) */
 [data-slide-panel] {
@@ -177,6 +187,7 @@
     will-change: auto;
   }
 }
+}
 
 /* Fade overlay behind panel */
 [data-overlay] {
@@ -192,6 +203,7 @@
     pointer-events: auto;
   }
 }
+}
 
 /* Modal animation - scale + fade */
 [data-modal] {
@@ -205,6 +217,7 @@
     opacity: 1;
     transform: scale(1);
   }
+}
 }
 
 /* Dropdown animation - slide down */
@@ -223,6 +236,7 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
 }
 
 /* ========================================
@@ -243,12 +257,14 @@
     animation: loaderSegment 1s ease-in-out infinite;
     will-change: transform, opacity;
   }
+}
 
   @for $i from 1 through 4 {
     span:nth-child(#{$i}) {
       animation-delay: #{($i - 1) * 200ms};
     }
   }
+}
 }
 
 @keyframes loaderSegment {
@@ -257,10 +273,12 @@
     opacity: 0.3;
     transform: scaleY(1);
   }
+}
   50% {
     opacity: 1;
     transform: scaleY(1.5);
   }
+}
 }
 
 /* Spinner loader - smooth rotation */
@@ -278,6 +296,7 @@
   to {
     transform: rotate(360deg);
   }
+}
 }
 
 /* Pulse loader - gentle opacity animation */
@@ -297,10 +316,12 @@
     opacity: 1;
     transform: scale(1);
   }
+}
   50% {
     opacity: 0.5;
     transform: scale(0.8);
   }
+}
 }
 
 /* Progress bar animation */
@@ -320,14 +341,17 @@
     will-change: width;
   }
 }
+}
 
 @keyframes progressFill {
   from {
     width: 0%;
   }
+}
   to {
     width: 100%;
   }
+}
 }
 
 /* ========================================
@@ -339,16 +363,20 @@
     opacity: 0;
     transform: scale(0.3) translateY(20px);
   }
+}
   50% {
     opacity: 1;
   }
+}
   70% {
     transform: scale(1.12);
   }
+}
   100% {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
+}
 }
 
 @keyframes slideOutDown {
@@ -357,12 +385,14 @@
     transform: translateY(40px);
   }
 }
+}
 
 @keyframes slideOutUp {
   to {
     opacity: 0;
     transform: translateY(-40px);
   }
+}
 }
 
 /* ========================================
@@ -395,6 +425,7 @@
       will-change: auto !important;
     }
   }
+}
 
   .loader-segmented,
   .loader-spinner,
@@ -404,6 +435,7 @@
     will-change: auto !important;
   }
 }
+}
 
 /* High contrast mode - reduce animation duration */
 @media (prefers-contrast: more) {
@@ -412,6 +444,7 @@
   [data-expand-toggle] {
     transition-duration: var(--duration-fast) !important;
   }
+}
 }
 
 /* Print styles - disable all animations */
@@ -440,6 +473,7 @@
     }
   }
 }
+}
 
 /* ========================================
    🔄 COMPLEX STATE TRANSITIONS
@@ -466,6 +500,7 @@
     opacity: 1;
   }
 }
+}
 
 /* Slide panel from side */
 [data-slide-panel] {
@@ -485,6 +520,7 @@
     transform: translateX(0);
   }
 }
+}
 
 /* Fade overlay behind panel */
 [data-overlay] {
@@ -499,6 +535,7 @@
     background: rgba(0, 0, 0, 0.3);
     pointer-events: auto;
   }
+}
 }
 
 /* ========================================
@@ -518,12 +555,14 @@
     border-radius: 2px;
     animation: loaderSegment 1s ease-in-out infinite;
   }
+}
 
   @for $i from 1 through 4 {
     span:nth-child(#{$i}) {
       animation-delay: #{($i - 1) * 200ms};
     }
   }
+}
 }
 
 @keyframes loaderSegment {
@@ -532,10 +571,12 @@
     opacity: 0.3;
     transform: scaleY(1);
   }
+}
   50% {
     opacity: 1;
     transform: scaleY(1.5);
   }
+}
 }
 
 /* Circular progress with animated stroke */
@@ -551,6 +592,7 @@
     height: 100%;
     transform: rotate(-90deg);
   }
+}
 
   circle {
     &.background {
@@ -567,14 +609,17 @@
     }
   }
 }
+}
 
 @keyframes circleProgress {
   0% {
     stroke-dashoffset: 157;
   }
+}
   100% {
     stroke-dashoffset: 0;
   }
+}
 }
 
 /* Skeleton loading animation */
@@ -594,9 +639,11 @@
   0% {
     background-position: 200% 0;
   }
+}
   100% {
     background-position: -200% 0;
   }
+}
 }
 
 /* ========================================
@@ -621,10 +668,12 @@
     transform: translate(-50%, -50%);
     pointer-events: none;
   }
+}
 
   &:active::after {
     animation: rippleEffect 0.6s ease-out;
   }
+}
 }
 
 @keyframes rippleEffect {

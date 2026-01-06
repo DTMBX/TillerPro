@@ -26,11 +26,68 @@ yarn-error.log*
 *.swp
 *~
 
+# --- OS / Editor ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+.history/
+
+# --- Ruby / Jekyll ---
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+.bundle/
+vendor/
+vendor/bundle/
+Gemfile.lock
+
+# --- Node ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
 # --- Build artifacts that should not be tracked ---
 assets/css/style.css
 assets/css/style.css.map
-# backups / temp (never commit)
+convert-pattern.js
+_archive/
+dist/
+build/
+
+# --- Coverage and test output ---
+coverage/
+*.lcov
+
+# --- Backups / temp ---
 _backup/
 _tmp/
+.backups/
+**/.backups/
+*.bak
+*.bak.*
 *.bak*
 **/*.bak*
+*.bak_keep_*
+*.orig
+*.swp
+*.tmp
+*~
+
+# --- Local audits / logs ---
+reports/
+*.log
+
+# --- Custom: Exclude AI and Copilot instruction artifacts ---
+.ai/
+.aider*
+
+# --- Script "keep" copies ---
+*.bak_keep_*
+
+# --- Vendor folder should not be tracked ---
+vendor/
+
