@@ -7,6 +7,7 @@ build_phase: 1
 build_title: "Codes, Permits & Inspections"
 build_order: 1
 toc: true
+schema_type: HowTo
 ---
 
 # NJ Codes, Permits & Inspections
