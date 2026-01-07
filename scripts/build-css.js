@@ -3,20 +3,23 @@
 
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import * as sass from 'sass';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const scssPath = path.resolve(__dirname, '..', 'assets', 'css', 'main.scss');
-const cssOutPath = path.resolve(__dirname, '..', 'assets', 'css', 'main.css');
+const scssPath = path.resolve(__dirname, '..', 'assets', 'css', 'style.scss');
+const cssOutPath = path.resolve(__dirname, '..', 'assets', 'css', 'style.css');
 
 try {
   // Use sass Node.js API instead of CLI for better Windows compatibility
   const loadPaths = [path.resolve(__dirname, '..', '_sass')];
 
-  const result = sass.compile(scssPath, {
+  const raw = readFileSync(scssPath, 'utf8');
+  const cleaned = raw.replace(/^---\s*[\s\S]*?---\s*/m, '');
+
+  const result = sass.compileString(cleaned, {
     sourceMap: false,
     style: 'compressed',
     loadPaths,

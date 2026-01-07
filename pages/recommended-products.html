@@ -73,8 +73,8 @@ title: "Recommended Tile & Waterproofing Products"
     </section>
 
     <!-- Quick Jump Links -->
-    {% assign product_data = site.data.products %} {% if product_data and
-    product_data.categories and product_data.categories.size > 0 %}
+    {% assign product_data = site.data.products %}
+    {% if product_data and product_data.categories and product_data.categories.size > 0 %}
     <nav class="products-jump" aria-label="Jump to product category">
       <h2 class="heading-4">Jump to a Category</h2>
       <ul class="ts-list">
@@ -83,8 +83,8 @@ title: "Recommended Tile & Waterproofing Products"
         {% endfor %}
       </ul>
     </nav>
-    {% endif %} {% if product_data == nil or product_data.categories == nil or
-    product_data.categories.size == 0 %}
+    {% endif %}
+    {% if product_data == nil or product_data.categories == nil or product_data.categories.size == 0 %}
     <p class="microcopy center mt-2">
       Products are being updated. Check back soon.
     </p>
@@ -103,7 +103,8 @@ title: "Recommended Tile & Waterproofing Products"
         </h2>
         {% if cat.description %}
         <p class="category-intro">{{ cat.description }}</p>
-        {% endif %} {% if cat.buying_tip %}
+        {% endif %}
+        {% if cat.buying_tip %}
         <p class="muted"><strong>Buying tip:</strong> {{ cat.buying_tip }}</p>
         {% endif %}
       </header>
@@ -124,22 +125,29 @@ title: "Recommended Tile & Waterproofing Products"
             {% else %} {{ p.full_name | default: p.name | escape }} {% endif %}
           </h3>
 
-          {% capture meta_line %} {% if p.type %}{{ p.type }}{% endif %} {% if
-          p.specs %}{% if p.type %} · {% endif %}{{ p.specs }}{% endif %} {% if
-          p.brand %}{% if p.type or p.specs %} · {% endif %}{{ p.brand }}{%
-          endif %} {% endcapture %} {% if meta_line | strip != "" %}
+          {% capture meta_line %}
+            {% if p.type %}{{ p.type }}{% endif %}
+            {% if p.specs %}{% if p.type %} · {% endif %}{{ p.specs }}{% endif %}
+            {% if p.brand %}{% if p.type or p.specs %} · {% endif %}{{ p.brand }}{% endif %}
+          {% endcapture %}
+          {% if meta_line | strip != "" %}
           <p class="product-meta">{{ meta_line | strip }}</p>
-          {% endif %} {% if p.best_for %}
+          {% endif %}
+          {% if p.best_for %}
           <p class="product-tag"><strong>Best for:</strong> {{ p.best_for }}</p>
-          {% endif %} {% if p.description %}
+          {% endif %}
+          {% if p.description %}
           <p class="product-desc">{{ p.description }}</p>
-          {% endif %} {% if p.watch_out %}
+          {% endif %}
+          {% if p.watch_out %}
           <p class="product-note">
             <strong>Watch out:</strong> {{ p.watch_out }}
           </p>
-          {% endif %} {% if p.pro_tip %}
+          {% endif %}
+          {% if p.pro_tip %}
           <p class="product-note"><strong>Pro tip:</strong> {{ p.pro_tip }}</p>
-          {% endif %} {% if p.note %}
+          {% endif %}
+          {% if p.note %}
           <p class="product-note">{{ p.note }}</p>
           {% endif %}
         </article>

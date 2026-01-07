@@ -5,65 +5,65 @@
 
 :root {
   /* Dark background system - stone/slate inspired */
-  --ts-color-bg: #0f0f0f;
+  --ts-color-bg: #0b0d0b;
   --ts-color-surface: linear-gradient(
     135deg,
-    #1a1a1a 0%,
-    #242424 50%,
-    #1e1e1e 100%
+    #111411 0%,
+    #1a1f1b 50%,
+    #0f120f 100%
   );
   --ts-color-surface-muted: linear-gradient(
     135deg,
-    #252525 0%,
-    #2f2f2f 50%,
-    #282828 100%
+    #151a16 0%,
+    #1f2520 50%,
+    #141814 100%
   );
   --ts-color-surface-elevated: linear-gradient(
     135deg,
-    #2a2a2a 0%,
-    #353535 50%,
-    #2d2d2d 100%
+    #1b211c 0%,
+    #263029 50%,
+    #1a201c 100%
   );
   --ts-color-surface-highlight: linear-gradient(
     135deg,
-    #303030 0%,
-    #3a3a3a 50%,
-    #333333 100%
+    #202620 0%,
+    #2d372f 50%,
+    #222a24 100%
   );
 
   /* Solid fallbacks */
-  --ts-color-surface-solid: #1e1e1e;
-  --ts-color-surface-muted-solid: #282828;
-  --ts-color-surface-elevated-solid: #2d2d2d;
+  --ts-color-surface-solid: #111611;
+  --ts-color-surface-muted-solid: #161c17;
+  --ts-color-surface-elevated-solid: #1b221c;
 
   /* Tinted surfaces */
-  --ts-color-surface-tinted-teal: rgb(7, 137, 48, 0.08);
-  --ts-color-surface-tinted-warm: rgb(252, 221, 9, 0.06);
-  --ts-color-surface-tinted-gold: rgb(252, 221, 9, 0.06);
+  --ts-color-surface-tinted-teal: rgb(0, 179, 111, 0.12);
+  --ts-color-surface-tinted-warm: rgb(212, 175, 55, 0.08);
+  --ts-color-surface-tinted-gold: rgb(212, 175, 55, 0.08);
 
   /* Text colors */
-  --ts-color-text: #e8e8e8;
+  --ts-color-text: #f3f5f3;
   --ts-color-heading: #ffffff;
-  --ts-color-muted: #9a9a9a;
-  --ts-color-text-subtle: #787878;
+  --ts-color-muted: #b7beb7;
+  --ts-color-text-subtle: #8a948a;
 
   /* Brand colors - brighter for dark mode */
-  --ts-color-primary: #0a9f3a;
-  --ts-color-primary-hover: #0eb844;
-  --ts-color-primary-light: #1cd45f;
-  --ts-color-primary-soft: rgb(10, 159, 58, 0.15);
+  --ts-color-primary: #00b36f;
+  --ts-color-primary-hover: #00cc7f;
+  --ts-color-primary-light: #37e59a;
+  --ts-color-primary-soft: rgb(0, 179, 111, 0.18);
 
-  --ts-color-accent: #fde74c;
-  --ts-color-accent-hover: #fff176;
-  --ts-color-accent-strong: #d4b507;
+  --ts-color-accent: #d4af37;
+  --ts-color-accent-hover: #e2c158;
+  --ts-color-accent-strong: #b6891f;
 
-  --ts-color-secondary: #ff9d7d;
-  --ts-color-secondary-soft: rgb(255, 157, 125, 0.12);
+  --ts-color-secondary: #1b1f1c;
+  --ts-color-secondary-soft: rgb(0, 0, 0, 0.2);
 
   /* Borders */
-  --ts-color-border: rgb(255, 255, 255, 0.08);
-  --ts-color-border-strong: rgb(255, 255, 255, 0.15);
-  --ts-color-divider: rgb(255, 255, 255, 0.05);
+  --ts-color-border: rgb(255, 255, 255, 0.12);
+  --ts-color-border-strong: rgb(255, 255, 255, 0.2);
+  --ts-color-divider: rgb(255, 255, 255, 0.08);
 
   --ts-border-thin: 1px solid rgb(255, 255, 255, 0.08);
   --ts-border-medium: 2px solid rgb(255, 255, 255, 0.15);
@@ -80,30 +80,30 @@
   --ts-shadow-header-scrolled: 0 4px 16px rgb(0, 0, 0, 0.6);
 
   /* State colors */
-  --ts-color-success: #1fbf7a;
-  --ts-color-success-bg: rgb(31, 191, 122, 0.12);
-  --ts-color-success-text: #4ade80;
+  --ts-color-success: #00b36f;
+  --ts-color-success-bg: rgb(0, 179, 111, 0.18);
+  --ts-color-success-text: #7ff0c1;
 
-  --ts-color-warning: #fbbf24;
-  --ts-color-warning-bg: rgb(251, 191, 36, 0.12);
-  --ts-color-warning-text: #fde047;
+  --ts-color-warning: #d4af37;
+  --ts-color-warning-bg: rgb(212, 175, 55, 0.18);
+  --ts-color-warning-text: #f5df9b;
 
-  --ts-color-error: #ff5757;
-  --ts-color-error-bg: rgb(255, 87, 87, 0.12);
-  --ts-color-error-text: #ff8787;
+  --ts-color-error: #ff6b6b;
+  --ts-color-error-bg: rgb(255, 107, 107, 0.18);
+  --ts-color-error-text: #ff9f9f;
 
   /* Text on colored backgrounds */
-  --ts-text-on-primary: #ffffff;
+  --ts-text-on-primary: #04140d;
   --ts-text-on-secondary: #ffffff;
-  --ts-text-on-accent: #1a1a1a;
+  --ts-text-on-accent: #0b0d0b;
 
   /* Gradients - stone mountain aesthetic */
   --color-gradient-hero: linear-gradient(
-    165deg,
-    #0a9f3a 0%,
-    #065a24 30%,
-    #1a1a1a 60%,
-    #0f0f0f 100%
+    160deg,
+    #00b36f 0%,
+    #0a3f2b 35%,
+    #0b0d0b 70%,
+    #050705 100%
   );
 
   --color-gradient-warm: linear-gradient(

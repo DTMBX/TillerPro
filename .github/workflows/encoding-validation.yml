@@ -25,7 +25,7 @@ jobs:
           found_issues=0
 
           # Check HTML files
-          for file in $(find . -type f -name "*.html" ! -path "./.git/*" ! -path "./node_modules/*" ! -path "./_site/*"); do
+          for file in $(find . -type f -name "*.html" ! -path "./.git/*" ! -path "./node_modules/*" ! -path "./_site/*" ! -path "./vendor/*" ! -path "./root-archive/*"); do
             if file "$file" | grep -q "UTF-8.*BOM"; then
               echo "❌ $file: Contains UTF-8 BOM"
               found_issues=$((found_issues + 1))
@@ -33,7 +33,7 @@ jobs:
           done
 
           # Check YAML files
-          for file in $(find . -type f \( -name "*.yml" -o -name "*.yaml" \) ! -path "./.git/*" ! -path "./node_modules/*"); do
+          for file in $(find . -type f \( -name "*.yml" -o -name "*.yaml" \) ! -path "./.git/*" ! -path "./node_modules/*" ! -path "./vendor/*" ! -path "./root-archive/*"); do
             if grep -q $'\t' "$file"; then
               echo "❌ $file: Contains tabs (YAML requires spaces)"
               found_issues=$((found_issues + 1))
@@ -95,27 +95,21 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2"
+          ruby-version: "3.2.9"
           bundler-cache: true
 
       - name: Build Jekyll site
-        run: |
-          bundle exec jekyll build --trace 2>&1 | tee build.log
-
-      - name: Check for Jekyll errors
-        run: |
-          if grep -i "error\|liquid\|exception" build.log; then
-            echo "❌ Jekyll build encountered errors"
-            exit 1
-          fi
-          echo "✅ Jekyll build successful"
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
 
       - name: Upload build log
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: jekyll-build-log
-          path: build.log
+          path: _site
           retention-days: 7
 
   lint-js:

@@ -22,6 +22,9 @@ timezone: "America/New_York"
 permalink: pretty
 theme: null
 
+sass:
+  style: compressed
+
 # ----------------------------
 # Plugins (safe)
 # ----------------------------
@@ -139,6 +142,10 @@ forms:
 # ----------------------------
 exclude:
   - "root-archive/README.md"
+  - "for-general-contractors.md"
+  - "recommended-products.md"
+  - "reviews.md"
+  - "terms/index.md"
   - "LICENSE"
   - "node_modules/"
   - "vendor/"
