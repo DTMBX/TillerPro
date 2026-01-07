@@ -1,5 +1,0 @@
-
-> jekyll
-> ruby vendor/gems/jekyll/bin/jekyll build
-
-Build failed: (<unknown>): could not find expected ':' while scanning a simple key at line 6 column 1

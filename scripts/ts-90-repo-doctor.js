@@ -357,12 +357,12 @@ function phaseFixes(_cfg) {
   }
 
   // Add a short doc note about Node versions if missing
-  const readme = exists('README.md') ? readText('README.md') : '';
-  if (exists('README.md') && !/Node\s+(18|20)/i.test(readme)) {
+  const readme = exists('root-archive/README.md') ? readText('root-archive/README.md') : '';
+  if (exists('root-archive/README.md') && !/Node\s+(18|20)/i.test(readme)) {
     const note =
       '\n\n## Dev Requirements\n- Node.js 20 (preferred) or Node.js 18+\n- Ruby/Bundler (for Jekyll)\n';
-    fs.writeFileSync('README.md', readme + note, 'utf8');
-    logOk('Updated README.md with dev requirements note.');
+    fs.writeFileSync('root-archive/README.md', readme + note, 'utf8');
+    logOk('Updated root-archive/README.md with dev requirements note.');
   }
 }
 

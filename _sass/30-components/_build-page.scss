@@ -1,0 +1,109 @@
+/* ==========================================================================
+   Build Page & Sidebar – Premium Brand Styling
+   ========================================================================== */
+
+$emerald: #009b6b;
+$gold: #c9b037;
+
+.ts-build-content {
+  padding-block: var(--ts-spacing-xl, 3rem);
+  background: linear-gradient(135deg, #f8f9fa 60%, #fffbe6 100%);
+}
+
+.build-content-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--ts-spacing-xl, 3rem);
+  align-items: start;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.build-content-sidebar {
+  position: sticky;
+  top: calc(var(--ts-spacing-lg, 2rem) + 60px);
+  z-index: 2;
+  box-shadow: 0 4px 24px rgba(0, 155, 107, 0.08);
+  border-radius: var(--ts-radius-lg, 0.75rem);
+  border: 2px solid $emerald;
+  background: linear-gradient(120deg, #fff, #f6fff9 80%);
+  transition: box-shadow 0.2s;
+}
+
+.build-content-sidebar:focus-within,
+.build-content-sidebar:hover {
+  box-shadow: 0 8px 32px rgba(201, 176, 55, 0.18);
+  border-color: $gold;
+}
+
+.build-content-main {
+  min-width: 0;
+  background: #fff;
+  border-radius: var(--ts-radius-lg, 0.75rem);
+  box-shadow: 0 2px 12px rgba(0, 155, 107, 0.04);
+  border: 1.5px solid #e0e7ed;
+  padding: clamp(2rem, 5vw, 3.5rem);
+}
+
+.build-content-main h1,
+.build-content-main h2 {
+  color: $emerald;
+}
+
+.build-content-main h2 {
+  border-bottom: 2px solid $gold;
+}
+
+.build-content-main a {
+  color: $emerald;
+  text-decoration: underline;
+  transition: color 0.15s;
+}
+
+.build-content-main a:hover {
+  color: $gold;
+}
+
+.build-nav-prev-next {
+  margin-top: var(--ts-spacing-2xl, 4rem);
+  padding-top: var(--ts-spacing-lg, 2rem);
+  border-top: 2px solid $emerald;
+  text-align: center;
+}
+
+.build-nav-footer {
+  text-align: center;
+}
+
+.build-nav-tip {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid $gold;
+  color: $emerald;
+}
+
+@media (max-width: 1024px) {
+  .build-content-grid {
+    grid-template-columns: 240px 1fr;
+    gap: var(--ts-spacing-lg, 2rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .build-content-grid {
+    grid-template-columns: 1fr;
+    gap: var(--ts-spacing-lg, 2rem);
+  }
+  .build-content-sidebar {
+    position: static;
+    margin-bottom: var(--ts-spacing-lg, 2rem);
+    box-shadow: none;
+    border-width: 1.5px;
+  }
+}
+
+@media (max-width: 640px) {
+  .build-content-main {
+    padding: 1rem;
+  }
+}

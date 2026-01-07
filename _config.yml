@@ -29,6 +29,9 @@ theme: null
 plugins:
   - jekyll-sitemap
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-archives
+  - jekyll-paginate
 
 # ----------------------------
 # SEO
@@ -112,7 +115,7 @@ forms:
 # Exclusions (keep builds deterministic)
 # ----------------------------
 exclude:
-  - "README.md"
+  - "root-archive/README.md"
   - "LICENSE"
   - "node_modules/"
   - "vendor/"
@@ -124,8 +127,8 @@ exclude:
   - ".gitignore"
 
   # Prevent “baseline/docs” YAML and other non-site content from ever interfering
-  - "docs/"
-  - "docs/**"
+  - "root-archive/docs/"
+  - "root-archive/docs/**"
   - "baseline/"
   - "baseline/**"
 
