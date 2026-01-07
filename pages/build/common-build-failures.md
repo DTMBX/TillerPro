@@ -1,8 +1,12 @@
 ---
 layout: build-page
-title: "Common Build Failures & Red Flags - Step 8"
-description: "TCNA-based analysis: where bathroom and shower failures originate, warning signs, and prevention."
+title: "Build Phase 8: Common Failures & Red Flags"
+description: "Where bathroom and shower failures originate, warning signs to recognize early, and how proper sequencing prevents them."
 permalink: /build/common-build-failures/
+build_phase: 8
+build_title: "Common Failures & Red Flags"
+build_order: 8
+toc: true
 ---
 
 # Common Failures & Red Flags
