@@ -177,16 +177,16 @@ Understanding common failures helps you recognize quality work—and spot shortc
 
 ## Quick Reference: What Each Phase Covers
 
-| Phase | Focus | Key Standard |
-| ----- | ----- | ------------ |
-| 1. Codes & Permits | Legal requirements | NJ UCC, IRC |
-| 2. Shower Pans | Water direction | TCNA B421, B422 |
-| 3. Waterproofing | Moisture barrier | ANSI A118.10 |
-| 4. Thresholds | Water containment | TCNA B415 |
-| 5. Benches & Niches | Structural planning | TCNA B421 |
-| 6. Tile Installation | Bonding & coverage | ANSI A108 |
-| 7. Flood Testing | Verification | ASTM D5957 |
-| 8. Common Failures | Prevention | Industry best practice |
+| Phase                | Focus               | Key Standard           |
+| -------------------- | ------------------- | ---------------------- |
+| 1. Codes & Permits   | Legal requirements  | NJ UCC, IRC            |
+| 2. Shower Pans       | Water direction     | TCNA B421, B422        |
+| 3. Waterproofing     | Moisture barrier    | ANSI A118.10           |
+| 4. Thresholds        | Water containment   | TCNA B415              |
+| 5. Benches & Niches  | Structural planning | TCNA B421              |
+| 6. Tile Installation | Bonding & coverage  | ANSI A108              |
+| 7. Flood Testing     | Verification        | ASTM D5957             |
+| 8. Common Failures   | Prevention          | Industry best practice |
 
 ---
 
@@ -214,13 +214,13 @@ These guides can help align expectations with homeowners. Share them as part of 
 
 What makes this approach different from "just installing tile"?
 
-| Traditional Approach | Build Phase Methodology |
-| --------------------- | ------------------------ |
-| Focus on tile selection | Focus on system assembly |
-| "Trust the installer" | Verify at each phase |
-| Finish hides problems | Problems addressed before finish |
-| No documentation | Photo documentation standard |
-| Warranty on tile | Warranty on workmanship |
+| Traditional Approach    | Build Phase Methodology          |
+| ----------------------- | -------------------------------- |
+| Focus on tile selection | Focus on system assembly         |
+| "Trust the installer"   | Verify at each phase             |
+| Finish hides problems   | Problems addressed before finish |
+| No documentation        | Photo documentation standard     |
+| Warranty on tile        | Warranty on workmanship          |
 
 > **The best projects are the ones where nothing has to be explained after the fact.**
 
@@ -247,6 +247,6 @@ Or if you're ready to discuss your project:
 
 ---
 
-*Standards Referenced: TCNA Handbook 2024, ANSI A108/A118/A136.1, ASTM D5957, New Jersey Uniform Construction Code (N.J.A.C. 5:23), International Residential Code (IRC).*
+_Standards Referenced: TCNA Handbook 2024, ANSI A108/A118/A136.1, ASTM D5957, New Jersey Uniform Construction Code (N.J.A.C. 5:23), International Residential Code (IRC)._
 
-*Disclaimer: These guides are educational resources, not installation instructions. Always work with licensed professionals and obtain required permits for your project.*
+_Disclaimer: These guides are educational resources, not installation instructions. Always work with licensed professionals and obtain required permits for your project._
