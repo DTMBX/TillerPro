@@ -7,6 +7,7 @@ build_phase: 5
 build_title: "Benches, Seats & Niches"
 build_order: 5
 toc: true
+schema_type: HowTo
 ---
 
 # Framing for Benches, Seats & Niches
