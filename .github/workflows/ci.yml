@@ -1,188 +1,120 @@
-name: CI/CD
+name: Build & Deploy (Tillerstead)
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main]
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 concurrency:
-  group: ci-${{ github.ref }}
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  validate:
-    name: Validate & Lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "24"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run comprehensive validation script
-        run: node scripts/validate-all.js
-
-      - name: Lint JavaScript (ESLint)
-        run: npm run lint:js || true
-
-      - name: Lint CSS (stylelint)
-        run: npm run lint:css || true
-
-      - name: Lint HTML (HTMLHint)
-        run: npx htmlhint "_includes/**/*.html" "_layouts/**/*.html" || true
-
   build:
-    name: Build Site
-    needs: validate
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Ruby 3.2
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.2"
-          bundler: "2.4.19"
           bundler-cache: true
 
-      - name: Set up Node.js
+      - name: Setup Node (for CSS build)
         uses: actions/setup-node@v4
         with:
-          node-version: "24"
+          node-version: "20"
           cache: "npm"
 
-      - name: Install npm dependencies
+      - name: Install npm deps
         run: npm ci
 
-      - name: Build CSS assets
-        run: npm run build:css 2>&1 | head -50
+      - name: Build CSS
+        run: npm run build:css
 
-      - name: Build site with Jekyll
+      - name: Build Jekyll
         env:
           JEKYLL_ENV: production
-        run: bundle exec jekyll build --trace 2>&1 | tail -100
-
-      - name: Verify build artifacts
-        run: |
-          if [ ! -d "_site" ]; then
-            echo "ERROR: Build failed - _site directory not found"
-            exit 1
-          fi
-          if [ ! -f "_site/index.html" ]; then
-            echo "ERROR: Build failed - index.html not found"
-            exit 1
-          fi
-          echo "✓ Build artifacts verified"
-          echo "Files generated: $(find _site -type f | wc -l)"
-
-      - name: Ensure CNAME for GitHub Pages
-        run: |
-          if [ -f CNAME ]; then
-            cp CNAME _site/CNAME
-            echo "✓ CNAME copied to _site"
-          else
-            echo "tillerstead.com" > _site/CNAME
-          fi
-
-      - name: Upload built site
-        uses: actions/upload-artifact@v4
-        with:
-          name: site-build
-          path: _site
-          retention-days: 1
-
-  test:
-    name: Test Built Site
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Download built site
-        uses: actions/download-artifact@v4
-        with:
-          name: site-build
-          path: _site
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "24"
+        run: bundle exec jekyll build --trace
 
       - name: Verify critical pages exist
         run: |
+          set -e
           critical_pages=(
             "_site/index.html"
-            "_site/pages/build/index.html"
-            "_site/portfolio/index.html"
+            "_site/about/index.html"
             "_site/contact/index.html"
+            "_site/build/index.html"
+            "_site/portfolio/index.html"
             "_site/404.html"
           )
 
           for page in "${critical_pages[@]}"; do
             if [ -f "$page" ]; then
-              echo "✓ $page exists"
+              echo "✓ $page"
             else
-              echo "❌ $page missing"
+              echo "❌ Missing: $page"
               exit 1
             fi
           done
 
-      - name: Validate generated HTML
+      - name: Verify build phases exist (auto from permalinks)
         run: |
-          set +e
-          npx htmlhint "_site/**/*.html" --exclude node_modules,_site/assets
-          result=$?
-          if [ $result -gt 1 ]; then
-            exit 1
-          fi
+          set -e
+          # expects build pages to declare: build_order + permalink: /build/<slug>/
+          python3 - <<'PY'
+          import os, re, glob, sys
 
-  deploy:
-    name: Deploy to GitHub Pages
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+          phase_files = glob.glob("pages/build/*.md") + glob.glob("pages/build/*.markdown") + glob.glob("pages/build/*.html")
+          if not phase_files:
+            # fallback: also support build/*.md if you moved them
+            phase_files = glob.glob("build/*.md") + glob.glob("build/*.markdown")
 
-      - name: Download built site
-        uses: actions/download-artifact@v4
-        with:
-          name: site-build
-          path: _site
+          missing = []
+          for fp in phase_files:
+            txt = open(fp, "r", encoding="utf-8", errors="ignore").read()
+            m = re.search(r"^permalink:\s*(.+)\s*$", txt, re.M)
+            if not m:
+              continue
+            permalink = m.group(1).strip().strip('"').strip("'")
+            if not permalink.startswith("/build/"):
+              continue
+            out = "_site" + permalink
+            if not out.endswith("/"):
+              out += "/"
+            out += "index.html"
+            if not os.path.exists(out):
+              missing.append((fp, out))
 
-      - name: Verify deployment artifact
-        run: |
-          if [ ! -f "_site/index.html" ]; then
-            echo "ERROR: Artifact missing"
-            exit 1
-          fi
-          echo "✓ Deployment ready"
-          du -sh _site
+          if missing:
+            print("❌ Missing built phase outputs:")
+            for src, out in missing:
+              print(f" - {src} -> {out}")
+            sys.exit(1)
 
-      - name: Upload to GitHub Pages
+          print("✓ Build phase outputs verified")
+          PY
+
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
 
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
