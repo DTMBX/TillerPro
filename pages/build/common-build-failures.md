@@ -7,6 +7,7 @@ build_phase: 8
 build_title: "Common Failures & Red Flags"
 build_order: 8
 toc: true
+schema_type: HowTo
 ---
 
 # Common Failures & Red Flags
