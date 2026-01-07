@@ -7,6 +7,7 @@ build_phase: 6
 build_title: "Tile Installation Standards"
 build_order: 6
 toc: true
+schema_type: HowTo
 ---
 
 # Tile Installation & Coverage Standards
