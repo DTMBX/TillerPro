@@ -7,6 +7,7 @@ build_phase: 3
 build_title: "Waterproofing Systems"
 build_order: 3
 toc: true
+schema_type: HowTo
 ---
 
 # Waterproofing Systems (Surface vs. Traditional)
