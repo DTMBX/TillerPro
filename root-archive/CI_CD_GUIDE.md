@@ -1,3 +1,4 @@
+{% raw %}
 # CI/CD & Quality Assurance Guide
 
 ## Overview
@@ -289,3 +290,6 @@ For CI/CD issues:
 2. Review this guide
 3. Run local validation: `npm run validate`
 4. Review recent commits for encoding/syntax changes
+
+{% endraw %}
+
