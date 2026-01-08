@@ -34,9 +34,10 @@ jobs:
           bundler-cache: true
 
       - name: Build site
-        env:
-          JEKYLL_ENV: production
-        run: bundle exec jekyll build --strict_front_matter
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
 
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
