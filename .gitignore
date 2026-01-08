@@ -56,3 +56,8 @@ _backup/
 # local backups
 *.bak.*
 
+
+# build artifacts (keep source in repo)
+assets/css/*.css
+assets/css/*.css.map
+
