@@ -146,8 +146,8 @@ exclude:
   - .sass-cache
   - "*.bak*"
   - "**/*.bak*"
-  - vendor/**
-  - root-archive/**
+  - "vendor/**"
+  - "root-archive/**"
   - tools
   - _audit
   - vendor/bundle
