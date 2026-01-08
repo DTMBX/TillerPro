@@ -78,4 +78,3 @@ jobs:
           echo "Successfully deleted: $success_count"
           echo "Failed: $fail_count"
           echo "=========================================="
-
