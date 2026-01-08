@@ -141,6 +141,10 @@ forms:
 # Exclusions
 # ----------------------------
 exclude:
+  - *.bak*
+  - **/*.bak*
+  - vendor/**
+  - root-archive/**
   - tools
   - _audit
   - vendor/bundle
@@ -168,8 +172,17 @@ exclude:
   - "root-archive/docs/**"
   - "baseline/"
   - "baseline/**"
+  - "*.bak.*"
+  - "**/*.bak.*"
+  - _site
+  - .jekyll-cache
+  - .jekyll-metadata
+  - ".sass-cache"
+
 
 keep_files:
   - "CNAME"
   - "assets/"
+
+
 
