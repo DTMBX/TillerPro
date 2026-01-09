@@ -12,7 +12,7 @@ gem "jekyll-feed", "~> 0.17"
 gem "jekyll-sitemap", "~> 1.4"
 gem "jekyll-seo-tag", "~> 2.8"
 gem "jekyll-paginate", "~> 1.1"
-gem "jekyll-remote-theme", "~> 0.4"
+gem "jekyll-remote-theme"
 gem "jekyll-build"
 
 # Optional: only keep if you actively use archives and have it configured
