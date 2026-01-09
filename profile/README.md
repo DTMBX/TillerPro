@@ -7,3 +7,24 @@
 
 The `Microsoft.PowerShell_profile.ps1` file loads `profile.ps1`, which imports all modular functions and
 runs startup helpers (like system info) on session start.
+
+## Command center
+
+The command center reads its entries from `profile/command-database.json`. Each entry can contain:
+- `name`: the command set name.
+- `description`: a short explanation shown in the menu.
+- `tags`: optional labels used in the menu output.
+- `commands`: PowerShell commands to run in order.
+- `includes`: optional list of other command set names to expand.
+
+Run the command center with:
+
+```powershell
+command-center
+```
+
+Or execute a specific set directly:
+
+```powershell
+Invoke-CommandSet -Name "daily-core-workflow"
+```
