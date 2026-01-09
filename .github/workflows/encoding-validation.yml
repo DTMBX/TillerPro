@@ -28,6 +28,19 @@ jobs:
           mkdir -p _site
           bundle exec jekyll build --trace --verbose 2>&1 | tee _site/build.log
 
+      - name: Summarize build log
+        if: failure()
+        run: |
+          if [ -f _site/build.log ]; then
+            {
+              echo "## Jekyll build log (tail)"
+              echo
+              echo '```text'
+              tail -n 200 _site/build.log
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
       - name: Upload build log
         if: failure()
         uses: actions/upload-artifact@v4
