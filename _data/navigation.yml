@@ -5,6 +5,11 @@ primary:
     match: "^/build(/|$)"
     external: false
     children:
+      - id: build-phases
+        title: "Build Phases (Compliance)"
+        url: "/build/"
+        match: "^/build(/|$)"
+        external: false
       - id: nj-codes-permits
         title: "Codes & Permits"
         url: "/build/nj-codes-permits/"

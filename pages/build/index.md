@@ -7,10 +7,6 @@ order: 0
 toc: true
 ---
 
-Welcome to the official build documentation for Tillerstead.com. This page outlines our site generation, deployment, and quality control workflows. All steps comply with TCNA 2024 and New Jersey HIC standards.
-
----
-
 ## The Build Phase
 
 The **Build Phase** is Tillerstead’s standards-forward guide to bathroom and shower projects in New Jersey.  
@@ -58,35 +54,72 @@ These guides help you:
 
 ---
 
-## The Construction Sequence: 8 Phases
 
-Each phase builds on the one before it.  
-For the full picture, read in order. If you’re researching a specific issue, you can jump directly to the relevant phase.
+## The Construction Sequence: 8 Phases (Compliance Overview)
 
+Each phase builds on the one before it. For the full picture, read in order. If you’re researching a specific issue, you can jump directly to the relevant phase. Each summary below links to a detailed guide.
 
-1. **[Codes, Permits & Inspections](/build/nj-codes-permits/):**  
-   Understanding New Jersey’s construction code, permit requirements, and inspection sequence.
+---
 
-2. **[Shower Pans, Slopes & Drains](/build/shower-pans-slopes-drains/):**  
-   How water is directed safely to the drain *before* tile is installed.
+### Phase 1: Codes, Permits & Inspections
+**[Full Guide](/build/nj-codes-permits/)**
+- Understanding New Jersey’s construction code, permit requirements, and inspection sequence.
+- Why permits and inspections matter for compliance and risk management.
+- TCNA 2024, ANSI, and NJ UCC references.
 
-3. **[Waterproofing Systems](/build/waterproofing-systems/):**  
-   Surface-applied vs. traditional systems, continuity, and compatibility.
+---
 
-4. **[Curbs & Curbless Showers](/build/curbs-curbless/):**  
-   Containing water at the shower entry, including curbless designs permitted in NJ.
+### Phase 2: Shower Pans, Slopes & Drains
+**[Full Guide](/build/shower-pans-slopes-drains/)**
+- Water management before tile: slope, pan construction, and drainage.
+- TCNA 2024 guidance on pan design and drainage.
+- Why most failures originate here.
 
-5. **[Framing for Benches, Seats & Niches](/build/framing-benches-niches/):**  
-   Structural planning that must happen *before* waterproofing.
+---
 
-6. **[Tile Installation Standards](/build/tile-installation-standards/):**  
-   How tile is bonded to the system and why preparation matters more than tile choice.
+### Phase 3: Waterproofing Systems
+**[Full Guide](/build/waterproofing-systems/)**
+- Surface-applied vs. traditional waterproofing systems.
+- Continuity, compatibility, and inspection requirements.
+- TCNA 2024, ANSI A118.10 standards.
 
-7. **[Flood Testing & Verification](/build/flood-testing/):**  
-   The final opportunity to verify waterproofing before finishes conceal the work.
+---
 
-8. **[Common Failures & Red Flags](/build/common-build-failures/):**  
-   Where failures originate, warning signs to watch for, and how proper sequencing prevents them.
+### Phase 4: Curbs & Curbless Showers
+**[Full Guide](/build/curbs-curbless/)**
+- Water containment at the shower entry.
+- Curbed and curbless designs permitted in NJ.
+- TCNA 2024 threshold design methods.
+
+---
+
+### Phase 5: Framing for Benches, Seats & Niches
+**[Full Guide](/build/framing-benches-niches/)**
+- Structural planning for benches, seats, and niches before waterproofing.
+- TCNA 2024 methods for integrated structural details.
+
+---
+
+### Phase 6: Tile Installation Standards
+**[Full Guide](/build/tile-installation-standards/)**
+- Substrate prep, mortar selection, coverage, and movement joints.
+- ANSI A108/A118, TCNA 2024 standards.
+
+---
+
+### Phase 7: Flood Testing & Verification
+**[Full Guide](/build/flood-testing/)**
+- ASTM D5957 flood testing methods.
+- Verifying waterproofing before tile conceals the system.
+- TCNA 2024 verification protocols.
+
+---
+
+### Phase 8: Common Failures & Red Flags
+**[Full Guide](/build/common-build-failures/)**
+- Where failures originate and warning signs.
+- How proper sequencing prevents problems.
+- TCNA 2024 failure analysis.
 
 ---
 
