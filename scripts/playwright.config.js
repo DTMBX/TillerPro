@@ -1,8 +1,9 @@
 import process from 'node:process';
 import { defineConfig, devices } from '@playwright/test';
 
-const PORT = process.env.PORT || 8080;
-const baseURL = process.env.BASE_URL || `http://localhost:${PORT}`;
+const PORT = process.env.PORT || 4000;
+const PROD_URL = process.env.BASE_URL || process.env.PROD_URL || '';
+const baseURL = PROD_URL ? PROD_URL : `http://localhost:${PORT}`;
 
 export default defineConfig({
   testDir: './tests',
@@ -47,10 +48,12 @@ export default defineConfig({
     },
   ],
 
-  webServer: {
-    command: 'python -m http.server 8080 --directory _site',
-    url: baseURL,
-    reuseExistingServer: !process.env.CI,
-    timeout: 60000,
-  },
+  webServer: PROD_URL
+    ? undefined // Don't start local server if testing production
+    : {
+        command: 'http-server _site -p 4000 -c-1',
+        url: baseURL,
+        reuseExistingServer: !process.env.CI,
+        timeout: 60000,
+      },
 });

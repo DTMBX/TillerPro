@@ -1,24 +1,16 @@
+<!DOCTYPE html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ page.title | default: site.title }}</title>
   {% include head.html %}
-
-  <!-- Core Styles -->
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/root-vars.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/tokens-hybrid.css' | relative_url }}">
-
   <!-- Page-specific JS -->
   {% if page.url == "/portfolio/" %}
     <script src="{{ '/assets/js/portfolio.js' | relative_url }}"></script>
   {% endif %}
-
   <!-- Contact Schema -->
   {% if page.url == "/contact/" %}
     {% include contact-page.html %}
   {% endif %}
-
   <!-- Structured Data (HowTo/TechArticle) -->
   {% assign schema_kind = page.schema_type | default: "HowTo" %}
   {% if schema_kind == "HowTo" %}
@@ -26,7 +18,6 @@
   {% else %}
     {% include schema-techarticle.html %}
   {% endif %}
-
   <!-- FAQPage Structured Data -->
   {% if page.url == "/faq/" %}
     <script type="application/ld+json">
@@ -51,7 +42,6 @@
     }
     </script>
   {% endif %}
-
   <!-- Success Page Confetti Script -->
   {% if page.permalink == "/success/" %}
     <script>
