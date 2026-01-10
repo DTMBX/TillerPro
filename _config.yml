@@ -19,7 +19,6 @@ timezone: "America/New_York"
 # Build settings
 # ----------------------------
 permalink: pretty
-remote_theme: pages-themes/architect@v0.2.0
 sass:
   style: compressed
 

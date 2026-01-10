@@ -95,6 +95,13 @@
   {% endif %}
 
 </head>
+</head>
 <body>
+  {% include header.html %}
+  {% include trust-bar.html %}
   {{ content }}
+  {% if page.url == '/' %}
+    {% include home-portfolio-preview.html %}
+  {% endif %}
+  {% include footer.html %}
 </body>
