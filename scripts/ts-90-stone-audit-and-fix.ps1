@@ -160,52 +160,8 @@ else {
 }
 
 Write-Section "Attempt restore missing assets from git history (if enabled)"
-if ($RestoreMissingFromGit -and $missingUnique.Count -gt 0) {
-    foreach ($row in $missingUnique) {
-        $p = $row.expected
-        if (Test-Path $p) { continue }
-
-        # Check if file ever existed in git
-        $existsInGit = $false
-        try {
-            $log = git log --oneline -- $p 2>$null
-            if ($log) { $existsInGit = $true }
-        }
-        catch {}
-
-        if ($existsInGit) {
-            try {
-                # restore from last commit where present
-                git checkout HEAD -- $p 2>$null
-            }
-            catch {}
-            if (Test-Path $p) {
-                $findings.Add([pscustomobject]@{
-                        type = "restored_from_git"; path = $p; severity = "info";
-                        note = "Restored missing file from current HEAD checkout attempt (if it existed in index)."
-                    })
-            }
-        }
-    }
-}
 
 Write-Section "Copy missing assets from SANDBOX (if enabled and SANDBOX exists)"
-if ($CopyMissingFromSandbox -and $SandboxAbs -and $missingUnique.Count -gt 0) {
-    foreach ($row in $missingUnique) {
-        $p = $row.expected
-        if (Test-Path $p) { continue }
-
-        $src = Join-Path $SandboxAbs $p
-        if (Test-Path $src) {
-            Ensure-Dir (Split-Path $p -Parent)
-            Copy-Item -Force $src $p
-            $findings.Add([pscustomobject]@{
-                    type = "copied_from_sandbox"; path = $p; severity = "info";
-                    note = "Copied missing file from SANDBOX."
-                })
-        }
-    }
-}
 
 Write-Section "Patch: Ensure Premium header in STONE matches SANDBOX (if enabled)"
 if ($FixHeaderPremium -and $SandboxAbs -and (Test-Path "_includes\header.html")) {
