@@ -5,7 +5,7 @@ const { ESLint } = require('eslint');
 const stylelint = require('stylelint');
 const fs = require('fs');
 const path = require('path');
-const htmlhint = require('htmlhint').HTMLHint;
+const { HTMLHint } = require('htmlhint');
 
 async function lintJS() {
   const eslint = new ESLint({ fix: false });
@@ -29,7 +29,7 @@ function lintHTML() {
   walk(process.cwd());
   return htmlFiles.map(file => ({
     file,
-    result: htmlhint(fs.readFileSync(file, 'utf8'))
+    result: HTMLHint.verify(fs.readFileSync(file, 'utf8'))
   }));
 }
 
