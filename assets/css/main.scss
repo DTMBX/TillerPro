@@ -1,6 +1,3 @@
----
----
-
 /* ============================================
    Tillerstead Main Stylesheet
    TCNA-Compliant, Modular CSS Architecture
@@ -57,9 +54,6 @@
 /* 40 - Utilities: Helpers for Compliance & Accessibility */
 @use "40-utilities/helpers" as *;
 @use "mobile-overrides" as *;
-@import "00-settings/spacing-system";
-@import "30-components/header-premium";
-@import "30-components/nav-enhancements";
 
 body { outline: 5px solid red !important; }
 
