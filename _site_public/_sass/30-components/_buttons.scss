@@ -1,0 +1,601 @@
+/* ============================================
+  Button Components — TCNA/New Jersey HIC Compliant
+  Accessible, Responsive, Conversion-Optimized
+  ============================================ */
+
+/* Base Button — luxury micro-interactions */
+.btn,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ts-spacing-xs);
+  padding-block: clamp(0.75rem, 2vw, 0.875rem);
+  padding-inline: clamp(1.25rem, 3vw, 1.75rem);
+  font-size: clamp(var(--font-size-sm), 2vw, var(--font-size-base));
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-sans);
+  line-height: var(--tiller-leading-tight);
+  border: none;
+  border-radius: var(--ts-radius-lg);
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  white-space: nowrap;
+  transition:
+    background var(--tiller-duration-base) var(--tiller-ease-standard),
+    color var(--tiller-duration-base) var(--tiller-ease-standard),
+    border-color var(--tiller-duration-base) var(--tiller-ease-standard),
+    transform var(--tiller-duration-quick) var(--tiller-ease-decelerate),
+    box-shadow var(--tiller-duration-base) var(--tiller-ease-standard);
+  min-inline-size: 2.5em;
+  min-block-size: 2.5em;
+  user-select: none;
+  outline: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, box-shadow;
+
+  /* Touch target minimum 44x44px */
+  @media (hover: none) and (pointer: coarse) {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* Luxury hover lift */
+.btn:hover:not(:disabled),
+.button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  animation: btn-lift 0.3s ease forwards;
+}
+
+/* Focus ring — luxury accessible focus */
+.btn:focus-visible,
+.button:focus-visible {
+  box-shadow: var(--tiller-focus-ring);
+  z-index: 2;
+}
+
+/* Active state */
+.btn:active:not(:disabled),
+.button:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* Disabled state — visually and programmatically disabled */
+.btn[disabled],
+.btn[aria-disabled="true"],
+.button[disabled],
+.button[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.48;
+  pointer-events: none;
+  filter: grayscale(0.2);
+}
+
+/* =========================
+  Button Variants
+  ========================= */
+
+/* Primary CTA — luxury shadow and glow */
+.btn-primary,
+.btn--primary {
+  background: var(--ts-color-primary-bg);
+  color: var(--ts-white);
+  box-shadow: var(--ts-shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover:not(:disabled),
+.btn-primary:focus-visible,
+.btn--color-primary:hover:not(:disabled),
+.btn--color-primary:focus-visible {
+  background: var(--ts-color-accent);
+  color: var(--hex-charcoal);
+  box-shadow: 0 8px 20px rgba(252, 221, 9, 0.3);
+}
+
+/* Secondary — outlined, for less prominent actions */
+.btn-secondary,
+.btn--secondary,
+.btn--color-secondary {
+  background: transparent;
+  color: var(--ts-color-heading);
+  border: 1.5px solid var(--ts-color-primary-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-secondary::before,
+.btn--secondary::before,
+.btn--color-secondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ts-color-primary-soft);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--tiller-transition-fast);
+  z-index: -1;
+}
+
+.btn-secondary:hover:not(:disabled),
+.btn--secondary:hover:not(:disabled),
+.btn--color-secondary:hover:not(:disabled) {
+  border-color: var(--ts-color-primary-strong);
+  color: var(--ts-color-heading);
+}
+
+.btn-secondary:hover:not(:disabled)::before,
+.btn--secondary:hover:not(:disabled)::before,
+.btn--color-secondary:hover:not(:disabled)::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-secondary:focus-visible,
+.btn--secondary:focus-visible,
+.btn--color-secondary:focus-visible {
+  border-color: var(--ts-color-primary-strong);
+  color: var(--ts-color-heading);
+}
+
+.btn-secondary:focus-visible::before,
+.btn--secondary:focus-visible::before,
+.btn--color-secondary:focus-visible::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Accent — for special actions, e.g., estimates or consultations */
+.btn-accent,
+.btn--accent,
+.btn--color-accent {
+  background: transparent;
+  color: var(--ts-color-heading);
+  border: 1.5px solid var(--ts-color-border);
+  box-shadow: 0 2px 10px var(--color-shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-accent:hover:not(:disabled),
+.btn--accent:hover:not(:disabled),
+.btn--color-accent:hover:not(:disabled) {
+  border-color: var(--ts-color-primary);
+  background: var(--ts-color-surface-highlight);
+  box-shadow: 0 4px 12px var(--color-shadow-soft);
+}
+
+.btn-accent:focus-visible,
+.btn--accent:focus-visible,
+.btn--color-accent:focus-visible {
+  border-color: var(--ts-color-primary);
+  background: var(--ts-color-surface-highlight);
+  box-shadow: 0 4px 12px var(--color-shadow-soft);
+}
+
+/* Ghost/Outline — minimal, for low-priority or tertiary actions */
+.btn-ghost,
+.btn--ghost,
+.btn-outline,
+.btn.ghost {
+  background: transparent;
+  border: 1.5px solid var(--ts-color-primary);
+  color: var(--ts-color-heading);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ghost::before,
+.btn--ghost::before,
+.btn--tiller-ghost::before,
+.btn-outline::before,
+.btn.ghost::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ts-color-primary-soft);
+  transform: scale(0);
+  transition: transform var(--tiller-transition-fast);
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.btn-ghost:hover:not(:disabled),
+.btn--ghost:hover:not(:disabled),
+.btn-outline:hover:not(:disabled),
+.btn.ghost:hover:not(:disabled) {
+  border-color: var(--ts-color-primary-strong);
+  color: var(--ts-color-heading);
+}
+
+.btn-ghost:hover:not(:disabled)::before,
+.btn--ghost:hover:not(:disabled)::before,
+.btn-outline:hover:not(:disabled)::before,
+.btn.ghost:hover:not(:disabled)::before {
+  transform: scale(1);
+}
+
+.btn-ghost:focus-visible,
+.btn--ghost:focus-visible,
+.btn-outline:focus-visible {
+  border-color: var(--ts-color-primary-strong);
+  color: var(--ts-color-heading);
+}
+
+.btn-ghost:focus-visible::before,
+.btn--ghost:focus-visible::before,
+.btn-outline:focus-visible::before {
+  transform: scale(1);
+}
+
+/* Text Button — for inline actions, links, or disclosures */
+.btn-text {
+  background: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  box-shadow: none;
+  letter-spacing: 0.01em;
+  color: var(--ts-color-primary);
+}
+
+.btn-text:hover:not(:disabled) {
+  text-decoration: underline;
+  background: var(--ts-color-primary-soft);
+}
+
+.btn-text:focus-visible {
+  text-decoration: underline;
+  background: var(--ts-color-primary-soft);
+}
+
+/* =========================
+  Button Sizing
+  ========================= */
+.btn-sm,
+.btn--sm {
+  padding-block: 0.5rem;
+  padding-inline: 1.25rem;
+  font-size: 0.92rem;
+  min-inline-size: 2em;
+  min-block-size: 2em;
+}
+
+.btn-lg,
+.btn--lg {
+  padding-block: 1.05rem;
+  padding-inline: 2rem;
+  font-size: 1.1rem;
+}
+
+.btn-xl,
+.btn--xl {
+  padding-block: 1.3rem;
+  padding-inline: 2.5rem;
+  font-size: 1.2rem;
+}
+
+/* Full-width block button for mobile or forms */
+.btn-block,
+.btn--block {
+  inline-size: 100%;
+}
+
+/* =========================
+  Button Animations
+  ========================= */
+
+@keyframes btn-lift {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Pulse animation for primary CTAs */
+@keyframes btn-pulse {
+  0%,
+  100% {
+    box-shadow: 0 10px 24px var(--color-shadow-soft);
+  }
+
+  50% {
+    box-shadow:
+      0 10px 24px var(--color-shadow-soft),
+      0 0 0 4px rgba(13, 154, 170, 0.15);
+  }
+}
+
+.btn-primary.pulse,
+.btn--primary.pulse {
+  animation: btn-pulse 2s ease-in-out infinite;
+}
+
+/* Shimmer effect for special CTAs */
+@keyframes btn-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.btn-shimmer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: btn-shimmer 3s ease-in-out infinite;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Icon animations */
+.btn-icon {
+  transition: transform var(--tiller-transition-fast);
+}
+
+.btn-icon svg {
+  transition: transform var(--tiller-transition-fast);
+}
+
+.btn .btn-icon {
+  transition: transform var(--tiller-transition-fast);
+}
+
+.btn:hover:not(:disabled) .btn-icon {
+  transform: translateX(2px);
+}
+
+.btn-icon-bounce .btn-icon {
+  animation: icon-bounce 0.6s ease infinite;
+}
+
+@keyframes icon-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Loading state animation */
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid currentcolor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear infinite;
+}
+
+@keyframes btn-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Success flash animation */
+@keyframes btn-success {
+  0% {
+    background: var(--ts-color-success);
+  }
+
+  100% {
+    background: var(--ts-color-primary-bg);
+  }
+}
+
+.btn-success-flash {
+  animation: btn-success 0.6s ease;
+}
+
+/* =========================
+  Responsive Button Groups
+  ========================= */
+
+/* Container query: stack buttons and expand to container width on small containers */
+@container (inline-size < 30rem) {
+  .btn:not(.btn-icon-only),
+  .button:not(.btn-icon-only) {
+    inline-size: 100%;
+  }
+
+  .btn-group,
+  .btn-row {
+    flex-direction: column;
+    inline-size: 100%;
+  }
+
+  .btn-group > .btn,
+  .btn-group > .button,
+  .btn-row > .btn,
+  .btn-row > .button {
+    width: 100%;
+  }
+
+  .btn-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile: stack by default */
+@media (max-width: 640px) {
+  .btn-group:not(.btn-group--inline),
+  .btn-row:not(.btn-row--inline) {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-group:not(.btn-group--inline) > .btn,
+  .btn-group:not(.btn-group--inline) > .button,
+  .btn-row:not(.btn-row--inline) > .btn,
+  .btn-row:not(.btn-row--inline) > .button {
+    width: 100%;
+  }
+
+  .btn-grid {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+}
+
+/* Tablet: 2-column grid */
+@media (min-width: 641px) and (max-width: 920px) {
+  .btn-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .btn-grid > .btn:last-child:nth-child(odd),
+  .btn-grid > .button:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* =========================
+  Icon Buttons
+  ========================= */
+.btn-icon,
+.btn-icon-only {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding-block: 0.7rem;
+  padding-inline: 1rem;
+}
+
+.btn-icon-only {
+  padding: 0.6rem;
+}
+
+/* =========================
+  Button Groups & Layouts
+  ========================= */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+  container-type: inline-size;
+  container-name: btn-group;
+}
+
+.btn-group > .btn,
+.btn-group > .button {
+  flex: 0 1 auto;
+}
+
+/* Centered button groups */
+.btn-group-center,
+.btn-group--center,
+.btn-row.center {
+  justify-content: center;
+}
+
+/* Right-aligned button groups */
+.btn-group-end,
+.btn-group--end {
+  justify-content: flex-end;
+}
+
+/* Space between buttons */
+.btn-group-between,
+.btn-group--between {
+  justify-content: space-between;
+}
+
+/* Grid layout for 3+ buttons */
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.btn-grid > .btn,
+.btn-grid > .button {
+  width: 100%;
+}
+
+/* Stack buttons vertically */
+.btn-stack,
+.btn-group--stack {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.btn-stack > .btn,
+.btn-stack > .button,
+.btn-group--stack > .btn,
+.btn-group--stack > .button {
+  width: 100%;
+}
+
+/* Legacy btn-row support */
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btn-row.center {
+  justify-content: center;
+}
+
+/* =========================
+  Accessibility: Reduced Motion
+  ========================= */
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .button {
+    transition: none !important;
+    will-change: auto;
+  }
+
+  .btn:hover,
+  .button:hover,
+  .btn:focus-visible,
+  .button:focus-visible {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* End of TCNA/New Jersey HIC Compliant Button Styles */

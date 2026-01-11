@@ -1,0 +1,347 @@
+/* ============================================
+  Typography System
+  Modern, fluid typography with semantic styles
+  ============================================ */
+
+/* Headings — Luxury typography hierarchy */
+h1,
+.h1 {
+  font-size: var(--font-heading-1);
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--tiller-leading-tight);
+  letter-spacing: var(--tiller-tracking-tighter);
+  color: var(--ts-color-heading);
+  margin-top: 0;
+  margin-bottom: var(--ts-spacing-lg);
+}
+
+h2,
+.h2 {
+  font-size: var(--font-heading-2);
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--tiller-leading-tight);
+  letter-spacing: var(--tiller-tracking-tight);
+  color: var(--ts-color-heading);
+  margin-top: var(--ts-spacing-xl);
+  margin-bottom: var(--ts-spacing-md);
+}
+
+h3,
+.h3 {
+  font-size: var(--font-heading-3);
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--tiller-leading-snug);
+  letter-spacing: var(--tiller-tracking-tight);
+  color: var(--ts-color-heading);
+  margin-top: var(--ts-spacing-lg);
+  margin-bottom: var(--ts-spacing-sm);
+}
+
+h4,
+.h4 {
+  font-size: var(--font-heading-4);
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--tiller-leading-snug);
+  color: var(--ts-color-heading);
+  margin-top: var(--ts-spacing-lg);
+  margin-bottom: var(--ts-spacing-sm);
+}
+
+h5,
+.h5 {
+  font-size: var(--font-size-xl);
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--tiller-leading-normal);
+  color: var(--ts-color-heading);
+  margin-top: var(--ts-spacing-md);
+  margin-bottom: var(--ts-spacing-sm);
+}
+
+h6,
+.h6 {
+  font-size: var(--font-size-lg);
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--tiller-leading-normal);
+  text-transform: uppercase;
+  letter-spacing: var(--tiller-tracking-wide);
+  color: var(--ts-color-heading);
+  margin-top: var(--ts-spacing-md);
+  margin-bottom: var(--ts-spacing-xs);
+}
+
+/* Body Text — Perfect readability */
+p {
+  color: var(--ts-color-text);
+  margin-bottom: var(--ts-spacing-md);
+  line-height: var(--tiller-leading-relaxed);
+  max-width: 65ch;
+  font-size: var(--font-size-base);
+}
+
+/* Wide container: expand paragraph width on desktop for better use of screen */
+.container-wide p {
+  max-width: 80ch;
+}
+
+/* Lead/Intro Text — Persuasive, conversion-focused */
+.lead,
+.intro {
+  font-size: var(--font-size-lg);
+  line-height: var(--font-line-height-relaxed);
+  color: var(--ts-color-muted);
+  font-weight: 400;
+  max-width: 60ch;
+}
+
+/* Small Text — For legal, warranty, and fine print */
+.small,
+small {
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  color: var(--ts-color-muted);
+}
+
+/* Fine Print — New Jersey HIC/TCNA compliance notes, disclaimers */
+.microcopy,
+.fine-print {
+  font-size: var(--font-size-xs);
+  color: var(--ts-color-muted);
+  line-height: 1.4;
+  max-width: 50ch;
+}
+
+/* Eyebrow / Kicker — Section identifiers, technical highlights */
+.eyebrow,
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ts-color-primary);
+  text-align: center;
+  width: 100%;
+}
+
+/* Dark eyebrow variant with high contrast background */
+.eyebrow--dark {
+  position: relative;
+  padding: 0.5rem 1.25rem;
+  background: linear-gradient(
+    135deg,
+    var(--ts-color-heading) 0%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  color: var(--color-golden-400);
+  border-radius: var(--ts-radius-sm);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.12em;
+  font-weight: 700;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("/assets/img/patterns/tile-crosshatch.svg");
+    background-size: 60px 60px;
+    opacity: 0.08;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+}
+
+/* Text Utilities — Modern CSS, accessible, and standards-based */
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* Lists — Accessible, clear, and compliant */
+.list-styled {
+  padding-left: 1.5rem;
+  list-style: disc inside;
+}
+
+.list-styled li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.list-unstyled,
+.list-reset {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* Links — High-contrast, accessible, and conversion-optimized */
+.link-primary {
+  color: var(--ts-color-primary);
+  font-weight: 600;
+  text-underline-offset: 0.15em;
+  transition: color 0.15s;
+}
+
+.link-primary:hover,
+.link-primary:focus-visible {
+  color: var(--ts-color-primary-strong);
+  text-decoration: underline;
+  outline: none;
+}
+
+.link-subtle {
+  color: var(--ts-color-muted);
+  text-decoration: underline dotted;
+  text-underline-offset: 0.2em;
+}
+
+.link-subtle:hover,
+.link-subtle:focus-visible {
+  color: var(--ts-color-text);
+  text-decoration: underline;
+  outline: none;
+}
+
+/* Blockquotes — Highlight technical authority, cite standards */
+blockquote {
+  margin: var(--spacing-space-8) 0;
+  padding: var(--spacing-space-6) var(--spacing-space-7);
+  border-left: 4px solid var(--ts-color-primary);
+  background: var(--ts-color-surface-elevated);
+  border-radius: var(--ts-radius-md);
+  font-size: var(--font-size-lg);
+  font-style: italic;
+  color: var(--ts-color-heading);
+  max-width: 70ch;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote cite {
+  display: block;
+  margin-top: var(--spacing-space-3);
+  font-size: var(--font-size-sm);
+  font-style: normal;
+  color: var(--ts-color-muted);
+}
+
+blockquote cite::before {
+  content: "— ";
+}
+
+/* Code — For technical specificity, accessibility, and clarity */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+  padding: 0.2em 0.4em;
+  background: var(--ts-color-surface-elevated);
+  border: 1px solid var(--ts-color-border);
+  border-radius: var(--ts-radius-sm);
+  color: var(--ts-color-heading);
+  overflow-wrap: break-word;
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  padding: var(--spacing-space-6);
+  background: var(--ts-color-surface-elevated);
+  border: 1px solid var(--ts-color-border);
+  border-radius: var(--ts-radius-md);
+  overflow-x: auto;
+  color: var(--ts-color-heading);
+}
+
+pre code {
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: inherit;
+}
+
+/* Text Alignment Utilities */
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Font Weight Utilities */
+.font-light {
+  font-weight: 300;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+/* Text Color Utilities — Use tokens for compliance and clarity */
+.text-primary {
+  color: var(--ts-color-primary);
+}
+
+.text-accent {
+  color: var(--ts-color-accent);
+}
+
+.text-heading {
+  color: var(--ts-color-heading);
+}
+
+.text-body {
+  color: var(--ts-color-text);
+}
+
+.text-muted {
+  color: var(--ts-color-muted);
+}
+
+/* Responsive Typography — Fluid clamp() in design tokens
+  h1, .h1 → clamp(2.25rem, 5vi + 1rem, 3.75rem)
+  h2, .h2 → clamp(1.875rem, 4vi + 0.875rem, 3rem)
+  .lead, .intro → clamp(1.125rem, 2vi + 0.5rem, 1.35rem)
+*/
+
+/* Accessibility: Ensure all interactive elements have focus styles */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--ts-color-accent);
+  outline-offset: 2px;
+}

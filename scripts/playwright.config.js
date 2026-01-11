@@ -51,9 +51,9 @@ export default defineConfig({
   webServer: PROD_URL
     ? undefined // Don't start local server if testing production
     : {
-        command: 'http-server _site -p 4000 -c-1',
-        url: baseURL,
-        reuseExistingServer: !process.env.CI,
-          timeout: 60000,
-        },
+      command: 'http-server _site -p 4000 -c-1',
+      url: baseURL,
+      reuseExistingServer: !process.env.CI,
+      timeout: 60000,
+    },
 });
