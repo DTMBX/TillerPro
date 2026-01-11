@@ -9,44 +9,10 @@
 <header class="site-header">
   <div class="site-header-inner">
 
-    <nav class="site-nav" aria-label="Primary">
-      <ul class="site-menu">
-        {% for item in primary_nav %}
-          {% assign has_children = item.children and item.children.size > 0 %}
-          {% assign is_active = current_url == item.url or current_url contains item.url %}
-          <li class="nav-item{% if has_children %} has-children{% endif %}">
-            <a
-              class="nav-link{% if is_active %} active{% endif %}"
-              href="{{ item.url | relative_url }}"
-              {% if has_children %}data-dropdown-toggle aria-expanded="false"{% endif %}
-            >
-              {{ item.title | escape }}
-              {% if has_children %}
-                <span class="nav-caret" aria-hidden="true">&#x25BE;</span>
-              {% endif %}
-            </a>
-            {% if has_children %}
-              <ul class="nav-dropdown" aria-label="{{ item.title }} submenu">
-                {% for child in item.children %}
-                  {% assign child_active = current_url == child.url or current_url contains child.url %}
-                  <li>
-                    <a
-                      class="nav-dropdown-link{% if child_active %} active{% endif %}"
-                      href="{{ child.url | relative_url }}"
-                    >
-                      {{ child.title | escape }}
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
+    {% include nav-drawer.html %}
 
     <div class="site-branding">
-      {% include logo-header.html symbol="logo-full" %}
+      {% include logo-header.html symbol="logo-full" svg_class="ts-logo ts-logo--header" %}
     </div>
 
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu" aria-haspopup="true" aria-controls="mobile-nav" aria-pressed="false">
@@ -59,77 +25,6 @@
     </button>
   </div>
 
-  <div class="mobile-nav-shell" data-nav-container>
-    <!-- TEST MARKER: If you see this, mobile nav shell is rendered -->
-    <div id="test-nav-marker" style="background: #ff0; color: #000; font-weight: bold; padding: 4px;">TEST NAV MARKER</div>
-    <div class="mobile-nav-backdrop" data-nav-overlay></div>
-    <nav class="mobile-nav" id="mobile-nav" aria-expanded="false" role="navigation">
-      <div class="mobile-nav-header" role="navigation">
-        <span class="mobile-nav-title">Menu</span>
-        <button class="nav-close" type="button" data-nav-close aria-label="Close navigation">✕</button>
-      </div>
-      <ul class="mobile-menu">
-        {% for item in primary_nav %}
-          {% assign has_children = item.children and item.children.size > 0 %}
-          {% assign is_active = current_url == item.url or current_url contains item.url %}
-          {% if has_children %}
-            <li class="mobile-nav-item mobile-nav-item--section">
-              <div class="mobile-nav-section-header">
-                {% if item.url %}
-                  <a class="mobile-nav-link mobile-nav-link--parent{% if is_active %} active{% endif %}" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-                {% else %}
-                  <span class="mobile-nav-link mobile-nav-link--parent">{{ item.title }}</span>
-                {% endif %}
-                <button class="mobile-subtoggle" type="button" data-mobile-subtoggle aria-expanded="false" aria-label="Toggle {{ item.title }} menu">
-                  <svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
-                    <path d="M5 7l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </button>
-              </div>
-              <ul class="mobile-submenu" data-mobile-submenu>
-                {% for child in item.children %}
-                  {% assign child_active = current_url == child.url or current_url contains child.url %}
-                  <li>
-                    <a class="mobile-nav-link mobile-sublink{% if child_active %} active{% endif %}" href="{{ child.url | relative_url }}">{{ child.title | escape }}</a>
-                  </li>
-                {% endfor %}
-              </ul>
-            </li>
-          {% else %}
-            <li class="mobile-nav-item">
-              <a class="mobile-nav-link{% if is_active %} active{% endif %}" href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-      <div class="mobile-nav-footer">
-        <div class="mobile-nav-cta" role="group" aria-label="Contact actions" id="mobile-nav-cta">
-          <a class="mobile-nav-link" id="mobile-nav-estimate" href="/estimate">Request Estimate</a>
-          <a class="mobile-nav-link" id="mobile-nav-call" href="tel:{{ site.phone | default: '555-555-5555' }}">Call</a>
-        </div>
-      </div>
-    </nav>
-    <script>
-      // Lock body scroll when nav is open
-      document.addEventListener('DOMContentLoaded', function() {
-        const shell = document.querySelector('.mobile-nav-shell');
-        const nav = document.getElementById('mobile-nav');
-        const backdrop = document.querySelector('.mobile-nav-backdrop');
-        function setBodyLock(lock) {
-          document.body.classList.toggle('nav-open', lock);
-        }
-        function isOpen() {
-          return shell && shell.classList.contains('is-open');
-        }
-        // Observe nav open/close
-        const observer = new MutationObserver(() => {
-          setBodyLock(isOpen());
-        });
-        if (shell) {
-          observer.observe(shell, { attributes: true, attributeFilter: ['class'] });
-        }
-      });
-    </script>
-  </div>
+
 </header>
 
