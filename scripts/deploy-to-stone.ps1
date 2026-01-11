@@ -2,7 +2,9 @@
 # Inspired by FaithFrontier's rigorous verification protocol
 # No code reaches production without passing ALL three stages
 
+
 param(
+    [string]$SandboxPath = "",
     [switch]$SkipTests = $false,
     [switch]$Force = $false
 )
@@ -13,7 +15,7 @@ Write-Host "`n╔═════════════════════
 Write-Host "║   TILLERSTEAD THREE-STAGE DEPLOYMENT VERIFICATION      ║" -ForegroundColor Cyan
 Write-Host "╚═══════════════════════════════════════════════════════════╝`n" -ForegroundColor Cyan
 
-$sandboxPath = "C:\Users\Devon Tyler\tillerstead-sandbox"
+$sandboxPath = if ($SandboxPath -ne "") { $SandboxPath } else { "C:\Users\Devon Tyler\tillerstead-sandbox" }
 $stonePath = "C:\Users\Devon Tyler\tillerstead-stone"
 
 # Verify we're in sandbox

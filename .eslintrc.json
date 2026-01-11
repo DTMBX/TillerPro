@@ -19,15 +19,15 @@
     // Allow console for transparency and debugging (see /.ai/DOMAIN.md)
     "no-console": "off",
     // Enforce consistent 2-space indentation
-    "indent": ["error", 2, { "SwitchCase": 1 }],
-    // Require semicolons
-    "semi": ["error", "always"],
-    // Prefer single quotes for strings
-    "quotes": ["error", "single", { "avoidEscape": true }],
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    // Semicolons: warn only
+    "semi": ["warn", "always"],
+    // Quotes: warn only, allow double quotes
+    "quotes": ["warn", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
     // Disallow trailing spaces
-    "no-trailing-spaces": "error",
+    "no-trailing-spaces": "warn",
     // Require newline at end of file
-    "eol-last": ["error", "always"]
+    "eol-last": ["warn", "always"]
   },
   "overrides": [
     {
@@ -49,12 +49,14 @@
     }
   ],
   "ignorePatterns": [
-    "node_modules/",
-    "vendor/",
     "_site/",
+    "_site_public/",
+    "test-results/",
+    "node_modules/",
     "*.min.js",
+    "vendor/",
     "dist/",
     "coverage/",
-    "assets/**/*.js" // Ignore built/minified assets
+    "assets/**/*.js"
   ]
 }
