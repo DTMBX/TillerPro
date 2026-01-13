@@ -22,7 +22,7 @@ body_class: page-faq
   <!-- Peace of Mind Assurance -->
   {% include components/ts-peace-of-mind.html %} {% for section in site.data.faq %}
   <section
-    class="ts-section ts-faq{% if forloop.index0 % 2 == 1 %} bg-soft{% endif %}"
+    class="ts-section ts-faq{% if forloop.index0.odd? %} bg-soft{% endif %}"
     aria-labelledby="faq-{{ forloop.index }}"
   >
     <div class="container">
