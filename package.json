@@ -37,6 +37,9 @@
     "test:ui": "npx playwright test --ui",
     "test:report": "npx playwright show-report",
     "test:debug": "npx playwright test --debug",
+    "test:a11y": "npm run build && npx pa11y-ci",
+    "test:a11y:single": "npx pa11y http://127.0.0.1:4000",
+    "audit:a11y": "npx axe http://127.0.0.1:4000 --exit",
     "verify": "npm run lint && npm run build && npm test",
     "test:contrast": "node scripts/check-contrast.js",
     "scan:contrast": "node scripts/scan-css-contrast.cjs",
@@ -58,6 +61,7 @@
     "check-links": "blc http://127.0.0.1:4000 --recursive --exclude-external"
   },
   "devDependencies": {
+    "@axe-core/cli": "^4.11.0",
     "@playwright/test": "^1.57.0",
     "cheerio": "1.1.2",
     "clean-css-cli": "^5.6.3",
@@ -76,6 +80,8 @@
     "imagemin-pngquant": "^10.0.0",
     "imagemin-svgo": "^10.0.1",
     "js-yaml": "4.1.1",
+    "pa11y": "^9.0.1",
+    "pa11y-ci": "^4.0.1",
     "playwright": "^1.57.0",
     "prettier": "^3.7.4",
     "rimraf": "^6.1.2",

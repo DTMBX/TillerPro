@@ -1,4 +1,5 @@
 {% assign footer_groups = site.data.navigation.footer %}
+{% assign footer_uid = page.url | slugify %}
 <footer class="ts-footer" aria-label="Site Footer" role="contentinfo">
   <div class="footer-main">
     <!-- Logo Section -->
@@ -12,8 +13,8 @@
     <!-- Footer Navigation Sections (skip Legal - it's in footer-bottom) -->
     <nav class="footer-sections" aria-label="Footer navigation">
       {% for group in footer_groups %}{% unless group.group == "Legal" %}
-      <section class="footer-group" aria-labelledby="footer-group-{{ forloop.index }}">
-        <h3 class="footer-group-title" id="footer-group-{{ forloop.index }}">{{ group.group }}</h3>
+      <section class="footer-group" aria-labelledby="{{ footer_uid }}-footer-group-{{ forloop.index }}">
+        <h3 class="footer-group-title" id="{{ footer_uid }}-footer-group-{{ forloop.index }}">{{ group.group }}</h3>
         <ul class="footer-list" role="list">{% for item in group.items %}
           <li><a href="{{ item.url }}">{{ item.title }}</a></li>{% endfor %}
         </ul>
@@ -22,8 +23,8 @@
     </nav>
 
     <!-- Contact Section -->
-    <section class="footer-contact" aria-labelledby="footer-contact-heading">
-      <h3 class="footer-group-title" id="footer-contact-heading">Contact</h3>
+    <section class="footer-contact" aria-labelledby="{{ footer_uid }}-footer-contact-heading">
+      <h3 class="footer-group-title" id="{{ footer_uid }}-footer-contact-heading">Contact</h3>
       <p class="footer-license">
         <abbr title="New Jersey Home Improvement Contractor">NJ HIC</abbr> #{{ site.company.hic }}
       </p>

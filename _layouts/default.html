@@ -90,6 +90,9 @@
 
   {% include layout/footer.html %}
 
+  <!-- Accessibility Toolbar (enable with ?a11y-tools in URL) -->
+  {% include components/a11y-toolbar.html %}
+
   <!-- Service Worker Registration for Offline Support -->
   <script>
     if ('serviceWorker' in navigator) {

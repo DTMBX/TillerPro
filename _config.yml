@@ -98,6 +98,16 @@ site_preset: "brand-2025"
 ui:
   animations_enabled: true
   respect_reduced_motion: true
+
+# ----------------------------
+# Accessibility Settings
+# ----------------------------
+accessibility:
+  toolbar: false  # Set true to show a11y toolbar by default (or use ?a11y-tools URL param)
+  auto_detect_preferences: true
+  text_to_speech: true
+  visual_alerts: true
+
 ux:
   cta_primary_label: "Book a TCNA-Compliant Consultation"
   cta_secondary_label: "See Tile Services"
@@ -175,6 +185,11 @@ exclude:
   - ".gitignore"
   - "backup-pages"
   - "backup-pages/**"
+  - "archive"
+  - "archive/**"
+  - "ACCESSIBILITY.md"
+  - "*.md"
+  - "!index.md"
   # Ensure assets/ or assets/css/ is NOT listed here
 
 keep_files:

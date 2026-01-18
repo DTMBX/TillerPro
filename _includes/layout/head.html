@@ -5,6 +5,35 @@
 <meta name="theme-color" content="#10b981" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#059669" media="(prefers-color-scheme: dark)" />
 
+<!-- Early accessibility preference detection (runs before render to prevent flash) -->
+<script>
+(function(){
+  var d=document.documentElement,m=window.matchMedia;
+  // Reduced motion
+  if(m('(prefers-reduced-motion:reduce)').matches)d.classList.add('reduce-motion');
+  // High contrast / forced colors
+  if(m('(forced-colors:active)').matches||m('(prefers-contrast:more)').matches)d.setAttribute('data-high-contrast','true');
+  // Color scheme
+  if(m('(prefers-color-scheme:dark)').matches)d.setAttribute('data-color-scheme','dark');
+  // Touch device
+  if(m('(pointer:coarse)').matches){d.setAttribute('data-pointer','coarse');d.classList.add('touch-friendly');}
+  // No hover
+  if(m('(hover:none)').matches)d.setAttribute('data-hover','none');
+  // Reduced transparency
+  if(m('(prefers-reduced-transparency:reduce)').matches)d.setAttribute('data-reduced-transparency','true');
+  // Inverted colors
+  if(m('(inverted-colors:inverted)').matches)d.setAttribute('data-inverted-colors','true');
+  // Load saved user preferences
+  try{var p=JSON.parse(localStorage.getItem('tillerstead-a11y-prefs')||'{}');
+    if(p.highContrast)d.setAttribute('data-high-contrast','true');
+    if(p.textSize)d.setAttribute('data-text-size',p.textSize);
+    if(p.dyslexiaFont)d.setAttribute('data-font','dyslexia');
+    if(p.reducedMotion)d.classList.add('reduce-motion');
+    if(p.readingGuide)d.setAttribute('data-reading-guide','true');
+  }catch(e){}
+})();
+</script>
+
 <title>{% if page.title %}{{ page.title | strip | escape }} | {% endif %}{{ site.title | strip | escape }}</title>
 
 {% if page.description %}

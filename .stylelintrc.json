@@ -19,9 +19,15 @@
         "message": "SCSS variables must include a lowercase namespace prefix (e.g., $text-scale-base)"
       }
     ],
-    "color-function-notation": "legacy",
-    "alpha-value-notation": "number",
-    "property-no-vendor-prefix": true,
+    "color-function-notation": "modern",
+    "color-function-alias-notation": "without-alpha",
+    "alpha-value-notation": "percentage",
+    "property-no-vendor-prefix": [
+      true,
+      {
+        "ignoreProperties": ["backdrop-filter"]
+      }
+    ],
     "value-keyword-case": "lower",
     "color-hex-length": "long",
     "custom-property-empty-line-before": null,
@@ -44,7 +50,7 @@
         "severity": "warning"
       }
     ],
-    "declaration-block-no-redundant-longhand-properties": true,
+    "declaration-block-no-redundant-longhand-properties": null,
     "length-zero-no-unit": true,
     "comment-empty-line-before": [
       "always",
