@@ -22,8 +22,9 @@ body_class: page-faq
   <!-- Peace of Mind Assurance -->
   {% include components/ts-peace-of-mind.html %}
   {% for section in site.data.faq %}
+  {% assign is_even = forloop.index | modulo: 2 %}
   <section
-    class="ts-section ts-faq{% if forloop.index | modulo: 2 == 0 %} bg-soft{% endif %}"
+    class="ts-section ts-faq{% if is_even == 0 %} bg-soft{% endif %}"
     aria-labelledby="faq-{{ forloop.index }}">
     <div class="container">
       <header class="section-header">
