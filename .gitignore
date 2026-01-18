@@ -26,7 +26,6 @@ yarn-error.log*
 # Build artifacts
 assets/css/style.css
 assets/css/style.css.map
-assets/css/*.css
 convert-pattern.js
 dist/
 build/
