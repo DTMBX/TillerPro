@@ -317,11 +317,19 @@ is_home: true
   color: var(--color-primary);
 }
 
+.hero-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
 .hero-image img {
   width: 100%;
   height: auto;
-  border-radius: var(--radius-md);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  object-fit: cover;
+  object-position: center top;
+  max-height: 500px;
 }
 
 .hero-highlights {

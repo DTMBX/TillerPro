@@ -49,16 +49,11 @@ primary:
         title: "Tile Installation Standards"
         url: "/build/tile-installation-standards/"
         external: false
-      - id: flood-testing
-        title: "Flood Testing & Verification"
-        url: "/build/flood-testing/"
-        external: false
-      - id: build-failures
-        title: "Common Failures & Red Flags"
-        url: "/build/common-build-failures/"
-        external: false
   - id: company
     title: "Company"
+    url: "/about/"
+    match: "^/about(/|$)"
+    external: false
     aria_label: "Company information"
     children:
       - id: about

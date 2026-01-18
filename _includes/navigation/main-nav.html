@@ -3,7 +3,7 @@
   <ul class="nav-list">
     {% for item in site.data.navigation.primary %}
     <li class="nav-item {% if item.children %} has-children {% endif %}">
-      <a href="{{ item.url }}" aria-haspopup="{{ item.children | default: false }}" aria-expanded="false">
+      <a href="{{ item.url }}" {% if item.children %}aria-haspopup="true"{% else %}aria-haspopup="false"{% endif %} aria-expanded="false">
         {{ item.title }}
       </a>
 
