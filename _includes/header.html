@@ -1,10 +1,10 @@
 <!-- =========================================================
      Site Header - 2026 Contractor UX
-     Sticky header with branding + navigation
+     Centered logo with animated scroll bounce
      ========================================================= -->
 <header class="ts-header" id="site-header" aria-label="Main Header">
   <div class="ts-header__container">
-    <!-- Branding Section -->
+    <!-- Branding Section - CENTERED -->
     <div class="ts-header__branding">
       <!-- Logo with link to home -->
       <a href="/" class="ts-header__logo-link" aria-label="Tillerstead LLC - Go to homepage">
@@ -13,8 +13,8 @@
           alt="Tillerstead Logo" 
           class="ts-header__logo"
           id="header-logo"
-          width="72"
-          height="72"
+          width="90"
+          height="90"
           loading="eager"
         />
       </a>
@@ -33,20 +33,53 @@
 <script>
   (function () {
     var header = document.getElementById('site-header');
+    var logo = document.getElementById('header-logo');
     var lastScroll = 0;
     var scrollThreshold = 60;
+    var bounceTimeout = null;
+    var isScrollingUp = false;
 
     function onScroll() {
       var scrollY = window.scrollY || window.pageYOffset;
+      var scrollingUp = scrollY < lastScroll;
 
       // Minimize header after scroll threshold
       if (scrollY > scrollThreshold) {
         header.classList.add('ts-header--minimized');
+        
+        // Bounce animation when scrolling back up near top
+        if (scrollingUp && !isScrollingUp && scrollY < 200) {
+          triggerBounce();
+        }
       } else {
+        if (header.classList.contains('ts-header--minimized')) {
+          // Trigger bounce when expanding back to full size
+          triggerBounce();
+        }
         header.classList.remove('ts-header--minimized');
       }
 
+      isScrollingUp = scrollingUp;
       lastScroll = scrollY;
+    }
+
+    function triggerBounce() {
+      if (bounceTimeout) return; // Prevent rapid bouncing
+      
+      logo.classList.add('bounce');
+      bounceTimeout = setTimeout(function() {
+        logo.classList.remove('bounce');
+        bounceTimeout = null;
+      }, 600);
+    }
+
+    // Add bounce on logo click
+    if (logo) {
+      logo.addEventListener('click', function(e) {
+        if (window.scrollY < 10) {
+          triggerBounce();
+        }
+      });
     }
 
     // Throttled scroll handler
@@ -59,9 +92,13 @@
         });
         ticking = true;
       }
-    });
+    }, { passive: true });
 
     // Initial state
-    document.addEventListener('DOMContentLoaded', onScroll);
+    document.addEventListener('DOMContentLoaded', function() {
+      onScroll();
+      // Initial entrance bounce
+      setTimeout(triggerBounce, 500);
+    });
   })();
 </script>
