@@ -23,7 +23,7 @@
     "build:css": "node scripts/build-css.js",
     "watch:css": "sass --load-path=_sass assets/css/main.css:assets/css/main.css --watch --no-source-map",
     "start": "npm run build && npm run serve",
-    "dev": "npm run build:css && npm run jekyll -- build && http-server _site -p 4000 -c-1",
+    "dev": "npm run build:css && npm run jekyll -- build && http-server _site -p 4000",
     "dev:watch": "concurrently \"npm run watch:css\" \"npm run jekyll -- build --watch\" \"http-server _site -p 4000 -c-1\"",
     "build": "npm run build:css && npm run jekyll -- build",
     "postbuild": "node scripts/post-build-link.js",
@@ -54,7 +54,8 @@
     "slugify": "node scripts/slugify.js",
     "sync:thumbtack": "node scripts/sync_thumbtack_reviews.js",
     "validate": "node scripts/validate-all.js",
-    "fix:encoding": "node scripts/fix-encoding.js"
+    "fix:encoding": "node scripts/fix-encoding.js",
+    "check-links": "blc http://127.0.0.1:4000 --recursive --exclude-external"
   },
   "devDependencies": {
     "@playwright/test": "^1.57.0",

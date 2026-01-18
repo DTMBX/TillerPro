@@ -40,22 +40,17 @@ kramdown:
 # ----------------------------
 # Collections
 # ----------------------------
-collections:
-  build:
-    output: true
-    permalink: /build/:slug/
+# Build phases now use static /build/ folder structure
+# No collections needed
 
 # ----------------------------
 # Defaults (uniform build pages)
 # ----------------------------
 defaults:
   - scope:
-      path: ""
-      type: "build"
+      path: "build"
     values:
-      layout: build-page
-      toc: true
-      schema_type: HowTo
+      layout: default
       show_breadcrumbs: false
 
 # ----------------------------
@@ -178,6 +173,8 @@ exclude:
   - ".jekyll-cache"
   - ".DS_Store"
   - ".gitignore"
+  - "backup-pages"
+  - "backup-pages/**"
   # Ensure assets/ or assets/css/ is NOT listed here
 
 keep_files:

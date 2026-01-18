@@ -55,13 +55,15 @@
 
     // Function to toggle mobile navigation
     const toggleMobileNav = () => {
-      const isOpen = mobileNav.style.display === 'block';
+      const isOpen = mobileNav.classList.contains('open');
       if (isOpen) {
         body.classList.remove('nav-open');
-        mobileNav.style.display = 'none';
+        mobileNav.classList.remove('open');
+        mobileNav.setAttribute('aria-hidden', 'true');
       } else {
         body.classList.add('nav-open');
-        mobileNav.style.display = 'block';
+        mobileNav.classList.add('open');
+        mobileNav.setAttribute('aria-hidden', 'false');
       }
     };
 

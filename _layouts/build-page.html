@@ -1,95 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   {% include head.html %}
-  {% include schema-combined.js %}
-  <meta property="og:title" content="{{ page.title }}" />
-  <meta property="og:description" content="{{ page.description }}" />
-  <meta property="og:image" content="{{ page.featured_image | absolute_url }}" />
-  <meta property="og:url" content="{{ page.url | absolute_url }}" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{ page.title }}" />
-  <meta name="twitter:description" content="{{ page.description }}" />
-  <meta name="twitter:image" content="{{ page.featured_image | absolute_url }}" />
   <title>{% if page.title %}{{ page.title }} | {% endif %}Tillerstead Build Guide</title>
-
-  {% if page.layout == "build-page" %}
-  <aside class="build-sidenav" aria-label="Build Phase Navigation">
-    {% include build-sidenav.html %}
-  </aside>
-  {% endif %}
-  <link rel="stylesheet" href="/assets/css/30-components/build-sidenav.css">
-  <meta name="theme-color" content="#2a5d4e">
 </head>
-
-<body class="ts-build-page ts-body">
+<body>
   {% include header.html %}
-
-  <main class="ts-section ts-build-content" aria-labelledby="build-guide-heading" role="main">
-    <div class="container container-wide">
-      <div class="build-content-grid">
-
-        <!-- Sidebar -->
-        <aside class="build-content-sidebar" aria-label="Build phase navigation">
-          {% include build-sidenav.html %}
-        </aside>
-
-        <!-- Main Content -->
-        <div class="build-content-main">
-
-          {% if page.build_title or page.description %}
-          <header class="section-header" id="build-guide-heading">
-            {% if page.build_title %}
-            <h1 class="section-title">{{ page.build_title }}</h1>
-            {% endif %}
-            {% if page.description %}
-            <p class="section-description">{{ page.description }}</p>
-            {% endif %}
-          </header>
-          {% endif %}
-
-          <!-- Table of Contents -->
-          {% include toc.html %}
-
-          <!-- Build Phases Section -->
-          <section class="build-phases">
-            <h2>Build Phases</h2>
-            <ul class="build-phase-list">
-              {% assign build_phases = site.data.build_phases %}
-              {% for phase in build_phases %}
-              <li class="build-phase">
-                <h3><a href="{{ phase.url | relative_url }}">{{ phase.title }}</a></h3>
-                <p>{{ phase.description }}</p>
-              </li>
-              {% endfor %}
-            </ul>
-          </section>
-
-          <!-- FAQ Section -->
-          <section class="faq">
-            <h2>Frequently Asked Questions</h2>
-            <dl>
-              {% assign faqs = site.data.faq %}
-              {% for faq in faqs %}
-              <dt>{{ faq.question }}</dt>
-              <dd>{{ faq.answer }}</dd>
-              {% endfor %}
-            </dl>
-          </section>
-
-          <!-- Main Article Content -->
-          <article class="prose">
-            {{ content }}
-          </article>
-
-          <!-- Previous and Next Navigation -->
-          {% include build-prev-next.html %}
-
-        </div>
-      </div>
-    </div>
+  <main>
+    {{ content }}
   </main>
+  {% include footer.html %}
 </body>
-
 </html>
