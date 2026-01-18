@@ -1,6 +1,6 @@
 {% comment %} Wrapper for canonical ts-services.html include. {% endcomment %}
-{% include ts-services.html %}
-{% include ts-services.html %}
+{% include sections/ts-services.html %}
+{% include sections/ts-services.html %}
       assign service_details = raw.details | default: raw.points -%} {%- if raw
       contains '|' -%} {%- assign parts = raw | split: '|' -%} {%- assign
       service_icon_key = parts[0] | strip -%} {%- assign service_title =
