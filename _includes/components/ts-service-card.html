@@ -24,9 +24,8 @@
 
 <article
   class="card card--service ts-service-card"
-  role="listitem"
   id="{{ card_id }}"
-  aria-label="{{ aria_label }}"
+  aria-labelledby="{{ card_id }}-title"
 >
   <header class="card-header">
     <span class="ts-service-card__icon" aria-hidden="true"
@@ -34,34 +33,31 @@
     >
     <div>
       <p class="ts-service-card__tagline">
-        {{ include.tagline | default: 'TCNA-compliant scope, transparent math,
-        and New Jersey HIC #13VH12098700' }}
+        {{ include.tagline | default: 'Professional tiling with TCNA-compliant methods and transparent project management' }}
       </p>
-      <h3 class="card-title">{{ include.title }}</h3>
+      <h3 class="card-title" id="{{ card_id }}-title">{{ include.title }}</h3>
     </div>
   </header>
 
   <div class="ts-service-card__body">
     <p class="card-desc">
       {{ include.description | default: 'All work performed to TCNA 2024
-      standards and New Jersey Consumer Fraud Act requirements. Detailed scope,
-      transparent pricing, and documented methods—no shortcuts, no surprises.'
-      }}
-    </p>
+      standards and New Jersey Consumer FExpert tile installation and project coordination following TCNA 2024 standards. Clear communication, accurate timelines, and quality craftsmanship from start to finish.'/p>
 
     {% if include.details %}
     <ul class="ts-service-card__points">
       {% assign detail_items = include.details %} {% if detail_items contains
       '|' %} {% assign detail_items = detail_items | split: '|' %} {% elsif
-      detail_items contains ';' %} {% assign detail_items = detail_items |
-      split: ';' %} {% elsif detail_items contains ',' %} {% assign detail_items
-      = detail_items | split: ',' %} {% endif %} {% for item in detail_items %}
-      {% assign trimmed = item | strip %} {% if trimmed != '' %}
-      <li>{{ trimmed }}</li>
-      {% endif %} {% endfor %}
-    </ul>
+    {% assign detail_items = include.details %}
+    {% if detail_items contains '|' %}
+      {% assign detail_items = detail_items | split: '|' %}
+    {% elsif detail_items contains ';' %}
+      {% assign detail_items = detail_items | split: ';' %}
+    {% elsif detail_items contains ',' %}
+      {% assign detail_items = detail_items | split: ',' %}
     {% endif %}
-  </div>
+    <ul class="ts-service-card__points">
+      {% for item in detail_items %}{% assign trimmed = item | strip %}{% if trimmed != '' %}<li>{{ trimmed }}</li>{% endif %}
 
   <footer class="card-footer">
     <a
