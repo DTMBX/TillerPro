@@ -1,20 +1,20 @@
 # Page snapshot
 
 ```yaml
-- generic [active] [ref=e1]:
+- generic [ref=e1]:
   - navigation "Skip navigation" [ref=e2]:
-    - link "Skip to main content" [ref=e3] [cursor=pointer]:
+    - link "Skip to main content" [ref=e3]:
       - /url: "#main-content"
-    - link "Skip to contact" [ref=e4] [cursor=pointer]:
+    - link "Skip to contact" [ref=e4]:
       - /url: "#footer-contact-heading"
   - banner "Main Header" [ref=e5]:
     - generic [ref=e6]:
       - generic [ref=e7]:
-        - link "Tillerstead LLC - Where Craft Meets Accountability - Go to homepage" [ref=e8] [cursor=pointer]:
+        - link "Tillerstead LLC - Where Craft Meets Accountability - Go to homepage" [ref=e8]:
           - /url: /
           - img "Tillerstead LLC - Where Craft Meets Accountability" [ref=e10]
         - generic [ref=e12]: Tillerstead LLC
-      - link "Skip to main content" [ref=e13] [cursor=pointer]:
+      - link "Skip to main content" [ref=e13]:
         - /url: "#main-content"
       - button "Open navigation menu" [expanded] [ref=e14] [cursor=pointer]
       - dialog "Navigation menu" [ref=e15]:
@@ -49,7 +49,7 @@
             - listitem [ref=e34]:
               - link "GET ESTIMATE" [ref=e35] [cursor=pointer]:
                 - /url: /contact/
-          - link "Get an Estimate" [ref=e36] [cursor=pointer]:
+          - link "Get an Estimate" [ref=e36]:
             - /url: /contact/
           - generic [ref=e37]: "NJ HIC #13VH10808800"
   - main "Main content" [ref=e38]:
@@ -64,9 +64,9 @@
             - paragraph [ref=e45]: Measured. Verified. Documented.
             - paragraph [ref=e46]: "Beautiful finishes start with the invisible work: flat substrates, correct materials, and a waterproofing system built as a complete assembly. We follow published tile industry methods and manufacturer requirements—so your bathroom performs long after the final photo."
             - generic [ref=e47]:
-              - link "Request a Written Estimate" [ref=e48] [cursor=pointer]:
+              - link "Request a Written Estimate" [ref=e48]:
                 - /url: /contact/
-              - link "View Portfolio" [ref=e49] [cursor=pointer]:
+              - link "View Portfolio" [ref=e49]:
                 - /url: /portfolio/
             - generic [ref=e50]:
               - generic [ref=e51]:
@@ -111,7 +111,7 @@
               - listitem [ref=e85]: → Coverage verified during installation, especially in wet areas
               - listitem [ref=e86]: → Movement accommodation at perimeters and changes of plane
               - listitem [ref=e87]: → Layout planned to reduce awkward cuts and narrow slivers
-            - link "Learn more about Tile Installation (Ceramic & Porcelain)" [ref=e88] [cursor=pointer]:
+            - link "Learn more about Tile Installation (Ceramic & Porcelain)" [ref=e88]:
               - /url: /services/#tile
               - text: Learn more →
           - article [ref=e89]:
@@ -123,7 +123,7 @@
               - listitem [ref=e95]: → Materials matched to stone type and manufacturer specifications
               - listitem [ref=e96]: → Sealers used where appropriate, based on product data and application
               - listitem [ref=e97]: → Heat, sunlight, and transitions considered in the plan
-            - link "Learn more about Natural Stone & Large-Format Tile" [ref=e98] [cursor=pointer]:
+            - link "Learn more about Natural Stone & Large-Format Tile" [ref=e98]:
               - /url: /services/#stone
               - text: Learn more →
           - article [ref=e99]:
@@ -135,13 +135,13 @@
               - listitem [ref=e105]: → Slope and drainage confirmed before tile installation
               - listitem [ref=e106]: → Flood testing performed where required or method-appropriate (documented)
               - listitem [ref=e107]: → Closeout guidance provided for care and long-term maintenance
-            - link "Learn more about Shower Waterproofing Systems" [ref=e108] [cursor=pointer]:
+            - link "Learn more about Shower Waterproofing Systems" [ref=e108]:
               - /url: /services/#waterproofing
               - text: Learn more →
         - generic [ref=e109]:
-          - link "Request a Written Estimate" [ref=e110] [cursor=pointer]:
+          - link "Request a Written Estimate" [ref=e110]:
             - /url: /contact/
-          - link "Explore the Portfolio" [ref=e111] [cursor=pointer]:
+          - link "Explore the Portfolio" [ref=e111]:
             - /url: /portfolio/
         - paragraph [ref=e112]: Work is performed using published tile industry methods and applicable product standards, with written scope, change orders (if needed), and warranty terms provided before work begins.
     - region "Transparent Workflow. Written Scope. Verified Steps." [ref=e113]:
@@ -242,82 +242,82 @@
         - heading "Request a Written Estimate You Can Trust" [level=2] [ref=e205]
         - paragraph [ref=e206]: "Clear scope, transparent pricing, and documentation you can keep. Licensed New Jersey HIC #13VH10808800—serving Atlantic, Ocean & Cape May Counties."
         - generic [ref=e207]:
-          - link "Request a Written Estimate" [ref=e208] [cursor=pointer]:
+          - link "Request a Written Estimate" [ref=e208]:
             - /url: /contact/
-          - link "☎ Call/Text" [ref=e209] [cursor=pointer]:
+          - link "☎ Call/Text" [ref=e209]:
             - /url: tel:+16098628808
         - paragraph [ref=e210]: "NJ HIC #13VH10808800 · Serving Atlantic, Ocean & Cape May"
   - contentinfo "Site Footer" [ref=e211]:
     - generic [ref=e212]:
       - generic [ref=e213]:
-        - link "Tillerstead Home" [ref=e214] [cursor=pointer]:
+        - link "Tillerstead Home" [ref=e214]:
           - /url: /
-          - img "Tillerstead LLC - Professional Tile and Stone Installation" [ref=e215]
+          - img "Tillerstead LLC - Professional Tile and Stone Installation" [ref=e215] [cursor=pointer]
         - paragraph [ref=e216]: Expert Tile & Stone Installation — South Jersey
       - navigation "Footer navigation" [ref=e217]:
         - region "Service Areas" [ref=e218]:
           - heading "Service Areas" [level=3] [ref=e219]
           - list [ref=e220]:
             - listitem [ref=e221]:
-              - link "Atlantic County" [ref=e222] [cursor=pointer]:
+              - link "Atlantic County" [ref=e222]:
                 - /url: /atlantic-county-nj/
             - listitem [ref=e223]:
-              - link "Ocean County" [ref=e224] [cursor=pointer]:
+              - link "Ocean County" [ref=e224]:
                 - /url: /ocean-county-nj/
             - listitem [ref=e225]:
-              - link "Cape May County" [ref=e226] [cursor=pointer]:
+              - link "Cape May County" [ref=e226]:
                 - /url: /cape-may-county-nj/
         - generic [ref=e227]:
           - region "Learn" [ref=e228]:
             - heading "Learn" [level=3] [ref=e229]
             - list [ref=e230]:
               - listitem [ref=e231]:
-                - link "FAQ" [ref=e232] [cursor=pointer]:
+                - link "FAQ" [ref=e232]:
                   - /url: /faq/
               - listitem [ref=e233]:
-                - link "Products" [ref=e234] [cursor=pointer]:
+                - link "Products" [ref=e234]:
                   - /url: /products/
               - listitem [ref=e235]:
-                - link "Blog" [ref=e236] [cursor=pointer]:
+                - link "Blog" [ref=e236]:
                   - /url: /blog/
           - region "Build Guides" [ref=e237]:
             - heading "Build Guides" [level=3] [ref=e238]
             - list [ref=e239]:
               - listitem [ref=e240]:
-                - link "Codes & Permits" [ref=e241] [cursor=pointer]:
+                - link "Codes & Permits" [ref=e241]:
                   - /url: /build/nj-codes-permits/
               - listitem [ref=e242]:
-                - link "Shower Pans & Slopes" [ref=e243] [cursor=pointer]:
+                - link "Shower Pans & Slopes" [ref=e243]:
                   - /url: /build/shower-pans-slopes-drains/
               - listitem [ref=e244]:
-                - link "Waterproofing Systems" [ref=e245] [cursor=pointer]:
+                - link "Waterproofing Systems" [ref=e245]:
                   - /url: /build/waterproofing-systems/
               - listitem [ref=e246]:
-                - link "Curbless Showers" [ref=e247] [cursor=pointer]:
+                - link "Curbless Showers" [ref=e247]:
                   - /url: /build/curbs-curbless/
               - listitem [ref=e248]:
-                - link "Benches & Niches" [ref=e249] [cursor=pointer]:
+                - link "Benches & Niches" [ref=e249]:
                   - /url: /build/framing-benches-niches/
               - listitem [ref=e250]:
-                - link "Tile Standards (TCNA)" [ref=e251] [cursor=pointer]:
+                - link "Tile Standards (TCNA)" [ref=e251]:
                   - /url: /build/tile-installation-standards/
               - listitem [ref=e252]:
-                - link "Flood Testing" [ref=e253] [cursor=pointer]:
+                - link "Flood Testing" [ref=e253]:
                   - /url: /build/flood-testing/
               - listitem [ref=e254]:
-                - link "Common Build Failures" [ref=e255] [cursor=pointer]:
+                - link "Common Build Failures" [ref=e255]:
                   - /url: /build/common-build-failures/
           - region "Company" [ref=e256]:
             - heading "Company" [level=3] [ref=e257]
             - list [ref=e258]:
               - listitem [ref=e259]:
-                - link "About" [ref=e260] [cursor=pointer]:
+                - link "About" [ref=e260]:
                   - /url: /about/
               - listitem [ref=e261]:
-                - link "For Contractors" [ref=e262] [cursor=pointer]:
+                - link "For Contractors" [ref=e262]:
                   - /url: /for-general-contractors/
               - listitem [ref=e263]:
-                - link "Contact" [ref=e264] [cursor=pointer]:
+                - link "Contact" [ref=e264]:
                   - /url: /contact/
       - region "Contact" [ref=e265]:
         - heading "Contact" [level=3] [ref=e266]
@@ -326,34 +326,32 @@
           - text: 325 E. Jimmie Leeds Road, Suite 7-333
           - text: Galloway, NJ 08205
         - paragraph [ref=e269]:
-          - link "Call us at (609) 862-8808" [ref=e270] [cursor=pointer]:
+          - link "Call us at (609) 862-8808" [ref=e270]:
             - /url: tel:+16098628808
             - text: ☎ (609) 862-8808
         - paragraph [ref=e271]:
-          - link "Email us at info@tillerstead.com" [ref=e272] [cursor=pointer]:
+          - link "Email us at info@tillerstead.com" [ref=e272]:
             - /url: mailto:info@tillerstead.com
             - text: ✉ info@tillerstead.com
       - generic [ref=e273]:
         - navigation "Social media links" [ref=e274]:
-          - link "Visit Tillerstead on Facebook (opens in new window)" [ref=e275] [cursor=pointer]:
+          - link "Visit Tillerstead on Facebook (opens in new window)" [ref=e275]:
             - /url: https://www.facebook.com/people/Tillerstead-LLC/61580414460056/
-            - img
             - text: ↗
-          - link "View Tillerstead on Thumbtack (opens in new window)" [ref=e276] [cursor=pointer]:
+          - link "View Tillerstead on Thumbtack (opens in new window)" [ref=e276]:
             - /url: https://www.thumbtack.com/nj/absecon/tile/tillerstead-llc/service/547437618353160199?utm_medium=web&utm_source=txt&surface=sp
-            - img
         - navigation "Legal links" [ref=e277]:
-          - link "Privacy Policy" [ref=e278] [cursor=pointer]:
+          - link "Privacy Policy" [ref=e278]:
             - /url: /privacy/
           - generic: "|"
-          - link "Terms of Service" [ref=e279] [cursor=pointer]:
+          - link "Terms of Service" [ref=e279]:
             - /url: /terms/
           - generic: "|"
           - generic [ref=e280]: © 2026 Tillerstead LLC. All rights reserved.
   - region "Accessibility options" [ref=e281]:
-    - button "Open accessibility options" [ref=e282] [cursor=pointer]:
+    - button "Open accessibility options" [active] [ref=e282] [cursor=pointer]:
       - img
       - generic [ref=e283]: Accessibility
-  - status [ref=e284]
+  - status [ref=e284]: Home | Tillerstead LLC loaded
   - alert [ref=e285]
 ```
