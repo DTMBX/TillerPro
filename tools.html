@@ -3,13 +3,47 @@ layout: default
 title: "Tile Project Tools & Calculators | Tillerstead LLC"
 description: "Free tile calculators, estimate builder, and project planning tools. Calculate tile quantities, mortar coverage, grout needs, and generate detailed project specs."
 permalink: /tools/
+body_class: page-tools
 ---
+
+<!-- Hero Section -->
+<section class="tools-hero">
+  <div class="container">
+    <div class="tools-hero__content">
+      <span class="tools-hero__eyebrow">Free Contractor Tools</span>
+      <h1 class="tools-hero__title">Tile Project Calculators</h1>
+      <p class="tools-hero__summary">
+        Professional-grade calculators for tile quantities, mortar coverage, grout needs, 
+        and leveling compound. Built by a licensed NJ contractor using TCNA specifications.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Bar -->
+<section class="tools-trust">
+  <div class="container">
+    <div class="tools-trust__grid">
+      <div class="tools-trust__item">
+        <span class="tools-trust__icon">🧮</span>
+        <span class="tools-trust__text">TCNA-Based Calculations</span>
+      </div>
+      <div class="tools-trust__item">
+        <span class="tools-trust__icon">📋</span>
+        <span class="tools-trust__text">Material Specs Included</span>
+      </div>
+      <div class="tools-trust__item">
+        <span class="tools-trust__icon">💾</span>
+        <span class="tools-trust__text">Export Project Data</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <a href="#main-content" class="skip-link sr-only sr-only-focusable">Skip to tools</a>
 
-<main class="tools-page" id="main-content" data-tools-mode="pro">
+<main class="tools-page tools-main" id="main-content" data-tools-mode="pro">
   {% include tools/tools-nav.html %}
-  {% include tools/tools-header.html %}
   {% include tools/estimate-builder.html %}
   {% include tools/tile-calculator.html %}
   {% include tools/mortar-calculator.html %}
@@ -22,6 +56,23 @@ permalink: /tools/
 
 {% include tools/room-template.html %}
 
+<!-- CTA Section -->
+<section class="tools-cta">
+  <div class="container">
+    <div class="tools-cta__content">
+      <h2 class="tools-cta__title">Need a Professional Estimate?</h2>
+      <p class="tools-cta__text">
+        These calculators give you a starting point. For accurate pricing on your specific 
+        project, request a free on-site estimate from a licensed NJ contractor.
+      </p>
+      <div class="tools-cta__actions">
+        <a href="/contact/" class="btn btn--primary btn--lg">Request Free Estimate</a>
+        <a href="/services/" class="btn btn--outline-light btn--lg">View Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Back to Top Button -->
 <button type="button" class="back-to-top" id="back-to-top-btn" hidden aria-label="Back to top" title="Scroll to top">
   <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -32,3 +83,137 @@ permalink: /tools/
 <!-- Load Tools CSS and JS -->
 <link rel="stylesheet" href="{{ '/assets/css/tools.css' | relative_url }}">
 <script src="{{ '/assets/js/tools.js' | relative_url }}" defer></script>
+
+<style>
+/* Tools Page - Premium Styling */
+
+.tools-hero {
+  background: linear-gradient(135deg, var(--tiller-color-green, #1a3d2e) 0%, var(--tiller-color-green-dark, #0f2a1f) 100%);
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  color: #fff;
+}
+
+.tools-hero__content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.tools-hero__eyebrow {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--tiller-color-gold, #c9a227);
+  margin-bottom: 1rem;
+}
+
+.tools-hero__title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.tools-hero__summary {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* Trust Bar */
+.tools-trust {
+  background: var(--tiller-bg-dark, #121414);
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+}
+
+.tools-trust__grid {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.tools-trust__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9375rem;
+}
+
+.tools-trust__icon {
+  font-size: 1.25rem;
+}
+
+/* Tools Main Area */
+.tools-main {
+  background: var(--tiller-bg-soft, #f8f9f8);
+}
+
+/* CTA Section */
+.tools-cta {
+  background: var(--tiller-color-emerald, #10b981);
+  padding: clamp(3rem, 6vw, 4rem) 0;
+}
+
+.tools-cta__content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.tools-cta__title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.tools-cta__text {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+}
+
+.tools-cta__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tools-cta .btn--primary {
+  background: #fff;
+  color: var(--tiller-color-green, #1a3d2e);
+}
+
+.tools-cta .btn--primary:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.tools-cta .btn--outline-light {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.tools-cta .btn--outline-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
+@media (max-width: 600px) {
+  .tools-cta__actions {
+    flex-direction: column;
+  }
+  
+  .tools-cta__actions .btn {
+    width: 100%;
+  }
+}
+</style>

@@ -9,16 +9,59 @@
       <p class="footer-tagline">{{ site.tagline }}</p>
     </div>
 
-    <!-- Footer Navigation Sections (skip Legal - it's in footer-bottom) -->
+    <!-- Footer Navigation Grid -->
     <div class="footer-sections">
-      {% for group in footer_groups %}{% unless group.group == "Legal" %}
-      <section class="footer-group" aria-label="{{ group.group }}">
-        <h3 class="footer-group-title">{{ group.group }}</h3>
-        <ul class="footer-list">{% for item in group.items %}
-          <li><a href="{{ item.url }}">{{ item.title }}</a></li>{% endfor %}
+      <!-- Service Areas - Full Width Top Row -->
+      {% assign service_areas = footer_groups | where: "group", "Service Areas" | first %}
+      {% if service_areas %}
+      <div class="footer-group footer-group--service-areas">
+        <h3 class="footer-group-title">{{ service_areas.group }}</h3>
+        <ul class="footer-list footer-list--horizontal">
+          {% for item in service_areas.items %}
+          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+          {% endfor %}
         </ul>
-      </section>
-      {% endunless %}{% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- Learn Column -->
+      {% assign learn_group = footer_groups | where: "group", "Learn" | first %}
+      {% if learn_group %}
+      <div class="footer-group footer-group--learn">
+        <h3 class="footer-group-title">{{ learn_group.group }}</h3>
+        <ul class="footer-list">
+          {% for item in learn_group.items %}
+          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <!-- Build Guides Column -->
+      {% assign build_group = footer_groups | where: "group", "Build Guides" | first %}
+      {% if build_group %}
+      <div class="footer-group footer-group--build-guides">
+        <h3 class="footer-group-title">{{ build_group.group }}</h3>
+        <ul class="footer-list footer-list--two-col">
+          {% for item in build_group.items %}
+          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <!-- Company Column -->
+      {% assign company_group = footer_groups | where: "group", "Company" | first %}
+      {% if company_group %}
+      <div class="footer-group footer-group--company">
+        <h3 class="footer-group-title">{{ company_group.group }}</h3>
+        <ul class="footer-list">
+          {% for item in company_group.items %}
+          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
     </div>
 
     <!-- Contact Section -->
