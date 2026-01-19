@@ -111,6 +111,9 @@ twitter_card: summary_large_image
 </section>
 {% endif %}
 
+<!-- Visual Divider - Tile Grout Line -->
+<div class="ts-grout-divider" role="presentation" aria-hidden="true"></div>
+
 <!-- Final CTA Section - Clear Conversion Path -->
 <section id="contact" aria-labelledby="cta-heading">
 {% include sections/section-cta.html data=data.cta %}
