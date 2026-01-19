@@ -263,22 +263,133 @@
 | Standard | Description | Application |
 |----------|-------------|-------------|
 | ANSI A108 | Tile Installation Methods | Coverage requirements (80% dry, 95% wet) |
-| ANSI A118.1 | Dry-Set Cement Mortar | Unmodified thinset |
+| ANSI A108.02 | Substrate Requirements | Flatness tolerances, deflection |
+| ANSI A118.1 | Dry-Set Cement Mortar | Unmodified thinset (required for KERDI) |
 | ANSI A118.4 | Modified Dry-Set Cement Mortar | Modified thinset |
 | ANSI A118.6 | Standard Cement Grouts | Sanded/unsanded grout |
 | ANSI A118.10 | Waterproof Membranes | Shower waterproofing |
 | ANSI A118.12 | Crack Isolation Membranes | Crack prevention |
+| ANSI A118.15 | Improved Modified Mortar | LFT, gauged panels, exterior |
+| ANSI A137.1 | Ceramic Tile Specifications | Tile warpage/lippage tolerances |
+| ASTM C920 | Elastomeric Sealants | Movement joint sealants |
 | ASTM C1708 | Self-Leveling Compounds | SLU specifications |
+| TCNA EJ171 | Movement Joints | Expansion joint placement |
 | IPC 417.5.2 | Shower Receptor Slope | Minimum 1/4" per foot |
+
+---
+
+## TCNA/ANSI Compliance Quick Reference
+
+### Mortar Coverage Requirements (ANSI A108)
+
+| Application | Minimum Coverage | Edge Support | Back-Butter |
+|-------------|-----------------|--------------|-------------|
+| Dry interior floors | 80% | Recommended | Optional |
+| Wet areas (showers, etc.) | 95% | Required | Required |
+| Exterior | 95% | Required | Required |
+| Large format tile (≥15") | 95% | Required | Required |
+| Natural stone | 95% | Required | Required |
+
+### Substrate Flatness Requirements (ANSI A108.02)
+
+| Tile Type | Max Variation in 10 ft | Max Variation in 12" | Max Variation in 24" |
+|-----------|----------------------|---------------------|---------------------|
+| Standard tile (<15" edges) | 1/4" | 1/16" | — |
+| Large format tile (≥15" edge) | 1/8" | — | 1/16" |
+| Natural stone | 1/8" | — | 1/16" |
+
+> ⚠️ **CRITICAL:** If substrate does not meet flatness tolerances, lippage standards do NOT apply. Installer cannot be held responsible for lippage caused by out-of-tolerance substrate.
+
+### Deflection Requirements (TCNA)
+
+| Tile Type | Maximum Deflection |
+|-----------|-------------------|
+| Ceramic tile | L/360 |
+| Natural stone | L/720 |
+
+*L = span length in inches. Example: 10 ft (120") span ÷ 360 = 0.33" max deflection*
+
+### Grout Joint Requirements (ANSI A108.02)
+
+| Tile Type | Minimum Joint Width |
+|-----------|-------------------|
+| Absolute minimum (all tile) | 1/16" |
+| Rectified tile | 1/8" |
+| Calibrated (non-rectified) | 3/16" |
+| Handmade/rustic | 1/4"+ |
+
+**Rule:** Joint width ≥ 3× tile facial dimensional variation
+
+### Movement Joint Requirements (TCNA EJ171)
+
+| Location | Spacing | Minimum Width |
+|----------|---------|---------------|
+| Interior, normal | 20-25 ft | 1/8"-3/16" |
+| Interior, sunlit/heated | 8-12 ft | 3/16"-1/4" |
+| Exterior | 8-12 ft | 1/4"-1/2" |
+| Perimeter (at walls) | All perimeters | 1/4" minimum |
+
+> ⚠️ **CRITICAL:** All substrate movement/control joints MUST be honored through the tile installation. Movement joints filled with sealant (ASTM C920), NOT grout.
+
+---
+
+## PRO NOTES: Installation Best Practices
+
+### Mortar Application
+
+1. **Comb Direction:** Comb mortar in ONE direction only (not swirling)
+2. **Ridge Collapse:** Press tile perpendicular to ridges to collapse and eliminate voids
+3. **Verify Coverage:** Periodically lift tiles to confirm coverage (especially first few tiles)
+4. **Open Time:** If ridges don't collapse, scrape and re-apply fresh mortar
+5. **Key-In:** Apply thin layer to substrate before combing for improved bond
+
+### Large Format Tile (≥15")
+
+1. **Trowel Selection:** Use U-notch or ridged trowel—NOT 1/2" square (per CBP TDS)
+2. **Back-Butter:** Required on every tile for 95% coverage
+3. **Offset Limit:** Maximum 33% offset for running bond (not 50%)—reduces lippage
+4. **Leveling System:** Use clips and wedges for consistent lippage control
+5. **Substrate Prep:** MUST meet LFT flatness tolerance (1/8" in 10 ft) before starting
+
+### Waterproofing
+
+1. **Coat Direction:** Apply coats in perpendicular directions (cross-hatch pattern)
+2. **Thickness Verification:** Use mil gauge to verify wet film thickness
+3. **Corner Treatment:** Embed fabric/mesh tape in FIRST coat at all corners and seams
+4. **Penetrations:** Seal around ALL penetrations—valves, pipes, drains
+5. **Flood Test:** Test before tiling—plug drain, fill 1-2" above threshold, hold 24-48 hours
+6. **KERDI Specific:** MUST use unmodified thinset (ANSI A118.1)—modified will NOT bond
+
+### Grout Application
+
+1. **Consistency:** Mix to peanut butter consistency—not too wet
+2. **Slaking:** Let rest 5-10 minutes after mixing, then remix briefly
+3. **No Water:** Do NOT add water after slaking—weakens grout
+4. **Diagonal Push:** Work grout diagonally across joints, not parallel
+5. **Cleaning Window:** Clean when grout firms (fingerprint test)—not too soon, not too late
+6. **Curing:** Keep cement grout damp for 72+ hours; do not seal for 28 days
+
+### Common Failure Prevention
+
+| Issue | Prevention |
+|-------|------------|
+| Hollow/cracked tiles | Verify ≥80/95% mortar coverage; back-butter LFT |
+| Lippage | Verify substrate flatness; use leveling system; limit offset |
+| Cracked grout | Verify deflection; install movement joints per TCNA EJ171 |
+| Water intrusion | Proper membrane thickness; flood test; treat all penetrations |
+| Membrane failure | Two coats required; reinforce corners; use correct thinset for sheet membrane |
 
 ---
 
 ## Source URLs Index
 
 ### Custom Building Products
+- VersaBond LFT TDS: https://www.custombuildingproducts.com/products/versabond-lft-professional-large-format-tile-mortar
 - VersaBond TDS: https://www.custombuildingproducts.com/products/versabond-professional-thin-set-mortar-2
 - RedGard TDS-104: https://www.custombuildingproducts.com/wp-content/uploads/TDS-104-021425.pdf
 - RedGard TB94: https://www.custombuildingproducts.com/media/60997801/tb94-understanding-the-coverage-rate-for-redgard.pdf
+- Grout Joint TB85: https://www.custombuildingproducts.com/media/60712312/tb85-grout-joint-width.pdf
+- LFT FAQ: https://www.custombuildingproducts.com/wp-content/uploads/2021/08/lft_faq.pdf
 - Polyblend Sanded: https://www.custombuildingproducts.com/products/polyblend-sanded-grout
 - Polyblend Non-Sanded: https://www.custombuildingproducts.com/products/polyblend-non-sanded-grout
 
@@ -289,6 +400,7 @@
 
 ### LATICRETE
 - Hydro Ban: https://cdn-global.laticrete.com/-/media/project/laticrete-international/north-america/product-documents/product-data-sheets/lds6630_hydro-ban.ashx
+- TDS196 Trowel Selection: https://laticrete.com/~/media/support-and-downloads/technical-datasheets/tds196.ashx
 
 ### Schluter
 - KERDI: https://assets.schluter.com/asset/570120892212/document_6plrad34eh1rj0g61f54npqu6c/Waterproofing%20Data%20Sheet.pdf
@@ -296,6 +408,12 @@
 
 ### ARDEX
 - K 15: https://www.ardexamericas.com/product/ardex-k-15/
+
+### Industry Resources
+- TCNA Handbook: https://tcnatile.com/products/publications/2025-tcna-handbook-for-ceramic-glass-and-stone-tile-installation/
+- TCNA ANSI Standards: https://tcnatile.com/resource-center/ansi-standards/
+- TCNA FAQ Grout: https://tcnatile.com/resource-center/faq/grout/
+- TCNA FAQ Deflection: https://tcnatile.com/resource-center/faq/deflection/
 
 ---
 
