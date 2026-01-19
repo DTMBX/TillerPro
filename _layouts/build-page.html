@@ -30,7 +30,7 @@ body_class: page-build-guide
   <div class="container">
     <div class="guide-layout {% if page.toc %}has-toc{% endif %}">
       {% if page.toc %}
-      <!-- Table of Contents -->
+      <!-- Table of Contents - Left Sidebar -->
       <aside class="guide-toc" aria-label="Table of Contents">
         <h2 class="toc-title">On This Page</h2>
         <nav class="toc-nav" id="toc-nav">
@@ -39,7 +39,7 @@ body_class: page-build-guide
       </aside>
       {% endif %}
       
-      <!-- Main Content -->
+      <!-- Main Content - Full Width Article -->
       <article class="guide-article prose">
         {{ content }}
       </article>
