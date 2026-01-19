@@ -44,14 +44,219 @@ body_class: page-tools
 
 <main class="tools-page tools-main" id="main-content" data-tools-mode="pro">
   {% include tools/tools-nav.html %}
+  
+  <!-- Expand/Collapse Controls -->
+  <section class="tools-section">
+    <div class="container">
+      <div class="calc-controls">
+        <div class="auto-calc-indicator">
+          <span>Auto-Calculate</span>
+        </div>
+        <div class="calc-controls__actions">
+          <button type="button" class="calc-controls__btn" id="expand-all-btn" aria-label="Expand all calculators">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+            Expand All
+          </button>
+          <button type="button" class="calc-controls__btn" id="collapse-all-btn" aria-label="Collapse all calculators">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="18 15 12 9 6 15"/>
+            </svg>
+            Collapse All
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured: Estimate Builder -->
   {% include tools/estimate-builder.html %}
-  {% include tools/tile-calculator.html %}
-  {% include tools/mortar-calculator.html %}
-  {% include tools/grout-calculator.html %}
-  {% include tools/leveling-calculator.html %}
-  {% include tools/slope-calculator.html %}
-  {% include tools/waterproof-calculator.html %}
-  {% include tools/labor-calculator.html %}
+  
+  <!-- Calculator App Grid -->
+  <section class="tools-section">
+    <div class="container">
+      <div class="tools-app-grid">
+        
+        <!-- Group: Material Calculators -->
+        <div class="calc-group-header">
+          <div class="calc-group-header__line"></div>
+          <h3 class="calc-group-header__title">📦 Material Calculators</h3>
+          <div class="calc-group-header__line"></div>
+        </div>
+        
+        <!-- Tile Calculator Card -->
+        <article class="calc-app-card" id="tile-calc-card" data-calculator="tile">
+          <header class="calc-app-card__header" role="button" tabindex="0" aria-expanded="false" aria-controls="tile-calc-body">
+            <div class="calc-app-card__icon">🧱</div>
+            <div class="calc-app-card__title-group">
+              <h3 class="calc-app-card__title">Tile Quantity</h3>
+              <p class="calc-app-card__subtitle">Tiles & boxes needed</p>
+            </div>
+            <div class="calc-app-card__toggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+          </header>
+          <div class="calc-app-card__preview" id="tile-calc-preview">
+            <span class="calc-app-card__preview-label">Result:</span>
+            <span class="calc-app-card__preview-empty">Enter values to calculate</span>
+          </div>
+          <div class="calc-app-card__body" id="tile-calc-body">
+            {% include tools/tile-calculator.html %}
+          </div>
+        </article>
+        
+        <!-- Mortar Calculator Card -->
+        <article class="calc-app-card" id="mortar-calc-card" data-calculator="mortar">
+          <header class="calc-app-card__header" role="button" tabindex="0" aria-expanded="false" aria-controls="mortar-calc-body">
+            <div class="calc-app-card__icon">🪣</div>
+            <div class="calc-app-card__title-group">
+              <h3 class="calc-app-card__title">Mortar Coverage</h3>
+              <p class="calc-app-card__subtitle">Thin-set requirements</p>
+            </div>
+            <div class="calc-app-card__toggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+          </header>
+          <div class="calc-app-card__preview" id="mortar-calc-preview">
+            <span class="calc-app-card__preview-label">Result:</span>
+            <span class="calc-app-card__preview-empty">Enter values to calculate</span>
+          </div>
+          <div class="calc-app-card__body" id="mortar-calc-body">
+            {% include tools/mortar-calculator.html %}
+          </div>
+        </article>
+        
+        <!-- Grout Calculator Card -->
+        <article class="calc-app-card" id="grout-calc-card" data-calculator="grout">
+          <header class="calc-app-card__header" role="button" tabindex="0" aria-expanded="false" aria-controls="grout-calc-body">
+            <div class="calc-app-card__icon">🧴</div>
+            <div class="calc-app-card__title-group">
+              <h3 class="calc-app-card__title">Grout Calculation</h3>
+              <p class="calc-app-card__subtitle">Bags & coverage</p>
+            </div>
+            <div class="calc-app-card__toggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+          </header>
+          <div class="calc-app-card__preview" id="grout-calc-preview">
+            <span class="calc-app-card__preview-label">Result:</span>
+            <span class="calc-app-card__preview-empty">Enter values to calculate</span>
+          </div>
+          <div class="calc-app-card__body" id="grout-calc-body">
+            {% include tools/grout-calculator.html %}
+          </div>
+        </article>
+        
+        <!-- Leveling Calculator Card -->
+        <article class="calc-app-card" id="leveling-calc-card" data-calculator="leveling">
+          <header class="calc-app-card__header" role="button" tabindex="0" aria-expanded="false" aria-controls="leveling-calc-body">
+            <div class="calc-app-card__icon">📏</div>
+            <div class="calc-app-card__title-group">
+              <h3 class="calc-app-card__title">Self-Leveling</h3>
+              <p class="calc-app-card__subtitle">Compound amounts</p>
+            </div>
+            <div class="calc-app-card__toggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+          </header>
+          <div class="calc-app-card__preview" id="leveling-calc-preview">
+            <span class="calc-app-card__preview-label">Result:</span>
+            <span class="calc-app-card__preview-empty">Enter values to calculate</span>
+          </div>
+          <div class="calc-app-card__body" id="leveling-calc-body">
+            {% include tools/leveling-calculator.html %}
+          </div>
+        </article>
+        
+        <!-- Group: Construction Calculators -->
+        <div class="calc-group-header">
+          <div class="calc-group-header__line"></div>
+          <h3 class="calc-group-header__title">🔧 Construction Calculators</h3>
+          <div class="calc-group-header__line"></div>
+        </div>
+        
+        <!-- Slope Calculator Card -->
+        <article class="calc-app-card" id="slope-calc-card" data-calculator="slope">
+          <header class="calc-app-card__header" role="button" tabindex="0" aria-expanded="false" aria-controls="slope-calc-body">
+            <div class="calc-app-card__icon">📐</div>
+            <div class="calc-app-card__title-group">
+              <h3 class="calc-app-card__title">Shower Slope</h3>
+              <p class="calc-app-card__subtitle">Pre-slope calculations</p>
+            </div>
+            <div class="calc-app-card__toggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+          </header>
+          <div class="calc-app-card__preview" id="slope-calc-preview">
+            <span class="calc-app-card__preview-label">Result:</span>
+            <span class="calc-app-card__preview-empty">Enter values to calculate</span>
+          </div>
+          <div class="calc-app-card__body" id="slope-calc-body">
+            {% include tools/slope-calculator.html %}
+          </div>
+        </article>
+        
+        <!-- Waterproof Calculator Card -->
+        <article class="calc-app-card" id="waterproof-calc-card" data-calculator="waterproof">
+          <header class="calc-app-card__header" role="button" tabindex="0" aria-expanded="false" aria-controls="waterproof-calc-body">
+            <div class="calc-app-card__icon">💧</div>
+            <div class="calc-app-card__title-group">
+              <h3 class="calc-app-card__title">Waterproofing <span class="badge">TCNA</span></h3>
+              <p class="calc-app-card__subtitle">Membrane & accessories</p>
+            </div>
+            <div class="calc-app-card__toggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+          </header>
+          <div class="calc-app-card__preview" id="waterproof-calc-preview">
+            <span class="calc-app-card__preview-label">Result:</span>
+            <span class="calc-app-card__preview-empty">Enter values to calculate</span>
+          </div>
+          <div class="calc-app-card__body" id="waterproof-calc-body">
+            {% include tools/waterproof-calculator.html %}
+          </div>
+        </article>
+        
+        <!-- Labor Calculator Card -->
+        <article class="calc-app-card" id="labor-calc-card" data-calculator="labor">
+          <header class="calc-app-card__header" role="button" tabindex="0" aria-expanded="false" aria-controls="labor-calc-body">
+            <div class="calc-app-card__icon">⏱️</div>
+            <div class="calc-app-card__title-group">
+              <h3 class="calc-app-card__title">Labor Estimate</h3>
+              <p class="calc-app-card__subtitle">Time & scheduling</p>
+            </div>
+            <div class="calc-app-card__toggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+          </header>
+          <div class="calc-app-card__preview" id="labor-calc-preview">
+            <span class="calc-app-card__preview-label">Result:</span>
+            <span class="calc-app-card__preview-empty">Enter values to calculate</span>
+          </div>
+          <div class="calc-app-card__body" id="labor-calc-body">
+            {% include tools/labor-calculator.html %}
+          </div>
+        </article>
+        
+      </div>
+    </div>
+  </section>
+  
   {% include tools/guides-tips.html %}
   {% include tools/project-output.html %}
   {% include tools/assumptions-panel.html %}

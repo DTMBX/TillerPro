@@ -4382,6 +4382,216 @@
     sections.forEach(section => observer.observe(section));
   }
 
+  // ============================================
+  // APP-LIKE COLLAPSIBLE CALCULATOR CARDS
+  // ============================================
+
+  function initCollapsibleCards() {
+    const calcCards = document.querySelectorAll('.calc-app-card');
+    const expandAllBtn = document.getElementById('expand-all-btn');
+    const collapseAllBtn = document.getElementById('collapse-all-btn');
+    
+    if (!calcCards.length) return;
+
+    // Toggle individual card
+    calcCards.forEach(card => {
+      const header = card.querySelector('.calc-app-card__header');
+      if (!header) return;
+
+      header.addEventListener('click', () => toggleCard(card));
+      header.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleCard(card);
+        }
+      });
+    });
+
+    // Expand All button
+    if (expandAllBtn) {
+      expandAllBtn.addEventListener('click', () => {
+        calcCards.forEach(card => expandCard(card));
+        updateControlsState(true);
+      });
+    }
+
+    // Collapse All button
+    if (collapseAllBtn) {
+      collapseAllBtn.addEventListener('click', () => {
+        calcCards.forEach(card => collapseCard(card));
+        updateControlsState(false);
+      });
+    }
+
+    // Auto-expand first card on desktop
+    if (window.innerWidth >= 900 && calcCards.length > 0) {
+      expandCard(calcCards[0]);
+    }
+  }
+
+  function toggleCard(card) {
+    if (card.classList.contains('calc-app-card--expanded')) {
+      collapseCard(card);
+    } else {
+      expandCard(card);
+    }
+  }
+
+  function expandCard(card) {
+    card.classList.add('calc-app-card--expanded');
+    const header = card.querySelector('.calc-app-card__header');
+    if (header) header.setAttribute('aria-expanded', 'true');
+    
+    // Trigger resize for any charts/elements inside
+    const body = card.querySelector('.calc-app-card__body');
+    if (body) {
+      body.style.display = 'block';
+      // Trigger recalculation of internal layouts
+      window.dispatchEvent(new Event('resize'));
+    }
+  }
+
+  function collapseCard(card) {
+    card.classList.remove('calc-app-card--expanded');
+    const header = card.querySelector('.calc-app-card__header');
+    if (header) header.setAttribute('aria-expanded', 'false');
+    
+    const body = card.querySelector('.calc-app-card__body');
+    if (body) body.style.display = 'none';
+  }
+
+  function updateControlsState(allExpanded) {
+    const expandAllBtn = document.getElementById('expand-all-btn');
+    const collapseAllBtn = document.getElementById('collapse-all-btn');
+    
+    if (expandAllBtn) {
+      expandAllBtn.classList.toggle('calc-controls__btn--active', !allExpanded);
+    }
+    if (collapseAllBtn) {
+      collapseAllBtn.classList.toggle('calc-controls__btn--active', allExpanded);
+    }
+  }
+
+  // Auto-calculate on input change with debounce
+  function initAutoCalculate() {
+    const calcCards = document.querySelectorAll('.calc-app-card');
+    
+    calcCards.forEach(card => {
+      const inputs = card.querySelectorAll('input, select');
+      const calculatorType = card.dataset.calculator;
+      
+      inputs.forEach(input => {
+        input.addEventListener('change', debounce(() => {
+          autoCalculate(calculatorType, card);
+        }, 300));
+        
+        // For number inputs, also listen to input event
+        if (input.type === 'number') {
+          input.addEventListener('input', debounce(() => {
+            autoCalculate(calculatorType, card);
+          }, 500));
+        }
+      });
+    });
+  }
+
+  function autoCalculate(calculatorType, card) {
+    const preview = card.querySelector('.calc-app-card__preview');
+    let result = null;
+    
+    try {
+      switch (calculatorType) {
+        case 'tile':
+          // Trigger tile calculation
+          const tileBtn = document.getElementById('calc-tile-btn');
+          if (tileBtn) tileBtn.click();
+          const tilesResult = document.getElementById('result-boxes');
+          if (tilesResult && tilesResult.textContent !== '—') {
+            result = tilesResult.textContent + ' boxes';
+          }
+          break;
+          
+        case 'mortar':
+          const mortarBtn = document.getElementById('calc-mortar-btn');
+          if (mortarBtn) mortarBtn.click();
+          const mortarResult = document.getElementById('result-mortar-bags');
+          if (mortarResult && mortarResult.textContent !== '—') {
+            result = mortarResult.textContent + ' bags';
+          }
+          break;
+          
+        case 'grout':
+          const groutBtn = document.getElementById('calc-grout-btn');
+          if (groutBtn) groutBtn.click();
+          const groutResult = document.getElementById('result-grout-bags');
+          if (groutResult && groutResult.textContent !== '—') {
+            result = groutResult.textContent + ' bags';
+          }
+          break;
+          
+        case 'leveling':
+          const levelBtn = document.getElementById('calc-leveler-btn');
+          if (levelBtn) levelBtn.click();
+          const levelResult = document.getElementById('result-leveler-bags');
+          if (levelResult && levelResult.textContent !== '—') {
+            result = levelResult.textContent + ' bags';
+          }
+          break;
+          
+        case 'slope':
+          const slopeBtn = document.getElementById('calc-slope-btn');
+          if (slopeBtn) slopeBtn.click();
+          break;
+          
+        case 'waterproof':
+          const wpBtn = document.getElementById('calc-waterproof-btn');
+          if (wpBtn) wpBtn.click();
+          break;
+          
+        case 'labor':
+          const laborBtn = document.getElementById('calc-labor-btn');
+          if (laborBtn) laborBtn.click();
+          break;
+      }
+    } catch (e) {
+      console.warn('Auto-calculate error:', e);
+    }
+    
+    // Update preview if we have a result
+    if (preview && result) {
+      const previewValue = preview.querySelector('.calc-app-card__preview-value');
+      const previewEmpty = preview.querySelector('.calc-app-card__preview-empty');
+      
+      if (previewValue) {
+        previewValue.textContent = result;
+        previewValue.style.display = 'block';
+      } else {
+        const valueEl = document.createElement('span');
+        valueEl.className = 'calc-app-card__preview-value';
+        valueEl.textContent = result;
+        if (previewEmpty) {
+          previewEmpty.replaceWith(valueEl);
+        } else {
+          preview.appendChild(valueEl);
+        }
+      }
+      
+      if (previewEmpty) previewEmpty.style.display = 'none';
+    }
+  }
+
+  // Utility: Debounce function
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
 
 
   // ============================================
@@ -4408,6 +4618,8 @@
     initActiveNavHighlight();
     initBackToTop();
     initNewCalculators();
+    initCollapsibleCards();
+    initAutoCalculate();
 
     // Initial calculations
     updateAreaSummary();
