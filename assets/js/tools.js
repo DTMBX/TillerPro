@@ -1757,6 +1757,27 @@
       `;
     }
 
+    // Powered by Tillerstead Footer
+    html += `
+      <div class="output-footer">
+        <div class="output-footer__brand">
+          <img src="/assets/img/logo/logo-wolf-crest-compact.webp" 
+               alt="Tillerstead" 
+               class="output-footer__logo"
+               width="32" height="32">
+          <div class="output-footer__text">
+            <span class="output-footer__name">Powered by TillerCalc™</span>
+            <span class="output-footer__tagline">Professional Tile Calculators by Tillerstead LLC</span>
+          </div>
+        </div>
+        <div class="output-footer__info">
+          <span>NJ HIC #13VH10808800</span>
+          <span>•</span>
+          <a href="https://tillerstead.com/tools/" target="_blank">tillerstead.com/tools</a>
+        </div>
+      </div>
+    `;
+
     html += '</div>';
     return html;
   }
@@ -2343,6 +2364,12 @@
     .header-logo {
       width: 40px;
       height: 40px;
+      border-radius: 50%;
+      object-fit: contain;
+    }
+    .header-logo-fallback {
+      width: 40px;
+      height: 40px;
       background: linear-gradient(135deg, var(--ts-emerald) 0%, var(--ts-emerald-light) 100%);
       border-radius: 8px;
       display: flex;
@@ -2389,6 +2416,14 @@
       padding: 1in;
     }
     .cover-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: contain;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    .cover-logo-fallback {
       width: 80px;
       height: 80px;
       background: linear-gradient(135deg, var(--ts-emerald) 0%, var(--ts-emerald-light) 100%);
@@ -2669,7 +2704,10 @@
 
 <!-- ==================== COVER PAGE ==================== -->
 <div class="page cover">
-  <div class="cover-logo">T</div>
+  <img src="https://tillerstead.com/assets/img/logo/logo-wolf-crest.webp" 
+       alt="Tillerstead Wolf Crest" 
+       class="cover-logo"
+       onerror="this.outerHTML='<div class=\\'cover-logo-fallback\\'>T</div>'">
   <h1>Tile Project Build Guide</h1>
   <div class="cover-project">${escapeHtml(state.project.name || 'Your Tile Project')}</div>
   <div class="cover-client">
@@ -2688,7 +2726,10 @@
 <div class="page">
   <div class="header">
     <div class="header-brand">
-      <div class="header-logo">T</div>
+      <img src="https://tillerstead.com/assets/img/logo/logo-wolf-crest-compact.webp" 
+           alt="Tillerstead" 
+           class="header-logo"
+           onerror="this.outerHTML='<div class=\\'header-logo-fallback\\'>T</div>'">
       <div class="header-text">
         <div class="header-title">Tillerstead</div>
         <div class="header-subtitle">Professional Tile Installation</div>
