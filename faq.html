@@ -5,68 +5,292 @@ description: "Common questions about tile installation, waterproofing, bathroom 
 permalink: /faq/
 body_class: page-faq
 ---
-<main class="main-content">
-  <section class="ts-section ts-page-header">
-    <div class="container">
-      <header class="section-header text-center">
-        <span class="eyebrow eyebrow--dark">Questions & Answers</span>
-        <h1 class="heading-1">Frequently Asked Questions</h1>
-        <p class="lead">
-          Clear answers about tile installation, waterproofing systems, and
-          working with a licensed New Jersey contractor.
-        </p>
-      </header>
-    </div>
-  </section>
 
-  <!-- Peace of Mind Assurance -->
-  {% include components/ts-peace-of-mind.html %}
-  {% for section in site.data.faq %}
-  {% assign is_even = forloop.index | modulo: 2 %}
-  <section
-    class="ts-section ts-faq{% if is_even == 0 %} bg-soft{% endif %}"
-    aria-labelledby="faq-{{ forloop.index }}">
-    <div class="container">
-      <header class="section-header">
-        <h2 id="faq-{{ forloop.index }}" class="heading-3">
+<!-- Hero Section -->
+<section class="faq-hero">
+  <div class="container">
+    <div class="faq-hero__content">
+      <span class="faq-hero__eyebrow">Questions & Answers</span>
+      <h1 class="faq-hero__title">Frequently Asked Questions</h1>
+      <p class="faq-hero__summary">
+        Clear answers about tile installation, waterproofing systems, and
+        working with a licensed New Jersey contractor.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Peace of Mind Assurance -->
+{% include components/ts-peace-of-mind.html %}
+
+<!-- FAQ Sections -->
+<section class="faq-content">
+  <div class="container">
+    <div class="faq-content__wrapper">
+      {% for section in site.data.faq %}
+      {% assign is_even = forloop.index | modulo: 2 %}
+      <div class="faq-category {% if is_even == 0 %}faq-category--alt{% endif %}">
+        <h2 class="faq-category__title" id="faq-{{ forloop.index }}">
           {{ section.category }}
         </h2>
-      </header>
-      <div class="faq">
-        {% for faq in section.items %}
-        <details
-          class="faq-item"
-          {% if forloop.first and forloop.parentloop.first %}open{% endif %}
-        >
-          <summary>{{ faq.question }}</summary>
-          <div class="faq-body">{{ faq.answer | markdownify }}</div>
-        </details>
-        {% endfor %}
+        <div class="faq-list">
+          {% for faq in section.items %}
+          <details class="faq-item" {% if forloop.first and forloop.parentloop.first %}open{% endif %}>
+            <summary class="faq-item__question">
+              <span>{{ faq.question }}</span>
+              <svg class="faq-item__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="faq-item__answer">{{ faq.answer | markdownify }}</div>
+          </details>
+          {% endfor %}
+        </div>
       </div>
+      {% endfor %}
     </div>
-  </section>
-  {% endfor %}
+  </div>
+</section>
 
-  <section
-    class="ts-section ts-cta-final bg-primary text-white"
-    aria-labelledby="faq-cta"
-  >
-    <div class="container text-center">
-      <h2 id="faq-cta" class="heading-2">Still Have Questions?</h2>
-      <p class="lead">
+<!-- CTA Section -->
+<section class="faq-cta">
+  <div class="container">
+    <div class="faq-cta__content">
+      <h2 class="faq-cta__title">Still Have Questions?</h2>
+      <p class="faq-cta__text">
         We're happy to discuss your project in detail. Request a free estimate
         or give us a call.
       </p>
-      <div class="cta-actions">
-        <a href="/contact/" class="btn btn--secondary">Request Free Estimate</a>
-        <a href="tel:+16098628808" class="btn btn--ghost-white"
-          >Call (609) 862-8808</a
-        >
-        <a href="mailto:info@tillerstead.com" class="btn btn--ghost-white"
-          >Email info@tillerstead.com</a
-        >
+      <div class="faq-cta__actions">
+        <a href="/contact/" class="btn btn--primary btn--lg">Request Free Estimate</a>
+        <a href="tel:+16098628808" class="btn btn--outline-light btn--lg">Call (609) 862-8808</a>
+        <a href="mailto:info@tillerstead.com" class="btn btn--outline-light btn--lg">Email Us</a>
       </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
+
+<style>
+/* FAQ Page - Premium Styling */
+
+/* Hero */
+.faq-hero {
+  background: linear-gradient(135deg, var(--tiller-color-green, #1a3d2e) 0%, var(--tiller-color-green-dark, #0f2a1f) 100%);
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  color: #fff;
+}
+
+.faq-hero__content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.faq-hero__eyebrow {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--tiller-color-gold, #c9a227);
+  margin-bottom: 1rem;
+}
+
+.faq-hero__title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.faq-hero__summary {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* FAQ Content */
+.faq-content {
+  background: var(--tiller-bg-soft, #f8f9f8);
+  padding: clamp(3rem, 6vw, 5rem) 0;
+}
+
+.faq-content__wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* FAQ Category */
+.faq-category {
+  margin-bottom: 3rem;
+}
+
+.faq-category:last-child {
+  margin-bottom: 0;
+}
+
+.faq-category__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--tiller-color-green, #1a3d2e);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid var(--tiller-color-gold, #c9a227);
+}
+
+/* FAQ List */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* FAQ Item */
+.faq-item {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.faq-item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item[open] {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item__question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--tiller-text-heading, #1a1a1a);
+  list-style: none;
+  transition: background 0.15s ease;
+}
+
+.faq-item__question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item__question:hover {
+  background: rgba(26, 61, 46, 0.03);
+}
+
+.faq-item__question span {
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.faq-item__icon {
+  flex-shrink: 0;
+  color: var(--tiller-color-green, #1a3d2e);
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] .faq-item__icon {
+  transform: rotate(180deg);
+}
+
+.faq-item__answer {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--tiller-text-body, #444);
+  line-height: 1.7;
+}
+
+.faq-item__answer p {
+  margin: 0 0 1rem;
+}
+
+.faq-item__answer p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-item__answer ul,
+.faq-item__answer ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.faq-item__answer li {
+  margin-bottom: 0.5rem;
+}
+
+.faq-item__answer strong {
+  color: var(--tiller-text-heading, #1a1a1a);
+}
+
+/* CTA Section */
+.faq-cta {
+  background: var(--tiller-color-emerald, #10b981);
+  padding: clamp(3rem, 6vw, 4rem) 0;
+}
+
+.faq-cta__content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.faq-cta__title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.faq-cta__text {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+}
+
+.faq-cta__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.faq-cta .btn--primary {
+  background: #fff;
+  color: var(--tiller-color-green, #1a3d2e);
+}
+
+.faq-cta .btn--primary:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.faq-cta .btn--outline-light {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.faq-cta .btn--outline-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
+@media (max-width: 600px) {
+  .faq-cta__actions {
+    flex-direction: column;
+  }
+  
+  .faq-cta__actions .btn {
+    width: 100%;
+  }
+  
+  .faq-item__question {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+  }
+}
+</style>
 
