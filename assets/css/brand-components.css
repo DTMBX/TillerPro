@@ -265,7 +265,7 @@
 }
 
 /* Mobile */
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .ts-trust-bar__list {
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -314,13 +314,13 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
-@media (width <= 992px) {
+@media (max-width: 992px) {
   .ts-brand-pillars--horizontal .ts-brand-pillars__list {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (width <= 576px) {
+@media (max-width: 576px) {
   .ts-brand-pillars--horizontal .ts-brand-pillars__list {
     grid-template-columns: 1fr;
   }

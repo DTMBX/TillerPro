@@ -167,15 +167,15 @@ console.log('\n🔒 XSS Vulnerability Remediation Starting...\n');
 
 FIXES.forEach(({ file, replacements }) => {
   const filePath = path.join(ROOT, file);
-  
+
   if (!fs.existsSync(filePath)) {
     console.log(`⚠️  Skipping ${file} (not found)`);
     return;
   }
-  
+
   let content = fs.readFileSync(filePath, 'utf8');
   let fixedCount = 0;
-  
+
   replacements.forEach(({ search, replace }) => {
     if (content.match(search)) {
       content = content.replace(search, replace);
@@ -183,7 +183,7 @@ FIXES.forEach(({ file, replacements }) => {
       totalFixes++;
     }
   });
-  
+
   if (fixedCount > 0) {
     fs.writeFileSync(filePath, content, 'utf8');
     fileCount++;

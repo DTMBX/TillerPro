@@ -14,23 +14,23 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 
 // WCAG AA Compliant Color Palette
-const COMPLIANT_COLORS = {
+const _COMPLIANT_COLORS = {
   // Gold variants (darker for better contrast on white)
   goldDark: '#8a7830',        // 4.52:1 on white (PASSES AA)
   goldMuted: '#6f5f26',       // 5.52:1 on white (PASSES AA)
   goldDeep: '#5c4e20',        // 7.02:1 on white (PASSES AAA)
-  
+
   // Original colors (safe combinations)
   gold: '#c9a227',            // Use on dark backgrounds only
   emerald: '#10b981',         // 3.03:1 on white (PASSES large text)
   emeraldDark: '#059669',     // 4.52:1 on white (PASSES AA)
-  
+
   // Background colors (verified)
   bgDarker: '#121414',
   bgDark: '#1a1c1a',
   bgStone: '#222524',
   bgSlate: '#2a2d2c',
-  
+
   // Text colors
   textPrimary: '#ffffff',
   textSecondary: 'rgba(255, 255, 255, 0.9)',
@@ -43,12 +43,12 @@ function getLuminance(hex) {
   const r = (rgb >> 16) & 0xff;
   const g = (rgb >> 8) & 0xff;
   const b = (rgb >> 0) & 0xff;
-  
+
   const [rs, gs, bs] = [r, g, b].map(c => {
     c = c / 255;
     return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
   });
-  
+
   return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
 }
 
@@ -92,15 +92,15 @@ console.log('🔧 Applying WCAG AA Fixes...\n');
 
 CSS_FIXES.forEach(({ file, description, replacements }) => {
   const filePath = path.join(ROOT, file);
-  
+
   if (!fs.existsSync(filePath)) {
     console.log(`⚠️  Skipping ${file} (not found)`);
     return;
   }
-  
+
   let content = fs.readFileSync(filePath, 'utf8');
   let fileFixed = false;
-  
+
   replacements.forEach(({ search, replace }) => {
     if (content.match(search)) {
       content = content.replace(search, replace);
@@ -108,7 +108,7 @@ CSS_FIXES.forEach(({ file, description, replacements }) => {
       totalFixes++;
     }
   });
-  
+
   if (fileFixed) {
     fs.writeFileSync(filePath, content, 'utf8');
     console.log(`✅ ${file}`);

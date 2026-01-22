@@ -1,73 +1,76 @@
-<!-- Moved to components/ts-service-card.html -->
-  <path
-    d="M6 40c1.5-5.5 5-10 10-10s8.5 4.5 10 10"
-    class="ts-icon__stroke"
-  ></path>
-  <path d="M32 10l4-4 6 6-4 4" class="ts-icon__stroke"></path>
-  <path d="M28 14l-2 6 6-2" class="ts-icon__stroke"></path>
+{%- assign icon = include.icon | default: 'tile' -%}
+{%- assign card_id = include.id | default: include.title | slugify -%}
+
+{%- capture icon_svg -%}
+{%- case icon -%}
+{%- when 'tile' -%}
+<svg class="ts-service-card__icon-mark ts-icon ts-icon--tile" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+  <rect x="4" y="4" width="16" height="16" rx="2" class="ts-icon__stroke"></rect>
+  <rect x="28" y="4" width="16" height="16" rx="2" class="ts-icon__stroke"></rect>
+  <rect x="4" y="28" width="16" height="16" rx="2" class="ts-icon__stroke"></rect>
+  <rect x="28" y="28" width="16" height="16" rx="2" class="ts-icon__stroke"></rect>
 </svg>
-{% else %}
-<svg
-  class="ts-service-card__icon-mark ts-icon ts-icon--default"
-  viewBox="0 0 48 48"
-  aria-hidden="true"
-  focusable="false"
->
+{%- when 'stone' -%}
+<svg class="ts-service-card__icon-mark ts-icon ts-icon--stone" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+  <path d="M24 6 40 20 30 42H18L8 20 24 6Z" class="ts-icon__stroke"></path>
+  <path d="M24 6 24 42" class="ts-icon__stroke"></path>
+  <path d="M8 20h32" class="ts-icon__stroke"></path>
+</svg>
+{%- when 'waterproofing' -%}
+<svg class="ts-service-card__icon-mark ts-icon ts-icon--waterproofing" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+  <path d="M24 6c7 9 12 15 12 22a12 12 0 0 1-24 0c0-7 5-13 12-22Z" class="ts-icon__stroke"></path>
+  <path d="M18 30c1.5 3 4.2 5 6 6" class="ts-icon__stroke"></path>
+</svg>
+{%- else -%}
+<svg class="ts-service-card__icon-mark ts-icon ts-icon--default" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
   <path d="M10 34 19.5 24.5" class="ts-icon__stroke"></path>
-  <path
-    d="M22 12a8 8 0 0 1 11.3 11.3L26 30.5 17.5 22l5.3-5.3A4 4 0 0 0 22 12Z"
-    class="ts-icon__stroke"
-  ></path>
+  <path d="M22 12a8 8 0 0 1 11.3 11.3L26 30.5 17.5 22l5.3-5.3A4 4 0 0 0 22 12Z" class="ts-icon__stroke"></path>
   <path d="M14 30 10 40l10-4" class="ts-icon__stroke"></path>
 </svg>
-{% endcase %} {% endcapture %}
+{%- endcase -%}
+{%- endcapture -%}
 
-<article
-  class="card card--service ts-service-card"
-  id="{{ card_id }}"
-  aria-labelledby="{{ card_id }}-title"
->
+{%- assign tagline = include.tagline | default: 'TCNA-compliant methods • New Jersey HIC-licensed' -%}
+{%- assign description = include.description | default: 'Standards-based tile and waterproofing work for South Jersey, New Jersey homes—scoped, documented, and built to last.' -%}
+
+{%- assign detail_items = include.details -%}
+{%- if detail_items and detail_items contains '|' -%}
+  {%- assign detail_items = detail_items | split: '|' -%}
+{%- elsif detail_items and detail_items contains ';' -%}
+  {%- assign detail_items = detail_items | split: ';' -%}
+{%- elsif detail_items and detail_items contains ',' -%}
+  {%- assign detail_items = detail_items | split: ',' -%}
+{%- endif -%}
+
+<article class="card card--service ts-service-card" id="{{ card_id }}" aria-labelledby="{{ card_id }}-title">
   <header class="card-header">
-    <span class="ts-service-card__icon" aria-hidden="true"
-      >{{ icon_svg | strip }}</span
-    >
+    <span class="ts-service-card__icon" aria-hidden="true">{{ icon_svg | strip }}</span>
     <div>
-      <p class="ts-service-card__tagline">
-        {{ include.tagline | default: 'Professional tiling with TCNA-compliant methods and transparent project management' }}
-      </p>
+      {% if tagline %}<p class="ts-service-card__tagline">{{ tagline }}</p>{% endif %}
       <h3 class="card-title" id="{{ card_id }}-title">{{ include.title }}</h3>
     </div>
   </header>
 
   <div class="ts-service-card__body">
-    <p class="card-desc">
-      {{ include.description | default: 'All work performed to TCNA 2024
-      standards and New Jersey Consumer FExpert tile installation and project coordination following TCNA 2024 standards. Clear communication, accurate timelines, and quality craftsmanship from start to finish.'/p>
+    {% if description %}<p class="card-desc">{{ description }}</p>{% endif %}
 
-    {% if include.details %}
-    <ul class="ts-service-card__points">
-      {% assign detail_items = include.details %} {% if detail_items contains
-      '|' %} {% assign detail_items = detail_items | split: '|' %} {% elsif
-    {% assign detail_items = include.details %}
-    {% if detail_items contains '|' %}
-      {% assign detail_items = detail_items | split: '|' %}
-    {% elsif detail_items contains ';' %}
-      {% assign detail_items = detail_items | split: ';' %}
-    {% elsif detail_items contains ',' %}
-      {% assign detail_items = detail_items | split: ',' %}
+    {% if detail_items and detail_items.size > 0 %}
+    <ul class="ts-service-card__points" role="list">
+      {% for item in detail_items %}
+      <li>{{ item | strip }}</li>
+      {% endfor %}
+    </ul>
     {% endif %}
-    <ul class="ts-service-card__points">
-      {% for item in detail_items %}{% assign trimmed = item | strip %}{% if trimmed != '' %}<li>{{ trimmed }}</li>{% endif %}
+  </div>
 
   <footer class="card-footer">
     <a
       class="ts-service-card__link"
-      href="{% if include.url %}{{ include.url | relative_url }}{% else %}/contact{% endif %}"
+      href="{% if include.url %}{{ include.url | relative_url }}{% else %}{{ '/contact/' | relative_url }}{% endif %}"
       aria-label="Learn more about {{ include.title | default: 'this service' }}"
     >
       <span>
-        {% if include.url %} Learn more {% else %} Request a consultation {%
-        endif %}
+        {% if include.url %}Learn more{% else %}Request a consultation{% endif %}
       </span>
       <span aria-hidden="true">&rarr;</span>
     </a>

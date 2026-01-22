@@ -133,7 +133,7 @@ keywords: "tile contractor South Jersey, waterproofing contractor NJ, bathroom r
   "name": "Tillerstead LLC",
   "description": "{{ page.description }}",
   "url": "https://tillerstead.com/",
-  "telephone": "{{ site.data.contact.phone }}",
+  "telephone": "{{ site.company.phone_link }}",
   "address": {
     "@type": "PostalAddress",
     "addressRegion": "NJ",
@@ -141,11 +141,11 @@ keywords: "tile contractor South Jersey, waterproofing contractor NJ, bathroom r
   },
   "areaServed": ["Atlantic County", "Ocean County", "Cape May County"],
   "priceRange": "$$",
-  "image": "https://tillerstead.com/assets/images/logo.png",
+  "image": "{{ site.logo | absolute_url }}",
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "5",
-    "reviewCount": "{{ site.data.testimonials.size | default: 10 }}"
+    "reviewCount": "{{ site.data.reviews.size | default: 10 }}"
   }
 }
 </script>

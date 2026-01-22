@@ -23,6 +23,7 @@ assets/css/legacy/
 assets/css/old/
 assets/css/experimental/
 _sass/99-archive/
+_backup-2026-01-20/
 
 # Ignore temporary and editor artifacts
 tmp.css

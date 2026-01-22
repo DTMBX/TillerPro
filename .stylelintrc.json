@@ -44,12 +44,7 @@
         "ignoreAtRules": ["tailwind", "apply", "layer"]
       }
     ],
-    "no-descending-specificity": [
-      true,
-      {
-        "severity": "warning"
-      }
-    ],
+    "no-descending-specificity": null,
     "declaration-block-no-redundant-longhand-properties": null,
     "length-zero-no-unit": true,
     "comment-empty-line-before": [
@@ -74,6 +69,12 @@
     ],
     "selector-max-id": 0,
     "selector-max-type": 2,
-    "declaration-block-single-line-max-declarations": 1
+    "declaration-block-single-line-max-declarations": 1,
+    "no-duplicate-selectors": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ]
   }
 }

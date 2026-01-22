@@ -18,9 +18,9 @@
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "{{ site.company.address_line }}",
-    "addressLocality": "{{ site.company.address_locality }}",
+    "addressLocality": "{{ site.company.address_city }}",
     "addressRegion": "{{ site.company.address_region }}",
-    "postalCode": "08205",
+    "postalCode": "{{ site.company.address_postal_code }}",
     "addressCountry": "US"
   },
   "geo": {

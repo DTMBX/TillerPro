@@ -62,10 +62,10 @@ const keyframeFixes = [
 keyframeFixes.forEach(({ file, replacements }) => {
   const filePath = path.join(ROOT, file);
   if (!fs.existsSync(filePath)) return;
-  
+
   let content = fs.readFileSync(filePath, 'utf8');
   let fixCount = 0;
-  
+
   replacements.forEach(({ search, replace }) => {
     const matches = (content.match(search) || []).length;
     if (matches > 0) {
@@ -73,7 +73,7 @@ keyframeFixes.forEach(({ file, replacements }) => {
       fixCount += matches;
     }
   });
-  
+
   if (fixCount > 0) {
     fs.writeFileSync(filePath, content, 'utf8');
     console.log(`✅ ${file}: Fixed ${fixCount} keyframe naming issues`);
@@ -84,9 +84,9 @@ keyframeFixes.forEach(({ file, replacements }) => {
 console.log('\n🔧 Step 3: Running Stylelint auto-fix...\n');
 
 try {
-  execSync('npm run lint:css:fix', { 
-    cwd: ROOT, 
-    stdio: 'inherit' 
+  execSync('npm run lint:css:fix', {
+    cwd: ROOT,
+    stdio: 'inherit'
   });
   console.log('\n✅ Stylelint auto-fix complete');
 } catch (error) {
