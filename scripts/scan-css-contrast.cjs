@@ -10,7 +10,7 @@
  * Usage: node scripts/scan-css-contrast.js
  */
 
-const { readFileSync, readdirSync, writeFileSync } = require("fs");
+const { existsSync, readFileSync, readdirSync, writeFileSync } = require("fs");
 const { join, extname } = require("path");
 
 const ISSUES = [];
@@ -172,6 +172,17 @@ function scanFile(filePath) {
 }
 
 function scanDirectory(dir, pattern = /\.scss$/) {
+  if (!existsSync(dir)) {
+    WARNINGS.push({
+      file: dir,
+      line: 0,
+      type: "Missing Directory",
+      code: "",
+      note: `Directory not found; skipped scanning: ${dir}`,
+    });
+    return;
+  }
+
   const entries = readdirSync(dir, { withFileTypes: true });
 
   entries.forEach((entry) => {

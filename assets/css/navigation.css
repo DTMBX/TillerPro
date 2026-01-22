@@ -281,7 +281,7 @@
   text-decoration: none !important;
   border: none;
   /* Header nav "white" buttons → emerald glowing text */
-  color: var(--tiller-color-emerald, #10b981) !important;
+  color: var(--tiller-color-emerald-accessible, #008f5d) !important;
   text-shadow:
     0 0 8px rgb(16 185 129 / 55%),
     0 0 18px rgb(16 185 129 / 35%),
@@ -296,7 +296,7 @@
 
 .desktop-nav__link:hover {
   background: rgb(16 185 129 / 10%);
-  color: var(--tiller-color-emerald-light, #34d399) !important;
+  color: var(--tiller-color-emerald-accessible, #008f5d) !important;
   text-shadow:
     0 0 10px rgb(16 185 129 / 65%),
     0 0 22px rgb(16 185 129 / 40%),
@@ -307,14 +307,14 @@
   outline: 2px solid var(--tiller-color-gold, #c9a227);
   outline-offset: 2px;
   background: rgb(16 185 129 / 10%);
-  color: var(--tiller-color-emerald-light, #34d399) !important;
+  color: var(--tiller-color-emerald-accessible, #008f5d) !important;
   text-shadow:
     0 0 10px rgb(16 185 129 / 70%),
     0 0 24px rgb(16 185 129 / 45%);
 }
 
 .desktop-nav__link[aria-current="page"] {
-  color: var(--tiller-color-emerald, #10b981) !important;
+  color: var(--tiller-color-emerald-accessible, #008f5d) !important;
   font-weight: 600;
   background: rgb(16 185 129 / 12%);
   text-shadow: 0 0 15px rgb(16 185 129 / 40%);
@@ -978,8 +978,10 @@ body.nav-open .mobile-nav__toggle {
 }
 
 .mobile-nav__accordion-item a:focus-visible {
-  outline: none;
+  outline: 2px solid var(--tiller-color-gold, #c9a227);
+  outline-offset: 2px;
   background: rgb(16 185 129 / 12%);
+  border-radius: 10px;
 }
 
 /* ===== Mobile CTA Button - PREMIUM ===== */
