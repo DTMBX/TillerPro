@@ -1,6 +1,6 @@
 <!-- Jekyll include: no DOCTYPE needed, ensure space indentation -->
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
 
 <title>{% if page.title %}{{ page.title | strip | escape }} | {% endif %}{{ site.title | strip | escape }}</title>
 
@@ -26,6 +26,8 @@
 <!-- Core & Utility CSS: Load variables first, then base, then layout, then components, then page/utilities -->
 <link rel="stylesheet" href="{{ '/assets/css/root-vars.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/mobile-optimizations.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/mobile-premium.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/nav-drawer.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/navigation.css' | relative_url }}">
 {% if page.layout == 'build-page' %}
