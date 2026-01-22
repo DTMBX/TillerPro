@@ -1,7 +1,7 @@
 # Page snapshot
 
 ```yaml
-- generic [active] [ref=e1]:
+- generic [ref=e1]:
   - navigation "Skip navigation" [ref=e2]:
     - link "Skip to main content" [ref=e3] [cursor=pointer]:
       - /url: "#main-content"
@@ -10,153 +10,674 @@
   - banner "Main Header" [ref=e5]:
     - generic [ref=e6]:
       - generic [ref=e7]:
-        - link "Tough Haul Trash & Junk - Go to homepage" [ref=e8] [cursor=pointer]:
+        - link "Tillerstead LLC - Go to homepage" [ref=e8] [cursor=pointer]:
           - /url: /
-          - img "Tough Haul Trash & Junk" [ref=e10]
-        - generic [ref=e12]: Tough Haul Trash & Junk LLC
-      - navigation "Primary Navigation" [ref=e13]:
-        - menubar [ref=e14]:
-          - button "Services" [ref=e15] [cursor=pointer]:
-            - text: Services
+          - img "Tillerstead Logo" [ref=e9]
+        - generic [ref=e11]: Tillerstead LLC
+      - navigation "Primary Navigation" [ref=e12]:
+        - menubar [ref=e13]:
+          - menuitem "Services" [ref=e14] [cursor=pointer]
+          - menuitem "Our Work" [ref=e15] [cursor=pointer]
+          - button "Guides" [ref=e16] [cursor=pointer]:
+            - text: Guides
             - img
-          - menuitem "Our Work" [ref=e16] [cursor=pointer]
-          - menuitem "How It Works" [ref=e17] [cursor=pointer]
-          - menuitem "Pricing" [ref=e18] [cursor=pointer]
-          - button "Resources" [ref=e19] [cursor=pointer]:
-            - text: Resources
-            - img
-          - button "About WebDevPro" [ref=e20] [cursor=pointer]:
+          - menuitem "Blog" [ref=e17] [cursor=pointer]
+          - menuitem "Reviews" [ref=e18] [cursor=pointer]
+          - menuitem "Tools" [ref=e19] [cursor=pointer]
+          - button "About Tillerstead" [ref=e20] [cursor=pointer]:
             - text: About
             - img
-          - menuitem "Get Started" [ref=e21] [cursor=pointer]
+          - menuitem "Get Estimate" [ref=e21] [cursor=pointer]
   - main "Main content" [ref=e22]:
-    - generic [ref=e25]:
-      - text: Custom Business Tools
-      - heading "Interactive Tools That Generate Leads" [level=1] [ref=e26]:
-        - text: Interactive Tools
-        - text: That Generate Leads
-      - paragraph [ref=e27]: Add value for your customers and capture leads with custom calculators, estimators, and interactive tools. Every tool is built on a proven framework that's easy to customize for your specific industry.
-    - generic [ref=e29]:
-      - heading "What We Can Build" [level=2] [ref=e30]
-      - generic [ref=e31]:
-        - generic [ref=e32]:
-          - text: 🧮
-          - heading "Quote Calculators" [level=3] [ref=e33]
-          - paragraph [ref=e34]: Let customers estimate project costs based on their specifications. Capture leads while providing immediate value.
-          - list [ref=e35]:
-            - listitem [ref=e36]: Custom pricing formulas
-            - listitem [ref=e37]: Multiple service options
-            - listitem [ref=e38]: PDF quote generation
-            - listitem [ref=e39]: Lead capture integration
+    - generic [ref=e23]:
+      - strong [ref=e24]: 🚀 New TillerPro App Available!
+      - link "Switch to the new app →" [ref=e25] [cursor=pointer]:
+        - /url: /tools/
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - img "Tillerstead" [ref=e30]
+        - generic [ref=e31]:
+          - generic [ref=e32]: TillerPro
+          - generic [ref=e33]: TOOLS
+      - heading "Tile Project Calculators" [level=1] [ref=e34]
+      - paragraph [ref=e35]: Professional-grade calculators for tile quantities, mortar coverage, grout needs, and leveling compound. Built by a licensed NJ contractor using TCNA specifications.
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - img [ref=e38]
+          - text: TCNA 2024
         - generic [ref=e40]:
-          - text: 📊
-          - heading "Service Estimators" [level=3] [ref=e41]
-          - paragraph [ref=e42]: Help customers understand scope and pricing for common services. Build trust through transparency.
-          - list [ref=e43]:
-            - listitem [ref=e44]: Service-specific calculations
-            - listitem [ref=e45]: Area/volume inputs
-            - listitem [ref=e46]: Material quantity estimates
-            - listitem [ref=e47]: Labor time calculations
-        - generic [ref=e48]:
-          - text: 📋
-          - heading "Project Planners" [level=3] [ref=e49]
-          - paragraph [ref=e50]: Guide customers through project planning with interactive checklists and requirement gathering.
-          - list [ref=e51]:
-            - listitem [ref=e52]: Step-by-step workflows
-            - listitem [ref=e53]: Requirement checklists
-            - listitem [ref=e54]: Timeline estimations
-            - listitem [ref=e55]: Summary document generation
-        - generic [ref=e56]:
-          - text: 📍
-          - heading "Service Area Tools" [level=3] [ref=e57]
-          - paragraph [ref=e58]: Let customers check if they're in your service area and what services are available at their location.
-          - list [ref=e59]:
-            - listitem [ref=e60]: Zip code lookup
-            - listitem [ref=e61]: Service availability check
-            - listitem [ref=e62]: Travel/delivery calculations
-            - listitem [ref=e63]: Location-based pricing
-    - generic [ref=e65]:
-      - heading "Industry-Specific Examples" [level=2] [ref=e66]
-      - paragraph [ref=e67]: Here are examples of tools we've built for different industries. Your tools will be customized to match your exact services and pricing.
-      - generic [ref=e68]:
-        - generic [ref=e69]:
-          - heading "🔧 Plumbing" [level=3] [ref=e70]
-          - list [ref=e71]:
-            - listitem [ref=e72]: Water heater sizing calculator
-            - listitem [ref=e73]: Pipe repair cost estimator
-            - listitem [ref=e74]: Emergency service scheduler
-        - generic [ref=e75]:
-          - heading "⚡ Electrical" [level=3] [ref=e76]
-          - list [ref=e77]:
-            - listitem [ref=e78]: Panel upgrade estimator
-            - listitem [ref=e79]: Outlet installation calculator
-            - listitem [ref=e80]: EV charger sizing tool
-        - generic [ref=e81]:
-          - heading "❄️ HVAC" [level=3] [ref=e82]
-          - list [ref=e83]:
-            - listitem [ref=e84]: AC sizing calculator
-            - listitem [ref=e85]: Energy savings estimator
-            - listitem [ref=e86]: Maintenance plan selector
-        - generic [ref=e87]:
-          - heading "🚛 Hauling" [level=3] [ref=e88]
-          - list [ref=e89]:
-            - listitem [ref=e90]: Volume/load calculator
-            - listitem [ref=e91]: Junk removal estimator
-            - listitem [ref=e92]: Dumpster size selector
-        - generic [ref=e93]:
-          - heading "🏗️ Contractors" [level=3] [ref=e94]
-          - list [ref=e95]:
-            - listitem [ref=e96]: Square footage calculator
-            - listitem [ref=e97]: Material estimator
-            - listitem [ref=e98]: Project cost planner
-        - generic [ref=e99]:
-          - heading "🌿 Landscaping" [level=3] [ref=e100]
-          - list [ref=e101]:
-            - listitem [ref=e102]: Lawn area calculator
-            - listitem [ref=e103]: Mulch/soil estimator
-            - listitem [ref=e104]: Maintenance plan builder
-    - generic [ref=e107]:
-      - heading "Get Custom Tools for Your Business" [level=2] [ref=e108]
-      - paragraph [ref=e109]: Let's discuss what tools would add the most value for your customers and generate the most leads for your business.
-      - generic [ref=e110]:
-        - link "Discuss Your Tool Ideas" [ref=e111] [cursor=pointer]:
+          - img [ref=e41]
+          - text: ANSI A108/A118
+        - generic [ref=e43]:
+          - img [ref=e44]
+          - text: "NJ HIC #13VH10808800"
+    - generic [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]: 🧮
+        - generic [ref=e51]: TCNA-Based Calculations
+      - generic [ref=e52]:
+        - generic [ref=e53]: 📋
+        - generic [ref=e54]: Material Specs Included
+      - generic [ref=e55]:
+        - generic [ref=e56]: 💾
+        - generic [ref=e57]: Export Project Data
+      - generic [ref=e58]:
+        - generic [ref=e59]: 🔒
+        - generic [ref=e60]: No Account Required
+    - main [ref=e61]:
+      - navigation "Tools navigation" [ref=e62]:
+        - list [ref=e64]:
+          - listitem [ref=e65]:
+            - link "Estimate Builder" [ref=e66] [cursor=pointer]:
+              - /url: "#estimate-builder"
+          - listitem [ref=e67]:
+            - link "Tile" [ref=e68] [cursor=pointer]:
+              - /url: "#tile-calc-card"
+          - listitem [ref=e69]:
+            - link "Mortar" [ref=e70] [cursor=pointer]:
+              - /url: "#mortar-calc-card"
+          - listitem [ref=e71]:
+            - link "Grout" [ref=e72] [cursor=pointer]:
+              - /url: "#grout-calc-card"
+          - listitem [ref=e73]:
+            - link "Leveling" [ref=e74] [cursor=pointer]:
+              - /url: "#leveling-calc-card"
+          - listitem [ref=e75]:
+            - link "Slope" [ref=e76] [cursor=pointer]:
+              - /url: "#slope-calc-card"
+          - listitem [ref=e77]:
+            - link "Waterproof" [ref=e78] [cursor=pointer]:
+              - /url: "#waterproof-calc-card"
+          - listitem [ref=e79]:
+            - link "Labor" [ref=e80] [cursor=pointer]:
+              - /url: "#labor-calc-card"
+          - listitem [ref=e81]:
+            - link "Guides" [ref=e82] [cursor=pointer]:
+              - /url: "#guides-tips"
+      - region "Estimate Spec Builder" [ref=e83]:
+        - generic [ref=e84]:
+          - generic [ref=e85]:
+            - heading "Estimate Spec Builder" [level=2] [ref=e86]
+            - paragraph [ref=e87]: Build a detailed project specification with measurements, materials, and a copy-ready scope summary.
+          - generic [ref=e88]:
+            - group "Project Information" [ref=e89]:
+              - generic [ref=e90]: Project Information
+              - generic [ref=e91]:
+                - generic [ref=e92]:
+                  - generic [ref=e93] [cursor=pointer]: Project Name * *
+                  - textbox "Project Name *" [ref=e94]:
+                    - /placeholder: e.g., Master Bath Remodel
+                    - text: "*"
+                - generic [ref=e95]:
+                  - generic [ref=e96] [cursor=pointer]: Client Name (optional)
+                  - textbox "Client Name (optional)" [ref=e97]:
+                    - /placeholder: Homeowner name
+              - generic [ref=e98]:
+                - generic [ref=e99]:
+                  - generic [ref=e100] [cursor=pointer]: Address (optional)
+                  - textbox "Address (optional)" [ref=e101]:
+                    - /placeholder: Project location
+                - generic [ref=e102]:
+                  - generic [ref=e103] [cursor=pointer]: County / City (optional)
+                  - textbox "County / City (optional)" [ref=e104]:
+                    - /placeholder: e.g., Atlantic County, NJ
+              - generic [ref=e105]:
+                - generic [ref=e106]:
+                  - generic [ref=e107] [cursor=pointer]: Phone (optional)
+                  - textbox "Phone (optional)" [ref=e108]:
+                    - /placeholder: (555) 555-5555
+                - generic [ref=e109]:
+                  - generic [ref=e110] [cursor=pointer]: Email (optional)
+                  - textbox "Email (optional)" [ref=e111]:
+                    - /placeholder: client@example.com
+              - generic [ref=e112]:
+                - generic [ref=e113] [cursor=pointer]: Project Notes (optional)
+                - textbox "Project Notes (optional)" [ref=e114]:
+                  - /placeholder: Special considerations, access notes, timeline requirements...
+            - generic [ref=e115]:
+              - generic [ref=e116]:
+                - heading "Rooms & Surfaces" [level=3] [ref=e117]
+                - button "Add Room" [ref=e118] [cursor=pointer]:
+                  - img
+                  - text: Add Room
+              - generic [ref=e120]:
+                - generic [ref=e121]:
+                  - generic [ref=e122]:
+                    - generic [ref=e123] [cursor=pointer]: Room Name *
+                    - textbox "Room name (e.g., Master Bath)" [ref=e124]: "*"
+                  - button "Remove room" [ref=e125] [cursor=pointer]:
+                    - img
+                - generic [ref=e126]:
+                  - generic [ref=e127]:
+                    - generic [ref=e128]:
+                      - generic [ref=e129] [cursor=pointer]: Length
+                      - generic [ref=e130]:
+                        - spinbutton [ref=e131]
+                        - generic [ref=e132]: "'"
+                        - spinbutton [ref=e133]
+                        - generic [ref=e134]: "\""
+                    - generic [ref=e135]:
+                      - generic [ref=e136] [cursor=pointer]: Width
+                      - generic [ref=e137]:
+                        - spinbutton [ref=e138]
+                        - generic [ref=e139]: "'"
+                        - spinbutton [ref=e140]
+                        - generic [ref=e141]: "\""
+                    - generic [ref=e142]:
+                      - generic [ref=e143] [cursor=pointer]: Ceiling Height (opt.)
+                      - generic [ref=e144]:
+                        - spinbutton [ref=e145]
+                        - generic [ref=e146]: "'"
+                        - spinbutton [ref=e147]
+                        - generic [ref=e148]: "\""
+                  - group "Surfaces to Tile" [ref=e149]:
+                    - generic [ref=e150]: Surfaces to Tile
+                    - generic [ref=e151]:
+                      - generic [ref=e152] [cursor=pointer]:
+                        - checkbox "Floor" [ref=e153]
+                        - generic [ref=e154]:
+                          - img
+                          - text: Floor
+                      - generic [ref=e155] [cursor=pointer]:
+                        - checkbox "Full Walls" [ref=e156]
+                        - generic [ref=e157]:
+                          - img
+                          - text: Full Walls
+                      - generic [ref=e158] [cursor=pointer]:
+                        - checkbox "Shower Walls" [ref=e159]
+                        - generic [ref=e160]:
+                          - img
+                          - text: Shower Walls
+                      - generic [ref=e161] [cursor=pointer]:
+                        - checkbox "Tub Surround" [ref=e162]
+                        - generic [ref=e163]:
+                          - img
+                          - text: Tub Surround
+                      - generic [ref=e164] [cursor=pointer]:
+                        - checkbox "Backsplash" [ref=e165]
+                        - generic [ref=e166]:
+                          - img
+                          - text: Backsplash
+                  - generic [ref=e167]:
+                    - generic [ref=e168]: "Calculated Floor Area:"
+                    - generic [ref=e169]: 0.0 sq ft
+                  - generic [ref=e171] [cursor=pointer]:
+                    - checkbox "Lock measurements (confirmed)" [ref=e172]
+                    - generic [ref=e173]: Lock measurements (confirmed)
+            - group "Tile & Layout Defaults" [ref=e174]:
+              - generic [ref=e175]: Tile & Layout Defaults
+              - paragraph [ref=e176]: These defaults apply to all surfaces unless overridden per-surface.
+              - generic [ref=e177]:
+                - generic [ref=e178]:
+                  - generic [ref=e179] [cursor=pointer]: Tile Size
+                  - combobox "Tile Size" [ref=e180] [cursor=pointer]:
+                    - option "Select tile size..." [selected]
+                    - option "1×1 Mosaic (12×12 sheet)"
+                    - option "2×2 Mosaic (12×12 sheet)"
+                    - option "3×6 Subway"
+                    - option "4×4"
+                    - option "4×12"
+                    - option "6×6"
+                    - option "6×24 Plank"
+                    - option "8×48 Plank"
+                    - option "12×12"
+                    - option "12×24"
+                    - option "12×48 Plank"
+                    - option "24×24"
+                    - option "24×48"
+                    - option "Custom Size"
+                - generic [ref=e181]:
+                  - generic [ref=e182] [cursor=pointer]: Custom Size (inches)
+                  - generic [ref=e183]:
+                    - spinbutton [ref=e184]
+                    - generic [ref=e185]: ×
+                    - spinbutton [ref=e186]
+                - generic [ref=e187]:
+                  - generic [ref=e188] [cursor=pointer]: Tile Thickness
+                  - combobox "Tile Thickness" [ref=e189] [cursor=pointer]:
+                    - option "6mm (1/4\")"
+                    - option "8mm (5/16\") — typical" [selected]
+                    - option "10mm (3/8\")"
+                    - option "12mm (1/2\")"
+              - generic [ref=e190]:
+                - generic [ref=e191]:
+                  - generic [ref=e192] [cursor=pointer]: Layout / Pattern
+                  - combobox "Layout / Pattern" [ref=e193] [cursor=pointer]:
+                    - option "Select layout..." [selected]
+                    - option "Straight / Stacked (10% waste)"
+                    - option "1/3 Offset (Recommended for LFT) (12% waste)"
+                    - option "50% Offset (Brick) (15% waste)"
+                    - option "Running Bond (12% waste)"
+                    - option "Diagonal (15–20% waste)"
+                    - option "Herringbone (20–30% waste)"
+                    - option "Mosaic Sheet (10–15% waste)"
+                - generic [ref=e194]:
+                  - generic [ref=e195] [cursor=pointer]: Waste Factor
+                  - generic [ref=e196]:
+                    - spinbutton "Waste Factor" [ref=e197]: "12"
+                    - generic [ref=e198]: "%"
+                  - generic [ref=e199]: Auto-suggested based on layout
+                - generic [ref=e200]:
+                  - generic [ref=e201] [cursor=pointer]: Grout Joint Width
+                  - combobox "Grout Joint Width" [ref=e202] [cursor=pointer]:
+                    - option "Select joint size..." [selected]
+                    - option "1/16\" (minimum)"
+                    - option "1/8\" (rectified)"
+                    - option "3/16\" (calibrated)"
+                    - option "1/4\" (rustic/handmade)"
+                    - option "Custom"
+              - generic [ref=e204] [cursor=pointer]:
+                - checkbox "Add extra attic stock (+5% or 1 box minimum)" [ref=e205]
+                - generic [ref=e206]: Add extra attic stock (+5% or 1 box minimum)
+              - alert [ref=e207]:
+                - img
+              - generic [ref=e208]:
+                - strong [ref=e209]: "Recommendation:"
+                - text: 1/8" joint is a common starting point. Adjust based on tile variation and manufacturer guidance.
+            - group "System Selections" [ref=e210]:
+              - generic [ref=e211]: System Selections
+              - generic [ref=e212]:
+                - generic [ref=e213]:
+                  - generic [ref=e214] [cursor=pointer]: Underlayment
+                  - combobox "Underlayment" [ref=e215] [cursor=pointer]:
+                    - option "None / Existing acceptable" [selected]
+                    - option "Cement Board (CBU)"
+                    - option "Uncoupling Membrane"
+                    - option "Mud Bed"
+                    - option "Self-Leveling Compound"
+                - generic [ref=e216]:
+                  - generic [ref=e217] [cursor=pointer]: Waterproofing
+                  - combobox "Waterproofing" [ref=e218] [cursor=pointer]:
+                    - option "None (dry area)" [selected]
+                    - option "Liquid-Applied Membrane"
+                    - option "Sheet Membrane"
+              - generic [ref=e219]:
+                - generic [ref=e220]:
+                  - generic [ref=e221] [cursor=pointer]: Edge Trim / Profile
+                  - combobox "Edge Trim / Profile" [ref=e222] [cursor=pointer]:
+                    - option "None" [selected]
+                    - option "Metal Profile (Schluter-style)"
+                    - option "Stone Threshold"
+                    - option "Bullnose Tile"
+                - generic [ref=e223]:
+                  - generic [ref=e224] [cursor=pointer]:
+                    - checkbox "Movement joints required (perimeter & field)" [ref=e225]
+                    - generic [ref=e226]: Movement joints required (perimeter & field)
+                  - generic [ref=e227]: Required per industry standards for most installations
+              - generic [ref=e228]:
+                - heading "Demo Scope" [level=4] [ref=e229]
+                - generic [ref=e230]:
+                  - generic [ref=e231] [cursor=pointer]:
+                    - checkbox "Remove existing tile" [ref=e232]
+                    - generic [ref=e233]: Remove existing tile
+                  - generic [ref=e234] [cursor=pointer]:
+                    - checkbox "Remove existing underlayment" [ref=e235]
+                    - generic [ref=e236]: Remove existing underlayment
+                  - generic [ref=e237] [cursor=pointer]:
+                    - checkbox "Subfloor repair may be needed" [ref=e238]
+                    - generic [ref=e239]: Subfloor repair may be needed
+                  - generic [ref=e240] [cursor=pointer]:
+                    - checkbox "Disposal / haul-away required" [ref=e241]
+                    - generic [ref=e242]: Disposal / haul-away required
+            - generic [ref=e243]:
+              - heading "Area Summary" [level=3] [ref=e244]
+              - paragraph [ref=e246]: Select surfaces in rooms to see area calculations.
+              - generic [ref=e247]:
+                - strong [ref=e248]: "Total Project Area:"
+                - generic [ref=e249]: "0.0"
+                - text: sq ft
+            - generic [ref=e250]:
+              - button "Generate Scope Summary" [ref=e251] [cursor=pointer]:
+                - img
+                - text: Generate Scope Summary
+              - button "Save Project" [ref=e252] [cursor=pointer]
+              - button "Reset All" [ref=e253] [cursor=pointer]
+      - generic [ref=e255]:
+        - generic [ref=e256]:
+          - generic [ref=e257]:
+            - heading "Project Calculators" [level=2] [ref=e258]
+            - generic [ref=e259]:
+              - img [ref=e260]
+              - generic [ref=e262]: Auto-Calculate
+          - generic [ref=e263]:
+            - button "Expand all calculators" [ref=e264] [cursor=pointer]:
+              - img [ref=e265]
+              - text: Expand All
+            - button "Collapse all calculators" [ref=e267] [cursor=pointer]:
+              - img [ref=e268]
+              - text: Collapse All
+        - generic [ref=e270]:
+          - heading "📦 Material Calculators" [level=3] [ref=e273]
+          - article [ref=e275]:
+            - button "🧱 Tile Quantity Tiles & boxes needed" [expanded] [ref=e276] [cursor=pointer]:
+              - generic [ref=e277]: 🧱
+              - generic [ref=e278]:
+                - heading "Tile Quantity" [level=3] [ref=e279]
+                - paragraph [ref=e280]: Tiles & boxes needed
+              - img [ref=e282]
+            - region "Tile Quantity Calculator" [ref=e285]:
+              - generic [ref=e286]:
+                - generic [ref=e287]:
+                  - heading "Tile Quantity Calculator" [level=2] [ref=e288]
+                  - paragraph [ref=e289]: Calculate how many tiles and boxes you need for your project.
+                - generic [ref=e290]:
+                  - generic [ref=e291]:
+                    - generic [ref=e292]:
+                      - generic [ref=e293] [cursor=pointer]: Total Area *
+                      - generic [ref=e294]:
+                        - spinbutton "Total Area *" [ref=e295]
+                        - generic [ref=e296]: sq ft
+                    - generic [ref=e297]:
+                      - generic [ref=e298] [cursor=pointer]: Tile Size
+                      - combobox "Tile Size" [ref=e299] [cursor=pointer]:
+                        - option "Select tile size..." [selected]
+                        - option "1×1 Mosaic (12×12 sheet)"
+                        - option "2×2 Mosaic (12×12 sheet)"
+                        - option "3×6 Subway"
+                        - option "4×4"
+                        - option "4×12"
+                        - option "6×6"
+                        - option "6×24 Plank"
+                        - option "8×48 Plank"
+                        - option "12×12"
+                        - option "12×24"
+                        - option "12×48 Plank"
+                        - option "24×24"
+                        - option "24×48"
+                        - option "Custom Size"
+                    - generic [ref=e300]:
+                      - generic [ref=e301] [cursor=pointer]: Custom Size (inches)
+                      - generic [ref=e302]:
+                        - spinbutton [ref=e303]
+                        - generic [ref=e304]: ×
+                        - spinbutton [ref=e305]
+                  - generic [ref=e306]:
+                    - generic [ref=e307]:
+                      - generic [ref=e308] [cursor=pointer]: Layout / Pattern
+                      - combobox "Layout / Pattern" [ref=e309] [cursor=pointer]:
+                        - option "Select layout..." [selected]
+                        - option "Straight / Stacked (10% waste)"
+                        - option "1/3 Offset (Recommended for LFT) (12% waste)"
+                        - option "50% Offset (Brick) (15% waste)"
+                        - option "Running Bond (12% waste)"
+                        - option "Diagonal (15–20% waste)"
+                        - option "Herringbone (20–30% waste)"
+                        - option "Mosaic Sheet (10–15% waste)"
+                    - generic [ref=e310]:
+                      - generic [ref=e311] [cursor=pointer]: Waste Factor
+                      - generic [ref=e312]:
+                        - spinbutton "Waste Factor" [ref=e313]: "12"
+                        - generic [ref=e314]: "%"
+                    - generic [ref=e315]:
+                      - generic [ref=e316] [cursor=pointer]: Box Info
+                      - combobox "Box Info" [ref=e317] [cursor=pointer]:
+                        - option "Tiles per box" [selected]
+                        - option "Sq ft per box"
+                  - generic [ref=e318]:
+                    - generic [ref=e319]:
+                      - generic [ref=e320] [cursor=pointer]: Tiles per Box
+                      - spinbutton "Tiles per Box" [ref=e321]
+                    - generic [ref=e322]:
+                      - generic [ref=e323] [cursor=pointer]: Sq Ft per Box
+                      - spinbutton "Sq Ft per Box" [ref=e324]
+                    - generic [ref=e326] [cursor=pointer]:
+                      - checkbox "Add attic stock (+5% or 1 box)" [ref=e327]
+                      - generic [ref=e328]: Add attic stock (+5% or 1 box)
+                  - button "Calculate" [ref=e329] [cursor=pointer]
+          - article [ref=e330]:
+            - button "Mortar Coverage Thin-set requirements" [ref=e331] [cursor=pointer]:
+              - generic [ref=e332]:
+                - img
+              - generic [ref=e333]:
+                - heading "Mortar Coverage" [level=3] [ref=e334]
+                - paragraph [ref=e335]: Thin-set requirements
+              - img [ref=e337]
+            - generic [ref=e339]:
+              - generic [ref=e340]: "Result:"
+              - generic [ref=e341]: Enter values to calculate
+            - text: "*"
+          - article [ref=e342]:
+            - button "Grout Calculation Bags & coverage" [ref=e343] [cursor=pointer]:
+              - generic [ref=e344]:
+                - img
+              - generic [ref=e345]:
+                - heading "Grout Calculation" [level=3] [ref=e346]
+                - paragraph [ref=e347]: Bags & coverage
+              - img [ref=e349]
+            - generic [ref=e351]:
+              - generic [ref=e352]: "Result:"
+              - generic [ref=e353]: Enter values to calculate
+            - text: "*"
+          - article [ref=e354]:
+            - button "📏 Self-Leveling Compound amounts" [ref=e355] [cursor=pointer]:
+              - generic [ref=e356]: 📏
+              - generic [ref=e357]:
+                - heading "Self-Leveling" [level=3] [ref=e358]
+                - paragraph [ref=e359]: Compound amounts
+              - img [ref=e361]
+            - generic [ref=e363]:
+              - generic [ref=e364]: "Result:"
+              - generic [ref=e365]: Enter values to calculate
+            - text: "* *"
+          - heading "🔧 Construction Calculators" [level=3] [ref=e368]
+          - article [ref=e370]:
+            - button "📐 Shower Slope Pre-slope calculations" [ref=e371] [cursor=pointer]:
+              - generic [ref=e372]: 📐
+              - generic [ref=e373]:
+                - heading "Shower Slope" [level=3] [ref=e374]
+                - paragraph [ref=e375]: Pre-slope calculations
+              - img [ref=e377]
+            - generic [ref=e379]:
+              - generic [ref=e380]: "Result:"
+              - generic [ref=e381]: Enter values to calculate
+            - text: "*"
+          - article [ref=e382]:
+            - button "💧 Waterproofing TCNA Membrane & accessories" [ref=e383] [cursor=pointer]:
+              - generic [ref=e384]: 💧
+              - generic [ref=e385]:
+                - heading "Waterproofing TCNA" [level=3] [ref=e386]:
+                  - text: Waterproofing
+                  - generic [ref=e387]: TCNA
+                - paragraph [ref=e388]: Membrane & accessories
+              - img [ref=e390]
+            - generic [ref=e392]:
+              - generic [ref=e393]: "Result:"
+              - generic [ref=e394]: Enter values to calculate
+            - text: "* * ✓ ✓"
+          - article [ref=e395]:
+            - button "⏱️ Labor Estimate Time & scheduling" [ref=e396] [cursor=pointer]:
+              - generic [ref=e397]: ⏱️
+              - generic [ref=e398]:
+                - heading "Labor Estimate" [level=3] [ref=e399]
+                - paragraph [ref=e400]: Time & scheduling
+              - img [ref=e402]
+            - generic [ref=e404]:
+              - generic [ref=e405]: "Result:"
+              - generic [ref=e406]: Enter values to calculate
+            - text: "* *"
+      - region "Guides & Tips" [ref=e407]:
+        - generic [ref=e408]:
+          - generic [ref=e409]:
+            - heading "Guides & Tips" [level=2] [ref=e410]
+            - paragraph [ref=e411]: Quick reference for planning your tile project.
+          - generic [ref=e412]:
+            - group [ref=e413]:
+              - generic "Measuring Tips" [ref=e414] [cursor=pointer]:
+                - img
+                - text: Measuring Tips
+            - group [ref=e415]:
+              - generic "Layout & Pattern Selection" [ref=e416] [cursor=pointer]:
+                - img
+                - text: Layout & Pattern Selection
+            - group [ref=e417]:
+              - generic "Mortar Coverage Check" [ref=e418] [cursor=pointer]:
+                - img
+                - text: Mortar Coverage Check
+            - group [ref=e419]:
+              - generic "Movement Joints" [ref=e420] [cursor=pointer]:
+                - img
+                - text: Movement Joints
+            - group [ref=e421]:
+              - generic "Understanding Waste Factors" [ref=e422] [cursor=pointer]:
+                - img
+                - text: Understanding Waste Factors
+            - group [ref=e423]:
+              - generic "Substrate Preparation" [ref=e424] [cursor=pointer]:
+                - img
+                - text: Substrate Preparation
+      - region "Generate Project Packet" [ref=e425]:
+        - generic [ref=e426]:
+          - generic [ref=e427]:
+            - heading "Generate Project Packet" [level=2] [ref=e428]
+            - paragraph [ref=e429]: Create a copy-ready scope summary and material estimates.
+          - generic [ref=e430]:
+            - group "Include in output" [ref=e431]:
+              - generic [ref=e432]: Include in output
+              - generic [ref=e433]:
+                - generic [ref=e434] [cursor=pointer]:
+                  - checkbox "Scope summary" [checked] [ref=e435]: ✓
+                  - generic [ref=e436]: Scope summary
+                - generic [ref=e437] [cursor=pointer]:
+                  - checkbox "Measurements table" [checked] [ref=e438]: ✓
+                  - generic [ref=e439]: Measurements table
+                - generic [ref=e440] [cursor=pointer]:
+                  - checkbox "Tile quantities" [checked] [ref=e441]: ✓
+                  - generic [ref=e442]: Tile quantities
+                - generic [ref=e443] [cursor=pointer]:
+                  - checkbox "Mortar/grout estimates" [checked] [ref=e444]: ✓
+                  - generic [ref=e445]: Mortar/grout estimates
+                - generic [ref=e446] [cursor=pointer]:
+                  - checkbox "Assumptions & notes" [checked] [ref=e447]: ✓
+                  - generic [ref=e448]: Assumptions & notes
+                - generic [ref=e449] [cursor=pointer]:
+                  - checkbox "Disclaimers" [checked] [ref=e450]: ✓
+                  - generic [ref=e451]: Disclaimers
+                - generic [ref=e452] [cursor=pointer]:
+                  - checkbox "Measurement audit trail" [ref=e453]
+                  - generic [ref=e454]: Measurement audit trail
+            - button "Generate Output" [active] [ref=e456] [cursor=pointer]:
+              - img
+              - text: Generate Output
+    - generic [ref=e459]:
+      - heading "Need a Professional Estimate?" [level=2] [ref=e460]
+      - paragraph [ref=e461]: These calculators give you a starting point. For accurate pricing on your specific project, request a free on-site estimate from a licensed NJ contractor.
+      - generic [ref=e462]:
+        - link "Request Free Estimate" [ref=e463] [cursor=pointer]:
           - /url: /contact/
-        - link "Learn More" [ref=e112] [cursor=pointer]:
-          - /url: /services/#tools
-  - contentinfo "Site Footer" [ref=e113]:
-    - generic [ref=e114]:
-      - generic [ref=e115]:
-        - link "Tough Haul Trash & Junk Home" [ref=e116] [cursor=pointer]:
+        - link "View Services" [ref=e464] [cursor=pointer]:
+          - /url: /services/
+    - button "Back to top" [ref=e465] [cursor=pointer]
+  - contentinfo "Site Footer" [ref=e466]:
+    - generic [ref=e467]:
+      - generic [ref=e468]:
+        - link "Tillerstead Home" [ref=e469] [cursor=pointer]:
           - /url: /
-          - img "Tough Haul Trash & Junk" [ref=e117]
-        - paragraph [ref=e118]: Professional Junk Removal & Hauling Services
-      - navigation "Footer navigation"
-      - region "Contact" [ref=e119]:
-        - heading "Contact" [level=3] [ref=e120]
-        - generic [ref=e121]: ","
-        - paragraph [ref=e122]:
-          - link "Call us at (555) 123-4567" [ref=e123] [cursor=pointer]:
-            - /url: tel:+15551234567
-            - text: ☎ (555) 123-4567
-        - paragraph [ref=e124]:
-          - link "Email us at info@toughhauljunk.com" [ref=e125] [cursor=pointer]:
-            - /url: mailto:info@toughhauljunk.com
-            - text: ✉ info@toughhauljunk.com
-      - generic [ref=e126]:
-        - navigation "Social media links"
-        - navigation "Legal links" [ref=e127]:
-          - link "Privacy Policy" [ref=e128] [cursor=pointer]:
+          - img "Tillerstead LLC - Professional Tile and Stone Installation" [ref=e470]
+        - paragraph [ref=e471]: Expert Tile & Stone Installation — South Jersey
+      - navigation "Footer navigation" [ref=e472]:
+        - region "Service Areas" [ref=e473]:
+          - heading "Service Areas" [level=3] [ref=e474]
+          - list [ref=e475]:
+            - listitem [ref=e476]:
+              - link "Atlantic County" [ref=e477] [cursor=pointer]:
+                - /url: /atlantic-county-nj/
+            - listitem [ref=e478]:
+              - link "Ocean County" [ref=e479] [cursor=pointer]:
+                - /url: /ocean-county-nj/
+            - listitem [ref=e480]:
+              - link "Cape May County" [ref=e481] [cursor=pointer]:
+                - /url: /cape-may-county-nj/
+        - generic [ref=e482]:
+          - region "Learn" [ref=e483]:
+            - heading "Learn" [level=3] [ref=e484]
+            - list [ref=e485]:
+              - listitem [ref=e486]:
+                - link "FAQ" [ref=e487] [cursor=pointer]:
+                  - /url: /faq/
+              - listitem [ref=e488]:
+                - link "Products" [ref=e489] [cursor=pointer]:
+                  - /url: /products/
+              - listitem [ref=e490]:
+                - link "Blog" [ref=e491] [cursor=pointer]:
+                  - /url: /blog/
+          - region "Build Guides" [ref=e492]:
+            - heading "Build Guides" [level=3] [ref=e493]
+            - list [ref=e494]:
+              - listitem [ref=e495]:
+                - link "Codes & Permits" [ref=e496] [cursor=pointer]:
+                  - /url: /build/nj-codes-permits/
+              - listitem [ref=e497]:
+                - link "Shower Pans & Slopes" [ref=e498] [cursor=pointer]:
+                  - /url: /build/shower-pans-slopes-drains/
+              - listitem [ref=e499]:
+                - link "Waterproofing Systems" [ref=e500] [cursor=pointer]:
+                  - /url: /build/waterproofing-systems/
+              - listitem [ref=e501]:
+                - link "Curbless Showers" [ref=e502] [cursor=pointer]:
+                  - /url: /build/curbs-curbless/
+              - listitem [ref=e503]:
+                - link "Benches & Niches" [ref=e504] [cursor=pointer]:
+                  - /url: /build/framing-benches-niches/
+              - listitem [ref=e505]:
+                - link "Tile Standards (TCNA)" [ref=e506] [cursor=pointer]:
+                  - /url: /build/tile-installation-standards/
+              - listitem [ref=e507]:
+                - link "Flood Testing" [ref=e508] [cursor=pointer]:
+                  - /url: /build/flood-testing/
+              - listitem [ref=e509]:
+                - link "Common Build Failures" [ref=e510] [cursor=pointer]:
+                  - /url: /build/common-build-failures/
+          - region "Company" [ref=e511]:
+            - heading "Company" [level=3] [ref=e512]
+            - list [ref=e513]:
+              - listitem [ref=e514]:
+                - link "About" [ref=e515] [cursor=pointer]:
+                  - /url: /about/
+              - listitem [ref=e516]:
+                - link "For Contractors" [ref=e517] [cursor=pointer]:
+                  - /url: /for-general-contractors/
+              - listitem [ref=e518]:
+                - link "Contact" [ref=e519] [cursor=pointer]:
+                  - /url: /contact/
+      - region "Contact" [ref=e520]:
+        - heading "Contact" [level=3] [ref=e521]
+        - paragraph [ref=e522]: "NJ HIC #13VH10808800"
+        - generic [ref=e523]:
+          - text: 325 E. Jimmie Leeds Road, Suite 7-333
+          - text: Galloway, NJ 08205
+        - paragraph [ref=e524]:
+          - link "Call us at (609) 862-8808" [ref=e525] [cursor=pointer]:
+            - /url: tel:+16098628808
+            - text: ☎ (609) 862-8808
+        - paragraph [ref=e526]:
+          - link "Email us at info@tillerstead.com" [ref=e527] [cursor=pointer]:
+            - /url: mailto:info@tillerstead.com
+            - text: ✉ info@tillerstead.com
+      - generic [ref=e528]:
+        - navigation "Social media links" [ref=e529]:
+          - link "Visit Tillerstead on Facebook (opens in new window)" [ref=e530] [cursor=pointer]:
+            - /url: https://www.facebook.com/people/Tillerstead-LLC/61580414460056/
+            - img
+            - text: ↗
+          - link "View Tillerstead on Thumbtack (opens in new window)" [ref=e531] [cursor=pointer]:
+            - /url: https://www.thumbtack.com/nj/absecon/tile/tillerstead-llc/service/547437618353160199?utm_medium=web&utm_source=txt&surface=sp
+            - img
+        - generic "New Jersey Home Improvement Contractor License" [ref=e532]:
+          - img
+          - generic [ref=e533]: "NJ HIC #13VH10808800"
+        - navigation "Legal links" [ref=e534]:
+          - link "Privacy Policy" [ref=e535] [cursor=pointer]:
             - /url: /privacy/
           - generic: "|"
-          - link "Terms of Service" [ref=e129] [cursor=pointer]:
+          - link "Terms of Service" [ref=e536] [cursor=pointer]:
             - /url: /terms/
           - generic: "|"
-          - generic [ref=e130]: © 2026 Tough Haul Trash & Junk LLC. All rights reserved.
-  - region "Accessibility options" [ref=e131]:
-    - button "Open accessibility options" [ref=e132] [cursor=pointer]:
+          - generic [ref=e537]: © 2026 Tillerstead LLC. All rights reserved.
+  - region "Accessibility options" [ref=e538]:
+    - button "Open accessibility options" [ref=e539] [cursor=pointer]:
       - img
-      - generic [ref=e133]: Accessibility
-  - progressbar "Page scroll progress"
-  - status [ref=e134]
-  - alert [ref=e135]
+      - generic [ref=e540]: Accessibility
+  - progressbar "Page scroll progress" [ref=e541]
+  - status [ref=e542]
+  - alert [ref=e543]
 ```

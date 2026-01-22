@@ -30,7 +30,9 @@
   display: block;
   max-width: 280px;
   height: auto;
-  margin: 0 auto var(--tiller-spacing-sm, 0.5rem);
+  width: min(320px, 100%);
+  object-fit: contain;
+  margin: 0 auto var(--tiller-spacing-md, 1rem);
 
   /* CRITICAL: Remove all background/border effects that create the black box */
   background: transparent !important;
@@ -237,7 +239,7 @@
   height: 40px;
   background: var(--tiller-bg-slate, #2a2d2c);
   border-radius: 50%;
-  color: var(--tiller-text-secondary, #e5e7eb);
+  color: var(--tiller-text-primary, #ffffff);
   transition: all 0.2s ease;
 }
 
@@ -251,6 +253,7 @@
 .footer-social svg {
   width: 20px;
   height: 20px;
+  fill: currentcolor;
 }
 
 /* Ensure stroke icons (like thumbtack) are visible */

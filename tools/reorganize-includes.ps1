@@ -84,7 +84,7 @@ $reorganizationPlan = @{
         "process.html",
         "services.html",
         "testimonials.html",
-        "trust-bar.html",
+        "section-trust-bar.html",
         "ts-peace-of-mind.html",
         "ts-portfolio.html",
         "ts-process.html",

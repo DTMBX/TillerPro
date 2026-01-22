@@ -34,6 +34,20 @@ hero:
     - "Flood testing performed where required or method-appropriate (documented)"
     - "Photo documentation available for owner records and closeout"
 
+trust_bar:
+  aria_label: "Credentials and protections"
+  items:
+    - icon: "badge"
+      text: "New Jersey HIC #13VH10808800"
+    - icon: "check-circle"
+      text: "TCNA 2024 compliant assemblies"
+    - icon: "shield"
+      text: "Fully insured contractor"
+    - icon: "map"
+      text: "Atlantic, Ocean & Cape May Counties"
+    - icon: "document"
+      text: "Written scope, change orders, and warranties"
+
 services:
   eyebrow: "Built for Durability, Not Just Day-One Looks"
   title: "Tile & Waterproofing<br>Services That Hold Up"

@@ -6,6 +6,9 @@ dist/
 build/
 assets/css/main.css
 assets/css/*.min.css
+assets/css/root-vars.css
+assets/css/tools.css
+assets/css/tools-app.css
 
 # Ignore Jekyll SCSS sources with front matter
 assets/css/main.scss

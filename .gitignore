@@ -34,8 +34,13 @@ _archive/
 coverage/
 *.lcov
 
+# Playwright output (do not commit)
+playwright-report/
+test-results/
+
 # Backups / temp
 _backup/
+_backup-*/
 _tmp/
 .backups/
 **/.backups/

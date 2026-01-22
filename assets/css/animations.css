@@ -104,7 +104,7 @@
     -45deg,
     var(--tiller-color-emerald, #10b981),
     var(--tiller-color-gold, #c9a227),
-    var(--tiller-bg-darker, #121414),
+    var(--tiller-bg-darkest, #000000),
     var(--tiller-color-emerald, #10b981)
   );
   background-size: 400% 400%;

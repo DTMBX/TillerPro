@@ -1,115 +1,94 @@
-<!DOCTYPE html>
-<html lang="en" class="high-contrast" data-high-contrast="true">
+{%- capture post_body -%}
+<main class="ts-section ts-main-content" role="main">
+  <div class="container container-wide shell">
+    <article class="ts-surface blog-post" itemscope itemtype="https://schema.org/BlogPosting" tabindex="-1">
 
-<head>
-  {% include layout/head.html %}
-  {% include schema/schema-combined.js %}
+      <!-- SEO & Schema.org metadata -->
+      <meta itemprop="headline" content="{{ page.title }}" />
+      <meta itemprop="datePublished" content="{{ page.date | date: '%Y-%m-%dT%H:%M:%SZ' }}" />
 
-  <meta property="og:title" content="{{ page.title }}" />
-  <meta property="og:description" content="{{ page.description }}" />
-  <meta property="og:image" content="{{ page.featured_image | absolute_url }}" />
-  <meta property="og:url" content="{{ page.url | absolute_url }}" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{ page.title }}" />
-  <meta name="twitter:description" content="{{ page.description }}" />
-  <meta name="twitter:image" content="{{ page.featured_image | absolute_url }}" />
-<title>{% if page.title %}{{ page.title }} | {% endif %}Tillerstead Blog</title>
-  <meta name="theme-color" content="#1a3d2e">
-</head>
+      {% if page.date_modified %}
+      <meta itemprop="dateModified" content="{{ page.date_modified | date: '%Y-%m-%dT%H:%M:%SZ' }}" />
+      {% endif %}
 
-<body class="ts-body">
-  {% include layout/header.html %}
-  {% include navigation/breadcrumbs.html %}
+      {% if page.author %}
+      <meta itemprop="author" content="{{ page.author }}" />
+      {% endif %}
 
-  <main class="ts-section ts-main-content" role="main">
-    <div class="container container-wide shell">
-      <article class="ts-surface blog-post" itemscope itemtype="https://schema.org/BlogPosting" tabindex="-1">
+      {% if page.description %}
+      <meta itemprop="description" content="{{ page.description }}" />
+      {% endif %}
 
-        <!-- SEO & Schema.org metadata -->
-        <meta itemprop="headline" content="{{ page.title }}" />
-        <meta itemprop="datePublished" content="{{ page.date | date: '%Y-%m-%dT%H:%M:%SZ' }}" />
+      {% if page.featured_image %}
+      <meta itemprop="image" content="{{ page.featured_image | absolute_url }}" />
+      {% endif %}
 
-        {% if page.date_modified %}
-        <meta itemprop="dateModified" content="{{ page.date_modified | date: '%Y-%m-%dT%H:%M:%SZ' }}" />
-        {% endif %}
+      <!-- Post Header -->
+      <header class="post-header stack-md">
+        <h1 class="post-title" itemprop="headline">{{ page.title }}</h1>
 
-        {% if page.author %}
-        <meta itemprop="author" content="{{ page.author }}" />
-        {% endif %}
+        <div class="post-meta" role="doc-credits">
+          <time class="post-date" datetime="{{ page.date | date: '%Y-%m-%d' }}" itemprop="datePublished">
+            {{ page.date | date: "%B %-d, %Y" }}
+          </time>
 
-        {% if page.description %}
-        <meta itemprop="description" content="{{ page.description }}" />
-        {% endif %}
-
-        {% if page.featured_image %}
-        <meta itemprop="image" content="{{ page.featured_image | absolute_url }}" />
-        {% endif %}
-
-        <!-- Post Header -->
-        <header class="post-header stack-md">
-          <h1 class="post-title" itemprop="headline">{{ page.title }}</h1>
-
-          <div class="post-meta" role="doc-credits">
-            <time class="post-date" datetime="{{ page.date | date: '%Y-%m-%d' }}" itemprop="datePublished">
-              {{ page.date | date: "%B %-d, %Y" }}
-            </time>
-
-            {% if page.author %}
-            <span class="post-author" itemprop="author">By <strong>{{ page.author }}</strong></span>
-            {% endif %}
-          </div>
-        </header>
-
-        <!-- Post Content -->
-        <div class="post-content">
-          {{ content }}
+          {% if page.author %}
+          <span class="post-author" itemprop="author">By <strong>{{ page.author }}</strong></span>
+          {% endif %}
         </div>
+      </header>
 
-        <!-- Post Footer Navigation -->
-        <footer class="post-footer">
-          <a href="/blog/" class="post-footer__link">
-            <span class="post-footer__icon">←</span>
-            View Other Articles
-          </a>
-        </footer>
-      </article>
-    </div>
-  </main>
+      <!-- Post Content -->
+      <div class="post-content">
+        {{ content }}
+      </div>
 
-  {% include layout/footer.html %}
+      <!-- Post Footer Navigation -->
+      <footer class="post-footer">
+        <a href="/blog/" class="post-footer__link">
+          <span class="post-footer__icon">←</span>
+          View Other Articles
+        </a>
+      </footer>
+    </article>
+  </div>
+</main>
 
-  <style>
-  /* Post Footer Navigation */
-  .post-footer {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(201, 162, 39, 0.2);
-    text-align: center;
-  }
-  
-  .post-footer__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--tiller-color-emerald, #10b981);
-    text-decoration: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    background: rgba(16, 185, 129, 0.1);
-    transition: all 0.2s ease;
-  }
-  
-  .post-footer__link:hover {
-    background: rgba(16, 185, 129, 0.2);
-    color: var(--tiller-color-gold, #c9a227);
-  }
-  
-  .post-footer__icon {
-    font-size: 1.25rem;
-  }
-  </style>
-</body>
+<style>
+/* Post Footer Navigation */
+.post-footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(201, 162, 39, 0.2);
+  text-align: center;
+}
 
-</html>
+.post-footer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--tiller-color-emerald, #10b981);
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  background: rgba(16, 185, 129, 0.1);
+  transition: all 0.2s ease;
+}
+
+.post-footer__link:hover {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--tiller-color-gold, #c9a227);
+}
+
+.post-footer__icon {
+  font-size: 1.25rem;
+}
+</style>
+{%- endcapture -%}
+
+{% include layout/page-shell.html
+   html_attrs='class="high-contrast" data-high-contrast="true"'
+   body=post_body
+   show_breadcrumbs=true %}

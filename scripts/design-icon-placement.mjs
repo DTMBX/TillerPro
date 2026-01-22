@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 // Icon placement strategy mapping
 const ICON_PLACEMENTS = {
   // Trust bar - certifications and credentials
-  "trust-bar.html": {
+  "sections/section-trust-bar.html": {
     replacements: [
       {
         search: /<li class="trust-bar__item">NJ HIC #13VH10808800<\/li>/,
@@ -139,7 +139,7 @@ console.log("=".repeat(50));
  * Apply icon to trust bar items
  */
 function enhanceTrustBar() {
-  const filePath = path.join(__dirname, "../_includes/trust-bar.html");
+  const filePath = path.join(__dirname, "../_includes/sections/section-trust-bar.html");
 
   if (!fs.existsSync(filePath)) {
     console.log("⚠️  Trust bar not found, skipping...");
@@ -182,7 +182,7 @@ function enhanceTrustBar() {
 
   if (content !== original) {
     fs.writeFileSync(filePath, content, "utf8");
-    console.log("✅ Enhanced trust-bar.html with icons");
+    console.log("✅ Enhanced section-trust-bar.html with icons");
   }
 }
 

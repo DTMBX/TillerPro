@@ -64,13 +64,13 @@ keywords: "tile contractor South Jersey, waterproofing contractor NJ, bathroom r
 {% assign data = site.data.home %}
 
 <!-- Hero Section - Above the Fold Priority -->
-<section id="hero" aria-label="Welcome to Tillerstead">
-{% include hero/hero.html data=data.hero %}
+<section id="hero" aria-label="Welcome to Tillerstead" class="page-depth hero-3d">
+{% include hero/unified-hero-home.html %}
 </section>
 
 <!-- Trust Bar - Immediate Credibility (Critical for Conversion) -->
 {% if data.trust_bar %}
-<section id="trust" aria-label="Credentials and Reviews">
+<section id="trust" aria-label="{{ data.trust_bar.aria_label | default: 'Credentials and protections' }}">
 {% include sections/section-trust-bar.html data=data.trust_bar %}
 </section>
 {% endif %}
