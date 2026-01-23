@@ -257,7 +257,6 @@ forms:
   guide_redirect_path: "/download/nj-tile-guide/thank-you/"
   subject: "New Tillerstead LLC inquiry — TCNA/New Jersey HIC Compliant"
 
-# ----------------------------
 # Exclusions
 # ----------------------------
 exclude:
@@ -278,6 +277,54 @@ exclude:
   - README.md
   - LICENSE
   - "*.ps1"
+  - admin/
+  - build/
+  - dist/
+  - logs/
+  - reports/
+  - tests/
+  - test-results/
+  - playwright-report/
+  - profile/
+  - tillerstead-toolkit/
+  - _backup-*/
+  - PREMIUM-UX-IMPLEMENTATION.md
+  - CONFIGURATION.md
+  - CONFIG-IMPROVEMENTS.md
+  - "*-IMPLEMENTATION.md"
+  - "*-COMPLETE.md"
+  - "*-GUIDE.md"
+  - "*-REPORT.md"
+  - "*-DOCS.md"
+  - "*-CHEATSHEET*"
+  - "*-SYSTEM*"
+  - "WORKFLOW-*.md"
+  - "WEB-*.md"
+  - "WCAG-*.md"
+  - "TILE-*.md"
+  - "SECURITY-*.md"
+  - "RETRO-*.md"
+  - "PREMIUM-*.md"
+  - "OPTIMIZATION-*.md"
+  - "MODERN-*.md"
+  - "LOGO-*.md"
+  - "LINT-*.md"
+  - "DESIGN-*.md"
+  - "CSS-*.md"
+  - "BRAND-*.md"
+  - "ADMIN-*.md"
+  - "90S-*.md"
+  - "BACKUP_*.md"
+  - "*.json"
+  - "*.gemspec"
+  - "*.toml"
+  - "*.config.js"
+  - ".editorconfig"
+  - ".gitignore"
+  - ".gitattributes"
+  - ".prettierrc"
+  - ".prettierignore"
+  - ".npmrc"
   - "*.sh"
   - "*.bak*"
   - "**/*.bak*"
