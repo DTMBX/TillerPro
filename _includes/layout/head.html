@@ -102,6 +102,12 @@
 {% if page.layout == 'build-page' %}
 <link rel="stylesheet" href="{{ '/assets/css/build-guide.css' | relative_url }}" />
 {% endif %}
+{% if page.url == '/homeowner-resources/' %}
+<link rel="stylesheet" href="{{ '/assets/css/pages/resources.css' | relative_url }}" />
+{% endif %}
+{% if page.url == '/tile-visualizer.html' %}
+<link rel="stylesheet" href="{{ '/assets/css/tile-visualizer.css' | relative_url }}" />
+{% endif %}
 
 <!-- Page-specific stylesheets -->
 {% if page.stylesheets %}
