@@ -1,39 +1,7 @@
-# Jekyll
 _site/
 .jekyll-cache/
-.jekyll-metadata
-.sass-cache/
-
-# Ruby
-.bundle/
-vendor/
-Gemfile.lock
-
-# Visual Studio (CAUSES ERRORS)
 .vs/
-*.vsidx
-*.sln
-*.slnx
-
-# MCP Agents
 .mcp-agents/
-
-# Build artifacts
 dist/
-build/
 reports/
-test-results/
-playwright-report/
-
-# Backups
-_backup*/
-
-# Dependencies
 node_modules/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
