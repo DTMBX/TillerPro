@@ -302,8 +302,7 @@ exclude:
   - WORKFLOW-HEALTH-REPORT.md
   - WEB-STANDARDS-COMPLIANCE-REPORT.md
   - PREMIUM-UX-IMPLEMENTATION.md
-  - "*.md"
-  - "!index.md"
+  - NETLIFY-DEPLOYMENT.md
 
 # Include critical files for Netlify
 # ----------------------------
