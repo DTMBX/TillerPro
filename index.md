@@ -43,7 +43,6 @@ keywords: "tile contractor South Jersey, waterproofing contractor NJ, bathroom r
   - Structured data for rich snippets
   - Core Web Vitals optimized (LCP, FID, CLS)
 
-  
   1. Hero - ATTENTION: Bold value prop + social proof + urgency
   2. Trust Bar - INTEREST: Instant credibility (license, 5-star reviews)
   3. Services - INTEREST: Solution-focused offerings
