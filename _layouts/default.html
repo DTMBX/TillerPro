@@ -7,6 +7,7 @@
 {%- else -%}
   {%- assign show_breadcrumbs = true -%}
 {%- endif -%}
+<<<<<<< HEAD
 
 {%- capture build_content -%}
   {% comment %} Build Guide Hero - opt-in via front matter build_guide: true {% endcomment %}
@@ -18,15 +19,24 @@
     <span class="badge badge--reviews" title="5-Star Reviews">★ 5.0 Google & Thumbtack</span>
   </div>
 
+=======
+{%- capture build_content -%}
+  {% comment %} Build Guide Hero - opt-in via front matter build_guide: true {% endcomment %}
+  {% if page.build_guide %}{{ build_hero }}{% endif %}
+
+>>>>>>> 6f26b33d (x)
   {{ build_toc_and_body }}
 
   {{ build_phase_nav }}
 
+<<<<<<< HEAD
   <div class="default-cta text-center scroll-fade-in premium-cta mt-4">
     <a href="/contact/" class="btn btn--primary btn--lg btn--pulse mr-2" data-magnetic>Request an Estimate</a>
     <a href="tel:+16098628808" class="btn btn--ghost btn--lg">Call (609) 862-8808</a>
   </div>
 
+=======
+>>>>>>> 6f26b33d (x)
   {{ build_cta }}
 {%- endcapture -%}
 
