@@ -1,0 +1,287 @@
+/* ================================================
+   EMERGENCY CONTRAST FIX
+   Fixes invisible hero.lead and nav links
+   ================================================ */
+
+/* ============================================
+   DESKTOP NAV LINKS - HIGH VISIBILITY
+   ============================================ */
+
+.desktop-nav__link,
+.desktop-nav__trigger {
+  /* FORCE WHITE TEXT */
+  color: #ffffff !important;
+  
+  /* Make text bolder and larger */
+  font-weight: 900 !important;
+  font-size: 1.125rem !important;
+  
+  /* Add background for better visibility */
+  background: rgba(0, 0, 0, 0.2) !important;
+  
+  /* Strong text shadow for readability */
+  text-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.3) !important;
+  
+  /* Ensure proper display */
+  opacity: 1 !important;
+  visibility: visible !important;
+  
+  /* Better spacing */
+  padding: 0.875rem 1.5rem !important;
+  
+  /* Subtle border for definition */
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.desktop-nav__link:hover,
+.desktop-nav__link:focus,
+.desktop-nav__trigger:hover,
+.desktop-nav__trigger:focus {
+  /* Gold on hover */
+  color: #ffd700 !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  border-color: #ffd700 !important;
+  
+  /* Stronger glow on hover */
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 1),
+    0 0 30px rgba(255, 215, 0, 0.6) !important;
+  
+  /* Slight lift */
+  transform: translateY(-2px) !important;
+}
+
+/* Dropdown arrow - make visible */
+.dropdown-arrow {
+  stroke: #ffffff !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8)) !important;
+  opacity: 1 !important;
+}
+
+/* ============================================
+   HERO LEAD TEXT - MAXIMUM CONTRAST
+   ============================================ */
+
+.hero .lead,
+.hero-section .lead,
+.ts-hero .lead,
+.lead,
+[class*="hero"] .lead {
+  /* FORCE BLACK TEXT */
+  color: #000000 !important;
+  
+  /* Maximum weight */
+  font-weight: 900 !important;
+  
+  /* Larger size for better visibility */
+  font-size: clamp(1.75rem, 4vw, 2.5rem) !important;
+  
+  /* White text shadow for contrast on any background */
+  text-shadow: 
+    0 2px 8px rgba(255, 255, 255, 0.9),
+    0 0 40px rgba(255, 255, 255, 0.6) !important;
+  
+  /* Ensure display */
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  
+  /* Light background for extra contrast */
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  border-left: 6px solid #006b3d;
+  
+  /* Better spacing */
+  line-height: 1.5 !important;
+  margin-bottom: 2rem !important;
+}
+
+/* ============================================
+   HERO HEADINGS - MAXIMUM CONTRAST
+   ============================================ */
+
+.hero h1,
+.hero-section h1,
+.ts-hero h1,
+[class*="hero"] h1 {
+  color: #000000 !important;
+  font-weight: 900 !important;
+  font-size: clamp(3rem, 8vw, 5rem) !important;
+  text-shadow: 
+    0 3px 10px rgba(255, 255, 255, 1),
+    0 0 50px rgba(255, 255, 255, 0.8) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  line-height: 1.1 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.hero h2,
+.hero-section h2,
+.ts-hero h2,
+[class*="hero"] h2 {
+  color: #1a1a1a !important;
+  font-weight: 800 !important;
+  font-size: clamp(2rem, 6vw, 3.5rem) !important;
+  text-shadow: 0 2px 6px rgba(255, 255, 255, 0.9) !important;
+}
+
+/* ============================================
+   HERO PARAGRAPHS - HIGH CONTRAST
+   ============================================ */
+
+.hero p,
+.hero-section p,
+.ts-hero p,
+[class*="hero"] p {
+  color: #1a1a1a !important;
+  font-weight: 700 !important;
+  font-size: clamp(1.25rem, 3vw, 1.75rem) !important;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8) !important;
+  line-height: 1.7 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ============================================
+   DROPDOWN LINKS - HIGH CONTRAST
+   ============================================ */
+
+.desktop-nav__dropdown a {
+  color: #000000 !important;
+  background: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 1.0625rem !important;
+  padding: 1rem 1.5rem !important;
+  border: 2px solid transparent !important;
+  text-shadow: none !important;
+}
+
+.desktop-nav__dropdown a:hover {
+  color: #ffffff !important;
+  background: #006b3d !important;
+  border-color: #ffd700 !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ============================================
+   MOBILE NAV - HIGH CONTRAST
+   ============================================ */
+
+.mobile-nav__list > li > a,
+.mobile-nav__accordion-trigger {
+  color: #000000 !important;
+  font-weight: 800 !important;
+  font-size: 1.125rem !important;
+  text-shadow: none !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  margin: 0.25rem 1rem !important;
+  border-radius: 8px !important;
+  border: 2px solid #006b3d !important;
+}
+
+.mobile-nav__list > li > a:hover,
+.mobile-nav__accordion-trigger:hover {
+  color: #ffffff !important;
+  background: #006b3d !important;
+  border-color: #ffd700 !important;
+}
+
+/* ============================================
+   BUTTONS - MAXIMUM VISIBILITY
+   ============================================ */
+
+.btn--primary {
+  background: linear-gradient(135deg, #006b3d, #004d2b) !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  font-size: 1.25rem !important;
+  border: 3px solid #003820 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+.btn--accent {
+  background: linear-gradient(135deg, #ffd700, #d4af37) !important;
+  color: #000000 !important;
+  font-weight: 900 !important;
+  font-size: 1.25rem !important;
+  border: 3px solid #9c7a14 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  border: 3px solid #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ============================================
+   GENERAL TEXT - ENSURE VISIBILITY
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  color: #000000 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+p, li, span, div {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Force all text to be visible */
+* {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* ============================================
+   DEBUG - Show all elements
+   ============================================ */
+
+.desktop-nav,
+.desktop-nav__list,
+.desktop-nav__item,
+.desktop-nav__link,
+.hero,
+.lead {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ============================================
+   RESPONSIVE - MAINTAIN VISIBILITY
+   ============================================ */
+
+@media (max-width: 768px) {
+  .desktop-nav__link {
+    display: none !important;
+  }
+  
+  .hero .lead,
+  .lead {
+    font-size: clamp(1.25rem, 5vw, 1.75rem) !important;
+    padding: 0.75rem 1rem !important;
+  }
+  
+  .hero h1 {
+    font-size: clamp(2rem, 10vw, 3.5rem) !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .desktop-nav {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
