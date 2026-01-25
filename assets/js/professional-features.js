@@ -1166,7 +1166,7 @@
       this.modules.hamburger = new HamburgerAnimation();
       this.modules.linkTransitions = new SmoothLinkTransitions();
 
-      // console.log('✨ Professional features initialized'); // AUTO-DISABLED
+      // // console.log('✨ Professional features initialized'); // AUTO-DISABLED // AUTO-DISABLED
     }
 
     // Public API
