@@ -85,10 +85,11 @@
     nav.classList.add('is-open');
     if (navOverlay) navOverlay.classList.add('is-open');
     document.body.classList.add('nav-open');
+    // Only block body scroll when mobile nav is open
     document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
+    // DO NOT touch documentElement - let page scroll work!
     // Prevent scroll on iOS
-    window.scrollTo(0, 0);
+    // window.scrollTo removed - let user scroll naturally
     syncAria(true);
     // Wait for DOM to update for E2E test reliability
     setTimeout(() => {
@@ -105,10 +106,16 @@
     nav.classList.remove('is-open');
     if (navOverlay) navOverlay.classList.remove('is-open');
     document.body.classList.remove('nav-open');
+    // CRITICAL: Restore scroll
     document.body.style.overflow = '';
     document.documentElement.style.overflow = '';
+    // Force enable scroll in case something else blocked it
+    setTimeout(() => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }, 100);
     // Restore scroll
-    window.scrollTo(0, 0);
+    // window.scrollTo removed - let user scroll naturally
     syncAria(false);
     document.removeEventListener('keydown', trapFocus);
     document.removeEventListener('keydown', handleEsc);
