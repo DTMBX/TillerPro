@@ -146,12 +146,12 @@
   transform: rotate(180deg);
 }
 
-/* Dropdown menu */
+/* Dropdown menu - FIXED */
 .desktop-nav__dropdown {
   position: absolute;
   top: calc(100% + 0.5rem);
   left: 0;
-  min-width: 220px;
+  min-width: 240px;
   background: white;
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
@@ -162,13 +162,24 @@
   visibility: hidden;
   transform: translateY(-10px);
   transition: all 0.2s ease;
-  z-index: 100;
+  z-index: 1001;
+  pointer-events: none;
 }
 
+/* Show dropdown when expanded */
 .desktop-nav__trigger[aria-expanded="true"] + .desktop-nav__dropdown {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Also show on parent hover */
+.desktop-nav__item--dropdown:hover .desktop-nav__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .desktop-nav__dropdown li {
