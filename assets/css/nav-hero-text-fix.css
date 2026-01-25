@@ -1,38 +1,7 @@
 /* ============================================================
-   NAV & HERO TEXT VISIBILITY FIX
-   Minimal fix for unreadable text - does NOT touch layout
+   HERO TEXT VISIBILITY FIX ONLY
+   Nav styles handled by header-nav-fixed.css
    ============================================================ */
-
-/* Desktop nav links - ensure white text is visible */
-.desktop-nav__link,
-.desktop-nav__trigger {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
-}
-
-.desktop-nav__link:hover,
-.desktop-nav__trigger:hover {
-  color: #ffd700 !important;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
-}
-
-/* Dropdown arrow visibility */
-.dropdown-arrow {
-  stroke: #ffffff !important;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5)) !important;
-}
-
-/* Dropdown menu items - dark text on white */
-.desktop-nav__dropdown a {
-  color: #0a0a0a !important;
-  font-weight: 600 !important;
-}
-
-.desktop-nav__dropdown a:hover {
-  color: #ffffff !important;
-  background: #00a35c !important;
-}
 
 /* Hero heading - ensure black text is visible */
 .hero h1,
