@@ -139,3 +139,42 @@ body { color: #111111 !important; background: #ffffff !important; }
 .desktop-nav__list,
 .desktop-nav__item,
 .desktop-nav__link { opacity: 1 !important; visibility: visible !important; }
+
+/* CRITICAL: Fix mobile nav from breaking site */
+.mobile-nav[aria-hidden="true"] {
+  display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+.mobile-nav[aria-hidden="false"] {
+  display: block !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+}
+
+/* Ensure body can scroll */
+html,
+body {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+/* Prevent modal/overlay from blocking everything */
+body:not(.modal-open) {
+  overflow-y: auto !important;
+  position: relative !important;
+}
+
+/* Fix any overlay issues */
+.overlay,
+.modal-backdrop,
+[class*="overlay"] {
+  pointer-events: none !important;
+}
+
+.overlay.active,
+.modal-backdrop.show,
+[class*="overlay"].active {
+  pointer-events: auto !important;
+}
