@@ -42,7 +42,12 @@
     "perf:bundle": "webpack-bundle-analyzer stats.json",
     "security:audit": "npm audit --production",
     "precommit": "npm run format && npm run validate:html && npm run test",
-    "postbuild": "npm run optimize:images"
+    "postbuild": "npm run optimize:images",
+    "automate": "node scripts/content-automation.js",
+    "automate:schedule": "node scripts/content-automation.js schedule",
+    "automate:social": "node scripts/content-automation.js social",
+    "automate:newsletter": "node scripts/content-automation.js newsletter",
+    "automate:analytics": "node scripts/content-automation.js analytics"
   },
   "author": "DTB396",
   "version": "1.0.0",
