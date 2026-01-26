@@ -23,10 +23,18 @@
   }
 
   /**
-   * Request scroll lock (increments counter)
+   * Lock scroll (increments counter)
+   * MOBILE FIX: Only lock on desktop, never on mobile
    * @param {string} source - Name of component requesting lock
    */
   function lockScroll(source = 'unknown') {
+    // CRITICAL: Don't lock scroll on mobile - causes content to disappear
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      console.log(`[Scroll Lock] Lock request from ${source} IGNORED on mobile`);
+      return;
+    }
+    
     scrollLockCount++;
     
     if (scrollLockCount === 1) {
