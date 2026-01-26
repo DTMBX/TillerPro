@@ -317,8 +317,6 @@ I actually love flood tests because they prove the work before we tile over it. 
 
 ## Inspection Process: Where Contractors Sweat {#inspection-process}
 
-## Inspection Process: Where Contractors Sweat {#inspection-process}
-
 Inspections are my favorite part—seriously. I love them. Know why? Because I have nothing to hide.
 
 Bad contractors **hate** inspections. They'll do anything to avoid them. They'll tell you "it's just a tile job, we don't need an inspection" or "let's skip the permit to save money." Translation: "I cut corners and don't want anyone official seeing my work."
