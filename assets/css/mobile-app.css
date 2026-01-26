@@ -720,9 +720,10 @@ button:not(.no-ripple):active::after {
   border: 0;
 }
 
-.ts-main-content {
+/* MOBILE FIX: CSS contain can break layout on some devices - temporarily disabled */
+/*.ts-main-content {
   contain: layout style paint;
-}
+}*/
 
 .page-transition,
 .mobile-fab,

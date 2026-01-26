@@ -5,8 +5,8 @@
  * Enhanced with background sync and advanced PWA features
  */
 
-const STATIC_CACHE = 'tillerstead-static-v2';
-const DYNAMIC_CACHE = 'tillerstead-dynamic-v2';
+const STATIC_CACHE = 'tillerstead-static-v3'; // BUMPED from v2 - force fresh cache
+const DYNAMIC_CACHE = 'tillerstead-dynamic-v3'; // BUMPED from v2 - force fresh cache
 const OFFLINE_CACHE = 'tillerstead-offline-v1';
 
 // Core assets to cache immediately on install
