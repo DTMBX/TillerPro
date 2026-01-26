@@ -60,3 +60,47 @@ hero_secondary_label: "Request a Free Estimate"
   </p>
 </section>
 
+<script>
+// Simple search functionality for 404 page
+(function() {
+  const form = document.querySelector('.search-404-form');
+  const input = document.getElementById('site-search-404');
+  
+  // Search mapping for common queries
+  const searchRedirects = {
+    'contact': '/contact/',
+    'services': '/services/',
+    'portfolio': '/portfolio/',
+    'tile': '/services/#tile',
+    'bathroom': '/services/',
+    'shower': '/services/',
+    'waterproofing': '/services/',
+    'reviews': '/reviews/',
+    'about': '/about/',
+    'pricing': '/pricing/',
+    'quote': '/tools/#cost-estimator',
+    'estimate': '/contact/',
+    'book': '/contact/',
+    'appointment': '/contact/',
+    'consultation': '/contact/'
+  };
+  
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const query = input.value.toLowerCase().trim();
+      
+      // Check for direct matches
+      for (let [keyword, url] of Object.entries(searchRedirects)) {
+        if (query.includes(keyword)) {
+          window.location.href = url;
+          return;
+        }
+      }
+      
+      // Fallback to Google site search
+      window.location.href = `https://www.google.com/search?q=site:tillerstead.com+${encodeURIComponent(query)}`;
+    });
+  }
+})();
+</script>
