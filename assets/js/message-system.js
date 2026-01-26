@@ -226,12 +226,13 @@
    * Initialize on page load
    */
   function init() {
-    // Show scheduling bar if not closed this session
-    if (!sessionStorage.getItem('schedulingBarClosed')) {
-      setTimeout(() => {
-        showSchedulingBar();
-      }, 800); // Slight delay for smooth entrance
-    }
+    // DISABLED: Auto-scheduling bar was causing mobile issues
+    // Only show on specific pages if explicitly called
+    // if (!sessionStorage.getItem('schedulingBarClosed')) {
+    //   setTimeout(() => {
+    //     showSchedulingBar();
+    //   }, 800);
+    // }
     
     // Add keyboard shortcut to enable sounds (Ctrl+Shift+S)
     document.addEventListener('keydown', (e) => {
