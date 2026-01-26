@@ -366,11 +366,13 @@
   }
 }
 
-/* ===== PREVENT BODY SCROLL WHEN NAV OPEN ===== */
-body.nav-open {
-  overflow: hidden !important;
-  position: fixed !important;
-  width: 100% !important;
+/* ===== PREVENT BODY SCROLL WHEN NAV OPEN (MOBILE ONLY) ===== */
+@media (max-width: 1079px) {
+  body.nav-open {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+  }
 }
 
 /* ===== Z-INDEX LAYERING ===== */

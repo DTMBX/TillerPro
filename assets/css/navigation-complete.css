@@ -358,11 +358,13 @@
   box-shadow: 0 6px 20px rgb(0 163 92 / 50%) !important;
 }
 
-/* ===== BODY LOCK WHEN NAV OPEN ===== */
-body.nav-open {
-  overflow: hidden !important;
-  position: fixed !important;
-  width: 100% !important;
+/* ===== BODY LOCK WHEN NAV OPEN (MOBILE ONLY) ===== */
+@media (max-width: 1079px) {
+  body.nav-open {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+  }
 }
 
 /* ===== Z-INDEX MANAGEMENT ===== */

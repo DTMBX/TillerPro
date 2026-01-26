@@ -123,13 +123,18 @@
     const toggle = document.querySelector('.mobile-nav__toggle');
     const nav = document.getElementById('mobile-nav');
     const close = document.querySelector('.mobile-nav__close');
+    const MOBILE_BREAKPOINT = 1080;
+    const isMobile = () => window.innerWidth < MOBILE_BREAKPOINT;
     
     if (toggle && nav) {
       toggle.addEventListener('click', () => {
         const isOpen = toggle.getAttribute('aria-expanded') === 'true';
         toggle.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
         nav.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
-        document.body.style.overflow = isOpen ? '' : 'hidden';
+        // ONLY block scroll on mobile
+        if (isMobile()) {
+          document.body.style.overflow = isOpen ? '' : 'hidden';
+        }
       });
     }
     
@@ -137,7 +142,10 @@
       close.addEventListener('click', () => {
         nav.setAttribute('aria-hidden', 'true');
         if (toggle) toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+        // ONLY unblock scroll on mobile
+        if (isMobile()) {
+          document.body.style.overflow = '';
+        }
       });
     }
     
@@ -166,9 +174,7 @@
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
   }
   
-  // Force scroll enable
-  document.documentElement.style.overflowY = 'scroll';
-  document.body.style.overflowY = 'auto';
+  // Don't force scroll styles - let scroll-fix.js handle it
   
   // // // // // // // // // // // // // // // console.log('[TILLERSTEAD] ✅ Ready - No Bounce!'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
 })();
