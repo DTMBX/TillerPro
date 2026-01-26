@@ -36,6 +36,10 @@ This guide covers everything you need to know about NJ tile shower codes in 2026
 8. [Working with NJ Building Inspectors](#working-inspectors)
 9. [Code Compliance Checklist](#compliance-checklist)
 
+**📚 Technical Resources:**
+- [Complete TCNA Methods Guide](/tcna-methods/) - Installation standards explained
+- [NJ Code Compliance Reference](/nj-code-compliance/) - IRC requirements & inspection checklists
+
 ---
 
 ## Why New Jersey Building Codes Matter (And Why I Love Them) {#why-codes-matter}
@@ -194,51 +198,66 @@ Look, I know permit applications sound about as fun as a root canal, but it's ac
 
 **TCNA** = **Tile Council of North America**. Think of it as the Tile Installation Hall of Fame mixed with a really obsessive standards committee.
 
-The TCNA Handbook is **the** definitive guide on how to install tile correctly. It's not suggestions. It's not "one possible way." It's **the way** that meets ANSI (American National Standards Institute) requirements—and New Jersey building codes directly reference these methods.
+The TCNA Handbook is **the** definitive guide on how to install tile correctly. It's not suggestions. It's not "one possible way." It's **the way** that meets ANSI (American National Standards Institute) requirements—and New Jersey building codes (IRC R302.5.2) directly reference these methods.
 
 When an inspector shows up and says, "Is this TCNA compliant?" they're asking, "Did you follow the industry standard, or did you just wing it?"
 
 Spoiler: Inspectors **hate** when you wing it.
+
+> **📚 Deep Dive:** Want to understand every TCNA method? See our [Complete TCNA Methods Guide](/tcna-methods/) - explains A108 installation series, A118 material specs, and what each code means for your project.
 
 ### The Standards That Actually Matter
 
 I could bore you with every ANSI standard known to mankind, but let's focus on the ones that affect your shower:
 
 **ANSI A108 Series** (Installation Methods):
-- **A108.1A** - How to actually install ceramic tile (the basics)
-- **A108.10** - How to grout properly (yes, there's a wrong way)
-- **A108.11** - Installing cement board (aka "backer board")
-- **A108.13** - Waterproofing membranes that actually work
+- **[A108.1A](/tcna-methods/#substrate)** - Thin-set installation over cement board (what I use for 90% of shower walls)
+- **[A108.10](/tcna-methods/#installation-methods)** - Bonded mortar bed method (shower floors with proper slope)
+- **A108.11** - Cement board installation specs (screw spacing, joint treatment)
+- **A108.13** - Waterproofing membrane installation (the critical layer)
 
 **ANSI A118 Series** (Materials):
-- **A118.10** - Waterproofing membranes (**This is the big one—memorize it**)
-- **A118.4** - Modified mortar (what holds your tile on)
-- **A118.6** - Polymer-modified grout (the good stuff)
+- **[A118.10](/tcna-methods/#waterproofing)** - Waterproofing membrane performance standard (**THE BIG ONE—memorize this**)
+- **A118.4** - Modified thin-set mortar specifications
+- **A118.6** - Polymer-modified grout (stain-resistant, flexible)
+- **A118.7** - Polymer-modified cement grout (premium option)
 
-### TCNA Method TR716: The Standard Shower Build
+**TCNA Movement Joints:**
+- **[EJ171](/tcna-methods/#movement-joints)** - Expansion joint requirements (silicone at changes of plane—NOT grout)
 
-This is the most common method for residential showers, and it's what we use on 90% of our projects:
+### TCNA Method B415: The Schluter Kerdi Standard (What I Use)
+
+This is my go-to method for residential showers—inspector-approved, manufacturer-warrantied, and it actually works:
 
 **The Layer Cake** (from studs to tile):
 
 1. **Studs** (16" on center—standard framing)
-2. **Vapor barrier** (6-mil poly—keeps moisture out of the wall cavity)
-3. **Cement board** (1/2" minimum—HardieBacker, Durock, etc.)
-4. **Waterproofing membrane** (ANSI A118.10 compliant—this is where the magic happens)
-5. **Thinset mortar** (bond coat—sticks the tile to the membrane)
+2. **Vapor barrier** (6-mil poly—exterior walls only, keeps moisture out)
+3. **Kerdi-Board** (cement-coated foam substrate—replaces cement board + membrane in one)
+4. **Schluter Kerdi membrane** (bonded sheet membrane—ANSI A118.10 compliant)
+5. **Unmodified thin-set** (Schluter ALL-SET—manufacturer-specified for Kerdi compatibility)
 6. **Tile** (the pretty part you actually see)
-7. **Grout** (ANSI A118.6—epoxy or polymer-modified)
+7. **Grout** (ANSI A118.6 polymer-modified—Laticrete PermaColor is my favorite)
 
-**Shower Pan Assembly** (the floor):
-- **Pre-slope:** Mortar bed sloped 1/4" per foot toward drain
-- **Liner membrane:** 40-mil PVC or CPE (the waterproof layer)
-- **Mortar bed:** 1-1/4" minimum thickness at drain
-- **Tile:** Maintaining that 1/4" per foot slope (so water actually drains)
+**Shower Floor Assembly** (using Kerdi-Shower-Kit):
+- **Kerdi-Shower-SB:** Pre-sloped foam shower base (slope built in—no mortar bed needed)
+- **Kerdi-Drain:** Integrated bonding flange (waterproof connection to membrane)
+- **Mortar bed:** 1-1/4" minimum over foam base (for tile support)
+- **Tile:** Maintaining 1/4" per foot slope to drain (so water drains, not pools)
+
+**Why This Method Wins:**
+- ✅ Passes ANSI A118.10 waterproofing standard
+- ✅ Pre-formed corners (no cutting, no failure points)
+- ✅ Flood-testable (I test every shower 24-48 hours before tile)
+- ✅ Lifetime warranty (if installed per Schluter specs)
+- ✅ Inspectors recognize it instantly (quick approval)
 
 > **Inspector's Favorite Question:** "Is your membrane ANSI A118.10 compliant?"  
-> **Correct Answer:** "Yes—we're using Schluter Kerdi / Laticrete Hydroban / RedGard" (whatever system you're using)  
+> **Correct Answer:** "Yes—TCNA Method B415 using Schluter Kerdi system, flood-tested and documented"  
 > **Wrong Answer:** "Uh... it's waterproof paint?"  
 > *(Inspector writes you up faster than you can say "re-inspection fee")*
+
+> **📋 Inspector Checklist:** See our [NJ Code Compliance Guide](/nj-code-compliance/#waterproofing) for the exact waterproofing inspection checklist NJ inspectors use.
 
 ---
 
@@ -246,7 +265,30 @@ This is the most common method for residential showers, and it's what we use on 
 
 Alright, let's talk about the section where I've seen more disasters than a reality TV show marathon. Waterproofing is **the** most critical part of a shower—mess this up and you're not just redoing tile, you're gutting walls and replacing subfloors.
 
-### NJ's Non-Negotiable Waterproofing Requirements
+> **🔧 Technical Deep Dive:** For contractor-level waterproofing details, see our [Waterproofing System Comparison](/blog/waterproofing-membrane-comparison/) with Schluter vs. Laticrete vs. RedGard analysis.
+
+### NJ's Non-Negotiable Waterproofing Requirements (IRC R302.5.2)
+
+**New Jersey IRC Section R302.5.2:**  
+> *"Floors under shower compartments and receptors shall be waterproofed."*
+
+**Translation:** Your shower floor MUST have a waterproof membrane that meets ANSI A118.10 performance standards. Not "water-resistant paint." Not "moisture barrier." Actual waterproofing.
+
+**What Passes Code (ANSI A118.10-Compliant Systems):**
+- ✅ **Schluter Kerdi** (sheet membrane—my #1 choice, [TCNA Method B415](/tcna-methods/#waterproofing))
+- ✅ **Laticrete Hydroban** (liquid or board—solid performer)
+- ✅ **Mapei Aquadefense** (liquid membrane—budget-friendly)
+- ✅ **Wedi Building Panels** (foam board with built-in waterproofing)
+- ✅ **Noble Company Seal** (sheet membrane—less common but approved)
+
+**What FAILS Code:**
+- ❌ Drywall (even "green board" moisture-resistant drywall)
+- ❌ Painted cement board (cement board alone is NOT waterproof)
+- ❌ Plastic sheeting (not bonded, not rated, not A118.10)
+- ❌ "Waterproof" paint (marketing ≠ code compliance)
+- ❌ Tar paper (1960s method—grandfathered for repairs, not new construction)
+
+> **📋 Full Inspection Requirements:** See [NJ Code Compliance Guide - Waterproofing Inspection](/nj-code-compliance/#waterproofing) for the exact checklist inspectors use at rough-in and waterproofing inspections.
 
 **1. ANSI A118.10 Compliance** (Say It With Me: A-One-Eighteen-Point-Ten)
 - Must be either sheet membrane OR liquid-applied (both work if installed correctly)
