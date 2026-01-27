@@ -541,6 +541,22 @@
       }
     });
 
+    // Professional Quote Generator
+    router.register('quote', {
+      name: 'Generate Quote',
+      loader: async (params) => {
+        const response = await fetch('/assets/views/quote-form.html');
+        const html = await response.text();
+        return html;
+      },
+      meta: { 
+        title: 'Professional Quote Generator', 
+        icon: '📄', 
+        category: 'business',
+        adapter: null // Self-contained, no adapter needed
+      }
+    });
+
     // Shower Slope Calculator
     router.register('slope', {
       name: 'Shower Slope',

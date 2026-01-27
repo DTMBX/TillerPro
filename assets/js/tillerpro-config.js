@@ -314,21 +314,181 @@ const TillerProConfig = {
       termsAndConditions: true,
       signatureBlock: true,
       materialBreakdown: true,
-      laborBreakdown: true
+      laborBreakdown: true,
+      legalDisclaimers: true
     },
     
-    terms: `
-      1. This quote is valid for 30 days from the date of issue.
-      2. All work will be performed in accordance with TCNA Handbook standards and NJ building codes.
-      3. Installation includes professional-grade waterproofing and surface preparation.
-      4. Customer is responsible for providing clear access to work area and protecting furnishings.
-      5. Final payment due upon project completion and customer approval.
-      6. 10-Year Waterproof Installation Warranty covers workmanship and waterproofing integrity.
-      7. Material warranties are provided by manufacturers (varies by product).
-      8. Changes to scope of work may result in additional charges.
-      9. Permits and inspections are the responsibility of the property owner unless otherwise agreed.
-      10. Weather delays or unforeseen conditions may extend timeline.
-    `.trim()
+    // Validation requirements before quote generation
+    validation: {
+      requireCustomerName: true,
+      requireCustomerEmail: true,
+      requireCustomerPhone: true,
+      requireProjectDescription: false,
+      minimumMaterialsCalculated: 1,  // At least 1 material type
+      requireLaborEstimate: true,
+      
+      // Sanity checks
+      maxQuoteValue: 100000,         // Flag quotes over $100K for review
+      minQuoteValue: 500,             // Flag quotes under $500
+      maxLaborHours: 200,             // Flag if >200 hours
+      maxMaterialQuantity: 10000      // Flag unusual quantities
+    },
+    
+    // Legal disclaimers (CRITICAL - Protects both parties)
+    disclaimers: {
+      estimate: `
+        IMPORTANT: This quote is an ESTIMATE based on information provided. 
+        Actual costs may vary if project scope, site conditions, or material 
+        selections differ from initial assessment. Customer will be notified 
+        of any changes before work proceeds.
+      `.trim(),
+      
+      siteConditions: `
+        Quote assumes standard site conditions. Additional charges may apply for: 
+        asbestos removal, mold remediation, structural repairs, plumbing/electrical 
+        modifications, or other unforeseen conditions discovered during demolition 
+        or installation. Customer will approve all change orders in writing.
+      `.trim(),
+      
+      materialAvailability: `
+        Material pricing and availability subject to market conditions. If selected 
+        materials become unavailable, contractor will propose suitable alternatives 
+        at comparable pricing. Customer retains final approval of all substitutions.
+      `.trim(),
+      
+      permits: `
+        Permits and inspections are the responsibility of the property owner unless 
+        explicitly stated otherwise in this contract. Contractor will assist with 
+        permit applications if requested, but cannot guarantee approval or timeline.
+      `.trim(),
+      
+      warranty: `
+        Contractor warrants workmanship for 10 years from completion date. Warranty 
+        covers installation defects and waterproofing integrity. Warranty DOES NOT 
+        cover: material defects (covered by manufacturer), damage from improper use, 
+        modifications by others, or normal wear and tear. Warranty void if materials 
+        are not maintained per manufacturer specifications.
+      `.trim(),
+      
+      materialWarranty: `
+        Material warranties are provided by manufacturers and vary by product. 
+        Contractor makes no warranties regarding materials beyond manufacturer 
+        specifications. Customer should review manufacturer warranty documentation 
+        for coverage details and limitations.
+      `.trim(),
+      
+      liability: `
+        Contractor liability is limited to the contract amount. Contractor is NOT 
+        liable for: consequential damages, lodging expenses, lost business income, 
+        or damages beyond direct repair costs. Contractor carries general liability 
+        and workers compensation insurance as required by law.
+      `.trim(),
+      
+      timeline: `
+        Estimated completion timeline is subject to: weather conditions, material 
+        delivery delays, permit approval, and unforeseen site conditions. Contractor 
+        will make reasonable efforts to meet estimated dates but cannot guarantee 
+        completion by specific date unless expressly stated as "time is of the essence" 
+        and agreed to in writing by both parties.
+      `.trim(),
+      
+      changeOrders: `
+        Any changes to scope of work require written change order signed by both parties 
+        before work proceeds. Change orders may affect project cost and timeline. 
+        Customer has right to refuse change orders; contractor has right to cease work 
+        if change order is necessary for code compliance or safety.
+      `.trim(),
+      
+      payment: `
+        Payment schedule as follows: ${'' /* Will be populated from config */}
+        Final payment due upon substantial completion and customer approval. Customer 
+        retains right to withhold final payment for punch-list items, but not to exceed 
+        10% of contract value. Late payments subject to 1.5% monthly finance charge.
+      `.trim(),
+      
+      disputeResolution: `
+        Any disputes arising from this contract shall first be resolved through good-faith 
+        negotiation. If negotiation fails, parties agree to mediation before pursuing 
+        arbitration or litigation. New Jersey law governs this contract. Prevailing party 
+        in any legal action entitled to reasonable attorney fees.
+      `.trim(),
+      
+      codeCompliance: `
+        All work performed in accordance with applicable building codes and TCNA Handbook 
+        standards. Contractor follows industry best practices but does not provide engineering, 
+        architectural, or legal advice. Customer responsible for ensuring work complies with 
+        HOA rules, deed restrictions, or other private agreements.
+      `.trim(),
+      
+      accuracyDisclaimer: `
+        Measurements and calculations based on information provided by customer. Contractor 
+        recommends professional site measurement for projects over $10,000. Customer accepts 
+        responsibility for accuracy of dimensions and site information provided. Contractor 
+        will verify critical measurements on-site before installation.
+      `.trim()
+    },
+    
+    // Contract terms (legally binding language)
+    contractTerms: `
+TERMS AND CONDITIONS OF CONTRACT
+
+1. SCOPE OF WORK
+This contract covers tile installation services as described in the attached quote. Work includes: surface preparation, waterproofing installation, tile setting, grouting, and cleanup. Customer provides clear access to work area and protects furnishings.
+
+2. MATERIALS
+Contractor provides materials listed in quote. Customer approves all material selections before purchase. Materials cannot be returned once cut or installed. Customer responsible for storing materials if delivered before installation date.
+
+3. PAYMENT TERMS
+Payment schedule: 30% deposit upon contract signing, 40% at midpoint (preparation complete), 30% upon substantial completion. Payment by: check, cash, ACH, or credit card (3% processing fee applies). Late payments subject to 1.5% monthly finance charge after 30 days.
+
+4. TIMELINE
+Estimated start date and completion timeline provided in quote. Actual dates subject to: material availability, permit approval, weather, and site conditions. Contractor will notify customer of delays promptly. Customer delays (access issues, material selection, etc.) may extend timeline.
+
+5. CHANGES
+Changes to scope require written change order signed by both parties. Change orders may affect price and timeline. Customer has 3 business days to approve/reject change orders. Contractor reserves right to cease work if change order is necessary for safety or code compliance and customer refuses.
+
+6. WARRANTIES
+Contractor warrants workmanship for 10 years. Warranty covers installation defects and waterproofing integrity. Warranty does not cover: material defects, damage from improper use, modifications by others, or normal wear. Material warranties provided by manufacturers separately.
+
+7. PERMITS AND INSPECTIONS
+Customer responsible for permits unless otherwise agreed in writing. Contractor will assist with applications if requested. Work performed to code; inspections required where applicable. Customer must allow reasonable access for inspections.
+
+8. UNFORESEEN CONDITIONS
+Quote assumes standard conditions. Additional costs may apply for: asbestos, mold, structural issues, or other hidden conditions. Customer will be notified immediately. Work will not proceed on affected areas until customer approves change order.
+
+9. CLEANUP
+Contractor performs daily cleanup and final cleanup upon completion. Debris removal included. Customer responsible for protecting personal property and making work area accessible.
+
+10. LIABILITY
+Contractor carries general liability and workers compensation insurance. Contractor not liable for: damage to hidden utilities not marked, pre-existing conditions, consequential damages, or amounts exceeding contract value. Customer should verify contractor's insurance before signing.
+
+11. CANCELLATION
+Customer may cancel within 3 business days of signing (NJ law). After 3 days, customer may cancel but forfeits deposit. If contractor has purchased materials, customer responsible for material costs plus 20% restocking fee.
+
+12. DISPUTE RESOLUTION
+Disputes resolved through negotiation first, then mediation, then arbitration if necessary. New Jersey law governs. Prevailing party in legal action entitled to attorney fees.
+
+13. ACCEPTANCE
+This quote becomes binding contract upon customer signature and deposit payment. Customer has read and understands all terms, disclaimers, and conditions. Customer warrants authority to enter this contract.
+
+14. ENTIRE AGREEMENT
+This contract (quote + terms) represents entire agreement. Modifications must be in writing signed by both parties. No verbal agreements or representations outside this document are binding.
+
+15. SEVERABILITY
+If any term is found unenforceable, remaining terms remain in effect.
+
+BY SIGNING BELOW, CUSTOMER ACCEPTS THESE TERMS AND CONDITIONS.
+    `.trim(),
+    
+    // Required acknowledgments (customer must check boxes)
+    requiredAcknowledgments: [
+      'I have read and understand the entire quote including all terms, conditions, and disclaimers',
+      'I understand this is an estimate and actual costs may vary based on site conditions',
+      'I acknowledge the payment schedule and agree to make timely payments',
+      'I understand the warranty covers workmanship only, not material defects',
+      'I acknowledge my responsibilities regarding permits, access, and site preparation',
+      'I have authority to enter into this contract on behalf of the property owner'
+    ]
   },
   
   /**

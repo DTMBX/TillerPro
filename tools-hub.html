@@ -59,6 +59,7 @@ sitemap:
   <link rel="stylesheet" href="/assets/css/mobile-thumb-zones.css">
   <link rel="stylesheet" href="/assets/css/modern-devices.css">
   <link rel="stylesheet" href="/assets/css/tools-hub.css">
+  <link rel="stylesheet" href="/assets/css/quote-generator.css">
   
   <!-- Open Graph -->
   <meta property="og:title" content="{{ page.title }}">
@@ -177,10 +178,22 @@ sitemap:
   <!-- 1. Accessibility Init (must load first) -->
   <script src="/assets/js/a11y-init.js"></script>
   
-  <!-- 2. State Manager (before router) -->
+  <!-- 2. TillerPro Configuration (white-label settings) -->
+  <script src="/assets/js/tillerpro-config.js"></script>
+  
+  <!-- 3. Quote Validator (validation + legal compliance) -->
+  <script src="/assets/js/quote-validator.js"></script>
+  
+  <!-- 4. jsPDF Library for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  <!-- 5. State Manager (before router) -->
   <script src="/assets/js/project-state-manager.js"></script>
   
-  <!-- 3. Router (depends on state manager) -->
+  <!-- 6. Quote Generator (depends on state, config, validator, jsPDF) -->
+  <script src="/assets/js/quote-generator.js"></script>
+  
+  <!-- 7. Router (depends on state manager) -->
   <script src="/assets/js/tools-hub-router.js"></script>
   
   <!-- 4. UI Initialization -->

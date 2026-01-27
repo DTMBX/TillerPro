@@ -1,0 +1,149 @@
+/**
+ * CRITICAL UX FIXES
+ * 1. Center "Booking Spring 2026 Now" badge
+ * 2. Fix accessibility menu panel width (was too narrow, cutting off text)
+ * 3. Widen entire site content on desktop for premium feel
+ */
+
+/* ========================================
+   1. CENTER BOOKING BADGE
+   ======================================== */
+.ts-hero__badges {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+  align-items: center !important;
+  justify-content: center !important; /* ← CENTER ALL BADGES */
+  margin-bottom: 1rem !important;
+}
+
+/* ========================================
+   2. FIX ACCESSIBILITY MENU WIDTH
+   ======================================== */
+.a11y-toolbar__panel {
+  min-width: 280px !important; /* Was cutting off "Read Alou..." */
+  width: auto !important;
+  max-width: 360px !important;
+}
+
+.a11y-toolbar__panel button,
+.a11y-toolbar__btn {
+  min-width: 200px !important; /* Full button text visible */
+  white-space: nowrap !important;
+  padding: 0.875rem 1.5rem !important;
+  font-size: 0.95rem !important;
+  text-align: left !important;
+}
+
+/* Panel on desktop - bottom-right with proper width */
+@media (min-width: 769px) {
+  .a11y-toolbar__panel {
+    position: fixed !important;
+    bottom: 80px !important;
+    right: 24px !important;
+    min-width: 320px !important;
+  }
+}
+
+/* Mobile - full width minus padding */
+@media (max-width: 768px) {
+  .a11y-toolbar__panel {
+    right: 16px !important;
+    max-width: calc(100vw - 32px) !important;
+    min-width: 280px !important;
+  }
+}
+
+/* ========================================
+   3. WIDEN ENTIRE SITE (ALL PAGES)
+   ======================================== */
+@media (min-width: 1200px) {
+  /* Global container width increase */
+  .container {
+    --container-max: 85rem !important; /* Was 72rem */
+    max-width: 1360px !important;
+  }
+  
+  .container--wide {
+    --container-max: 110rem !important; /* Was 100rem */
+    max-width: 1760px !important;
+  }
+  
+  .container--full {
+    --container-max: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Hero sections get maximum width */
+  .ts-hero,
+  .hero,
+  [class*="hero"] {
+    max-width: 100% !important;
+  }
+  
+  .ts-hero__inner,
+  .hero__inner {
+    max-width: 1760px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(2rem, 6vw, 5rem) !important;
+    padding-right: clamp(2rem, 6vw, 5rem) !important;
+  }
+  
+  /* Main content areas */
+  .ts-main-content,
+  main,
+  .main-content {
+    max-width: 100% !important;
+  }
+  
+  /* Header matches content width */
+  .ts-header__container {
+    max-width: 1760px !important;
+    padding-left: clamp(2rem, 6vw, 5rem) !important;
+    padding-right: clamp(2rem, 6vw, 5rem) !important;
+  }
+  
+  /* Section containers */
+  section .container,
+  section .container--wide {
+    max-width: 1560px !important;
+  }
+}
+
+/* Ultra-wide screens (1920px+) */
+@media (min-width: 1920px) {
+  .container--wide,
+  .ts-hero__inner {
+    max-width: 1920px !important;
+    padding-left: clamp(3rem, 8vw, 6rem) !important;
+    padding-right: clamp(3rem, 8vw, 6rem) !important;
+  }
+  
+  .ts-header__container {
+    max-width: 1920px !important;
+  }
+}
+
+/* ========================================
+   4. ENSURE CONSISTENT PADDING
+   ======================================== */
+@media (min-width: 1024px) {
+  /* All major sections get consistent horizontal padding */
+  section,
+  .ts-hero,
+  .hero,
+  main > section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Inner containers handle the padding */
+  .container,
+  .container--wide,
+  .ts-hero__inner,
+  .section__inner {
+    padding-left: clamp(2rem, 5vw, 4rem) !important;
+    padding-right: clamp(2rem, 5vw, 4rem) !important;
+  }
+}
