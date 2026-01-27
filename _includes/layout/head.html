@@ -10,6 +10,10 @@
 <meta name="format-detection" content="telephone=yes" />
 <meta name="HandheldFriendly" content="true" />
 
+<!-- Mobile CSS Fixes (CRITICAL - Load Early) -->
+<link rel="stylesheet" href="/assets/css/mobile-master-fix.css" />
+<link rel="stylesheet" href="/assets/css/mobile-emergency-fix.css" />
+
 <!-- Security Headers (Client-Side) -->
 <meta http-equiv="X-Content-Type-Options" content="nosniff" />
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
@@ -104,6 +108,10 @@
 <!-- Core & Utility CSS: Load modern design system first, then legacy compatibility -->
 <!-- EMERGENCY MOBILE FIX - Load FIRST for critical rendering -->
 <link rel="stylesheet" href="{{ '/assets/css/mobile-emergency-fix.css' | relative_url }}" />
+
+<!-- PREMIUM FEATURES - Modern animations & components -->
+<link rel="stylesheet" href="{{ '/assets/css/premium-animations.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/premium-components.css' | relative_url }}" />
 
 <!-- MODERN DESIGN SYSTEM -->
 <link rel="stylesheet" href="{{ '/assets/css/modern/modern.css' | relative_url }}" />
