@@ -232,19 +232,33 @@ All brand elements described in this document are **protected intellectual prope
 
 ### Trademarks
 The following are trademarks of Tillerstead LLC:
-- **Tillerstead™**
-- **TillerPro™**
-- **Tyler the Tiler™** (pending)
-- **Elite Tile Installation™**
+
+**Business Names & Brands:**
+- **Tillerstead™** - Primary business name
+- **TillerPro™** - Software and calculator suite
+- **Tyler the Tiler™** - Personal brand and potential character mark (pending)
+
+**Slogans & Taglines:**
+- **"Where Craft Meets Accountability"™** - Primary tagline (2024-present)
+- **"Precision. Permanence. Pride."™** - Brand philosophy (legacy)
+- **"Measured. Verified. Documented."™** - Core methodology
+- **"Beautiful finishes start with the invisible work."™** - Value proposition
+
+**Brand Extensions:**
+- **Tyler's Voice™** - Educational content brand
+- **Tyler's Standards™** - Quality methodology
+- **Tyler's Eye View™** - Editorial perspective
 
 ### Copyright Protection
 All brand assets are copyrighted:
 - **Logo designs** - All variations and configurations
-- **Color combinations** - Specific palette and usage
+- **Color combinations** - Specific palette (Emerald #00e184, Gold #d4af37)
 - **Typography selections** - Font choices and hierarchy
 - **Visual identity** - Overall aesthetic and design language
 - **Photography** - All project photos and media
 - **Written content** - Website copy, blog posts, documentation
+- **Character design** - Tyler the Tiler character/avatar (if developed)
+- **Brand voice** - Distinctive communication style
 
 ### Protected Elements
 **Proprietary Design Elements:**
@@ -255,6 +269,43 @@ All brand assets are copyrighted:
 5. Brand voice and messaging
 6. Marketing materials and templates
 7. Website design and user interface
+8. Character design and mascot (pending development)
+9. Slogans and tagline portfolio
+
+---
+
+## Character/Avatar Development (Optional)
+
+### Tyler the Tiler™ Character Concept
+If a cartoon character or avatar is developed, the following guidelines apply:
+
+**Character Design:**
+- Professional tile contractor representation
+- Tillerstead brand colors (Emerald green, Gold accents)
+- Hard hat with "T" logo
+- Tool belt with level and trowel
+- Friendly, approachable, confident expression
+- Clean, modern illustration style
+
+**Character Personality:**
+- Knowledgeable but not condescending
+- Helpful and reassuring
+- Professional and direct
+- Embodies "Where Craft Meets Accountability"
+
+**Usage:**
+- Educational content and tutorials
+- Blog post headers and graphics
+- Social media posts and engagement
+- How-to guides and documentation
+- Email newsletters
+- Marketing materials
+
+**Protection:**
+- Character design: Trademark + Copyright
+- Character name: "Tyler the Tiler™"
+- No unauthorized modifications
+- No use with competing brands
 
 ---
 
