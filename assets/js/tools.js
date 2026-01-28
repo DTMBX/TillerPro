@@ -3118,7 +3118,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
 
     html += '<p><strong>WARRANTY:</strong> Material estimates do not constitute a contract, proposal, or warranty. All installations should follow TCNA Handbook guidelines and manufacturer specifications.</p>';
 
-    html += '<p style="margin-top: 12pt; border-top: 0.5pt solid #d4a84b; padding-top: 8pt; font-size: 8pt;"><strong>Tillerstead LLC</strong> • NJ Registered Home Improvement Contractor #13VH10808800 • (609) 862-8808 • info@tillerstead.com</p>';
+    html += '<p style="margin-top: 12pt; border-top: 0.5pt solid #d4a84b; padding-top: 8pt; font-size: 8pt;"><strong>Tillerstead LLC</strong> • NJ Registered Home Improvement Contractor #13VH10808800 • (609) 862-8808 • support@tillerstead.com</p>';
 
     html += '</div>';
     return html;
@@ -4282,7 +4282,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
   <table class="spec-table" style="max-width: 400px;">
     <tr><td>Company</td><td>Tillerstead LLC</td></tr>
     <tr><td>Phone</td><td>(609) 862-8808</td></tr>
-    <tr><td>Email</td><td>info@tillerstead.com</td></tr>
+    <tr><td>Email</td><td>support@tillerstead.com</td></tr>
     <tr><td>Website</td><td>tillerstead.com</td></tr>
     <tr><td>NJ HIC License</td><td>13VH10808800</td></tr>
     <tr><td>Service Area</td><td>Atlantic, Ocean & Cape May Counties, NJ</td></tr>

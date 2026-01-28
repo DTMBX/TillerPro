@@ -12,7 +12,14 @@
   hic_license: "13VH10808800"
   phone_display: "(609) 862-8808"
   phone_link: "+16098628808"
-  email: "info@tillerstead.com"
+  # Professional email addresses (ProtonMail end-to-end encrypted with catchall)
+  email: "info@tillerstead.com"           # General inquiries (default/fallback)
+  email_support: "support@tillerstead.com"  # Customer support and questions
+  email_sales: "sales@tillerstead.com"      # New business inquiries
+  email_quotes: "quotes@tillerstead.com"    # Quote requests and estimates
+  email_legal: "legal@tillerstead.com"      # Legal, licensing, trademark inquiries
+  email_dmca: "dmca@tillerstead.com"        # Copyright and DMCA notices
+  email_warranty: "warranty@tillerstead.com" # Warranty claims and service
   website: "https://tillerstead.com"
 
 # Physical Address
@@ -253,5 +260,5 @@ address:
     Tyler
     Owner/Operator, Tillerstead LLC
     NJ HIC #13VH10808800
-    (609) 862-8808 | info@tillerstead.com
+    (609) 862-8808 | support@tillerstead.com
     "Where Craft Meets Accountability"

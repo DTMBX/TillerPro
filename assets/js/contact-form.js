@@ -28,7 +28,7 @@
     });
     // Double CRLF for readability
     const body = encodeURIComponent(bodyLines.join('\r\n\r\n'));
-    return `mailto:info@tillerstead.com?subject=${subject}&body=${body}`;
+    return `mailto:support@tillerstead.com?subject=${subject}&body=${body}`;
   };
 
   /**
@@ -151,7 +151,7 @@
         if (!submitted) {
           showStatus(
             statusEl,
-            'We’ve opened your email app with your project details. If your email client did not open, please contact info@tillerstead.com directly. All inquiries are handled per TCNA and New Jersey HIC requirements.',
+            'We've opened your email app with your project details. If your email client did not open, please contact support@tillerstead.com directly. All inquiries are handled per TCNA and New Jersey HIC requirements.',
             'success',
           );
           setTimeout(() => {

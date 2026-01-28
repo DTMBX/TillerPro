@@ -212,7 +212,14 @@ company:
   address_city: "Galloway"
   address_region: "NJ"
   address_postal_code: "08205"
-  email: "info@tillerstead.com"
+  # Email addresses (ProtonMail end-to-end encrypted with catchall)
+  email: "info@tillerstead.com"          # General inquiries (default/fallback)
+  email_support: "support@tillerstead.com"  # Customer support and questions
+  email_sales: "sales@tillerstead.com"      # New business inquiries
+  email_quotes: "quotes@tillerstead.com"    # Quote requests and estimates
+  email_legal: "legal@tillerstead.com"      # Legal, licensing, and trademark inquiries
+  email_dmca: "dmca@tillerstead.com"        # Copyright and DMCA notices
+  email_warranty: "warranty@tillerstead.com" # Warranty claims and service
 
 # ----------------------------
 # UX flags
@@ -250,8 +257,8 @@ ux:
 # Forms
 # ----------------------------
 forms:
-  endpoint: "https://formsubmit.co/info@tillerstead.com"
-  guide_endpoint: "https://formsubmit.co/info@tillerstead.com"
+  endpoint: "https://formsubmit.co/support@tillerstead.com"
+  guide_endpoint: "https://formsubmit.co/support@tillerstead.com"
   redirect_path: "/success/?form=contact"
   guide_redirect_path: "/download/nj-tile-guide/thank-you/"
   subject: "New Tillerstead LLC inquiry — TCNA/New Jersey HIC Compliant"

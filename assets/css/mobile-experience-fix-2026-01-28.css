@@ -1,0 +1,449 @@
+/**
+ * MOBILE EXPERIENCE FIX - January 28, 2026
+ * Comprehensive fixes for mobile navigation, header blur, viewport, cards, and footer
+ */
+
+/* ===== VIEWPORT OPTIMIZATION ===== */
+@media (max-width: 768px) {
+  /* Ensure flexible viewport for all device types */
+  body {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  .container,
+  .ts-section,
+  section {
+    max-width: 100% !important;
+    padding-left: clamp(1rem, 4vw, 1.5rem) !important;
+    padding-right: clamp(1rem, 4vw, 1.5rem) !important;
+  }
+}
+
+/* ===== HEADER & BLUR FIX ===== */
+@media (max-width: 768px) {
+  /* Remove excessive blur underneath header */
+  .ts-header {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .ts-header::before,
+  .ts-header::after {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+  }
+
+  /* Remove blur from gradient mesh under hero */
+  .gradient-mesh::before {
+    filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Clean header styling */
+  .ts-header {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border-bottom: 1px solid rgba(0, 107, 61, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Remove any popup notification blur */
+  .popup-notification,
+  .notification-banner,
+  [class*="notification"] {
+    backdrop-filter: none !important;
+    background: rgba(0, 107, 61, 0.95) !important;
+  }
+}
+
+/* ===== TESTIMONIALS/REVIEWS SECTION FIX ===== */
+@media (max-width: 768px) {
+  .home-testimonials,
+  #testimonials {
+    padding: 3rem clamp(1rem, 4vw, 1.5rem) !important;
+    background: linear-gradient(135deg, #006b3d 0%, #00a35c 100%);
+  }
+
+  .testimonials-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+
+  .testimonial-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1.75rem !important;
+    background: white !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15),
+                0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    border: 2px solid rgba(201, 162, 39, 0.2) !important;
+  }
+
+  .testimonial-quote {
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+    color: #1f2937 !important;
+    margin-bottom: 1.25rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .testimonial-quote p {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 0.75rem 0 !important;
+  }
+
+  .testimonial-author {
+    font-size: 0.9375rem !important;
+    font-weight: 600 !important;
+    color: #006b3d !important;
+  }
+
+  .testimonial-rating {
+    color: #d4af37 !important;
+    font-size: 1.25rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .section-header {
+    text-align: center !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .section-title {
+    color: white !important;
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .section-eyebrow {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 0.9375rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+  }
+}
+
+/* ===== GLOBAL CARD IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+  /* Add dimension to all cards */
+  .card,
+  .service-card,
+  .ts-card,
+  .ts-tile-framed,
+  .why-card,
+  .process-card,
+  .faq-item {
+    background: white !important;
+    border-radius: 16px !important;
+    padding: 1.75rem !important;
+    margin-bottom: 1.5rem !important;
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.08),
+      0 2px 8px rgba(0, 0, 0, 0.04),
+      0 1px 2px rgba(0, 0, 0, 0.02) !important;
+    border: 2px solid rgba(201, 162, 39, 0.15) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  }
+
+  .card:hover,
+  .service-card:hover,
+  .ts-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 
+      0 12px 32px rgba(0, 0, 0, 0.12),
+      0 4px 16px rgba(0, 0, 0, 0.08) !important;
+    border-color: rgba(201, 162, 39, 0.3) !important;
+  }
+
+  /* Service cards - Vibrant green accent */
+  .service-card {
+    border-left: 4px solid #00a35c !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%) !important;
+  }
+
+  /* Process cards - Gold accent */
+  .process-card {
+    border-left: 4px solid #d4af37 !important;
+    background: linear-gradient(135deg, #ffffff 0%, #fffef8 100%) !important;
+  }
+
+  /* Why us cards - Premium styling */
+  .why-card {
+    border-left: 4px solid #006b3d !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fefa 100%) !important;
+  }
+
+  /* FAQ items - Clean and accessible */
+  .faq-item {
+    border-left: 3px solid #00a35c !important;
+  }
+
+  /* Remove gray/gloomy appearance */
+  .bg-light,
+  .ts-surface,
+  section[class*="bg-"] {
+    background: white !important;
+  }
+
+  /* Alternate section backgrounds for visual hierarchy */
+  section:nth-of-type(odd):not(#testimonials):not(#hero) {
+    background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%) !important;
+  }
+
+  section:nth-of-type(even):not(#testimonials) {
+    background: white !important;
+  }
+}
+
+/* ===== FOOTER FIXES ===== */
+@media (max-width: 768px) {
+  /* Fix footer logo viewport clipping */
+  .footer-logo-section {
+    padding: 1.5rem 0 !important;
+    overflow: visible !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .footer-logo,
+  .footer-logo--large {
+    max-width: 100% !important;
+    width: clamp(240px, 80vw, 320px) !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto !important;
+    overflow: visible !important;
+    clip-path: none !important;
+    /* Remove any viewport box constraints */
+    max-height: none !important;
+    min-height: auto !important;
+  }
+
+  /* Ensure logo container doesn't clip */
+  .footer-logo-section a {
+    display: block !important;
+    overflow: visible !important;
+    width: 100% !important;
+  }
+
+  /* Fix footer contact section */
+  .footer-contact {
+    text-align: center !important;
+    padding: 2rem 1rem !important;
+    border-top: 2px solid rgba(201, 162, 39, 0.2) !important;
+    margin-top: 2rem !important;
+  }
+
+  .footer-license {
+    display: inline-block !important;
+    background: linear-gradient(135deg, #006b3d 0%, #00a35c 100%) !important;
+    color: white !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 24px !important;
+    font-weight: 600 !important;
+    font-size: 0.9375rem !important;
+    margin-bottom: 1.25rem !important;
+    box-shadow: 0 4px 12px rgba(0, 107, 61, 0.3) !important;
+    cursor: default !important;
+  }
+
+  /* Make it clear this is informational, not a button */
+  .footer-license::before {
+    content: "NJ HIC #" !important;
+    font-weight: 700 !important;
+  }
+
+  .footer-contact-phone,
+  .footer-contact-email {
+    font-size: 1rem !important;
+    margin: 0.75rem 0 !important;
+  }
+
+  .footer-contact-phone a,
+  .footer-contact-email a {
+    color: #00a35c !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    transition: color 0.3s ease !important;
+  }
+
+  .footer-contact-phone a:hover,
+  .footer-contact-email a:hover {
+    color: #d4af37 !important;
+    text-decoration: underline !important;
+  }
+
+  /* Fix footer social icons alignment */
+  .footer-social {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    margin: 1.5rem 0 !important;
+  }
+
+  .footer-social a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 48px !important;
+    height: 48px !important;
+    background: rgba(0, 107, 61, 0.1) !important;
+    border-radius: 50% !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .footer-social a:hover {
+    background: #00a35c !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 16px rgba(0, 107, 61, 0.3) !important;
+  }
+
+  .footer-social a svg {
+    width: 24px !important;
+    height: 24px !important;
+    fill: #00a35c !important;
+    transition: fill 0.3s ease !important;
+  }
+
+  .footer-social a:hover svg {
+    fill: white !important;
+  }
+
+  /* Ensure footer sections are properly spaced */
+  .footer-sections {
+    margin-bottom: 2rem !important;
+  }
+
+  .footer-group {
+    margin-bottom: 2rem !important;
+  }
+
+  .footer-list {
+    padding: 0 !important;
+    margin: 0.75rem 0 !important;
+  }
+
+  .footer-list li {
+    margin: 0.5rem 0 !important;
+  }
+
+  .footer-list a {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease !important;
+  }
+
+  .footer-list a:hover {
+    color: #d4af37 !important;
+  }
+}
+
+/* ===== HIDE EXPOSED SCHEMA CODE ===== */
+script[type="application/ld+json"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Fix any schema markup that might be rendered as text */
+[itemtype*="schema.org"],
+[typeof*="LocalBusiness"] {
+  /* Keep the semantic markup but ensure it doesn't create visible artifacts */
+}
+
+/* Remove any accidentally visible schema text */
+body::after,
+section::after {
+  content: none !important;
+}
+
+/* ===== TRUST BAR SPACING FIX ===== */
+@media (max-width: 768px) {
+  #trust {
+    margin-top: 0 !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* Ensure no gap between hero and trust bar */
+  .gradient-mesh + #trust {
+    margin-top: 0 !important;
+  }
+}
+
+/* ===== MOBILE NAVIGATION IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+  /* Ensure mobile menu works properly */
+  .mobile-menu,
+  .nav-drawer {
+    backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+  }
+
+  /* Fix mobile menu overlay */
+  .mobile-menu-overlay {
+    backdrop-filter: blur(4px) !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+  }
+}
+
+/* ===== RESPONSIVE IMPROVEMENTS ===== */
+@media (max-width: 480px) {
+  /* Extra small devices */
+  .testimonial-card,
+  .service-card,
+  .why-card {
+    padding: 1.5rem !important;
+  }
+
+  .section-title {
+    font-size: 1.75rem !important;
+  }
+
+  .footer-logo {
+    width: clamp(200px, 70vw, 280px) !important;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Medium mobile devices (larger phones, small tablets) */
+  .testimonials-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Tablets */
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  .container {
+    max-width: 720px !important;
+  }
+}
+
+/* ===== ACCESSIBILITY & PERFORMANCE ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode support for mobile */
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+  /* Optional: Add dark mode mobile support later */
+}

@@ -25,7 +25,7 @@
       name: 'Tillerstead LLC',
       license: 'NJ HIC #13VH10808800',
       phone: '(609) 862-8808',
-      email: 'info@tillerstead.com',
+      email: 'support@tillerstead.com',
       website: 'tillerstead.com',
       serviceArea: 'South Jersey & Shore Communities'
     }

@@ -16,7 +16,7 @@
     },
     errorMessage: {
       title: 'Submission Error',
-      body: 'We apologize, but there was an issue sending your message. Please email us directly at info@tillerstead.com or call (609) 862-8808.',
+      body: 'We apologize, but there was an issue sending your message. Please email us directly at support@tillerstead.com or call (609) 862-8808.',
     },
   };
 
@@ -125,7 +125,7 @@ Submitted: ${new Date().toLocaleString()}
     }
 
     // Last resort: mailto link
-    const mailtoLink = `mailto:info@tillerstead.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoLink = `mailto:support@tillerstead.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoLink;
 
     return { success: true, method: 'mailto' };

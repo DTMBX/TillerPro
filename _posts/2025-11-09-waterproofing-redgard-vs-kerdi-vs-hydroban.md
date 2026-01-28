@@ -107,7 +107,7 @@ Every phase is documented—**photos, flood-test logs, substrate flatness checks
 ---
 
 **Ready to build a shower that lasts?**  
-If you’re in **Atlantic County or South Jersey**, email **info@tillerstead.com** or [request a consultation](/contact.html). We’ll match your space and budget with the right waterproofing system—and install it to the letter of the code.
+If you're in **Atlantic County or South Jersey**, email **support@tillerstead.com** or [request a consultation](/contact.html). We'll match your space and budget with the right waterproofing system—and install it to the letter of the code.
 
 ---
 

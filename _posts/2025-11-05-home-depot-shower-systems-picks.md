@@ -90,7 +90,7 @@ Big-box stores sell quality waterproofing, but only code-compliant detailing, se
 If you’re in **South Jersey or Atlantic County**, let’s plan the right mix of DIY and professional installation for your project.
 
 **Next step:**  
-Send your shower photos and goals to **<info@tillerstead.com>**, or visit the [Contact page](/contact.html) to start a code-compliant consultation.
+Send your shower photos and goals to **<support@tillerstead.com>**, or visit the [Contact page](/contact.html) to start a code-compliant consultation.
 
 ---
 

@@ -34,7 +34,7 @@
     license: 'NJ HIC #13VH10808800',
     website: 'tillerstead.com',
     phone: '(609) 862-8808',
-    email: 'info@tillerstead.com',
+    email: 'support@tillerstead.com',
     appName: 'TillerPro'
   });
 
