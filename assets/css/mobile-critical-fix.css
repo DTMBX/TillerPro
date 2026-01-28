@@ -128,23 +128,5 @@
   }
 }
 
-/* ============================================
-   DEBUGGING BANNER (temporarily enabled for testing)
-   ============================================ */
-
-@media (max-width: 768px) {
-  .ts-main-content::before {
-    content: '✅ MOBILE FIX ACTIVE - Content should be visible';
-    display: block !important;
-    padding: 1rem !important;
-    background: #10b981 !important;
-    color: white !important;
-    font-weight: bold !important;
-    text-align: center !important;
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 9999 !important;
-    font-size: 0.875rem !important;
-  }
-}
+/* Debug banner removed - mobile fixes are permanent */
 
