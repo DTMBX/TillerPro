@@ -1,53 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"{% if include.html_attrs %} {{ include.html_attrs }}{% endif %}>
 <head>
-  <!-- CRITICAL: Mobile content visibility fix - inline for immediate rendering -->
-  <style>
-    @media (max-width: 768px) {
-      /* Emergency override: Force ALL content visible on mobile */
-      body, main, section, div, article, header, footer,
-      [data-animate], .ts-main-content, .gradient-mesh {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-      }
-      /* Disable animations that hide content */
-      * { animation: none !important; transform: none !important; }
-      
-      /* Hide heavy desktop-only features on mobile */
-      .desktop-only-features,
-      .a11y-toolbar,
-      .lead-magnet-popup,
-      .sticky-cta-bar,
-      .ts-scroll-progress,
-      [data-scroll-progress] {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-      }
-      
-      /* CRITICAL: Hide mobile nav drawer and toggle */
-      .mobile-nav__toggle,
-      .mobile-nav,
-      #mobile-nav-drawer,
-      .nav-drawer,
-      #mobile-nav,
-      .mobile-nav-shell,
-      .hamburger-icon,
-      .mobile-nav__close,
-      .nav-drawer-overlay,
-      body.nav-open::before,
-      body.nav-open::after {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-      }
-      
-      /* Prevent body scroll lock */
-      body.nav-open {
-        overflow: auto !important;
+  {% include layout/head.html %}
         touch-action: auto !important;
       }
       
