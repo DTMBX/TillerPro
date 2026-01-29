@@ -1,6 +1,6 @@
 /**
  * Homepage Enhancements - Scroll Animations & Sticky CTA
- * 
+ *
  * Features:
  * - Scroll-triggered animations (fade-in, scale-in)
  * - Sticky mobile CTA that appears on scroll
@@ -65,7 +65,7 @@
     stickyCTA.className = 'mobile-sticky-cta';
     stickyCTA.setAttribute('role', 'complementary');
     stickyCTA.setAttribute('aria-label', 'Quick contact actions');
-    
+
     stickyCTA.innerHTML = `
       <div class="cta-content">
         <a href="/contact/" class="btn btn--primary btn--pulse">
@@ -85,12 +85,12 @@
 
     function updateStickyState() {
       const shouldShow = window.scrollY > CONFIG.stickyCtaShowAt;
-      
+
       if (shouldShow !== isVisible) {
         isVisible = shouldShow;
         stickyCTA.classList.toggle('visible', isVisible);
       }
-      
+
       ticking = false;
     }
 
@@ -139,22 +139,22 @@
     if (window.innerWidth < 768) return; // Skip on small mobile
 
     const cards = document.querySelectorAll('.service-card, .material-card, .testimonial-card');
-    
+
     cards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        
+
         const rotateX = (y - centerY) / 20; // Subtle tilt
         const rotateY = (centerX - x) / 20;
-        
+
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
       });
-      
+
       card.addEventListener('mouseleave', () => {
         card.style.transform = '';
       });
@@ -168,7 +168,7 @@
     if (CONFIG.reducedMotion) return;
 
     const sections = document.querySelectorAll('section');
-    
+
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {

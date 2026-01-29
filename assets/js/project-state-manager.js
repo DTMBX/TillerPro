@@ -1,14 +1,14 @@
 /**
  * Project State Manager
  * Unified state management for Tillerstead Tools Hub
- * 
+ *
  * Features:
  * - Centralized ProjectState with schema versioning
  * - localStorage persistence with auto-save
  * - Event system for reactive updates
  * - Migration utilities for backward compatibility
  * - Export to PDF/CSV
- * 
+ *
  * @version 1.0.0
  * @author Tillerstead LLC
  */
@@ -29,10 +29,10 @@
       this.storageKey = STORAGE_KEY;
       this.autoSaveTimer = null;
       this.listeners = {};
-      
+
       // Load existing state or create new
       this.state = this.load();
-      
+
       // Auto-save on page unload
       window.addEventListener('beforeunload', () => this.save());
     }
@@ -45,14 +45,14 @@
       try {
         const stored = localStorage.getItem(this.storageKey);
         if (!stored) return this.createNew();
-        
+
         const parsed = JSON.parse(stored);
-        
+
         // Migrate if version mismatch
         if (parsed.version !== this.version) {
           return this.migrate(parsed);
         }
-        
+
         return parsed;
       } catch (e) {
         console.error('[ProjectState] Failed to load:', e);
@@ -72,7 +72,7 @@
         return true;
       } catch (e) {
         console.error('[ProjectState] Failed to save:', e);
-        
+
         // Check if quota exceeded
         if (e.name === 'QuotaExceededError') {
           console.warn('[ProjectState] LocalStorage quota exceeded, attempting cleanup...');
@@ -108,7 +108,7 @@
      */
     get(path) {
       if (!path) return this.state;
-      
+
       return path.split('.').reduce((obj, key) => {
         // Handle array indices
         if (/^\d+$/.test(key)) {
@@ -126,7 +126,7 @@
     set(path, value) {
       const keys = path.split('.');
       const lastKey = keys.pop();
-      
+
       // Navigate to parent object
       const parent = keys.reduce((obj, key) => {
         // Handle array indices
@@ -138,15 +138,15 @@
           if (!obj[index]) obj[index] = {};
           return obj[index];
         }
-        
+
         // Create object if doesn't exist
         if (!obj[key]) obj[key] = {};
         return obj[key];
       }, this.state);
-      
+
       // Set value
       parent[lastKey] = value;
-      
+
       // Trigger events
       this.dispatch('change', { path, value });
       this.autoSave();
@@ -160,7 +160,7 @@
       const keys = path.split('.');
       const lastKey = keys.pop();
       const parent = this.get(keys.join('.'));
-      
+
       if (parent) {
         delete parent[lastKey];
         this.dispatch('delete', { path });
@@ -182,7 +182,7 @@
         }, this.state);
         parent[lastKey] = value;
       });
-      
+
       this.dispatch('batch-update', updates);
       this.autoSave();
     }
@@ -197,7 +197,7 @@
         version: this.version,
         created: now,
         updated: now,
-        
+
         project: {
           id: `proj_${Date.now()}`,
           name: 'Untitled Project',
@@ -205,7 +205,7 @@
           status: 'planning', // planning, quoted, scheduled, completed
           rooms: []
         },
-        
+
         tile: {
           size: {},
           material: '',
@@ -215,7 +215,7 @@
           wastePercent: 10,
           calculated: {}
         },
-        
+
         grout: {
           jointWidth: 0.125,
           jointDepth: 0.375,
@@ -223,45 +223,45 @@
           color: '',
           calculated: {}
         },
-        
+
         mortar: {
           trowelSize: '',
           backButter: false,
           type: 'polymer-modified',
           calculated: {}
         },
-        
+
         waterproofing: {
           membraneType: 'liquid',
           coats: 2,
           reinforcingBand: true,
           calculated: {}
         },
-        
+
         slope: {
           drainType: 'center',
           slopeRate: 0.25,
           calculated: {}
         },
-        
+
         leveling: {
           pourDepth: 0.25,
           primerCoats: 1,
           calculated: {}
         },
-        
+
         labor: {
           complexity: 'medium',
           additionalWork: [],
           calculated: {}
         },
-        
+
         budget: {
           materials: {},
           labor: {},
           total: {}
         },
-        
+
         contact: {
           name: '',
           email: '',
@@ -272,9 +272,9 @@
           quoteRequested: false,
           calendlyBooked: false
         },
-        
+
         exports: [],
-        
+
         preferences: {
           units: 'imperial',
           currency: 'USD',
@@ -293,11 +293,11 @@
     migrate(oldState) {
       const oldVersion = oldState.version || '0.9.0';
       console.log(`[ProjectState] Migrating from ${oldVersion} to ${this.version}`);
-      
+
       // Migration from pre-unification (0.9.0) to 1.0.0
       if (oldVersion === '0.9.0' || !oldState.version) {
         const newState = this.createNew();
-        
+
         // Attempt to migrate legacy calculator data
         try {
           // Tile calculator
@@ -307,7 +307,7 @@
             newState.tile.size.length = tileData.tileLength;
             newState.tile.wastePercent = tileData.waste || 10;
           }
-          
+
           // Grout calculator
           const groutData = JSON.parse(localStorage.getItem('grout_calc_data') || '{}');
           if (groutData.jointWidth) {
@@ -315,14 +315,14 @@
             newState.grout.jointDepth = groutData.jointDepth;
             newState.grout.type = groutData.type || 'sanded';
           }
-          
+
           // Mortar calculator
           const mortarData = JSON.parse(localStorage.getItem('mortar_calc_data') || '{}');
           if (mortarData.trowelSize) {
             newState.mortar.trowelSize = mortarData.trowelSize;
             newState.mortar.backButter = mortarData.backButter || false;
           }
-          
+
           // Preserve project name if exists
           if (oldState.projectName) {
             newState.project.name = oldState.projectName;
@@ -330,11 +330,11 @@
         } catch (e) {
           console.warn('[ProjectState] Legacy data migration failed:', e);
         }
-        
+
         newState.version = '1.0.0';
         return newState;
       }
-      
+
       // No migration needed
       return oldState;
     }
@@ -348,7 +348,7 @@
       if (confirm && !window.confirm('Delete all project data? This cannot be undone.')) {
         return false;
       }
-      
+
       this.state = this.createNew();
       this.save();
       this.dispatch('reset');
@@ -401,14 +401,14 @@
       // This will integrate with existing pdf-generator.js
       // For now, return a placeholder
       console.log('[ProjectState] Exporting to PDF...');
-      
+
       // TODO: Integrate with assets/js/pdf-generator.js
       // const doc = await generateProjectPDF(this.state);
       // const blob = doc.output('blob');
       // const url = URL.createObjectURL(blob);
-      
+
       const url = '#pdf-export-coming-soon';
-      
+
       this.state.exports.push({
         id: `export_${Date.now()}`,
         type: 'pdf',
@@ -416,7 +416,7 @@
         url
       });
       this.save();
-      
+
       return url;
     }
 
@@ -426,13 +426,13 @@
      */
     exportCSV() {
       console.log('[ProjectState] Exporting to CSV...');
-      
+
       // Build material list CSV
       const rows = [
         ['Material', 'Quantity', 'Unit', 'Notes'],
         ['---', '---', '---', '---']
       ];
-      
+
       // Tile
       if (this.state.tile.calculated.tileCount) {
         rows.push([
@@ -442,7 +442,7 @@
           `${this.state.tile.wastePercent}% waste included`
         ]);
       }
-      
+
       // Grout
       if (this.state.grout.calculated.bagsNeeded) {
         rows.push([
@@ -452,7 +452,7 @@
           `${this.state.grout.calculated.lbsPerBag || 25}lb bags`
         ]);
       }
-      
+
       // Mortar
       if (this.state.mortar.calculated.bagsNeeded) {
         rows.push([
@@ -462,10 +462,10 @@
           this.state.mortar.backButter ? 'Includes back-butter' : ''
         ]);
       }
-      
+
       // Convert to CSV string
       const csv = rows.map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
-      
+
       return csv;
     }
 
@@ -477,7 +477,7 @@
       if (this.state.exports.length > 5) {
         this.state.exports = this.state.exports.slice(-5);
       }
-      
+
       // Remove legacy calculator data if exists
       [
         'tile_calc_data',
@@ -499,7 +499,7 @@
     getSummary() {
       const rooms = this.state.project.rooms || [];
       const totalArea = rooms.reduce((sum, room) => sum + (room.areaFloor || 0), 0);
-      
+
       return {
         projectName: this.state.project.name,
         projectType: this.state.project.type,
@@ -528,7 +528,7 @@
         !!this.state.budget.total.estimate,          // 7. Budget calculated
         !!this.state.contact.email                   // 8. Contact provided
       ];
-      
+
       const completed = steps.filter(Boolean).length;
       return Math.round((completed / steps.length) * 100);
     }

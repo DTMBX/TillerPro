@@ -1,9 +1,9 @@
 /**
  * Tillerstead Formula Library - Grout Formulas
- * 
+ *
  * Grout quantity calculation based on geometric joint volume.
  * Formula is mathematically derived; density values vary by product.
- * 
+ *
  * @module formulas.grout
  */
 
@@ -50,7 +50,7 @@ export const GROUT_FORMULA_INFO = {
 
 /**
  * Grout density values (lbs per cubic foot)
- * 
+ *
  * Note: These are typical values. Actual density varies by manufacturer and product.
  * Users should verify with specific product TDS.
  */
@@ -69,7 +69,7 @@ export const GROUT_DENSITY = {
 
 /**
  * Grout joint width recommendations
- * 
+ *
  * SOURCE: TCNA, Custom Building Products TB85
  */
 export const JOINT_RECOMMENDATIONS = {
@@ -186,14 +186,14 @@ export const GROUT_PRO_TIPS = {
 
 /**
  * Calculate grout quantity needed
- * 
+ *
  * FORMULA:
  * Joint perimeter per tile = (L + W) × 2 / 2 = (L + W)
  * Joint volume per tile = (L + W) × joint_width × tile_thickness
  * Tiles per sq ft = 144 / (L × W)
  * Total joint volume = joint_volume_per_tile × tiles_per_sq_ft × area
  * Grout weight = total_volume × density
- * 
+ *
  * @param {Object} params
  * @param {number} params.areaSqFt - Area to grout in square feet
  * @param {number} params.tileLengthInches - Tile length in inches
@@ -265,7 +265,7 @@ export function calculateGrout({
 
   // Get grout density
   const density = GROUT_DENSITY[groutType]?.lbsPerCuFt || GROUT_DENSITY.cement.lbsPerCuFt;
-  
+
   // Calculate weight
   let groutLbs = totalJointVolumeCuFt * density;
 
@@ -291,7 +291,7 @@ export function calculateGrout({
   assumptions.push(`Joint width: ${jointVal.value}" (${jointVal.value < 0.125 ? 'unsanded' : 'sanded'} grout)`);
   assumptions.push(`Grout type: ${groutType} (${density} lbs/cu ft density)`);
   assumptions.push(`Waste factor: ${wasteVal.value}%`);
-  
+
   sources.push(GROUT_FORMULA_INFO.sources[0].note);
   sources.push('TCNA grout type guidelines');
 

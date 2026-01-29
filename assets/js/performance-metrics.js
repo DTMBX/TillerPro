@@ -62,10 +62,10 @@ export async function measureWebVitals() {
   // Navigation Timing API
   if ('performance' in window && performance.timing) {
     const timing = performance.timing;
-    
+
     // TTFB - Time to First Byte
     vitals.ttfb = timing.responseStart - timing.requestStart;
-    
+
     // FCP - First Contentful Paint
     const paintEntries = performance.getEntriesByType('paint');
     const fcpEntry = paintEntries.find(entry => entry.name === 'first-contentful-paint');
@@ -89,7 +89,7 @@ export function reportWebVitals() {
 async function measureAndReport() {
   setTimeout(async () => {
     const vitals = await measureWebVitals();
-    
+
     console.group('📊 Web Vitals Performance Report');
     console.log('LCP (Largest Contentful Paint):', formatMetric(vitals.lcp, 2500, 4000), 'ms');
     console.log('FID (First Input Delay):', formatMetric(vitals.fid, 100, 300), 'ms');
@@ -97,11 +97,11 @@ async function measureAndReport() {
     console.log('FCP (First Contentful Paint):', formatMetric(vitals.fcp, 1800, 3000), 'ms');
     console.log('TTFB (Time to First Byte):', formatMetric(vitals.ttfb, 800, 1800), 'ms');
     console.groupEnd();
-    
+
     // Calculate overall score
     const score = calculatePerformanceScore(vitals);
     console.log(`%c Overall Performance Score: ${score}/100`, getScoreStyle(score));
-    
+
     // Send to analytics (if available)
     if (typeof gtag !== 'undefined') {
       gtag('event', 'web_vitals', {
@@ -118,15 +118,15 @@ async function measureAndReport() {
 
 function formatMetric(value, good, needsImprovement, isRatio = false) {
   if (value === null) return '⏳ Measuring...';
-  
+
   const formatted = isRatio ? value.toFixed(3) : Math.round(value);
-  
+
   if (isRatio) {
     if (value <= good) return `✅ ${formatted} (Good)`;
     if (value <= needsImprovement) return `⚠️ ${formatted} (Needs Improvement)`;
     return `❌ ${formatted} (Poor)`;
   }
-  
+
   if (value <= good) return `✅ ${formatted} (Good)`;
   if (value <= needsImprovement) return `⚠️ ${formatted} (Needs Improvement)`;
   return `❌ ${formatted} (Poor)`;
@@ -134,27 +134,27 @@ function formatMetric(value, good, needsImprovement, isRatio = false) {
 
 function calculatePerformanceScore(vitals) {
   let score = 100;
-  
+
   // LCP scoring (max 30 points)
   if (vitals.lcp > 4000) score -= 30;
   else if (vitals.lcp > 2500) score -= 15;
-  
+
   // FID scoring (max 25 points)
   if (vitals.fid > 300) score -= 25;
   else if (vitals.fid > 100) score -= 12;
-  
+
   // CLS scoring (max 25 points)
   if (vitals.cls > 0.25) score -= 25;
   else if (vitals.cls > 0.1) score -= 12;
-  
+
   // FCP scoring (max 10 points)
   if (vitals.fcp > 3000) score -= 10;
   else if (vitals.fcp > 1800) score -= 5;
-  
+
   // TTFB scoring (max 10 points)
   if (vitals.ttfb > 1800) score -= 10;
   else if (vitals.ttfb > 800) score -= 5;
-  
+
   return Math.max(0, score);
 }
 
@@ -167,7 +167,7 @@ function getScoreStyle(score) {
 // Resource timing analysis
 export function analyzeResourceTiming() {
   if (!performance.getEntriesByType) return;
-  
+
   const resources = performance.getEntriesByType('resource');
   const analysis = {
     css: [],
@@ -176,7 +176,7 @@ export function analyzeResourceTiming() {
     fonts: [],
     other: []
   };
-  
+
   resources.forEach(resource => {
     const entry = {
       name: resource.name.split('/').pop(),
@@ -184,14 +184,14 @@ export function analyzeResourceTiming() {
       size: resource.transferSize,
       cached: resource.transferSize === 0
     };
-    
+
     if (resource.name.endsWith('.css')) analysis.css.push(entry);
     else if (resource.name.endsWith('.js')) analysis.js.push(entry);
     else if (resource.name.match(/\.(jpg|jpeg|png|gif|webp|svg|avif)/)) analysis.images.push(entry);
     else if (resource.name.match(/\.(woff|woff2|ttf|eot)/)) analysis.fonts.push(entry);
     else analysis.other.push(entry);
   });
-  
+
   console.group('📦 Resource Loading Analysis');
   console.log('CSS files:', analysis.css.length, 'Total time:', sumDuration(analysis.css), 'ms');
   console.log('JS files:', analysis.js.length, 'Total time:', sumDuration(analysis.js), 'ms');
@@ -199,7 +199,7 @@ export function analyzeResourceTiming() {
   console.log('Fonts:', analysis.fonts.length, 'Total time:', sumDuration(analysis.fonts), 'ms');
   console.table(analysis.css.slice(0, 10));
   console.groupEnd();
-  
+
   return analysis;
 }
 
@@ -212,7 +212,7 @@ if (typeof window !== 'undefined') {
   window.measureWebVitals = measureWebVitals;
   window.reportWebVitals = reportWebVitals;
   window.analyzeResourceTiming = analyzeResourceTiming;
-  
+
   // Auto-report in dev mode
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     reportWebVitals();

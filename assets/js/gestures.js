@@ -20,7 +20,7 @@ class GestureHandler {
    */
   initSwipeNavigation() {
     const portfolioImages = document.querySelectorAll('.portfolio-item, .gallery-item');
-    
+
     portfolioImages.forEach(item => {
       let startX = 0;
       let startY = 0;
@@ -75,7 +75,7 @@ class GestureHandler {
   navigatePortfolio(currentItem, direction) {
     const items = Array.from(document.querySelectorAll('.portfolio-item, .gallery-item'));
     const currentIndex = items.indexOf(currentItem);
-    
+
     let targetIndex;
     if (direction === 'next') {
       targetIndex = (currentIndex + 1) % items.length;
@@ -94,7 +94,7 @@ class GestureHandler {
    */
   initLongPress() {
     const portfolioItems = document.querySelectorAll('.portfolio-item img, .gallery-item img');
-    
+
     portfolioItems.forEach(item => {
       let pressTimer;
       let startX, startY;
@@ -105,7 +105,7 @@ class GestureHandler {
 
         pressTimer = setTimeout(() => {
           this.showContextMenu(item, e.touches[0].clientX, e.touches[0].clientY);
-          
+
           if (window.haptics) {
             window.haptics.trigger('longPress');
           }
@@ -166,7 +166,7 @@ class GestureHandler {
     // Handle actions
     menu.addEventListener('click', (e) => {
       const action = e.target.closest('[data-action]')?.dataset.action;
-      
+
       if (action === 'share') {
         this.shareImage(element);
       } else if (action === 'download') {
@@ -193,7 +193,7 @@ class GestureHandler {
    */
   initPinchZoom() {
     const zoomableImages = document.querySelectorAll('.portfolio-item img, .gallery-item img');
-    
+
     zoomableImages.forEach(img => {
       let initialDistance = 0;
       let currentScale = 1;
@@ -212,7 +212,7 @@ class GestureHandler {
           const currentDistance = this.getDistance(e.touches[0], e.touches[1]);
           const scale = currentDistance / initialDistance;
           currentScale = Math.min(Math.max(scale, 0.5), 3);
-          
+
           img.style.transform = `scale(${currentScale})`;
         }
       });
@@ -220,7 +220,7 @@ class GestureHandler {
       img.addEventListener('touchend', (e) => {
         if (e.touches.length === 0) {
           img.style.transition = 'transform 0.3s ease';
-          
+
           // Reset if zoomed out
           if (currentScale < 1) {
             img.style.transform = 'scale(1)';
@@ -243,7 +243,7 @@ class GestureHandler {
   initWebShare() {
     // Add share buttons to portfolio items
     const shareButtons = document.querySelectorAll('[data-share]');
-    
+
     shareButtons.forEach(button => {
       if (!navigator.share) {
         button.style.display = 'none';
@@ -255,7 +255,7 @@ class GestureHandler {
         const url = button.dataset.shareUrl || window.location.href;
         const title = button.dataset.shareTitle || document.title;
         const text = button.dataset.shareText || '';
-        
+
         this.share({ url, title, text });
       });
     });
@@ -275,7 +275,7 @@ class GestureHandler {
       });
 
       // // // // // // // // // // // // // // // console.log('[Gestures] Shared successfully'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
-      
+
       if (window.haptics) {
         window.haptics.trigger('success');
       }

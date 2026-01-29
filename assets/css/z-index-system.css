@@ -20,6 +20,7 @@
 }
 
 /* ===== LAYER 0: BASE ===== */
+
 /* Background elements, decorative patterns */
 .gradient-mesh,
 .background-pattern,
@@ -28,6 +29,7 @@
 }
 
 /* ===== LAYER 1: CONTENT ===== */
+
 /* Main page content, sections, articles */
 main,
 section,
@@ -40,6 +42,7 @@ article,
 }
 
 /* ===== LAYER 100: DROPDOWNS ===== */
+
 /* Navigation dropdowns, select menus */
 .dropdown,
 .dropdown-menu,
@@ -49,6 +52,7 @@ select[multiple] {
 }
 
 /* ===== LAYER 200: STICKY ===== */
+
 /* Sticky headers, navigation bars */
 header,
 .ts-header,
@@ -64,6 +68,7 @@ footer.sticky,
 }
 
 /* ===== LAYER 300: FIXED ===== */
+
 /* Fixed positioned elements (FAB, back-to-top) */
 .fixed-element,
 .back-to-top,
@@ -72,6 +77,7 @@ footer.sticky,
 }
 
 /* ===== LAYER 400: MODAL BACKDROPS ===== */
+
 /* Overlay/backdrop for modals */
 .modal-backdrop,
 .overlay,
@@ -81,6 +87,7 @@ footer.sticky,
 }
 
 /* ===== LAYER 500: MODALS ===== */
+
 /* Modal dialogs, lightboxes */
 .modal,
 .lightbox,
@@ -90,6 +97,7 @@ footer.sticky,
 }
 
 /* ===== LAYER 600: POPOVERS ===== */
+
 /* Popovers, context menus */
 .popover,
 .context-menu,
@@ -98,6 +106,7 @@ footer.sticky,
 }
 
 /* ===== LAYER 700: TOASTS ===== */
+
 /* Toast notifications, alerts */
 .toast,
 .toast-container,
@@ -107,6 +116,7 @@ footer.sticky,
 }
 
 /* ===== LAYER 800: TOOLTIPS ===== */
+
 /* Tooltips (highest UI layer) */
 .tooltip,
 [role="tooltip"],
@@ -159,6 +169,7 @@ footer.sticky,
 }
 
 /* ===== ACCESSIBILITY ===== */
+
 /* Focus states should be above current layer */
 *:focus-visible {
   position: relative;
@@ -166,6 +177,7 @@ footer.sticky,
 }
 
 /* ===== DEBUGGING ===== */
+
 /* Dev tools layer (remove in production) */
 [data-dev-tool] {
   z-index: var(--z-dev-tools) !important;

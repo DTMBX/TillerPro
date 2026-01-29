@@ -1,14 +1,14 @@
 /**
  * Tools Hub Router
  * Hash-based client-side routing for Tools Hub
- * 
+ *
  * Features:
  * - Hash-based routing (#/tile, #/grout, etc.)
  * - Browser back/forward support
  * - Route parameters (?mode=contractor)
  * - Route guards & middleware
  * - View transitions
- * 
+ *
  * @version 1.0.0
  * @author Tillerstead LLC
  */
@@ -31,7 +31,7 @@
         after: [],
         error: []
       };
-      
+
       // Initialize
       this.init();
     }
@@ -43,7 +43,7 @@
       // Listen for hash changes
       window.addEventListener('hashchange', () => this.handleRoute());
       window.addEventListener('load', () => this.handleRoute());
-      
+
       console.log('[Router] Initialized');
     }
 
@@ -60,7 +60,7 @@
         beforeEnter: config.beforeEnter,
         meta: config.meta || {}
       });
-      
+
       console.log(`[Router] Registered route: ${path}`);
     }
 
@@ -72,13 +72,13 @@
     navigate(path, params = {}) {
       // Build hash
       let hash = `#/${path}`;
-      
+
       // Add query params
       const queryString = new URLSearchParams(params).toString();
       if (queryString) {
         hash += `?${queryString}`;
       }
-      
+
       // Update location
       window.location.hash = hash;
     }
@@ -88,29 +88,29 @@
      */
     async handleRoute() {
       if (this.loading) return;
-      
+
       try {
         this.loading = true;
-        
+
         // Parse hash
         const { path, params } = this.parseHash();
-        
+
         // Get route config
         const route = this.routes.get(path);
-        
+
         if (!route) {
           console.warn(`[Router] Route not found: ${path}, redirecting to ${this.defaultRoute}`);
           this.navigate(this.defaultRoute);
           return;
         }
-        
+
         // Run before hooks
         const canNavigate = await this.runHooks('before', { path, params, route });
         if (canNavigate === false) {
           console.log('[Router] Navigation blocked by hook');
           return;
         }
-        
+
         // Run route guard
         if (route.beforeEnter) {
           const allowed = await route.beforeEnter({ path, params });
@@ -119,29 +119,29 @@
             return;
           }
         }
-        
+
         // Load route component
         await this.loadRoute(route, params);
-        
+
         // Update current route
         this.currentRoute = { path, params, route };
-        
+
         // Run after hooks
         await this.runHooks('after', { path, params, route });
-        
+
         // Update nav active states
         this.updateNavActiveStates(path);
-        
+
         // Update document title
         if (route.meta.title) {
           document.title = `${route.meta.title} | Tillerstead Tools Hub`;
         }
-        
+
         // Scroll to top
         if (this.container) {
           this.container.scrollTop = 0;
         }
-        
+
       } catch (error) {
         console.error('[Router] Route error:', error);
         await this.runHooks('error', { error });
@@ -161,14 +161,14 @@
         console.error('[Router] Container not found');
         return;
       }
-      
+
       // Show loading state
       this.container.classList.add('loading');
       this.container.setAttribute('aria-busy', 'true');
-      
+
       try {
         let content;
-        
+
         // If loader function provided, call it
         if (typeof route.loader === 'function') {
           content = await route.loader(params);
@@ -189,15 +189,15 @@
         else {
           throw new Error(`Invalid component type for route: ${route.name}`);
         }
-        
+
         // Render content with fade transition
         await this.fadeTransition(content);
-        
+
         // Load adapter if configured
         if (route.meta && route.meta.adapter) {
           await this.loadAdapter(route.meta.adapter);
         }
-        
+
       } catch (error) {
         console.error('[Router] Failed to load component:', error);
         this.container.innerHTML = `
@@ -220,13 +220,13 @@
       // Fade out
       this.container.style.opacity = '0';
       await this.wait(150);
-      
+
       // Update content
       this.container.innerHTML = newContent;
-      
+
       // Initialize any scripts in new content
       this.initializeScripts();
-      
+
       // Fade in
       this.container.style.opacity = '1';
     }
@@ -239,7 +239,7 @@
       if (window.initializeCalculator) {
         window.initializeCalculator();
       }
-      
+
       // Re-run any data-init scripts
       this.container.querySelectorAll('[data-init]').forEach(el => {
         const initFn = window[el.dataset.init];
@@ -247,7 +247,7 @@
           initFn(el);
         }
       });
-      
+
       // Dispatch event for other systems to hook into
       window.dispatchEvent(new CustomEvent('toolshub:viewloaded', {
         detail: { route: this.currentRoute }
@@ -260,15 +260,15 @@
      */
     parseHash() {
       const hash = window.location.hash.slice(1); // Remove #
-      
+
       if (!hash || hash === '/') {
         return { path: this.defaultRoute, params: {} };
       }
-      
+
       // Split path and query string
       const [pathPart, queryPart] = hash.split('?');
       const path = pathPart.replace(/^\//, '') || this.defaultRoute;
-      
+
       // Parse query parameters
       const params = {};
       if (queryPart) {
@@ -276,7 +276,7 @@
           params[key] = value;
         });
       }
-      
+
       return { path, params };
     }
 
@@ -290,7 +290,7 @@
         el.classList.remove('active');
         el.setAttribute('aria-current', 'false');
       });
-      
+
       // Add active state to current route
       const activeEl = document.querySelector(`[data-route="${activePath}"]`);
       if (activeEl) {
@@ -314,12 +314,12 @@
           resolve();
           return;
         }
-        
+
         // Create script element
         const script = document.createElement('script');
         script.src = adapterPath;
         script.async = false; // Ensure sequential loading
-        
+
         script.onload = () => {
           console.log(`[Router] Adapter loaded: ${adapterPath}`);
           // Give adapter time to initialize
@@ -328,12 +328,12 @@
             resolve();
           }, 50);
         };
-        
+
         script.onerror = () => {
           console.error(`[Router] Failed to load adapter: ${adapterPath}`);
           reject(new Error(`Failed to load adapter: ${adapterPath}`));
         };
-        
+
         document.head.appendChild(script);
       });
     }
@@ -345,7 +345,7 @@
     initializeAdapter(adapterPath) {
       // Extract adapter name from path
       const adapterName = adapterPath.split('/').pop().replace('.js', '');
-      
+
       // Map adapter file names to class names
       const adapterClasses = {
         'tile-calculator-adapter': 'TileCalculatorAdapter',
@@ -357,7 +357,7 @@
         'labor-estimator-adapter': 'LaborEstimatorAdapter',
         'quote-form-adapter': 'QuoteFormAdapter'
       };
-      
+
       const className = adapterClasses[adapterName];
       if (className && window[className]) {
         console.log(`[Router] Initializing adapter: ${className}`);
@@ -389,7 +389,7 @@
      */
     async runHooks(type, context) {
       if (!this.hooks[type]) return true;
-      
+
       for (const hook of this.hooks[type]) {
         try {
           const result = await hook(context);
@@ -400,7 +400,7 @@
           console.error(`[Router] Hook error (${type}):`, error);
         }
       }
-      
+
       return true;
     }
 
@@ -410,7 +410,7 @@
      */
     showError(error) {
       if (!this.container) return;
-      
+
       this.container.innerHTML = `
         <div class="error-state">
           <h2>Oops! Something went wrong</h2>
@@ -485,9 +485,9 @@
         const html = await response.text();
         return `<div class="calculator-view" data-calc="tile">${html}</div>`;
       },
-      meta: { 
-        title: 'Tile Calculator', 
-        icon: '🧱', 
+      meta: {
+        title: 'Tile Calculator',
+        icon: '🧱',
         category: 'coverage',
         adapter: '/assets/js/adapters/tile-calculator-adapter.js'
       }
@@ -501,9 +501,9 @@
         const html = await response.text();
         return `<div class="calculator-view" data-calc="grout">${html}</div>`;
       },
-      meta: { 
-        title: 'Grout Calculator', 
-        icon: '🪣', 
+      meta: {
+        title: 'Grout Calculator',
+        icon: '🪣',
         category: 'coverage',
         adapter: '/assets/js/adapters/grout-calculator-adapter.js'
       }
@@ -517,9 +517,9 @@
         const html = await response.text();
         return `<div class="calculator-view" data-calc="mortar">${html}</div>`;
       },
-      meta: { 
-        title: 'Mortar Calculator', 
-        icon: '🔧', 
+      meta: {
+        title: 'Mortar Calculator',
+        icon: '🔧',
         category: 'coverage',
         adapter: '/assets/js/adapters/mortar-calculator-adapter.js'
       }
@@ -533,9 +533,9 @@
         const html = await response.text();
         return `<div class="calculator-view" data-calc="waterproof">${html}</div>`;
       },
-      meta: { 
-        title: 'Waterproofing Calculator', 
-        icon: '💧', 
+      meta: {
+        title: 'Waterproofing Calculator',
+        icon: '💧',
         category: 'coverage',
         adapter: '/assets/js/adapters/waterproofing-calculator-adapter.js'
       }
@@ -549,9 +549,9 @@
         const html = await response.text();
         return html;
       },
-      meta: { 
-        title: 'Professional Quote Generator', 
-        icon: '📄', 
+      meta: {
+        title: 'Professional Quote Generator',
+        icon: '📄',
         category: 'business',
         adapter: null // Self-contained, no adapter needed
       }
@@ -565,9 +565,9 @@
         const html = await response.text();
         return `<div class="calculator-view" data-calc="slope">${html}</div>`;
       },
-      meta: { 
-        title: 'Shower Slope Calculator', 
-        icon: '📐', 
+      meta: {
+        title: 'Shower Slope Calculator',
+        icon: '📐',
         category: 'structural',
         adapter: '/assets/js/adapters/slope-calculator-adapter.js'
       }
@@ -581,9 +581,9 @@
         const html = await response.text();
         return `<div class="calculator-view" data-calc="leveling">${html}</div>`;
       },
-      meta: { 
-        title: 'Self-Leveling Calculator', 
-        icon: '📏', 
+      meta: {
+        title: 'Self-Leveling Calculator',
+        icon: '📏',
         category: 'prepfinish',
         adapter: '/assets/js/adapters/leveling-calculator-adapter.js'
       }
@@ -597,9 +597,9 @@
         const html = await response.text();
         return `<div class="calculator-view" data-calc="labor">${html}</div>`;
       },
-      meta: { 
-        title: 'Labor Estimate', 
-        icon: '⏱️', 
+      meta: {
+        title: 'Labor Estimate',
+        icon: '⏱️',
         category: 'other',
         adapter: '/assets/js/adapters/labor-estimator-adapter.js'
       }
@@ -642,8 +642,8 @@
           </div>
         `;
       },
-      meta: { 
-        title: 'Request Quote', 
+      meta: {
+        title: 'Request Quote',
         icon: '💬',
         adapter: '/assets/js/adapters/quote-form-adapter.js'
       }
@@ -680,8 +680,8 @@
         const html = await response.text();
         return html;
       },
-      meta: { 
-        title: 'Multi-Location Dashboard', 
+      meta: {
+        title: 'Multi-Location Dashboard',
         icon: '📊',
         category: 'enterprise',
         requiresAuth: false // Set to true when auth is implemented
@@ -696,8 +696,8 @@
         const html = await response.text();
         return html;
       },
-      meta: { 
-        title: 'Admin Settings', 
+      meta: {
+        title: 'Admin Settings',
         icon: '⚙️',
         category: 'enterprise',
         requiresAuth: false // Set to true when auth is implemented

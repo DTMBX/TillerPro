@@ -18,7 +18,6 @@ export default [
       'vendor/',
       'dist/',
       'coverage/',
-      'assets/**/*.js',
       'playwright-report/',
       'scripts/test-results/',
       'archive/',

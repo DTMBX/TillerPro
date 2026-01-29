@@ -1,17 +1,17 @@
 /**
  * TillerPro™ Configuration System
  * White-label, multi-tenant support for licensing
- * 
+ *
  * This file contains ALL customizable settings for TillerPro.
  * When licensing to other contractors, create a new config file
  * or use environment variables to override these defaults.
- * 
+ *
  * @version 2.0.0
  * @author Tillerstead LLC
  */
 
 const TillerProConfig = {
-  
+
   /**
    * Application Metadata
    */
@@ -19,7 +19,7 @@ const TillerProConfig = {
     name: 'TillerPro™',
     version: '2.0.0',
     environment: 'production', // development, staging, production
-    
+
     // Multi-tenant support
     tenant: {
       id: 'tillerstead',
@@ -29,7 +29,7 @@ const TillerProConfig = {
       expiresAt: null // License expiration (null = perpetual)
     }
   },
-  
+
   /**
    * Company/Contractor Branding
    * WHITE-LABEL: Customize these for each licensee
@@ -39,7 +39,7 @@ const TillerProConfig = {
     legalName: 'Tillerstead Limited Liability Company',
     tagline: 'TCNA-Certified Professional Tile Installation',
     description: 'New Jersey\'s premier tile installation specialists',
-    
+
     license: {
       number: 'NJ HIC #13VH11902300',
       state: 'NJ',
@@ -47,14 +47,14 @@ const TillerProConfig = {
       issueDate: '2019-03-15',
       expiresAt: '2027-03-15'
     },
-    
+
     contact: {
       phone: '(856) 555-0100',
       email: 'quotes@tillerstead.com',
       website: 'tillerstead.com',
       supportEmail: 'support@tillerstead.com'
     },
-    
+
     address: {
       street: '123 Main Street',
       city: 'Cherry Hill',
@@ -62,7 +62,7 @@ const TillerProConfig = {
       zip: '08002',
       country: 'USA'
     },
-    
+
     social: {
       facebook: 'https://facebook.com/tillersteadllc',
       instagram: 'https://instagram.com/tillerstead',
@@ -70,7 +70,7 @@ const TillerProConfig = {
       twitter: null,
       youtube: null
     },
-    
+
     certification: {
       tcna: true,
       ansi: true,
@@ -81,7 +81,7 @@ const TillerProConfig = {
         carrier: 'State Farm Business Insurance'
       }
     },
-    
+
     experience: {
       yearsInBusiness: 15,
       projectsCompleted: 1200,
@@ -89,7 +89,7 @@ const TillerProConfig = {
       totalReviews: 847
     }
   },
-  
+
   /**
    * Branding Assets
    * WHITE-LABEL: Replace with licensee's branding
@@ -101,20 +101,20 @@ const TillerProConfig = {
       white: '/assets/img/logo/logo-white.webp',
       favicon: '/assets/icons/favicon-32x32.png'
     },
-    
+
     colors: {
       primary: '#10b981',      // Emerald green
       primaryDark: '#059669',
       primaryLight: '#34d399',
       secondary: '#0f1110',    // Almost black
       accent: '#fbbf24',       // Amber
-      
+
       // Semantic colors
       success: '#10b981',
       warning: '#fbbf24',
       error: '#ef4444',
       info: '#3b82f6',
-      
+
       // Neutrals
       neutral50: '#f9fafb',
       neutral100: '#f3f4f6',
@@ -127,25 +127,25 @@ const TillerProConfig = {
       neutral800: '#1f2937',
       neutral900: '#111827'
     },
-    
+
     typography: {
       fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
       headingFamily: 'Inter, system-ui, -apple-system, sans-serif'
     }
   },
-  
+
   /**
    * Pricing Configuration
    * WHITE-LABEL: Adjust for regional pricing, contractor margins
    */
   pricing: {
-    
+
     // Labor rates
     labor: {
       hourlyRate: 65,           // $ per hour
       overtimeMultiplier: 1.5,   // 1.5x for overtime
       minimumHours: 4,           // Minimum billable hours
-      
+
       // Regional adjustments (multipliers)
       regions: {
         'north-nj': 1.0,
@@ -155,7 +155,7 @@ const TillerProConfig = {
         'nyc': 1.25
       }
     },
-    
+
     // Material costs ($ per unit)
     // These are base costs - actual costs should come from supplier APIs
     materials: {
@@ -200,14 +200,14 @@ const TillerProConfig = {
         coverage: 125
       }
     },
-    
+
     // Markup & margins
     markup: {
       materials: 1.35,           // 35% markup on materials
       subcontractors: 1.20,      // 20% markup on subs
       equipment: 1.25            // 25% markup on equipment rental
     },
-    
+
     // Fees
     fees: {
       warranty: {
@@ -234,7 +234,7 @@ const TillerProConfig = {
         description: 'Travel fee for projects outside service area'
       }
     },
-    
+
     // Discounts
     discounts: {
       multiRoom: {
@@ -256,14 +256,14 @@ const TillerProConfig = {
         percent: 0.10           // 10% off for veterans
       }
     },
-    
+
     // Tax
     tax: {
       rate: 0.06625,            // NJ sales tax 6.625%
       applicableTo: ['materials', 'labor'], // What gets taxed
       exempt: []                // Tax-exempt customer types
     },
-    
+
     // Payment terms
     payment: {
       schedule: {
@@ -271,15 +271,15 @@ const TillerProConfig = {
         midpoint: 0.40,         // 40% mid-project
         final: 0.30             // 30% on completion
       },
-      
+
       methods: ['check', 'cash', 'card', 'ach', 'financing'],
-      
+
       cardFee: {
         enabled: true,
         percent: 0.03,          // 3% card processing fee
         note: 'Credit card payments subject to 3% processing fee'
       },
-      
+
       terms: {
         net: 30,                // Net 30 days (for commercial)
         lateFeePercent: 0.015,  // 1.5% per month late fee
@@ -287,7 +287,7 @@ const TillerProConfig = {
       }
     }
   },
-  
+
   /**
    * Quote Configuration
    */
@@ -297,17 +297,17 @@ const TillerProConfig = {
       format: 'TPRO-YYYYMMDD-###', // TPRO-20260127-001
       startNumber: 1
     },
-    
+
     validity: {
       days: 30,                 // Quote valid for 30 days
       extendable: true          // Can be extended
     },
-    
+
     templates: {
       default: 'professional',
       available: ['professional', 'luxury', 'budget']
     },
-    
+
     includes: {
       warranty: true,
       paymentSchedule: true,
@@ -317,7 +317,7 @@ const TillerProConfig = {
       laborBreakdown: true,
       legalDisclaimers: true
     },
-    
+
     // Validation requirements before quote generation
     validation: {
       requireCustomerName: true,
@@ -326,14 +326,14 @@ const TillerProConfig = {
       requireProjectDescription: false,
       minimumMaterialsCalculated: 1,  // At least 1 material type
       requireLaborEstimate: true,
-      
+
       // Sanity checks
       maxQuoteValue: 100000,         // Flag quotes over $100K for review
       minQuoteValue: 500,             // Flag quotes under $500
       maxLaborHours: 200,             // Flag if >200 hours
       maxMaterialQuantity: 10000      // Flag unusual quantities
     },
-    
+
     // Legal disclaimers (CRITICAL - Protects both parties)
     disclaimers: {
       estimate: `
@@ -342,26 +342,26 @@ const TillerProConfig = {
         selections differ from initial assessment. Customer will be notified 
         of any changes before work proceeds.
       `.trim(),
-      
+
       siteConditions: `
         Quote assumes standard site conditions. Additional charges may apply for: 
         asbestos removal, mold remediation, structural repairs, plumbing/electrical 
         modifications, or other unforeseen conditions discovered during demolition 
         or installation. Customer will approve all change orders in writing.
       `.trim(),
-      
+
       materialAvailability: `
         Material pricing and availability subject to market conditions. If selected 
         materials become unavailable, contractor will propose suitable alternatives 
         at comparable pricing. Customer retains final approval of all substitutions.
       `.trim(),
-      
+
       permits: `
         Permits and inspections are the responsibility of the property owner unless 
         explicitly stated otherwise in this contract. Contractor will assist with 
         permit applications if requested, but cannot guarantee approval or timeline.
       `.trim(),
-      
+
       warranty: `
         Contractor warrants workmanship for 10 years from completion date. Warranty 
         covers installation defects and waterproofing integrity. Warranty DOES NOT 
@@ -369,21 +369,21 @@ const TillerProConfig = {
         modifications by others, or normal wear and tear. Warranty void if materials 
         are not maintained per manufacturer specifications.
       `.trim(),
-      
+
       materialWarranty: `
         Material warranties are provided by manufacturers and vary by product. 
         Contractor makes no warranties regarding materials beyond manufacturer 
         specifications. Customer should review manufacturer warranty documentation 
         for coverage details and limitations.
       `.trim(),
-      
+
       liability: `
         Contractor liability is limited to the contract amount. Contractor is NOT 
         liable for: consequential damages, lodging expenses, lost business income, 
         or damages beyond direct repair costs. Contractor carries general liability 
         and workers compensation insurance as required by law.
       `.trim(),
-      
+
       timeline: `
         Estimated completion timeline is subject to: weather conditions, material 
         delivery delays, permit approval, and unforeseen site conditions. Contractor 
@@ -391,35 +391,35 @@ const TillerProConfig = {
         completion by specific date unless expressly stated as "time is of the essence" 
         and agreed to in writing by both parties.
       `.trim(),
-      
+
       changeOrders: `
         Any changes to scope of work require written change order signed by both parties 
         before work proceeds. Change orders may affect project cost and timeline. 
         Customer has right to refuse change orders; contractor has right to cease work 
         if change order is necessary for code compliance or safety.
       `.trim(),
-      
+
       payment: `
         Payment schedule as follows: ${'' /* Will be populated from config */}
         Final payment due upon substantial completion and customer approval. Customer 
         retains right to withhold final payment for punch-list items, but not to exceed 
         10% of contract value. Late payments subject to 1.5% monthly finance charge.
       `.trim(),
-      
+
       disputeResolution: `
         Any disputes arising from this contract shall first be resolved through good-faith 
         negotiation. If negotiation fails, parties agree to mediation before pursuing 
         arbitration or litigation. New Jersey law governs this contract. Prevailing party 
         in any legal action entitled to reasonable attorney fees.
       `.trim(),
-      
+
       codeCompliance: `
         All work performed in accordance with applicable building codes and TCNA Handbook 
         standards. Contractor follows industry best practices but does not provide engineering, 
         architectural, or legal advice. Customer responsible for ensuring work complies with 
         HOA rules, deed restrictions, or other private agreements.
       `.trim(),
-      
+
       accuracyDisclaimer: `
         Measurements and calculations based on information provided by customer. Contractor 
         recommends professional site measurement for projects over $10,000. Customer accepts 
@@ -427,7 +427,7 @@ const TillerProConfig = {
         will verify critical measurements on-site before installation.
       `.trim()
     },
-    
+
     // Contract terms (legally binding language)
     contractTerms: `
 TERMS AND CONDITIONS OF CONTRACT
@@ -479,7 +479,7 @@ If any term is found unenforceable, remaining terms remain in effect.
 
 BY SIGNING BELOW, CUSTOMER ACCEPTS THESE TERMS AND CONDITIONS.
     `.trim(),
-    
+
     // Required acknowledgments (customer must check boxes)
     requiredAcknowledgments: [
       'I have read and understand the entire quote including all terms, conditions, and disclaimers',
@@ -490,88 +490,88 @@ BY SIGNING BELOW, CUSTOMER ACCEPTS THESE TERMS AND CONDITIONS.
       'I have authority to enter into this contract on behalf of the property owner'
     ]
   },
-  
+
   /**
    * Email Configuration
    */
   email: {
     provider: 'netlify',       // netlify, sendgrid, mailgun, ses
-    
+
     from: {
       name: 'Tillerstead LLC',
       email: 'quotes@tillerstead.com'
     },
-    
+
     replyTo: {
       name: 'Tillerstead Support',
       email: 'support@tillerstead.com'
     },
-    
+
     templates: {
       quote: {
         subject: 'Your Professional Tile Installation Quote - {{quoteNumber}}',
         preheader: 'Thank you for your interest in Tillerstead',
         includeAttachment: true
       },
-      
+
       quoteSigned: {
         subject: 'Quote {{quoteNumber}} Signed - Next Steps',
         preheader: 'Thank you for choosing Tillerstead!'
       },
-      
+
       projectStart: {
         subject: 'Your Project Starts {{startDate}}',
         preheader: 'What to expect on installation day'
       },
-      
+
       projectComplete: {
         subject: 'Your Project is Complete!',
         preheader: 'Thank you for choosing Tillerstead'
       }
     },
-    
+
     tracking: {
       enabled: true,
       trackOpens: true,
       trackClicks: true
     }
   },
-  
+
   /**
    * E-Signature Configuration
    */
   esignature: {
     provider: 'docusign',      // docusign, hellosign, pandadoc, adobesign
-    
+
     // Mock mode for testing without API keys
     mockMode: true,
-    
+
     // API credentials (set via environment variables in production)
     apiKey: process.env.DOCUSIGN_API_KEY || null,
     integrationKey: process.env.DOCUSIGN_INTEGRATION_KEY || null,
     accountId: process.env.DOCUSIGN_ACCOUNT_ID || null,
-    
+
     settings: {
       signatureRequired: true,
       initialRequired: false,
       witnessRequired: false,
       notarizeRequired: false,
-      
+
       reminderDays: 3,          // Send reminder after 3 days
       expireDays: 30,           // Signature request expires after 30 days
-      
+
       allowDecline: true,
       allowComments: true,
       allowDownloadAfterSign: true
     }
   },
-  
+
   /**
    * Financing Configuration
    */
   financing: {
     enabled: true,
-    
+
     providers: [
       {
         id: 'greensky',
@@ -579,33 +579,33 @@ BY SIGNING BELOW, CUSTOMER ACCEPTS THESE TERMS AND CONDITIONS.
         enabled: true,
         apiKey: process.env.GREENSKY_API_KEY || null,
         merchantId: process.env.GREENSKY_MERCHANT_ID || null,
-        
+
         terms: [
           { months: 24, apr: 0, promoCode: '24MONTHS', description: '24 Months Same-As-Cash' },
           { months: 60, apr: 7.99, description: '60 Months @ 7.99% APR' },
           { months: 120, apr: 9.99, description: '120 Months @ 9.99% APR' }
         ],
-        
+
         minAmount: 1000,
         maxAmount: 55000
       },
-      
+
       {
         id: 'hearth',
         name: 'Hearth',
         enabled: true,
         apiKey: process.env.HEARTH_API_KEY || null,
-        
+
         terms: [
           { months: 36, apr: 5.99, description: '36 Months @ 5.99% APR' },
           { months: 60, apr: 8.99, description: '60 Months @ 8.99% APR' }
         ],
-        
+
         minAmount: 500,
         maxAmount: 100000
       }
     ],
-    
+
     // Display settings
     display: {
       showInQuote: true,
@@ -614,13 +614,13 @@ BY SIGNING BELOW, CUSTOMER ACCEPTS THESE TERMS AND CONDITIONS.
       emphasizePromo: true        // Highlight 0% APR offers
     }
   },
-  
+
   /**
    * Multi-Location Configuration
    */
   locations: {
     enabled: false,             // Enable for multi-location contractors
-    
+
     headquarters: {
       id: 'main',
       name: 'Cherry Hill Headquarters',
@@ -635,34 +635,34 @@ BY SIGNING BELOW, CUSTOMER ACCEPTS THESE TERMS AND CONDITIONS.
       serviceRadius: 50,        // Miles
       active: true
     },
-    
+
     // Additional locations (for enterprise licensees)
     branches: []
   },
-  
+
   /**
    * Analytics & Tracking
    */
   analytics: {
     enabled: true,
-    
+
     providers: {
       googleAnalytics: {
         enabled: false,
         measurementId: null
       },
-      
+
       plausible: {
         enabled: true,
         domain: 'tillerstead.com'
       },
-      
+
       hotjar: {
         enabled: false,
         siteId: null
       }
     },
-    
+
     events: {
       trackQuoteGenerated: true,
       trackQuoteSigned: true,
@@ -670,14 +670,14 @@ BY SIGNING BELOW, CUSTOMER ACCEPTS THESE TERMS AND CONDITIONS.
       trackFormSubmissions: true,
       trackEmailOpens: true
     },
-    
+
     privacy: {
       anonymizeIp: true,
       respectDoNotTrack: true,
       cookieConsent: true
     }
   },
-  
+
   /**
    * Feature Flags
    * Enable/disable features for different licensees
@@ -692,20 +692,20 @@ BY SIGNING BELOW, CUSTOMER ACCEPTS THESE TERMS AND CONDITIONS.
     dashboard: true,
     api: false,
     mobileApp: false,
-    
+
     // Advanced features (Enterprise tier only)
     customTemplates: false,
     apiAccess: false,
     whiteLabel: false,
     subAccounts: false
   },
-  
+
   /**
    * Supplier Integration
    */
   suppliers: {
     enabled: false,             // Enable when supplier APIs are integrated
-    
+
     partners: [
       {
         id: 'msi',
@@ -732,19 +732,19 @@ BY SIGNING BELOW, CUSTOMER ACCEPTS THESE TERMS AND CONDITIONS.
         priority: 3
       }
     ],
-    
+
     autoOrder: false,           // Automatically place orders
     priceCheck: true,           // Check real-time pricing
     stockCheck: true            // Check inventory
   },
-  
+
   /**
    * Financing Configuration
    * Integrate with finance partners for customer payment options
    */
   financing: {
     enabled: true,
-    
+
     // Finance partners
     partners: [
       {
@@ -771,21 +771,21 @@ BY SIGNING BELOW, CUSTOMER ACCEPTS THESE TERMS AND CONDITIONS.
         disclosure: 'GreenSky® financing is subject to credit approval. Minimum monthly payments required. See store for details.'
       }
     ],
-    
+
     // Default calculation settings
     defaults: {
       apr: 9.99,
       termMonths: 60,
       estimatedCreditScore: 'good' // excellent, good, fair
     },
-    
+
     // Credit score tiers (for APR estimation)
     creditTiers: {
       excellent: { min: 740, aprAdjustment: 0 },
       good: { min: 670, aprAdjustment: 2.0 },
       fair: { min: 580, aprAdjustment: 5.0 }
     },
-    
+
     // Truth in Lending Act disclosures
     disclosures: {
       apr: 'APR (Annual Percentage Rate) represents the cost of credit as a yearly rate.',
@@ -800,33 +800,33 @@ BY SIGNING BELOW, CUSTOMER ACCEPTS THESE TERMS AND CONDITIONS.
       creditCheck: 'Applying for financing will result in a credit inquiry which may affect your credit score.'
     }
   },
-  
+
   /**
    * E-Signature Configuration
    */
   eSignature: {
     // Provider selection
     provider: 'docusign', // 'docusign' | 'hellosign' | 'adobesign' | 'custom'
-    
+
     // Environment
     testMode: true, // Set to false for production
-    
+
     // Behavior settings
     autoSend: false, // Auto-send signature request on quote generation
     requireAllSignatures: true, // Both customer AND contractor must sign
     reminderSchedule: [3, 7, 14], // Days to send reminders (3 days, 1 week, 2 weeks)
     expirationDays: 30, // Quote expires after 30 days
-    
+
     // Document retention
     documentRetention: 'permanent', // 'permanent' | '1year' | '3years' | '7years'
-    
+
     // Email settings
     emailSubject: 'Please Sign Your Quote from {company}',
     emailMessage: 'Your quote is ready for review and signature. Please click the button below to review and sign electronically.',
-    
+
     // Success redirect
     successRedirectUrl: '/tools-hub/#/quote-signed',
-    
+
     // Signature positions (PDF coordinates)
     signatureFields: {
       customer: {

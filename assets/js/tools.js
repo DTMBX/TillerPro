@@ -569,8 +569,8 @@
     const b = score(evalWidth);
     const selected =
       a[0] !== b[0] ? (a[0] > b[0] ? evalLength : evalWidth) :
-      a[1] !== b[1] ? (a[1] > b[1] ? evalLength : evalWidth) :
-      (a[2] >= b[2] ? evalLength : evalWidth);
+        a[1] !== b[1] ? (a[1] > b[1] ? evalLength : evalWidth) :
+          (a[2] >= b[2] ? evalLength : evalWidth);
 
     const alternate = selected.fixtureWall === 'length' ? evalWidth : evalLength;
 
@@ -1020,7 +1020,7 @@
 
     // Convert thickness from mm to inches
     const tileThicknessIn = tileThicknessMm / 25.4;
-    
+
     // Standard grout formula (converts to lbs/sq ft)
     // (L + W) / (L × W) gives joint linear feet per sq ft of tile
     // × thickness × joint width gives volume
@@ -1029,21 +1029,21 @@
     const W = parseFloat(tileWidth);
     const T = parseFloat(tileThicknessIn);
     const J = parseFloat(jointSizeIn);
-    
+
     // Calculate lbs per sq ft: (L + W) / (L × W) × T × J × 1.86
     const K_SANDED = 1.86; // lbs per cu in for sanded cement grout
     const K_EPOXY = 2.0;   // lbs per cu in for epoxy grout (slightly denser)
-    
+
     const K = groutType === 'epoxy' ? K_EPOXY : K_SANDED;
     const lbsPerSqFt = ((L + W) / (L * W)) * T * J * K;
-    
+
     // Base grout weight
     let groutLbs = lbsPerSqFt * areaSqFt;
-    
+
     // Mosaic tiles have significantly more joints (small tile area, more perimeter)
     // Formula already accounts for this via (L+W)/(L×W), but add note
     const mosaicNote = isMosaic ? ' Mosaic tiles require more grout due to additional joints.' : '';
-    
+
     // Add 10% for waste
     groutLbs *= 1.1;
 
@@ -1070,10 +1070,10 @@
 
     // Volume in cubic feet
     const volumeCuFt = areaSqFt * (avgDepthIn / 12);
-    
+
     // Bags needed (conservative estimate)
     const bags = roundUp(volumeCuFt / LEVELER_COVERAGE);
-    
+
     // If max depth provided, calculate range
     let bagsMax = bags;
     if (maxDepthIn && maxDepthIn > avgDepthIn) {
@@ -1137,7 +1137,7 @@
     // Validate each room
     state.rooms.forEach((room, index) => {
       const roomSelector = `[data-room-id="${room.id}"]`;
-      
+
       if (!room.name || !room.name.trim()) {
         errors.push({
           field: `room-${room.id}-name`,
@@ -1289,7 +1289,7 @@
 
     // Render list items (errors first, then warnings)
     let html = '';
-    
+
     if (errors.length > 0) {
       html += `<li class="needs-attention__header needs-attention__header--error" role="status" aria-live="assertive">
         <strong>⚠️ ${errors.length} Required</strong>
@@ -1638,8 +1638,8 @@
 
     if (!room.surfaces) room.surfaces = {};
     if (!room.surfaces[surfaceId]) {
-      room.surfaces[surfaceId] = { 
-        selected: false, 
+      room.surfaces[surfaceId] = {
+        selected: false,
         area: 0,
         areaMode: 'auto', // 'auto' or 'manual'
         manualArea: 0,
@@ -1910,7 +1910,7 @@
 
     grid.innerHTML = html || '<p class="area-summary__empty">Select surfaces in rooms to see area calculations.</p>';
     totalEl.textContent = formatNumber(totalArea, 1);
-    
+
     // Sync total area to all calculator inputs
     syncAreaToCalculators(totalArea);
   }
@@ -1921,7 +1921,7 @@
   function syncAreaToCalculators(totalArea) {
     // Only sync if we have a valid area
     if (totalArea <= 0) return;
-    
+
     // List of all calculator area input IDs
     const areaInputs = [
       'calc-area',
@@ -1934,20 +1934,20 @@
       'wp-floor-area',
       'wp-wall-area'
     ];
-    
+
     areaInputs.forEach(inputId => {
       const input = document.getElementById(inputId);
       if (input) {
         // Only update if input is empty or has the previous synced value
         const currentVal = parseFloat(input.value) || 0;
         const roundedTotal = Math.round(totalArea * 10) / 10;
-        
+
         // Update if empty, zero, or if the field hasn't been manually edited
         // (check if value matches a previous sync)
         if (currentVal === 0 || input.dataset.synced === 'true') {
           input.value = roundedTotal;
           input.dataset.synced = 'true';
-          
+
           // Trigger change event to update any dependent calculations
           input.dispatchEvent(new Event('change', { bubbles: true }));
         }
@@ -2149,7 +2149,7 @@
    */
   function generateHtmlOutput(options) {
     const text = generateScopeSummary(options);
-    
+
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2563,7 +2563,7 @@
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     const filename = `${(state.project.name || 'tile-project').replace(/[^a-z0-9]/gi, '-')}-specification.doc`;
-    
+
     a.href = url;
     a.download = filename;
     document.body.appendChild(a);
@@ -2583,7 +2583,7 @@
       year: 'numeric', month: 'long', day: 'numeric'
     });
     const projectName = state.project.name || 'Tile Project Specification';
-    
+
     // Calculate all project totals
     let totalGross = 0, totalDeductions = 0, totalNet = 0;
     state.rooms.forEach(room => {
@@ -2992,7 +2992,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
    */
   function generateDocxMaterialsSection(totalArea, tile, joint, wasteFactor) {
     const areaWithWaste = totalArea * (1 + wasteFactor / 100);
-    
+
     // Calculate quantities
     const tileCalc = calculateTileQuantity(totalArea, tile, wasteFactor);
     const trowelRec = getRecommendedTrowel(tile, 'smooth');
@@ -3158,7 +3158,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
 
     const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
-    
+
     a.href = url;
     a.download = filename;
     a.style.display = 'none';
@@ -3248,22 +3248,22 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     const date = new Date().toLocaleDateString('en-US', {
       year: 'numeric', month: 'long', day: 'numeric'
     });
-    
+
     let text = '';
     const line = '═'.repeat(60);
     const thinLine = '─'.repeat(60);
-    
+
     // Header
     text += line + '\n';
     text += '  TILLERSTEAD TILE PROJECT SPECIFICATION\n';
     text += line + '\n\n';
-    
+
     text += `Project: ${state.project.name || 'Untitled Project'}\n`;
     if (state.project.address) text += `Address: ${state.project.address}\n`;
     if (state.project.contact) text += `Contact: ${state.project.contact}\n`;
     text += `Date: ${date}\n`;
     text += '\n' + thinLine + '\n\n';
-    
+
     // Calculate totals
     let totalArea = 0;
     state.rooms.forEach(room => {
@@ -3272,21 +3272,21 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
         if (s.selected) totalArea += s.area;
       });
     });
-    
+
     const wasteFactor = (state.defaults.wasteFactor || 12) / 100;
     const areaWithWaste = totalArea * (1 + wasteFactor);
-    
+
     // MEASUREMENTS SECTION
     if (document.getElementById('output-measurements').checked) {
       text += '📐 MEASUREMENTS\n';
       text += thinLine + '\n\n';
-      
+
       state.rooms.filter(r => r.name).forEach(room => {
         const surfaces = Object.entries(room.surfaces || {})
           .filter(([, s]) => s.selected);
-        
+
         if (surfaces.length === 0) return;
-        
+
         text += `${room.name}:\n`;
         surfaces.forEach(([id, s]) => {
           const name = id.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
@@ -3295,12 +3295,12 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
         const roomTotal = surfaces.reduce((sum, [, s]) => sum + s.area, 0);
         text += `  Subtotal: ${formatNumber(roomTotal, 1)} sf\n\n`;
       });
-      
+
       text += `TOTAL TILE AREA: ${formatNumber(totalArea, 1)} sf\n`;
       text += `With ${state.defaults.wasteFactor || 12}% waste: ${formatNumber(areaWithWaste, 1)} sf\n`;
       text += '\n' + thinLine + '\n\n';
     }
-    
+
     // TILE DETAILS
     if (document.getElementById('output-tile').checked) {
       const tile = getTilePreset(
@@ -3309,24 +3309,24 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
         state.defaults.customTileHeight
       );
       const layout = getLayoutPreset(state.defaults.layout);
-      
+
       text += '🔲 TILE SPECIFICATION\n';
       text += thinLine + '\n\n';
       text += `Tile Size: ${tile.name}\n`;
       text += `Layout Pattern: ${layout.name}\n`;
       text += `Waste Factor: ${state.defaults.wasteFactor || 12}%\n`;
-      
+
       const tilesPerSf = 144 / (tile.width * tile.height);
       const tilesNeeded = Math.ceil(areaWithWaste * tilesPerSf);
       text += `\nTiles Required: ~${tilesNeeded} tiles\n`;
-      
+
       if (state.defaults.tilesPerBox) {
         const boxes = Math.ceil(tilesNeeded / state.defaults.tilesPerBox);
         text += `Boxes Needed: ${boxes} boxes (${state.defaults.tilesPerBox} tiles/box)\n`;
       }
       text += '\n' + thinLine + '\n\n';
     }
-    
+
     // MATERIALS
     if (document.getElementById('output-mortar').checked) {
       const tile = getTilePreset(
@@ -3342,20 +3342,20 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
         tile.height,
         getJointPreset(state.defaults.jointSize).size
       );
-      
+
       text += '🧱 MATERIALS ESTIMATE\n';
       text += thinLine + '\n\n';
       text += `Thinset Mortar: ${mortarCalc.min}–${mortarCalc.max} bags (50 lb)\n`;
       text += `Recommended Trowel: ${getTrowelPreset(trowelRec.trowelId).name}\n`;
       text += `Grout: ~${groutCalc.quantity} lbs\n`;
-      
+
       if (state.systems.waterproofing === 'liquid') {
         const gallons = Math.ceil(totalArea / 50);
         text += `Waterproofing Membrane: ~${gallons} gallons\n`;
       }
       text += '\n' + thinLine + '\n\n';
     }
-    
+
     // ASSUMPTIONS
     if (document.getElementById('output-assumptions').checked) {
       text += '📋 ASSUMPTIONS & NOTES\n';
@@ -3369,7 +3369,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       }
       text += '\n' + thinLine + '\n\n';
     }
-    
+
     // DISCLAIMER
     if (document.getElementById('output-disclaimers').checked) {
       text += '⚠️  DISCLAIMER\n';
@@ -3379,14 +3379,14 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       text += 'variations, and installation methods. Always verify with\n';
       text += 'manufacturer specifications before purchasing.\n\n';
     }
-    
+
     // Footer
     text += line + '\n';
     text += `Generated by Tillerstead Tools | ${date}\n`;
     text += 'tillerstead.com/tools/\n';
     text += 'NJ HIC #13VH10808800\n';
     text += line + '\n';
-    
+
     return text;
   }
 
@@ -3403,11 +3403,11 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
           name: id.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
           area: s.area
         }));
-      
+
       if (surfaces.length === 0) return;
-      
+
       const roomTotal = surfaces.reduce((sum, s) => sum + s.area, 0);
-      
+
       html += '<tr class="room-header"><td colspan="2"><strong>' + escapeHtml(room.name) + '</strong></td></tr>';
       surfaces.forEach(s => {
         html += '<tr><td class="indent">' + escapeHtml(s.name) + '</td>';
@@ -3443,11 +3443,11 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
 
     // Tile quantity
     const tileCalc = calculateTileQuantity(totalArea, tile, wasteFactor);
-    
+
     // Mortar estimate
     const trowelRec = getRecommendedTrowel(tile, 'smooth');
     const mortarCalc = calculateMortarBags(totalArea, trowelRec.trowelId, trowelRec.backButter);
-    
+
     // Grout estimate (use default 8mm thickness if not specified)
     const groutCalc = calculateGrout(
       totalArea,
@@ -3460,7 +3460,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     );
 
     let html = '';
-    
+
     // Tile
     html += '<tr class="material-row">';
     html += '<td><strong>Tile</strong><br><span class="material-detail">' + escapeHtml(tile.name) + '</span></td>';
@@ -4056,19 +4056,19 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       <table class="spec-table mt-0">
         <tr>
           <td>Underlayment</td>
-          <td>${state.systems.underlayment === 'none' ? '—' : 
-            state.systems.underlayment === 'cement-board' ? 'Cement Board' :
-            state.systems.underlayment === 'uncoupling' ? 'Uncoupling Membrane' :
-            state.systems.underlayment === 'mud-bed' ? 'Mud Bed' :
-            state.systems.underlayment === 'self-leveler' ? 'Self-Leveler' :
+          <td>${state.systems.underlayment === 'none' ? '—' :
+    state.systems.underlayment === 'cement-board' ? 'Cement Board' :
+      state.systems.underlayment === 'uncoupling' ? 'Uncoupling Membrane' :
+        state.systems.underlayment === 'mud-bed' ? 'Mud Bed' :
+          state.systems.underlayment === 'self-leveler' ? 'Self-Leveler' :
             escapeHtml(state.systems.underlayment)}</td>
         </tr>
         <tr>
           <td>Waterproofing</td>
           <td>${state.systems.waterproofing === 'none' ? '—' :
-            state.systems.waterproofing === 'liquid' ? 'Liquid Membrane' :
-            state.systems.waterproofing === 'sheet' ? 'Sheet Membrane' :
-            escapeHtml(state.systems.waterproofing)}</td>
+    state.systems.waterproofing === 'liquid' ? 'Liquid Membrane' :
+      state.systems.waterproofing === 'sheet' ? 'Sheet Membrane' :
+        escapeHtml(state.systems.waterproofing)}</td>
         </tr>
         <tr><td>Edge Trim</td><td>${state.systems.edgeTrim === 'none' ? '—' : escapeHtml(state.systems.edgeTrim)}</td></tr>
         <tr><td>Movement Joints</td><td>${state.systems.movementJoints ? '✓ Required' : 'TBD'}</td></tr>
@@ -4307,10 +4307,10 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     // Create blob and trigger download
     const blob = new Blob([html], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
-    
+
     // Open in new window for printing as PDF
     const printWindow = window.open(url, '_blank');
-    
+
     if (printWindow) {
       printWindow.onload = function() {
         // Give the page a moment to render, then trigger print dialog
@@ -4330,7 +4330,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       document.body.removeChild(a);
       showToast('Build Guide downloaded! Open and Print → Save as PDF');
     }
-    
+
     // Clean up after a delay
     setTimeout(() => URL.revokeObjectURL(url), 60000);
   }
@@ -4504,8 +4504,8 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     // Show results
     document.getElementById('result-area-waste').textContent = `${formatNumber(result.areaWithWaste, 1)} sq ft`;
     document.getElementById('result-tiles').textContent = formatNumber(result.tiles);
-    document.getElementById('result-boxes').textContent = boxResult.boxes > 0 
-      ? `${formatNumber(boxResult.boxes)} boxes` 
+    document.getElementById('result-boxes').textContent = boxResult.boxes > 0
+      ? `${formatNumber(boxResult.boxes)} boxes`
       : boxResult.note;
 
     const noteEl = document.getElementById('tile-calc-note');
@@ -4540,7 +4540,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     }
 
     const tile = getTilePreset(tilePresetId, customWidth, customHeight);
-    
+
     // Get recommended trowel based on tile, substrate, and coverage goal
     const recommendation = getRecommendedTrowel(tile, substrate);
     const recommendedTrowelId = recommendation.trowelId;
@@ -5074,19 +5074,19 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
         if (room) {
           const wasLocked = room.locked;
           room.locked = target.checked;
-          
+
           // Initialize audit trail if needed
           if (!room.auditTrail) room.auditTrail = [];
-          
+
           // Disable/enable inputs based on lock state
           const dimensionInputs = roomCard.querySelectorAll('.room-length-ft, .room-length-in, .room-width-ft, .room-width-in, .room-height-ft, .room-height-in');
           dimensionInputs.forEach(input => {
             input.disabled = target.checked;
           });
-          
+
           // Visual lock state
           roomCard.classList.toggle('room-card--locked', target.checked);
-          
+
           // Add audit entry
           const auditEntry = {
             timestamp: new Date().toISOString(),
@@ -5098,7 +5098,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
               height: toDecimalFeet(room.heightFt, room.heightIn)
             }
           };
-          
+
           // If unlocking, prompt for reason
           if (wasLocked && !target.checked) {
             const reason = prompt('Optional: Enter reason for unlocking measurements:');
@@ -5106,12 +5106,12 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
               auditEntry.reason = reason;
             }
           }
-          
+
           room.auditTrail.push(auditEntry);
-          
+
           // Update audit display in room card
           updateRoomAuditDisplay(roomCard, room);
-          
+
           roomCard.querySelector('.room-lock-reason').hidden = true;
           saveToStorage();
         }
@@ -5210,11 +5210,11 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       const customWidth = parseFloat(document.getElementById('mortar-custom-width').value) || 0;
       const customHeight = parseFloat(document.getElementById('mortar-custom-height').value) || 0;
       const substrate = document.getElementById('mortar-substrate').value;
-      
+
       const tile = getTilePreset(tilePresetId, customWidth, customHeight);
       const rec = getRecommendedTrowel(tile, substrate);
-      
-      document.getElementById('trowel-hint').textContent = 
+
+      document.getElementById('trowel-hint').textContent =
         `Recommended: ${getTrowelPreset(rec.trowelId).name}`;
     }
 
@@ -5233,7 +5233,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
   function handleInput(e) {
     const target = e.target;
     const roomCard = target.closest('.room-card');
-    
+
     // Clear synced flag if user manually edits a calculator area input
     const areaInputIds = ['calc-area', 'mortar-area', 'grout-area', 'level-area', 'labor-area', 'wp-area', 'wp-floor-area', 'wp-wall-area'];
     if (areaInputIds.includes(target.id)) {
@@ -5299,7 +5299,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     if (!btn) return;
 
     let ticking = false;
-    
+
     function updateBackToTop() {
       if (window.scrollY > 400) {
         btn.classList.add('visible');
@@ -5400,13 +5400,13 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
 
     // Map quality level
     const qualityKey = quality === 'mid-range' ? 'mid' : quality;
-    
+
     // Base cost
     const basePrice = COST_PRICING.projectBase[projectType]?.[qualityKey] || 5000;
-    
+
     // Per sq ft addition for tile
     const tileLabor = tileArea * COST_PRICING.perSqFt[qualityKey];
-    
+
     // Add-ons
     let addonsTotal = 0;
     const addonIds = ['demo', 'waterproof', 'plumbing', 'electrical', 'fixtures', 'vanity', 'glass', 'niche'];
@@ -5416,27 +5416,27 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
         addonsTotal += COST_PRICING.addons[id]?.[qualityKey] || 0;
       }
     });
-    
+
     // ZIP code adjustment
     let zipMultiplier = 1.0;
     if (zip.length >= 2) {
       const prefix = zip.substring(0, 2);
-      zipMultiplier = COST_PRICING.zipAdjustments[zip] || 
-                      COST_PRICING.zipAdjustments[prefix] || 
+      zipMultiplier = COST_PRICING.zipAdjustments[zip] ||
+                      COST_PRICING.zipAdjustments[prefix] ||
                       COST_PRICING.zipAdjustments['default'];
     }
-    
+
     // Calculate totals
     const subtotal = (basePrice + tileLabor + addonsTotal) * zipMultiplier;
     const contingency = subtotal * 0.10;
     const laborPct = 0.45;
-    
+
     const lowEstimate = Math.round(subtotal * 0.85);
     const highEstimate = Math.round((subtotal + contingency) * 1.15);
     const labor = Math.round(subtotal * laborPct);
     const materials = Math.round(subtotal * 0.35);
     const fixturesCost = Math.round(subtotal * 0.10);
-    
+
     // Update UI
     document.getElementById('cost-result-low').textContent = '$' + formatNumber(lowEstimate);
     document.getElementById('cost-result-high').textContent = '$' + formatNumber(highEstimate);
@@ -5444,7 +5444,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     document.getElementById('cost-materials').textContent = '$' + formatNumber(materials);
     document.getElementById('cost-fixtures').textContent = '$' + formatNumber(fixturesCost);
     document.getElementById('cost-contingency').textContent = '$' + formatNumber(Math.round(contingency));
-    
+
     document.getElementById('cost-calc-results').hidden = false;
   }
 
@@ -5455,11 +5455,11 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     const distance = parseFloat(document.getElementById('slope-length')?.value) || 3;
     const drainType = document.getElementById('slope-drain-type')?.value || 'center';
     const method = document.getElementById('slope-method')?.value || 'mud-bed';
-    
+
     // IPC requires minimum 1/4" per foot
     const minSlopePerFoot = 0.25;
     const recSlopePerFoot = 0.3125; // 5/16" recommended for better drainage
-    
+
     // Calculate based on drain type
     let effectiveDistance = distance;
     if (drainType === 'linear') {
@@ -5467,10 +5467,10 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     } else if (drainType === 'offset') {
       effectiveDistance = distance * 1.15; // Offset adds complexity
     }
-    
+
     const minHeight = effectiveDistance * minSlopePerFoot;
     const recHeight = effectiveDistance * recSlopePerFoot;
-    
+
     // Format results
     const formatInches = (val) => {
       const inches = Math.floor(val);
@@ -5485,11 +5485,11 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       if (fraction < 0.9375) return inches + ' 7/8"';
       return (inches + 1) + '"';
     };
-    
+
     document.getElementById('result-slope-min').textContent = '¼" per ft (' + formatInches(minHeight) + ' at ' + distance + ' ft)';
     document.getElementById('result-slope-rec').textContent = '5/16" per ft (' + formatInches(recHeight) + ' at ' + distance + ' ft)';
     document.getElementById('result-slope-height').textContent = formatInches(recHeight) + ' above drain';
-    
+
     // Method-specific note
     const notes = {
       'mud-bed': 'Traditional mud bed allows precise slope control. Use dry-pack mortar (4:1 sand:cement ratio) reinforced with metal lath.',
@@ -5497,7 +5497,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       'bonded': 'Bonded waterproofing systems (Kerdi, Wedi) require substrate slope. Build slope into substrate before membrane.'
     };
     document.getElementById('slope-method-note').textContent = notes[method] || '';
-    
+
     document.getElementById('slope-calc-results').hidden = false;
   }
 
@@ -5578,28 +5578,28 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     if (area <= 0) area = 72;
     const corners = parseInt(document.getElementById('wp-corners')?.value) || 4;
     const niches = parseInt(document.getElementById('wp-niches')?.value) || 1;
-    
+
     const system = WP_SYSTEMS[systemId];
     if (!system) return;
-    
+
     // Calculate primary material
     const coverageWithWaste = area * 1.15; // 15% waste
     const unitsNeeded = Math.ceil(coverageWithWaste / system.coverage);
-    
+
     // Tape/seam calculation
     const tapePerCorner = system.tapePerCorner || 2;
     const tapeNeeded = (corners * tapePerCorner) + (niches * 8); // 8 ft per niche
-    
+
     // Update UI
     document.getElementById('wp-membrane-label').textContent = system.liquidCoats ? 'Membrane (liquid)' : 'Membrane';
     document.getElementById('result-wp-membrane').textContent = unitsNeeded + ' ' + system.unit;
     document.getElementById('result-wp-tape').textContent = tapeNeeded + ' linear ft';
     document.getElementById('result-wp-corners').textContent = corners + ' pre-formed corners';
-    
+
     // Accessories list
     const accessoriesHtml = system.accessories.map(a => `<span class="wp-accessory">${a}</span>`).join(', ');
     document.getElementById('wp-accessories').innerHTML = '<strong>Also need:</strong> ' + accessoriesHtml;
-    
+
     // System-specific notes
     const notes = {
       'schluter-kerdi': 'KERDI must be set in unmodified thinset. Use KERDI-BAND for all seams and corners.',
@@ -5610,17 +5610,17 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       'noble-deck': 'Can be used with modified thinset. Great for drains and seats.'
     };
     document.getElementById('wp-system-note').textContent = notes[systemId] || '';
-    
+
     // Add valve/drain/curb if checked
     const extras = [];
     if (document.getElementById('wp-valve')?.checked) extras.push('Mixing valve seal');
     if (document.getElementById('wp-drain')?.checked) extras.push('Drain assembly');
     if (document.getElementById('wp-curb')?.checked) extras.push('Curb membrane');
-    
+
     if (extras.length > 0) {
       document.getElementById('wp-accessories').innerHTML += '<br><strong>Penetrations:</strong> ' + extras.join(', ');
     }
-    
+
     document.getElementById('waterproof-calc-results').hidden = false;
   }
 
@@ -5679,30 +5679,30 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     const area = parseFloat(document.getElementById('labor-area')?.value) || 100;
     const surface = document.getElementById('labor-surface')?.value || 'floor';
     const complexity = document.getElementById('labor-complexity')?.value || 'moderate';
-    
+
     if (!tileType) {
       showToast('Please select a tile type', 'warning');
       return;
     }
-    
+
     // Base installation rate
     const baseSqFtPerHour = LABOR_RATES.tileInstall[tileType] || 20;
-    
+
     // Apply multipliers
     const patternMult = LABOR_RATES.patternMultiplier[pattern] || 1.0;
     const surfaceMult = LABOR_RATES.surfaceMultiplier[surface] || 1.0;
     const complexMult = LABOR_RATES.complexityMultiplier[complexity] || 1.0;
-    
+
     const effectiveRate = baseSqFtPerHour / (patternMult * surfaceMult * complexMult);
     const tileHours = area / effectiveRate;
-    
+
     // Add grouting time (about 30% of tile time)
     const groutHours = tileHours * 0.3;
-    
+
     // Prep work
     let prepHours = 0;
     const breakdown = [];
-    
+
     const prepItems = ['demo', 'levelprep', 'waterproof', 'backerboard', 'schluter', 'niche'];
     prepItems.forEach(id => {
       const checkbox = document.getElementById(`labor-${id}`);
@@ -5720,28 +5720,28 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
         breakdown.push({ task: labels[id], hours: hours });
       }
     });
-    
+
     // Add tile and grout to breakdown
     breakdown.push({ task: 'Tile installation', hours: tileHours });
     breakdown.push({ task: 'Grouting & cleanup', hours: groutHours });
-    
+
     const totalHours = prepHours + tileHours + groutHours;
     const workDays = Math.ceil(totalHours / 8);
-    
+
     // Update UI
     document.getElementById('result-labor-days').textContent = workDays;
-    document.getElementById('result-labor-detail').textContent = 
+    document.getElementById('result-labor-detail').textContent =
       `${formatNumber(totalHours, 1)} total hours at ${formatNumber(effectiveRate, 1)} sq ft/hour`;
-    
+
     // Build breakdown list
-    const breakdownHtml = breakdown.map(item => 
+    const breakdownHtml = breakdown.map(item =>
       `<div class="labor-breakdown__item">
         <span class="labor-breakdown__task">${item.task}</span>
         <span class="labor-breakdown__hours">${formatNumber(item.hours, 1)} hrs</span>
       </div>`
     ).join('');
     document.getElementById('labor-breakdown-list').innerHTML = breakdownHtml;
-    
+
     document.getElementById('labor-calc-results').hidden = false;
   }
 
@@ -5751,13 +5751,13 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
   function initNewCalculators() {
     // Cost estimator
     document.getElementById('calc-cost-btn')?.addEventListener('click', calculateCostEstimate);
-    
+
     // Slope calculator
     document.getElementById('calc-slope-btn')?.addEventListener('click', calculateSlopeRequirements);
-    
+
     // Waterproofing calculator
     document.getElementById('calc-waterproof-btn')?.addEventListener('click', calculateWaterproofing);
-    
+
     // Labor calculator
     document.getElementById('calc-labor-btn')?.addEventListener('click', calculateLaborTime);
   }
@@ -5855,12 +5855,12 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
   function initActiveNavHighlight() {
     const sections = document.querySelectorAll('.tools-section[id]');
     const navLinks = document.querySelectorAll('.tools-nav__link');
-    
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           navLinks.forEach(link => {
-            link.classList.toggle('is-active', 
+            link.classList.toggle('is-active',
               link.getAttribute('href') === `#${entry.target.id}`);
           });
         }
@@ -5880,7 +5880,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     const calcCards = document.querySelectorAll('.calc-app-card');
     const expandAllBtn = document.getElementById('expand-all-btn');
     const collapseAllBtn = document.getElementById('collapse-all-btn');
-    
+
     if (!calcCards.length) return;
 
     // Toggle individual card
@@ -5920,7 +5920,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
         if (href && href.startsWith('#')) {
           const targetId = href.substring(1);
           const targetCard = document.getElementById(targetId);
-          
+
           if (targetCard && targetCard.classList.contains('calc-app-card')) {
             // Small delay to allow scroll to complete
             setTimeout(() => {
@@ -5937,7 +5937,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     if (window.location.hash) {
       const targetId = window.location.hash.substring(1);
       const targetCard = document.getElementById(targetId);
-      
+
       if (targetCard && targetCard.classList.contains('calc-app-card')) {
         setTimeout(() => {
           expandCard(targetCard);
@@ -5964,7 +5964,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     card.classList.add('calc-app-card--expanded');
     const header = card.querySelector('.calc-app-card__header');
     if (header) header.setAttribute('aria-expanded', 'true');
-    
+
     // Trigger resize for any charts/elements inside
     const body = card.querySelector('.calc-app-card__body');
     if (body) {
@@ -5978,7 +5978,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     card.classList.remove('calc-app-card--expanded');
     const header = card.querySelector('.calc-app-card__header');
     if (header) header.setAttribute('aria-expanded', 'false');
-    
+
     const body = card.querySelector('.calc-app-card__body');
     if (body) body.style.display = 'none';
   }
@@ -5986,7 +5986,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
   function updateControlsState(allExpanded) {
     const expandAllBtn = document.getElementById('expand-all-btn');
     const collapseAllBtn = document.getElementById('collapse-all-btn');
-    
+
     if (expandAllBtn) {
       expandAllBtn.classList.toggle('calc-controls__btn--active', !allExpanded);
     }
@@ -5998,16 +5998,16 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
   // Auto-calculate on input change with debounce
   function initAutoCalculate() {
     const calcCards = document.querySelectorAll('.calc-app-card');
-    
+
     calcCards.forEach(card => {
       const inputs = card.querySelectorAll('input, select');
       const calculatorType = card.dataset.calculator;
-      
+
       inputs.forEach(input => {
         input.addEventListener('change', debounce(() => {
           autoCalculate(calculatorType, card);
         }, 300));
-        
+
         // For number inputs, also listen to input event
         if (input.type === 'number') {
           input.addEventListener('input', debounce(() => {
@@ -6021,7 +6021,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
   function autoCalculate(calculatorType, card) {
     const preview = card.querySelector('.calc-app-card__preview');
     let result = null;
-    
+
     try {
       switch (calculatorType) {
         case 'tile':
@@ -6033,7 +6033,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
             result = tilesResult.textContent + ' boxes';
           }
           break;
-          
+
         case 'mortar':
           const mortarBtn = document.getElementById('calc-mortar-btn');
           if (mortarBtn) mortarBtn.click();
@@ -6042,7 +6042,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
             result = mortarResult.textContent + ' bags';
           }
           break;
-          
+
         case 'grout':
           const groutBtn = document.getElementById('calc-grout-btn');
           if (groutBtn) groutBtn.click();
@@ -6051,7 +6051,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
             result = groutResult.textContent + ' bags';
           }
           break;
-          
+
         case 'leveling':
           const levelBtn = document.getElementById('calc-leveler-btn');
           if (levelBtn) levelBtn.click();
@@ -6060,17 +6060,17 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
             result = levelResult.textContent + ' bags';
           }
           break;
-          
+
         case 'slope':
           const slopeBtn = document.getElementById('calc-slope-btn');
           if (slopeBtn) slopeBtn.click();
           break;
-          
+
         case 'waterproof':
           const wpBtn = document.getElementById('calc-waterproof-btn');
           if (wpBtn) wpBtn.click();
           break;
-          
+
         case 'labor':
           const laborBtn = document.getElementById('calc-labor-btn');
           if (laborBtn) laborBtn.click();
@@ -6079,12 +6079,12 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     } catch (e) {
       // // // // // // // // // // // // // // // console.warn('Auto-calculate error:', e); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
     }
-    
+
     // Update preview if we have a result
     if (preview && result) {
       const previewValue = preview.querySelector('.calc-app-card__preview-value');
       const previewEmpty = preview.querySelector('.calc-app-card__preview-empty');
-      
+
       if (previewValue) {
         previewValue.textContent = result;
         previewValue.style.display = 'block';
@@ -6098,7 +6098,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
           preview.appendChild(valueEl);
         }
       }
-      
+
       if (previewEmpty) previewEmpty.style.display = 'none';
     }
   }
@@ -6127,7 +6127,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
 
     // Load saved state
     const hasData = loadFromStorage();
-    
+
     // Render UI from state or create default room
     if (hasData && state.rooms.length > 0) {
       renderFromState();

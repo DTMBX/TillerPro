@@ -942,8 +942,8 @@ export function calculateBathLayout(params) {
   const b = score(evalWidth);
   const selected =
     a[0] !== b[0] ? (a[0] > b[0] ? evalLength : evalWidth) :
-    a[1] !== b[1] ? (a[1] > b[1] ? evalLength : evalWidth) :
-    (a[2] >= b[2] ? evalLength : evalWidth);
+      a[1] !== b[1] ? (a[1] > b[1] ? evalLength : evalWidth) :
+        (a[2] >= b[2] ? evalLength : evalWidth);
 
   const alternate = selected.fixtureWall === 'length' ? evalWidth : evalLength;
 

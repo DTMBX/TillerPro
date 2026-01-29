@@ -19,7 +19,7 @@ class MobileAppFeatures {
   }
 
   isMobile() {
-    return window.matchMedia('(max-width: 768px)').matches || 
+    return window.matchMedia('(max-width: 768px)').matches ||
            ('ontouchstart' in window);
   }
 
@@ -34,7 +34,7 @@ class MobileAppFeatures {
     nav.setAttribute('aria-label', 'Mobile bottom navigation');
 
     const currentPath = window.location.pathname;
-    
+
     const navItems = [
       { href: '/', icon: 'home', label: 'Home' },
       { href: '/tools/', icon: 'calculator', label: 'Tools' },
@@ -47,7 +47,7 @@ class MobileAppFeatures {
       link.href = item.href;
       link.className = 'mobile-nav-item';
       link.setAttribute('aria-label', item.label);
-      
+
       if (currentPath === item.href || currentPath.startsWith(item.href.replace('/', ''))) {
         link.classList.add('active');
         link.setAttribute('aria-current', 'page');
@@ -100,13 +100,13 @@ class MobileAppFeatures {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
-          
+
           if (currentScrollY > lastScrollY && currentScrollY > 100) {
             fab.classList.add('fab-hidden');
           } else {
             fab.classList.remove('fab-hidden');
           }
-          
+
           lastScrollY = currentScrollY;
           ticking = false;
         });
@@ -222,7 +222,7 @@ class MobileAppFeatures {
     // Show loading state for navigation
     document.addEventListener('click', (e) => {
       const link = e.target.closest('a');
-      if (link && link.href && !link.target && !link.download && 
+      if (link && link.href && !link.target && !link.download &&
           link.hostname === window.location.hostname) {
         // Don't show loader for anchor links
         if (!link.hash || link.pathname !== window.location.pathname) {

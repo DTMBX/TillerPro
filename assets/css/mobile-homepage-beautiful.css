@@ -55,7 +55,7 @@
   .ts-hero__bullet {
     padding: 1rem 1.25rem !important;
     border-width: 2px !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%) !important;
   }
 
   .ts-hero__bullet strong {
@@ -116,7 +116,7 @@
     margin-bottom: 1.25rem !important;
     border-radius: 12px !important;
     overflow: hidden !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 10%) !important;
   }
 
   /* ===== TESTIMONIALS - Mobile Carousel ===== */
@@ -137,7 +137,7 @@
     border-radius: 12px !important;
     padding: 1.5rem !important;
     margin-bottom: 1.25rem !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 15%) !important;
   }
 
   /* ===== PORTFOLIO - Mobile Friendly ===== */
@@ -161,7 +161,7 @@
     width: 100% !important;
     height: auto !important;
     border-radius: 12px !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%) !important;
   }
 
   /* ===== FAQ - Mobile Accordion ===== */
@@ -200,6 +200,7 @@
   /* ===== FOOTER - Mobile Clean ===== */
   .ts-footer {
     padding: 2rem 1rem !important;
+    padding-bottom: max(2rem, env(safe-area-inset-bottom)) !important;
     text-align: center !important;
   }
 
@@ -252,8 +253,8 @@
   .testimonial-card,
   .portfolio-item,
   .faq-item {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08),
-                0 4px 16px rgba(0, 0, 0, 0.04) !important;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 8%),
+                0 4px 16px rgb(0 0 0 / 4%) !important;
   }
 
   /* ===== SMOOTH CORNERS ===== */
@@ -270,7 +271,7 @@
     background: linear-gradient(135deg, #00a35c 0%, #006b3d 100%) !important;
     color: white !important;
     border: none !important;
-    box-shadow: 0 4px 12px rgba(0, 163, 92, 0.3) !important;
+    box-shadow: 0 4px 12px rgb(0 163 92 / 30%) !important;
   }
 
   .btn--ghost {
@@ -283,10 +284,6 @@
   .ts-header {
     padding-top: max(1rem, env(safe-area-inset-top)) !important;
   }
-
-  .ts-footer {
-    padding-bottom: max(2rem, env(safe-area-inset-bottom)) !important;
-  }
 }
 
 /* ===== ANIMATIONS - Subtle & Professional ===== */
@@ -298,11 +295,12 @@
 
   @keyframes fadeIn {
     from {
-      opacity: 0;
+      opacity: 0%;
       transform: translateY(10px);
     }
+
     to {
-      opacity: 1;
+      opacity: 100%;
       transform: translateY(0);
     }
   }
@@ -312,6 +310,7 @@
     0%, 100% {
       transform: scale(1);
     }
+
     50% {
       transform: scale(1.05);
     }

@@ -22,13 +22,13 @@ class MobilePersonality {
   addDelightfulDetails() {
     // Success confetti on form submission
     this.addSuccessConfetti();
-    
+
     // Animated emoji reactions
     this.addEmojiReactions();
-    
+
     // Playful loading messages
     this.addLoadingPersonality();
-    
+
     // Celebrate milestones
     this.addMilestoneToasts();
   }
@@ -39,7 +39,7 @@ class MobilePersonality {
         setTimeout(() => {
           this.throwConfetti();
           this.showSuccessToast('🎉 Amazing! We\'ll get back to you faster than you can say "perfectly level tile"!');
-          
+
           if (window.haptics) {
             window.haptics.trigger('success');
           }
@@ -59,9 +59,9 @@ class MobilePersonality {
       confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
       confetti.style.animationDelay = Math.random() * 0.5 + 's';
       confetti.style.animationDuration = Math.random() * 2 + 2 + 's';
-      
+
       document.body.appendChild(confetti);
-      
+
       setTimeout(() => confetti.remove(), 4000);
     }
   }
@@ -69,7 +69,7 @@ class MobilePersonality {
   addEmojiReactions() {
     // Portfolio image reactions - tap to appreciate
     const images = document.querySelectorAll('.portfolio-item img, .gallery-item img');
-    
+
     images.forEach(img => {
       let tapCount = 0;
       let tapTimer;
@@ -98,21 +98,21 @@ class MobilePersonality {
     reaction.textContent = emoji;
     reaction.style.left = x + 'px';
     reaction.style.top = y + 'px';
-    
+
     document.body.appendChild(reaction);
-    
+
     setTimeout(() => reaction.remove(), 1000);
   }
 
   addLoadingPersonality() {
     const messages = [
-      "🔨 Crafting the perfect experience...",
-      "🏗️ Building something amazing...",
-      "✨ Making magic happen...",
-      "🎯 Laser-leveling this page...",
-      "🧩 Setting tiles perfectly in place...",
-      "💎 Polishing to perfection...",
-      "🚀 Almost there, faster than grouting!"
+      '🔨 Crafting the perfect experience...',
+      '🏗️ Building something amazing...',
+      '✨ Making magic happen...',
+      '🎯 Laser-leveling this page...',
+      '🧩 Setting tiles perfectly in place...',
+      '💎 Polishing to perfection...',
+      '🚀 Almost there, faster than grouting!'
     ];
 
     // Replace generic loading messages
@@ -121,9 +121,9 @@ class MobilePersonality {
       window.MobileAppFeatures.prototype.showPageTransition = function() {
         const overlay = document.createElement('div');
         overlay.className = 'page-transition-overlay';
-        
+
         const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-        
+
         overlay.innerHTML = `
           <div class="page-transition-spinner">
             <div class="loading-message">${randomMessage}</div>
@@ -132,9 +132,9 @@ class MobilePersonality {
             </div>
           </div>
         `;
-        
+
         document.body.appendChild(overlay);
-        
+
         setTimeout(() => {
           if (overlay.parentNode) {
             overlay.classList.add('fade-out');
@@ -171,15 +171,15 @@ class MobilePersonality {
       <span class="milestone-emoji">${emoji}</span>
       <span class="milestone-message">${message}</span>
     `;
-    
+
     document.body.appendChild(toast);
-    
+
     setTimeout(() => toast.classList.add('show'), 100);
-    
+
     if (window.haptics) {
       window.haptics.trigger('success');
     }
-    
+
     setTimeout(() => {
       toast.classList.remove('show');
       setTimeout(() => toast.remove(), 300);
@@ -193,13 +193,13 @@ class MobilePersonality {
   addPersuasiveElements() {
     // Social proof pulses
     this.addSocialProofPulse();
-    
+
     // Urgency indicators (non-manipulative)
     this.addAvailabilityIndicator();
-    
+
     // Trust signals
     this.addTrustBadges();
-    
+
     // Smooth CTA progression
     this.addProgressiveCTAs();
   }
@@ -207,7 +207,7 @@ class MobilePersonality {
   addSocialProofPulse() {
     // Subtle pulse on 5-star reviews
     const reviews = document.querySelectorAll('[data-review], .review-card, .testimonial-card');
-    
+
     reviews.forEach((review, index) => {
       setTimeout(() => {
         review.classList.add('social-proof-pulse');
@@ -220,14 +220,14 @@ class MobilePersonality {
     // Show current availability (honest, not fake scarcity)
     const now = new Date();
     const month = now.toLocaleDateString('en-US', { month: 'long' });
-    
+
     const indicator = document.createElement('div');
     indicator.className = 'availability-indicator';
     indicator.innerHTML = `
       <span class="availability-dot"></span>
       <span class="availability-text">Scheduling ${month} projects now</span>
     `;
-    
+
     const fab = document.querySelector('.mobile-fab');
     if (fab) {
       fab.insertAdjacentElement('beforebegin', indicator);
@@ -237,11 +237,11 @@ class MobilePersonality {
   addTrustBadges() {
     // Floating trust badge on scroll
     let scrollProgress = 0;
-    
+
     window.addEventListener('scroll', () => {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       scrollProgress = (window.scrollY / docHeight) * 100;
-      
+
       // DISABLED: Floating trust badge removed per user request (duplicate badge issue)
       // if (scrollProgress > 50 && !document.querySelector('.trust-badge-float')) {
       //   this.showFloatingTrustBadge();
@@ -252,7 +252,7 @@ class MobilePersonality {
   showFloatingTrustBadge() {
     // DISABLED: Function disabled to remove duplicate license badge
     return;
-    
+
     const badge = document.createElement('div');
     badge.className = 'trust-badge-float';
     badge.innerHTML = `
@@ -264,9 +264,9 @@ class MobilePersonality {
         </div>
       </div>
     `;
-    
+
     document.body.appendChild(badge);
-    
+
     setTimeout(() => badge.classList.add('show'), 100);
   }
 
@@ -280,10 +280,10 @@ class MobilePersonality {
     ];
 
     let currentCTA = 0;
-    
+
     window.addEventListener('scroll', () => {
       const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      
+
       for (let i = ctaMessages.length - 1; i >= 0; i--) {
         if (scrollPercent >= ctaMessages[i].threshold && currentCTA !== i) {
           currentCTA = i;
@@ -300,7 +300,7 @@ class MobilePersonality {
 
     const fabIcon = fab.querySelector('.fab-icon');
     const fabLabel = fab.querySelector('.fab-label');
-    
+
     if (fabIcon) fabIcon.textContent = icon;
     if (fabLabel) {
       fabLabel.classList.add('updating');
@@ -318,13 +318,13 @@ class MobilePersonality {
   addPremiumTouches() {
     // Smooth parallax on hero
     this.addParallaxEffect();
-    
+
     // Premium button sounds (subtle)
     this.addSoundEffects();
-    
+
     // Elegant transitions
     this.addPremiumTransitions();
-    
+
     // Quality indicators
     this.addQualitySignals();
   }
@@ -334,7 +334,7 @@ class MobilePersonality {
     if (!hero) return;
 
     let ticking = false;
-    
+
     window.addEventListener('scroll', () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
@@ -350,20 +350,20 @@ class MobilePersonality {
   addSoundEffects() {
     // Subtle UI sounds (very quiet, premium feel)
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    
+
     const playTone = (frequency, duration) => {
       const oscillator = audioContext.createOscillator();
       const gainNode = audioContext.createGain();
-      
+
       oscillator.connect(gainNode);
       gainNode.connect(audioContext.destination);
-      
+
       oscillator.frequency.value = frequency;
       oscillator.type = 'sine';
-      
+
       gainNode.gain.setValueAtTime(0.02, audioContext.currentTime); // Very quiet
       gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
-      
+
       oscillator.start(audioContext.currentTime);
       oscillator.stop(audioContext.currentTime + duration);
     };
@@ -386,7 +386,7 @@ class MobilePersonality {
   addPremiumTransitions() {
     // Add class to body for premium animations
     document.body.classList.add('premium-mode');
-    
+
     // Stagger animations on scroll into view
     const observerOptions = {
       threshold: 0.1,
@@ -412,19 +412,19 @@ class MobilePersonality {
   addQualitySignals() {
     // Add subtle "quality" badge on hover
     const portfolioItems = document.querySelectorAll('.portfolio-item, .gallery-item');
-    
+
     portfolioItems.forEach(item => {
       const badge = document.createElement('div');
       badge.className = 'quality-badge';
       badge.innerHTML = '✨ TCNA Certified';
       badge.style.opacity = '0';
-      
+
       item.appendChild(badge);
-      
+
       item.addEventListener('mouseenter', () => {
         badge.style.opacity = '1';
       });
-      
+
       item.addEventListener('mouseleave', () => {
         badge.style.opacity = '0';
       });
@@ -438,10 +438,10 @@ class MobilePersonality {
   addPlayfulEasterEggs() {
     // Konami code = special message
     this.addKonamiCode();
-    
+
     // Shake device = surprise
     this.addShakeToSurprise();
-    
+
     // Triple-tap logo = fun animation
     this.addLogoEasterEgg();
   }
@@ -453,7 +453,7 @@ class MobilePersonality {
     document.addEventListener('keydown', (e) => {
       if (e.key === konamiCode[konamiIndex]) {
         konamiIndex++;
-        
+
         if (konamiIndex === konamiCode.length) {
           this.activateKonami();
           konamiIndex = 0;
@@ -472,19 +472,19 @@ class MobilePersonality {
       <p>You're as detail-oriented as we are with tile work! 🏆</p>
       <p>Want 5% off? Use code: <strong>KONAMI5</strong></p>
     `;
-    
+
     document.body.appendChild(message);
-    
+
     this.throwConfetti();
-    
+
     if (window.haptics) {
       window.haptics.trigger('notification');
     }
-    
+
     setTimeout(() => {
       message.classList.add('show');
     }, 100);
-    
+
     message.addEventListener('click', () => {
       message.classList.remove('show');
       setTimeout(() => message.remove(), 300);
@@ -500,27 +500,27 @@ class MobilePersonality {
 
     window.addEventListener('devicemotion', (e) => {
       const acc = e.accelerationIncludingGravity;
-      
+
       if (lastX !== undefined) {
         const deltaX = Math.abs(acc.x - lastX);
         const deltaY = Math.abs(acc.y - lastY);
         const deltaZ = Math.abs(acc.z - lastZ);
-        
+
         if (deltaX + deltaY + deltaZ > 30) {
           shakeCount++;
-          
+
           clearTimeout(shakeTimer);
           shakeTimer = setTimeout(() => {
             shakeCount = 0;
           }, 1000);
-          
+
           if (shakeCount >= 3) {
             this.showShakeSurprise();
             shakeCount = 0;
           }
         }
       }
-      
+
       lastX = acc.x;
       lastY = acc.y;
       lastZ = acc.z;
@@ -533,10 +533,10 @@ class MobilePersonality {
       { emoji: '🌪️', message: 'Shake detected!', cta: 'Our tile work stays steady even in earthquakes!' },
       { emoji: '🎪', message: 'Fun mode activated!', cta: 'Professional work, playful spirit!' }
     ];
-    
+
     const surprise = surprises[Math.floor(Math.random() * surprises.length)];
     this.showSuccessToast(`${surprise.emoji} ${surprise.message} ${surprise.cta}`);
-    
+
     if (window.haptics) {
       window.haptics.trigger('heavy');
     }
@@ -552,9 +552,9 @@ class MobilePersonality {
     logo.addEventListener('click', (e) => {
       e.preventDefault();
       tapCount++;
-      
+
       clearTimeout(tapTimer);
-      
+
       if (tapCount === 3) {
         this.activateLogoAnimation();
         tapCount = 0;
@@ -571,11 +571,11 @@ class MobilePersonality {
     if (!logo) return;
 
     logo.classList.add('logo-party');
-    
+
     if (window.haptics) {
       window.haptics.trigger('success');
     }
-    
+
     setTimeout(() => {
       logo.classList.remove('logo-party');
     }, 2000);
@@ -585,11 +585,11 @@ class MobilePersonality {
     const toast = document.createElement('div');
     toast.className = 'pwa-toast success-toast';
     toast.textContent = message;
-    
+
     document.body.appendChild(toast);
-    
+
     setTimeout(() => toast.classList.add('show'), 100);
-    
+
     setTimeout(() => {
       toast.classList.remove('show');
       setTimeout(() => toast.remove(), 300);

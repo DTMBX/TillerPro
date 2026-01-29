@@ -49,7 +49,7 @@
       const showNextActivity = () => {
         const activity = this.activities[currentIndex];
         this.showActivityNotification(activity);
-        
+
         currentIndex = (currentIndex + 1) % this.activities.length;
       };
 
@@ -105,11 +105,11 @@
     // Animated Project Counter
     setupProjectCounter() {
       const counters = document.querySelectorAll('[data-counter]');
-      
+
       counters.forEach(counter => {
         const target = parseInt(counter.dataset.target);
         const duration = parseInt(counter.dataset.duration) || 2000;
-        
+
         this.animateCounter(counter, target, duration);
       });
     }
@@ -191,7 +191,7 @@
     showViewerCount() {
       const viewers = 3 + Math.floor(Math.random() * 5); // 3-7 viewers
       const badge = document.getElementById('live-viewers');
-      
+
       if (badge) {
         badge.textContent = `👥 ${viewers} others viewing this page`;
         badge.style.display = 'block';
@@ -236,7 +236,7 @@
 
     setupImageComparison() {
       const comparisons = document.querySelectorAll('.before-after');
-      
+
       comparisons.forEach(container => {
         const slider = container.querySelector('.slider');
         const beforeImage = container.querySelector('.before');
@@ -250,7 +250,7 @@
           const rect = container.getBoundingClientRect();
           const position = ((x - rect.left) / rect.width) * 100;
           const clampedPosition = Math.max(0, Math.min(100, position));
-          
+
           slider.style.left = `${clampedPosition}%`;
           afterImage.style.clipPath = `inset(0 ${100 - clampedPosition}% 0 0)`;
         };
@@ -315,7 +315,7 @@
 
     setupLightbox() {
       const galleryImages = document.querySelectorAll('.gallery-item img');
-      
+
       galleryImages.forEach(img => {
         img.addEventListener('click', () => {
           this.openLightbox(img.src, img.alt);
@@ -332,11 +332,11 @@
           <button class="lightbox-close" onclick="this.parentElement.parentElement.remove()">×</button>
         </div>
       `;
-      
+
       document.body.appendChild(lightbox);
-      
+
       setTimeout(() => lightbox.classList.add('show'), 10);
-      
+
       lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) {
           lightbox.remove();
@@ -401,7 +401,7 @@
       if (!container) return;
 
       const slots = this.getAvailableSlots(date);
-      
+
       container.innerHTML = `
         <h4>Available Times for ${date.toLocaleDateString()}</h4>
         <div class="time-slots-grid">
@@ -492,9 +492,9 @@
     showConfirmation(data) {
       const modal = document.getElementById('appointment-confirmation');
       if (modal) {
-        modal.querySelector('.confirmation-date').textContent = 
+        modal.querySelector('.confirmation-date').textContent =
           new Date(data.date).toLocaleDateString();
-        modal.querySelector('.confirmation-time').textContent = 
+        modal.querySelector('.confirmation-time').textContent =
           this.formatTime(data.time);
         modal.classList.add('show');
       }

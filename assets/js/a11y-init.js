@@ -6,20 +6,20 @@
 
 (function() {
   'use strict';
-  
+
   // Get stored preferences
   const prefs = getPrefs();
-  
+
   // Apply preferences immediately (before render)
   applyPreferences(prefs);
-  
+
   // Initialize features when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initA11yFeatures);
   } else {
     initA11yFeatures();
   }
-  
+
   /**
    * Get user accessibility preferences from storage
    */
@@ -30,7 +30,7 @@
       return {};
     }
   }
-  
+
   /**
    * Save preferences to storage
    */
@@ -41,39 +41,39 @@
       console.warn('[A11Y] Could not save preferences');
     }
   }
-  
+
   /**
    * Apply preferences to document
    */
   function applyPreferences(prefs) {
     const html = document.documentElement;
-    
+
     // High contrast mode
     if (prefs.highContrast) {
       html.setAttribute('data-high-contrast', 'true');
     }
-    
+
     // Text size
     if (prefs.textSize) {
       html.setAttribute('data-text-size', prefs.textSize);
     }
-    
+
     // Custom cursor
     if (prefs.customCursor) {
       html.setAttribute('data-custom-cursor', 'true');
     }
-    
+
     // Dyslexia font
     if (prefs.dyslexiaFont) {
       html.setAttribute('data-dyslexia-font', 'true');
     }
-    
+
     // Reading guide
     if (prefs.readingGuide) {
       html.setAttribute('data-reading-guide', 'true');
     }
   }
-  
+
   /**
    * Initialize accessibility features
    */
@@ -86,19 +86,19 @@
     window.a11yToggleReadingGuide = toggleReadingGuide;
     window.a11yToggleTextToSpeech = toggleTextToSpeech;
     window.a11yStopReading = stopReading;
-    
+
     // Add keyboard shortcuts
     initKeyboardShortcuts();
-    
+
     // Enhance form accessibility
     enhanceForms();
-    
+
     // Add ARIA live regions
     addLiveRegions();
-    
+
     console.log('[A11Y] Accessibility features initialized');
   }
-  
+
   /**
    * Toggle high contrast mode
    */
@@ -106,7 +106,7 @@
     const prefs = getPrefs();
     prefs.highContrast = !prefs.highContrast;
     savePrefs(prefs);
-    
+
     if (prefs.highContrast) {
       document.documentElement.setAttribute('data-high-contrast', 'true');
       announce('High contrast mode enabled');
@@ -114,10 +114,10 @@
       document.documentElement.removeAttribute('data-high-contrast');
       announce('High contrast mode disabled');
     }
-    
+
     updateButtonState('a11y-contrast', prefs.highContrast);
   }
-  
+
   /**
    * Toggle text size
    */
@@ -128,12 +128,12 @@
     const nextIndex = (currentIndex + 1) % sizes.length;
     prefs.textSize = sizes[nextIndex];
     savePrefs(prefs);
-    
+
     document.documentElement.setAttribute('data-text-size', prefs.textSize);
     announce(`Text size: ${prefs.textSize}`);
     updateButtonState('a11y-textsize', prefs.textSize !== 'normal');
   }
-  
+
   /**
    * Toggle custom cursor
    */
@@ -141,7 +141,7 @@
     const prefs = getPrefs();
     prefs.customCursor = !prefs.customCursor;
     savePrefs(prefs);
-    
+
     if (prefs.customCursor) {
       document.documentElement.setAttribute('data-custom-cursor', 'true');
       announce('Large cursor enabled');
@@ -149,10 +149,10 @@
       document.documentElement.removeAttribute('data-custom-cursor');
       announce('Large cursor disabled');
     }
-    
+
     updateButtonState('a11y-cursor', prefs.customCursor);
   }
-  
+
   /**
    * Toggle dyslexia-friendly font
    */
@@ -160,7 +160,7 @@
     const prefs = getPrefs();
     prefs.dyslexiaFont = !prefs.dyslexiaFont;
     savePrefs(prefs);
-    
+
     if (prefs.dyslexiaFont) {
       document.documentElement.setAttribute('data-dyslexia-font', 'true');
       announce('Dyslexia-friendly font enabled');
@@ -169,7 +169,7 @@
       announce('Dyslexia-friendly font disabled');
     }
   }
-  
+
   /**
    * Toggle reading guide
    */
@@ -177,7 +177,7 @@
     const prefs = getPrefs();
     prefs.readingGuide = !prefs.readingGuide;
     savePrefs(prefs);
-    
+
     if (prefs.readingGuide) {
       document.documentElement.setAttribute('data-reading-guide', 'true');
       initReadingGuide();
@@ -188,7 +188,7 @@
       announce('Reading guide disabled');
     }
   }
-  
+
   /**
    * Toggle text-to-speech
    */
@@ -199,7 +199,7 @@
       startReading();
     }
   }
-  
+
   /**
    * Start reading content aloud
    */
@@ -208,22 +208,22 @@
       announce('Text-to-speech not available');
       return;
     }
-    
+
     // Get main content
     const main = document.querySelector('.ts-main-content, main, [role="main"]');
     if (!main) return;
-    
+
     const text = main.textContent.trim();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = 0.9;
     utterance.pitch = 1;
     utterance.volume = 1;
-    
+
     window.speechSynthesis.speak(utterance);
     document.documentElement.setAttribute('data-tts-active', 'true');
     announce('Reading content');
   }
-  
+
   /**
    * Stop reading
    */
@@ -234,7 +234,7 @@
       announce('Stopped reading');
     }
   }
-  
+
   /**
    * Initialize reading guide
    */
@@ -244,10 +244,10 @@
     guide.className = 'reading-guide';
     guide.setAttribute('aria-hidden', 'true');
     document.body.appendChild(guide);
-    
+
     document.addEventListener('mousemove', updateReadingGuide);
   }
-  
+
   /**
    * Update reading guide position
    */
@@ -257,7 +257,7 @@
       guide.style.top = `${e.clientY}px`;
     }
   }
-  
+
   /**
    * Remove reading guide
    */
@@ -268,7 +268,7 @@
       document.removeEventListener('mousemove', updateReadingGuide);
     }
   }
-  
+
   /**
    * Update button aria-pressed state
    */
@@ -278,7 +278,7 @@
       button.setAttribute('aria-pressed', String(pressed));
     }
   }
-  
+
   /**
    * Announce to screen readers
    */
@@ -288,7 +288,7 @@
       announcer.textContent = message;
     }
   }
-  
+
   /**
    * Add ARIA live regions
    */
@@ -301,7 +301,7 @@
     announcer.setAttribute('aria-atomic', 'true');
     document.body.appendChild(announcer);
   }
-  
+
   /**
    * Initialize keyboard shortcuts
    */
@@ -313,25 +313,25 @@
         const toggle = document.getElementById('a11y-toolbar-toggle');
         if (toggle) toggle.click();
       }
-      
+
       // Alt+C: Toggle high contrast
       if (e.altKey && e.key === 'c') {
         e.preventDefault();
         toggleHighContrast();
       }
-      
+
       // Alt+T: Toggle text size
       if (e.altKey && e.key === 't') {
         e.preventDefault();
         toggleTextSize();
       }
-      
+
       // Alt+R: Toggle reading
       if (e.altKey && e.key === 'r') {
         e.preventDefault();
         toggleTextToSpeech();
       }
-      
+
       // Alt+H: Show keyboard help
       if (e.altKey && e.key === 'h') {
         e.preventDefault();
@@ -341,7 +341,7 @@
       }
     });
   }
-  
+
   /**
    * Enhance form accessibility
    */
@@ -350,14 +350,14 @@
     document.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
       field.setAttribute('aria-required', 'true');
     });
-    
+
     // Link errors to fields
     document.querySelectorAll('.form-error, [role="alert"]').forEach(error => {
       const field = error.previousElementSibling;
       if (field && (field.tagName === 'INPUT' || field.tagName === 'SELECT' || field.tagName === 'TEXTAREA')) {
         const errorId = error.id || `error-${Math.random().toString(36).substr(2, 9)}`;
         error.id = errorId;
-        
+
         const describedBy = field.getAttribute('aria-describedby');
         field.setAttribute('aria-describedby', describedBy ? `${describedBy} ${errorId}` : errorId);
         field.setAttribute('aria-invalid', 'true');

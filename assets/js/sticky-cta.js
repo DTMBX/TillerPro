@@ -31,7 +31,7 @@
      */
     init: function() {
       this.elements.cta = document.querySelector('.sticky-cta');
-      
+
       if (!this.elements.cta) {
         return; // CTA not on this page
       }
@@ -48,7 +48,7 @@
 
       // Attach event listeners
       this.attachEvents();
-      
+
       // Initial check
       this.checkScroll();
     },
@@ -61,7 +61,7 @@
       let ticking = false;
       window.addEventListener('scroll', () => {
         this.state.scrollY = window.scrollY;
-        
+
         if (!ticking) {
           window.requestAnimationFrame(() => {
             this.checkScroll();
@@ -92,7 +92,7 @@
      */
     checkScroll: function() {
       const shouldShow = this.state.scrollY >= this.config.scrollThreshold;
-      
+
       // Check if we're near footer (hide CTA)
       const footer = document.querySelector('footer');
       const footerRect = footer ? footer.getBoundingClientRect() : null;
@@ -112,10 +112,10 @@
       this.elements.cta.classList.add('visible');
       this.elements.cta.classList.remove('hidden');
       this.state.isVisible = true;
-      
+
       // Announce to screen readers
       this.elements.cta.setAttribute('aria-hidden', 'false');
-      
+
       this.trackEvent('Sticky CTA Shown');
     },
 
@@ -126,7 +126,7 @@
       this.elements.cta.classList.remove('visible');
       this.elements.cta.classList.add('hidden');
       this.state.isVisible = false;
-      
+
       this.elements.cta.setAttribute('aria-hidden', 'true');
     },
 
@@ -136,15 +136,15 @@
     dismiss: function() {
       this.hide();
       this.state.isDismissed = true;
-      
+
       // Set cookie
       this.setCookie(this.config.cookieName, 'true', this.config.cookieDays);
-      
+
       // Remove from DOM after animation
       setTimeout(() => {
         this.elements.cta.remove();
       }, 300);
-      
+
       this.trackEvent('Sticky CTA Dismissed');
     },
 
@@ -158,7 +158,7 @@
           event_label: label
         });
       }
-      
+
       if (typeof ga !== 'undefined') {
         ga('send', 'event', 'Sticky CTA', action, label);
       }

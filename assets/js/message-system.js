@@ -5,11 +5,11 @@
 
 (function() {
   'use strict';
-  
+
   // Message queue for perfect timing
   let messageQueue = [];
   let isShowingMessage = false;
-  
+
   /**
    * Show a toast notification with perfect timing
    * @param {string} message - The message text
@@ -22,10 +22,10 @@
     toast.setAttribute('role', 'alert');
     toast.setAttribute('aria-live', 'polite');
     toast.textContent = message;
-    
+
     // Add to DOM
     document.body.appendChild(toast);
-    
+
     // Auto-remove after duration
     setTimeout(() => {
       toast.classList.add('toast--exit');
@@ -33,7 +33,7 @@
         toast.remove();
       }, 500); // Match exit animation duration
     }, duration);
-    
+
     // Accessibility - announce to screen readers
     const announcement = document.createElement('div');
     announcement.className = 'sr-only';
@@ -43,7 +43,7 @@
     document.body.appendChild(announcement);
     setTimeout(() => announcement.remove(), 1000);
   };
-  
+
   /**
    * Show notification banner (like "Scheduling January")
    * @param {string} message - Banner message
@@ -53,22 +53,22 @@
     // Remove existing banner
     const existing = document.querySelector('.notification-banner');
     if (existing) existing.remove();
-    
+
     const banner = document.createElement('div');
     banner.className = 'notification-banner scheduling-banner';
     banner.setAttribute('role', 'status');
     banner.setAttribute('aria-live', 'polite');
     banner.textContent = message;
-    
+
     // Make it clickable to dismiss
     banner.style.cursor = 'pointer';
     banner.addEventListener('click', () => {
       banner.classList.add('notification-banner--exit');
       setTimeout(() => banner.remove(), 500);
     });
-    
+
     document.body.appendChild(banner);
-    
+
     // Auto-hide after duration
     if (duration > 0) {
       setTimeout(() => {
@@ -79,7 +79,7 @@
       }, duration);
     }
   };
-  
+
   /**
    * Stagger multiple messages for perfect timing
    * @param {Array} messages - Array of {text, type} objects
@@ -91,7 +91,7 @@
       }, index * delayBetween);
     });
   };
-  
+
   /**
    * Success message with confetti
    */
@@ -101,18 +101,18 @@
     toast.setAttribute('role', 'alert');
     toast.setAttribute('aria-live', 'polite');
     toast.textContent = message;
-    
+
     document.body.appendChild(toast);
-    
+
     // Play success sound if available
     playSound('success');
-    
+
     setTimeout(() => {
       toast.classList.add('toast--exit');
       setTimeout(() => toast.remove(), 500);
     }, duration);
   };
-  
+
   /**
    * Loading message
    */
@@ -124,9 +124,9 @@
       <span class="loading-spinner"></span>
     `;
     loading.id = 'loading-toast';
-    
+
     document.body.appendChild(loading);
-    
+
     return {
       hide: function() {
         loading.classList.add('toast--exit');
@@ -134,43 +134,43 @@
       }
     };
   };
-  
+
   /**
    * Play subtle sound effects (if enabled)
    */
   function playSound(type) {
     // Only play if user has interacted and sounds are enabled
     if (!window.soundsEnabled) return;
-    
+
     const sounds = {
       success: [480, 0.1, 'sine'],
       error: [240, 0.15, 'square'],
       info: [360, 0.08, 'sine']
     };
-    
+
     const [frequency, duration, waveType] = sounds[type] || sounds.info;
-    
+
     try {
       const audioContext = new (window.AudioContext || window.webkitAudioContext)();
       const oscillator = audioContext.createOscillator();
       const gainNode = audioContext.createGain();
-      
+
       oscillator.connect(gainNode);
       gainNode.connect(audioContext.destination);
-      
+
       oscillator.frequency.value = frequency;
       oscillator.type = waveType;
-      
+
       gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
       gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
-      
+
       oscillator.start(audioContext.currentTime);
       oscillator.stop(audioContext.currentTime + duration);
     } catch (e) {
       // Silently fail if audio not supported
     }
   }
-  
+
   /**
    * Get dynamic scheduling text (always 2-4 weeks out)
    */
@@ -178,13 +178,13 @@
     const now = new Date();
     const twoWeeks = new Date(now.getTime() + (14 * 24 * 60 * 60 * 1000));
     const fourWeeks = new Date(now.getTime() + (28 * 24 * 60 * 60 * 1000));
-    
+
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-                        'July', 'August', 'September', 'October', 'November', 'December'];
-    
+      'July', 'August', 'September', 'October', 'November', 'December'];
+
     const twoWeeksMonth = monthNames[twoWeeks.getMonth()];
     const fourWeeksMonth = monthNames[fourWeeks.getMonth()];
-    
+
     // If same month, show "Scheduling [Month] projects"
     if (twoWeeksMonth === fourWeeksMonth) {
       return `Scheduling ${twoWeeksMonth} projects now`;
@@ -192,7 +192,7 @@
     // If different months, show range
     return `Scheduling ${twoWeeksMonth}-${fourWeeksMonth} projects now`;
   }
-  
+
   /**
    * Show narrow scheduling bar (header element)
    */
@@ -200,13 +200,13 @@
     // Remove existing bar
     const existing = document.querySelector('.scheduling-bar');
     if (existing) existing.remove();
-    
+
     const bar = document.createElement('div');
     bar.className = 'scheduling-bar';
     bar.setAttribute('role', 'status');
     bar.setAttribute('aria-live', 'polite');
     bar.textContent = getSchedulingText();
-    
+
     // Add close button
     const closeBtn = document.createElement('button');
     closeBtn.className = 'scheduling-bar__close';
@@ -217,11 +217,11 @@
       setTimeout(() => bar.remove(), 300);
       sessionStorage.setItem('schedulingBarClosed', 'true');
     });
-    
+
     bar.appendChild(closeBtn);
     document.body.appendChild(bar);
   };
-  
+
   /**
    * Initialize on page load
    */
@@ -233,7 +233,7 @@
     //     showSchedulingBar();
     //   }, 800);
     // }
-    
+
     // Add keyboard shortcut to enable sounds (Ctrl+Shift+S)
     document.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.shiftKey && e.key === 'S') {
@@ -245,15 +245,15 @@
         );
       }
     });
-    
+
     console.log('[MESSAGES] Perfect timing system loaded ✨');
   }
-  
+
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
   }
-  
+
 })();

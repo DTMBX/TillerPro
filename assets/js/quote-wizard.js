@@ -64,7 +64,7 @@
      */
     init: function() {
       this.elements.wizard = document.getElementById('quote-wizard');
-      
+
       if (!this.elements.wizard) {
         return;
       }
@@ -104,13 +104,13 @@
           step.querySelectorAll('[data-option]').forEach(btn => {
             btn.classList.remove('selected');
           });
-          
+
           // Select this one
           optionBtn.classList.add('selected');
-          
+
           // Store answer
           this.state.answers[questionKey] = value;
-          
+
           // Auto-advance after short delay
           setTimeout(() => {
             this.nextStep();
@@ -166,7 +166,7 @@
       // Validate current step
       const currentStepEl = this.elements.steps[this.state.currentStep - 1];
       const questionKey = currentStepEl.dataset.question;
-      
+
       if (!this.state.answers[questionKey]) {
         this.showError('Please make a selection before continuing');
         return;
@@ -228,7 +228,7 @@
 
       // Add services
       const services = [];
-      
+
       if (answers.features?.includes('demolition') || answers.existingFloor === 'yes') {
         minCost += sqft * this.pricing.services.demolition.min;
         maxCost += sqft * this.pricing.services.demolition.max;
@@ -300,7 +300,7 @@
      */
     showResults: function() {
       const estimate = this.state.estimate;
-      
+
       const resultsHTML = `
         <div class="quote-results">
           <div class="quote-results__header">
@@ -400,7 +400,7 @@
 
       // Track completion
       this.trackEvent('Quote Completed', `$${estimate.min}-${estimate.max}`);
-      
+
       // Track conversion (important!)
       if (typeof gtag !== 'undefined') {
         gtag('event', 'conversion', {
@@ -416,13 +416,13 @@
      */
     emailResults: function() {
       const email = prompt('Enter your email address to receive this estimate:');
-      
+
       if (!email || !email.includes('@')) {
         return;
       }
 
       const estimate = this.state.estimate;
-      
+
       // Send via EmailJS or Formspree
       const emailData = {
         to_email: email,
@@ -437,9 +437,9 @@
 
       // TODO: Integrate with EmailJS
       console.log('Email estimate:', emailData);
-      
+
       alert(`Estimate sent to ${email}! Check your inbox in a few minutes.`);
-      
+
       this.trackEvent('Estimate Emailed', email);
     },
 
@@ -460,7 +460,7 @@
           event_label: label
         });
       }
-      
+
       if (typeof ga !== 'undefined') {
         ga('send', 'event', 'Quote Wizard', action, label);
       }

@@ -1,7 +1,7 @@
 /**
  * PERFORMANCE OPTIMIZATIONS - Phase 3
  * Tillerstead.com - Advanced Performance Features
- * 
+ *
  * Features:
  * - Progressive Image Loading with blur-up
  * - Lazy loading with Intersection Observer
@@ -36,11 +36,11 @@ class PerformanceOptimizer {
    */
   setupProgressiveImages() {
     const images = document.querySelectorAll('[data-progressive]');
-    
+
     images.forEach(img => {
       const lowResSrc = img.dataset.lowres;
       const highResSrc = img.dataset.src || img.src;
-      
+
       // Create placeholder with blur
       if (lowResSrc) {
         img.src = lowResSrc;
@@ -84,17 +84,17 @@ class PerformanceOptimizer {
 
   lazyLoadWithIntersectionObserver() {
     const lazyElements = document.querySelectorAll('[data-lazy]');
-    
+
     const imageObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const element = entry.target;
-          
+
           if (element.dataset.src) {
             element.src = element.dataset.src;
             element.removeAttribute('data-src');
           }
-          
+
           if (element.dataset.srcset) {
             element.srcset = element.dataset.srcset;
             element.removeAttribute('data-srcset');
@@ -188,7 +188,7 @@ class PerformanceOptimizer {
   setupIntersectionObserver() {
     // Observe elements entering viewport
     const observeElements = document.querySelectorAll('[data-observe]');
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -196,7 +196,7 @@ class PerformanceOptimizer {
           entry.target.dispatchEvent(new CustomEvent('elementVisible', {
             detail: { element: entry.target }
           }));
-          
+
           // Remove observer if one-time observation
           if (entry.target.hasAttribute('data-observe-once')) {
             observer.unobserve(entry.target);

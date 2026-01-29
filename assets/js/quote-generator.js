@@ -1,7 +1,7 @@
 /**
  * TillerPro™ Quote Generator
  * Professional quote generation with PDF export, validation, and legal compliance
- * 
+ *
  * @version 2.0.0
  * @author Tillerstead LLC
  */
@@ -43,14 +43,14 @@
         quoteNumber: this.quoteNumber,
         date: new Date().toISOString(),
         expiresAt: this.getExpirationDate(),
-        
+
         customer: {
           name: customerData.name || '',
           email: customerData.email || '',
           phone: customerData.phone || '',
           address: customerData.address || ''
         },
-        
+
         project: {
           name: summary.projectName || 'Tile Installation Project',
           description: customerData.projectDescription || '',
@@ -60,21 +60,21 @@
           tileType: summary.tileSize || 'Standard',
           complexity: customerData.complexity || 'moderate'
         },
-        
+
         materials: materials,
         labor: labor,
         totals: totals,
-        
+
         timeline: {
           estimatedDays: this.estimateProjectDuration(summary.totalArea),
           startAvailability: 'Within 2-3 weeks',
           seasonalNote: this.getSeasonalNote()
         },
-        
+
         acknowledgments: {},
-        
+
         notes: customerData.notes || '',
-        
+
         createdBy: this.config.company.name,
         createdAt: new Date().toISOString()
       };
@@ -87,7 +87,7 @@
       const materials = [];
       const area = summary.totalArea || 0;
       const wasteFactor = 1.10; // 10% waste
-      
+
       // Tile
       if (summary.tilesNeeded) {
         materials.push({
@@ -99,7 +99,7 @@
           category: 'tile'
         });
       }
-      
+
       // Grout
       if (summary.groutBags) {
         materials.push({
@@ -111,7 +111,7 @@
           category: 'grout'
         });
       }
-      
+
       // Mortar/Thinset
       const mortarBags = Math.ceil(area / 50); // 50 sqft per bag
       materials.push({
@@ -122,7 +122,7 @@
         total: mortarBags * 28.00,
         category: 'mortar'
       });
-      
+
       // Underlayment/Membrane
       if (area > 0) {
         materials.push({
@@ -134,7 +134,7 @@
           category: 'underlayment'
         });
       }
-      
+
       // Miscellaneous
       materials.push({
         item: 'Supplies & Miscellaneous',
@@ -144,7 +144,7 @@
         total: 150.00,
         category: 'misc'
       });
-      
+
       return materials;
     }
 
@@ -156,7 +156,7 @@
       const hourlyRate = 70.00;
       const sqftPerHour = 9; // Typical installation rate
       const hours = Math.ceil(area / sqftPerHour);
-      
+
       return {
         hours: hours,
         hourlyRate: hourlyRate,
@@ -177,12 +177,12 @@
       const materialsSubtotal = materials.reduce((sum, item) => sum + item.total, 0);
       const laborSubtotal = labor.total;
       const subtotal = materialsSubtotal + laborSubtotal;
-      
+
       const salesTaxRate = 0.06625; // NJ sales tax
       const salesTax = materialsSubtotal * salesTaxRate; // Only materials are taxed
-      
+
       const total = subtotal + salesTax;
-      
+
       return {
         materialsSubtotal: materialsSubtotal,
         laborSubtotal: laborSubtotal,
@@ -248,22 +248,22 @@
 
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
-      
+
       // Page 1: Quote Details
       this.renderQuotePage(doc, quoteData);
-      
+
       // Page 2: Legal Disclaimers
       doc.addPage();
       this.renderDisclaimersPage(doc);
-      
+
       // Page 3: Contract Terms
       doc.addPage();
       this.renderContractTermsPage(doc);
-      
+
       // Page 4: Signature Block
       doc.addPage();
       this.renderSignaturePage(doc, quoteData);
-      
+
       return doc;
     }
 
@@ -273,42 +273,42 @@
     renderQuotePage(doc, quote) {
       const company = this.config.company;
       let y = 20;
-      
+
       // Header
       doc.setFontSize(20);
       doc.setFont('helvetica', 'bold');
       doc.text(company.name, 20, y);
-      
+
       y += 7;
       doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
       doc.text(company.tagline, 20, y);
-      
+
       y += 5;
       doc.setFontSize(9);
       doc.text(`License: ${company.license.number} | Phone: ${company.contact.phone}`, 20, y);
-      
+
       y += 5;
       doc.text(`Email: ${company.contact.email} | Web: ${company.contact.website}`, 20, y);
-      
+
       // Quote Number & Date
       y += 10;
       doc.setFontSize(12);
       doc.setFont('helvetica', 'bold');
       doc.text(`QUOTE #${quote.quoteNumber}`, 20, y);
-      
+
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(9);
       doc.text(`Date: ${new Date(quote.date).toLocaleDateString()}`, 150, y);
       y += 5;
       doc.text(`Expires: ${new Date(quote.expiresAt).toLocaleDateString()}`, 150, y);
-      
+
       // Customer Info
       y += 10;
       doc.setFontSize(11);
       doc.setFont('helvetica', 'bold');
       doc.text('PREPARED FOR:', 20, y);
-      
+
       y += 6;
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
@@ -318,13 +318,13 @@
       doc.text(quote.customer.email, 20, y);
       y += 5;
       doc.text(quote.customer.phone, 20, y);
-      
+
       // Project Details
       y += 10;
       doc.setFontSize(11);
       doc.setFont('helvetica', 'bold');
       doc.text('PROJECT DETAILS:', 20, y);
-      
+
       y += 6;
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
@@ -333,13 +333,13 @@
       doc.text(`Area: ${quote.project.totalArea} sq ft`, 20, y);
       y += 5;
       doc.text(`Estimated Duration: ${quote.timeline.estimatedDays} days`, 20, y);
-      
+
       // Materials Table
       y += 10;
       doc.setFontSize(11);
       doc.setFont('helvetica', 'bold');
       doc.text('MATERIALS:', 20, y);
-      
+
       y += 8;
       doc.setFontSize(9);
       doc.setFont('helvetica', 'bold');
@@ -347,11 +347,11 @@
       doc.text('Qty', 100, y);
       doc.text('Unit Price', 130, y);
       doc.text('Total', 170, y, { align: 'right' });
-      
+
       y += 1;
       doc.line(20, y, 190, y);
       y += 5;
-      
+
       doc.setFont('helvetica', 'normal');
       quote.materials.forEach(item => {
         if (y > 250) {
@@ -364,40 +364,40 @@
         doc.text(`$${item.total.toFixed(2)}`, 190, y, { align: 'right' });
         y += 5;
       });
-      
+
       // Labor
       y += 5;
       doc.setFont('helvetica', 'bold');
       doc.text('LABOR:', 20, y);
       y += 5;
-      
+
       doc.setFont('helvetica', 'normal');
       doc.text(quote.labor.description, 20, y);
       doc.text(`${quote.labor.hours} hrs @ $${quote.labor.hourlyRate}/hr`, 100, y);
       doc.text(`$${quote.labor.total.toFixed(2)}`, 190, y, { align: 'right' });
-      
+
       // Totals
       y += 10;
       doc.line(120, y, 190, y);
       y += 6;
-      
+
       doc.text('Materials Subtotal:', 120, y);
       doc.text(`$${quote.totals.materialsSubtotal.toFixed(2)}`, 190, y, { align: 'right' });
       y += 5;
-      
+
       doc.text('Labor Subtotal:', 120, y);
       doc.text(`$${quote.totals.laborSubtotal.toFixed(2)}`, 190, y, { align: 'right' });
       y += 5;
-      
+
       doc.text(`Sales Tax (${(quote.totals.salesTaxRate * 100).toFixed(2)}%):`, 120, y);
       doc.text(`$${quote.totals.salesTax.toFixed(2)}`, 190, y, { align: 'right' });
       y += 7;
-      
+
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(12);
       doc.text('TOTAL:', 120, y);
       doc.text(`$${quote.totals.total.toFixed(2)}`, 190, y, { align: 'right' });
-      
+
       // Payment Terms
       y += 10;
       doc.setFontSize(9);
@@ -405,7 +405,7 @@
       doc.text(`Deposit Required (30%): $${quote.totals.deposit.toFixed(2)}`, 120, y);
       y += 5;
       doc.text(`Balance on Completion: $${quote.totals.balanceOnCompletion.toFixed(2)}`, 120, y);
-      
+
       // Footer
       y = 280;
       doc.setFontSize(8);
@@ -418,28 +418,28 @@
      */
     renderDisclaimersPage(doc) {
       let y = 20;
-      
+
       doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(0);
       doc.text('IMPORTANT DISCLAIMERS', 105, y, { align: 'center' });
-      
+
       y += 10;
       doc.setFontSize(8);
       doc.setFont('helvetica', 'normal');
-      
+
       const disclaimers = this.config.quote.disclaimers;
-      
+
       disclaimers.forEach((disclaimer, index) => {
         if (y > 270) {
           doc.addPage();
           y = 20;
         }
-        
+
         doc.setFont('helvetica', 'bold');
         doc.text(`${index + 1}. ${disclaimer.title}`, 20, y);
         y += 5;
-        
+
         doc.setFont('helvetica', 'normal');
         const lines = doc.splitTextToSize(disclaimer.text, 170);
         doc.text(lines, 20, y);
@@ -452,28 +452,28 @@
      */
     renderContractTermsPage(doc) {
       let y = 20;
-      
+
       doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(0);
       doc.text('CONTRACT TERMS & CONDITIONS', 105, y, { align: 'center' });
-      
+
       y += 10;
       doc.setFontSize(8);
       doc.setFont('helvetica', 'normal');
-      
+
       const terms = this.config.quote.contractTerms;
-      
+
       terms.forEach((term, index) => {
         if (y > 270) {
           doc.addPage();
           y = 20;
         }
-        
+
         doc.setFont('helvetica', 'bold');
         doc.text(`${index + 1}. ${term.title}`, 20, y);
         y += 5;
-        
+
         doc.setFont('helvetica', 'normal');
         const lines = doc.splitTextToSize(term.text, 170);
         doc.text(lines, 20, y);
@@ -486,62 +486,62 @@
      */
     renderSignaturePage(doc, quote) {
       let y = 20;
-      
+
       doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
       doc.text('ACCEPTANCE & SIGNATURES', 105, y, { align: 'center' });
-      
+
       y += 15;
       doc.setFontSize(9);
       doc.setFont('helvetica', 'normal');
-      
+
       const acknowledgments = this.config.quote.requiredAcknowledgments;
-      
+
       doc.text('BY SIGNING BELOW, THE CUSTOMER ACKNOWLEDGES:', 20, y);
       y += 8;
-      
+
       doc.setFontSize(8);
       acknowledgments.forEach((ack, index) => {
         const checkbox = quote.acknowledgments[ack.id] ? '☑' : '☐';
         doc.text(`${checkbox} ${ack.label}`, 25, y);
         y += 6;
       });
-      
+
       // Signature blocks
       y += 15;
       doc.setFontSize(10);
       doc.setFont('helvetica', 'bold');
       doc.text('CUSTOMER ACCEPTANCE:', 20, y);
-      
+
       y += 20;
       doc.line(20, y, 90, y);
       y += 5;
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(9);
       doc.text('Customer Signature', 20, y);
-      
+
       y += 5;
       doc.text(`Print Name: ${quote.customer.name}`, 20, y);
-      
+
       y += 5;
       doc.text(`Date: _______________`, 20, y);
-      
+
       // Contractor signature
       y = y - 30;
       doc.setFontSize(10);
       doc.setFont('helvetica', 'bold');
       doc.text('CONTRACTOR:', 120, y);
-      
+
       y += 20;
       doc.line(120, y, 190, y);
       y += 5;
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(9);
       doc.text('Authorized Representative', 120, y);
-      
+
       y += 5;
       doc.text(`Company: ${this.config.company.name}`, 120, y);
-      
+
       y += 5;
       doc.text(`Date: _______________`, 120, y);
     }
@@ -559,12 +559,12 @@
     saveQuote(quoteData) {
       const quotes = JSON.parse(localStorage.getItem('tillerpro_quotes') || '[]');
       quotes.unshift(quoteData);
-      
+
       // Keep only last 50 quotes
       if (quotes.length > 50) {
         quotes.splice(50);
       }
-      
+
       localStorage.setItem('tillerpro_quotes', JSON.stringify(quotes));
     }
 

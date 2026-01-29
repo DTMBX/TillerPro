@@ -27,18 +27,18 @@ class ProgressiveImage {
    */
   setupImages() {
     const containers = document.querySelectorAll('.progressive-image[data-src]');
-    
+
     containers.forEach(container => {
       const fullSrc = container.dataset.src;
       const placeholder = container.querySelector('.progressive-image__placeholder');
-      
+
       if (!placeholder) return;
 
       // Apply blur to placeholder
       placeholder.style.filter = 'blur(20px)';
       placeholder.style.transform = 'scale(1.05)'; // Prevent blur edge artifacts
       placeholder.style.transition = 'filter 0.6s ease, transform 0.6s ease';
-      
+
       // Load full resolution image
       this.loadImage(fullSrc, (img) => {
         // Create full-size image element
@@ -48,20 +48,20 @@ class ProgressiveImage {
         fullImage.className = 'progressive-image__full';
         fullImage.style.opacity = '0';
         fullImage.style.transition = 'opacity 0.6s ease';
-        
+
         // Insert full image
         container.appendChild(fullImage);
-        
+
         // Trigger fade in after a frame
         requestAnimationFrame(() => {
           fullImage.style.opacity = '1';
-          
+
           // Remove blur from placeholder and fade it out
           setTimeout(() => {
             placeholder.style.filter = 'blur(0)';
             placeholder.style.transform = 'scale(1)';
             placeholder.style.opacity = '0';
-            
+
             // Remove placeholder after transition
             setTimeout(() => {
               placeholder.remove();
@@ -78,15 +78,15 @@ class ProgressiveImage {
    */
   loadImage(src, callback) {
     const img = new Image();
-    
+
     img.onload = () => {
       if (callback) callback(img);
     };
-    
+
     img.onerror = () => {
       console.warn(`Failed to load image: ${src}`);
     };
-    
+
     img.src = src;
   }
 
@@ -118,13 +118,13 @@ class ProgressiveImage {
           const container = entry.target;
           const fullSrc = container.dataset.src;
           const placeholder = container.querySelector('.progressive-image__placeholder');
-          
+
           if (!placeholder || !fullSrc) return;
 
           // Apply blur
           placeholder.style.filter = 'blur(20px)';
           placeholder.style.transform = 'scale(1.05)';
-          
+
           // Load full image
           this.loadImage(fullSrc, () => {
             const fullImage = document.createElement('img');
@@ -133,19 +133,19 @@ class ProgressiveImage {
             fullImage.className = 'progressive-image__full';
             fullImage.style.opacity = '0';
             fullImage.style.transition = 'opacity 0.6s ease';
-            
+
             container.appendChild(fullImage);
-            
+
             requestAnimationFrame(() => {
               fullImage.style.opacity = '1';
-              
+
               setTimeout(() => {
                 placeholder.style.opacity = '0';
                 setTimeout(() => placeholder.remove(), 600);
               }, 100);
             });
           });
-          
+
           observer.unobserve(container);
         }
       });
@@ -204,7 +204,7 @@ document.head.appendChild(styles);
 // Initialize
 if (typeof window !== 'undefined') {
   window.ProgressiveImage = ProgressiveImage;
-  
+
   // Auto-init with lazy loading for better performance
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {

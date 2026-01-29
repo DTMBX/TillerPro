@@ -1,9 +1,9 @@
 /**
  * Tillerstead Formula Library - Unit Conversion Module
- * 
+ *
  * All conversions are mathematically exact constants.
  * No manufacturer-specific assumptions in this module.
- * 
+ *
  * @module units
  */
 

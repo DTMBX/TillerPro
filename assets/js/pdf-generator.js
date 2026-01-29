@@ -3,7 +3,7 @@
  * Generates branded PDF summaries for tile projects
  * Uses jsPDF library for PDF generation
  * Integrates with logo-system.js for adaptive branding
- * 
+ *
  * @copyright 2025-2026 Tillerstead LLC. All rights reserved.
  * @license Proprietary - Unauthorized copying prohibited
  */
@@ -14,7 +14,7 @@
   // ==
   // PROTECTED BRAND CONFIGURATION
   // ==
-  
+
   // Brand colors (encoded for IP protection)
   const _c = [26,61,46,201,162,39,33,37,41,108,117,125,248,249,250,255,255,255,206,212,218];
   const COLORS = {
@@ -127,7 +127,7 @@
       // Get the jsPDF constructor (may be the lib itself or a property)
       const jsPDF = jspdfLib.jsPDF || jspdfLib;
       this._jsPDFConstructor = jsPDF;
-      
+
       this.doc = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
@@ -210,11 +210,11 @@
 
       doc.setFontSize(9);
       doc.setTextColor(...COLORS.textMuted);
-      doc.text(`Date: ${new Date().toLocaleDateString('en-US', { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
+      doc.text(`Date: ${new Date().toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
       })}`, this.margin + 5, this.y + 16);
 
       if (project.clientName) {
@@ -478,13 +478,13 @@
       doc.setTextColor(...COLORS.textMuted);
       doc.setFont('helvetica', 'italic');
       doc.setFontSize(7);
-      
+
       const disclaimerText = [
         'DISCLAIMER: This estimate is for planning purposes only and does not constitute a binding quote.',
         'Actual material quantities may vary based on site conditions, tile breakage, pattern complexity, and cutting waste.',
         'Final pricing requires on-site measurement. Contact Tillerstead LLC for a professional consultation and formal quote.'
       ];
-      
+
       let textY = disclaimerY + 5;
       disclaimerText.forEach(line => {
         doc.text(line, this.margin + 3, textY);
@@ -494,7 +494,7 @@
       // NJ Consumer Affairs note
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(6);
-      doc.text('NJ Home Improvement Contractor Lic. #13VH10808800 | Consumer Affairs: 1-800-242-5846', 
+      doc.text('NJ Home Improvement Contractor Lic. #13VH10808800 | Consumer Affairs: 1-800-242-5846',
         this.pageWidth / 2, disclaimerY + 18, { align: 'center' });
     }
 

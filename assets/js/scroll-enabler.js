@@ -1,7 +1,7 @@
 /* EMERGENCY SCROLL ENABLER */
 (function() {
   'use strict';
-  
+
   // Force enable scrolling on load
   document.addEventListener('DOMContentLoaded', function() {
     // Remove any overflow:hidden from body/html
@@ -11,10 +11,10 @@
     document.body.style.overflowY = 'auto';
     document.body.style.height = 'auto';
     document.body.style.touchAction = 'pan-y';
-    
+
     // // // // // // // // // // // // // // // console.log('[SCROLL FIX] Scrolling enabled'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
   });
-  
+
   // Prevent scripts from disabling scroll
   var originalPreventDefault = Event.prototype.preventDefault;
   Event.prototype.preventDefault = function() {
@@ -25,7 +25,7 @@
     }
     return originalPreventDefault.apply(this, arguments);
   };
-  
+
   // Fix for modal/drawer closing
   window.addEventListener('click', function(e) {
     var mobileNav = document.getElementById('mobile-nav-drawer');
@@ -37,6 +37,6 @@
       }
     }
   });
-  
+
   // // // // // // // // // // // // // // // console.log('[SCROLL FIX] Scroll enabler loaded'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
 })();

@@ -1,9 +1,9 @@
 /**
  * Tillerstead Formula Library - Main Index
- * 
+ *
  * Single source of truth for all calculator formulas.
  * All coverage rates and constants are sourced from manufacturer TDS.
- * 
+ *
  * @module formulas
  */
 

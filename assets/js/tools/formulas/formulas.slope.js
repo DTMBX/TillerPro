@@ -1,8 +1,8 @@
 /**
  * Tillerstead Formula Library - Shower Slope Formulas
- * 
+ *
  * Slope requirements from IPC (International Plumbing Code).
- * 
+ *
  * @module formulas.slope
  */
 
@@ -108,9 +108,9 @@ export const CONSTRUCTION_METHODS = {
 
 /**
  * Calculate shower slope requirements
- * 
+ *
  * FORMULA: height = distance × slope_per_foot
- * 
+ *
  * @param {Object} params
  * @param {number} params.distanceToDrawnFt - Distance from farthest point to drain (feet)
  * @param {string} [params.drainType='center'] - Drain type from DRAIN_TYPES

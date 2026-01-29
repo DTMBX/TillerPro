@@ -40,9 +40,9 @@
         console.log('[Lead Magnet] Already initialized, skipping');
         return;
       }
-      
+
       this.elements.popup = document.querySelector('.lead-magnet-popup');
-      
+
       if (!this.elements.popup) {
         return; // No lead magnet on this page
       }
@@ -65,7 +65,7 @@
 
       this.attachEvents();
       this.startTriggers();
-      
+
       // Mark as initialized
       this.state.initialized = true;
       console.log('[Lead Magnet] Initialized successfully');
@@ -133,11 +133,11 @@
         if (!ticking && !this.state.triggered) {
           window.requestAnimationFrame(() => {
             const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            
+
             if (scrollPercent >= this.config.scrollTriggerPercent) {
               this.show('scroll');
             }
-            
+
             ticking = false;
           });
           ticking = true;
@@ -226,7 +226,7 @@
 
       // Use EmailJS or Formspree
       const endpoint = this.elements.form.getAttribute('action');
-      
+
       if (endpoint) {
         // Submit to Formspree/EmailJS
         fetch(endpoint, {
@@ -236,20 +236,20 @@
             'Accept': 'application/json'
           }
         })
-        .then(response => {
-          if (response.ok) {
-            this.handleSuccess(email, name, downloadUrl, redirectUrl);
-          } else {
+          .then(response => {
+            if (response.ok) {
+              this.handleSuccess(email, name, downloadUrl, redirectUrl);
+            } else {
+              this.handleError();
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
+            }
+          })
+          .catch(() => {
             this.handleError();
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
-          }
-        })
-        .catch(() => {
-          this.handleError();
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-        });
+          });
       } else {
         // No endpoint - just track and redirect
         this.handleSuccess(email, name, downloadUrl, redirectUrl);
@@ -282,7 +282,7 @@
       // Auto-close and redirect
       setTimeout(() => {
         this.close();
-        
+
         if (redirectUrl) {
           window.location.href = redirectUrl;
         } else if (downloadUrl) {
@@ -322,7 +322,7 @@
           event_label: label
         });
       }
-      
+
       if (typeof ga !== 'undefined') {
         ga('send', 'event', 'Lead Magnet', action, label);
       }

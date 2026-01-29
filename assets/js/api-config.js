@@ -6,7 +6,7 @@
 const API_CONFIG = {
   // Railway backend URL - Update after deploying to Railway
   baseUrl: process.env.API_URL || 'http://localhost:8000',
-  
+
   endpoints: {
     jobs: '/api/jobs',
     rooms: '/api/rooms',
@@ -16,7 +16,7 @@ const API_CONFIG = {
     exports: '/api/exports',
     settings: '/api/settings'
   },
-  
+
   // Helper to build full URL
   getUrl: function(endpoint) {
     return `${this.baseUrl}${this.endpoints[endpoint] || endpoint}`;

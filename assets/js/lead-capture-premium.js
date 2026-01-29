@@ -65,7 +65,7 @@
       const serviceCards = document.querySelectorAll('[data-service]');
       serviceCards.forEach(card => {
         card.addEventListener('click', () => {
-          this.addInteraction('service_interest', { 
+          this.addInteraction('service_interest', {
             service: card.dataset.service,
             score: 8
           });
@@ -83,7 +83,7 @@
 
       // Store in localStorage
       localStorage.setItem('tillerstead_interactions', JSON.stringify(this.interactions));
-      
+
       // Check if we should show lead capture
       this.checkLeadCaptureThreshold();
     }
@@ -91,7 +91,7 @@
     // Smart Forms with Progressive Disclosure
     setupSmartForms() {
       const forms = document.querySelectorAll('.lead-capture-form');
-      
+
       forms.forEach(form => {
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
@@ -112,7 +112,7 @@
     setupProgressiveDisclosure() {
       // Start with minimal fields, reveal more based on interest
       const progressiveForms = document.querySelectorAll('[data-progressive-form]');
-      
+
       progressiveForms.forEach(form => {
         const step1 = form.querySelector('[data-step="1"]');
         const step2 = form.querySelector('[data-step="2"]');
@@ -149,7 +149,7 @@
       let shown = false;
       const showPopup = () => {
         if (shown || this.leadScore < 20) return;
-        
+
         const modal = document.getElementById('exit-intent-modal');
         if (modal) {
           modal.classList.add('show');
@@ -222,7 +222,7 @@
 
     async captureLead(formData) {
       const data = Object.fromEntries(formData);
-      
+
       // Merge with existing lead data
       this.leadData = { ...this.leadData, ...data };
 
@@ -243,7 +243,7 @@
         if (response.ok) {
           this.showThankYou();
           this.triggerLeadNotification();
-          
+
           // Track conversion
           if (typeof gtag !== 'undefined') {
             gtag('event', 'generate_lead', {
@@ -321,7 +321,7 @@
         const x = e.clientX;
         const y = e.clientY;
         const element = e.target.tagName;
-        
+
         this.trackEvent('click', {
           x,
           y,
@@ -351,10 +351,10 @@
 
     trackFormAbandonment() {
       const forms = document.querySelectorAll('form');
-      
+
       forms.forEach(form => {
         let formStarted = false;
-        
+
         form.addEventListener('focus', () => {
           if (!formStarted) {
             formStarted = true;
@@ -376,7 +376,7 @@
 
     trackCTAClicks() {
       const ctas = document.querySelectorAll('.btn--primary, .cta-button, [data-cta]');
-      
+
       ctas.forEach(cta => {
         cta.addEventListener('click', () => {
           this.trackEvent('cta_click', {
@@ -398,10 +398,10 @@
       };
 
       this.events.push(event);
-      
+
       // Send to analytics backend
       this.sendToAnalytics(event);
-      
+
       // Store locally
       this.saveEventsLocally();
     }

@@ -117,7 +117,7 @@ class LazyLoader {
     if (element.dataset.src) {
       // Load image/iframe with data-src
       const src = element.dataset.src;
-      
+
       if (element.tagName === 'IMG') {
         element.src = src;
         if (element.dataset.srcset) {
@@ -151,7 +151,7 @@ class ImageOptimizer {
   init() {
     // Add WebP support detection
     this.checkWebPSupport();
-    
+
     // Optimize all images on page
     this.optimizeImages();
   }
@@ -166,7 +166,7 @@ class ImageOptimizer {
 
   optimizeImages() {
     const images = document.querySelectorAll('img:not([data-optimized])');
-    
+
     images.forEach(img => {
       // Add responsive attributes if missing
       if (!img.loading && !img.classList.contains('no-lazy')) {
@@ -212,7 +212,7 @@ class PageTransitions {
 
   shouldIntercept(link) {
     if (!link || this.isNavigating) return false;
-    
+
     const href = link.getAttribute('href');
     if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) {
       return false;
@@ -312,7 +312,7 @@ class PageTransitions {
     if (window.lazyLoader) {
       window.lazyLoader = new LazyLoader();
     }
-    
+
     // Trigger custom event for other scripts
     window.dispatchEvent(new CustomEvent('page-transition-complete'));
   }
@@ -350,7 +350,7 @@ class FormValidator {
   init() {
     this.forms.forEach(form => {
       const inputs = form.querySelectorAll('input, textarea, select');
-      
+
       inputs.forEach(input => {
         // Real-time validation
         input.addEventListener('blur', () => this.validateField(input));

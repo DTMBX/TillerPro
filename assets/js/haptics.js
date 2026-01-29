@@ -21,17 +21,17 @@ class HapticFeedback {
       light: 10,
       medium: 20,
       heavy: 30,
-      
+
       // Semantic feedback
       success: [10, 50, 10],
       warning: [20, 100, 20],
       error: [30, 100, 30, 100, 30],
-      
+
       // Interaction feedback
       tap: 10,
       longPress: 50,
       swipe: [10, 30, 10],
-      
+
       // UI feedback
       toggle: 15,
       selection: 5,

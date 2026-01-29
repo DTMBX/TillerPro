@@ -5,7 +5,7 @@
 
 (function() {
   'use strict';
-  
+
   // No-op functions - scrolling is now natural
   window.ScrollLockManager = {
     lock: () => console.log('[Scroll] Lock disabled - using natural scrolling'),
@@ -14,6 +14,6 @@
     isLocked: () => false,
     getCount: () => 0
   };
-  
+
   console.log('[Scroll Lock Manager] DISABLED - Natural scrolling enabled ✓');
 })();

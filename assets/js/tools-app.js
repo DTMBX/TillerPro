@@ -275,15 +275,15 @@
   function getShopLinks(calcId, inputs) {
     const searchTermFn = SHOP_SEARCH_TERMS[calcId];
     if (!searchTermFn) return [];
-    
+
     const searchTerm = searchTermFn(inputs || {});
     const links = [];
-    
+
     // Select relevant retailers based on calculator type
-    const retailerKeys = calcId === 'tile' 
+    const retailerKeys = calcId === 'tile'
       ? ['homedepot', 'lowes', 'flooranddecor', 'msi', 'daltile']
       : ['homedepot', 'lowes', 'amazon'];
-    
+
     retailerKeys.forEach(key => {
       const retailer = RETAILERS[key];
       if (retailer) {
@@ -297,7 +297,7 @@
         });
       }
     });
-    
+
     return links;
   }
 
@@ -308,228 +308,228 @@
     // ═══════════════════════════════════════════════════════════════════
     // SURFACE COVERAGE: Calculate materials for tile installation
     // ═══════════════════════════════════════════════════════════════════
-    { 
-      id: 'tile', 
-      name: 'Tile Quantity', 
-      icon: '🧱', 
+    {
+      id: 'tile',
+      name: 'Tile Quantity',
+      icon: '🧱',
       desc: 'Tiles and boxes needed',
       tooltip: 'Calculate exact tile count with waste factors for different layouts. Supports mosaic sheets and large-format tile (LFT).',
-      category: 'coverage', 
-      status: 'ready' 
+      category: 'coverage',
+      status: 'ready'
     },
-    { 
-      id: 'mortar', 
-      name: 'Mortar Coverage', 
-      icon: '🔧', 
+    {
+      id: 'mortar',
+      name: 'Mortar Coverage',
+      icon: '🔧',
       desc: 'Thin-set bags needed',
       tooltip: 'Estimate mortar bags based on trowel size. Automatically adds 25% for back-buttering LFT per TCNA standards.',
-      category: 'coverage', 
-      status: 'ready' 
+      category: 'coverage',
+      status: 'ready'
     },
-    { 
-      id: 'grout', 
-      name: 'Grout Calculator', 
-      icon: '🪣', 
+    {
+      id: 'grout',
+      name: 'Grout Calculator',
+      icon: '🪣',
       desc: 'Grout volume & bags',
       tooltip: 'Calculate grout needed based on tile size, joint width, and depth using TCNA formula. 10% waste included.',
-      category: 'coverage', 
-      status: 'ready' 
+      category: 'coverage',
+      status: 'ready'
     },
-    { 
-      id: 'waterproof', 
-      name: 'Waterproofing', 
-      icon: '💧', 
+    {
+      id: 'waterproof',
+      name: 'Waterproofing',
+      icon: '💧',
       desc: 'Membrane coverage',
       tooltip: 'Calculate liquid membrane gallons and reinforcing band feet for showers, tub surrounds, and wet areas.',
-      category: 'coverage', 
-      status: 'ready' 
+      category: 'coverage',
+      status: 'ready'
     },
 
     // ═══════════════════════════════════════════════════════════════════
     // STRUCTURAL/LOAD: Verify substrate and electrical requirements
     // ═══════════════════════════════════════════════════════════════════
-    { 
-      id: 'slope', 
-      name: 'Shower Slope', 
-      icon: '📐', 
+    {
+      id: 'slope',
+      name: 'Shower Slope',
+      icon: '📐',
       desc: 'Pre-slope rise & volume',
       tooltip: 'Calculate shower floor pre-slope dimensions and deck mud volume. Standard is ¼" per foot to drain.',
-      category: 'structural', 
-      status: 'ready' 
+      category: 'structural',
+      status: 'ready'
     },
-    { 
-      id: 'deflection', 
-      name: 'Structure Deflection', 
-      icon: '🏗️', 
+    {
+      id: 'deflection',
+      name: 'Structure Deflection',
+      icon: '🏗️',
       desc: 'L/360 or L/720 check',
       tooltip: 'Verify floor joist deflection meets TCNA requirements. Natural stone requires L/720, ceramic L/360.',
-      category: 'structural', 
-      status: 'ready' 
+      category: 'structural',
+      status: 'ready'
     },
-    { 
-      id: 'heated-floor', 
-      name: 'Heated Floor Load', 
-      icon: '♨️', 
+    {
+      id: 'heated-floor',
+      name: 'Heated Floor Load',
+      icon: '♨️',
       desc: 'Watts, amps, breaker',
       tooltip: 'Calculate electrical load for radiant floor heating. Determines amp draw and breaker/thermostat requirements.',
-      category: 'structural', 
-      status: 'ready' 
+      category: 'structural',
+      status: 'ready'
     },
 
     // ═══════════════════════════════════════════════════════════════════
     // PREP & FINISHING: Surface preparation and finishing materials
     // ═══════════════════════════════════════════════════════════════════
-    { 
-      id: 'leveling', 
-      name: 'Self-Leveling', 
-      icon: '📏', 
+    {
+      id: 'leveling',
+      name: 'Self-Leveling',
+      icon: '📏',
       desc: 'SLU compound amounts',
       tooltip: 'Calculate self-leveling underlayment (SLU) bags needed based on pour depth and area.',
-      category: 'prepfinish', 
-      status: 'ready' 
+      category: 'prepfinish',
+      status: 'ready'
     },
-    { 
-      id: 'thinset-mix', 
-      name: 'Thinset Mixing', 
-      icon: '🌀', 
+    {
+      id: 'thinset-mix',
+      name: 'Thinset Mixing',
+      icon: '🌀',
       desc: 'Water ratio & yield',
       tooltip: 'Calculate water-to-powder ratio and batch yield per TDS specs. Includes pot life guidance.',
-      category: 'prepfinish', 
-      status: 'ready' 
+      category: 'prepfinish',
+      status: 'ready'
     },
-    { 
-      id: 'primer', 
-      name: 'Primer / SLU Prep', 
-      icon: '🧴', 
+    {
+      id: 'primer',
+      name: 'Primer / SLU Prep',
+      icon: '🧴',
       desc: 'Coat coverage',
       tooltip: 'Estimate primer gallons for porous vs non-porous substrates. Supports double-priming calculations.',
-      category: 'prepfinish', 
-      status: 'ready' 
+      category: 'prepfinish',
+      status: 'ready'
     },
-    { 
-      id: 'deck-mud', 
-      name: 'Deck Mud', 
-      icon: '🏔️', 
+    {
+      id: 'deck-mud',
+      name: 'Deck Mud',
+      icon: '🏔️',
       desc: 'Pan volume & bags',
       tooltip: 'Calculate dry-pack mortar for shower pans and beds. Accounts for slope and minimum thickness.',
-      category: 'prepfinish', 
-      status: 'ready' 
+      category: 'prepfinish',
+      status: 'ready'
     },
-    { 
-      id: 'sealant', 
-      name: 'Sealant / Caulk', 
-      icon: '🧵', 
+    {
+      id: 'sealant',
+      name: 'Sealant / Caulk',
+      icon: '🧵',
       desc: 'Tubes needed',
       tooltip: 'Calculate caulk/sealant tubes based on linear feet and bead diameter. Supports 10.1oz and 28oz sizes.',
-      category: 'prepfinish', 
-      status: 'ready' 
+      category: 'prepfinish',
+      status: 'ready'
     },
-    { 
-      id: 'sealer', 
-      name: 'Sealer Coverage', 
-      icon: '🛡️', 
+    {
+      id: 'sealer',
+      name: 'Sealer Coverage',
+      icon: '🛡️',
       desc: 'Gallons by porosity',
       tooltip: 'Estimate sealer gallons based on surface porosity (natural stone, grout, concrete) and coat count.',
-      category: 'prepfinish', 
-      status: 'ready' 
+      category: 'prepfinish',
+      status: 'ready'
     },
 
     // ═══════════════════════════════════════════════════════════════════
     // PLANNING & LAYOUT: Project planning and trim work
     // ═══════════════════════════════════════════════════════════════════
-    { 
-      id: 'movement', 
-      name: 'Movement Joints', 
-      icon: '↔️', 
+    {
+      id: 'movement',
+      name: 'Movement Joints',
+      icon: '↔️',
       desc: 'EJ171 spacing grid',
       tooltip: 'Calculate expansion joint spacing per TCNA EJ171. Accounts for interior/exterior exposure and temperature swing.',
-      category: 'other', 
-      status: 'ready' 
+      category: 'other',
+      status: 'ready'
     },
-    { 
-      id: 'moisture', 
-      name: 'Moisture / RH', 
-      icon: '💨', 
+    {
+      id: 'moisture',
+      name: 'Moisture / RH',
+      icon: '💨',
       desc: 'ASTM F1869/F2170',
       tooltip: 'Evaluate moisture vapor emission rate (MVER) and relative humidity (RH) against adhesive/coating limits.',
-      category: 'other', 
-      status: 'ready' 
+      category: 'other',
+      status: 'ready'
     },
-    { 
-      id: 'bath-layout', 
-      name: 'Bath Layout', 
-      icon: '🛁', 
+    {
+      id: 'bath-layout',
+      name: 'Bath Layout',
+      icon: '🛁',
       desc: 'Fixture clearances',
       tooltip: 'Plan bathroom fixture placement with IPC code-compliant clearances for tub, toilet, vanity, and shower.',
-      category: 'other', 
-      status: 'ready' 
+      category: 'other',
+      status: 'ready'
     },
-    { 
-      id: 'labor', 
-      name: 'Labor Estimate', 
-      icon: '⏱️', 
+    {
+      id: 'labor',
+      name: 'Labor Estimate',
+      icon: '⏱️',
       desc: 'Time & scheduling',
       tooltip: 'Estimate installation time based on area, complexity, and additional work (prep, demo).',
-      category: 'other', 
-      status: 'ready' 
+      category: 'other',
+      status: 'ready'
     },
     // Trim & Molding
-    { 
-      id: 'crown', 
-      name: 'Crown Molding', 
-      icon: '👑', 
+    {
+      id: 'crown',
+      name: 'Crown Molding',
+      icon: '👑',
       desc: 'Trim & corners',
       tooltip: 'Calculate crown molding pieces, inside/outside corners, and material costs by profile size.',
-      category: 'other', 
-      status: 'ready' 
+      category: 'other',
+      status: 'ready'
     },
-    { 
-      id: 'baseboard', 
-      name: 'Baseboard', 
-      icon: '📋', 
+    {
+      id: 'baseboard',
+      name: 'Baseboard',
+      icon: '📋',
       desc: 'Wall base & chair rail',
       tooltip: 'Calculate baseboard with door/window deductions. Includes wainscoting panel framing option.',
-      category: 'other', 
-      status: 'ready' 
+      category: 'other',
+      status: 'ready'
     },
-    { 
-      id: 'quarter', 
-      name: 'Quarter Round', 
-      icon: '🔘', 
+    {
+      id: 'quarter',
+      name: 'Quarter Round',
+      icon: '🔘',
       desc: 'Floor trim',
       tooltip: 'Calculate quarter round or shoe molding with deductions for doors, cabinets, and transitions.',
-      category: 'other', 
-      status: 'ready' 
+      category: 'other',
+      status: 'ready'
     }
   ];
 
   // Category metadata for grouping with enhanced descriptions
   const CATEGORIES = {
-    coverage: { 
-      name: 'Surface Coverage', 
-      icon: '🧱', 
-      order: 1, 
+    coverage: {
+      name: 'Surface Coverage',
+      icon: '🧱',
+      order: 1,
       desc: 'Calculate tile, mortar, grout, and waterproofing materials',
       longDesc: 'Essential calculators for determining material quantities with built-in waste factors and TCNA compliance.'
     },
-    structural: { 
-      name: 'Structural & Load', 
-      icon: '🏗️', 
-      order: 2, 
+    structural: {
+      name: 'Structural & Load',
+      icon: '🏗️',
+      order: 2,
       desc: 'Verify substrate requirements and electrical loads',
       longDesc: 'Check floor deflection, shower slopes, and heated floor electrical requirements before installation.'
     },
-    prepfinish: { 
-      name: 'Prep & Finishing', 
-      icon: '🧴', 
-      order: 3, 
+    prepfinish: {
+      name: 'Prep & Finishing',
+      icon: '🧴',
+      order: 3,
       desc: 'Surface prep, mixing ratios, and finishing products',
       longDesc: 'Calculate leveling compound, mixing ratios, primers, sealants, and sealers for proper surface preparation.'
     },
-    other: { 
-      name: 'Planning & Layout', 
-      icon: '📐', 
-      order: 4, 
+    other: {
+      name: 'Planning & Layout',
+      icon: '📐',
+      order: 4,
       desc: 'Project planning, layout, and trim work',
       longDesc: 'Plan bathroom layouts, movement joints, moisture testing, labor estimates, and trim/molding calculations.'
     }
@@ -755,12 +755,12 @@
       try {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), CONFIG.API_TIMEOUT);
-        
+
         const response = await fetch(`${CONFIG.API_BASE_URL.replace('/api', '')}/health`, {
           signal: controller.signal
         });
         clearTimeout(timeoutId);
-        
+
         if (response.ok) {
           this.isConnected = true;
           this.lastHealthCheck = Date.now();
@@ -780,7 +780,7 @@
       if (indicator) {
         indicator.className = connected ? 'api-status api-status--connected' : 'api-status api-status--offline';
         indicator.title = connected ? 'Connected to Toolkit API' : 'Offline Mode (Local Calculations)';
-        indicator.innerHTML = connected 
+        indicator.innerHTML = connected
           ? '<span class="api-status__dot"></span><span>API</span>'
           : '<span class="api-status__dot"></span><span>Offline</span>';
       }
@@ -805,14 +805,14 @@
         try {
           const controller = new AbortController();
           const timeoutId = setTimeout(() => controller.abort(), CONFIG.API_TIMEOUT);
-          
+
           const response = await fetch(url, { ...config, signal: controller.signal });
           clearTimeout(timeoutId);
 
           if (!response.ok) {
             throw new Error(`HTTP ${response.status}`);
           }
-          
+
           return await response.json();
         } catch (e) {
           if (attempt === CONFIG.API_RETRY_ATTEMPTS - 1) throw e;
@@ -822,7 +822,7 @@
     },
 
     // ===== JOBS =====
-    
+
     async listJobs() {
       return this.request('/jobs');
     },
@@ -919,7 +919,7 @@
     // Calculate using API if available, otherwise local
     async calculate(calcType, inputs) {
       const apiType = this.apiTypeMap[calcType];
-      
+
       // Try API first if connected
       if (API.isConnected && apiType) {
         try {
@@ -1057,7 +1057,7 @@
     handleRoute() {
       const hash = window.location.hash.slice(2) || 'dashboard';
       const route = hash.split('/')[0];
-      
+
       if (this.routes[route]) {
         AppState.currentRoute = route;
         this.routes[route]();
@@ -1143,14 +1143,14 @@
       const { title, body, footer, onClose } = options;
       const overlay = document.getElementById('modal-overlay');
       const modal = document.getElementById('modal');
-      
+
       document.getElementById('modal-title').textContent = title;
       document.getElementById('modal-body').innerHTML = body;
       document.getElementById('modal-footer').innerHTML = footer || '';
-      
+
       overlay.hidden = false;
       modal.querySelector('.modal__close').focus();
-      
+
       this._onClose = onClose;
       // Natural scrolling - no body lock
     },
@@ -1159,7 +1159,7 @@
       const overlay = document.getElementById('modal-overlay');
       overlay.hidden = true;
       document.body.style.overflow = '';
-      
+
       if (this._onClose) {
         this._onClose();
         this._onClose = null;
@@ -1422,7 +1422,7 @@
 
     tile(inputs) {
       const { area, tileSize, layout, waste, tilesPerBox, sqftPerBox, atticStock, customWidth, customHeight } = inputs;
-      
+
       if (!area || area <= 0) return null;
 
       // Get tile data, handle custom sizes
@@ -1432,12 +1432,12 @@
         const h = parseFloat(customHeight);
         tile = { ...tile, width: w, height: h, isLargeFormat: Math.max(w, h) >= 15 };
       }
-      
+
       const layoutData = LAYOUT_PRESETS.find(l => l.id === layout) || LAYOUT_PRESETS[0];
       const wastePercent = waste || layoutData.waste;
-      
+
       const areaWithWaste = area * (1 + wastePercent / 100);
-      
+
       let tilesNeeded;
       if (tile.isMosaic && tile.sheetCoverage) {
         // Mosaic sheets use sheet coverage (typically 1 sq ft each)
@@ -1448,7 +1448,7 @@
       } else {
         tilesNeeded = 0;
       }
-      
+
       let boxes = 0;
       if (tilesPerBox > 0) {
         boxes = Math.ceil(tilesNeeded / tilesPerBox);
@@ -1463,11 +1463,11 @@
       // Build notes and warnings for LFT
       const notes = [];
       const warnings = [];
-      
+
       if (tile.isMosaic) {
         notes.push('Mosaic sheets (1 sq ft each)');
       }
-      
+
       if (tile.isLargeFormat) {
         notes.push('Large-format tile (LFT) — requires 95% mortar coverage');
         if (layoutData.lippageRisk) {
@@ -1488,13 +1488,13 @@
 
     mortar(inputs) {
       const { area, trowel, backButter, tileSize } = inputs;
-      
+
       if (!area || area <= 0) return null;
 
       const trowelData = TROWEL_PRESETS.find(t => t.id === trowel) || TROWEL_PRESETS[1];
       const tile = tileSize ? TILE_PRESETS.find(t => t.id === tileSize) : null;
       const isLFT = tile?.isLargeFormat || false;
-      
+
       let bagsMin = Math.ceil(area / trowelData.max);
       let bagsMax = Math.ceil(area / trowelData.min);
 
@@ -1508,13 +1508,13 @@
       // Build notes and warnings
       const notes = [];
       const warnings = [];
-      
+
       notes.push(`Coverage: ${trowelData.min}–${trowelData.max} sq ft/bag per CBP TDS-132`);
-      
+
       if (shouldBackButter) {
         notes.push('Includes ~25% extra for back-buttering');
       }
-      
+
       if (isLFT) {
         if (trowelData.notForLFT) {
           warnings.push(`${trowelData.name} NOT recommended for LFT—use 3/4" U-notch`);
@@ -1534,13 +1534,13 @@
 
     grout(inputs) {
       const { area, tileWidth, tileLength, tileThickness, jointWidth, tileSize } = inputs;
-      
+
       if (!area || area <= 0) return null;
-      
+
       // Get tile dimensions from preset if not provided directly
       let tileW = parseFloat(tileWidth);
       let tileL = parseFloat(tileLength);
-      
+
       if ((!tileW || !tileL) && tileSize) {
         const tile = TILE_PRESETS.find(t => t.id === tileSize);
         if (tile && tile.width > 0) {
@@ -1548,20 +1548,20 @@
           tileL = tile.height;
         }
       }
-      
+
       if (!tileW || !tileL) return null;
 
       // Joint dimensions
       const jointW = parseFloat(jointWidth) || 0.125;  // default 1/8"
       const jointD = parseFloat(tileThickness) || 0.375; // default 3/8" (typical tile)
-      
+
       // TCNA Grout Coverage Formula using constant
       // Formula: Area × (L + W) / (L × W) × T × J × K where K = 1.86
       const lbsPerSqFt = ((tileL + tileW) / (tileL * tileW)) * jointD * jointW * GROUT_DENSITY_LBS_PER_CUIN;
-      
+
       // Coverage in sq ft per lb (inverse)
       const coverageSqFtPerLb = 1 / lbsPerSqFt;
-      
+
       // Pounds needed with 10% waste
       const groutLbs = area * lbsPerSqFt * 1.1;
 
@@ -1577,14 +1577,14 @@
 
     leveling(inputs) {
       const { area, avgDepth, maxDepth } = inputs;
-      
+
       if (!area || !avgDepth) return null;
 
       // avgDepth is in inches, convert to feet for volume
       const volumeCuFt = area * (avgDepth / 12);
       // Use harmonized LEVELER_COVERAGE constant
       const bags = Math.ceil(volumeCuFt / LEVELER_COVERAGE);
-      
+
       let bagsMax = bags;
       if (maxDepth && maxDepth > avgDepth) {
         const maxVolume = area * (maxDepth / 12);
@@ -1601,24 +1601,24 @@
 
     slope(inputs) {
       const { drainToWall, slopeRatio } = inputs;
-      
+
       if (!drainToWall) return null;
 
       // Standard shower slope: 1/4" per foot (0.25)
       const ratio = parseFloat(slopeRatio) || 0.25;
       const distanceFt = parseFloat(drainToWall);
-      
+
       // Rise at wall = distance × slope ratio (inches)
       const riseInches = distanceFt * ratio;
-      
+
       // For a circular shower floor, area = π × r²
       const areaSqFt = Math.PI * Math.pow(distanceFt, 2);
-      
+
       // Volume of cone = (1/3) × π × r² × h
       // For pre-slope (deck mud), we need the volume in cubic feet
       const riseFoots = riseInches / 12;
       const volumeCuFt = (1/3) * Math.PI * Math.pow(distanceFt, 2) * riseFoots;
-      
+
       // Deck mud: ~80 lbs per cubic foot, sold in 60lb bags
       const deckMudLbs = volumeCuFt * 80;
       const bags60lb = Math.ceil(deckMudLbs / 60);
@@ -1634,7 +1634,7 @@
 
     waterproof(inputs) {
       const { wallArea, floorArea, corners, pipes } = inputs;
-      
+
       const totalArea = (wallArea || 0) + (floorArea || 0);
       if (totalArea <= 0) return null;
 
@@ -1651,7 +1651,7 @@
 
     labor(inputs) {
       const { area, complexity, includePrep, includeDemo } = inputs;
-      
+
       if (!area || area <= 0) return null;
 
       const baseRate = complexity === 'complex' ? 15 : complexity === 'moderate' ? 20 : 25;
@@ -1680,35 +1680,35 @@
      */
     crown(inputs) {
       const { perimeter, roomLength, roomWidth, profile, stockLength, complexity, insideCorners, outsideCorners } = inputs;
-      
+
       // Calculate perimeter from L×W or use direct input
       let totalPerimeter = parseFloat(perimeter) || 0;
       if (!totalPerimeter && roomLength && roomWidth) {
         totalPerimeter = 2 * (parseFloat(roomLength) + parseFloat(roomWidth));
       }
-      
+
       if (totalPerimeter <= 0) return null;
 
       const crownProfile = CROWN_PRESETS.find(c => c.id === profile) || CROWN_PRESETS[1];
       const stockLen = parseFloat(stockLength) || 12;
       const wasteFactor = TRIM_WASTE[complexity] || TRIM_WASTE.moderate;
-      
+
       // Linear feet with waste
       const linearFtWithWaste = totalPerimeter * (1 + wasteFactor);
-      
+
       // Pieces needed (round up)
       const piecesNeeded = Math.ceil(linearFtWithWaste / stockLen);
-      
+
       // Calculate corners
       const inCorners = parseInt(insideCorners) || 4; // Standard room has 4
       const outCorners = parseInt(outsideCorners) || 0;
-      
+
       // Corner blocks (if using) - alternative to coping/mitering
       const cornerBlocksNeeded = inCorners + outCorners;
-      
+
       // Material cost estimate
       const materialCost = linearFtWithWaste * (crownProfile.pricePerFt || 2.00);
-      
+
       // Build notes
       const notes = [];
       notes.push(`${crownProfile.name} @ ${stockLen}' lengths`);
@@ -1734,53 +1734,53 @@
      * Includes wainscoting panel framing calculations
      */
     baseboard(inputs) {
-      const { perimeter, roomLength, roomWidth, profile, stockLength, complexity, 
-              doorOpenings, windowOpenings, includePanels, panelHeight, panelWidth, panelCount } = inputs;
-      
+      const { perimeter, roomLength, roomWidth, profile, stockLength, complexity,
+        doorOpenings, windowOpenings, includePanels, panelHeight, panelWidth, panelCount } = inputs;
+
       // Calculate perimeter
       let totalPerimeter = parseFloat(perimeter) || 0;
       if (!totalPerimeter && roomLength && roomWidth) {
         totalPerimeter = 2 * (parseFloat(roomLength) + parseFloat(roomWidth));
       }
-      
+
       if (totalPerimeter <= 0) return null;
 
       const baseProfile = BASEBOARD_PRESETS.find(b => b.id === profile) || BASEBOARD_PRESETS[1];
       const stockLen = parseFloat(stockLength) || 12;
       const wasteFactor = TRIM_WASTE[complexity] || TRIM_WASTE.moderate;
-      
+
       // Subtract door openings (typical 3' each)
       const doorDeduction = (parseInt(doorOpenings) || 0) * 3;
       // Windows don't deduct from baseboard (they're above it)
-      
+
       const netPerimeter = Math.max(0, totalPerimeter - doorDeduction);
       const linearFtWithWaste = netPerimeter * (1 + wasteFactor);
       const piecesNeeded = Math.ceil(linearFtWithWaste / stockLen);
-      
+
       // Wainscoting panel framing calculation
       let panelFramingFt = 0;
       let panelDetails = null;
-      
+
       if (includePanels && panelCount > 0) {
         const pHeight = parseFloat(panelHeight) || 24; // inches
         const pWidth = parseFloat(panelWidth) || 18;   // inches
         const pCount = parseInt(panelCount) || 0;
-        
+
         // Each panel frame: 2 vertical stiles + 2 horizontal rails
         const panelPerimeter = 2 * (pHeight + pWidth) / 12; // convert to feet
         panelFramingFt = panelPerimeter * pCount * (1 + TRIM_WASTE.coffered);
-        
+
         panelDetails = {
           count: pCount,
           framePerPanel: panelPerimeter.toFixed(1),
           totalFraming: panelFramingFt.toFixed(1)
         };
       }
-      
+
       const totalLinearFt = linearFtWithWaste + panelFramingFt;
       const totalPieces = Math.ceil(totalLinearFt / stockLen);
       const materialCost = totalLinearFt * (baseProfile.pricePerFt || 1.10);
-      
+
       // Build notes
       const notes = [];
       notes.push(`${baseProfile.name} @ ${stockLen}' lengths`);
@@ -1808,32 +1808,32 @@
      */
     quarter(inputs) {
       const { perimeter, roomLength, roomWidth, profile, stockLength, complexity,
-              doorOpenings, cabinetRuns, transitionStrips } = inputs;
-      
+        doorOpenings, cabinetRuns, transitionStrips } = inputs;
+
       // Calculate perimeter
       let totalPerimeter = parseFloat(perimeter) || 0;
       if (!totalPerimeter && roomLength && roomWidth) {
         totalPerimeter = 2 * (parseFloat(roomLength) + parseFloat(roomWidth));
       }
-      
+
       if (totalPerimeter <= 0) return null;
 
       const quarterProfile = QUARTER_PRESETS.find(q => q.id === profile) || QUARTER_PRESETS[1];
       const stockLen = parseFloat(stockLength) || 8; // Quarter round typically 8'
       const wasteFactor = TRIM_WASTE[complexity] || TRIM_WASTE.moderate;
-      
+
       // Deductions
       const doorDeduction = (parseInt(doorOpenings) || 0) * 3;      // 3' per door opening
       const cabinetDeduction = parseFloat(cabinetRuns) || 0;        // Linear ft of cabinets
       const transitionDeduction = (parseInt(transitionStrips) || 0) * 3; // 3' per transition
-      
+
       const totalDeductions = doorDeduction + cabinetDeduction + transitionDeduction;
       const netPerimeter = Math.max(0, totalPerimeter - totalDeductions);
       const linearFtWithWaste = netPerimeter * (1 + wasteFactor);
       const piecesNeeded = Math.ceil(linearFtWithWaste / stockLen);
-      
+
       const materialCost = linearFtWithWaste * (quarterProfile.pricePerFt || 0.55);
-      
+
       // Build notes
       const notes = [];
       notes.push(`${quarterProfile.name} @ ${stockLen}' lengths`);
@@ -1982,9 +1982,9 @@
 
           <!-- Calculator Sections by Category -->
           ${sortedCategories.map(([catId, cat]) => {
-            const catCalcs = CALCULATORS.filter(c => c.category === catId && c.status === 'ready');
-            if (catCalcs.length === 0) return '';
-            return `
+    const catCalcs = CALCULATORS.filter(c => c.category === catId && c.status === 'ready');
+    if (catCalcs.length === 0) return '';
+    return `
               <section class="dashboard__section dashboard__section--category" id="dash-cat-${catId}">
                 <div class="dashboard__section-header">
                   <div class="dashboard__section-header-info">
@@ -2010,7 +2010,7 @@
                 </div>
               </section>
             `;
-          }).join('')}
+  }).join('')}
 
           <!-- Coming Soon -->
           ${CALCULATORS.filter(c => c.status === 'coming').length > 0 ? `
@@ -2141,7 +2141,7 @@
       const filteredCalcs = CALCULATORS.filter(calc => {
         if (!AppState.searchQuery) return true;
         const q = AppState.searchQuery.toLowerCase();
-        return calc.name.toLowerCase().includes(q) || 
+        return calc.name.toLowerCase().includes(q) ||
                (calc.desc && calc.desc.toLowerCase().includes(q)) ||
                (calc.tooltip && calc.tooltip.toLowerCase().includes(q));
       });
@@ -2183,9 +2183,9 @@
             </div>
             <nav class="calc-selector__list" role="tablist" aria-label="Calculator selection">
               ${sortedCategories.map(([catId, cat]) => {
-                const catCalcs = filteredCalcs.filter(c => c.category === catId);
-                if (catCalcs.length === 0) return '';
-                return `
+    const catCalcs = filteredCalcs.filter(c => c.category === catId);
+    if (catCalcs.length === 0) return '';
+    return `
                   <div class="calc-selector__group" id="calc-cat-${catId}">
                     <button class="calc-selector__group-header" aria-expanded="true" data-collapse="${catId}">
                       <div class="calc-selector__group-info">
@@ -2214,7 +2214,7 @@
                     </div>
                   </div>
                 `;
-              }).join('')}
+  }).join('')}
             </nav>
           </aside>
 
@@ -2255,16 +2255,16 @@
           <label class="form-label" for="calc-mobile-dropdown">Select Calculator</label>
           <select class="form-select calc-mobile-dropdown" id="calc-mobile-dropdown" aria-label="Select calculator">
             ${sortedCategories.map(([catId, cat]) => {
-              const catCalcs = filteredCalcs.filter(c => c.category === catId && c.status === 'ready');
-              if (catCalcs.length === 0) return '';
-              return `
+    const catCalcs = filteredCalcs.filter(c => c.category === catId && c.status === 'ready');
+    if (catCalcs.length === 0) return '';
+    return `
                 <optgroup label="${cat.icon} ${cat.name}">
                   ${catCalcs.map(calc => `
                     <option value="${calc.id}" ${calc.id === activeCalc ? 'selected' : ''}>${calc.name}</option>
                   `).join('')}
                 </optgroup>
               `;
-            }).join('')}
+  }).join('')}
           </select>
         </div>
       `;
@@ -2322,7 +2322,7 @@
             const visibleCalcs = CALCULATORS.filter(calc => {
               if (!AppState.searchQuery) return true;
               const q = AppState.searchQuery.toLowerCase();
-              return calc.name.toLowerCase().includes(q) || 
+              return calc.name.toLowerCase().includes(q) ||
                      (calc.desc && calc.desc.toLowerCase().includes(q)) ||
                      (calc.tooltip && calc.tooltip.toLowerCase().includes(q));
             });
@@ -3844,7 +3844,7 @@
           });
 
           AppState.calculatorInputs[calcId] = inputs;
-          
+
           // Brief delay for visual feedback
           await new Promise(r => setTimeout(r, 150));
 
@@ -3853,12 +3853,12 @@
             const results = calcFn(inputs);
             if (results) {
               AppState.calculatorResults[calcId] = results;
-              
+
               // AUTO-SAVE to project (new feature)
               if (AppState.settings.autoSave) {
                 App.autoSaveToProject(calcId, inputs, results);
               }
-              
+
               Toast.show('Calculation complete', 'success');
             } else {
               Toast.show('Please fill in required fields', 'warning');
@@ -4401,14 +4401,14 @@
         AppState.activeProject = project.id;
         Projects.updateCount();
       }
-      
+
       if (!AppState.activeProject) return;
-      
+
       const project = Projects.get(AppState.activeProject);
       if (!project) return;
-      
+
       if (!project.calculations) project.calculations = {};
-      
+
       // Save calculation with metadata
       project.calculations[calcId] = {
         inputs,
@@ -4416,20 +4416,20 @@
         savedAt: new Date().toISOString(),
         shopLinksClicked: []
       };
-      
+
       // Update project totals based on calculator type
       this.updateProjectTotals(project, calcId, inputs, results);
-      
+
       // Generate/update shopping list
       this.updateShoppingList(project);
-      
+
       Projects.update(AppState.activeProject, project);
       AppState.lastAutoSave = new Date().toISOString();
-      
+
       // Show subtle auto-save indicator
       this.showAutoSaveIndicator(calcId);
     },
-    
+
     // Update project totals from calculation
     updateProjectTotals(project, calcId, inputs, results) {
       if (!project.totals) {
@@ -4439,13 +4439,13 @@
           estimatedCost: 0
         };
       }
-      
+
       // Update area from tile calculator
       if (calcId === 'tile' && inputs.area) {
         project.totals.area = parseFloat(inputs.area) || 0;
         project.totalArea = project.totals.area;
       }
-      
+
       // Track materials
       if (results) {
         const materialMap = {
@@ -4457,7 +4457,7 @@
           sealant: { key: 'sealant', unit: 'tubes', value: results.tubes },
           sealer: { key: 'sealer', unit: 'gal', value: results.gallons }
         };
-        
+
         const material = materialMap[calcId];
         if (material && material.value) {
           project.totals.materials[material.key] = {
@@ -4467,11 +4467,11 @@
         }
       }
     },
-    
+
     // Generate shopping list from all calculations
     updateShoppingList(project) {
       if (!project.calculations) return;
-      
+
       const shoppingList = [];
       const calcNames = {
         tile: 'Tile',
@@ -4484,13 +4484,13 @@
         primer: 'Primer',
         'deck-mud': 'Deck Mud'
       };
-      
+
       Object.entries(project.calculations).forEach(([calcId, data]) => {
         if (!data.results) return;
-        
+
         const results = data.results;
         const inputs = data.inputs || {};
-        
+
         // Map calculator results to shopping items
         if (calcId === 'tile' && results.tilesNeeded) {
           const size = inputs.tileWidth && inputs.tileHeight ? `${inputs.tileWidth}×${inputs.tileHeight}` : '';
@@ -4502,7 +4502,7 @@
             spec: results.note || ''
           });
         }
-        
+
         if (calcId === 'mortar' && results.bags) {
           shoppingList.push({
             item: inputs.backButter ? 'LFT Thin-Set Mortar' : 'Thin-Set Mortar',
@@ -4511,7 +4511,7 @@
             source: calcId
           });
         }
-        
+
         if (calcId === 'grout' && results.bags) {
           const jointSize = inputs.jointWidth || 0.125;
           shoppingList.push({
@@ -4521,7 +4521,7 @@
             source: calcId
           });
         }
-        
+
         if (calcId === 'leveling' && results.bags) {
           shoppingList.push({
             item: 'Self-Leveling Underlayment',
@@ -4530,7 +4530,7 @@
             source: calcId
           });
         }
-        
+
         if (calcId === 'waterproof' && results.gallons) {
           shoppingList.push({
             item: 'Waterproofing Membrane',
@@ -4539,7 +4539,7 @@
             source: calcId
           });
         }
-        
+
         if (calcId === 'sealant' && results.tubes) {
           shoppingList.push({
             item: 'Silicone Caulk',
@@ -4548,7 +4548,7 @@
             source: calcId
           });
         }
-        
+
         if (calcId === 'sealer' && results.gallons) {
           shoppingList.push({
             item: 'Grout/Stone Sealer',
@@ -4558,10 +4558,10 @@
           });
         }
       });
-      
+
       project.shoppingList = shoppingList;
     },
-    
+
     // Show auto-save indicator animation
     showAutoSaveIndicator(calcId) {
       const indicator = document.getElementById(`autosave-${calcId}`);
@@ -4572,7 +4572,7 @@
         }, 2000);
       }
     },
-    
+
     // Track shop link clicks
     trackShopClick(retailerId, calcId) {
       AppState.shopLinksClicked.push({
@@ -4580,7 +4580,7 @@
         calculator: calcId,
         timestamp: new Date().toISOString()
       });
-      
+
       // Also save to project if active
       if (AppState.activeProject) {
         const project = Projects.get(AppState.activeProject);
@@ -4591,7 +4591,7 @@
             product: calcId,
             timestamp: new Date().toISOString()
           });
-          
+
           // Update shop links clicked in calculation
           if (project.calculations && project.calculations[calcId]) {
             if (!project.calculations[calcId].shopLinksClicked) {
@@ -4601,12 +4601,12 @@
               project.calculations[calcId].shopLinksClicked.push(retailerId);
             }
           }
-          
+
           Projects.update(AppState.activeProject, project);
         }
       }
     },
-    
+
     // Find local tile suppliers
     findLocalSuppliers(calcId) {
       const searchTermFn = SHOP_SEARCH_TERMS[calcId];
@@ -4679,7 +4679,7 @@
       try {
         const jobs = await API.listJobs();
         let imported = 0;
-        
+
         for (const job of jobs) {
           // Skip if we already have this job
           const exists = AppState.projects.some(p => p.toolkit_id === job.id);
@@ -4689,7 +4689,7 @@
             imported++;
           }
         }
-        
+
         Storage.save();
         Projects.updateCount();
         Router.navigate(AppState.currentRoute);
@@ -4833,10 +4833,10 @@
       }
       const activeProject = AppState.activeProject ? Projects.get(AppState.activeProject) : null;
       const projectName = activeProject ? activeProject.name : 'Quick Estimate';
-      
+
       // Include shopping list in PDF export
       const shoppingList = activeProject?.shoppingList || [];
-      
+
       Toast.show('Generating PDF...', 'info');
       const result = await window.TillerPDF.downloadQuickEstimate(calcId, inputs, results, projectName, shoppingList);
       if (result.success) {

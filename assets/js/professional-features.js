@@ -1,7 +1,7 @@
 /**
  * Tillerstead Professional Features Suite
  * High-end interactions for a premium web experience
- * 
+ *
  * Features:
  * - Custom cursor with glow effect
  * - Page load animations
@@ -59,14 +59,14 @@
     constructor() {
       // Check if user has enabled custom cursor via accessibility preferences
       this.userEnabled = this.checkUserPreference();
-      
+
       // Only auto-init if CONFIG enables it AND user hasn't explicitly disabled
       // Since CONFIG is now false by default, cursor only activates via a11y toggle
       if (prefersReducedMotion || this.isTouchDevice()) {
         this.supported = false;
         return;
       }
-      
+
       this.supported = true;
       this.cursor = null;
       this.cursorDot = null;
@@ -79,7 +79,7 @@
       this.isHovering = false;
       this.isActive = false;
       this.styleElement = null;
-      
+
       // If user previously enabled cursor, activate it
       if (this.userEnabled) {
         this.enable();
@@ -111,7 +111,7 @@
     disable() {
       if (!this.isActive) return;
       this.isActive = false;
-      
+
       // Remove cursor elements
       if (this.cursor) {
         this.cursor.remove();
@@ -125,7 +125,7 @@
         this.styleElement.remove();
         this.styleElement = null;
       }
-      
+
       document.body.classList.remove('custom-cursor-active');
       document.documentElement.removeAttribute('data-custom-cursor');
     }
@@ -239,7 +239,7 @@
       document.addEventListener('mousemove', (e) => {
         this.mouseX = e.clientX;
         this.mouseY = e.clientY;
-        
+
         if (!this.cursor.classList.contains('visible')) {
           this.cursor.classList.add('visible');
           this.cursorDot.classList.add('visible');
@@ -267,7 +267,7 @@
 
       // Hover effects on interactive elements
       const interactiveElements = 'a, button, [role="button"], input, textarea, select, .btn, [data-cursor-hover]';
-      
+
       document.querySelectorAll(interactiveElements).forEach(el => {
         el.addEventListener('mouseenter', () => {
           this.cursor.classList.add('hovering');
@@ -350,7 +350,7 @@
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      
+
       this.progressBar.style.width = `${progress}%`;
       this.progressBar.setAttribute('aria-valuenow', Math.round(progress));
     }
@@ -606,7 +606,7 @@
     show(message, type = 'info', duration = CONFIG.toast.duration) {
       const toast = document.createElement('div');
       toast.className = `toast toast--${type}`;
-      
+
       const icons = {
         success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
         error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
@@ -733,7 +733,7 @@
   class StickyCTA {
     constructor() {
       if (!CONFIG.stickyCTA.enabled) return;
-      
+
       // Check if CTA element exists on page
       const existingCTA = document.querySelector('.sticky-cta, [data-sticky-cta]');
       if (existingCTA) return; // Don't duplicate
@@ -983,11 +983,11 @@
     open(img) {
       const lightboxImg = this.overlay.querySelector('.lightbox-image');
       const caption = this.overlay.querySelector('.lightbox-caption');
-      
+
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
       caption.textContent = img.alt || '';
-      
+
       this.overlay.classList.add('active');
       // Natural scrolling - no body lock
       this.currentImage = img;
@@ -1011,13 +1011,13 @@
 
     init() {
       const hamburgers = document.querySelectorAll('.hamburger, .nav-toggle, [data-hamburger]');
-      
+
       hamburgers.forEach(hamburger => {
         // Check if already animated
         if (hamburger.classList.contains('hamburger-animated')) return;
-        
+
         hamburger.classList.add('hamburger-animated');
-        
+
         // Add animation classes on click
         hamburger.addEventListener('click', () => {
           hamburger.classList.toggle('is-active');
@@ -1103,18 +1103,18 @@
       document.querySelectorAll('a[href^="/"], a[href^="./"]').forEach(link => {
         // Skip if has download attribute or opens in new tab
         if (link.hasAttribute('download') || link.target === '_blank') return;
-        
+
         link.addEventListener('click', (e) => {
           const href = link.getAttribute('href');
-          
+
           // Skip anchor links
           if (href.startsWith('#')) return;
-          
+
           e.preventDefault();
-          
+
           // Add exit animation
           document.body.classList.add('page-transitioning');
-          
+
           setTimeout(() => {
             window.location.href = href;
           }, 300);

@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.classList.add('nav-open');
     if (closeBtn) closeBtn.focus();
   }
-  
+
   function closeDrawer() {
     drawer.classList.remove('is-open');
     if (overlay) overlay.classList.remove('is-open');
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.classList.remove('nav-open');
     openBtn.focus();
   }
-  
+
   openBtn.addEventListener('click', function() {
     const isOpen = drawer.classList.contains('is-open');
     if (isOpen) {
@@ -49,15 +49,15 @@ document.addEventListener('DOMContentLoaded', function () {
       openDrawer();
     }
   });
-  
+
   if (closeBtn) {
     closeBtn.addEventListener('click', closeDrawer);
   }
-  
+
   if (overlay) {
     overlay.addEventListener('click', closeDrawer);
   }
-  
+
   document.addEventListener('keydown', function (e) {
     if (drawer.classList.contains('is-open')) {
       if (e.key === 'Escape') closeDrawer();
@@ -76,14 +76,14 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   });
-  
+
   // Close drawer on link click
   drawer.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', function() {
       setTimeout(closeDrawer, 150);
     });
   });
-  
+
   // Close on resize to desktop
   let resizeTimer;
   window.addEventListener('resize', function() {

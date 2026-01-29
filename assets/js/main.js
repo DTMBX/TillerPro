@@ -1,28 +1,28 @@
 (function() {
   'use strict';
-  
+
   // // // // // // // // // // // // // // // console.log('[TILLERSTEAD] Initializing - No Bounce Edition'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
-  
+
   // Header scroll - NO BOUNCE
   const header = document.getElementById('site-header');
   if (header) {
     let lastScroll = 0;
     let ticking = false;
-    
+
     function updateHeader() {
       const scrollY = window.pageYOffset;
-      
+
       // Only update class, not position
       if (scrollY > 50) {
         header.classList.add('ts-header--scrolled');
       } else {
         header.classList.remove('ts-header--scrolled');
       }
-      
+
       lastScroll = scrollY;
       ticking = false;
     }
-    
+
     // Use requestAnimationFrame to prevent jank
     window.addEventListener('scroll', () => {
       if (!ticking) {
@@ -31,28 +31,28 @@
       }
     }, { passive: true });
   }
-  
+
   // Rest of navigation code...
   initNav();
   initAnimations();
-  
+
   function initNav() {
     // Desktop dropdown navigation
     const dropdowns = document.querySelectorAll('.has-dropdown');
-    
+
     dropdowns.forEach(item => {
       const trigger = item.querySelector('.desktop-nav__trigger');
       const dropdown = item.querySelector('.desktop-nav__dropdown');
-      
+
       if (!trigger || !dropdown) return;
-      
+
       // Click handler
       trigger.addEventListener('click', e => {
         e.preventDefault();
         e.stopPropagation();
-        
+
         const isOpen = item.classList.contains('is-open');
-        
+
         // Close all other dropdowns
         dropdowns.forEach(other => {
           if (other !== item) {
@@ -61,7 +61,7 @@
             if (t) t.setAttribute('aria-expanded', 'false');
           }
         });
-        
+
         // Toggle this dropdown
         if (isOpen) {
           item.classList.remove('is-open');
@@ -71,32 +71,32 @@
           trigger.setAttribute('aria-expanded', 'true');
         }
       });
-      
+
       // Hover handlers for desktop only
       if (window.innerWidth >= 1080) {
         item.addEventListener('mouseenter', () => {
           item.classList.add('is-open');
           trigger.setAttribute('aria-expanded', 'true');
         });
-        
+
         item.addEventListener('mouseleave', () => {
           item.classList.remove('is-open');
           trigger.setAttribute('aria-expanded', 'false');
         });
-        
+
         // Keep dropdown open when hovering over it
         dropdown.addEventListener('mouseenter', () => {
           item.classList.add('is-open');
           trigger.setAttribute('aria-expanded', 'true');
         });
-        
+
         dropdown.addEventListener('mouseleave', () => {
           item.classList.remove('is-open');
           trigger.setAttribute('aria-expanded', 'false');
         });
       }
     });
-    
+
     // Close dropdowns when clicking outside
     document.addEventListener('click', e => {
       if (!e.target.closest('.has-dropdown')) {
@@ -107,7 +107,7 @@
         });
       }
     });
-    
+
     // Close dropdowns on ESC key
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
@@ -118,14 +118,14 @@
         });
       }
     });
-    
+
     // Mobile nav
     const toggle = document.querySelector('.mobile-nav__toggle');
     const nav = document.getElementById('mobile-nav');
     const close = document.querySelector('.mobile-nav__close');
     const MOBILE_BREAKPOINT = 1080;
     const isMobile = () => window.innerWidth < MOBILE_BREAKPOINT;
-    
+
     if (toggle && nav) {
       toggle.addEventListener('click', () => {
         const isOpen = toggle.getAttribute('aria-expanded') === 'true';
@@ -137,7 +137,7 @@
         }
       });
     }
-    
+
     if (close && nav) {
       close.addEventListener('click', () => {
         nav.setAttribute('aria-hidden', 'true');
@@ -148,7 +148,7 @@
         }
       });
     }
-    
+
     // Mobile accordions
     const accordions = document.querySelectorAll('.mobile-nav__accordion-trigger');
     accordions.forEach(acc => {
@@ -160,7 +160,7 @@
       });
     });
   }
-  
+
   function initAnimations() {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -170,11 +170,11 @@
         }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    
+
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
   }
-  
+
   // Don't force scroll styles - let scroll-fix.js handle it
-  
+
   // // // // // // // // // // // // // // // console.log('[TILLERSTEAD] ✅ Ready - No Bounce!'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
 })();

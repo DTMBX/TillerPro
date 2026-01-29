@@ -1,6 +1,6 @@
 /**
  * Optimized Logo System for Tillerstead.com
- * 
+ *
  * Consolidated, lazy-loaded logo utilities for web, print, and PDF contexts
  * Reduces initial bundle size by ~120KB
  */
@@ -164,7 +164,7 @@
      */
     isRetinaDisplay() {
       return window.devicePixelRatio >= 2 ||
-             (window.matchMedia && 
+             (window.matchMedia &&
               window.matchMedia('(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)').matches);
     },
 
@@ -174,7 +174,7 @@
      */
     getResponsiveVariant() {
       const width = window.innerWidth;
-      
+
       if (width < 640) {
         return 'compact'; // Mobile
       } else if (width < 1024) {
@@ -189,7 +189,7 @@
      */
     init() {
       // Preload sprite if on homepage or critical page
-      if (document.body.classList.contains('page-home') || 
+      if (document.body.classList.contains('page-home') ||
           document.querySelector('.hero')) {
         this.preloadSprite();
       }

@@ -428,7 +428,7 @@
       }
 
       // Show list to select from
-      const quoteList = quotes.map(q => 
+      const quoteList = quotes.map(q =>
         `${new Date(q.date).toLocaleDateString()} - ${q.data.areas.length} areas - $${q.data.total.toFixed(2)}`
       ).join('\n');
 

@@ -1,15 +1,15 @@
 /**
  * TillerPro™ Dashboard Manager
- * 
+ *
  * Multi-location performance tracking and management system
  * - Location management
  * - Quote analytics per location
  * - Win rate tracking
  * - Regional pricing configuration
  * - Performance benchmarking
- * 
+ *
  * Value Add: +$50K-$100K per Enterprise license
- * 
+ *
  * @requires TillerProConfig
  * @requires ProjectState
  * @requires QuoteGenerator
@@ -17,7 +17,7 @@
  */
 
 (function () {
-  'use strict'
+  'use strict';
 
   /**
    * Dashboard Manager
@@ -25,12 +25,12 @@
    */
   class DashboardManager {
     constructor () {
-      this.locations = this.loadLocations()
-      this.activeLocationId = this.loadActiveLocation()
-      this.quotes = this.loadQuotes()
-      this.pricingOverrides = this.loadPricingOverrides()
-      
-      this.init()
+      this.locations = this.loadLocations();
+      this.activeLocationId = this.loadActiveLocation();
+      this.quotes = this.loadQuotes();
+      this.pricingOverrides = this.loadPricingOverrides();
+
+      this.init();
     }
 
     /**
@@ -39,28 +39,28 @@
     init () {
       // Ensure at least one location exists
       if (this.locations.length === 0) {
-        this.addDefaultLocation()
+        this.addDefaultLocation();
       }
 
       // Render all components
-      this.renderLocationSelector()
-      this.renderMetrics()
-      this.renderQuotesTable()
-      this.renderPricingEditor()
+      this.renderLocationSelector();
+      this.renderMetrics();
+      this.renderQuotesTable();
+      this.renderPricingEditor();
 
       console.log('[Dashboard] Initialized', {
         locations: this.locations.length,
         activeLocation: this.getActiveLocation()?.name,
         totalQuotes: this.quotes.length
-      })
+      });
     }
 
     /**
      * Add default location
      */
     addDefaultLocation () {
-      const config = window.TillerProConfig?.company || {}
-      
+      const config = window.TillerProConfig?.company || {};
+
       this.locations.push({
         id: 'main',
         name: config.name || 'Main Office',
@@ -69,26 +69,26 @@
         phone: config.phone || '',
         createdAt: new Date().toISOString(),
         active: true
-      })
+      });
 
-      this.activeLocationId = 'main'
-      this.saveLocations()
+      this.activeLocationId = 'main';
+      this.saveLocations();
     }
 
     /**
      * Location Management
      */
     getActiveLocation () {
-      return this.locations.find(loc => loc.id === this.activeLocationId)
+      return this.locations.find(loc => loc.id === this.activeLocationId);
     }
 
     selectLocation (locationId) {
-      this.activeLocationId = locationId
-      this.saveActiveLocation()
-      this.renderMetrics()
-      this.renderQuotesTable()
-      this.renderPricingEditor()
-      this.renderLocationSelector() // Update active state
+      this.activeLocationId = locationId;
+      this.saveActiveLocation();
+      this.renderMetrics();
+      this.renderQuotesTable();
+      this.renderPricingEditor();
+      this.renderLocationSelector(); // Update active state
     }
 
     addLocation (data) {
@@ -100,74 +100,74 @@
         phone: data.phone || '',
         createdAt: new Date().toISOString(),
         active: true
-      }
+      };
 
-      this.locations.push(location)
-      this.saveLocations()
-      this.renderLocationSelector()
+      this.locations.push(location);
+      this.saveLocations();
+      this.renderLocationSelector();
 
-      return location
+      return location;
     }
 
     removeLocation (locationId) {
       if (this.locations.length <= 1) {
-        alert('Cannot remove the last location.')
-        return false
+        alert('Cannot remove the last location.');
+        return false;
       }
 
-      const confirmed = confirm('Are you sure you want to remove this location? This cannot be undone.')
-      if (!confirmed) return false
+      const confirmed = confirm('Are you sure you want to remove this location? This cannot be undone.');
+      if (!confirmed) return false;
 
-      this.locations = this.locations.filter(loc => loc.id !== locationId)
-      
+      this.locations = this.locations.filter(loc => loc.id !== locationId);
+
       // If active location was removed, switch to first available
       if (this.activeLocationId === locationId) {
-        this.activeLocationId = this.locations[0].id
-        this.saveActiveLocation()
+        this.activeLocationId = this.locations[0].id;
+        this.saveActiveLocation();
       }
 
-      this.saveLocations()
-      this.renderLocationSelector()
-      this.renderMetrics()
-      this.renderQuotesTable()
+      this.saveLocations();
+      this.renderLocationSelector();
+      this.renderMetrics();
+      this.renderQuotesTable();
 
-      return true
+      return true;
     }
 
     /**
      * Quote Analytics
      */
     getQuotesForLocation (locationId) {
-      return this.quotes.filter(q => q.locationId === locationId)
+      return this.quotes.filter(q => q.locationId === locationId);
     }
 
     getMetricsForLocation (locationId) {
-      const quotes = this.getQuotesForLocation(locationId)
-      const now = new Date()
-      const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000)
+      const quotes = this.getQuotesForLocation(locationId);
+      const now = new Date();
+      const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
 
       // Filter last 30 days
       const recentQuotes = quotes.filter(q => {
-        const quoteDate = new Date(q.createdAt)
-        return quoteDate >= thirtyDaysAgo
-      })
+        const quoteDate = new Date(q.createdAt);
+        return quoteDate >= thirtyDaysAgo;
+      });
 
       // Calculate metrics
-      const totalQuotes = recentQuotes.length
-      const totalValue = recentQuotes.reduce((sum, q) => sum + (q.totals?.grandTotal || 0), 0)
-      const signedQuotes = recentQuotes.filter(q => q.status === 'signed').length
-      const winRate = totalQuotes > 0 ? (signedQuotes / totalQuotes) * 100 : 0
-      const avgQuoteValue = totalQuotes > 0 ? totalValue / totalQuotes : 0
+      const totalQuotes = recentQuotes.length;
+      const totalValue = recentQuotes.reduce((sum, q) => sum + (q.totals?.grandTotal || 0), 0);
+      const signedQuotes = recentQuotes.filter(q => q.status === 'signed').length;
+      const winRate = totalQuotes > 0 ? (signedQuotes / totalQuotes) * 100 : 0;
+      const avgQuoteValue = totalQuotes > 0 ? totalValue / totalQuotes : 0;
 
       // Calculate trends (compare to previous 30 days)
-      const sixtyDaysAgo = new Date(now.getTime() - 60 * 24 * 60 * 60 * 1000)
+      const sixtyDaysAgo = new Date(now.getTime() - 60 * 24 * 60 * 60 * 1000);
       const previousPeriod = quotes.filter(q => {
-        const quoteDate = new Date(q.createdAt)
-        return quoteDate >= sixtyDaysAgo && quoteDate < thirtyDaysAgo
-      })
+        const quoteDate = new Date(q.createdAt);
+        return quoteDate >= sixtyDaysAgo && quoteDate < thirtyDaysAgo;
+      });
 
-      const prevTotal = previousPeriod.length
-      const quoteTrend = prevTotal > 0 ? ((totalQuotes - prevTotal) / prevTotal) * 100 : 0
+      const prevTotal = previousPeriod.length;
+      const quoteTrend = prevTotal > 0 ? ((totalQuotes - prevTotal) / prevTotal) * 100 : 0;
 
       return {
         totalQuotes,
@@ -177,42 +177,42 @@
         avgQuoteValue,
         quoteTrend,
         period: 'Last 30 days'
-      }
+      };
     }
 
     /**
      * Regional Pricing
      */
     getPricingForLocation (locationId) {
-      const override = this.pricingOverrides[locationId]
-      const basePricing = window.TillerProConfig?.pricing || {}
+      const override = this.pricingOverrides[locationId];
+      const basePricing = window.TillerProConfig?.pricing || {};
 
       if (!override) {
-        return basePricing
+        return basePricing;
       }
 
       // Merge override with base pricing
       return {
         ...basePricing,
         ...override
-      }
+      };
     }
 
     setPricingForLocation (locationId, pricing) {
-      this.pricingOverrides[locationId] = pricing
-      this.savePricingOverrides()
+      this.pricingOverrides[locationId] = pricing;
+      this.savePricingOverrides();
     }
 
     /**
      * Rendering Methods
      */
     renderLocationSelector () {
-      const container = document.getElementById('location-grid')
-      if (!container) return
+      const container = document.getElementById('location-grid');
+      if (!container) return;
 
       container.innerHTML = this.locations.map(location => {
-        const metrics = this.getMetricsForLocation(location.id)
-        const isActive = location.id === this.activeLocationId
+        const metrics = this.getMetricsForLocation(location.id);
+        const isActive = location.id === this.activeLocationId;
 
         return `
           <div class="location-card ${isActive ? 'active' : ''}" onclick="window.dashboard.selectLocation('${location.id}')">
@@ -222,18 +222,18 @@
               <span>${Math.round(metrics.winRate)}% win rate</span>
             </div>
           </div>
-        `
-      }).join('')
+        `;
+      }).join('');
     }
 
     renderMetrics () {
-      const container = document.getElementById('metrics-grid')
-      if (!container) return
+      const container = document.getElementById('metrics-grid');
+      if (!container) return;
 
-      const location = this.getActiveLocation()
-      if (!location) return
+      const location = this.getActiveLocation();
+      if (!location) return;
 
-      const metrics = this.getMetricsForLocation(location.id)
+      const metrics = this.getMetricsForLocation(location.id);
 
       const cards = [
         {
@@ -267,22 +267,22 @@
           prefix: '$',
           format: true
         }
-      ]
+      ];
 
       container.innerHTML = cards.map(card => {
-        let displayValue = card.value
+        let displayValue = card.value;
 
         if (card.decimals !== undefined) {
-          displayValue = displayValue.toFixed(card.decimals)
+          displayValue = displayValue.toFixed(card.decimals);
         } else if (card.format) {
-          displayValue = this.formatCurrency(displayValue, false)
+          displayValue = this.formatCurrency(displayValue, false);
         }
 
         const changeHtml = card.change !== null && card.change !== undefined
           ? `<div class="metric-change ${card.change >= 0 ? 'positive' : 'negative'}">
               ${card.change >= 0 ? '↑' : '↓'} ${Math.abs(card.change).toFixed(1)}%
             </div>`
-          : ''
+          : '';
 
         return `
           <div class="metric-card">
@@ -295,20 +295,20 @@
             </div>
             ${changeHtml}
           </div>
-        `
-      }).join('')
+        `;
+      }).join('');
     }
 
     renderQuotesTable () {
-      const tbody = document.querySelector('#quotes-table tbody')
-      if (!tbody) return
+      const tbody = document.querySelector('#quotes-table tbody');
+      if (!tbody) return;
 
-      const location = this.getActiveLocation()
-      if (!location) return
+      const location = this.getActiveLocation();
+      if (!location) return;
 
       const quotes = this.getQuotesForLocation(location.id)
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-        .slice(0, 10) // Show last 10
+        .slice(0, 10); // Show last 10
 
       if (quotes.length === 0) {
         tbody.innerHTML = `
@@ -317,8 +317,8 @@
               No quotes yet for this location. Generate your first quote to get started!
             </td>
           </tr>
-        `
-        return
+        `;
+        return;
       }
 
       tbody.innerHTML = quotes.map(quote => `
@@ -330,17 +330,17 @@
           <td><span class="status-badge ${quote.status || 'pending'}">${quote.status || 'pending'}</span></td>
           <td>${this.formatDate(quote.createdAt)}</td>
         </tr>
-      `).join('')
+      `).join('');
     }
 
     renderPricingEditor () {
-      const container = document.getElementById('pricing-grid')
-      if (!container) return
+      const container = document.getElementById('pricing-grid');
+      if (!container) return;
 
-      const location = this.getActiveLocation()
-      if (!location) return
+      const location = this.getActiveLocation();
+      if (!location) return;
 
-      const pricing = this.getPricingForLocation(location.id)
+      const pricing = this.getPricingForLocation(location.id);
 
       const fields = [
         { key: 'laborRate', label: 'Labor Rate (per hour)', prefix: '$', step: '5' },
@@ -348,11 +348,11 @@
         { key: 'groutMarkup', label: 'Grout Markup', prefix: '', suffix: '%', step: '5' },
         { key: 'mortarMarkup', label: 'Mortar Markup', prefix: '', suffix: '%', step: '5' },
         { key: 'taxRate', label: 'Sales Tax Rate', prefix: '', suffix: '%', step: '0.1' }
-      ]
+      ];
 
       container.innerHTML = fields.map(field => {
-        const value = pricing[field.key] || 0
-        const inputId = `pricing-${field.key}`
+        const value = pricing[field.key] || 0;
+        const inputId = `pricing-${field.key}`;
 
         return `
           <div class="pricing-row">
@@ -375,37 +375,37 @@
               Reset
             </button>
           </div>
-        `
-      }).join('')
+        `;
+      }).join('');
     }
 
     /**
      * Pricing Actions
      */
     savePricing () {
-      const location = this.getActiveLocation()
-      if (!location) return
+      const location = this.getActiveLocation();
+      if (!location) return;
 
-      const inputs = document.querySelectorAll('#pricing-grid input[data-key]')
-      const pricing = {}
+      const inputs = document.querySelectorAll('#pricing-grid input[data-key]');
+      const pricing = {};
 
       inputs.forEach(input => {
-        const key = input.getAttribute('data-key')
-        const value = parseFloat(input.value) || 0
-        pricing[key] = value
-      })
+        const key = input.getAttribute('data-key');
+        const value = parseFloat(input.value) || 0;
+        pricing[key] = value;
+      });
 
-      this.setPricingForLocation(location.id, pricing)
+      this.setPricingForLocation(location.id, pricing);
 
-      alert(`Pricing updated for ${location.name}!`)
+      alert(`Pricing updated for ${location.name}!`);
     }
 
     resetPricing (key) {
-      const basePricing = window.TillerProConfig?.pricing || {}
-      const input = document.querySelector(`#pricing-${key}`)
-      
+      const basePricing = window.TillerProConfig?.pricing || {};
+      const input = document.querySelector(`#pricing-${key}`);
+
       if (input) {
-        input.value = basePricing[key] || 0
+        input.value = basePricing[key] || 0;
       }
     }
 
@@ -418,23 +418,23 @@
         currency: 'USD',
         minimumFractionDigits: showCents ? 2 : 0,
         maximumFractionDigits: showCents ? 2 : 0
-      }).format(amount)
+      }).format(amount);
 
-      return formatted
+      return formatted;
     }
 
     formatDate (dateString) {
-      const date = new Date(dateString)
+      const date = new Date(dateString);
       return new Intl.DateTimeFormat('en-US', {
         month: 'short',
         day: 'numeric',
         year: 'numeric'
-      }).format(date)
+      }).format(date);
     }
 
     getLocationName (locationId) {
-      const location = this.locations.find(loc => loc.id === locationId)
-      return location ? location.name : 'Unknown'
+      const location = this.locations.find(loc => loc.id === locationId);
+      return location ? location.name : 'Unknown';
     }
 
     /**
@@ -442,62 +442,62 @@
      */
     loadLocations () {
       try {
-        const data = localStorage.getItem('tillerpro_locations')
-        return data ? JSON.parse(data) : []
+        const data = localStorage.getItem('tillerpro_locations');
+        return data ? JSON.parse(data) : [];
       } catch (e) {
-        console.error('Failed to load locations:', e)
-        return []
+        console.error('Failed to load locations:', e);
+        return [];
       }
     }
 
     saveLocations () {
       try {
-        localStorage.setItem('tillerpro_locations', JSON.stringify(this.locations))
+        localStorage.setItem('tillerpro_locations', JSON.stringify(this.locations));
       } catch (e) {
-        console.error('Failed to save locations:', e)
+        console.error('Failed to save locations:', e);
       }
     }
 
     loadActiveLocation () {
-      return localStorage.getItem('tillerpro_active_location') || null
+      return localStorage.getItem('tillerpro_active_location') || null;
     }
 
     saveActiveLocation () {
-      localStorage.setItem('tillerpro_active_location', this.activeLocationId)
+      localStorage.setItem('tillerpro_active_location', this.activeLocationId);
     }
 
     loadQuotes () {
       try {
         // Load quotes from QuoteGenerator storage
-        const data = localStorage.getItem('tillerpro_quotes')
-        const quotes = data ? JSON.parse(data) : []
+        const data = localStorage.getItem('tillerpro_quotes');
+        const quotes = data ? JSON.parse(data) : [];
 
         // Ensure each quote has a locationId (default to active location)
         return quotes.map(q => ({
           ...q,
           locationId: q.locationId || this.activeLocationId || 'main'
-        }))
+        }));
       } catch (e) {
-        console.error('Failed to load quotes:', e)
-        return []
+        console.error('Failed to load quotes:', e);
+        return [];
       }
     }
 
     loadPricingOverrides () {
       try {
-        const data = localStorage.getItem('tillerpro_pricing_overrides')
-        return data ? JSON.parse(data) : {}
+        const data = localStorage.getItem('tillerpro_pricing_overrides');
+        return data ? JSON.parse(data) : {};
       } catch (e) {
-        console.error('Failed to load pricing overrides:', e)
-        return {}
+        console.error('Failed to load pricing overrides:', e);
+        return {};
       }
     }
 
     savePricingOverrides () {
       try {
-        localStorage.setItem('tillerpro_pricing_overrides', JSON.stringify(this.pricingOverrides))
+        localStorage.setItem('tillerpro_pricing_overrides', JSON.stringify(this.pricingOverrides));
       } catch (e) {
-        console.error('Failed to save pricing overrides:', e)
+        console.error('Failed to save pricing overrides:', e);
       }
     }
 
@@ -505,10 +505,10 @@
      * Refresh data from other systems
      */
     refresh () {
-      this.quotes = this.loadQuotes()
-      this.renderMetrics()
-      this.renderQuotesTable()
-      console.log('[Dashboard] Refreshed')
+      this.quotes = this.loadQuotes();
+      this.renderMetrics();
+      this.renderQuotesTable();
+      console.log('[Dashboard] Refreshed');
     }
   }
 
@@ -516,27 +516,27 @@
    * Modal Functions (global scope for inline onclick handlers)
    */
   window.openAddLocationModal = function () {
-    const modal = document.getElementById('add-location-modal')
-    modal.classList.add('active')
-  }
+    const modal = document.getElementById('add-location-modal');
+    modal.classList.add('active');
+  };
 
   window.closeAddLocationModal = function () {
-    const modal = document.getElementById('add-location-modal')
-    modal.classList.remove('active')
-    
+    const modal = document.getElementById('add-location-modal');
+    modal.classList.remove('active');
+
     // Clear form
-    document.getElementById('location-name').value = ''
-    document.getElementById('location-address').value = ''
-    document.getElementById('location-manager').value = ''
-    document.getElementById('location-phone').value = ''
-  }
+    document.getElementById('location-name').value = '';
+    document.getElementById('location-address').value = '';
+    document.getElementById('location-manager').value = '';
+    document.getElementById('location-phone').value = '';
+  };
 
   window.addLocation = function () {
-    const name = document.getElementById('location-name').value.trim()
-    
+    const name = document.getElementById('location-name').value.trim();
+
     if (!name) {
-      alert('Location name is required.')
-      return
+      alert('Location name is required.');
+      return;
     }
 
     const data = {
@@ -544,18 +544,18 @@
       address: document.getElementById('location-address').value.trim(),
       manager: document.getElementById('location-manager').value.trim(),
       phone: document.getElementById('location-phone').value.trim()
-    }
+    };
 
-    window.dashboard.addLocation(data)
-    window.closeAddLocationModal()
-  }
+    window.dashboard.addLocation(data);
+    window.closeAddLocationModal();
+  };
 
   window.savePricing = function () {
-    window.dashboard.savePricing()
-  }
+    window.dashboard.savePricing();
+  };
 
   // Initialize dashboard
-  window.dashboard = new DashboardManager()
+  window.dashboard = new DashboardManager();
 
-  console.log('[Dashboard Manager] Loaded and initialized')
-})()
+  console.log('[Dashboard Manager] Loaded and initialized');
+})();

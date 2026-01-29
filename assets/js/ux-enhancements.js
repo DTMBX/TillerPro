@@ -29,7 +29,7 @@
       btn.setAttribute('aria-label', 'Back to top');
       btn.setAttribute('title', 'Back to top');
       btn.type = 'button';
-      
+
       document.body.appendChild(btn);
 
       // Show/hide based on scroll
@@ -51,7 +51,7 @@
           top: 0,
           behavior: 'smooth'
         });
-        
+
         // Focus skip link after scrolling
         setTimeout(() => {
           const skipLink = document.querySelector('.skip-link');
@@ -65,7 +65,7 @@
      */
     initFormEnhancements() {
       const forms = document.querySelectorAll('form[action]');
-      
+
       forms.forEach(form => {
         form.addEventListener('submit', (e) => {
           // Skip if form is invalid
@@ -76,7 +76,7 @@
 
           // Add loading state
           form.classList.add('form--loading');
-          
+
           const submitBtn = form.querySelector('[type="submit"]');
           if (submitBtn) {
             submitBtn.classList.add('btn--loading');
@@ -96,7 +96,7 @@
           input.addEventListener('blur', () => {
             this.validateField(input);
           });
-          
+
           // Clear error on input
           input.addEventListener('input', () => {
             input.classList.remove('error');
@@ -118,30 +118,30 @@
      */
     validateField(field) {
       const isValid = field.checkValidity();
-      
+
       if (!isValid) {
         field.classList.add('error');
-        
+
         // Remove existing error message
         const existingError = field.parentElement.querySelector('.error-message');
         if (existingError) existingError.remove();
-        
+
         // Add error message
         const errorMsg = document.createElement('span');
         errorMsg.className = 'error-message';
         errorMsg.textContent = field.validationMessage || 'This field is required';
         errorMsg.id = `${field.id || field.name}-error`;
-        
+
         field.setAttribute('aria-invalid', 'true');
         field.setAttribute('aria-describedby', errorMsg.id);
-        
+
         field.parentElement.appendChild(errorMsg);
       } else {
         field.classList.remove('error');
         field.removeAttribute('aria-invalid');
         field.removeAttribute('aria-describedby');
       }
-      
+
       return isValid;
     },
 
@@ -150,10 +150,10 @@
      */
     showFormErrors(form) {
       const invalidFields = form.querySelectorAll(':invalid');
-      
+
       // Validate all invalid fields
       invalidFields.forEach(field => this.validateField(field));
-      
+
       // Create or update error summary
       let errorSummary = form.querySelector('.error-summary');
       if (!errorSummary) {
@@ -163,22 +163,22 @@
         errorSummary.setAttribute('aria-live', 'assertive');
         form.insertBefore(errorSummary, form.firstChild);
       }
-      
+
       errorSummary.innerHTML = `
         <strong class="error-summary__title">Please fix the following errors:</strong>
         <ul class="error-list">
           ${Array.from(invalidFields).map(field => {
-            const label = form.querySelector(`label[for="${field.id}"]`);
-            const fieldName = label ? label.textContent : field.name;
-            return `<li><a href="#${field.id}">${fieldName}: ${field.validationMessage}</a></li>`;
-          }).join('')}
+    const label = form.querySelector(`label[for="${field.id}"]`);
+    const fieldName = label ? label.textContent : field.name;
+    return `<li><a href="#${field.id}">${fieldName}: ${field.validationMessage}</a></li>`;
+  }).join('')}
         </ul>
       `;
-      
+
       errorSummary.classList.add('visible');
       errorSummary.removeAttribute('hidden');
       errorSummary.setAttribute('aria-hidden', 'false');
-      
+
       // Focus first invalid field
       if (invalidFields.length > 0) {
         invalidFields[0].focus();
@@ -191,13 +191,13 @@
     initLoadingStates() {
       // Add loading state to buttons with data-loading attribute
       const loadingButtons = document.querySelectorAll('[data-loading]');
-      
+
       loadingButtons.forEach(btn => {
         btn.addEventListener('click', function() {
           this.classList.add('btn--loading');
           this.setAttribute('aria-busy', 'true');
           this.disabled = true;
-          
+
           // Auto-remove after 5 seconds (safety)
           setTimeout(() => {
             this.classList.remove('btn--loading');
@@ -237,12 +237,12 @@
      */
     showSuccessToast(message, duration = 5000) {
       const container = document.getElementById('toast-container');
-      
+
       const toast = document.createElement('div');
       toast.className = 'toast--success';
       toast.setAttribute('role', 'status');
       toast.textContent = message;
-      
+
       // Add close button
       const closeBtn = document.createElement('button');
       closeBtn.innerHTML = '×';
@@ -262,10 +262,10 @@
         toast.style.transform = 'translateX(100%)';
         setTimeout(() => toast.remove(), 300);
       });
-      
+
       toast.appendChild(closeBtn);
       container.appendChild(toast);
-      
+
       // Auto-remove after duration
       if (duration > 0) {
         setTimeout(() => {
@@ -274,7 +274,7 @@
           setTimeout(() => toast.remove(), 300);
         }, duration);
       }
-      
+
       return toast;
     },
 
@@ -283,7 +283,7 @@
      */
     showErrorToast(message, duration = 7000) {
       const container = document.getElementById('toast-container');
-      
+
       const toast = document.createElement('div');
       toast.className = 'toast--success'; // Reuse styles
       toast.setAttribute('role', 'alert');
@@ -293,13 +293,13 @@
         color: #991B1B;
       `;
       toast.textContent = message;
-      
+
       container.appendChild(toast);
-      
+
       if (duration > 0) {
         setTimeout(() => toast.remove(), duration);
       }
-      
+
       return toast;
     },
 
@@ -344,7 +344,7 @@
         announcement.className = 'visually-hidden';
         announcement.textContent = `Page loaded: ${pageTitle.textContent}`;
         document.body.appendChild(announcement);
-        
+
         setTimeout(() => announcement.remove(), 2000);
       }
 
@@ -357,19 +357,19 @@
      */
     trapFocusInModals() {
       const modals = document.querySelectorAll('[role="dialog"], .modal, .lead-magnet');
-      
+
       modals.forEach(modal => {
         const observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
             if (mutation.attributeName === 'aria-hidden') {
               const isHidden = modal.getAttribute('aria-hidden') === 'true';
-              
+
               if (!isHidden) {
                 // Modal opened - trap focus
                 const focusableElements = modal.querySelectorAll(
                   'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
                 );
-                
+
                 if (focusableElements.length > 0) {
                   focusableElements[0].focus();
                 }
@@ -377,7 +377,7 @@
             }
           });
         });
-        
+
         observer.observe(modal, { attributes: true });
       });
     }

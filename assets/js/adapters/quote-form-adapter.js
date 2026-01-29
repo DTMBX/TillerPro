@@ -1,7 +1,7 @@
 /**
  * Quote Form Adapter
  * Pre-fills contact/quote form with ProjectState data
- * 
+ *
  * @module adapters/quote-form-adapter
  * @version 1.0.0
  */
@@ -18,26 +18,26 @@
 
     init() {
       if (this.initialized) return;
-      
+
       console.log('[QuoteAdapter] Initializing...');
-      
+
       this.formContainer = document.getElementById('quote-form-container');
       if (!this.formContainer) {
         console.warn('[QuoteAdapter] Container not found');
         return;
       }
-      
+
       this.renderForm();
       this.prefillFromState();
       this.bindEvents();
-      
+
       this.initialized = true;
       console.log('[QuoteAdapter] Ready');
     }
 
     renderForm() {
       const summary = this.state ? this.state.getSummary() : {};
-      
+
       this.formContainer.innerHTML = `
         <form id="tools-hub-quote-form" class="quote-form" method="POST" data-netlify="true" name="tools-hub-quote">
           <input type="hidden" name="form-name" value="tools-hub-quote">
@@ -191,80 +191,80 @@
 
     prefillFromState() {
       if (!this.state) return;
-      
+
       const contact = this.state.get('contact') || {};
       const project = this.state.get('project') || {};
-      
+
       // Prefill contact info if previously entered
       if (contact.name) {
         const nameField = document.getElementById('quote-name');
         if (nameField) nameField.value = contact.name;
       }
-      
+
       if (contact.email) {
         const emailField = document.getElementById('quote-email');
         if (emailField) emailField.value = contact.email;
       }
-      
+
       if (contact.phone) {
         const phoneField = document.getElementById('quote-phone');
         if (phoneField) phoneField.value = contact.phone;
       }
-      
+
       if (contact.address) {
         const addressField = document.getElementById('quote-address');
         if (addressField) addressField.value = contact.address;
       }
-      
+
       // Prefill project type
       if (project.type) {
         const typeField = document.getElementById('quote-project-type');
         if (typeField) typeField.value = project.type;
       }
-      
+
       // Update materials list
       this.updateMaterialsList();
-      
+
       console.log('[QuoteAdapter] Pre-filled from state');
     }
 
     updateMaterialsList() {
       if (!this.state) return;
-      
+
       const materialsList = document.getElementById('materials-list');
       if (!materialsList) return;
-      
+
       const materials = [];
-      
+
       // Tile
       const tileBoxes = this.state.get('tile.calculated.boxesNeeded');
       if (tileBoxes) materials.push(`Tile: ${tileBoxes} boxes`);
-      
+
       // Grout
       const groutBags = this.state.get('grout.calculated.bagsNeeded');
       if (groutBags) materials.push(`Grout: ${groutBags} bags`);
-      
+
       // Mortar
       const mortarBags = this.state.get('mortar.calculated.bagsNeeded');
       if (mortarBags) materials.push(`Mortar: ${mortarBags} bags`);
-      
+
       // Waterproofing
       const waterproofGallons = this.state.get('waterproofing.calculated.gallons');
       const waterproofRolls = this.state.get('waterproofing.calculated.rolls');
       if (waterproofGallons) materials.push(`Waterproofing: ${waterproofGallons} gallons`);
       if (waterproofRolls) materials.push(`Waterproofing: ${waterproofRolls} rolls`);
-      
+
       // Leveling
       const levelingBags = this.state.get('leveling.calculated.bagsNeeded');
       if (levelingBags) materials.push(`Self-Leveling: ${levelingBags} bags`);
-      
+
       // Slope
       const slopeBags = this.state.get('slope.calculated.bagsNeeded');
       if (slopeBags) materials.push(`Deck Mud: ${slopeBags} bags`);
-      
+
       if (materials.length > 0) {
         materialsList.innerHTML = materials.map(m => `<li>${m}</li>`).join('');
-        
+
         // Update hidden field
         const materialsField = document.getElementById('quote-project-materials');
         if (materialsField) {
@@ -276,43 +276,43 @@
     bindEvents() {
       const form = document.getElementById('tools-hub-quote-form');
       if (!form) return;
-      
+
       // Save contact info to state on change
       const nameField = document.getElementById('quote-name');
       const emailField = document.getElementById('quote-email');
       const phoneField = document.getElementById('quote-phone');
       const addressField = document.getElementById('quote-address');
-      
+
       if (nameField) {
         nameField.addEventListener('blur', (e) => {
           if (this.state) this.state.set('contact.name', e.target.value);
         });
       }
-      
+
       if (emailField) {
         emailField.addEventListener('blur', (e) => {
           if (this.state) this.state.set('contact.email', e.target.value);
         });
       }
-      
+
       if (phoneField) {
         phoneField.addEventListener('blur', (e) => {
           if (this.state) this.state.set('contact.phone', e.target.value);
         });
       }
-      
+
       if (addressField) {
         addressField.addEventListener('blur', (e) => {
           if (this.state) this.state.set('contact.address', e.target.value);
         });
       }
-      
+
       // Form submission
       form.addEventListener('submit', (e) => {
         console.log('[QuoteAdapter] Form submitted');
         // Netlify handles submission
       });
-      
+
       // Listen for state changes to update summary
       if (this.state) {
         this.state.on('change', () => {
@@ -324,20 +324,20 @@
 
     updateSummaryDisplay() {
       const summary = this.state ? this.state.getSummary() : {};
-      
+
       const areaEl = document.getElementById('summary-area');
       if (areaEl) areaEl.textContent = `${summary.totalArea || 0} sq ft`;
-      
+
       const budgetEl = document.getElementById('summary-budget');
       if (budgetEl) budgetEl.textContent = `$${summary.budgetEstimate?.toLocaleString() || 0}`;
-      
+
       const daysEl = document.getElementById('summary-days');
       if (daysEl) daysEl.textContent = `${summary.estimatedDays || 0} days`;
-      
+
       // Update hidden fields
       const areaField = document.getElementById('quote-project-area');
       if (areaField) areaField.value = summary.totalArea || '';
-      
+
       const budgetField = document.getElementById('quote-project-budget');
       if (budgetField) budgetField.value = summary.budgetEstimate || '';
     }
@@ -350,7 +350,7 @@
   }
 
   window.QuoteFormAdapter = QuoteFormAdapter;
-  
+
   // Auto-initialize if container exists
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -367,5 +367,5 @@
       adapter.init();
     }
   }
-  
+
 })();

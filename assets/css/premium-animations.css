@@ -420,6 +420,7 @@
 
 @media (max-width: 768px) {
   /* DISABLE ALL PREMIUM ANIMATIONS ON MOBILE */
+
   /* Force all animated elements to be visible immediately */
   *,
   [data-animate],

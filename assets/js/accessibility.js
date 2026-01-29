@@ -8,7 +8,7 @@
  * - Screen reader announcements
  * - User preference detection and persistence
  * - Accessibility toolbar
- * 
+ *
  * WCAG 2.1 AAA Compliance Support
  * ======
  */
@@ -19,7 +19,7 @@
   // ======
   // CONFIGURATION
   // ======
-  
+
   const A11Y_CONFIG = {
     storageKey: 'tillerstead-a11y-prefs',
     announceDelay: 100,
@@ -53,8 +53,8 @@
     return Array.from(container.querySelectorAll(A11Y_CONFIG.focusTrapSelectors))
       .filter(el => {
         const style = window.getComputedStyle(el);
-        return style.display !== 'none' && 
-               style.visibility !== 'hidden' && 
+        return style.display !== 'none' &&
+               style.visibility !== 'hidden' &&
                el.offsetParent !== null;
       });
   }
@@ -116,13 +116,13 @@
    * Announce message to screen readers (polite)
    */
   function announce(message, options = {}) {
-    const announcer = options.assertive 
-      ? createAssertiveRegion() 
+    const announcer = options.assertive
+      ? createAssertiveRegion()
       : createLiveRegion();
-    
+
     // Clear and re-announce to ensure it's read
     announcer.textContent = '';
-    
+
     setTimeout(() => {
       announcer.textContent = message;
     }, A11Y_CONFIG.announceDelay);
@@ -157,7 +157,7 @@
     activate() {
       this.previouslyFocused = document.activeElement;
       const focusable = getFocusableElements(this.element);
-      
+
       if (focusable.length === 0) return;
 
       this.firstFocusable = focusable[0];
@@ -214,7 +214,7 @@
 
     element.setAttribute('tabindex', '-1');
     element.focus();
-    
+
     if (message) {
       announce(message);
     }
@@ -240,7 +240,7 @@
 
     menus.forEach(menu => {
       const items = menu.querySelectorAll('[role="menuitem"]');
-      
+
       items.forEach((item, index) => {
         item.addEventListener('keydown', (e) => {
           let targetIndex;
@@ -271,7 +271,7 @@
               break;
 
             case 'Escape':
-              const trigger = menu.closest('[aria-haspopup]') || 
+              const trigger = menu.closest('[aria-haspopup]') ||
                              document.querySelector(`[aria-controls="${menu.id}"]`);
               if (trigger) {
                 trigger.focus();
@@ -295,7 +295,7 @@
 
     tabLists.forEach(tabList => {
       const tabs = tabList.querySelectorAll('[role="tab"]');
-      
+
       tabs.forEach((tab, index) => {
         tab.addEventListener('keydown', (e) => {
           let targetIndex;
@@ -380,7 +380,7 @@
         if (target) {
           e.preventDefault();
           moveFocusTo(target, `Skipped to ${target.getAttribute('aria-label') || 'main content'}`);
-          
+
           // Smooth scroll if motion is OK
           if (!prefersReducedMotion()) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -575,7 +575,7 @@
   function applyPreferences() {
     // First, detect and apply system preferences
     const systemPrefs = detectSystemPreferences();
-    
+
     // Then, apply user-saved preferences (these override system where applicable)
     const prefs = loadPreferences();
 
@@ -613,9 +613,9 @@
   function toggleHighContrast() {
     const current = document.documentElement.getAttribute('data-high-contrast') === 'true';
     const newValue = !current;
-    
+
     document.documentElement.setAttribute('data-high-contrast', newValue);
-    
+
     const prefs = loadPreferences();
     prefs.highContrast = newValue;
     savePreferences(prefs);
@@ -712,10 +712,10 @@
      */
     setVoice(voiceName) {
       const voices = this.getVoices();
-      this.voice = voices.find(v => v.name === voiceName) || 
+      this.voice = voices.find(v => v.name === voiceName) ||
                    voices.find(v => v.lang.startsWith('en')) ||
                    voices[0];
-      
+
       const prefs = loadPreferences();
       prefs.ttsVoice = voiceName;
       savePreferences(prefs);
@@ -781,10 +781,10 @@
      */
     readElement(element) {
       if (!element) return;
-      
+
       this.currentElement = element;
       const text = element.textContent || element.innerText;
-      
+
       if (text.trim()) {
         this.speak(text.trim());
       }
@@ -807,7 +807,7 @@
     readSelection() {
       const selection = window.getSelection();
       const text = selection.toString().trim();
-      
+
       if (text) {
         this.speak(text);
         announce('Reading selected text');
@@ -938,7 +938,7 @@
         animation: a11y-flash ${duration}ms ease-out;
       `;
       document.body.appendChild(overlay);
-      
+
       setTimeout(() => overlay.remove(), duration);
     },
 
@@ -955,14 +955,14 @@
       iconSpan.className = 'notification-icon';
       iconSpan.setAttribute('aria-hidden', 'true');
       iconSpan.textContent = options.icon || 'ℹ️';
-      
+
       const messageSpan = document.createElement('span');
       messageSpan.className = 'notification-message';
       messageSpan.textContent = message;
-      
+
       notification.appendChild(iconSpan);
       notification.appendChild(messageSpan);
-      
+
       notification.style.cssText = `
         position: fixed;
         top: 20px;
@@ -980,9 +980,9 @@
         max-width: 400px;
         animation: a11y-slide-in 0.3s ease-out;
       `;
-      
+
       document.body.appendChild(notification);
-      
+
       setTimeout(() => {
         notification.style.animation = 'a11y-slide-out 0.3s ease-in forwards';
         setTimeout(() => notification.remove(), 300);
@@ -1010,16 +1010,16 @@
    */
   function checkMediaCaptions() {
     const videos = document.querySelectorAll('video');
-    
+
     videos.forEach(video => {
       const hasTrack = video.querySelector('track[kind="captions"], track[kind="subtitles"]');
-      
+
       if (!hasTrack) {
         // Add warning for developers
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
           // // // // // // // // // // // // // // // console.warn('[A11Y] Video without captions:', video.src || video.querySelector('source') // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED?.src);
         }
-        
+
         // Add visual indicator that captions are not available
         const wrapper = video.parentElement;
         if (wrapper && !wrapper.querySelector('.no-captions-warning')) {
@@ -1050,7 +1050,7 @@
    */
   function toggleCustomCursor() {
     const isActive = document.documentElement.hasAttribute('data-custom-cursor');
-    
+
     if (isActive) {
       document.documentElement.removeAttribute('data-custom-cursor');
       // Disable cursor in professional features
@@ -1115,7 +1115,7 @@
       btn.textContent = icon;
       btn.setAttribute('aria-label', label);
       btn.setAttribute('title', label);
-      
+
       // Set pressed state
       if (prefs[pref]) {
         btn.setAttribute('aria-pressed', 'true');
@@ -1183,15 +1183,15 @@
           }
 
           const errorList = document.createElement('ul');
-          
+
           invalidFields.forEach(field => {
             // Mark field as invalid
             field.setAttribute('aria-invalid', 'true');
-            
+
             // Create error message
             const errorId = `${field.id}-error`;
             let errorMsg = document.getElementById(errorId);
-            
+
             if (!errorMsg) {
               errorMsg = document.createElement('div');
               errorMsg.id = errorId;
@@ -1230,7 +1230,7 @@
         if (field.validity.valid && field.getAttribute('aria-invalid') === 'true') {
           field.setAttribute('aria-invalid', 'false');
           field.classList.add('touched');
-          
+
           const errorMsg = document.getElementById(`${field.id}-error`);
           if (errorMsg) {
             errorMsg.textContent = '';
@@ -1250,7 +1250,7 @@
   function checkImageAccessibility() {
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
       const imagesWithoutAlt = document.querySelectorAll('img:not([alt])');
-      
+
       if (imagesWithoutAlt.length > 0) {
         // // // // // // // // // // // // // // // console.warn(`[A11Y] Found ${imagesWithoutAlt.length} images without alt text:`); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
         imagesWithoutAlt.forEach(img => {
@@ -1313,11 +1313,11 @@
       // Check heading order
       headings.forEach((heading, index) => {
         const level = parseInt(heading.tagName[1]);
-        
+
         if (index > 0 && level > lastLevel + 1) {
           issues.push(`Skipped heading level: H${lastLevel} to H${level} ("${heading.textContent.substring(0, 30)}...")`);
         }
-        
+
         lastLevel = level;
       });
 

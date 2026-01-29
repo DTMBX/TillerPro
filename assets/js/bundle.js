@@ -1,28 +1,28 @@
 (function() {
   'use strict';
-  
+
   // // // // // // // // // // // // // // // console.log('[TILLERSTEAD] Initializing - No Bounce Edition'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
-  
+
   // Header scroll - NO BOUNCE
   const header = document.getElementById('site-header');
   if (header) {
     let lastScroll = 0;
     let ticking = false;
-    
+
     function updateHeader() {
       const scrollY = window.pageYOffset;
-      
+
       // Only update class, not position
       if (scrollY > 50) {
         header.classList.add('ts-header--scrolled');
       } else {
         header.classList.remove('ts-header--scrolled');
       }
-      
+
       lastScroll = scrollY;
       ticking = false;
     }
-    
+
     // Use requestAnimationFrame to prevent jank
     window.addEventListener('scroll', () => {
       if (!ticking) {
@@ -31,28 +31,28 @@
       }
     }, { passive: true });
   }
-  
+
   // Rest of navigation code...
   initNav();
   initAnimations();
-  
+
   function initNav() {
     // Desktop dropdown navigation
     const dropdowns = document.querySelectorAll('.has-dropdown');
-    
+
     dropdowns.forEach(item => {
       const trigger = item.querySelector('.desktop-nav__trigger');
       const dropdown = item.querySelector('.desktop-nav__dropdown');
-      
+
       if (!trigger || !dropdown) return;
-      
+
       // Click handler
       trigger.addEventListener('click', e => {
         e.preventDefault();
         e.stopPropagation();
-        
+
         const isOpen = item.classList.contains('is-open');
-        
+
         // Close all other dropdowns
         dropdowns.forEach(other => {
           if (other !== item) {
@@ -61,7 +61,7 @@
             if (t) t.setAttribute('aria-expanded', 'false');
           }
         });
-        
+
         // Toggle this dropdown
         if (isOpen) {
           item.classList.remove('is-open');
@@ -71,32 +71,32 @@
           trigger.setAttribute('aria-expanded', 'true');
         }
       });
-      
+
       // Hover handlers for desktop only
       if (window.innerWidth >= 1080) {
         item.addEventListener('mouseenter', () => {
           item.classList.add('is-open');
           trigger.setAttribute('aria-expanded', 'true');
         });
-        
+
         item.addEventListener('mouseleave', () => {
           item.classList.remove('is-open');
           trigger.setAttribute('aria-expanded', 'false');
         });
-        
+
         // Keep dropdown open when hovering over it
         dropdown.addEventListener('mouseenter', () => {
           item.classList.add('is-open');
           trigger.setAttribute('aria-expanded', 'true');
         });
-        
+
         dropdown.addEventListener('mouseleave', () => {
           item.classList.remove('is-open');
           trigger.setAttribute('aria-expanded', 'false');
         });
       }
     });
-    
+
     // Close dropdowns when clicking outside
     document.addEventListener('click', e => {
       if (!e.target.closest('.has-dropdown')) {
@@ -107,7 +107,7 @@
         });
       }
     });
-    
+
     // Close dropdowns on ESC key
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
@@ -118,14 +118,14 @@
         });
       }
     });
-    
+
     // Mobile nav
     const toggle = document.querySelector('.mobile-nav__toggle');
     const nav = document.getElementById('mobile-nav');
     const close = document.querySelector('.mobile-nav__close');
     const MOBILE_BREAKPOINT = 1080;
     const isMobile = () => window.innerWidth < MOBILE_BREAKPOINT;
-    
+
     if (toggle && nav) {
       toggle.addEventListener('click', () => {
         const isOpen = toggle.getAttribute('aria-expanded') === 'true';
@@ -137,7 +137,7 @@
         }
       });
     }
-    
+
     if (close && nav) {
       close.addEventListener('click', () => {
         nav.setAttribute('aria-hidden', 'true');
@@ -148,7 +148,7 @@
         }
       });
     }
-    
+
     // Mobile accordions
     const accordions = document.querySelectorAll('.mobile-nav__accordion-trigger');
     accordions.forEach(acc => {
@@ -160,7 +160,7 @@
       });
     });
   }
-  
+
   function initAnimations() {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -170,12 +170,12 @@
         }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    
+
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
   }
-  
+
   // Don't force scroll styles - let scroll-fix.js handle it
-  
+
   // // // // // // // // // // // // // // // console.log('[TILLERSTEAD] ✅ Ready - No Bounce!'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
 })();
 
@@ -210,7 +210,7 @@
       btn.setAttribute('aria-label', 'Back to top');
       btn.setAttribute('title', 'Back to top');
       btn.type = 'button';
-      
+
       document.body.appendChild(btn);
 
       // Show/hide based on scroll
@@ -232,7 +232,7 @@
           top: 0,
           behavior: 'smooth'
         });
-        
+
         // Focus skip link after scrolling
         setTimeout(() => {
           const skipLink = document.querySelector('.skip-link');
@@ -246,7 +246,7 @@
      */
     initFormEnhancements() {
       const forms = document.querySelectorAll('form[action]');
-      
+
       forms.forEach(form => {
         form.addEventListener('submit', (e) => {
           // Skip if form is invalid
@@ -257,7 +257,7 @@
 
           // Add loading state
           form.classList.add('form--loading');
-          
+
           const submitBtn = form.querySelector('[type="submit"]');
           if (submitBtn) {
             submitBtn.classList.add('btn--loading');
@@ -277,7 +277,7 @@
           input.addEventListener('blur', () => {
             this.validateField(input);
           });
-          
+
           // Clear error on input
           input.addEventListener('input', () => {
             input.classList.remove('error');
@@ -299,30 +299,30 @@
      */
     validateField(field) {
       const isValid = field.checkValidity();
-      
+
       if (!isValid) {
         field.classList.add('error');
-        
+
         // Remove existing error message
         const existingError = field.parentElement.querySelector('.error-message');
         if (existingError) existingError.remove();
-        
+
         // Add error message
         const errorMsg = document.createElement('span');
         errorMsg.className = 'error-message';
         errorMsg.textContent = field.validationMessage || 'This field is required';
         errorMsg.id = `${field.id || field.name}-error`;
-        
+
         field.setAttribute('aria-invalid', 'true');
         field.setAttribute('aria-describedby', errorMsg.id);
-        
+
         field.parentElement.appendChild(errorMsg);
       } else {
         field.classList.remove('error');
         field.removeAttribute('aria-invalid');
         field.removeAttribute('aria-describedby');
       }
-      
+
       return isValid;
     },
 
@@ -331,10 +331,10 @@
      */
     showFormErrors(form) {
       const invalidFields = form.querySelectorAll(':invalid');
-      
+
       // Validate all invalid fields
       invalidFields.forEach(field => this.validateField(field));
-      
+
       // Create or update error summary
       let errorSummary = form.querySelector('.error-summary');
       if (!errorSummary) {
@@ -344,22 +344,22 @@
         errorSummary.setAttribute('aria-live', 'assertive');
         form.insertBefore(errorSummary, form.firstChild);
       }
-      
+
       errorSummary.innerHTML = `
         <strong class="error-summary__title">Please fix the following errors:</strong>
         <ul class="error-list">
           ${Array.from(invalidFields).map(field => {
-            const label = form.querySelector(`label[for="${field.id}"]`);
-            const fieldName = label ? label.textContent : field.name;
-            return `<li><a href="#${field.id}">${fieldName}: ${field.validationMessage}</a></li>`;
-          }).join('')}
+    const label = form.querySelector(`label[for="${field.id}"]`);
+    const fieldName = label ? label.textContent : field.name;
+    return `<li><a href="#${field.id}">${fieldName}: ${field.validationMessage}</a></li>`;
+  }).join('')}
         </ul>
       `;
-      
+
       errorSummary.classList.add('visible');
       errorSummary.removeAttribute('hidden');
       errorSummary.setAttribute('aria-hidden', 'false');
-      
+
       // Focus first invalid field
       if (invalidFields.length > 0) {
         invalidFields[0].focus();
@@ -372,13 +372,13 @@
     initLoadingStates() {
       // Add loading state to buttons with data-loading attribute
       const loadingButtons = document.querySelectorAll('[data-loading]');
-      
+
       loadingButtons.forEach(btn => {
         btn.addEventListener('click', function() {
           this.classList.add('btn--loading');
           this.setAttribute('aria-busy', 'true');
           this.disabled = true;
-          
+
           // Auto-remove after 5 seconds (safety)
           setTimeout(() => {
             this.classList.remove('btn--loading');
@@ -418,12 +418,12 @@
      */
     showSuccessToast(message, duration = 5000) {
       const container = document.getElementById('toast-container');
-      
+
       const toast = document.createElement('div');
       toast.className = 'toast--success';
       toast.setAttribute('role', 'status');
       toast.textContent = message;
-      
+
       // Add close button
       const closeBtn = document.createElement('button');
       closeBtn.innerHTML = '×';
@@ -443,10 +443,10 @@
         toast.style.transform = 'translateX(100%)';
         setTimeout(() => toast.remove(), 300);
       });
-      
+
       toast.appendChild(closeBtn);
       container.appendChild(toast);
-      
+
       // Auto-remove after duration
       if (duration > 0) {
         setTimeout(() => {
@@ -455,7 +455,7 @@
           setTimeout(() => toast.remove(), 300);
         }, duration);
       }
-      
+
       return toast;
     },
 
@@ -464,7 +464,7 @@
      */
     showErrorToast(message, duration = 7000) {
       const container = document.getElementById('toast-container');
-      
+
       const toast = document.createElement('div');
       toast.className = 'toast--success'; // Reuse styles
       toast.setAttribute('role', 'alert');
@@ -474,13 +474,13 @@
         color: #991B1B;
       `;
       toast.textContent = message;
-      
+
       container.appendChild(toast);
-      
+
       if (duration > 0) {
         setTimeout(() => toast.remove(), duration);
       }
-      
+
       return toast;
     },
 
@@ -525,7 +525,7 @@
         announcement.className = 'visually-hidden';
         announcement.textContent = `Page loaded: ${pageTitle.textContent}`;
         document.body.appendChild(announcement);
-        
+
         setTimeout(() => announcement.remove(), 2000);
       }
 
@@ -538,19 +538,19 @@
      */
     trapFocusInModals() {
       const modals = document.querySelectorAll('[role="dialog"], .modal, .lead-magnet');
-      
+
       modals.forEach(modal => {
         const observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
             if (mutation.attributeName === 'aria-hidden') {
               const isHidden = modal.getAttribute('aria-hidden') === 'true';
-              
+
               if (!isHidden) {
                 // Modal opened - trap focus
                 const focusableElements = modal.querySelectorAll(
                   'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
                 );
-                
+
                 if (focusableElements.length > 0) {
                   focusableElements[0].focus();
                 }
@@ -558,7 +558,7 @@
             }
           });
         });
-        
+
         observer.observe(modal, { attributes: true });
       });
     }
@@ -615,10 +615,10 @@
     mutations.forEach((mutation) => {
       if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
         const hasNavOpen = document.body.classList.contains('nav-open');
-        
+
         if (hasNavOpen !== navIsOpen) {
           navIsOpen = hasNavOpen;
-          
+
           if (navIsOpen) {
             disableBodyScroll();
           } else {
@@ -644,7 +644,7 @@
       if (!isMobile() && navIsOpen) {
         document.body.classList.remove('nav-open');
         enableBodyScroll();
-        
+
         // Close mobile nav drawer
         const mobileNav = document.getElementById('mobile-nav-drawer');
         if (mobileNav) {

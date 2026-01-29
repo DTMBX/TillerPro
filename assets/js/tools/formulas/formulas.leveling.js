@@ -1,8 +1,8 @@
 /**
  * Tillerstead Formula Library - Self-Leveling Compound Formulas
- * 
+ *
  * Coverage rates sourced from manufacturer TDS documents.
- * 
+ *
  * @module formulas.leveling
  */
 
@@ -44,7 +44,7 @@ export const LEVELING_FORMULA_INFO = {
 
 /**
  * Self-leveling compound specifications
- * 
+ *
  * Coverage is expressed as cubic feet per bag at 1" depth
  * or square feet per bag at a specified thickness.
  */
@@ -100,10 +100,10 @@ export const SLU_PRODUCTS = {
 
 /**
  * Calculate self-leveling compound needed
- * 
+ *
  * FORMULA: volume (cu ft) = area (sq ft) × depth (in) / 12
  *          bags = volume / coverage_per_bag
- * 
+ *
  * @param {Object} params
  * @param {number} params.areaSqFt - Area to level in square feet
  * @param {number} params.avgDepthInches - Average depth in inches

@@ -1,9 +1,9 @@
 /**
  * Tillerstead Formula Library - Mortar/Thinset Formulas
- * 
+ *
  * Coverage rates sourced from manufacturer TDS documents.
  * All constants include source citations.
- * 
+ *
  * @module formulas.mortar
  */
 
@@ -51,13 +51,13 @@ export const MORTAR_FORMULA_INFO = {
 
 /**
  * Trowel notch coverage rates per 50 lb bag
- * 
+ *
  * SOURCE: Custom Building Products VersaBond & VersaBond LFT TDS
  * URL: https://www.custombuildingproducts.com/products/versabond-lft-professional-large-format-tile-mortar
- * 
- * IMPORTANT: For Large Format Tile (LFT ≥15"), Custom Building Products 
+ *
+ * IMPORTANT: For Large Format Tile (LFT ≥15"), Custom Building Products
  * does NOT recommend 1/2"×1/2" square notch trowels. Use U-notch instead.
- * 
+ *
  * @type {Object<string, { name: string, coverageMin: number, coverageMax: number, source: string, recommendedFor: string, warning?: string }>}
  */
 export const TROWEL_COVERAGE = {
@@ -210,14 +210,14 @@ export const PRO_TIPS = {
 
 /**
  * Get recommended trowel notch based on tile size
- * 
+ *
  * Based on Custom Building Products VersaBond LFT TDS and industry guidelines.
  * These are STARTING POINTS - actual trowel should be verified in field
  * by lifting test tiles to check coverage.
- * 
- * CRITICAL: For Large Format Tile (≥15"), manufacturer does NOT recommend 
+ *
+ * CRITICAL: For Large Format Tile (≥15"), manufacturer does NOT recommend
  * 1/2"×1/2" square notch. Use U-notch trowel instead.
- * 
+ *
  * @param {number} tileWidthInches
  * @param {number} tileHeightInches
  * @param {string} [substrate='typical'] - 'smooth', 'typical', 'needs-flattening'
@@ -279,9 +279,9 @@ export function getRecommendedTrowel(tileWidthInches, tileHeightInches, substrat
 
 /**
  * Calculate mortar/thinset bags needed
- * 
+ *
  * FORMULA: bags = area / coverage_per_bag
- * 
+ *
  * @param {Object} params
  * @param {number} params.areaSqFt - Area to cover in square feet
  * @param {string} params.trowelId - Trowel notch ID from TROWEL_COVERAGE

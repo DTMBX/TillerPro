@@ -1,0 +1,629 @@
+
+> tillerstead-com@1.0.0 lint:css
+> stylelint "assets/css/**/*.css"
+
+
+assets/css/accessibility-enhanced.css
+  507:3  ΓÜá  Unexpected deprecated property "clip"  property-no-deprecated
+  518:3  ΓÜá  Unexpected deprecated property "clip"  property-no-deprecated
+
+assets/css/bundle.css
+   165:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   170:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   175:3  Γ£û  Unexpected duplicate "text-size-adjust"                                                  declaration-block-no-duplicate-properties
+   180:1  Γ£û  Expected empty line before at-rule                                                       at-rule-empty-line-before
+   184:3  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   192:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   203:3  Γ£û  Unexpected duplicate "text-size-adjust"                                                  declaration-block-no-duplicate-properties
+   207:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   211:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   214:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   219:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   224:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   231:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   237:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   242:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   249:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   259:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   268:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   274:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   278:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   299:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   305:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   314:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   319:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   325:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   328:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   331:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   334:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   339:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   345:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   351:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   353:1  Γ£û  Expected "main.light-theme tr:nth-child(even) td" to have no more than 2 type selectors  selector-max-type
+   356:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   358:1  Γ£û  Expected "main.light-theme tr:hover td" to have no more than 2 type selectors            selector-max-type
+   361:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   367:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   373:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   380:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   399:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   409:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   416:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   419:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   423:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   427:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   432:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   438:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   445:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   451:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   458:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   464:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   467:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   470:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   473:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   476:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   481:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   486:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   488:3  Γ£û  Expected empty line before declaration                                                   declaration-empty-line-before
+   492:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   495:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   498:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   501:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   503:3  Γ£û  Expected empty line before declaration                                                   declaration-empty-line-before
+   505:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   508:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   511:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   514:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   517:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   520:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   523:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   525:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   532:2  Γ£û  Expected empty line before declaration                                                   declaration-empty-line-before
+   536:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   539:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   543:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   546:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   554:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   565:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   569:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   574:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   578:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   589:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   593:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   600:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   609:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   616:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   622:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   625:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   628:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   631:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   636:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   639:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   648:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   653:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   656:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   662:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   667:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   672:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   675:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   682:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   689:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   694:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   702:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   709:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   719:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   723:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   735:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   742:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   746:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   754:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   759:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   764:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   767:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   770:1  Γ£û  Expected empty line before at-rule                                                       at-rule-empty-line-before
+   775:3  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   778:3  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   781:3  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   786:3  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   789:3  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   793:3  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   797:1  Γ£û  Expected empty line before at-rule                                                       at-rule-empty-line-before
+   801:3  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   806:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   814:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   817:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   823:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   828:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   835:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   840:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   845:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   851:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   856:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   860:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   865:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   868:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   873:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   879:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   883:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   893:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   896:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   902:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   906:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   912:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   917:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   924:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   932:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   936:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   943:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   947:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   953:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   960:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   964:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   968:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   974:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   977:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   983:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   989:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   995:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+   999:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+  1004:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+  1007:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+  1013:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+  1018:1  Γ£û  Expected empty line before rule                                                          rule-empty-line-before
+  1031:1  Γ£û  Unexpected invalid position @import rule                                                 no-invalid-position-at-import-rule
+  1032:1  Γ£û  Unexpected invalid position @import rule                                                 no-invalid-position-at-import-rule
+  1033:1  Γ£û  Unexpected invalid position @import rule                                                 no-invalid-position-at-import-rule
+  1034:1  Γ£û  Unexpected invalid position @import rule                                                 no-invalid-position-at-import-rule
+  1035:1  Γ£û  Unexpected invalid position @import rule                                                 no-invalid-position-at-import-rule
+  1041:1  ΓÜá  Unexpected duplicate selector "*, *::before, *::after", first used at line 165           no-duplicate-selectors
+  1049:1  ΓÜá  Unexpected duplicate selector "html", first used at line 170                             no-duplicate-selectors
+  1057:1  ΓÜá  Unexpected duplicate selector "body", first used at line 192                             no-duplicate-selectors
+  1071:1  ΓÜá  Unexpected duplicate selector "h1, h2, h3, h4, h5, h6", first used at line 274           no-duplicate-selectors
+  1078:1  ΓÜá  Unexpected duplicate selector "h1", first used at line 299                               no-duplicate-selectors
+  1110:1  ΓÜá  Unexpected duplicate selector "a", first used at line 224                                no-duplicate-selectors
+  1129:1  ΓÜá  Unexpected duplicate selector ".container", first used at line 486                       no-duplicate-selectors
+  1136:1  ΓÜá  Unexpected duplicate selector ".container-sm", first used at line 505                    no-duplicate-selectors
+  1140:1  ΓÜá  Unexpected duplicate selector ".container-md", first used at line 508                    no-duplicate-selectors
+  1144:1  ΓÜá  Unexpected duplicate selector ".container-lg", first used at line 511                    no-duplicate-selectors
+  1148:1  ΓÜá  Unexpected duplicate selector ".container-2xl", first used at line 517                   no-duplicate-selectors
+
+assets/css/critical.css
+   13:31  Γ£û  Expected "BlinkMacSystemFont" to be "blinkmacsystemfont"        value-keyword-case
+   13:63  Γ£û  Expected "Roboto" to be "roboto"                                value-keyword-case
+   25:3   Γ£û  Unexpected vendor-prefixed property "-webkit-text-size-adjust"  property-no-vendor-prefix
+   41:15  Γ£û  Expected "#fff" to be "#ffffff"                                 color-hex-length
+   85:12  Γ£û  Expected "0.95" to be "95%"                                     alpha-value-notation
+  103:31  Γ£û  Expected "rgba" to be "rgb"                                     color-function-alias-notation
+  103:31  Γ£û  Expected modern color-function notation                         color-function-notation
+  103:45  Γ£û  Expected "0.2" to be "20%"                                      alpha-value-notation
+  136:12  Γ£û  Expected "1" to be "100%"                                       alpha-value-notation
+
+assets/css/interactive-components.css
+   36:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+   36:15  Γ£û  Expected modern color-function notation  color-function-notation
+   36:35  Γ£û  Expected "0.05" to be "5%"               alpha-value-notation
+   37:21  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+   37:21  Γ£û  Expected modern color-function notation  color-function-notation
+   37:41  Γ£û  Expected "0.1" to be "10%"               alpha-value-notation
+   44:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+   44:15  Γ£û  Expected modern color-function notation  color-function-notation
+   44:35  Γ£û  Expected "0.08" to be "8%"               alpha-value-notation
+   45:17  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+   45:17  Γ£û  Expected modern color-function notation  color-function-notation
+   45:37  Γ£û  Expected "0.2" to be "20%"               alpha-value-notation
+   49:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+   49:15  Γ£û  Expected modern color-function notation  color-function-notation
+   49:35  Γ£û  Expected "0.1" to be "10%"               alpha-value-notation
+   50:26  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+   50:26  Γ£û  Expected modern color-function notation  color-function-notation
+   50:40  Γ£û  Expected "0.1" to be "10%"               alpha-value-notation
+   90:10  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+   90:10  Γ£û  Expected modern color-function notation  color-function-notation
+   90:30  Γ£û  Expected "0.9" to be "90%"               alpha-value-notation
+  133:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  133:15  Γ£û  Expected modern color-function notation  color-function-notation
+  133:35  Γ£û  Expected "0.9" to be "90%"               alpha-value-notation
+  147:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  147:15  Γ£û  Expected modern color-function notation  color-function-notation
+  147:35  Γ£û  Expected "0.95" to be "95%"              alpha-value-notation
+  150:26  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  150:26  Γ£û  Expected modern color-function notation  color-function-notation
+  150:40  Γ£û  Expected "0.2" to be "20%"               alpha-value-notation
+  163:10  Γ£û  Expected "#333" to be "#333333"          color-hex-length
+  172:26  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  172:26  Γ£û  Expected modern color-function notation  color-function-notation
+  172:40  Γ£û  Expected "0.3" to be "30%"               alpha-value-notation
+  181:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  181:15  Γ£û  Expected modern color-function notation  color-function-notation
+  181:29  Γ£û  Expected "0.7" to be "70%"               alpha-value-notation
+  205:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  205:15  Γ£û  Expected modern color-function notation  color-function-notation
+  205:35  Γ£û  Expected "0.05" to be "5%"               alpha-value-notation
+  206:21  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  206:21  Γ£û  Expected modern color-function notation  color-function-notation
+  206:41  Γ£û  Expected "0.1" to be "10%"               alpha-value-notation
+  219:10  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  219:10  Γ£û  Expected modern color-function notation  color-function-notation
+  219:30  Γ£û  Expected "0.9" to be "90%"               alpha-value-notation
+  225:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  225:15  Γ£û  Expected modern color-function notation  color-function-notation
+  225:35  Γ£û  Expected "0.08" to be "8%"               alpha-value-notation
+  226:21  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  226:21  Γ£û  Expected modern color-function notation  color-function-notation
+  226:41  Γ£û  Expected "0.2" to be "20%"               alpha-value-notation
+  235:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  235:15  Γ£û  Expected modern color-function notation  color-function-notation
+  235:35  Γ£û  Expected "0.12" to be "12%"              alpha-value-notation
+  237:25  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  237:25  Γ£û  Expected modern color-function notation  color-function-notation
+  237:42  Γ£û  Expected "0.1" to be "10%"               alpha-value-notation
+  243:39  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  243:39  Γ£û  Expected modern color-function notation  color-function-notation
+  243:56  Γ£û  Expected "0.1" to be "10%"               alpha-value-notation
+  243:62  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  243:62  Γ£û  Expected modern color-function notation  color-function-notation
+  243:79  Γ£û  Expected "0.05" to be "5%"               alpha-value-notation
+  244:21  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  244:21  Γ£û  Expected modern color-function notation  color-function-notation
+  244:38  Γ£û  Expected "0.3" to be "30%"               alpha-value-notation
+  256:10  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  256:10  Γ£û  Expected modern color-function notation  color-function-notation
+  256:30  Γ£û  Expected "0.7" to be "70%"               alpha-value-notation
+  263:26  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  263:26  Γ£û  Expected modern color-function notation  color-function-notation
+  263:43  Γ£û  Expected "0.3" to be "30%"               alpha-value-notation
+  287:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  287:15  Γ£û  Expected modern color-function notation  color-function-notation
+  287:35  Γ£û  Expected "0.95" to be "95%"              alpha-value-notation
+  290:26  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  290:26  Γ£û  Expected modern color-function notation  color-function-notation
+  290:40  Γ£û  Expected "0.2" to be "20%"               alpha-value-notation
+  291:12  Γ£û  Expected "0" to be "0%"                  alpha-value-notation
+  295:10  Γ£û  Expected "#333" to be "#333333"          color-hex-length
+  299:12  Γ£û  Expected "1" to be "100%"                alpha-value-notation
+  304:12  Γ£û  Expected "0" to be "0%"                  alpha-value-notation
+  321:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  321:15  Γ£û  Expected modern color-function notation  color-function-notation
+  321:33  Γ£û  Expected "0.2" to be "20%"               alpha-value-notation
+  326:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  326:15  Γ£û  Expected modern color-function notation  color-function-notation
+  326:33  Γ£û  Expected "0.2" to be "20%"               alpha-value-notation
+  331:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  331:15  Γ£û  Expected modern color-function notation  color-function-notation
+  331:34  Γ£û  Expected "0.2" to be "20%"               alpha-value-notation
+  336:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  336:15  Γ£û  Expected modern color-function notation  color-function-notation
+  336:34  Γ£û  Expected "0.2" to be "20%"               alpha-value-notation
+  351:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  351:15  Γ£û  Expected modern color-function notation  color-function-notation
+  351:29  Γ£û  Expected "0.1" to be "10%"               alpha-value-notation
+  355:10  Γ£û  Expected "#666" to be "#666666"          color-hex-length
+  361:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  361:15  Γ£û  Expected modern color-function notation  color-function-notation
+  361:29  Γ£û  Expected "0.2" to be "20%"               alpha-value-notation
+  362:10  Γ£û  Expected "#333" to be "#333333"          color-hex-length
+  376:12  Γ£û  Expected "0" to be "0%"                  alpha-value-notation
+  381:12  Γ£û  Expected "1" to be "100%"                alpha-value-notation
+  385:12  Γ£û  Expected "0" to be "0%"                  alpha-value-notation
+  391:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  391:15  Γ£û  Expected modern color-function notation  color-function-notation
+  391:29  Γ£û  Expected "0.95" to be "95%"              alpha-value-notation
+  418:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  418:15  Γ£û  Expected modern color-function notation  color-function-notation
+  418:35  Γ£û  Expected "0.1" to be "10%"               alpha-value-notation
+  420:21  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  420:21  Γ£û  Expected modern color-function notation  color-function-notation
+  420:41  Γ£û  Expected "0.2" to be "20%"               alpha-value-notation
+  434:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  434:15  Γ£û  Expected modern color-function notation  color-function-notation
+  434:35  Γ£û  Expected "0.2" to be "20%"               alpha-value-notation
+  461:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  461:15  Γ£û  Expected modern color-function notation  color-function-notation
+  461:35  Γ£û  Expected "0.1" to be "10%"               alpha-value-notation
+
+assets/css/micro-interactions.css
+  25:1  Γ£û  Unclosed block  CssSyntaxError
+
+assets/css/mobile-app.css
+   6:12  Γ£û  Expected "0" to be "0%"  alpha-value-notation
+  89:12  Γ£û  Expected "0" to be "0%"  alpha-value-notation
+
+assets/css/mobile-base.css
+   15:7   Γ£û  Unexpected vendor-prefixed property "-webkit-text-size-adjust"  property-no-vendor-prefix
+   67:40  Γ£û  Expected "#fff" to be "#ffffff"                                 color-hex-length
+   85:19  Γ£û  Expected "rgba" to be "rgb"                                     color-function-alias-notation
+   85:19  Γ£û  Expected modern color-function notation                         color-function-notation
+   85:33  Γ£û  Expected "0.5" to be "50%"                                      alpha-value-notation
+   86:16  Γ£û  Expected "0" to be "0%"                                         alpha-value-notation
+   95:16  Γ£û  Expected "1" to be "100%"                                       alpha-value-notation
+  177:40  Γ£û  Expected "#fff" to be "#ffffff"                                 color-hex-length
+
+assets/css/mobile-homepage-beautiful.css
+   58:27  Γ£û  Expected "rgba" to be "rgb"                                         color-function-alias-notation
+   58:27  Γ£û  Expected modern color-function notation                             color-function-notation
+   58:41  Γ£û  Expected "0.1" to be "10%"                                          alpha-value-notation
+  119:28  Γ£û  Expected "rgba" to be "rgb"                                         color-function-alias-notation
+  119:28  Γ£û  Expected modern color-function notation                             color-function-notation
+  119:42  Γ£û  Expected "0.1" to be "10%"                                          alpha-value-notation
+  140:28  Γ£û  Expected "rgba" to be "rgb"                                         color-function-alias-notation
+  140:28  Γ£û  Expected modern color-function notation                             color-function-notation
+  140:42  Γ£û  Expected "0.15" to be "15%"                                         alpha-value-notation
+  164:28  Γ£û  Expected "rgba" to be "rgb"                                         color-function-alias-notation
+  164:28  Γ£û  Expected modern color-function notation                             color-function-notation
+  164:42  Γ£û  Expected "0.15" to be "15%"                                         alpha-value-notation
+  255:27  Γ£û  Expected "rgba" to be "rgb"                                         color-function-alias-notation
+  255:27  Γ£û  Expected modern color-function notation                             color-function-notation
+  255:41  Γ£û  Expected "0.08" to be "8%"                                          alpha-value-notation
+  256:28  Γ£û  Expected "rgba" to be "rgb"                                         color-function-alias-notation
+  256:28  Γ£û  Expected modern color-function notation                             color-function-notation
+  256:42  Γ£û  Expected "0.04" to be "4%"                                          alpha-value-notation
+  273:28  Γ£û  Expected "rgba" to be "rgb"                                         color-function-alias-notation
+  273:28  Γ£û  Expected modern color-function notation                             color-function-notation
+  273:45  Γ£û  Expected "0.3" to be "30%"                                          alpha-value-notation
+  287:3   ΓÜá  Unexpected duplicate selector ".ts-footer", first used at line 201  no-duplicate-selectors
+  301:16  Γ£û  Expected "0" to be "0%"                                             alpha-value-notation
+  304:5   Γ£û  Expected empty line before rule                                     rule-empty-line-before
+  305:16  Γ£û  Expected "1" to be "100%"                                           alpha-value-notation
+  315:5   Γ£û  Expected empty line before rule                                     rule-empty-line-before
+
+assets/css/mobile-personality.css
+  405:1  ΓÜá  Unexpected duplicate selector ".premium-mode .card, .premium-mode .service-card, .premium-mode .portfolio-item", first used at line 227  no-duplicate-selectors
+
+assets/css/premium-animations.css
+  423:3  Γ£û  Expected empty line before comment  comment-empty-line-before
+
+assets/css/premium-components.css
+   30:17  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+   30:17  Γ£û  Expected modern color-function notation                        color-function-notation
+   30:37  Γ£û  Expected "0.2" to be "20%"                                     alpha-value-notation
+   31:27  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+   31:27  Γ£û  Expected modern color-function notation                        color-function-notation
+   31:41  Γ£û  Expected "0.3" to be "30%"                                     alpha-value-notation
+   56:12  Γ£û  Expected "0.1" to be "10%"                                     alpha-value-notation
+   67:15  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+   67:15  Γ£û  Expected modern color-function notation                        color-function-notation
+   67:35  Γ£û  Expected "0.05" to be "5%"                                     alpha-value-notation
+   69:3   Γ£û  Unexpected vendor-prefixed property "-webkit-backdrop-filter"  property-no-vendor-prefix
+   70:21  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+   70:21  Γ£û  Expected modern color-function notation                        color-function-notation
+   70:41  Γ£û  Expected "0.1" to be "10%"                                     alpha-value-notation
+   72:26  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+   72:26  Γ£û  Expected modern color-function notation                        color-function-notation
+   72:40  Γ£û  Expected "0.1" to be "10%"                                     alpha-value-notation
+   78:15  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+   78:15  Γ£û  Expected modern color-function notation                        color-function-notation
+   78:35  Γ£û  Expected "0.08" to be "8%"                                     alpha-value-notation
+   79:17  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+   79:17  Γ£û  Expected modern color-function notation                        color-function-notation
+   79:37  Γ£û  Expected "0.2" to be "20%"                                     alpha-value-notation
+   84:15  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+   84:15  Γ£û  Expected modern color-function notation                        color-function-notation
+   84:35  Γ£û  Expected "0.7" to be "70%"                                     alpha-value-notation
+   89:15  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+   89:15  Γ£û  Expected modern color-function notation                        color-function-notation
+   89:29  Γ£û  Expected "0.5" to be "50%"                                     alpha-value-notation
+  117:26  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  117:26  Γ£û  Expected modern color-function notation                        color-function-notation
+  117:45  Γ£û  Expected "0.3" to be "30%"                                     alpha-value-notation
+  121:26  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  121:26  Γ£û  Expected modern color-function notation                        color-function-notation
+  121:45  Γ£û  Expected "0.5" to be "50%"                                     alpha-value-notation
+  143:15  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  143:15  Γ£û  Expected modern color-function notation                        color-function-notation
+  143:35  Γ£û  Expected "0.05" to be "5%"                                     alpha-value-notation
+  145:21  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  145:21  Γ£û  Expected modern color-function notation                        color-function-notation
+  145:41  Γ£û  Expected "0.1" to be "10%"                                     alpha-value-notation
+  149:15  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  149:15  Γ£û  Expected modern color-function notation                        color-function-notation
+  149:35  Γ£û  Expected "0.1" to be "10%"                                     alpha-value-notation
+  150:17  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  150:17  Γ£û  Expected modern color-function notation                        color-function-notation
+  150:37  Γ£û  Expected "0.2" to be "20%"                                     alpha-value-notation
+  161:51  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  161:51  Γ£û  Expected modern color-function notation                        color-function-notation
+  161:71  Γ£û  Expected "0.3" to be "30%"                                     alpha-value-notation
+  179:33  Γ£û  Expected "hsla" to be "hsl"                                    color-function-alias-notation
+  179:33  Γ£û  Expected modern color-function notation                        color-function-notation
+  179:38  Γ£û  Expected "215" to be "215deg"                                  hue-degree-notation
+  179:53  Γ£û  Expected "0.3" to be "30%"                                     alpha-value-notation
+  179:59  Γ£û  Unexpected unit                                                length-zero-no-unit
+  180:33  Γ£û  Expected "hsla" to be "hsl"                                    color-function-alias-notation
+  180:33  Γ£û  Expected modern color-function notation                        color-function-notation
+  180:38  Γ£û  Expected "125" to be "125deg"                                  hue-degree-notation
+  180:53  Γ£û  Expected "0.3" to be "30%"                                     alpha-value-notation
+  180:59  Γ£û  Unexpected unit                                                length-zero-no-unit
+  181:33  Γ£û  Expected "hsla" to be "hsl"                                    color-function-alias-notation
+  181:33  Γ£û  Expected modern color-function notation                        color-function-notation
+  181:38  Γ£û  Expected "354" to be "354deg"                                  hue-degree-notation
+  181:53  Γ£û  Expected "0.3" to be "30%"                                     alpha-value-notation
+  181:59  Γ£û  Unexpected unit                                                length-zero-no-unit
+  182:33  Γ£û  Expected "hsla" to be "hsl"                                    color-function-alias-notation
+  182:33  Γ£û  Expected modern color-function notation                        color-function-notation
+  182:38  Γ£û  Expected "256" to be "256deg"                                  hue-degree-notation
+  182:53  Γ£û  Expected "0.3" to be "30%"                                     alpha-value-notation
+  182:59  Γ£û  Unexpected unit                                                length-zero-no-unit
+  183:33  Γ£û  Expected "hsla" to be "hsl"                                    color-function-alias-notation
+  183:33  Γ£û  Expected modern color-function notation                        color-function-notation
+  183:38  Γ£û  Expected "38" to be "38deg"                                    hue-degree-notation
+  183:52  Γ£û  Expected "0.3" to be "30%"                                     alpha-value-notation
+  183:58  Γ£û  Unexpected unit                                                length-zero-no-unit
+  184:33  Γ£û  Expected "hsla" to be "hsl"                                    color-function-alias-notation
+  184:33  Γ£û  Expected modern color-function notation                        color-function-notation
+  184:38  Γ£û  Expected "222" to be "222deg"                                  hue-degree-notation
+  184:53  Γ£û  Expected "0.3" to be "30%"                                     alpha-value-notation
+  184:59  Γ£û  Unexpected unit                                                length-zero-no-unit
+  185:33  Γ£û  Expected "hsla" to be "hsl"                                    color-function-alias-notation
+  185:33  Γ£û  Expected modern color-function notation                        color-function-notation
+  185:38  Γ£û  Expected "343" to be "343deg"                                  hue-degree-notation
+  185:53  Γ£û  Expected "0.3" to be "30%"                                     alpha-value-notation
+  185:59  Γ£û  Unexpected unit                                                length-zero-no-unit
+  194:67  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  194:67  Γ£û  Expected modern color-function notation                        color-function-notation
+  194:81  Γ£û  Expected "0.8" to be "80%"                                     alpha-value-notation
+  211:21  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  211:21  Γ£û  Expected modern color-function notation                        color-function-notation
+  211:41  Γ£û  Expected "0.1" to be "10%"                                     alpha-value-notation
+  213:15  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  213:15  Γ£û  Expected modern color-function notation                        color-function-notation
+  213:35  Γ£û  Expected "0.05" to be "5%"                                     alpha-value-notation
+  223:10  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  223:10  Γ£û  Expected modern color-function notation                        color-function-notation
+  223:30  Γ£û  Expected "0.5" to be "50%"                                     alpha-value-notation
+  232:15  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  232:15  Γ£û  Expected modern color-function notation                        color-function-notation
+  232:35  Γ£û  Expected "0.08" to be "8%"                                     alpha-value-notation
+  234:25  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  234:25  Γ£û  Expected modern color-function notation                        color-function-notation
+  234:44  Γ£û  Expected "0.1" to be "10%"                                     alpha-value-notation
+  254:15  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  254:15  Γ£û  Expected modern color-function notation                        color-function-notation
+  254:35  Γ£û  Expected "0.03" to be "3%"                                     alpha-value-notation
+  256:21  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  256:21  Γ£û  Expected modern color-function notation                        color-function-notation
+  256:41  Γ£û  Expected "0.05" to be "5%"                                     alpha-value-notation
+  261:15  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  261:15  Γ£û  Expected modern color-function notation                        color-function-notation
+  261:35  Γ£û  Expected "0.05" to be "5%"                                     alpha-value-notation
+  262:17  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  262:17  Γ£û  Expected modern color-function notation                        color-function-notation
+  262:37  Γ£û  Expected "0.1" to be "10%"                                     alpha-value-notation
+  270:3   Γ£û  Unexpected vendor-prefixed property "-webkit-background-clip"  property-no-vendor-prefix
+  279:10  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  279:10  Γ£û  Expected modern color-function notation                        color-function-notation
+  279:30  Γ£û  Expected "0.6" to be "60%"                                     alpha-value-notation
+  292:39  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  292:39  Γ£û  Expected modern color-function notation                        color-function-notation
+  292:59  Γ£û  Expected "0.05" to be "5%"                                     alpha-value-notation
+  292:66  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  292:66  Γ£û  Expected modern color-function notation                        color-function-notation
+  292:86  Γ£û  Expected "0.02" to be "2%"                                     alpha-value-notation
+  293:21  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  293:21  Γ£û  Expected modern color-function notation                        color-function-notation
+  293:41  Γ£û  Expected "0.1" to be "10%"                                     alpha-value-notation
+  306:12  Γ£û  Expected "0.1" to be "10%"                                     alpha-value-notation
+  314:10  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  314:10  Γ£û  Expected modern color-function notation                        color-function-notation
+  314:30  Γ£û  Expected "0.9" to be "90%"                                     alpha-value-notation
+  330:21  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  330:21  Γ£û  Expected modern color-function notation                        color-function-notation
+  330:41  Γ£û  Expected "0.2" to be "20%"                                     alpha-value-notation
+  341:10  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  341:10  Γ£û  Expected modern color-function notation                        color-function-notation
+  341:30  Γ£û  Expected "0.5" to be "50%"                                     alpha-value-notation
+  359:39  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  359:39  Γ£û  Expected modern color-function notation                        color-function-notation
+  359:59  Γ£û  Expected "0.03" to be "3%"                                     alpha-value-notation
+  359:66  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  359:66  Γ£û  Expected modern color-function notation                        color-function-notation
+  359:86  Γ£û  Expected "0.01" to be "1%"                                     alpha-value-notation
+  361:21  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  361:21  Γ£û  Expected modern color-function notation                        color-function-notation
+  361:41  Γ£û  Expected "0.05" to be "5%"                                     alpha-value-notation
+  367:17  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  367:17  Γ£û  Expected modern color-function notation                        color-function-notation
+  367:37  Γ£û  Expected "0.15" to be "15%"                                    alpha-value-notation
+  369:27  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  369:27  Γ£û  Expected modern color-function notation                        color-function-notation
+  369:41  Γ£û  Expected "0.4" to be "40%"                                     alpha-value-notation
+  382:26  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  382:26  Γ£û  Expected modern color-function notation                        color-function-notation
+  382:45  Γ£û  Expected "0.3" to be "30%"                                     alpha-value-notation
+  395:10  Γ£û  Expected "rgba" to be "rgb"                                    color-function-alias-notation
+  395:10  Γ£û  Expected modern color-function notation                        color-function-notation
+  395:30  Γ£û  Expected "0.7" to be "70%"                                     alpha-value-notation
+
+assets/css/supreme-flexibility.css
+  351:29  Γ£û  Expected single space before "/"  scss/operator-no-unspaced
+  351:29  Γ£û  Expected single space after "/"   scss/operator-no-unspaced
+  367:29  Γ£û  Expected single space before "/"  scss/operator-no-unspaced
+  367:29  Γ£û  Expected single space after "/"   scss/operator-no-unspaced
+  426:12  Γ£û  Expected "#000" to be "#000000"   color-hex-length
+  427:17  Γ£û  Expected "#fff" to be "#ffffff"   color-hex-length
+
+assets/css/tools-hub.css
+  1021:3  ΓÜá  Unexpected deprecated property "clip"  property-no-deprecated
+
+assets/css/z-index-system.css
+   23:1  Γ£û  Expected empty line before comment  comment-empty-line-before
+   31:1  Γ£û  Expected empty line before comment  comment-empty-line-before
+   43:1  Γ£û  Expected empty line before comment  comment-empty-line-before
+   52:1  Γ£û  Expected empty line before comment  comment-empty-line-before
+   67:1  Γ£û  Expected empty line before comment  comment-empty-line-before
+   75:1  Γ£û  Expected empty line before comment  comment-empty-line-before
+   84:1  Γ£û  Expected empty line before comment  comment-empty-line-before
+   93:1  Γ£û  Expected empty line before comment  comment-empty-line-before
+  101:1  Γ£û  Expected empty line before comment  comment-empty-line-before
+  110:1  Γ£û  Expected empty line before comment  comment-empty-line-before
+  162:1  Γ£û  Expected empty line before comment  comment-empty-line-before
+  169:1  Γ£û  Expected empty line before comment  comment-empty-line-before
+
+assets/css/components/ts-navigation.css
+   67:39  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+   67:39  Γ£û  Expected modern color-function notation  color-function-notation
+   67:59  Γ£û  Expected "0.1" to be "10%"               alpha-value-notation
+   67:65  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+   67:65  Γ£û  Expected modern color-function notation  color-function-notation
+   67:85  Γ£û  Expected "0.05" to be "5%"               alpha-value-notation
+   68:12  Γ£û  Expected "0" to be "0%"                  alpha-value-notation
+   75:12  Γ£û  Expected "1" to be "100%"                alpha-value-notation
+  107:25  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  107:25  Γ£û  Expected modern color-function notation  color-function-notation
+  107:44  Γ£û  Expected "0.3" to be "30%"               alpha-value-notation
+  119:26  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  119:26  Γ£û  Expected modern color-function notation  color-function-notation
+  119:45  Γ£û  Expected "0.4" to be "40%"               alpha-value-notation
+  146:27  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  146:27  Γ£û  Expected modern color-function notation  color-function-notation
+  146:41  Γ£û  Expected "0.15" to be "15%"              alpha-value-notation
+  146:59  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  146:59  Γ£û  Expected modern color-function notation  color-function-notation
+  146:73  Γ£û  Expected "0.1" to be "10%"               alpha-value-notation
+  150:12  Γ£û  Expected "0" to be "0%"                  alpha-value-notation
+  186:12  Γ£û  Expected "1" to be "100%"                alpha-value-notation
+  241:25  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  241:25  Γ£û  Expected modern color-function notation  color-function-notation
+  241:44  Γ£û  Expected "0.3" to be "30%"               alpha-value-notation
+  251:26  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  251:26  Γ£û  Expected modern color-function notation  color-function-notation
+  251:45  Γ£û  Expected "0.4" to be "40%"               alpha-value-notation
+  268:12  Γ£û  Expected "0.9" to be "90%"               alpha-value-notation
+  322:12  Γ£û  Expected "0" to be "0%"                  alpha-value-notation
+  341:27  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  341:27  Γ£û  Expected modern color-function notation  color-function-notation
+  341:41  Γ£û  Expected "0.2" to be "20%"               alpha-value-notation
+  364:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  364:15  Γ£û  Expected modern color-function notation  color-function-notation
+  364:29  Γ£û  Expected "0.6" to be "60%"               alpha-value-notation
+  366:12  Γ£û  Expected "0" to be "0%"                  alpha-value-notation
+  374:12  Γ£û  Expected "1" to be "100%"                alpha-value-notation
+  387:25  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  387:25  Γ£û  Expected modern color-function notation  color-function-notation
+  387:39  Γ£û  Expected "0.1" to be "10%"               alpha-value-notation
+  400:25  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  400:25  Γ£û  Expected modern color-function notation  color-function-notation
+  400:39  Γ£û  Expected "0.1" to be "10%"               alpha-value-notation
+  417:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  417:15  Γ£û  Expected modern color-function notation  color-function-notation
+  417:35  Γ£û  Expected "0.15" to be "15%"              alpha-value-notation
+  426:15  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  426:15  Γ£û  Expected modern color-function notation  color-function-notation
+  426:35  Γ£û  Expected "0.25" to be "25%"              alpha-value-notation
+  475:12  Γ£û  Expected "0" to be "0%"                  alpha-value-notation
+  481:12  Γ£û  Expected "1" to be "100%"                alpha-value-notation
+  545:25  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  545:25  Γ£û  Expected modern color-function notation  color-function-notation
+  545:44  Γ£û  Expected "0.3" to be "30%"               alpha-value-notation
+  551:26  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  551:26  Γ£û  Expected modern color-function notation  color-function-notation
+  551:45  Γ£û  Expected "0.4" to be "40%"               alpha-value-notation
+  563:25  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  563:25  Γ£û  Expected modern color-function notation  color-function-notation
+  563:44  Γ£û  Expected "0.3" to be "30%"               alpha-value-notation
+  574:26  Γ£û  Expected "rgba" to be "rgb"              color-function-alias-notation
+  574:26  Γ£û  Expected modern color-function notation  color-function-notation
+  574:45  Γ£û  Expected "0.4" to be "40%"               alpha-value-notation
+
+Γ£û 591 problems (575 errors, 16 warnings)
+  563 errors and 3 warnings potentially fixable with the "--fix" option.
+

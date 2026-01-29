@@ -1,7 +1,7 @@
 /**
  * TillerPro™ Financing Calculator
  * Monthly payment calculator with Truth in Lending Act compliance
- * 
+ *
  * @version 1.0.0
  * @author Tillerstead LLC
  */
@@ -21,7 +21,7 @@
     getDefaultConfig() {
       return {
         enabled: true,
-        
+
         // Finance partners
         partners: [
           {
@@ -48,14 +48,14 @@
             disclosure: 'GreenSky® financing is subject to credit approval. Minimum monthly payments required. See store for details.'
           }
         ],
-        
+
         // Default calculation settings
         defaults: {
           apr: 9.99,
           termMonths: 60,
           estimatedCreditScore: 'excellent' // excellent, good, fair
         },
-        
+
         // Credit score tiers
         creditTiers: {
           excellent: { min: 740, aprAdjustment: 0 },
@@ -63,7 +63,7 @@
           fair: { min: 580, aprAdjustment: 5.0 },
           poor: { min: 300, aprAdjustment: 10.0 }
         },
-        
+
         // Truth in Lending disclosures
         disclosures: {
           apr: 'APR (Annual Percentage Rate) represents the cost of credit as a yearly rate.',
@@ -92,11 +92,11 @@
         // 0% APR (promotional)
         return principal / termMonths;
       }
-      
+
       const monthlyRate = annualRate / 100 / 12;
-      const payment = principal * (monthlyRate * Math.pow(1 + monthlyRate, termMonths)) / 
+      const payment = principal * (monthlyRate * Math.pow(1 + monthlyRate, termMonths)) /
                       (Math.pow(1 + monthlyRate, termMonths) - 1);
-      
+
       return payment;
     }
 
@@ -121,16 +121,16 @@
     getEstimatedAPR(creditTier, partnerId) {
       const partner = this.financing.partners.find(p => p.id === partnerId);
       if (!partner) return this.financing.defaults.apr;
-      
+
       const tier = this.financing.creditTiers[creditTier];
       if (!tier) return partner.aprRange.min;
-      
+
       // Base APR is minimum for excellent credit
       let apr = partner.aprRange.min + tier.aprAdjustment;
-      
+
       // Cap at partner's maximum APR
       apr = Math.min(apr, partner.aprRange.max);
-      
+
       return apr;
     }
 
@@ -142,20 +142,20 @@
      */
     generateFinancingOptions(quoteTotal, creditTier = 'good') {
       const options = [];
-      
+
       this.financing.partners.forEach(partner => {
         // Skip if quote is outside partner's range
         if (quoteTotal < partner.minAmount || quoteTotal > partner.maxAmount) {
           return;
         }
-        
+
         const apr = this.getEstimatedAPR(creditTier, partner.id);
-        
+
         partner.termsMonths.forEach(term => {
           const monthlyPayment = this.calculateMonthlyPayment(quoteTotal, apr, term);
           const totalInterest = this.calculateTotalInterest(quoteTotal, monthlyPayment, term);
           const totalPayment = quoteTotal + totalInterest;
-          
+
           options.push({
             partnerId: partner.id,
             partnerName: partner.name,
@@ -170,10 +170,10 @@
           });
         });
       });
-      
+
       // Sort by monthly payment (lowest first)
       options.sort((a, b) => a.monthlyPayment - b.monthlyPayment);
-      
+
       return options;
     }
 
@@ -199,9 +199,9 @@
      */
     renderFinancingOptions(quoteTotal, container, creditTier = 'good') {
       if (!container) return;
-      
+
       const options = this.generateFinancingOptions(quoteTotal, creditTier);
-      
+
       if (options.length === 0) {
         container.innerHTML = `
           <div class="financing-unavailable">
@@ -211,7 +211,7 @@
         `;
         return;
       }
-      
+
       // Group by partner
       const byPartner = {};
       options.forEach(opt => {
@@ -220,7 +220,7 @@
         }
         byPartner[opt.partnerId].push(opt);
       });
-      
+
       container.innerHTML = `
         <div class="financing-calculator">
           <div class="financing-header">
@@ -240,10 +240,10 @@
           
           <div class="financing-partners">
             ${Object.keys(byPartner).map(partnerId => {
-              const partnerOptions = byPartner[partnerId];
-              const partner = this.financing.partners.find(p => p.id === partnerId);
-              
-              return `
+    const partnerOptions = byPartner[partnerId];
+    const partner = this.financing.partners.find(p => p.id === partnerId);
+
+    return `
                 <div class="financing-partner">
                   <div class="partner-header">
                     <h4>${partner.name}</h4>
@@ -286,7 +286,7 @@
                   </div>
                 </div>
               `;
-            }).join('')}
+  }).join('')}
           </div>
           
           <div class="tila-disclosures">
@@ -337,11 +337,11 @@
     getFinancingSummary(quoteTotal, partnerId, termMonths, creditTier = 'good') {
       const partner = this.financing.partners.find(p => p.id === partnerId);
       if (!partner) return null;
-      
+
       const apr = this.getEstimatedAPR(creditTier, partnerId);
       const monthlyPayment = this.calculateMonthlyPayment(quoteTotal, apr, termMonths);
       const totalInterest = this.calculateTotalInterest(quoteTotal, monthlyPayment, termMonths);
-      
+
       return {
         partner: partner.name,
         principal: quoteTotal,
@@ -357,22 +357,22 @@
 
   // Export globally
   window.FinancingCalculator = FinancingCalculator;
-  
+
   // Create global instance
   window.financingCalc = new FinancingCalculator();
-  
+
   /**
    * Global helper: Update financing calculator when credit tier changes
    */
   window.updateFinancingCalculator = function(creditTier) {
     const container = document.querySelector('.financing-calculator-container');
     const quoteTotal = parseFloat(document.getElementById('quote-total-value')?.textContent?.replace(/[^0-9.]/g, '')) || 0;
-    
+
     if (container && quoteTotal > 0) {
       window.financingCalc.renderFinancingOptions(quoteTotal, container, creditTier);
     }
   };
-  
+
   /**
    * Global helper: Select financing option
    */
@@ -387,7 +387,7 @@
         selectedAt: new Date().toISOString()
       });
     }
-    
+
     // Update UI
     const selectedOption = document.querySelector('.financing-option .btn-select-financing');
     if (selectedOption) {
@@ -395,11 +395,11 @@
         btn.textContent = 'Select This Option';
         btn.classList.remove('selected');
       });
-      
+
       event.target.textContent = '✓ Selected';
       event.target.classList.add('selected');
     }
-    
+
     // Notify user
     const notification = document.createElement('div');
     notification.className = 'financing-selected-notification';
@@ -409,13 +409,13 @@
       </svg>
       <span>Financing option selected! This will be included in your quote.</span>
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     setTimeout(() => {
       notification.classList.add('show');
     }, 100);
-    
+
     setTimeout(() => {
       notification.classList.remove('show');
       setTimeout(() => notification.remove(), 300);

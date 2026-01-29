@@ -23,7 +23,6 @@
 
 /* ===== DESKTOP-ONLY MICRO-INTERACTIONS ===== */
 @media (min-width: 769px) {
-
 /* ===== SMOOTH STATE TRANSITIONS ===== */
 
 /* Universal smooth transitions for interactive elements */
@@ -57,8 +56,8 @@ select:focus, textarea:focus {
 .card:hover, .glass-card:hover, .bento-item:hover,
 .service-card:hover, .portfolio-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15),
-              0 0 0 1px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 12px 24px -8px rgb(0 0 0 / 15%),
+              0 0 0 1px rgb(0 0 0 / 2%);
 }
 
 /* Button hover states (Stripe pattern) */
@@ -70,16 +69,16 @@ select:focus, textarea:focus {
 
 .btn:hover, button:not([disabled]):hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px -2px rgb(0 0 0 / 20%);
 }
 
 .btn:active, button:not([disabled]):active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px -2px rgb(0 0 0 / 15%);
 }
 
 /* Link hover underline animation (Medium pattern) */
-a:not(.btn):not([class*="button"]) {
+a:not(.btn, [class*="button"]) {
   position: relative;
   text-decoration: none;
   background-image: linear-gradient(currentColor, currentColor);
@@ -89,7 +88,7 @@ a:not(.btn):not([class*="button"]) {
   transition: background-size 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-a:not(.btn):not([class*="button"]):hover {
+a:not(.btn, [class*="button"]):hover {
   background-size: 100% 1px;
 }
 
@@ -106,15 +105,15 @@ textarea:focus-visible, [tabindex]:focus-visible {
 
 /* Subtle inner glow on form inputs (Stripe pattern) */
 input:focus, select:focus, textarea:focus {
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1),
-              0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 0 3px rgb(16 185 129 / 10%),
+              0 1px 2px 0 rgb(0 0 0 / 5%);
   border-color: var(--color-primary, #10b981);
 }
 
 /* Button focus with ring (Apple pattern) */
 .btn:focus-visible, button:focus-visible {
-  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15),
-              0 4px 12px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 4px rgb(16 185 129 / 15%),
+              0 4px 12px -2px rgb(0 0 0 / 20%);
 }
 
 /* ===== LOADING STATES ===== */
@@ -137,6 +136,7 @@ input:focus, select:focus, textarea:focus {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -146,7 +146,7 @@ input:focus, select:focus, textarea:focus {
 .spinner {
   width: 20px;
   height: 20px;
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid rgb(0 0 0 / 10%);
   border-top-color: var(--color-primary, #10b981);
   border-radius: 50%;
   animation: spinner-rotate 0.6s linear infinite;
@@ -173,7 +173,7 @@ input:focus, select:focus, textarea:focus {
   width: 16px;
   height: 16px;
   margin: -8px 0 0 -8px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgb(255 255 255 / 30%);
   border-top-color: white;
   border-radius: 50%;
   animation: spinner-rotate 0.6s linear infinite;
@@ -194,16 +194,16 @@ input:focus, select:focus, textarea:focus {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgb(255 255 255 / 50%);
   transform: translate(-50%, -50%);
   transition: width 0.6s, height 0.6s, opacity 0.6s;
-  opacity: 0;
+  opacity: 0%;
 }
 
 .ripple:active::after {
   width: 300px;
   height: 300px;
-  opacity: 1;
+  opacity: 100%;
   transition: 0s;
 }
 
@@ -212,10 +212,11 @@ input:focus, select:focus, textarea:focus {
 /* Success pulse (Stripe pattern) */
 @keyframes success-pulse {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+    box-shadow: 0 0 0 0 rgb(16 185 129 / 40%);
   }
+
   50% {
-    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 8px rgb(16 185 129 / 0%);
   }
 }
 
@@ -238,27 +239,27 @@ input:focus, select:focus, textarea:focus {
 
 /* Fade up on scroll (Apple pattern) */
 [data-animate="fade-up"] {
-  opacity: 0;
+  opacity: 0%;
   transform: translateY(20px);
   transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-animate="fade-up"].visible {
-  opacity: 1;
+  opacity: 100%;
   transform: translateY(0);
 }
 
 /* Scale in (Vercel pattern) */
 [data-animate="scale"] {
-  opacity: 0;
+  opacity: 0%;
   transform: scale(0.95);
   transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-animate="scale"].visible {
-  opacity: 1;
+  opacity: 100%;
   transform: scale(1);
 }
 
@@ -274,7 +275,7 @@ input:focus, select:focus, textarea:focus {
   }
   
   [data-animate] {
-    opacity: 1 !important;
+    opacity: 100% !important;
     transform: none !important;
   }
   
@@ -306,6 +307,9 @@ input:focus, select:focus, textarea:focus {
   .ripple::after {
     display: none;
   }
+}
+
+/* Close desktop media query */
 }
 
 /* ===== HIGH CONTRAST MODE ===== */

@@ -348,7 +348,7 @@ p, .p {
    ULTRA-WIDE MONITORS (21:9, 32:9)
    ==================================== */
 
-@media (min-aspect-ratio: 21/9) {
+@media (min-aspect-ratio: 21 / 9) {
   .container-supreme {
     width: var(--container-ultra);
   }
@@ -364,7 +364,7 @@ p, .p {
   }
 }
 
-@media (min-aspect-ratio: 32/9) {
+@media (min-aspect-ratio: 32 / 9) {
   .grid-fluid-4 {
     grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 20%, 400px), 1fr));
   }
@@ -423,8 +423,8 @@ p, .p {
   
   body {
     font-size: var(--print-font);
-    color: #000;
-    background: #fff;
+    color: #000000;
+    background: #ffffff;
   }
   
   .container-supreme {

@@ -34,7 +34,7 @@ class PWAFeatures {
       // // // // // // // // // // // // // // // console.log('[PWA] App installed successfully'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
       this.deferredPrompt = null;
       this.hideInstallPrompt();
-      
+
       if (window.haptics) {
         window.haptics.trigger('success');
       }
@@ -58,7 +58,7 @@ class PWAFeatures {
     // Don't show on first visit
     const visitCount = parseInt(localStorage.getItem('tillerstead-visit-count') || '0') + 1;
     localStorage.setItem('tillerstead-visit-count', visitCount.toString());
-    
+
     if (visitCount < 2) return;
 
     const banner = document.createElement('div');
@@ -86,7 +86,7 @@ class PWAFeatures {
 
       this.deferredPrompt.prompt();
       const { outcome } = await this.deferredPrompt.userChoice;
-      
+
       // // // // // // // // // // // // // // // console.log(`[PWA] User ${outcome} the install prompt`); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
       this.deferredPrompt = null;
       this.hideInstallPrompt();
@@ -128,7 +128,7 @@ class PWAFeatures {
     }
 
     const permission = await Notification.requestPermission();
-    
+
     if (permission === 'granted') {
       // // // // // // // // // // // // // // // console.log('[PWA] Notification permission granted'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
       await this.subscribeToPush();
@@ -141,7 +141,7 @@ class PWAFeatures {
   async subscribeToPush() {
     try {
       const registration = await navigator.serviceWorker.ready;
-      
+
       // Check if already subscribed
       const existingSubscription = await registration.pushManager.getSubscription();
       if (existingSubscription) {
@@ -159,10 +159,10 @@ class PWAFeatures {
       });
 
       // // // // // // // // // // // // // // // console.log('[PWA] Push subscription created:', subscription); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
-      
+
       // Send subscription to server
       await this.sendSubscriptionToServer(subscription);
-      
+
     } catch (error) {
       console.error('[PWA] Failed to subscribe to push:', error);
     }
@@ -201,7 +201,7 @@ class PWAFeatures {
     // Intercept form submissions
     document.addEventListener('submit', (e) => {
       const form = e.target;
-      
+
       // Only handle contact forms
       if (!form.matches('#contact-form, .contact-form')) {
         return;
@@ -230,9 +230,9 @@ class PWAFeatures {
     try {
       const registration = await navigator.serviceWorker.ready;
       await registration.sync.register('form-sync');
-      
+
       this.showOfflineMessage('Your message will be sent when you\'re back online');
-      
+
       if (window.haptics) {
         window.haptics.trigger('success');
       }
@@ -248,10 +248,10 @@ class PWAFeatures {
     toast.textContent = message;
     toast.setAttribute('role', 'status');
     toast.setAttribute('aria-live', 'polite');
-    
+
     document.body.appendChild(toast);
     setTimeout(() => toast.classList.add('show'), 100);
-    
+
     setTimeout(() => {
       toast.classList.remove('show');
       setTimeout(() => toast.remove(), 300);

@@ -1,13 +1,13 @@
 /**
  * Unified Navigation System
  * Modern, accessible, and performant navigation
- * 
+ *
  * Features:
  *  - Mobile drawer with smooth animations
  *  - Desktop dropdowns with hover/keyboard support
  *  - Scroll-aware header behavior
  *  - Full accessibility (ARIA, keyboard nav, focus management)
- * 
+ *
  * @version 2.0.0
  */
 
@@ -104,11 +104,11 @@
 
   function openMobileNav() {
     state.navOpen = true;
-    
+
     el.mobileNav.setAttribute('aria-hidden', 'false');
     el.mobileToggle.setAttribute('aria-expanded', 'true');
     el.mobileToggle.classList.add('is-active');
-    
+
     // Smooth entrance animation
     el.mobileNav.style.display = 'block';
     requestAnimationFrame(() => {
@@ -127,11 +127,11 @@
 
   function closeMobileNav() {
     state.navOpen = false;
-    
+
     el.mobileNav.setAttribute('aria-hidden', 'true');
     el.mobileToggle.setAttribute('aria-expanded', 'false');
     el.mobileToggle.classList.remove('is-active');
-    
+
     // Smooth exit animation
     el.mobileNav.classList.remove('is-open');
     setTimeout(() => {
@@ -148,7 +148,7 @@
   // ===== DESKTOP DROPDOWNS =====
   function setupDesktopDropdowns() {
     const dropdowns = document.querySelectorAll('.desktop-nav__item--dropdown');
-    
+
     dropdowns.forEach(item => {
       const trigger = item.querySelector('.desktop-nav__trigger');
       const menu = item.querySelector('.desktop-nav__dropdown');
@@ -173,10 +173,10 @@
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
         const isOpen = trigger.getAttribute('aria-expanded') === 'true';
-        
+
         // Close all others
         closeAllDropdowns();
-        
+
         if (!isOpen) {
           openDropdown(trigger, menu);
         }
@@ -231,7 +231,7 @@
   // ===== MOBILE ACCORDIONS =====
   function setupMobileAccordions() {
     const triggers = document.querySelectorAll('.mobile-nav__accordion-trigger');
-    
+
     triggers.forEach(trigger => {
       trigger.addEventListener('click', () => {
         const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
@@ -267,7 +267,7 @@
 
     window.addEventListener('scroll', () => {
       clearTimeout(scrollTimeout);
-      
+
       scrollTimeout = setTimeout(() => {
         const currentScroll = window.scrollY;
         const scrolled = currentScroll > 50;
@@ -296,10 +296,10 @@
 
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimeout);
-      
+
       resizeTimeout = setTimeout(() => {
         const isMobile = window.innerWidth < CONFIG.MOBILE_BREAKPOINT;
-        
+
         // Close everything when switching viewports
         if (!isMobile) {
           closeMobileNav();

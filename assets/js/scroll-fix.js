@@ -37,10 +37,10 @@
     mutations.forEach((mutation) => {
       if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
         const hasNavOpen = document.body.classList.contains('nav-open');
-        
+
         if (hasNavOpen !== navIsOpen) {
           navIsOpen = hasNavOpen;
-          
+
           if (navIsOpen) {
             disableBodyScroll();
           } else {
@@ -66,7 +66,7 @@
       if (!isMobile() && navIsOpen) {
         document.body.classList.remove('nav-open');
         enableBodyScroll();
-        
+
         // Close mobile nav drawer
         const mobileNav = document.getElementById('mobile-nav-drawer');
         if (mobileNav) {

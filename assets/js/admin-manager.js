@@ -1,6 +1,6 @@
 /**
  * TillerPro™ Admin Manager
- * 
+ *
  * Enterprise admin panel for system configuration
  * - Company information editing
  * - Legal text management
@@ -8,24 +8,24 @@
  * - Branding customization
  * - Feature toggles
  * - Settings import/export
- * 
+ *
  * Value Add: +$30K-$50K per license
- * 
+ *
  * @requires TillerProConfig
  */
 
 (function () {
-  'use strict'
+  'use strict';
 
   /**
    * Admin Manager
    */
   class AdminManager {
     constructor () {
-      this.config = window.TillerProConfig || {}
-      this.settings = this.loadSettings()
-      
-      this.init()
+      this.config = window.TillerProConfig || {};
+      this.settings = this.loadSettings();
+
+      this.init();
     }
 
     /**
@@ -33,14 +33,14 @@
      */
     init () {
       // Populate all form fields
-      this.populateCompanyInfo()
-      this.populateDisclaimers()
-      this.populateTerms()
-      this.populatePricing()
-      this.populateBranding()
-      this.populateFeatures()
+      this.populateCompanyInfo();
+      this.populateDisclaimers();
+      this.populateTerms();
+      this.populatePricing();
+      this.populateBranding();
+      this.populateFeatures();
 
-      console.log('[Admin] Initialized')
+      console.log('[Admin] Initialized');
     }
 
     /**
@@ -49,32 +49,32 @@
     switchTab (tabName) {
       // Update tab buttons
       document.querySelectorAll('.admin-tab').forEach(tab => {
-        tab.classList.remove('active')
-      })
-      event.target.classList.add('active')
+        tab.classList.remove('active');
+      });
+      event.target.classList.add('active');
 
       // Update tab content
       document.querySelectorAll('.tab-content').forEach(content => {
-        content.classList.remove('active')
-      })
-      document.getElementById(`tab-${tabName}`).classList.add('active')
+        content.classList.remove('active');
+      });
+      document.getElementById(`tab-${tabName}`).classList.add('active');
     }
 
     /**
      * Company Info
      */
     populateCompanyInfo () {
-      const company = this.config.company || {}
+      const company = this.config.company || {};
 
-      document.getElementById('company-name').value = company.name || ''
-      document.getElementById('company-license').value = company.license || ''
-      document.getElementById('company-owner').value = company.owner || ''
-      document.getElementById('company-email').value = company.email || ''
-      document.getElementById('company-phone').value = company.phone || ''
-      document.getElementById('company-address').value = company.address?.street || ''
-      document.getElementById('company-city').value = company.address?.city || ''
-      document.getElementById('company-state').value = company.address?.state || ''
-      document.getElementById('company-zip').value = company.address?.zip || ''
+      document.getElementById('company-name').value = company.name || '';
+      document.getElementById('company-license').value = company.license || '';
+      document.getElementById('company-owner').value = company.owner || '';
+      document.getElementById('company-email').value = company.email || '';
+      document.getElementById('company-phone').value = company.phone || '';
+      document.getElementById('company-address').value = company.address?.street || '';
+      document.getElementById('company-city').value = company.address?.city || '';
+      document.getElementById('company-state').value = company.address?.state || '';
+      document.getElementById('company-zip').value = company.address?.zip || '';
     }
 
     saveCompanyInfo () {
@@ -90,28 +90,28 @@
           state: document.getElementById('company-state').value,
           zip: document.getElementById('company-zip').value
         }
-      }
+      };
 
       // Validate required fields
       if (!company.name || !company.email || !company.phone) {
-        alert('Please fill in all required fields (marked with *)')
-        return
+        alert('Please fill in all required fields (marked with *)');
+        return;
       }
 
       // Save to settings
-      this.settings.company = company
-      this.saveSettings()
-      this.showSuccess()
+      this.settings.company = company;
+      this.saveSettings();
+      this.showSuccess();
 
-      console.log('[Admin] Company info saved:', company)
+      console.log('[Admin] Company info saved:', company);
     }
 
     /**
      * Legal Disclaimers
      */
     populateDisclaimers () {
-      const disclaimers = this.config.legal?.disclaimers || []
-      const container = document.getElementById('disclaimers-container')
+      const disclaimers = this.config.legal?.disclaimers || [];
+      const container = document.getElementById('disclaimers-container');
 
       container.innerHTML = disclaimers.map((disclaimer, index) => `
         <div class="legal-editor" style="margin-bottom: 1rem;">
@@ -132,66 +132,66 @@
             </div>
           </div>
         </div>
-      `).join('')
+      `).join('');
     }
 
     saveDisclaimers () {
-      const disclaimers = []
-      const editors = document.querySelectorAll('[data-disclaimer-index]')
+      const disclaimers = [];
+      const editors = document.querySelectorAll('[data-disclaimer-index]');
 
       // Group by index
-      const byIndex = {}
+      const byIndex = {};
       editors.forEach(el => {
-        const index = el.getAttribute('data-disclaimer-index')
-        const field = el.getAttribute('data-field')
-        
-        if (!byIndex[index]) byIndex[index] = {}
-        byIndex[index][field] = el.value
-      })
+        const index = el.getAttribute('data-disclaimer-index');
+        const field = el.getAttribute('data-field');
+
+        if (!byIndex[index]) byIndex[index] = {};
+        byIndex[index][field] = el.value;
+      });
 
       // Build array
       Object.keys(byIndex).forEach(index => {
         disclaimers.push({
           title: byIndex[index].title || '',
           content: byIndex[index].content || ''
-        })
-      })
+        });
+      });
 
-      this.settings.legal = this.settings.legal || {}
-      this.settings.legal.disclaimers = disclaimers
-      this.saveSettings()
-      this.showSuccess()
+      this.settings.legal = this.settings.legal || {};
+      this.settings.legal.disclaimers = disclaimers;
+      this.saveSettings();
+      this.showSuccess();
 
-      console.log('[Admin] Disclaimers saved:', disclaimers.length)
+      console.log('[Admin] Disclaimers saved:', disclaimers.length);
     }
 
     addDisclaimer () {
-      if (!this.settings.legal) this.settings.legal = {}
-      if (!this.settings.legal.disclaimers) this.settings.legal.disclaimers = []
+      if (!this.settings.legal) this.settings.legal = {};
+      if (!this.settings.legal.disclaimers) this.settings.legal.disclaimers = [];
 
       this.settings.legal.disclaimers.push({
         title: 'New Disclaimer',
         content: 'Enter disclaimer text here...'
-      })
+      });
 
-      this.saveSettings()
-      this.populateDisclaimers()
+      this.saveSettings();
+      this.populateDisclaimers();
     }
 
     removeDisclaimer (index) {
-      if (!confirm('Remove this disclaimer?')) return
+      if (!confirm('Remove this disclaimer?')) return;
 
-      this.settings.legal.disclaimers.splice(index, 1)
-      this.saveSettings()
-      this.populateDisclaimers()
+      this.settings.legal.disclaimers.splice(index, 1);
+      this.saveSettings();
+      this.populateDisclaimers();
     }
 
     /**
      * Contract Terms
      */
     populateTerms () {
-      const terms = this.config.legal?.terms || []
-      const container = document.getElementById('terms-container')
+      const terms = this.config.legal?.terms || [];
+      const container = document.getElementById('terms-container');
 
       container.innerHTML = terms.map((term, index) => `
         <div class="legal-editor" style="margin-bottom: 1rem;">
@@ -212,72 +212,72 @@
             </div>
           </div>
         </div>
-      `).join('')
+      `).join('');
     }
 
     saveTerms () {
-      const terms = []
-      const editors = document.querySelectorAll('[data-term-index]')
+      const terms = [];
+      const editors = document.querySelectorAll('[data-term-index]');
 
       // Group by index
-      const byIndex = {}
+      const byIndex = {};
       editors.forEach(el => {
-        const index = el.getAttribute('data-term-index')
-        const field = el.getAttribute('data-field')
-        
-        if (!byIndex[index]) byIndex[index] = {}
-        byIndex[index][field] = el.value
-      })
+        const index = el.getAttribute('data-term-index');
+        const field = el.getAttribute('data-field');
+
+        if (!byIndex[index]) byIndex[index] = {};
+        byIndex[index][field] = el.value;
+      });
 
       // Build array
       Object.keys(byIndex).forEach(index => {
         terms.push({
           title: byIndex[index].title || '',
           content: byIndex[index].content || ''
-        })
-      })
+        });
+      });
 
-      this.settings.legal = this.settings.legal || {}
-      this.settings.legal.terms = terms
-      this.saveSettings()
-      this.showSuccess()
+      this.settings.legal = this.settings.legal || {};
+      this.settings.legal.terms = terms;
+      this.saveSettings();
+      this.showSuccess();
 
-      console.log('[Admin] Terms saved:', terms.length)
+      console.log('[Admin] Terms saved:', terms.length);
     }
 
     addTerm () {
-      if (!this.settings.legal) this.settings.legal = {}
-      if (!this.settings.legal.terms) this.settings.legal.terms = []
+      if (!this.settings.legal) this.settings.legal = {};
+      if (!this.settings.legal.terms) this.settings.legal.terms = [];
 
       this.settings.legal.terms.push({
         title: 'New Term',
         content: 'Enter term text here...'
-      })
+      });
 
-      this.saveSettings()
-      this.populateTerms()
+      this.saveSettings();
+      this.populateTerms();
     }
 
     removeTerm (index) {
-      if (!confirm('Remove this term?')) return
+      if (!confirm('Remove this term?')) return;
 
-      this.settings.legal.terms.splice(index, 1)
-      this.saveSettings()
-      this.populateTerms()
+      this.settings.legal.terms.splice(index, 1);
+      this.saveSettings();
+      this.populateTerms();
     }
 
     /**
      * Pricing Configuration
      */
     populatePricing () {
-      const pricing = this.config.pricing || {}
+      const pricing = this.config.pricing || {};
 
-      document.getElementById('pricing-labor-rate').value = pricing.laborRate || 70
-      document.getElementById('pricing-tile-markup').value = pricing.tileMarkup || 35
-      document.getElementById('pricing-grout-markup').value = pricing.groutMarkup || 40
-      document.getElementById('pricing-mortar-markup').value = pricing.mortarMarkup || 45
-      document.getElementById('pricing-tax-rate').value = pricing.taxRate || 6.625
-      document.getElementById('pricing-deposit').value = pricing.depositPercent || 30
+      document.getElementById('pricing-labor-rate').value = pricing.laborRate || 70;
+      document.getElementById('pricing-tile-markup').value = pricing.tileMarkup || 35;
+      document.getElementById('pricing-grout-markup').value = pricing.groutMarkup || 40;
+      document.getElementById('pricing-mortar-markup').value = pricing.mortarMarkup || 45;
+      document.getElementById('pricing-tax-rate').value = pricing.taxRate || 6.625;
+      document.getElementById('pricing-deposit').value = pricing.depositPercent || 30;
     }
 
     savePricing () {
@@ -288,13 +288,13 @@
         mortarMarkup: parseFloat(document.getElementById('pricing-mortar-markup').value) || 45,
         taxRate: parseFloat(document.getElementById('pricing-tax-rate').value) || 6.625,
         depositPercent: parseFloat(document.getElementById('pricing-deposit').value) || 30
-      }
+      };
 
-      this.settings.pricing = pricing
-      this.saveSettings()
-      this.showSuccess()
+      this.settings.pricing = pricing;
+      this.saveSettings();
+      this.showSuccess();
 
-      console.log('[Admin] Pricing saved:', pricing)
+      console.log('[Admin] Pricing saved:', pricing);
     }
 
     /**
@@ -307,13 +307,13 @@
         { key: 'success', label: 'Success Color', default: '#10b981' },
         { key: 'warning', label: 'Warning Color', default: '#f59e0b' },
         { key: 'danger', label: 'Danger Color', default: '#ef4444' }
-      ]
+      ];
 
-      const branding = this.settings.branding || {}
-      const container = document.getElementById('color-grid')
+      const branding = this.settings.branding || {};
+      const container = document.getElementById('color-grid');
 
       container.innerHTML = colors.map(color => {
-        const value = branding[color.key] || color.default
+        const value = branding[color.key] || color.default;
 
         return `
           <div class="color-field">
@@ -323,33 +323,33 @@
               <input type="text" value="${value}" data-color-hex="${color.key}" onchange="window.adminManager.updateColorPicker('${color.key}', this.value)">
             </div>
           </div>
-        `
-      }).join('')
+        `;
+      }).join('');
     }
 
     updateColorHex (key, value) {
-      document.querySelector(`[data-color-hex="${key}"]`).value = value
+      document.querySelector(`[data-color-hex="${key}"]`).value = value;
     }
 
     updateColorPicker (key, value) {
       if (/^#[0-9A-F]{6}$/i.test(value)) {
-        document.querySelector(`[data-color-key="${key}"]`).value = value
+        document.querySelector(`[data-color-key="${key}"]`).value = value;
       }
     }
 
     saveBranding () {
-      const branding = {}
-      
+      const branding = {};
+
       document.querySelectorAll('[data-color-key]').forEach(input => {
-        const key = input.getAttribute('data-color-key')
-        branding[key] = input.value
-      })
+        const key = input.getAttribute('data-color-key');
+        branding[key] = input.value;
+      });
 
-      this.settings.branding = branding
-      this.saveSettings()
-      this.showSuccess()
+      this.settings.branding = branding;
+      this.saveSettings();
+      this.showSuccess();
 
-      console.log('[Admin] Branding saved:', branding)
+      console.log('[Admin] Branding saved:', branding);
     }
 
     /**
@@ -363,13 +363,13 @@
         { key: 'emailDelivery', label: 'Email Delivery', desc: 'Automatically email quotes to customers' },
         { key: 'pdfGeneration', label: 'PDF Quote Generation', desc: 'Generate professional PDF quotes' },
         { key: 'visualizer', label: 'Tile Pattern Visualizer', desc: 'Interactive tile pattern preview tool' }
-      ]
+      ];
 
-      const settings = this.settings.features || {}
-      const container = document.getElementById('features-container')
+      const settings = this.settings.features || {};
+      const container = document.getElementById('features-container');
 
       container.innerHTML = features.map(feature => {
-        const enabled = settings[feature.key] !== false // Default to true
+        const enabled = settings[feature.key] !== false; // Default to true
 
         return `
           <div class="toggle-field">
@@ -382,38 +382,38 @@
               <span class="slider"></span>
             </label>
           </div>
-        `
-      }).join('')
+        `;
+      }).join('');
     }
 
     saveFeatures () {
-      const features = {}
-      
+      const features = {};
+
       document.querySelectorAll('[data-feature-key]').forEach(input => {
-        const key = input.getAttribute('data-feature-key')
-        features[key] = input.checked
-      })
+        const key = input.getAttribute('data-feature-key');
+        features[key] = input.checked;
+      });
 
-      this.settings.features = features
-      this.saveSettings()
-      this.showSuccess()
+      this.settings.features = features;
+      this.saveSettings();
+      this.showSuccess();
 
-      console.log('[Admin] Features saved:', features)
+      console.log('[Admin] Features saved:', features);
     }
 
     /**
      * Save All Settings
      */
     saveAllSettings () {
-      this.saveCompanyInfo()
-      this.saveDisclaimers()
-      this.saveTerms()
-      this.savePricing()
-      this.saveBranding()
-      this.saveFeatures()
+      this.saveCompanyInfo();
+      this.saveDisclaimers();
+      this.saveTerms();
+      this.savePricing();
+      this.saveBranding();
+      this.saveFeatures();
 
-      this.showSuccess()
-      alert('✅ All settings saved successfully!')
+      this.showSuccess();
+      alert('✅ All settings saved successfully!');
     }
 
     /**
@@ -421,22 +421,22 @@
      */
     resetToDefaults () {
       if (!confirm('This will reset ALL settings to defaults. Are you sure?')) {
-        return
+        return;
       }
 
       if (!confirm('This action cannot be undone. Continue?')) {
-        return
+        return;
       }
 
       // Clear saved settings
-      localStorage.removeItem('tillerpro_admin_settings')
-      this.settings = {}
+      localStorage.removeItem('tillerpro_admin_settings');
+      this.settings = {};
 
       // Reload from config
-      this.config = window.TillerProConfig || {}
-      this.init()
+      this.config = window.TillerProConfig || {};
+      this.init();
 
-      alert('✅ Settings reset to defaults. Refresh the page to see changes.')
+      alert('✅ Settings reset to defaults. Refresh the page to see changes.');
     }
 
     /**
@@ -447,67 +447,67 @@
         version: '1.0.0',
         exportedAt: new Date().toISOString(),
         settings: this.settings
-      }
+      };
 
-      const json = JSON.stringify(data, null, 2)
-      const blob = new Blob([json], { type: 'application/json' })
-      const url = URL.createObjectURL(blob)
+      const json = JSON.stringify(data, null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
 
-      const a = document.createElement('a')
-      a.href = url
-      a.download = `tillerpro-settings-${Date.now()}.json`
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-      URL.revokeObjectURL(url)
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `tillerpro-settings-${Date.now()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
 
-      console.log('[Admin] Settings exported')
+      console.log('[Admin] Settings exported');
     }
 
     importSettings () {
-      const file = document.getElementById('import-file').files[0]
-      if (!file) return
+      const file = document.getElementById('import-file').files[0];
+      if (!file) return;
 
-      const reader = new FileReader()
-      
+      const reader = new FileReader();
+
       reader.onload = (e) => {
         try {
-          const data = JSON.parse(e.target.result)
+          const data = JSON.parse(e.target.result);
 
           if (!data.settings) {
-            alert('Invalid settings file format.')
-            return
+            alert('Invalid settings file format.');
+            return;
           }
 
           if (!confirm('This will overwrite your current settings. Continue?')) {
-            return
+            return;
           }
 
-          this.settings = data.settings
-          this.saveSettings()
-          this.init()
+          this.settings = data.settings;
+          this.saveSettings();
+          this.init();
 
-          alert('✅ Settings imported successfully!')
-          console.log('[Admin] Settings imported:', data)
+          alert('✅ Settings imported successfully!');
+          console.log('[Admin] Settings imported:', data);
         } catch (error) {
-          console.error('[Admin] Import failed:', error)
-          alert('Failed to import settings. Invalid file format.')
+          console.error('[Admin] Import failed:', error);
+          alert('Failed to import settings. Invalid file format.');
         }
-      }
+      };
 
-      reader.readAsText(file)
+      reader.readAsText(file);
     }
 
     /**
      * UI Helpers
      */
     showSuccess () {
-      const msg = document.getElementById('success-message')
-      msg.classList.add('show')
-      
+      const msg = document.getElementById('success-message');
+      msg.classList.add('show');
+
       setTimeout(() => {
-        msg.classList.remove('show')
-      }, 3000)
+        msg.classList.remove('show');
+      }, 3000);
     }
 
     /**
@@ -515,22 +515,22 @@
      */
     loadSettings () {
       try {
-        const data = localStorage.getItem('tillerpro_admin_settings')
-        return data ? JSON.parse(data) : {}
+        const data = localStorage.getItem('tillerpro_admin_settings');
+        return data ? JSON.parse(data) : {};
       } catch (e) {
-        console.error('[Admin] Failed to load settings:', e)
-        return {}
+        console.error('[Admin] Failed to load settings:', e);
+        return {};
       }
     }
 
     saveSettings () {
       try {
-        localStorage.setItem('tillerpro_admin_settings', JSON.stringify(this.settings))
+        localStorage.setItem('tillerpro_admin_settings', JSON.stringify(this.settings));
 
         // Update TillerProConfig with new settings
-        this.applySettingsToConfig()
+        this.applySettingsToConfig();
       } catch (e) {
-        console.error('[Admin] Failed to save settings:', e)
+        console.error('[Admin] Failed to save settings:', e);
       }
     }
 
@@ -540,29 +540,29 @@
     applySettingsToConfig () {
       // Merge settings into config
       if (this.settings.company) {
-        Object.assign(window.TillerProConfig.company, this.settings.company)
+        Object.assign(window.TillerProConfig.company, this.settings.company);
       }
 
       if (this.settings.legal) {
-        Object.assign(window.TillerProConfig.legal, this.settings.legal)
+        Object.assign(window.TillerProConfig.legal, this.settings.legal);
       }
 
       if (this.settings.pricing) {
-        Object.assign(window.TillerProConfig.pricing, this.settings.pricing)
+        Object.assign(window.TillerProConfig.pricing, this.settings.pricing);
       }
 
       if (this.settings.branding) {
         // Apply branding to CSS variables
         Object.keys(this.settings.branding).forEach(key => {
-          document.documentElement.style.setProperty(`--color-${key}`, this.settings.branding[key])
-        })
+          document.documentElement.style.setProperty(`--color-${key}`, this.settings.branding[key]);
+        });
       }
 
       if (this.settings.features) {
-        window.TillerProConfig.features = this.settings.features
+        window.TillerProConfig.features = this.settings.features;
       }
 
-      console.log('[Admin] Settings applied to config')
+      console.log('[Admin] Settings applied to config');
     }
   }
 
@@ -572,67 +572,67 @@
   window.switchTab = function (tabName) {
     // Update tab buttons
     document.querySelectorAll('.admin-tab').forEach(tab => {
-      tab.classList.remove('active')
-    })
-    event.target.classList.add('active')
+      tab.classList.remove('active');
+    });
+    event.target.classList.add('active');
 
     // Update tab content
     document.querySelectorAll('.tab-content').forEach(content => {
-      content.classList.remove('active')
-    })
-    document.getElementById(`tab-${tabName}`).classList.add('active')
-  }
+      content.classList.remove('active');
+    });
+    document.getElementById(`tab-${tabName}`).classList.add('active');
+  };
 
   window.saveCompanyInfo = function () {
-    window.adminManager.saveCompanyInfo()
-  }
+    window.adminManager.saveCompanyInfo();
+  };
 
   window.saveDisclaimers = function () {
-    window.adminManager.saveDisclaimers()
-  }
+    window.adminManager.saveDisclaimers();
+  };
 
   window.addDisclaimer = function () {
-    window.adminManager.addDisclaimer()
-  }
+    window.adminManager.addDisclaimer();
+  };
 
   window.saveTerms = function () {
-    window.adminManager.saveTerms()
-  }
+    window.adminManager.saveTerms();
+  };
 
   window.addTerm = function () {
-    window.adminManager.addTerm()
-  }
+    window.adminManager.addTerm();
+  };
 
   window.savePricing = function () {
-    window.adminManager.savePricing()
-  }
+    window.adminManager.savePricing();
+  };
 
   window.saveBranding = function () {
-    window.adminManager.saveBranding()
-  }
+    window.adminManager.saveBranding();
+  };
 
   window.saveFeatures = function () {
-    window.adminManager.saveFeatures()
-  }
+    window.adminManager.saveFeatures();
+  };
 
   window.saveAllSettings = function () {
-    window.adminManager.saveAllSettings()
-  }
+    window.adminManager.saveAllSettings();
+  };
 
   window.resetToDefaults = function () {
-    window.adminManager.resetToDefaults()
-  }
+    window.adminManager.resetToDefaults();
+  };
 
   window.exportSettings = function () {
-    window.adminManager.exportSettings()
-  }
+    window.adminManager.exportSettings();
+  };
 
   window.importSettings = function () {
-    window.adminManager.importSettings()
-  }
+    window.adminManager.importSettings();
+  };
 
   // Initialize
-  window.adminManager = new AdminManager()
+  window.adminManager = new AdminManager();
 
-  console.log('[Admin Manager] Loaded and initialized')
-})()
+  console.log('[Admin Manager] Loaded and initialized');
+})();

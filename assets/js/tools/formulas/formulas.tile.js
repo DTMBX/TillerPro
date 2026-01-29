@@ -1,9 +1,9 @@
 /**
  * Tillerstead Formula Library - Tile Quantity Formulas
- * 
+ *
  * All formulas are mathematically derived from geometry.
  * Waste factors are user-configurable defaults based on industry practice.
- * 
+ *
  * @module formulas.tile
  */
 
@@ -43,7 +43,7 @@ export const TILE_FORMULA_INFO = {
  * - Room complexity (corners, obstacles)
  * - Tile quality/variation
  * - Installer experience
- * 
+ *
  * @type {Object<string, { min: number, max: number, typical: number, note: string }>}
  */
 export const WASTE_FACTORS = {
@@ -97,7 +97,7 @@ export const WASTE_FACTORS = {
 
 /**
  * Calculate area of a single tile in square feet
- * 
+ *
  * @param {number} widthInches - Tile width in inches
  * @param {number} heightInches - Tile height (length) in inches
  * @returns {number} Area in square feet
@@ -109,7 +109,7 @@ export function calculateTileArea(widthInches, heightInches) {
 
 /**
  * Determine if tile is large-format (any side >= 15" per industry definition)
- * 
+ *
  * @param {number} widthInches
  * @param {number} heightInches
  * @returns {boolean}
@@ -122,7 +122,7 @@ export function isLargeFormat(widthInches, heightInches) {
 
 /**
  * Determine if tile is a plank format (length >= 3x width)
- * 
+ *
  * @param {number} widthInches
  * @param {number} heightInches
  * @returns {boolean}
@@ -138,19 +138,19 @@ export function isPlankFormat(widthInches, heightInches) {
 
 /**
  * Calculate tile quantity needed for a project
- * 
+ *
  * FORMULA: tiles = (area * (1 + waste%)) / tileArea
- * 
+ *
  * @param {Object} params
  * @param {number} params.areaSqFt - Total area to tile in square feet
  * @param {number} params.tileWidthInches - Tile width in inches
  * @param {number} params.tileHeightInches - Tile height in inches
  * @param {number} params.wastePercent - Waste factor as percentage (e.g., 10 for 10%)
- * @returns {{ 
- *   valid: boolean, 
- *   errors: string[], 
- *   tiles: number, 
- *   areaWithWaste: number, 
+ * @returns {{
+ *   valid: boolean,
+ *   errors: string[],
+ *   tiles: number,
+ *   areaWithWaste: number,
  *   tileAreaSqFt: number,
  *   assumptions: string[]
  * }}
@@ -205,9 +205,9 @@ export function calculateTileQuantity({
 
 /**
  * Calculate boxes/cartons needed
- * 
+ *
  * User must provide either tiles per box OR sq ft per box (from product packaging)
- * 
+ *
  * @param {Object} params
  * @param {number} params.tilesNeeded - Total tiles needed (from calculateTileQuantity)
  * @param {number} [params.tilesPerBox] - Tiles per box (from packaging)
@@ -276,7 +276,7 @@ export function calculateBoxesNeeded({
 /**
  * Calculate mosaic sheet quantity
  * Mosaic tiles come on sheets with pre-determined coverage
- * 
+ *
  * @param {Object} params
  * @param {number} params.areaSqFt - Area to cover
  * @param {number} params.sheetCoverageSqFt - Coverage per sheet (from packaging)

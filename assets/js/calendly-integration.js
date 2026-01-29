@@ -52,7 +52,7 @@
      */
     renderWidget: function(container, options) {
       const settings = { ...this.config, ...options };
-      
+
       window.Calendly.initInlineWidget({
         url: settings.url,
         parentElement: container,
@@ -103,15 +103,15 @@
      */
     attachToButtons: function() {
       const buttons = document.querySelectorAll('[data-calendly]');
-      
+
       buttons.forEach(button => {
         button.addEventListener('click', (e) => {
           e.preventDefault();
-          
+
           const url = button.dataset.calendly || this.config.url;
           const prefillName = button.dataset.calendlyName || '';
           const prefillEmail = button.dataset.calendlyEmail || '';
-          
+
           this.openPopup({
             url: url,
             prefill: {
@@ -165,7 +165,7 @@
           event_label: label
         });
       }
-      
+
       if (typeof ga !== 'undefined') {
         ga('send', 'event', 'Calendly', action, label);
       }

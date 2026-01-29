@@ -1,9 +1,9 @@
 /**
  * Tillerstead Formula Library - Rounding Module
- * 
+ *
  * Standard rounding strategies for material calculations.
  * Round UP for materials to ensure sufficient quantity.
- * 
+ *
  * @module rounding
  */
 

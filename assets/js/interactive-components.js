@@ -1,7 +1,7 @@
 /**
  * INTERACTIVE COMPONENTS - Premium Features
  * Tillerstead.com - Phase 2 Implementation
- * 
+ *
  * Features:
  * - FAQ Accordion with smooth animations
  * - Before/After Image Slider
@@ -37,14 +37,14 @@ class InteractiveComponents {
    */
   setupFAQAccordion() {
     const accordions = document.querySelectorAll('[data-accordion]');
-    
+
     accordions.forEach(accordion => {
       const items = accordion.querySelectorAll('[data-accordion-item]');
-      
+
       items.forEach((item, index) => {
         const trigger = item.querySelector('[data-accordion-trigger]');
         const content = item.querySelector('[data-accordion-content]');
-        
+
         if (!trigger || !content) return;
 
         // Set up ARIA attributes
@@ -60,7 +60,7 @@ class InteractiveComponents {
         trigger.addEventListener('click', (e) => {
           e.preventDefault();
           const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
-          
+
           // Close all items if you want exclusive accordion behavior
           const closeOthers = accordion.hasAttribute('data-accordion-exclusive');
           if (closeOthers) {
@@ -103,11 +103,11 @@ class InteractiveComponents {
    */
   setupBeforeAfterSlider() {
     const sliders = document.querySelectorAll('[data-before-after]');
-    
+
     sliders.forEach(slider => {
       const handle = slider.querySelector('[data-ba-handle]');
       const overlay = slider.querySelector('[data-ba-overlay]');
-      
+
       if (!handle || !overlay) return;
 
       let isDragging = false;
@@ -118,7 +118,7 @@ class InteractiveComponents {
         const rect = slider.getBoundingClientRect();
         const relativeX = Math.max(0, Math.min(x - rect.left, rect.width));
         currentPosition = (relativeX / rect.width) * 100;
-        
+
         overlay.style.clipPath = `inset(0 ${100 - currentPosition}% 0 0)`;
         handle.style.left = `${currentPosition}%`;
       };
@@ -172,11 +172,11 @@ class InteractiveComponents {
    */
   setupPricingCalculator() {
     const calculators = document.querySelectorAll('[data-pricing-calculator]');
-    
+
     calculators.forEach(calculator => {
       const inputs = calculator.querySelectorAll('[data-calc-input]');
       const output = calculator.querySelector('[data-calc-output]');
-      
+
       if (!output) return;
 
       const calculate = () => {
@@ -187,7 +187,7 @@ class InteractiveComponents {
           const name = input.name || input.dataset.calcInput;
           const value = parseFloat(input.value) || 0;
           const multiplier = parseFloat(input.dataset.multiplier) || 1;
-          
+
           values[name] = value;
           total += value * multiplier;
         });
@@ -198,7 +198,7 @@ class InteractiveComponents {
 
         // Format and display
         output.textContent = `$${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        
+
         // Emit custom event
         calculator.dispatchEvent(new CustomEvent('calculationUpdate', {
           detail: { total, values }
@@ -235,7 +235,7 @@ class InteractiveComponents {
       const toast = document.createElement('div');
       toast.className = `toast toast--${type}`;
       toast.setAttribute('role', 'status');
-      
+
       const icons = {
         success: '✓',
         error: '✕',
@@ -276,14 +276,14 @@ class InteractiveComponents {
    */
   setupImageGallery() {
     const galleries = document.querySelectorAll('[data-gallery]');
-    
+
     galleries.forEach(gallery => {
       const images = gallery.querySelectorAll('[data-gallery-item]');
-      
+
       images.forEach((img, index) => {
         img.style.cursor = 'pointer';
         img.setAttribute('tabindex', '0');
-        
+
         const openLightbox = () => {
           this.openImageLightbox(images, index);
         };
@@ -301,13 +301,13 @@ class InteractiveComponents {
 
   openImageLightbox(images, startIndex) {
     let currentIndex = startIndex;
-    
+
     const lightbox = document.createElement('div');
     lightbox.className = 'lightbox';
     lightbox.setAttribute('role', 'dialog');
     lightbox.setAttribute('aria-modal', 'true');
     lightbox.setAttribute('aria-label', 'Image gallery');
-    
+
     lightbox.innerHTML = `
       <div class="lightbox__backdrop"></div>
       <div class="lightbox__content">
@@ -323,7 +323,7 @@ class InteractiveComponents {
       const img = images[currentIndex];
       const lightboxImg = lightbox.querySelector('.lightbox__image');
       const counter = lightbox.querySelector('.lightbox__counter');
-      
+
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt || '';
       counter.textContent = `${currentIndex + 1} / ${images.length}`;
@@ -355,7 +355,7 @@ class InteractiveComponents {
       if (e.key === 'Escape') close();
       if (e.key === 'ArrowLeft') prev();
       if (e.key === 'ArrowRight') next();
-      
+
       if (e.key === 'Escape') {
         document.removeEventListener('keydown', lightboxKeyHandler);
       }
@@ -364,7 +364,7 @@ class InteractiveComponents {
     document.body.appendChild(lightbox);
     document.body.style.overflow = 'hidden';
     updateImage();
-    
+
     requestAnimationFrame(() => {
       lightbox.classList.add('lightbox--show');
     });

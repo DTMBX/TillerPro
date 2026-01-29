@@ -19,7 +19,7 @@
     init() {
       // Check system preference
       this.checkSystemPreferences();
-      
+
       // Apply saved preference
       if (this.enabled || this.reducedMotion) {
         this.enable();
@@ -61,7 +61,7 @@
     enable() {
       this.enabled = true;
       localStorage.setItem(PERF_KEY, 'true');
-      
+
       // Add performance class to html
       document.documentElement.classList.add('performance-mode');
       document.documentElement.classList.add('reduce-motion');
@@ -81,7 +81,7 @@
 
       this.enabled = false;
       localStorage.setItem(PERF_KEY, 'false');
-      
+
       // Remove performance class
       document.documentElement.classList.remove('performance-mode');
       document.documentElement.classList.remove('reduce-motion');

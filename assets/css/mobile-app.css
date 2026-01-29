@@ -3,7 +3,7 @@
   /* DISABLED: Causing content visibility issues */
   display: none !important;
   visibility: hidden !important;
-  opacity: 0 !important;
+  opacity: 0% !important;
   pointer-events: none !important;
   position: fixed;
   bottom: 0;
@@ -86,7 +86,7 @@ body.has-bottom-nav {
   /* DISABLED: Causing content visibility issues */
   display: none !important;
   visibility: hidden !important;
-  opacity: 0 !important;
+  opacity: 0% !important;
   pointer-events: none !important;
   position: fixed;
   bottom: calc(90px + env(safe-area-inset-bottom));

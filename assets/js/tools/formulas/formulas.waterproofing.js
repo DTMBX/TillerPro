@@ -1,9 +1,9 @@
 /**
  * Tillerstead Formula Library - Waterproofing Formulas
- * 
+ *
  * Coverage rates sourced from manufacturer TDS documents.
  * All products include source citations.
- * 
+ *
  * @module formulas.waterproofing
  */
 
@@ -63,7 +63,7 @@ export const WATERPROOFING_FORMULA_INFO = {
 
 /**
  * Waterproofing product specifications from manufacturer TDS
- * 
+ *
  * IMPORTANT: All coverage values are from official TDS documents.
  * Coverage is for complete waterproofing (2 coats for liquid).
  */
@@ -261,7 +261,7 @@ export const WATERPROOF_MOVEMENT_JOINTS = {
 
 /**
  * Calculate waterproofing materials needed
- * 
+ *
  * @param {Object} params
  * @param {string} params.productId - Product ID from WP_PRODUCTS
  * @param {number} params.areaSqFt - Total area to waterproof in square feet

@@ -2,7 +2,7 @@
  * Tillerstead Animation Engine
  * High-performance, vanilla JS animation system
  * Inspired by: GSAP, Framer Motion, Motion One
- * 
+ *
  * Features:
  * - Intersection Observer scroll animations
  * - Magnetic hover effects (Stripe-inspired)
@@ -19,23 +19,23 @@
   // ====
   // CONFIGURATION
   // ====
-  
+
   const CONFIG = {
     // Intersection Observer thresholds
     scrollThreshold: 0.15,
-    
+
     // Animation timing
     defaultDuration: 600,
     staggerDelay: 100,
-    
+
     // Magnetic effect settings
     magneticStrength: 0.3,
     magneticRadius: 100,
-    
+
     // Tilt effect settings
     tiltMaxAngle: 8,
     tiltPerspective: 1000,
-    
+
     // Debug mode
     debug: false
   };
@@ -120,8 +120,8 @@
     const c3 = c1 + 1;
     return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
   };
-  const easeInOutQuint = (t) => t < 0.5 
-    ? 16 * t * t * t * t * t 
+  const easeInOutQuint = (t) => t < 0.5
+    ? 16 * t * t * t * t * t
     : 1 - Math.pow(-2 * t + 2, 5) / 2;
 
   // ====
@@ -159,7 +159,7 @@
       const selectors = [
         '.animate-on-scroll',
         '.scroll-fade-in',
-        '.scroll-scale-in', 
+        '.scroll-scale-in',
         '.scroll-slide-left',
         '.scroll-slide-right',
         '.stagger-children',
@@ -175,10 +175,10 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const el = entry.target;
-          
+
           // Add visible class
           el.classList.add('is-visible');
-          
+
           // Handle data-animate attribute
           const animationType = el.dataset.animate;
           if (animationType) {
@@ -453,7 +453,7 @@
     splitText(el) {
       const text = el.textContent;
       const splitType = el.dataset.splitText || 'chars'; // 'chars' or 'words'
-      
+
       if (splitType === 'words') {
         const words = text.split(' ');
         // XSS-safe: Create spans without innerHTML
@@ -538,7 +538,7 @@
       document.querySelectorAll('[data-reveal]').forEach((el, index) => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
-        
+
         setTimeout(() => {
           el.style.transition = 'opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
           el.style.opacity = '1';
@@ -609,7 +609,7 @@
         const elementMiddle = offsetTop + rect.height / 2;
         const viewportMiddle = scrollY + window.innerHeight / 2;
         const distance = elementMiddle - viewportMiddle;
-        
+
         const translateY = distance * speed * -1;
         el.style.transform = `translateY(${translateY}px)`;
       });
@@ -628,7 +628,7 @@
     } = options;
 
     const elements = document.querySelectorAll(selector);
-    
+
     elements.forEach((el, index) => {
       el.style.animationDelay = `${index * delay}ms`;
       el.style.animationDuration = `${duration}ms`;

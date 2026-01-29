@@ -8,7 +8,7 @@ function showProjectPlanner() {
   const toolSection = document.getElementById('active-tool');
   const toolTitle = document.getElementById('tool-title');
   const toolContent = document.getElementById('tool-content');
-  
+
   toolTitle.textContent = '📊 Project Planner';
   toolContent.innerHTML = getProjectPlannerHTML();
   toolSection.style.display = 'block';
@@ -19,7 +19,7 @@ function showBudgetCalculator() {
   const toolSection = document.getElementById('active-tool');
   const toolTitle = document.getElementById('tool-title');
   const toolContent = document.getElementById('tool-content');
-  
+
   toolTitle.textContent = '💰 Budget Calculator';
   toolContent.innerHTML = getBudgetCalculatorHTML();
   toolSection.style.display = 'block';
@@ -31,7 +31,7 @@ function showMaintenanceGuide() {
   const toolSection = document.getElementById('active-tool');
   const toolTitle = document.getElementById('tool-title');
   const toolContent = document.getElementById('tool-content');
-  
+
   toolTitle.textContent = '🧼 Tile Maintenance Guide';
   toolContent.innerHTML = getMaintenanceGuideHTML();
   toolSection.style.display = 'block';
@@ -42,7 +42,7 @@ function showContractorChecklist() {
   const toolSection = document.getElementById('active-tool');
   const toolTitle = document.getElementById('tool-title');
   const toolContent = document.getElementById('tool-content');
-  
+
   toolTitle.textContent = '📋 Contractor Selection Checklist';
   toolContent.innerHTML = getContractorChecklistHTML();
   toolSection.style.display = 'block';
@@ -53,7 +53,7 @@ function showLocalSuppliers() {
   const toolSection = document.getElementById('active-tool');
   const toolTitle = document.getElementById('tool-title');
   const toolContent = document.getElementById('tool-content');
-  
+
   toolTitle.textContent = '📍 South Jersey Tile Suppliers';
   toolContent.innerHTML = getLocalSuppliersHTML();
   toolSection.style.display = 'block';
@@ -64,7 +64,7 @@ function showPermitHelper() {
   const toolSection = document.getElementById('active-tool');
   const toolTitle = document.getElementById('tool-title');
   const toolContent = document.getElementById('tool-content');
-  
+
   toolTitle.textContent = '🏛️ NJ Permit Requirements';
   toolContent.innerHTML = getPermitHelperHTML();
   toolSection.style.display = 'block';
@@ -81,7 +81,7 @@ function showArticle(articleType) {
   const toolSection = document.getElementById('active-tool');
   const toolTitle = document.getElementById('tool-title');
   const toolContent = document.getElementById('tool-content');
-  
+
   const articles = {
     'timeline': {
       title: '⏱️ Bathroom Remodel Timeline',
@@ -96,7 +96,7 @@ function showArticle(articleType) {
       content: getShowerComparisonHTML()
     }
   };
-  
+
   const article = articles[articleType];
   if (article) {
     toolTitle.textContent = article.title;
@@ -491,34 +491,34 @@ function calculateBudget() {
   const scope = parseFloat(document.getElementById('project-scope').value);
   const tileQuality = parseInt(document.getElementById('tile-quality').value);
   const showerType = parseInt(document.getElementById('shower-type').value);
-  
+
   const radiantHeat = document.getElementById('radiant-heat').checked;
   const niche = document.getElementById('niche').checked;
   const bench = document.getElementById('bench').checked;
-  
+
   // Base calculation
   let baseCost = size * 100 * scope; // $100/sqft base
-  
+
   // Tile material upgrade/downgrade
   const tileDiff = (tileQuality - 7) * size * 0.5;
   baseCost += tileDiff;
-  
+
   // Shower cost
   baseCost += showerType;
-  
+
   // Add-ons
   if (radiantHeat) baseCost += 1500;
   if (niche) baseCost += 600;
   if (bench) baseCost += 900;
-  
+
   const lowRange = Math.round(baseCost * 0.85);
   const highRange = Math.round(baseCost * 1.15);
-  
+
   // Breakdown
   const labor = Math.round(baseCost * 0.45);
   const materials = Math.round(baseCost * 0.40);
   const fixtures = Math.round(baseCost * 0.15);
-  
+
   const resultsHTML = `
     <h3>Estimated Project Cost</h3>
     <div class="budget-range">$${lowRange.toLocaleString()} - $${highRange.toLocaleString()}</div>
@@ -544,7 +544,7 @@ function calculateBudget() {
       <a href="/contact/" class="btn" style="background: white; color: #10b981; padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; display: inline-block; font-weight: 600;">Get Free Estimate</a>
     </div>
   `;
-  
+
   document.getElementById('budget-results').innerHTML = resultsHTML;
 }
 
@@ -1628,16 +1628,16 @@ function evaluatePermitNeed() {
   const q2 = document.querySelector('input[name="q2"]:checked');
   const q3 = document.querySelector('input[name="q3"]:checked');
   const q4 = document.querySelector('input[name="q4"]:checked');
-  
+
   if (!q1 || !q2 || !q3 || !q4) {
     alert('Please answer all questions');
     return;
   }
-  
+
   const needsPermit = q1.value === 'yes' || q2.value === 'yes' || q3.value === 'yes' || q4.value === 'yes';
-  
+
   const resultDiv = document.getElementById('permit-result');
-  
+
   if (needsPermit) {
     resultDiv.style.background = '#fee2e2';
     resultDiv.style.borderLeft = '4px solid #ef4444';

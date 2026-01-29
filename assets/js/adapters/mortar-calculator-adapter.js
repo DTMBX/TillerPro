@@ -2,7 +2,7 @@
  * Mortar Calculator Adapter
  * Wraps existing mortar calculator to integrate with unified ProjectState
  * Auto-recommends trowel size based on tile dimensions from state
- * 
+ *
  * @module adapters/mortar-calculator-adapter
  * @version 1.0.0
  */
@@ -19,13 +19,13 @@
 
     init() {
       if (this.initialized) return;
-      
+
       console.log('[MortarAdapter] Initializing...');
-      
+
       this.cacheElements();
       this.restoreFromState();
       this.bindEvents();
-      
+
       this.initialized = true;
       console.log('[MortarAdapter] Ready');
     }
@@ -51,17 +51,17 @@
 
     restoreFromState() {
       if (!this.state) return;
-      
+
       const tile = this.state.get('tile');
       const mortar = this.state.get('mortar');
-      
+
       // Auto-populate area
       const area = mortar.area || tile.calculated?.areaWithWaste;
       if (area && this.elements.area) {
         this.elements.area.value = area;
         console.log('[MortarAdapter] Auto-populated area:', area);
       }
-      
+
       // Auto-populate tile size
       if (tile.size.width && tile.size.length) {
         const sizeKey = `${tile.size.width}x${tile.size.length}`;
@@ -78,21 +78,21 @@
             if (this.elements.customFields) this.elements.customFields.hidden = false;
           }
         }
-        
+
         // Auto-recommend trowel
         this.autoRecommendTrowel(tile.size.width, tile.size.length);
       }
-      
+
       // Restore substrate
       if (mortar.substrate && this.elements.substrate) {
         this.elements.substrate.value = mortar.substrate;
       }
-      
+
       // Restore trowel if saved
       if (mortar.trowelSize && this.elements.trowel) {
         this.elements.trowel.value = mortar.trowelSize;
       }
-      
+
       // Auto-calculate
       if (this.elements.area?.value && this.elements.trowel?.value) {
         setTimeout(() => this.calculate(), 100);
@@ -103,7 +103,7 @@
       if (this.elements.calcButton) {
         this.elements.calcButton.addEventListener('click', () => this.calculate());
       }
-      
+
       // Tile size change
       if (this.elements.tileSize) {
         this.elements.tileSize.addEventListener('change', (e) => {
@@ -111,7 +111,7 @@
           if (this.elements.customFields) {
             this.elements.customFields.hidden = !isCustom;
           }
-          
+
           // Auto-recommend trowel
           if (!isCustom) {
             const [w, h] = e.target.value.split('x').map(Number);
@@ -119,7 +119,7 @@
           }
         });
       }
-      
+
       // Custom size change
       [this.elements.customWidth, this.elements.customHeight].forEach(el => {
         if (el) {
@@ -130,7 +130,7 @@
           });
         }
       });
-      
+
       // Listen for tile size changes from other calculators
       if (this.state) {
         this.state.on('change', (data) => {
@@ -146,10 +146,10 @@
 
     autoRecommendTrowel(width, length) {
       if (!this.elements.trowel) return;
-      
+
       const maxSide = Math.max(width, length);
       let recommendedTrowel = '';
-      
+
       // Trowel recommendations based on tile size
       if (maxSide < 6) {
         recommendedTrowel = '1/4x1/4x1/4';
@@ -167,7 +167,7 @@
         recommendedTrowel = '1/2x1/2x1/2';
         this.setTrowelHint('Large format: 1/2" square notch + back-butter');
       }
-      
+
       this.elements.trowel.value = recommendedTrowel;
       console.log(`[MortarAdapter] Auto-recommended trowel: ${recommendedTrowel} for ${width}x${length}"`);
     }
@@ -180,10 +180,10 @@
 
     syncTileSize() {
       if (!this.state) return;
-      
+
       const width = this.state.get('tile.size.width');
       const length = this.state.get('tile.size.length');
-      
+
       if (width && length) {
         const sizeKey = `${width}x${length}`;
         if (this.elements.tileSize && !this.elements.tileSize.value) {
@@ -199,14 +199,14 @@
             if (this.elements.customFields) this.elements.customFields.hidden = false;
           }
         }
-        
+
         this.autoRecommendTrowel(width, length);
       }
     }
 
     syncArea() {
       if (!this.state || this.elements.area?.value) return;
-      
+
       const area = this.state.get('tile.calculated.areaWithWaste');
       if (area && this.elements.area) {
         this.elements.area.value = area;
@@ -216,17 +216,17 @@
 
     calculate() {
       console.log('[MortarAdapter] Calculating...');
-      
+
       const area = parseFloat(this.elements.area?.value) || 0;
       const trowelSize = this.elements.trowel?.value;
       const backButter = this.elements.backButter?.checked || false;
       const substrate = this.elements.substrate?.value || 'typical';
-      
+
       if (!area || !trowelSize) {
         alert('Please enter area and select trowel size');
         return;
       }
-      
+
       // Mortar coverage rates (sq ft per 50 lb bag) vary by trowel size
       const coverageRates = {
         '1/4x1/4x1/4': 90,  // Square notch small
@@ -235,9 +235,9 @@
         '3/8x1/2x3/8': 50,
         '1/2x1/2x1/2': 40   // Square notch large format
       };
-      
+
       const coveragePerBag = coverageRates[trowelSize] || 60;
-      
+
       // Adjust for substrate condition
       let adjustedCoverage = coveragePerBag;
       if (substrate === 'needs-flattening') {
@@ -245,28 +245,28 @@
       } else if (substrate === 'smooth') {
         adjustedCoverage *= 1.1; // 10% less mortar
       }
-      
+
       // Adjust for back-buttering (adds 20-30% more mortar)
       if (backButter) {
         adjustedCoverage *= 0.75;
       }
-      
+
       const bagsNeeded = Math.ceil(area / adjustedCoverage);
-      
+
       this.displayResults({
         bags: bagsNeeded,
         trowelSize,
         backButter,
         substrate
       });
-      
+
       this.saveCalculationToState({
         trowelSize,
         backButter,
         substrate,
         bagsNeeded
       });
-      
+
       console.log('[MortarAdapter] Calculation complete');
     }
 
@@ -274,7 +274,7 @@
       if (this.elements.results) {
         this.elements.results.hidden = false;
       }
-      
+
       const resultsGrid = this.elements.results?.querySelector('.calc-results__grid');
       if (resultsGrid) {
         resultsGrid.innerHTML = `
@@ -288,12 +288,12 @@
           </div>
         `;
       }
-      
-      const noteText = 
+
+      const noteText =
         `Thin-set mortar (~50 lbs per bag). ` +
         `${results.backButter ? 'Back-buttering recommended for large tiles. ' : ''}` +
         `${results.substrate === 'needs-flattening' ? 'Additional mortar for flattening included.' : ''}`;
-      
+
       if (this.elements.mortarNote) {
         this.elements.mortarNote.textContent = noteText;
       }
@@ -301,13 +301,13 @@
 
     saveCalculationToState(results) {
       if (!this.state) return;
-      
+
       this.state.set('mortar.trowelSize', results.trowelSize);
       this.state.set('mortar.backButter', results.backButter);
       this.state.set('mortar.substrate', results.substrate);
       this.state.set('mortar.calculated.bagsNeeded', results.bagsNeeded);
       this.state.set('mortar.calculated.calculatedAt', new Date().toISOString());
-      
+
       console.log('[MortarAdapter] Calculation saved to state');
     }
 
@@ -319,7 +319,7 @@
   }
 
   window.MortarCalculatorAdapter = MortarCalculatorAdapter;
-  
+
   // Auto-initialize
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -334,5 +334,5 @@
       adapter.init();
     }
   }
-  
+
 })();
