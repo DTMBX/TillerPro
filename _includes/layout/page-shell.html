@@ -1,25 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"{% if include.html_attrs %} {{ include.html_attrs }}{% endif %}>
 <head>
-  {% include layout/head.html %}
-        touch-action: auto !important;
-      }
-      
-      /* Remove backdrop blur */
-      body::before,
-      body::after {
-        display: none !important;
-        backdrop-filter: none !important;
-      }
-    }
-  </style>
-  
-  <!-- DNS Prefetch & Preconnect for external resources -->
-  <link rel="dns-prefetch" href="//www.google-analytics.com" />
-  <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-  
-  {% include layout/head.html %}
+  {% include layout/head-clean.html %}
   {% include schema/schema-combined.js %}
   {% include layout/meta-open-graph.html %}
   {% include layout/meta-geo.html %}
