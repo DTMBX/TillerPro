@@ -230,17 +230,21 @@
   }
 }
 
-/* A11y panel positioning */
+/* A11y panel positioning - appears above bottom nav */
 .a11y-toolbar__panel {
   position: fixed !important;
-  top: 70px !important;
-  right: 1rem !important;
-  bottom: auto !important;
-  left: auto !important;
-  max-height: calc(100vh - 90px) !important;
+  bottom: 84px !important;
+  right: 0 !important;
+  left: 0 !important;
+  top: auto !important;
+  max-height: 60vh !important;
   overflow-y: auto !important;
-  z-index: 2100 !important;
-  width: min(320px, calc(100vw - 2rem)) !important;
+  z-index: 9999 !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border-radius: 16px 16px 0 0 !important;
+  box-shadow: 0 -4px 20px rgb(0 0 0 / 30%) !important;
+  pointer-events: auto !important;
 }
 
 /* ============================================
