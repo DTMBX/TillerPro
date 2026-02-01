@@ -298,6 +298,8 @@ exclude:
   - "**/*-ANALYSIS.md"
   - "**/*-DEPLOYED.md"
   - "**/*-FIX.md"
+  - tillerstead-toolkit/
+  - "**/.git-crypt*"
   - "**/*-REF.md"
   - "**/*-STRATEGY.md"
   - ACCESSIBILITY.md
