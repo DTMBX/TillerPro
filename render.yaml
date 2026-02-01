@@ -2,7 +2,7 @@ services:
   - type: static
     name: tillerstead
     buildCommand: bundle install && bundle exec jekyll build
-    staticPublishPath: ./_site
+    staticPublishPath: _site
     envVars:
       - key: JEKYLL_ENV
         value: production
@@ -19,7 +19,3 @@ services:
       - path: /*
         name: Permissions-Policy
         value: geolocation=(), microphone=(), camera=()
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
