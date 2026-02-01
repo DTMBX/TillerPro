@@ -50,7 +50,7 @@
     if(p.highContrast)d.dataset.highContrast='true';
     if(p.textSize)d.dataset.textSize=p.textSize;
     if(p.reducedMotion)d.classList.add('reduce-motion');
-  }catch(e){/* Ignore storage errors */}
+  }catch(e){if(typeof console!=='undefined'&&console.warn)console.warn('Unable to load preferences:',e.message);}
 })();
 </script>
 

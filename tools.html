@@ -272,7 +272,7 @@ permalink: /tools/
   </div>
 
   <!-- Loading State -->
-  <div class="app-loading" id="app-loading" role="status" aria-label="Loading application">
+  <output class="app-loading" id="app-loading" aria-label="Loading application">
     <div class="app-loading__brand">
       <img src="/assets/img/logo/logo-compact.webp" 
            alt="TillerPro Logo - Professional Tile Calculators" 
@@ -284,7 +284,7 @@ permalink: /tools/
         <span class="app-loading__name">TillerPro</span>
         <span class="app-loading__tagline">Tile Calculator Suite</span>
       </div>
-    </div>
+    </output>
     <div class="app-loading__progress" aria-hidden="true">
       <div class="app-loading__bar"></div>
     </div>
@@ -392,10 +392,10 @@ permalink: /tools/
         <h1 class="app-header__title" id="page-title">Dashboard</h1>
         <div class="app-header__actions">
           <!-- API Status Indicator -->
-          <div class="api-status api-status--offline" id="api-status" role="status" aria-live="polite" title="Offline Mode (Local Calculations)">
+          <output class="api-status api-status--offline" id="api-status" aria-live="polite" title="Offline Mode (Local Calculations)">
             <span class="api-status__dot" aria-hidden="true"></span>
             <span>Offline</span>
-          </div>
+          </output>
           <button type="button" class="app-header__btn" id="new-project-btn" aria-label="Create new project" title="New Project (Ctrl+N)">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
@@ -462,12 +462,10 @@ permalink: /tools/
   </nav>
 
   <!-- Accessibility Panel (for bottom nav) -->
-  <div 
+  <dialog 
     class="a11y-toolbar__panel a11y-toolbar__panel--bottom-nav" 
     id="a11y-toolbar-panel-nav"
-    role="dialog"
     aria-label="Accessibility settings"
-    hidden
   >
     <div class="a11y-toolbar__header">
       <h3 class="a11y-toolbar__title">Accessibility Options</h3>
@@ -561,15 +559,15 @@ permalink: /tools/
       <p class="a11y-toolbar__note">
         <small>Settings are saved for your next visit</small>
       </p>
-    </div>
-  </div>
+    </dialog>
+  </dialog>
 
   <!-- Toast Container -->
-  <div class="toast-container" id="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
+  <section class="toast-container" id="toast-container" aria-live="polite" aria-label="Notifications"></section>
 
   <!-- Modal Container -->
   <div class="modal-overlay" id="modal-overlay" hidden aria-hidden="true">
-    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <dialog class="modal" id="modal" aria-labelledby="modal-title">
       <div class="modal__header">
         <h2 class="modal__title" id="modal-title">Modal Title</h2>
         <button type="button" class="modal__close" id="modal-close" aria-label="Close dialog">
@@ -580,11 +578,11 @@ permalink: /tools/
       </div>
       <div class="modal__body" id="modal-body"></div>
       <div class="modal__footer" id="modal-footer"></div>
-    </div>
+    </dialog>
   </div>
   
   <!-- Keyboard Shortcuts Modal -->
-  <div class="shortcuts-modal" id="shortcuts-modal" hidden role="dialog" aria-modal="true" aria-labelledby="shortcuts-title">
+  <dialog class="shortcuts-modal" id="shortcuts-modal" aria-labelledby="shortcuts-title">
     <div class="shortcuts-modal__content">
       <div class="shortcuts-modal__header">
         <h2 id="shortcuts-title">Keyboard Shortcuts</h2>
@@ -614,8 +612,8 @@ permalink: /tools/
           <div class="shortcut"><kbd>C</kbd> <span>Clear Form</span></div>
         </div>
       </div>
-    </div>
-  </div>
+    </dialog>
+  </dialog>
 
   <!-- Visually Hidden Utility -->
   <style>
@@ -926,21 +924,21 @@ permalink: /tools/
   <!-- jsPDF for PDF generation (with fallback) -->
   <script>
     // Pre-check jsPDF before loading other scripts
-    window._jsPDFReady = new Promise(function(resolve, reject) {
+    globalThis._jsPDFReady = new Promise(function(resolve, reject) {
       var script = document.createElement('script');
       script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js';
       script.crossOrigin = 'anonymous';
       script.onload = function() {
         // Normalize jsPDF reference
-        window.jsPDF = window.jspdf?.jsPDF || window.jspdf || window.jsPDF;
-        resolve(window.jsPDF);
+        globalThis.jsPDF = globalThis.jspdf?.jsPDF || globalThis.jspdf || globalThis.jsPDF;
+        resolve(globalThis.jsPDF);
       };
       script.onerror = function() {
         var fallback = document.createElement('script');
         fallback.src = 'https://unpkg.com/jspdf@2.5.2/dist/jspdf.umd.min.js';
         fallback.onload = function() {
-          window.jsPDF = window.jspdf?.jsPDF || window.jspdf || window.jsPDF;
-          resolve(window.jsPDF);
+          globalThis.jsPDF = globalThis.jspdf?.jsPDF || globalThis.jspdf || globalThis.jsPDF;
+          resolve(globalThis.jsPDF);
         };
         fallback.onerror = function() { reject(new Error('Failed to load jsPDF')); };
         document.head.appendChild(fallback);
@@ -1018,7 +1016,7 @@ permalink: /tools/
           var routes = { '1': 'dashboard', '2': 'calculators', '3': 'projects', '4': 'settings' };
           if (routes[e.key]) {
             e.preventDefault();
-            window.location.hash = '/' + routes[e.key];
+            globalThis.location.hash = '/' + routes[e.key];
           }
         }
       });

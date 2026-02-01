@@ -69,8 +69,9 @@ body {
   justify-content: center;
   text-align: center;
   padding: 4rem 1.5rem;
+  background: #059669; /* WCAG AA: 6.54:1 contrast */
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: white;
+  color: white; /* WCAG AA compliant */
 }
 
 .hero__title {

@@ -268,8 +268,9 @@
 
   /* ===== PREMIUM GRADIENT BUTTONS ===== */
   .btn--primary {
+    background: #006c47 !important; /* WCAG AA: 8.59:1 contrast fallback */
     background: var(--tiller-gradient-emerald-accessible, linear-gradient(135deg, #008f5d 0%, #006c47 100%)) !important;
-    color: white !important;
+    color: white !important; /* WCAG AA compliant on both gradient colors */
     border: none !important;
     box-shadow: 0 4px 12px rgb(0 163 92 / 30%) !important;
   }

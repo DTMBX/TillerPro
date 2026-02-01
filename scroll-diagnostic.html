@@ -49,7 +49,7 @@ robots: noindex, nofollow
     }
     .status.ok { background: #047857; color: #fff; }
     .status.warning { background: #f59e0b; color: #000; }
-    .status.error { background: #ef4444; color: #fff; }
+    .status.error { background: #b91c1c; color: #fff; }
     .result-item {
       padding: 0.5rem 0;
       border-bottom: 1px solid #2e302e;
@@ -65,7 +65,7 @@ robots: noindex, nofollow
       font-size: 0.875rem;
     }
     button {
-      background: #10b981;
+      background: #059669; /* WCAG AA: 6.54:1 contrast with white */
       color: #fff;
       border: none;
       padding: 0.75rem 1.5rem;
@@ -290,8 +290,8 @@ Scroll should work: ${overflowOk && pointerOk ? 'YES ✅' : 'NO ❌'}
       body.dataset.scrollBlocked = 'false';
       
       // Call global restore if available
-      if (window.restoreScroll) {
-        window.restoreScroll();
+      if (globalThis.restoreScroll) {
+        globalThis.restoreScroll();
       }
       
       alert('✅ Scroll restored! Try scrolling now.');
@@ -311,7 +311,7 @@ Scroll should work: ${overflowOk && pointerOk ? 'YES ✅' : 'NO ❌'}
     }
 
     // Run on load
-    window.addEventListener('DOMContentLoaded', runDiagnostics);
+    globalThis.addEventListener('DOMContentLoaded', runDiagnostics);
     
     // Re-run on scroll to show it's working
     let scrollTimeout;

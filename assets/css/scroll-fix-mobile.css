@@ -5,15 +5,11 @@
  */
 
 /* CRITICAL: Ensure scroll works when nav is closed */
-body:not(.nav-open):not(.menu-open) {
+body:not(.nav-open, .menu-open) {
   overflow: auto !important;
   overflow-y: auto !important;
-  pointer-events: auto !important;
-}
-
-/* Override overflow-x:clip on body when nav is closed */
-body:not(.nav-open):not(.menu-open) {
   overflow-x: hidden !important; /* Prevent horizontal scroll but allow vertical */
+  pointer-events: auto !important;
 }
 
 /* Ensure main content is scrollable when nav is closed */
@@ -36,7 +32,7 @@ body:not(.nav-open) .ts-main-content {
 .ts-drawer__overlay[aria-hidden="true"] {
   pointer-events: none !important;
   visibility: hidden;
-  opacity: 0;
+  opacity: 0%;
 }
 
 /* Ensure overlay allows interaction only when visible */
@@ -44,7 +40,7 @@ body:not(.nav-open) .ts-main-content {
 .ts-drawer__overlay:not([aria-hidden="true"]) {
   pointer-events: auto;
   visibility: visible;
-  opacity: 1;
+  opacity: 100%;
 }
 
 /* Fix: Prevent body scroll lock unless nav is actually open */
@@ -84,7 +80,7 @@ body.menu-open {
   }
   
   /* Prevent scroll lock on body unless nav drawer is open */
-  body:not(.nav-open):not(.menu-open) {
+  body:not(.nav-open, .menu-open) {
     overflow-y: auto !important;
     overflow-x: hidden !important;
     position: static !important;

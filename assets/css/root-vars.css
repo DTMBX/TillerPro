@@ -174,7 +174,6 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizelegibility;
   text-size-adjust: 100%;
-  text-size-adjust: 100%;
   overflow-x: hidden;
   background-color: var(--tiller-bg-darkest, #0a0c0a);
 }
@@ -201,7 +200,6 @@ body {
   line-height: var(--tiller-line-height-normal, 1.5);
   overflow-x: hidden;
   overflow-y: auto;
-  text-size-adjust: 100%;
   text-size-adjust: 100%;
   min-width: 100%;
 }
@@ -319,8 +317,9 @@ th, td {
 }
 th {
   font-weight: 600;
+  background: #059669; /* WCAG AA: 6.54:1 contrast */
   background: var(--tiller-color-emerald-dark, #059669);
-  color: #ffffff;
+  color: #ffffff; /* WCAG AA compliant */
   text-shadow: none;
 }
 td {

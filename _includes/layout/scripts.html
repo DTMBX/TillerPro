@@ -131,7 +131,7 @@ endcomment %} {% assign cache_version = site.cache_version | default:
   const toc = document.querySelector('[data-toc]');
   if (!toc) return;
 
-  const scopeSel = toc.getAttribute('data-toc-scope') || 'main';
+  const scopeSel = toc.dataset.tocScope || 'main';
   const scope = document.querySelector(scopeSel);
   if (!scope) return;
 
