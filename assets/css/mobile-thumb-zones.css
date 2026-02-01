@@ -126,121 +126,13 @@
  * Safe area: iOS notch/home indicator support
  */
 @media (max-width: 768px) {
+  /* Sticky CTA bar - core styles in /assets/css/components/sticky-mobile-cta.css */
   .sticky-cta-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 9998; /* Below a11y toolbar */
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    
-    /* Enhanced size for thumb use */
-    padding: 12px 16px;
-    padding-bottom: calc(12px + env(safe-area-inset-bottom));
-    min-height: 72px;
-    
-    /* Visual polish */
-    background: linear-gradient(180deg, rgb(24 26 27 / 97%), rgb(24 26 27 / 99%));
-    backdrop-filter: blur(16px) saturate(180%);
-    border-top: 2px solid var(--tiller-color-emerald, #00e184);
-    box-shadow: 
-      0 -4px 20px rgb(0 0 0 / 30%),
-      0 -1px 3px rgb(0 0 0 / 10%);
-  }
-  
-  .sticky-cta-btn {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    
-    /* CRITICAL: Thumb-friendly size */
-    min-height: 60px;
-    min-width: 0; /* Allow flex sizing */
-    padding: 10px 8px;
-    border-radius: 12px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    
-    /* Remove tap highlight */
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-  }
-  
-  /* Larger icons for thumb targeting */
-  .sticky-cta-icon {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-  }
-  
-  .sticky-cta-text {
-    font-size: 0.75rem;
-    font-weight: 600;
-    line-height: 1.2;
-    text-align: center;
-  }
-  
-  /* Visual feedback on tap */
-  .sticky-cta-btn:active {
-    transform: scale(0.95);
-    opacity: 90%;
-  }
-  
-  /* Button variants */
-  .sticky-cta-btn--call {
-    background: linear-gradient(135deg, #10b981, #059669);
-    color: #ffffff;
-  }
-  
-  .sticky-cta-btn--text {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: #ffffff;
-  }
-  
-  .sticky-cta-btn--form {
-    background: linear-gradient(135deg, var(--tiller-color-gold, #c9a227), var(--tiller-color-gold-dark, #9a7a1a));
-    color: #000000;
-  }
-  
-  /* Hover states for hybrid devices */
-  @media (hover: hover) {
-    .sticky-cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
-    }
+    /* Thumb zone optimizations only - don't override base styles */
   }
 }
 
-/* Extra small phones - even more thumb-friendly */
-@media (max-width: 375px) {
-  .sticky-cta-bar {
-    padding: 8px 12px;
-    padding-bottom: calc(8px + env(safe-area-inset-bottom));
-    gap: 6px;
-  }
-  
-  .sticky-cta-btn {
-    min-height: 56px;
-    padding: 8px 6px;
-    gap: 4px;
-  }
-  
-  .sticky-cta-icon {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .sticky-cta-text {
-    font-size: 0.6875rem;
-  }
-}
+/* Extra small phones - handled in sticky-mobile-cta.css */
 
 /* ====================================
    4. MOBILE NAV TOGGLE - THUMB OPTIMIZED
