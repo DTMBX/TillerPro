@@ -1,7 +1,7 @@
 services:
   - type: web
     name: tillerstead
-    env: static
+    runtime: static
     buildCommand: bundle install && bundle exec jekyll build
     staticPublishPath: ./_site
     envVars:
