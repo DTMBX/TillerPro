@@ -24,10 +24,12 @@
   </main>
   {% include layout/footer.html %}
   
+  {%- comment -%} Accessibility toolbar (all devices) {%- endcomment -%}
+  {% include components/a11y-toolbar.html %}
+  
   {%- comment -%} Desktop-only features (too heavy for mobile) {%- endcomment -%}
   <div class="desktop-only-features">
     {% include components/c-sticky-mobile-cta.html %}
-    {% include components/a11y-toolbar.html %}
   </div>
   
   {%- comment -%} Lead Magnet - Desktop Homepage only {%- endcomment -%}

@@ -942,10 +942,21 @@ body.nav-open .mobile-nav__toggle {
   .mobile-nav__toggle {
   display: flex;
   order: 3;
+  margin-left: auto;
   }
 
   .ts-header__container {
   padding: 0.625rem clamp(1rem, 4vw, 2rem);
+  flex-direction: row;
+  justify-content: space-between;
+  }
+
+  .ts-header__branding {
+  order: 1;
+  }
+
+  .ts-header__actions {
+  display: none;
   }
 
   .ts-header__logo.logo-image,
