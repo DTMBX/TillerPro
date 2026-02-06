@@ -3,11 +3,14 @@
 ## 🎯 All-in-One Complete Project Calculator
 
 ### **NEW: Integrated Tile Project Calculator**
-The crown jewel of the Tillerstead toolkit - calculates EVERYTHING for a complete tile project in one intelligent interface.
+
+The crown jewel of the Tillerstead toolkit - calculates EVERYTHING for a
+complete tile project in one intelligent interface.
 
 **Calculator ID:** `integrated_tile_project`
 
 **What it does:**
+
 - ✅ Tile quantities (floor, wall, shower, backsplash - any combination)
 - ✅ Thinset mortar with automatic TCNA compliance
 - ✅ Grout with joint width optimization
@@ -18,21 +21,22 @@ The crown jewel of the Tillerstead toolkit - calculates EVERYTHING for a complet
 - ✅ Total project cost breakdown
 
 **How it works:**
-- **Flexible:** Enter only the areas you need (floor only, shower only, or full bathroom)
+
+- **Flexible:** Enter only the areas you need (floor only, shower only, or full
+  bathroom)
 - **Intelligent:** Auto-detects large format tiles and adjusts calculations
 - **Integrated:** All components work together seamlessly
 - **Optional:** Toggle any component on/off (mortar, grout, labor, etc.)
 
 **Example Use Cases:**
+
 1. **Full Bathroom Remodel:**
    - Floor: 50 sqft
    - Shower: 60 sqft
    - Get: tiles, mortar, grout, waterproofing, labor, contract
-   
 2. **Kitchen Backsplash Only:**
    - Backsplash: 30 sqft
    - Get: tiles, mortar, grout, labor
-   
 3. **Multi-Room Project:**
    - Floor: 200 sqft (living room + kitchen)
    - Backsplash: 45 sqft
@@ -43,18 +47,22 @@ The crown jewel of the Tillerstead toolkit - calculates EVERYTHING for a complet
 ## 💼 NJ Contractor Professional Tools
 
 ### **1. NJ Permit & Inspection Estimator**
+
 **Calculator ID:** `nj_permit_estimator`
 
 Calculate permit costs and inspection requirements for NJ projects.
 
 **Features:**
-- Municipal-specific permit fees (Atlantic, Cape May, Ocean, Burlington counties)
+
+- Municipal-specific permit fees (Atlantic, Cape May, Ocean, Burlington
+  counties)
 - Project type-based calculations (bathroom, kitchen, basement, deck)
 - Electrical and plumbing permit detection
 - Inspection scheduling guide
 - Certificate of Approval/Occupancy requirements
 
 **Use this for:**
+
 - Accurate bid preparation
 - Client cost transparency
 - Project planning timelines
@@ -62,11 +70,13 @@ Calculate permit costs and inspection requirements for NJ projects.
 ---
 
 ### **2. Competitive Bid Analyzer**
+
 **Calculator ID:** `competitive_bid_analyzer`
 
 Win more contracts with data-driven pricing strategies.
 
 **Features:**
+
 - Market positioning analysis
 - Multiple pricing strategies (competitive, aggressive, premium)
 - Win probability calculations
@@ -74,12 +84,14 @@ Win more contracts with data-driven pricing strategies.
 - Value-add recommendations
 
 **Strategies provided:**
+
 1. **Match Market** - 50% win rate
 2. **Competitive (5% under)** - 65% win rate
 3. **Aggressive (10% under)** - 80% win rate
 4. **Premium (5% over)** - 35% win rate (emphasize quality)
 
 **Use this for:**
+
 - Optimizing profit margins
 - Competitive positioning
 - Strategic pricing decisions
@@ -87,11 +99,13 @@ Win more contracts with data-driven pricing strategies.
 ---
 
 ### **3. Seasonal Pricing Optimizer**
+
 **Calculator ID:** `seasonal_pricing_optimizer`
 
 Optimize pricing based on NJ seasonal demand patterns.
 
 **Features:**
+
 - Month-by-month demand factors
 - Indoor vs outdoor project optimization
 - Weather risk surcharges
@@ -99,11 +113,13 @@ Optimize pricing based on NJ seasonal demand patterns.
 - NJ-specific seasonal insights
 
 **Example adjustments:**
+
 - **January Indoor:** 95% (off-season discount opportunity)
 - **July Outdoor:** 125% (peak season premium)
 - **April Outdoor:** 110% (spring rush)
 
 **Use this for:**
+
 - Maximizing revenue year-round
 - Strategic project scheduling
 - Seasonal promotions
@@ -143,6 +159,7 @@ Optimize pricing based on NJ seasonal demand patterns.
 ## 🎨 Premium UI/UX Features
 
 ### **Visual Hierarchy:**
+
 - **Premium calculators** get emerald/gold badges
 - **Category colors** for quick visual navigation
 - **Priority sorting** - most useful tools first
@@ -184,7 +201,6 @@ Optimize pricing based on NJ seasonal demand patterns.
 1. **Shower Complete Calculator**
    - Pan liner + walls + floor + waterproofing + labor
    - Pre-configured for Schluter, Wedi, traditional mud bed
-   
 2. **Kitchen Remodel Estimator**
    - Backsplash + countertop + flooring + appliance gaps
    - Integrated pricing
@@ -239,6 +255,7 @@ Optimize pricing based on NJ seasonal demand patterns.
 ## 💡 Why This System Wins
 
 ### **For Contractors:**
+
 1. **Time Savings:** One calculator instead of 5 separate tools
 2. **Accuracy:** TCNA-compliant, NJ legal compliance built-in
 3. **Professional:** Detailed breakdowns impress clients
@@ -246,12 +263,14 @@ Optimize pricing based on NJ seasonal demand patterns.
 5. **Compliant:** NJ HIC requirements automatic
 
 ### **For Homeowners:**
+
 1. **Transparency:** See exactly what they're paying for
 2. **Education:** Learn about TCNA standards, NJ requirements
 3. **Trust:** Professional detailed estimates
 4. **Confidence:** Licensed, compliant contractor
 
 ### **For Tillerstead:**
+
 1. **Brand Authority:** Most comprehensive NJ contractor tool
 2. **Lead Generation:** Free tools drive traffic
 3. **Differentiation:** No competitor has this depth
@@ -263,6 +282,7 @@ Optimize pricing based on NJ seasonal demand patterns.
 ## 📱 Mobile Optimization Already Complete
 
 All calculators benefit from the mobile-premium.css optimizations:
+
 - ✅ 48px touch targets
 - ✅ Notch device support
 - ✅ iOS Safari optimizations
@@ -275,18 +295,21 @@ All calculators benefit from the mobile-premium.css optimizations:
 ## 🎯 Marketing Angles
 
 **"New Jersey's Most Complete Contractor Calculator"**
+
 - Free
 - TCNA compliant
 - NJ HIC integrated
 - All-in-one
 
 **"From Estimate to Contract in Minutes"**
+
 - Professional estimates
 - Legal compliance
 - Client-ready PDFs
 - Licensed contractor backing
 
 **"The Calculator That Pays for Itself"**
+
 - Win more bids
 - Optimize pricing
 - Seasonal strategies
@@ -321,6 +344,7 @@ All calculators benefit from the mobile-premium.css optimizations:
 ## 🏆 Competitive Advantage
 
 **No other NJ contractor offers:**
+
 - Integrated project calculators
 - NJ HIC compliance built-in
 - Competitive pricing analysis
@@ -329,6 +353,7 @@ All calculators benefit from the mobile-premium.css optimizations:
 - Free professional tools
 
 **This positions Tillerstead as:**
+
 - Technology leader
 - Professional authority
 - Client-focused

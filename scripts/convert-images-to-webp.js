@@ -33,9 +33,7 @@ let sharp;
 try {
   sharp = (await import('sharp')).default;
 } catch (_e) {
-  console.error(
-    '\n[ERROR] sharp not installed. Run: npm install --save-dev sharp\n',
-  );
+  console.error('\n[ERROR] sharp not installed. Run: npm install --save-dev sharp\n');
   process.exitCode = 1;
   process.exit();
 }
@@ -96,13 +94,11 @@ let reconverted = 0;
 
 (async () => {
   console.log(
-    '\nImage WebP Conversion (TCNA/New Jersey HIC Compliant)\n---------------------------------------------',
+    '\nImage WebP Conversion (TCNA/New Jersey HIC Compliant)\n---------------------------------------------'
   );
   console.log(`Source directory: ${sourceDir}`);
   console.log(`Quality: ${quality}`);
-  console.log(
-    `Force: ${force ? 'yes' : 'no'}  Dry-run: ${dryRun ? 'yes' : 'no'}`,
-  );
+  console.log(`Force: ${force ? 'yes' : 'no'}  Dry-run: ${dryRun ? 'yes' : 'no'}`);
   console.log(`Found ${candidates.length} convertible images.\n`);
 
   for (const file of candidates) {
@@ -115,27 +111,18 @@ let reconverted = 0;
     }
 
     if (dryRun) {
-      console.log(
-        `[DRY] Would convert: ${path.basename(file)} -> ${path.basename(out)}`,
-      );
+      console.log(`[DRY] Would convert: ${path.basename(file)} -> ${path.basename(out)}`);
       continue;
     }
 
     try {
-      await sharp(file)
-        .rotate()
-        .webp({ quality: quality, effort: 4 })
-        .toFile(out);
+      await sharp(file).rotate().webp({ quality: quality, effort: 4 }).toFile(out);
       if (exists && force) {
         reconverted++;
-        console.log(
-          `[Reconvert] ${path.basename(file)} -> ${path.basename(out)}`,
-        );
+        console.log(`[Reconvert] ${path.basename(file)} -> ${path.basename(out)}`);
       } else {
         converted++;
-        console.log(
-          `[Convert] ${path.basename(file)} -> ${path.basename(out)}`,
-        );
+        console.log(`[Convert] ${path.basename(file)} -> ${path.basename(out)}`);
       }
     } catch (err) {
       console.error(`[ERROR] Failed converting ${file}:`, err.message);
@@ -153,7 +140,5 @@ let reconverted = 0;
   console.log('----------');
   console.log('1. Verify new .webp files load correctly in browser dev tools.');
   console.log('2. Commit changes: git add assets/img/*.webp');
-  console.log(
-    '3. Ensure portfolio.yml has file_webp entries aligned with generated files.',
-  );
+  console.log('3. Ensure portfolio.yml has file_webp entries aligned with generated files.');
 })();

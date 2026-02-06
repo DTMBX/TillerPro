@@ -5,8 +5,9 @@ import { readdirSync } from 'fs';
 import { join, basename } from 'path';
 
 const jsDir = 'assets/js';
-const files = readdirSync(jsDir)
-  .filter(f => f.endsWith('.js') && !f.endsWith('.min.js') && f !== 'bundle.min.js');
+const files = readdirSync(jsDir).filter(
+  (f) => f.endsWith('.js') && !f.endsWith('.min.js') && f !== 'bundle.min.js'
+);
 
 for (const file of files) {
   const input = join(jsDir, file);

@@ -55,17 +55,17 @@ export const FORMULA_LIBRARY_INFO = {
     'formulas.waterproofing',
     'formulas.leveling',
     'formulas.slope',
-    'formulas.advanced'
+    'formulas.advanced',
   ],
   principles: [
     'No unsourced constants - all values traced to TDS or standards',
     'Explicit units everywhere',
     'User-configurable variables clearly marked',
     'Assumptions documented in output',
-    'Conservative estimates - round up for materials'
+    'Conservative estimates - round up for materials',
   ],
   maintainer: 'Tillerstead LLC',
-  lastUpdated: '2026-01-19'
+  lastUpdated: '2026-01-19',
 };
 
 // ==
@@ -93,6 +93,6 @@ export function getAllFormulaInfo() {
     waterproofing: WATERPROOFING_FORMULA_INFO,
     leveling: LEVELING_FORMULA_INFO,
     slope: SLOPE_FORMULA_INFO,
-    advanced: ADVANCED_FORMULA_INFO
+    advanced: ADVANCED_FORMULA_INFO,
   };
 }

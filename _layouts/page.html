@@ -1,0 +1,20 @@
+{%- comment -%} Page layout — thin wrapper; copy of default layout to satisfy pages requesting `layout: page`.{%- endcomment -%}
+{%- include layout/build-blocks.html -%}
+{%- if page.build_guide -%}
+  {%- assign show_breadcrumbs = false -%}
+{%- else -%}
+  {%- assign show_breadcrumbs = true -%}
+{%- endif -%}
+
+{%- capture build_content -%}
+{% if page.build_guide %}{{ build_hero }}{% endif %}
+{{ build_toc_and_body }}
+{{ build_phase_nav }}
+
+<div class="default-cta text-center scroll-fade-in premium-cta mt-4">{% include components/cta-buttons.html %}</div>
+
+{% include components/credential-badges.html class="mt-2 scroll-fade-in" style="text-align:center;" %}
+{{ build_cta }}
+{%- endcapture -%}
+
+{% include layout/page-shell.html body=build_content show_breadcrumbs=show_breadcrumbs %}

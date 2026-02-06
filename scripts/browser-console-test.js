@@ -24,7 +24,7 @@ console.log('🧪 Browser Console Testing Suite\n');
 console.log('1️⃣  Running Lighthouse Performance Audit...');
 try {
   const lighthouseCmd = `npx lighthouse ${TEST_URL} --output=json --output=html --output-path="${path.join(RESULTS_DIR, 'lighthouse')}" --chrome-flags="--headless" --only-categories=performance,accessibility,best-practices,seo,pwa`;
-  
+
   execSync(lighthouseCmd, { stdio: 'inherit' });
   console.log('✓ Lighthouse audit complete\n');
 } catch (error) {
@@ -56,7 +56,7 @@ const puppeteer = require('puppeteer');
   process.exit(results.violations.length > 0 ? 1 : 0);
 })();
 `;
-  
+
   fs.writeFileSync(path.join(__dirname, '../temp-axe-test.js'), axeScript);
   execSync(`node ${path.join(__dirname, '../temp-axe-test.js')}`, { stdio: 'inherit' });
   fs.unlinkSync(path.join(__dirname, '../temp-axe-test.js'));
@@ -119,7 +119,7 @@ const puppeteer = require('puppeteer');
   process.exit(0);
 })();
 `;
-  
+
   fs.writeFileSync(path.join(__dirname, '../temp-console-test.js'), consoleScript);
   execSync(`node ${path.join(__dirname, '../temp-console-test.js')}`, { stdio: 'inherit' });
   fs.unlinkSync(path.join(__dirname, '../temp-console-test.js'));
@@ -178,7 +178,7 @@ const puppeteer = require('puppeteer');
   process.exit(0);
 })();
 `;
-  
+
   fs.writeFileSync(path.join(__dirname, '../temp-network-test.js'), networkScript);
   execSync(`node ${path.join(__dirname, '../temp-network-test.js')}`, { stdio: 'inherit' });
   fs.unlinkSync(path.join(__dirname, '../temp-network-test.js'));
@@ -249,7 +249,7 @@ const puppeteer = require('puppeteer');
   process.exit(0);
 })();
 `;
-  
+
   fs.writeFileSync(path.join(__dirname, '../temp-memory-test.js'), memoryScript);
   execSync(`node ${path.join(__dirname, '../temp-memory-test.js')}`, { stdio: 'inherit' });
   fs.unlinkSync(path.join(__dirname, '../temp-memory-test.js'));

@@ -20,10 +20,9 @@ async function findUnusedCSS() {
   }
 
   // Extract classes used in HTML/MD files
-  const htmlFiles = await glob(
-    '{_includes,_layouts,pages,*.html,*.md}/**/*.{html,md}',
-    { cwd: process.cwd() },
-  );
+  const htmlFiles = await glob('{_includes,_layouts,pages,*.html,*.md}/**/*.{html,md}', {
+    cwd: process.cwd(),
+  });
   const usedClasses = new Set();
 
   for (const file of htmlFiles) {

@@ -70,10 +70,7 @@ export default [
       ...js.configs.recommended.rules,
 
       // Warn on unused variables, but ignore those prefixed with _
-      'no-unused-vars': [
-        'warn',
-        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
-      ],
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
 
       // Allow console for transparency and debugging (see /.ai/DOMAIN.md)
       'no-console': 'off',

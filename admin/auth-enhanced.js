@@ -23,20 +23,20 @@ class TwoFactorAuth {
     const secret = speakeasy.generateSecret({
       name: `Tillerstead Admin (${username})`,
       issuer: 'Tillerstead',
-      length: 32
+      length: 32,
     });
 
     this.secrets.set(username, {
       secret: secret.base32,
       tempSecret: secret.base32,
       enabled: false,
-      backupCodes: this.generateBackupCodes()
+      backupCodes: this.generateBackupCodes(),
     });
 
     return {
       secret: secret.base32,
       otpauthUrl: secret.otpauth_url,
-      qrCode: null // Will be generated separately
+      qrCode: null, // Will be generated separately
     };
   }
 
@@ -69,7 +69,7 @@ class TwoFactorAuth {
       secret,
       encoding: 'base32',
       token,
-      window: 2 // Allow 2 time steps of variance
+      window: 2, // Allow 2 time steps of variance
     });
 
     return { valid: verified };
@@ -92,7 +92,7 @@ class TwoFactorAuth {
 
     return {
       success: true,
-      backupCodes: userData.backupCodes
+      backupCodes: userData.backupCodes,
     };
   }
 
@@ -151,7 +151,7 @@ class TwoFactorAuth {
 
     return {
       valid: true,
-      remainingCodes: userData.backupCodes.length
+      remainingCodes: userData.backupCodes.length,
     };
   }
 
@@ -170,7 +170,7 @@ class TwoFactorAuth {
 
     return {
       success: true,
-      backupCodes: userData.backupCodes
+      backupCodes: userData.backupCodes,
     };
   }
 }
@@ -194,7 +194,7 @@ export function require2FA(req, res, next) {
     if (!req.session.twoFactorVerified) {
       return res.status(401).json({
         error: '2FA verification required',
-        require2FA: true
+        require2FA: true,
       });
     }
   }
@@ -209,32 +209,30 @@ export function require2FA(req, res, next) {
 class RoleManager {
   constructor() {
     this.roles = new Map([
-      ['admin', {
-        permissions: ['*'], // All permissions
-        description: 'Full system access'
-      }],
-      ['editor', {
-        permissions: [
-          'content:read',
-          'content:write',
-          'calculator:read',
-          'calculator:write'
-        ],
-        description: 'Can edit content and calculators'
-      }],
-      ['viewer', {
-        permissions: [
-          'content:read',
-          'calculator:read',
-          'settings:read'
-        ],
-        description: 'Read-only access'
-      }]
+      [
+        'admin',
+        {
+          permissions: ['*'], // All permissions
+          description: 'Full system access',
+        },
+      ],
+      [
+        'editor',
+        {
+          permissions: ['content:read', 'content:write', 'calculator:read', 'calculator:write'],
+          description: 'Can edit content and calculators',
+        },
+      ],
+      [
+        'viewer',
+        {
+          permissions: ['content:read', 'calculator:read', 'settings:read'],
+          description: 'Read-only access',
+        },
+      ],
     ]);
 
-    this.userRoles = new Map([
-      ['admin', 'admin']
-    ]);
+    this.userRoles = new Map([['admin', 'admin']]);
   }
 
   /**
@@ -281,7 +279,7 @@ class RoleManager {
     if (permissions.includes(permission)) return true;
 
     // Wildcard match (e.g., 'content:*' matches 'content:read')
-    const wildcardMatch = permissions.some(perm => {
+    const wildcardMatch = permissions.some((perm) => {
       if (!perm.includes(':')) return false;
       const [category] = perm.split(':');
       return permission.startsWith(category + ':') && perm.endsWith('*');
@@ -308,7 +306,7 @@ class RoleManager {
   listRoles() {
     return Array.from(this.roles.entries()).map(([name, data]) => ({
       name,
-      ...data
+      ...data,
     }));
   }
 
@@ -319,7 +317,7 @@ class RoleManager {
     return Array.from(this.userRoles.entries()).map(([username, role]) => ({
       username,
       role,
-      permissions: this.getRolePermissions(role)
+      permissions: this.getRolePermissions(role),
     }));
   }
 }
@@ -345,7 +343,7 @@ export function requirePermission(permission) {
     if (!roleManager.hasPermission(username, permission)) {
       return res.status(403).json({
         error: 'Permission denied',
-        required: permission
+        required: permission,
       });
     }
 
@@ -365,14 +363,14 @@ export function requireAnyPermission(permissions) {
 
     const username = req.session.userId;
 
-    const hasAny = permissions.some(permission =>
+    const hasAny = permissions.some((permission) =>
       roleManager.hasPermission(username, permission)
     );
 
     if (!hasAny) {
       return res.status(403).json({
         error: 'Permission denied',
-        required: permissions
+        required: permissions,
       });
     }
 
@@ -389,5 +387,5 @@ export default {
   require2FA,
   roleManager,
   requirePermission,
-  requireAnyPermission
+  requireAnyPermission,
 };

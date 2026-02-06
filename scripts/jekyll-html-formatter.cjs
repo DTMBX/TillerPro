@@ -9,7 +9,7 @@ function hasLiquidTags(content) {
 }
 
 function formatHTML(dir) {
-  fs.readdirSync(dir).forEach(f => {
+  fs.readdirSync(dir).forEach((f) => {
     const fp = path.join(dir, f);
     if (fs.statSync(fp).isDirectory()) formatHTML(fp);
     else if (fp.endsWith('.html')) {

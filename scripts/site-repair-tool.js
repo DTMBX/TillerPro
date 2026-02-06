@@ -22,7 +22,7 @@ class SiteRepairTool {
       missingMeta: [],
       unusedFiles: [],
       componentErrors: [],
-      total: 0
+      total: 0,
     };
     this.fixes = [];
   }
@@ -48,7 +48,7 @@ class SiteRepairTool {
       '_includes/layout/footer.html',
       '_includes/navigation/secure-main-nav.html',
       '_includes/components/sticky-cta.html',
-      '_includes/components/cta-estimate.html'
+      '_includes/components/cta-estimate.html',
     ];
 
     for (const comp of criticalComponents) {
@@ -56,7 +56,7 @@ class SiteRepairTool {
         this.issues.componentErrors.push({
           file: comp,
           error: 'Component file not found',
-          fix: 'Create missing component or update includes'
+          fix: 'Create missing component or update includes',
         });
         this.issues.total++;
       } else {
@@ -70,7 +70,7 @@ class SiteRepairTool {
             this.issues.componentErrors.push({
               file: comp,
               error: `Broken include: ${match[1]}`,
-              fix: `Create ${includePath} or fix reference`
+              fix: `Create ${includePath} or fix reference`,
             });
             this.issues.total++;
           }
@@ -86,7 +86,7 @@ class SiteRepairTool {
 
     const htmlFiles = await glob('_site/**/*.html');
     const validPaths = new Set(
-      htmlFiles.map(f => '/' + path.relative('_site', f).replace(/\\/g, '/'))
+      htmlFiles.map((f) => '/' + path.relative('_site', f).replace(/\\/g, '/'))
     );
 
     const commonBrokenLinks = [
@@ -98,7 +98,7 @@ class SiteRepairTool {
       '/blog/',
       '/reviews/',
       '/about/',
-      '/faq/'
+      '/faq/',
     ];
 
     for (const link of commonBrokenLinks) {
@@ -107,7 +107,7 @@ class SiteRepairTool {
         if (!fs.existsSync(fullPath)) {
           this.issues.brokenLinks.push({
             link,
-            fix: `Create ${link} page or update navigation links`
+            fix: `Create ${link} page or update navigation links`,
           });
           this.issues.total++;
         }
@@ -125,7 +125,7 @@ class SiteRepairTool {
       'services.html',
       'portfolio.html',
       'contact.html',
-      'build.html'
+      'build.html',
     ];
 
     for (const page of mainPages) {
@@ -138,7 +138,7 @@ class SiteRepairTool {
           if (!frontMatter.includes('meta_description:') && !frontMatter.includes('description:')) {
             this.issues.missingMeta.push({
               file: page,
-              fix: 'Add meta_description to front matter'
+              fix: 'Add meta_description to front matter',
             });
             this.issues.total++;
           }
@@ -155,7 +155,8 @@ class SiteRepairTool {
     // Read all built HTML to see what's referenced
     const htmlFiles = await glob('_site/**/*.html');
     let allHTML = '';
-    for (const file of htmlFiles.slice(0, 20)) { // Sample
+    for (const file of htmlFiles.slice(0, 20)) {
+      // Sample
       allHTML += fs.readFileSync(file, 'utf-8');
     }
 
@@ -165,7 +166,7 @@ class SiteRepairTool {
       'nuclear-scroll-fix.js',
       'boss-interactions.js',
       'carousel-premium.js',
-      'loading-screen.js'
+      'loading-screen.js',
     ];
 
     for (const file of jsFiles) {
@@ -174,7 +175,7 @@ class SiteRepairTool {
         if (!allHTML.includes(fileName)) {
           this.issues.unusedFiles.push({
             file: fileName,
-            fix: 'Remove file or add to scripts.html'
+            fix: 'Remove file or add to scripts.html',
           });
           this.issues.total++;
         }
@@ -190,7 +191,7 @@ class SiteRepairTool {
 
     if (this.issues.componentErrors.length > 0) {
       console.log(chalk.red.bold(`❌ Component Errors (${this.issues.componentErrors.length})`));
-      this.issues.componentErrors.slice(0, 5).forEach(issue => {
+      this.issues.componentErrors.slice(0, 5).forEach((issue) => {
         console.log(`  ${chalk.cyan(issue.file)}`);
         console.log(chalk.gray(`    Error: ${issue.error}`));
         console.log(chalk.green(`    Fix: ${issue.fix}`));
@@ -200,7 +201,7 @@ class SiteRepairTool {
 
     if (this.issues.brokenLinks.length > 0) {
       console.log(chalk.red.bold(`🔗 Broken Links (${this.issues.brokenLinks.length})`));
-      this.issues.brokenLinks.slice(0, 5).forEach(issue => {
+      this.issues.brokenLinks.slice(0, 5).forEach((issue) => {
         console.log(`  ${chalk.cyan(issue.link)}`);
         console.log(chalk.green(`    Fix: ${issue.fix}`));
       });
@@ -211,8 +212,10 @@ class SiteRepairTool {
     }
 
     if (this.issues.missingMeta.length > 0) {
-      console.log(chalk.yellow.bold(`📝 Missing Meta Descriptions (${this.issues.missingMeta.length})`));
-      this.issues.missingMeta.forEach(issue => {
+      console.log(
+        chalk.yellow.bold(`📝 Missing Meta Descriptions (${this.issues.missingMeta.length})`)
+      );
+      this.issues.missingMeta.forEach((issue) => {
         console.log(`  ${chalk.cyan(issue.file)} - ${chalk.gray(issue.fix)}`);
       });
       console.log();
@@ -220,7 +223,7 @@ class SiteRepairTool {
 
     if (this.issues.unusedFiles.length > 0) {
       console.log(chalk.gray.bold(`🗑️  Unused Files (${this.issues.unusedFiles.length})`));
-      this.issues.unusedFiles.slice(0, 5).forEach(issue => {
+      this.issues.unusedFiles.slice(0, 5).forEach((issue) => {
         console.log(`  ${chalk.gray(issue.file)}`);
       });
       console.log();
@@ -254,7 +257,7 @@ if (require.main === module) {
   const tool = new SiteRepairTool();
   const args = process.argv.slice(2);
 
-  tool.scan().then(_fixes => {
+  tool.scan().then((_fixes) => {
     if (args.includes('--fix')) {
       tool.autoFix();
     }

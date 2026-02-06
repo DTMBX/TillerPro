@@ -14,7 +14,7 @@ console.log('🔨 Rebuilding bundle.css from source files...\n');
 const sourceFiles = [
   'assets/css/root-vars.css',
   'assets/css/modern/modern.css',
-  'assets/css/ux-enhancements.css'
+  'assets/css/ux-enhancements.css',
 ];
 
 const outputFile = 'assets/css/bundle.css';
@@ -56,7 +56,7 @@ bundle += ` * Generated: ${new Date().toISOString()}\n`;
 bundle += ` * \n`;
 bundle += ` * This file is auto-generated. Do not edit directly.\n`;
 bundle += ` * Source files:\n`;
-sourceFiles.forEach(f => {
+sourceFiles.forEach((f) => {
   bundle += ` *   - ${f}\n`;
 });
 bundle += ` */\n\n`;
@@ -64,7 +64,7 @@ bundle += ` */\n\n`;
 // Add unique imports at the top
 if (imports.length > 0) {
   const uniqueImports = [...new Set(imports)];
-  bundle += uniqueImports.map(i => i.trim()).join('\n') + '\n\n';
+  bundle += uniqueImports.map((i) => i.trim()).join('\n') + '\n\n';
   console.log(`\n📦 Added ${uniqueImports.length} unique @import statements`);
 }
 

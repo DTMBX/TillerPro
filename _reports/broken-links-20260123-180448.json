@@ -740,10 +740,7 @@
     },
     {
       "Link": "nj-tile-guide",
-      "UsedIn": [
-        "homeowner-resources\\index.html",
-        "homeowner-resources\\index.html"
-      ],
+      "UsedIn": ["homeowner-resources\\index.html", "homeowner-resources\\index.html"],
       "Count": 2
     },
     {
@@ -1004,9 +1001,7 @@
     },
     {
       "Link": "tile-visualizer.html",
-      "UsedIn": [
-        "homeowner-resources\\index.html"
-      ],
+      "UsedIn": ["homeowner-resources\\index.html"],
       "Count": 1
     }
   ],

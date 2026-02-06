@@ -16,7 +16,7 @@ const issues = {
   missingSchema: [],
   missingOG: [],
   longTitle: [],
-  duplicateMeta: new Map()
+  duplicateMeta: new Map(),
 };
 
 async function auditHTML() {
@@ -35,7 +35,7 @@ async function auditHTML() {
     if (!metaDesc || metaDesc.length < 50) {
       issues.missingMetaDesc.push({
         file: relPath,
-        length: metaDesc ? metaDesc.length : 0
+        length: metaDesc ? metaDesc.length : 0,
       });
     }
 
@@ -53,7 +53,7 @@ async function auditHTML() {
       issues.longTitle.push({
         file: relPath,
         title,
-        length: title.length
+        length: title.length,
       });
     }
 
@@ -64,7 +64,7 @@ async function auditHTML() {
       if (!alt && src && !src.includes('data:')) {
         issues.missingAlt.push({
           file: relPath,
-          src
+          src,
         });
       }
     });
@@ -92,7 +92,9 @@ function printReport() {
 
   // Missing meta descriptions
   if (issues.missingMetaDesc.length > 0) {
-    console.log(chalk.red.bold(`\n❌ Missing/Short Meta Descriptions: ${issues.missingMetaDesc.length}`));
+    console.log(
+      chalk.red.bold(`\n❌ Missing/Short Meta Descriptions: ${issues.missingMetaDesc.length}`)
+    );
     issues.missingMetaDesc.slice(0, 10).forEach(({ file, length }) => {
       console.log(`  ${file} ${chalk.gray(`(${length} chars)`)}`);
     });
@@ -104,13 +106,14 @@ function printReport() {
   }
 
   // Duplicate meta descriptions
-  const duplicates = Array.from(issues.duplicateMeta.entries())
-    .filter(([_, files]) => files.length > 1);
+  const duplicates = Array.from(issues.duplicateMeta.entries()).filter(
+    ([_, files]) => files.length > 1
+  );
   if (duplicates.length > 0) {
     console.log(chalk.yellow.bold(`\n⚠️  Duplicate Meta Descriptions: ${duplicates.length}`));
     duplicates.slice(0, 5).forEach(([desc, files]) => {
       console.log(`  "${desc.substring(0, 50)}..." used in:`);
-      files.forEach(f => console.log(chalk.gray(`    - ${f}`)));
+      files.forEach((f) => console.log(chalk.gray(`    - ${f}`)));
     });
   }
 
@@ -129,8 +132,10 @@ function printReport() {
 
   // Missing schema
   if (issues.missingSchema.length > 0) {
-    console.log(chalk.yellow.bold(`\n⚠️  Missing Schema.org JSON-LD: ${issues.missingSchema.length}`));
-    issues.missingSchema.slice(0, 10).forEach(file => {
+    console.log(
+      chalk.yellow.bold(`\n⚠️  Missing Schema.org JSON-LD: ${issues.missingSchema.length}`)
+    );
+    issues.missingSchema.slice(0, 10).forEach((file) => {
       console.log(`  ${file}`);
     });
   }
@@ -138,7 +143,7 @@ function printReport() {
   // Missing OG tags
   if (issues.missingOG.length > 0) {
     console.log(chalk.yellow.bold(`\n⚠️  Missing Open Graph Tags: ${issues.missingOG.length}`));
-    issues.missingOG.slice(0, 10).forEach(file => {
+    issues.missingOG.slice(0, 10).forEach((file) => {
       console.log(`  ${file}`);
     });
   }
@@ -155,13 +160,15 @@ function printReport() {
   // Summary
   console.log('\n' + '='.repeat(60));
   console.log(chalk.blue.bold('\n📈 SUMMARY\n'));
-  console.log(`Total Issues: ${chalk.yellow(
-    issues.missingMetaDesc.length +
-    issues.missingAlt.length +
-    issues.missingSchema.length +
-    issues.missingOG.length +
-    issues.longTitle.length
-  )}`);
+  console.log(
+    `Total Issues: ${chalk.yellow(
+      issues.missingMetaDesc.length +
+        issues.missingAlt.length +
+        issues.missingSchema.length +
+        issues.missingOG.length +
+        issues.longTitle.length
+    )}`
+  );
   console.log(`\nPriority Fixes:`);
   console.log(`  1. Add meta descriptions to ${issues.missingMetaDesc.length} pages`);
   console.log(`  2. Add alt text to ${issues.missingAlt.length} images`);

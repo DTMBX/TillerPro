@@ -9,12 +9,7 @@
     "assets/img/tillerstead-logo.png"
   ],
   "homeChecks": {
-    "mustContainAnySelectors": [
-      ".site-header",
-      "header.site-header",
-      "nav",
-      ".site-nav"
-    ],
+    "mustContainAnySelectors": [".site-header", "header.site-header", "nav", ".site-nav"],
     "navChecks": {
       "mustHaveAny": [
         "button[aria-controls]",
@@ -22,12 +17,7 @@
         ".nav-toggle",
         "[data-drawer-toggle]"
       ],
-      "drawerMustHaveAny": [
-        "#mobile-nav",
-        ".mobile-drawer",
-        ".nav-drawer",
-        "[data-drawer]"
-      ]
+      "drawerMustHaveAny": ["#mobile-nav", ".mobile-drawer", ".nav-drawer", "[data-drawer]"]
     },
     "logoChecks": {
       "mustHaveAny": [

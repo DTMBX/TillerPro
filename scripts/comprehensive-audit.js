@@ -30,15 +30,7 @@ const results = {
   },
 };
 
-const SEMANTIC_TAGS = [
-  'header',
-  'nav',
-  'main',
-  'section',
-  'article',
-  'aside',
-  'footer',
-];
+const SEMANTIC_TAGS = ['header', 'nav', 'main', 'section', 'article', 'aside', 'footer'];
 const ISSUE_CATEGORIES = {
   MISSING_ALT: 'Missing alt text',
   HEADING_HIERARCHY: 'Heading hierarchy issue',
@@ -62,14 +54,11 @@ function scanFile(filePath, type) {
 
     // 1. Check for semantic HTML (layouts only)
     if (type === 'layouts') {
-      const hasSemanticTags = SEMANTIC_TAGS.some((tag) =>
-        content.includes(`<${tag}`),
-      );
+      const hasSemanticTags = SEMANTIC_TAGS.some((tag) => content.includes(`<${tag}`));
       if (!hasSemanticTags) {
         fileIssues.push({
           category: 'NO_SEMANTIC',
-          message:
-            'Missing semantic HTML5 tags (header, nav, main, section, footer)',
+          message: 'Missing semantic HTML5 tags (header, nav, main, section, footer)',
           severity: 'warning',
         });
       }
@@ -92,9 +81,7 @@ function scanFile(filePath, type) {
     // 3. Check heading hierarchy
     const h1Count = (content.match(/<h1[^>]*>/gi) || []).length;
     const h2Count = (content.match(/<h2[^>]*>/gi) || []).length;
-    const h3Plus = (
-      content.match(/<h3[^>]*>|<h4[^>]*>|<h5[^>]*>|<h6[^>]*>/gi) || []
-    ).length;
+    const h3Plus = (content.match(/<h3[^>]*>|<h4[^>]*>|<h5[^>]*>|<h6[^>]*>/gi) || []).length;
 
     if (type === 'pages' && h1Count === 0) {
       fileIssues.push({
@@ -125,10 +112,7 @@ function scanFile(filePath, type) {
     });
 
     // 5. Check viewport meta (pages/layouts)
-    if (
-      (type === 'pages' || type === 'layouts') &&
-      !content.includes('viewport')
-    ) {
+    if ((type === 'pages' || type === 'layouts') && !content.includes('viewport')) {
       fileIssues.push({
         category: 'NO_VIEWPORT',
         message: 'Missing viewport meta tag',
@@ -148,8 +132,7 @@ function scanFile(filePath, type) {
     }
 
     // 7. Check for responsive design classes/utilities
-    const hasResponsive =
-      /class="[^"]*(?:sm:|md:|lg:|xl:|max-|flex-|grid-)[^"]*"/i.test(content);
+    const hasResponsive = /class="[^"]*(?:sm:|md:|lg:|xl:|max-|flex-|grid-)[^"]*"/i.test(content);
 
     if (!hasResponsive && type !== 'includes') {
       fileIssues.push({
@@ -170,8 +153,7 @@ function scanFile(filePath, type) {
     }
 
     // 9. Check for hard-coded pixel sizes
-    const hardCodedPx =
-      content.match(/(?:width|height|padding|margin):\s*\d+px/gi) || [];
+    const hardCodedPx = content.match(/(?:width|height|padding|margin):\s*\d+px/gi) || [];
     if (hardCodedPx.length > 3) {
       fileIssues.push({
         category: 'HARD_CODED_SIZE',

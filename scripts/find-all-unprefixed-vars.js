@@ -12,15 +12,7 @@ const __dirname = path.dirname(__filename);
 const sassDir = path.resolve(__dirname, '..', '_sass');
 
 // Valid prefixes
-const validPrefixes = [
-  'ts-',
-  'tiller-',
-  'color-',
-  'spacing-',
-  'font-',
-  'z-',
-  'breakpoint-',
-];
+const validPrefixes = ['ts-', 'tiller-', 'color-', 'spacing-', 'font-', 'z-', 'breakpoint-'];
 
 /**
  * Check if a property has a valid prefix
@@ -129,14 +121,12 @@ async function main() {
     console.log(`   Unique unprefixed definitions: ${allDefinitions.size}`);
     console.log(`   Unique unprefixed usages: ${allUsages.size}`);
     console.log(
-      `   Total violations: ${[...allDefinitions.values()].flat().length + [...allUsages.values()].flat().length}\n`,
+      `   Total violations: ${[...allDefinitions.values()].flat().length + [...allUsages.values()].flat().length}\n`
     );
 
     // Top offenders
     console.log('🔥 TOP UNPREFIXED PROPERTIES:\n');
-    const sortedDefs = [...allDefinitions.entries()].sort(
-      (a, b) => b[1].length - a[1].length,
-    );
+    const sortedDefs = [...allDefinitions.entries()].sort((a, b) => b[1].length - a[1].length);
     sortedDefs.slice(0, 20).forEach(([prop, locations]) => {
       console.log(`   ${prop.padEnd(35)} (${locations.length} occurrences)`);
     });
@@ -152,8 +142,7 @@ async function main() {
         definitions.slice(0, 5).forEach((d) => {
           console.log(`    Line ${d.line}: ${d.prop}`);
         });
-        if (definitions.length > 5)
-          console.log(`    ... and ${definitions.length - 5} more`);
+        if (definitions.length > 5) console.log(`    ... and ${definitions.length - 5} more`);
       }
 
       if (usages.length > 0) {
@@ -163,8 +152,7 @@ async function main() {
           const count = usages.filter((u) => u.prop === prop).length;
           console.log(`    ${prop} (${count}×)`);
         });
-        if (uniqueUsages.length > 5)
-          console.log(`    ... and ${uniqueUsages.length - 5} more`);
+        if (uniqueUsages.length > 5) console.log(`    ... and ${uniqueUsages.length - 5} more`);
       }
     });
 

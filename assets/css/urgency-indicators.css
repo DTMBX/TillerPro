@@ -1,6 +1,7 @@
 /* Urgency Badge Animation */
 @keyframes pulse-urgency {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 4px 12px rgb(220 38 38 / 40%);
   }
@@ -21,14 +22,14 @@
     flex-direction: column;
     align-items: flex-start !important;
   }
-  
+
   .ts-hero__eyebrow,
   .hero-social-proof,
   .hero-urgency {
     font-size: 0.875rem !important;
     padding: 0.5rem 1rem !important;
   }
-  
+
   .hero-social-proof span:first-child,
   .hero-urgency span:first-child {
     font-size: 1rem !important;
@@ -41,7 +42,8 @@
 }
 
 @keyframes badge-bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
 
@@ -86,7 +88,8 @@
 }
 
 @keyframes status-glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 4px 12px rgb(251 191 36 / 50%);
   }
 
@@ -125,7 +128,8 @@
 }
 
 @keyframes pulse-dot {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 100%;
   }

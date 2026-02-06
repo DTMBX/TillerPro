@@ -4,7 +4,7 @@
  * Version: 1.0.0
  */
 
-(function() {
+(function () {
   'use strict';
 
   const QuoteWizard = {
@@ -16,39 +16,39 @@
     pricing: {
       // Base rates per square foot (includes materials + labor)
       tileInstallation: {
-        basic: { min: 20.00, max: 24.00, materials: 3.50 }, // Ceramic tile
-        standard: { min: 24.00, max: 28.00, materials: 8.50 }, // Porcelain (your typical work)
-        premium: { min: 28.00, max: 34.00, materials: 9.00 }, // Large format
-        luxury: { min: 32.00, max: 45.00, materials: 12.00 } // Natural stone & mosaic
+        basic: { min: 20.0, max: 24.0, materials: 3.5 }, // Ceramic tile
+        standard: { min: 24.0, max: 28.0, materials: 8.5 }, // Porcelain (your typical work)
+        premium: { min: 28.0, max: 34.0, materials: 9.0 }, // Large format
+        luxury: { min: 32.0, max: 45.0, materials: 12.0 }, // Natural stone & mosaic
       },
 
       // Additional services (per sq ft or flat fee)
       services: {
         demolition: { min: 800, max: 1200, unit: 'flat' },
         waterproofing: { min: 600, max: 900, unit: 'flat' },
-        heating: { min: 15.00, max: 18.00, unit: 'sqft' },
+        heating: { min: 15.0, max: 18.0, unit: 'sqft' },
         schluter: { min: 600, max: 900, unit: 'flat' }, // Same as waterproofing
         customShower: { min: 3500, max: 6000, unit: 'flat' },
-        floorLeveling: { min: 2.00, max: 4.00, unit: 'sqft' }
+        floorLeveling: { min: 2.0, max: 4.0, unit: 'sqft' },
       },
 
       // Complexity multipliers (your actual margins)
       complexity: {
-        easy: 1.0,        // New construction, easy access, standard layout
-        moderate: 1.15,   // Second floor, some obstacles, custom cuts
-        complex: 1.35,    // Difficult access, lots of cuts, waterproofing issues
-        extreme: 1.65     // Historic home, structural issues, custom everything
+        easy: 1.0, // New construction, easy access, standard layout
+        moderate: 1.15, // Second floor, some obstacles, custom cuts
+        complex: 1.35, // Difficult access, lots of cuts, waterproofing issues
+        extreme: 1.65, // Historic home, structural issues, custom everything
       },
 
       // Minimum project fee (covers overhead)
-      minimumProject: 1500
+      minimumProject: 1500,
     },
 
     state: {
       currentStep: 1,
       totalSteps: 5,
       answers: {},
-      estimate: null
+      estimate: null,
     },
 
     elements: {
@@ -56,21 +56,25 @@
       steps: [],
       progressBar: null,
       backBtn: null,
-      nextBtn: null
+      nextBtn: null,
     },
 
     /**
      * Initialize wizard
      */
-    init: function() {
+    init: function () {
       this.elements.wizard = document.getElementById('quote-wizard');
 
       if (!this.elements.wizard) {
         return;
       }
 
-      this.elements.steps = Array.from(this.elements.wizard.querySelectorAll('.quote-wizard__step'));
-      this.elements.progressBar = this.elements.wizard.querySelector('.quote-wizard__progress-fill');
+      this.elements.steps = Array.from(
+        this.elements.wizard.querySelectorAll('.quote-wizard__step')
+      );
+      this.elements.progressBar = this.elements.wizard.querySelector(
+        '.quote-wizard__progress-fill'
+      );
       this.elements.backBtn = this.elements.wizard.querySelector('[data-action="back"]');
       this.elements.nextBtn = this.elements.wizard.querySelector('[data-action="next"]');
 
@@ -81,7 +85,7 @@
     /**
      * Attach event listeners
      */
-    attachEvents: function() {
+    attachEvents: function () {
       // Navigation buttons
       if (this.elements.backBtn) {
         this.elements.backBtn.addEventListener('click', () => this.previousStep());
@@ -101,7 +105,7 @@
           const value = optionBtn.dataset.option;
 
           // Deselect others
-          step.querySelectorAll('[data-option]').forEach(btn => {
+          step.querySelectorAll('[data-option]').forEach((btn) => {
             btn.classList.remove('selected');
           });
 
@@ -131,11 +135,11 @@
     /**
      * Show specific step
      */
-    showStep: function(stepNum) {
+    showStep: function (stepNum) {
       this.state.currentStep = stepNum;
 
       // Update steps visibility
-      this.elements.steps.forEach(step => {
+      this.elements.steps.forEach((step) => {
         const stepNumber = parseInt(step.dataset.step);
         step.classList.toggle('active', stepNumber === stepNum);
       });
@@ -152,7 +156,8 @@
       }
 
       if (this.elements.nextBtn) {
-        this.elements.nextBtn.textContent = stepNum === this.state.totalSteps ? 'Get Estimate' : 'Next';
+        this.elements.nextBtn.textContent =
+          stepNum === this.state.totalSteps ? 'Get Estimate' : 'Next';
       }
 
       // Track step view
@@ -162,7 +167,7 @@
     /**
      * Next step
      */
-    nextStep: function() {
+    nextStep: function () {
       // Validate current step
       const currentStepEl = this.elements.steps[this.state.currentStep - 1];
       const questionKey = currentStepEl.dataset.question;
@@ -183,7 +188,7 @@
     /**
      * Previous step
      */
-    previousStep: function() {
+    previousStep: function () {
       if (this.state.currentStep > 1) {
         this.showStep(this.state.currentStep - 1);
       }
@@ -192,7 +197,7 @@
     /**
      * Calculate estimate based on answers
      */
-    calculateEstimate: function() {
+    calculateEstimate: function () {
       const answers = this.state.answers;
 
       // Get square footage
@@ -200,7 +205,7 @@
 
       // Determine base rate
       let baseRate;
-      switch(answers.tileType) {
+      switch (answers.tileType) {
         case 'ceramic':
         case 'basic':
           baseRate = this.pricing.tileInstallation.basic;
@@ -256,7 +261,7 @@
 
       // Apply complexity multiplier
       let complexityFactor = 1.0;
-      switch(answers.complexity) {
+      switch (answers.complexity) {
         case 'moderate':
           complexityFactor = this.pricing.complexity.moderate;
           break;
@@ -288,7 +293,7 @@
         services: services,
         complexity: answers.complexity || 'easy',
         roomType: answers.roomType,
-        tileType: answers.tileType
+        tileType: answers.tileType,
       };
 
       // Show results
@@ -298,7 +303,7 @@
     /**
      * Show results page
      */
-    showResults: function() {
+    showResults: function () {
       const estimate = this.state.estimate;
 
       const resultsHTML = `
@@ -315,7 +320,7 @@
                 $${estimate.min.toLocaleString()} - $${estimate.max.toLocaleString()}
               </div>
               <span class="quote-results__per-sqft">
-                ($${(estimate.min/estimate.sqft).toFixed(2)} - $${(estimate.max/estimate.sqft).toFixed(2)} per sq ft)
+                ($${(estimate.min / estimate.sqft).toFixed(2)} - $${(estimate.max / estimate.sqft).toFixed(2)} per sq ft)
               </span>
             </div>
           </div>
@@ -338,7 +343,7 @@
             <h3>What's Included</h3>
             <ul>
               <li>✓ ${estimate.sqft} sq ft ${estimate.tileType} tile installation</li>
-              ${estimate.services.map(s => `<li>✓ ${s}</li>`).join('')}
+              ${estimate.services.map((s) => `<li>✓ ${s}</li>`).join('')}
               <li>✓ Industry-standard substrate preparation</li>
               <li>✓ Professional-grade materials (${estimate.baseRate.materials ? `~$${estimate.baseRate.materials}/sqft` : 'TBD'})</li>
               <li>✓ Debris removal and cleanup</li>
@@ -406,7 +411,7 @@
         gtag('event', 'conversion', {
           send_to: 'AW-CONVERSION-ID', // Replace with your Google Ads conversion ID
           value: (estimate.min + estimate.max) / 2,
-          currency: 'USD'
+          currency: 'USD',
         });
       }
     },
@@ -414,7 +419,7 @@
     /**
      * Email results to user
      */
-    emailResults: function() {
+    emailResults: function () {
       const email = prompt('Enter your email address to receive this estimate:');
 
       if (!email || !email.includes('@')) {
@@ -432,7 +437,7 @@
         sqft: estimate.sqft,
         room_type: estimate.roomType,
         tile_type: estimate.tileType,
-        services: estimate.services.join(', ')
+        services: estimate.services.join(', '),
       };
 
       // TODO: Integrate with EmailJS
@@ -446,25 +451,25 @@
     /**
      * Show error message
      */
-    showError: function(message) {
+    showError: function (message) {
       alert(message); // TODO: Replace with better UI
     },
 
     /**
      * Track events
      */
-    trackEvent: function(action, label) {
+    trackEvent: function (action, label) {
       if (typeof gtag !== 'undefined') {
         gtag('event', action, {
           event_category: 'Quote Wizard',
-          event_label: label
+          event_label: label,
         });
       }
 
       if (typeof ga !== 'undefined') {
         ga('send', 'event', 'Quote Wizard', action, label);
       }
-    }
+    },
   };
 
   // Auto-initialize

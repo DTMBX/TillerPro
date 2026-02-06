@@ -1,16 +1,20 @@
 # FREE IP PROTECTION ACTIONS
+
 **Tillerstead LLC - Immediate Steps to Secure Intellectual Property**
 
-*Last Updated: January 27, 2026*  
-*Cost: $0 | Time: 30 minutes total*
+_Last Updated: January 27, 2026_  
+_Cost: $0 | Time: 30 minutes total_
 
 ---
 
 ## 📋 OVERVIEW
 
-These three FREE actions establish **common law rights** and create **evidence of first use** that strengthens your IP position. They cost $0 and take 30 minutes total.
+These three FREE actions establish **common law rights** and create **evidence
+of first use** that strengthens your IP position. They cost $0 and take 30
+minutes total.
 
 **Why This Matters:**
+
 - Establishes dated proof of when you started using your trademarks
 - Creates defensible evidence if someone challenges your rights
 - Provides timestamped backup if your website goes down
@@ -20,7 +24,8 @@ These three FREE actions establish **common law rights** and create **evidence o
 
 ## 🌐 ACTION 1: Wayback Machine Archive (5 minutes)
 
-Archive your website on the Internet Archive to create permanent, timestamped snapshots.
+Archive your website on the Internet Archive to create permanent, timestamped
+snapshots.
 
 ### Step-by-Step Instructions
 
@@ -37,14 +42,15 @@ Archive your website on the Internet Archive to create permanent, timestamped sn
    - Paste URL into "Save Page Now" box
    - Click "Save Page"
    - Wait 10-30 seconds for confirmation
-   - **IMPORTANT:** Copy the archive URL (e.g., `https://web.archive.org/web/20260127...`)
+   - **IMPORTANT:** Copy the archive URL (e.g.,
+     `https://web.archive.org/web/20260127...`)
    - Save all 5 archive URLs in a text file
 
-4. **Save Evidence:**
-   Create a file: `_audit/wayback-archives.txt`
+4. **Save Evidence:** Create a file: `_audit/wayback-archives.txt`
+
    ```
    Wayback Machine Archives - January 27, 2026
-   
+
    Homepage: https://web.archive.org/web/[timestamp]/tillerstead.com/
    About: https://web.archive.org/web/[timestamp]/tillerstead.com/about.html
    Copyright: https://web.archive.org/web/[timestamp]/tillerstead.com/copyright.html
@@ -53,6 +59,7 @@ Archive your website on the Internet Archive to create permanent, timestamped sn
    ```
 
 ### What This Proves
+
 - Your website existed on this date
 - Your trademarks were publicly displayed
 - Your copyright notices were in place
@@ -69,7 +76,8 @@ Create a permanent email record with screenshots and timestamp.
 ### Step-by-Step Instructions
 
 1. **Take 5 Screenshots:**
-   - **Screenshot 1:** Homepage showing logo + "Where Craft Meets Accountability"™
+   - **Screenshot 1:** Homepage showing logo + "Where Craft Meets
+     Accountability"™
    - **Screenshot 2:** Footer showing all trademark symbols (™)
    - **Screenshot 3:** Copyright page showing all 7 slogans
    - **Screenshot 4:** TillerPro™ calculator tool
@@ -77,9 +85,12 @@ Create a permanent email record with screenshots and timestamp.
 
 2. **Prepare Email:**
    - **To:** Your personal email (devon@tillerstead.com or personal Gmail)
-   - **CC:** A trusted backup email (family member, business partner, cloud email)
-   - **Subject:** `Tillerstead LLC Intellectual Property Archive - January 27, 2026`
+   - **CC:** A trusted backup email (family member, business partner, cloud
+     email)
+   - **Subject:**
+     `Tillerstead LLC Intellectual Property Archive - January 27, 2026`
    - **Body:**
+
    ```
    TILLERSTEAD LLC INTELLECTUAL PROPERTY ARCHIVE
    Date: January 27, 2026
@@ -96,7 +107,7 @@ Create a permanent email record with screenshots and timestamp.
 
    ATTACHED: Screenshots of website showing trademark use in commerce
 
-   This email serves as timestamped evidence of intellectual property 
+   This email serves as timestamped evidence of intellectual property
    ownership and first use in commerce for Tillerstead LLC.
 
    Devon Tyler
@@ -115,6 +126,7 @@ Create a permanent email record with screenshots and timestamp.
    - **NEVER delete this email**
 
 ### What This Proves
+
 - You claimed ownership of these marks on this date
 - You have timestamped, third-party evidence (email server logs)
 - Screenshots show actual commercial use
@@ -139,21 +151,24 @@ Document exactly when you first started using each trademark.
    - Witnesses (if anyone saw you use it)
 
 3. **Template:**
+
    ```markdown
    # First Use Evidence - Tillerstead LLC Trademarks
 
    ## Business Names
 
    ### Tillerstead™
+
    - **First Use Date:** [e.g., August 15, 2024]
    - **First Use Location:** Business registration, website homepage
-   - **Evidence:** 
+   - **Evidence:**
      - NJ Business Entity filing (Confirmation #...)
      - Domain registration (tillerstead.com - Whois record)
      - First invoice to customer (Invoice #001, Customer Name)
    - **Witnesses:** [Name, if applicable]
 
    ### TillerPro™
+
    - **First Use Date:** [e.g., October 3, 2024]
    - **First Use Location:** Website tools page
    - **Evidence:**
@@ -162,6 +177,7 @@ Document exactly when you first started using each trademark.
    - **Witnesses:** [Name, if applicable]
 
    ### Tyler the Tiler™
+
    - **First Use Date:** [e.g., September 1, 2024]
    - **First Use Location:** Business card, truck signage
    - **Evidence:**
@@ -172,6 +188,7 @@ Document exactly when you first started using each trademark.
    ## Slogans & Taglines
 
    ### "Where Craft Meets Accountability"™
+
    - **First Use Date:** [e.g., August 20, 2024]
    - **First Use Location:** Website homepage hero section
    - **Evidence:**
@@ -182,6 +199,7 @@ Document exactly when you first started using each trademark.
    [Continue for all 7 slogans...]
 
    ## Supporting Evidence
+
    - Business License: NJ HIC# 13VH12578700 (issued [date])
    - Domain Registration: tillerstead.com (registered [date])
    - First Customer Invoice: [date, customer name redacted]
@@ -192,7 +210,8 @@ Document exactly when you first started using each trademark.
 4. **Attach Physical Evidence:**
    - Scan business cards → `_audit/evidence/business-card-2024.pdf`
    - Scan first invoice → `_audit/evidence/first-invoice-redacted.pdf`
-   - Screenshot first website version → `_audit/evidence/website-first-version.png`
+   - Screenshot first website version →
+     `_audit/evidence/website-first-version.png`
    - Photo of truck/signage → `_audit/evidence/truck-photo.jpg`
 
 5. **Save Git History:**
@@ -204,6 +223,7 @@ Document exactly when you first started using each trademark.
    ```
 
 ### What This Proves
+
 - **Priority Date:** You used the mark BEFORE anyone else
 - **Continuous Use:** You've been using it consistently
 - **Commercial Use:** You used it in actual business (not just planning)
@@ -230,6 +250,7 @@ Once finished, you should have:
 ## 🔒 SECURITY & STORAGE
 
 **Critical Files to Protect:**
+
 ```
 _audit/
 ├── wayback-archives.txt          ← Archive URLs
@@ -242,12 +263,14 @@ _audit/
 ```
 
 **Backup Strategy:**
+
 1. **Keep in Git:** Add to repository (private repo OK)
 2. **Cloud Backup:** Google Drive, Dropbox, OneDrive
 3. **External Drive:** USB drive stored off-site
 4. **Email Archive:** Forward the timestamp email to 2nd account
 
 **DO NOT:**
+
 - Delete the timestamp email (EVER)
 - Lose the first use documentation
 - Forget to update dates if you find earlier evidence
@@ -257,14 +280,14 @@ _audit/
 
 ## 📊 LEGAL PROTECTION COMPARISON
 
-| Protection Level | No Evidence | With These Actions | With Registration |
-|-----------------|-------------|-------------------|------------------|
-| **Common Law Rights** | 50% | 95% ✅ | 100% |
-| **Proof of First Use** | ❌ Difficult | ✅ Strong | ✅ Strongest |
-| **Enforcement Cost** | Very High | Moderate | Low |
-| **Geographic Scope** | Local Only | Regional (NJ) | Nationwide |
-| **Damages Available** | Actual Only | Actual Only | Actual + Statutory |
-| **Cost** | $0 | $0 ✅ | $250-350 |
+| Protection Level       | No Evidence  | With These Actions | With Registration  |
+| ---------------------- | ------------ | ------------------ | ------------------ |
+| **Common Law Rights**  | 50%          | 95% ✅             | 100%               |
+| **Proof of First Use** | ❌ Difficult | ✅ Strong          | ✅ Strongest       |
+| **Enforcement Cost**   | Very High    | Moderate           | Low                |
+| **Geographic Scope**   | Local Only   | Regional (NJ)      | Nationwide         |
+| **Damages Available**  | Actual Only  | Actual Only        | Actual + Statutory |
+| **Cost**               | $0           | $0 ✅              | $250-350           |
 
 ---
 
@@ -273,21 +296,27 @@ _audit/
 After completing these FREE actions:
 
 ### When You Have $65 (HIGHEST ROI)
+
 ✅ **Register TillerPro™ software copyright**
+
 - Form: eCO (Electronic Copyright Office)
 - Time: 30 min online, 3-6 months processing
 - Protection: Full copyright, statutory damages up to $150k
 - **Best bang for your buck**
 
 ### When You Have $250 (NEXT PRIORITY)
+
 ✅ **File "Where Craft Meets Accountability"™ trademark**
+
 - Form: TEAS Standard
 - Class: 042 (Construction services)
 - Time: 1 hour online, 12-18 months processing
 - Protection: Nationwide, ® symbol
 
 ### When You Have $500 (COMPREHENSIVE)
+
 ✅ **Attorney consultation**
+
 - Review all IP strategy
 - Confirm first use dates
 - Optimize filing strategy
@@ -298,15 +327,20 @@ After completing these FREE actions:
 ## 💡 WHY THIS WORKS
 
 ### Common Law Trademark Rights
-Under federal law (Lanham Act 15 U.S.C. § 1127), you **automatically own** trademark rights from the moment you first use a mark in commerce. Registration is NOT required.
+
+Under federal law (Lanham Act 15 U.S.C. § 1127), you **automatically own**
+trademark rights from the moment you first use a mark in commerce. Registration
+is NOT required.
 
 **What You Get:**
+
 - Right to use the mark in your geographic area
 - Right to stop others from using confusingly similar marks
 - Right to sue for trademark infringement
 - Priority over anyone who starts using it AFTER you
 
 **What Registration Adds:**
+
 - Nationwide protection (vs. regional)
 - ® symbol (looks more professional)
 - Presumption of validity (you don't have to prove ownership)
@@ -314,13 +348,16 @@ Under federal law (Lanham Act 15 U.S.C. § 1127), you **automatically own** trad
 - Easier to enforce
 
 ### Why Timestamps Matter
+
 **Trademark law = First to Use, NOT First to File**
 
-If someone files a federal trademark for "Where Craft Meets Accountability" tomorrow, but you can PROVE you used it first, **you win**.
+If someone files a federal trademark for "Where Craft Meets Accountability"
+tomorrow, but you can PROVE you used it first, **you win**.
 
 That's why these FREE actions are so valuable:
+
 1. Wayback Machine = Third-party timestamp
-2. Email = Server log timestamp  
+2. Email = Server log timestamp
 3. First Use Docs = Evidence trail
 
 **Real Example:**  
@@ -334,22 +371,28 @@ You show Wayback snapshot from Aug 2024.
 ## ❓ FAQ
 
 **Q: Can I just write down the dates myself?**  
-A: That's weak evidence. You need **third-party verification** like email servers, Wayback Machine, Git commits, or notarization.
+A: That's weak evidence. You need **third-party verification** like email
+servers, Wayback Machine, Git commits, or notarization.
 
 **Q: What if I can't remember exact first use dates?**  
-A: Be conservative. Use the LATEST possible date you're certain about. Better to say "Oct 2024" than claim "Aug 2024" and get caught lying.
+A: Be conservative. Use the LATEST possible date you're certain about. Better to
+say "Oct 2024" than claim "Aug 2024" and get caught lying.
 
 **Q: Should I notarize the first use document?**  
-A: Optional but recommended ($15-25). Notary adds legal weight. Visit any UPS Store, bank, or AAA office.
+A: Optional but recommended ($15-25). Notary adds legal weight. Visit any UPS
+Store, bank, or AAA office.
 
 **Q: Do I need to archive every month?**  
-A: No. One good snapshot per year is fine. But do it ASAP for the first time to establish your baseline.
+A: No. One good snapshot per year is fine. But do it ASAP for the first time to
+establish your baseline.
 
 **Q: What if my website changes later?**  
-A: That's fine. This snapshot proves you used the marks on THIS date. Future changes don't invalidate past use.
+A: That's fine. This snapshot proves you used the marks on THIS date. Future
+changes don't invalidate past use.
 
 **Q: Can I delete the email after saving screenshots?**  
-A: **NEVER.** The email timestamp is the legal proof. Screenshots alone are weak (can be Photoshopped).
+A: **NEVER.** The email timestamp is the legal proof. Screenshots alone are weak
+(can be Photoshopped).
 
 ---
 
@@ -374,4 +417,5 @@ New Jersey State Bar Referral: https://www.njsba.com/
 
 ---
 
-*This document is for informational purposes only and does not constitute legal advice. Consult a licensed attorney for specific guidance.*
+_This document is for informational purposes only and does not constitute legal
+advice. Consult a licensed attorney for specific guidance._

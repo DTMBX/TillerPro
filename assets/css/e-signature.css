@@ -25,7 +25,7 @@
 }
 
 .signature-section h3::before {
-  content: "✍️";
+  content: '✍️';
   font-size: 1.75rem;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .btn-sign-electronically::before {
-  content: "✍️";
+  content: '✍️';
   font-size: 1.5rem;
 }
 
@@ -195,7 +195,7 @@
 }
 
 .signer-status.signed::before {
-  content: "✓";
+  content: '✓';
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -208,7 +208,7 @@
 }
 
 .signer-status.awaiting::before {
-  content: "⏳";
+  content: '⏳';
   font-size: 1.125rem;
 }
 
@@ -316,7 +316,7 @@
 }
 
 .provider-badge::before {
-  content: "🔒";
+  content: '🔒';
   font-size: 1rem;
 }
 
@@ -354,7 +354,7 @@
 }
 
 .test-mode-banner::before {
-  content: "⚠️";
+  content: '⚠️';
   font-size: 1.25rem;
 }
 
@@ -407,7 +407,8 @@
    ============================================ */
 
 @keyframes pulse-signature {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 4px 12px rgb(139 92 246 / 30%);
   }
 

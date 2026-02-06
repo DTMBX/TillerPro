@@ -35,7 +35,7 @@ class HapticFeedback {
       // UI feedback
       toggle: 15,
       selection: 5,
-      notification: [20, 100, 20, 100, 20]
+      notification: [20, 100, 20, 100, 20],
     };
 
     const pattern = patterns[type] || patterns.light;
@@ -100,36 +100,44 @@ window.haptics = haptics;
 // Auto-attach to common interactive elements
 document.addEventListener('DOMContentLoaded', () => {
   // Buttons
-  document.addEventListener('click', (e) => {
-    const button = e.target.closest('button, .btn, [role="button"]');
-    if (button && !button.disabled) {
-      haptics.trigger('tap');
-    }
-  }, { passive: true });
+  document.addEventListener(
+    'click',
+    (e) => {
+      const button = e.target.closest('button, .btn, [role="button"]');
+      if (button && !button.disabled) {
+        haptics.trigger('tap');
+      }
+    },
+    { passive: true }
+  );
 
   // Links
-  document.addEventListener('click', (e) => {
-    const link = e.target.closest('a[href]');
-    if (link && !link.classList.contains('no-haptic')) {
-      haptics.trigger('light');
-    }
-  }, { passive: true });
+  document.addEventListener(
+    'click',
+    (e) => {
+      const link = e.target.closest('a[href]');
+      if (link && !link.classList.contains('no-haptic')) {
+        haptics.trigger('light');
+      }
+    },
+    { passive: true }
+  );
 
   // Form inputs
   const inputs = document.querySelectorAll('input, textarea, select');
-  inputs.forEach(input => {
+  inputs.forEach((input) => {
     input.addEventListener('focus', () => haptics.trigger('selection'), { passive: true });
   });
 
   // Checkboxes and radios
   const toggles = document.querySelectorAll('input[type="checkbox"], input[type="radio"]');
-  toggles.forEach(toggle => {
+  toggles.forEach((toggle) => {
     toggle.addEventListener('change', () => haptics.trigger('toggle'), { passive: true });
   });
 
   // Form submission
   const forms = document.querySelectorAll('form');
-  forms.forEach(form => {
+  forms.forEach((form) => {
     form.addEventListener('submit', () => haptics.trigger('success'), { passive: true });
   });
 });

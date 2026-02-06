@@ -174,7 +174,7 @@
 
 .gradient-mesh {
   position: relative;
-  background: 
+  background:
     radial-gradient(at 27% 37%, hsl(215deg 98% 61% / 30%) 0, transparent 50%),
     radial-gradient(at 97% 21%, hsl(125deg 98% 72% / 30%) 0, transparent 50%),
     radial-gradient(at 52% 99%, hsl(354deg 98% 61% / 30%) 0, transparent 50%),

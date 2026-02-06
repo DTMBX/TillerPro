@@ -119,21 +119,10 @@ function auditTCNACompliance() {
   console.log('🏗️  Auditing TCNA 2024 compliance...');
 
   const findings = [];
-  const tcnaKeywords = [
-    'TCNA',
-    'ANSI A108',
-    'ANSI A118',
-    'TR115',
-    'TR117',
-    'EJ171',
-  ];
+  const tcnaKeywords = ['TCNA', 'ANSI A108', 'ANSI A118', 'TR115', 'TR117', 'EJ171'];
 
   // Check for TCNA references on key pages
-  const keyPages = [
-    'index.md',
-    'services.html',
-    'build.html',
-  ];
+  const keyPages = ['index.md', 'services.html', 'build.html'];
   let tcnaFound = 0;
 
   keyPages.forEach((page) => {
@@ -163,8 +152,7 @@ function auditTCNACompliance() {
         findings.push({
           level: 'warning',
           file: 'build/' + file,
-          message:
-            'No TCNA references found - Build guides should reference applicable standards',
+          message: 'No TCNA references found - Build guides should reference applicable standards',
         });
       }
     });
@@ -195,19 +183,13 @@ function auditNJHICCompliance() {
 
   // Check for license number presence
   try {
-    const files = [
-      'index.md',
-      'services.html',
-      'about.html',
-      '_includes/footer.html',
-    ];
+    const files = ['index.md', 'services.html', 'about.html', '_includes/footer.html'];
 
     files.forEach((file) => {
       try {
         const content = readFileSync(join(ROOT, file), 'utf-8');
         if (content.includes(licenseNum)) licenseFound++;
-        if (content.includes('HIC') || content.includes('Home Improvement'))
-          disclaimersFound++;
+        if (content.includes('HIC') || content.includes('Home Improvement')) disclaimersFound++;
       } catch {
         // File not found
       }
@@ -222,25 +204,20 @@ function auditNJHICCompliance() {
   if (licenseFound === 0) {
     findings.push({
       level: 'error',
-      message:
-        'License number not found on any major pages - violates NJ HIC requirements',
+      message: 'License number not found on any major pages - violates NJ HIC requirements',
     });
   }
 
   if (disclaimersFound < 3) {
     findings.push({
       level: 'warning',
-      message:
-        'HIC disclaimers found on fewer than 3 pages - recommend prominent display',
+      message: 'HIC disclaimers found on fewer than 3 pages - recommend prominent display',
     });
   }
 
   // Check compliance.yml
   try {
-    const complianceData = readFileSync(
-      join(DATA_DIR, 'compliance.yml'),
-      'utf-8',
-    );
+    const complianceData = readFileSync(join(DATA_DIR, 'compliance.yml'), 'utf-8');
     if (!complianceData.includes('13VH10808800')) {
       findings.push({
         level: 'warning',
@@ -283,9 +260,7 @@ function auditWCAGCompliance() {
     // Check for alt attributes on images
     const imgRegex = /<img[^>]*>/g;
     const images = content.match(imgRegex) || [];
-    const imagesWithoutAlt = images.filter(
-      (img) => !img.includes('alt='),
-    ).length;
+    const imagesWithoutAlt = images.filter((img) => !img.includes('alt=')).length;
 
     if (imagesWithoutAlt > 0) {
       findings.push({
@@ -374,26 +349,22 @@ function auditBuildPhaseCompliance() {
       // Check for plain language (no excessive jargon)
       const jargonTerms = ['substrate', 'substrate', 'ANSI', 'TCNA'];
       const jargonCount = jargonTerms.filter((term) =>
-        bodyContent.toLowerCase().includes(term.toLowerCase()),
+        bodyContent.toLowerCase().includes(term.toLowerCase())
       ).length;
 
       if (jargonCount > 0) {
-        const explanationCheck = bodyContent.match(
-          /[Tt]his (is|means|refers to)/,
-        );
+        const explanationCheck = bodyContent.match(/[Tt]his (is|means|refers to)/);
         if (!explanationCheck) {
           findings.push({
             level: 'warning',
             file: 'build/' + file,
-            message:
-              'Contains technical terms but may lack explanations for homeowners',
+            message: 'Contains technical terms but may lack explanations for homeowners',
           });
         }
       }
 
       // Check for links to other Build guides
-      const hasInternalLinks =
-        bodyContent.includes('/build/') || bodyContent.includes('](/');
+      const hasInternalLinks = bodyContent.includes('/build/') || bodyContent.includes('](/');
       if (!hasInternalLinks) {
         findings.push({
           level: 'info',
@@ -575,10 +546,7 @@ function runAudit() {
   });
 
   // Write JSON repor
-  writeFileSync(
-    join(ROOT, 'compliance-audit-report.json'),
-    JSON.stringify(REPORT, null, 2),
-  );
+  writeFileSync(join(ROOT, 'compliance-audit-report.json'), JSON.stringify(REPORT, null, 2));
 
   // Write Markdown report
   let markdown =
@@ -629,16 +597,13 @@ function runAudit() {
 
   Object.entries(REPORT.results).forEach(([key, result]) => {
     markdown +=
-      '\n### ' +
-      (result.findings ? COMPLIANCE_CHECKS[key.toUpperCase()]?.name : key) +
-      '\n';
+      '\n### ' + (result.findings ? COMPLIANCE_CHECKS[key.toUpperCase()]?.name : key) + '\n';
     markdown += '**Status:** ' + result.status.toUpperCase() + '\n\n';
 
     if (result.findings?.length) {
       markdown += '#### Issues\n\n';
       result.findings.forEach((finding) => {
-        markdown +=
-          '- **' + finding.level.toUpperCase() + '**: ' + finding.message;
+        markdown += '- **' + finding.level.toUpperCase() + '**: ' + finding.message;
         if (finding.file) markdown += ' (' + finding.file + ')';
         if (finding.colors) markdown += ' — ' + finding.colors;
         if (finding.ratio) markdown += ' [' + finding.ratio + ']';

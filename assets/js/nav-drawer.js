@@ -12,14 +12,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Submenu logic for drawer mode
   const submenuGroups = drawer.querySelectorAll('.nav-submenu-group');
-  submenuGroups.forEach(group => {
+  submenuGroups.forEach((group) => {
     const trigger = group.querySelector('.has-submenu');
     if (trigger) {
       trigger.addEventListener('click', function (e) {
         e.preventDefault();
         // Toggle open class
         const isOpen = group.classList.contains('open');
-        submenuGroups.forEach(g => g.classList.remove('open'));
+        submenuGroups.forEach((g) => g.classList.remove('open'));
         if (!isOpen) group.classList.add('open');
       });
     }
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     openBtn.focus();
   }
 
-  openBtn.addEventListener('click', function() {
+  openBtn.addEventListener('click', function () {
     const isOpen = drawer.classList.contains('is-open');
     if (isOpen) {
       closeDrawer();
@@ -78,17 +78,17 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Close drawer on link click
-  drawer.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', function() {
+  drawer.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', function () {
       setTimeout(closeDrawer, 150);
     });
   });
 
   // Close on resize to desktop
   let resizeTimer;
-  window.addEventListener('resize', function() {
+  window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
+    resizeTimer = setTimeout(function () {
       if (window.innerWidth >= 1024 && drawer.classList.contains('is-open')) {
         closeDrawer();
       }

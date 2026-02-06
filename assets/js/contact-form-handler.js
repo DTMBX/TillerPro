@@ -36,11 +36,9 @@
     `;
 
     // Add close functionality
-    container
-      .querySelector('.form-message__close')
-      .addEventListener('click', () => {
-        container.remove();
-      });
+    container.querySelector('.form-message__close').addEventListener('click', () => {
+      container.remove();
+    });
 
     return container;
   }
@@ -101,21 +99,18 @@ Submitted: ${new Date().toLocaleString()}
 
     // Try Formspree endpoint (you'll need to set this up)
     try {
-      const formspreeResponse = await fetch(
-        'https://formspree.io/f/YOUR_FORM_ID',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: formData.get('name'),
-            email: formData.get('email'),
-            phone: formData.get('phone'),
-            message: formData.get('message'),
-            _subject: subject,
-            _replyto: formData.get('email'),
-          }),
-        },
-      );
+      const formspreeResponse = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          message: formData.get('message'),
+          _subject: subject,
+          _replyto: formData.get('email'),
+        }),
+      });
 
       if (formspreeResponse.ok) {
         return { success: true, method: 'formspree' };
@@ -148,11 +143,7 @@ Submitted: ${new Date().toLocaleString()}
       // Validate
       const errors = validateForm(formData);
       if (errors.length > 0) {
-        const errorMsg = showMessage(
-          'error',
-          'Please Fix These Errors',
-          errors.join('. '),
-        );
+        const errorMsg = showMessage('error', 'Please Fix These Errors', errors.join('. '));
         form.insertBefore(errorMsg, form.firstChild);
         return;
       }
@@ -172,7 +163,7 @@ Submitted: ${new Date().toLocaleString()}
             'success',
             FORM_CONFIG.successMessage.title,
             FORM_CONFIG.successMessage.body,
-            FORM_CONFIG.successMessage.confirmationSent,
+            FORM_CONFIG.successMessage.confirmationSent
           );
 
           form.insertBefore(successMsg, form.firstChild);
@@ -196,7 +187,7 @@ Submitted: ${new Date().toLocaleString()}
         const errorMsg = showMessage(
           'error',
           FORM_CONFIG.errorMessage.title,
-          FORM_CONFIG.errorMessage.body,
+          FORM_CONFIG.errorMessage.body
         );
 
         form.insertBefore(errorMsg, form.firstChild);

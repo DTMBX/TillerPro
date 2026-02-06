@@ -8,7 +8,12 @@
  * @module formulas.advanced
  */
 
-import { inchesToFeet, validatePositiveNumber, validateNonNegativeNumber, validatePercentage } from './units.js';
+import {
+  inchesToFeet,
+  validatePositiveNumber,
+  validateNonNegativeNumber,
+  validatePercentage,
+} from './units.js';
 import { roundUp, roundToDecimals, formatNumber } from './rounding.js';
 
 // ==
@@ -21,25 +26,25 @@ export const MOVEMENT_JOINT_INFO = {
   sources: [
     {
       name: 'TCNA EJ171',
-      note: 'Interior: 20–25 ft; Exterior/Sun/Heated: 8–12 ft; Reduce spacing with temperature swing'
-    }
+      note: 'Interior: 20–25 ft; Exterior/Sun/Heated: 8–12 ft; Reduce spacing with temperature swing',
+    },
   ],
   assumptions: [
     'Rectangular field divided on regular grid',
     'Spacing reduced for high ΔT or sun-exposed areas',
-    'Perimeter, columns, and changes of plane still require soft joints'
-  ]
+    'Perimeter, columns, and changes of plane still require soft joints',
+  ],
 };
 
 const MOVEMENT_JOINT_SPACING = {
   interior: {
     standard: 24, // ft
-    highTemp: 20
+    highTemp: 20,
   },
   exterior: {
     standard: 12, // ft
-    highTemp: 8
-  }
+    highTemp: 8,
+  },
 };
 
 export const DEFLECTION_INFO = {
@@ -47,13 +52,13 @@ export const DEFLECTION_INFO = {
   version: '1.0.0',
   sources: [
     { name: 'TCNA / ANSI A108', note: 'L/360 ceramic, L/720 stone minimum' },
-    { name: 'Beam formula', note: 'Δ = 5wL^4 / (384EI) for simple span, uniform load' }
+    { name: 'Beam formula', note: 'Δ = 5wL^4 / (384EI) for simple span, uniform load' },
   ],
   assumptions: [
     'Simply supported joists',
     'Uniform load = live + dead (default 40 + 10 psf)',
-    'Modulus of elasticity defaults to SPF ~1.6e6 psi'
-  ]
+    'Modulus of elasticity defaults to SPF ~1.6e6 psi',
+  ],
 };
 
 export const HEATED_FLOOR_INFO = {
@@ -61,12 +66,12 @@ export const HEATED_FLOOR_INFO = {
   version: '1.0.0',
   sources: [
     { name: 'NFPA 70 (NEC)', note: 'Branch circuit sizing based on continuous load @125%' },
-    { name: 'Typical radiant mats', note: '12 W/sf nominal at 120/240 VAC' }
+    { name: 'Typical radiant mats', note: '12 W/sf nominal at 120/240 VAC' },
   ],
   assumptions: [
     'Watts per square foot provided by heating mat/cable specification',
-    'Thermostat relay rating typically 15 A; above this requires external relay/contactor'
-  ]
+    'Thermostat relay rating typically 15 A; above this requires external relay/contactor',
+  ],
 };
 
 export const MOISTURE_LIMITS_INFO = {
@@ -74,12 +79,12 @@ export const MOISTURE_LIMITS_INFO = {
   version: '1.0.0',
   sources: [
     { name: 'ASTM F1869', note: 'MVER lbs/1000 sf/24h' },
-    { name: 'ASTM F2170', note: 'In-situ RH %' }
+    { name: 'ASTM F2170', note: 'In-situ RH %' },
   ],
   assumptions: [
     'Thresholds are product-specific; defaults are conservative for many SLUs/adhesives',
-    'Use lower of MVER or RH limits to gate installation'
-  ]
+    'Use lower of MVER or RH limits to gate installation',
+  ],
 };
 
 export const THINSET_MIX_INFO = {
@@ -88,95 +93,95 @@ export const THINSET_MIX_INFO = {
   sources: [
     {
       name: 'Custom Building Products VersaBond LFT TDS',
-      note: '5–6 quarts water per 50 lb bag; pot life ~2–4 hours depending on conditions'
-    }
+      note: '5–6 quarts water per 50 lb bag; pot life ~2–4 hours depending on conditions',
+    },
   ],
   assumptions: [
     'Linear scaling of water for partial batches',
     'Pot life set to conservative 2 hours unless overridden',
-    'Yield is approximation; verify with specific TDS'
-  ]
+    'Yield is approximation; verify with specific TDS',
+  ],
 };
 
 export const SEALER_COVERAGE = {
   polished: { min: 800, max: 1000, note: 'Polished porcelain / dense stone' },
   semi_porcelain: { min: 400, max: 600, note: 'Semi-porous porcelain/ceramic' },
   natural_stone: { min: 200, max: 400, note: 'Honed/rough natural stone' },
-  concrete: { min: 150, max: 250, note: 'Broom finish or open concrete' }
+  concrete: { min: 150, max: 250, note: 'Broom finish or open concrete' },
 };
 
 export const SEALER_INFO = {
   name: 'Sealer Coverage Estimator',
   version: '1.0.0',
   sources: [
-    { name: 'Manufacturer TDS (typical)', note: 'Coverage varies by porosity and product' }
+    { name: 'Manufacturer TDS (typical)', note: 'Coverage varies by porosity and product' },
   ],
   assumptions: [
     'Uses conservative (low-end) coverage to avoid shortages',
-    'Coats parameter multiplies total required volume'
-  ]
+    'Coats parameter multiplies total required volume',
+  ],
 };
 
 export const DECK_MUD_INFO = {
   name: 'Shower Pan / Curb Volume',
   version: '1.0.0',
   sources: [
-    { name: 'TCNA B415/B421', note: 'Minimum 1-1/4" deck mud at drain, 1/4" per foot slope' }
+    { name: 'TCNA B415/B421', note: 'Minimum 1-1/4" deck mud at drain, 1/4" per foot slope' },
   ],
   assumptions: [
     'Average thickness = (min + max) / 2',
-    'Bag yield defaults to 0.5 cu ft per 50 lb deck mud bag'
-  ]
+    'Bag yield defaults to 0.5 cu ft per 50 lb deck mud bag',
+  ],
 };
 
 export const PRIMER_INFO = {
   name: 'Primer / SLU Coverage',
   version: '1.0.0',
   sources: [
-    { name: 'SLU Primers (typical)', note: 'Porous 200–300 sf/gal; non-porous 300–400 sf/gal' }
+    { name: 'SLU Primers (typical)', note: 'Porous 200–300 sf/gal; non-porous 300–400 sf/gal' },
   ],
   assumptions: [
     'Double-prime multiplies primer quantity by 2',
-    'Coverage uses conservative (low-end) values'
-  ]
+    'Coverage uses conservative (low-end) values',
+  ],
 };
 
 export const SEALANT_INFO = {
   name: 'Sealant / Caulk Bead Estimator',
   version: '1.0.0',
   sources: [
-    { name: 'ASTM C920 practice', note: 'Bead volume = area × length; 10.1 oz tube ≈ 18.3 in³' }
+    { name: 'ASTM C920 practice', note: 'Bead volume = area × length; 10.1 oz tube ≈ 18.3 in³' },
   ],
-  assumptions: [
-    'Round bead cross-section',
-    'Uses low-end tube volume for conservative count'
-  ]
+  assumptions: ['Round bead cross-section', 'Uses low-end tube volume for conservative count'],
 };
 
 export const LABOR_SENSITIVITY_INFO = {
   name: 'Labor Rate Sensitivity',
   version: '1.0.0',
   sources: [
-    { name: 'TCNA Handbook Note', note: 'Productivity varies by layout, substrate, tile type' }
+    { name: 'TCNA Handbook Note', note: 'Productivity varies by layout, substrate, tile type' },
   ],
   assumptions: [
     'Base productivity specified by user or defaults to standard floor work',
-    'Multipliers compound for complexity, pattern, and substrate prep'
-  ]
+    'Multipliers compound for complexity, pattern, and substrate prep',
+  ],
 };
 
 export const BATH_LAYOUT_INFO = {
   name: 'Bath Layout & Clearances',
   version: '1.0.0',
   sources: [
-    { name: 'IPC/IRC typical minimums', note: 'Toilet 15" side clearance, 21–24" front; 30–36" circulation' },
-    { name: 'ICC A117.1 guidance', note: '36" clear path recommended for accessibility' }
+    {
+      name: 'IPC/IRC typical minimums',
+      note: 'Toilet 15" side clearance, 21–24" front; 30–36" circulation',
+    },
+    { name: 'ICC A117.1 guidance', note: '36" clear path recommended for accessibility' },
   ],
   assumptions: [
     'Fixtures arranged primarily along the longer wall',
     'Door located on layout wall; width deducted from usable wall length',
-    'Clear path measured from deepest fixture to opposite wall'
-  ]
+    'Clear path measured from deepest fixture to opposite wall',
+  ],
 };
 
 // ==
@@ -199,7 +204,7 @@ export function calculateMovementJoints({
   widthFt,
   exposure = 'interior',
   tempSwingF = 30,
-  isSunExposed = false
+  isSunExposed = false,
 }) {
   const errors = [];
   const assumptions = [];
@@ -213,14 +218,26 @@ export function calculateMovementJoints({
   if (!tempVal.valid) errors.push(tempVal.error);
 
   if (errors.length > 0) {
-    return { valid: false, errors, spacingFt: 0, jointsLong: 0, jointsShort: 0, totalJoints: 0, assumptions };
+    return {
+      valid: false,
+      errors,
+      spacingFt: 0,
+      jointsLong: 0,
+      jointsShort: 0,
+      totalJoints: 0,
+      assumptions,
+    };
   }
 
   const isExterior = exposure === 'exterior' || isSunExposed;
   const spacing =
     tempVal.value >= 40
-      ? (isExterior ? MOVEMENT_JOINT_SPACING.exterior.highTemp : MOVEMENT_JOINT_SPACING.interior.highTemp)
-      : (isExterior ? MOVEMENT_JOINT_SPACING.exterior.standard : MOVEMENT_JOINT_SPACING.interior.standard);
+      ? isExterior
+        ? MOVEMENT_JOINT_SPACING.exterior.highTemp
+        : MOVEMENT_JOINT_SPACING.interior.highTemp
+      : isExterior
+        ? MOVEMENT_JOINT_SPACING.exterior.standard
+        : MOVEMENT_JOINT_SPACING.interior.standard;
 
   const jointsLong = Math.max(0, roundUp(lengthVal.value / spacing) - 1);
   const jointsShort = Math.max(0, roundUp(widthVal.value / spacing) - 1);
@@ -230,7 +247,15 @@ export function calculateMovementJoints({
   assumptions.push(`Temperature swing: ${tempVal.value}°F`);
   assumptions.push(`Spacing target per EJ171: ${spacing} ft grid`);
 
-  return { valid: true, errors: [], spacingFt: spacing, jointsLong, jointsShort, totalJoints, assumptions };
+  return {
+    valid: true,
+    errors: [],
+    spacingFt: spacing,
+    jointsLong,
+    jointsShort,
+    totalJoints,
+    assumptions,
+  };
 }
 
 // ==
@@ -257,7 +282,7 @@ export function calculateDeflection({
   joistDepthInches,
   modulusPsi = 1600000,
   liveLoadPsft = 40,
-  deadLoadPsft = 10
+  deadLoadPsft = 10,
 }) {
   const errors = [];
   const assumptions = [];
@@ -275,7 +300,15 @@ export function calculateDeflection({
   if (!modulusVal.valid) errors.push(modulusVal.error);
 
   if (errors.length > 0) {
-    return { valid: false, errors, deflectionRatio: 0, passesCeramic: false, passesStone: false, deltaInches: 0, assumptions };
+    return {
+      valid: false,
+      errors,
+      deflectionRatio: 0,
+      passesCeramic: false,
+      passesStone: false,
+      deltaInches: 0,
+      assumptions,
+    };
   }
 
   const L = spanVal.value * 12; // inches
@@ -298,7 +331,7 @@ export function calculateDeflection({
     passesCeramic: deflectionRatio >= 360,
     passesStone: deflectionRatio >= 720,
     deltaInches: roundToDecimals(delta, 3),
-    assumptions
+    assumptions,
   };
 }
 
@@ -320,7 +353,7 @@ export function calculateHeatedFloorLoad({
   areaSqFt,
   wattsPerSqFt = 12,
   voltage = 120,
-  thermostatMaxAmps = 15
+  thermostatMaxAmps = 15,
 }) {
   const errors = [];
   const assumptions = [];
@@ -334,7 +367,16 @@ export function calculateHeatedFloorLoad({
   if (!voltVal.valid) errors.push(voltVal.error);
 
   if (errors.length > 0) {
-    return { valid: false, errors, totalWatts: 0, amps: 0, breakerAmps: 0, circuits: 0, needsRelay: false, assumptions };
+    return {
+      valid: false,
+      errors,
+      totalWatts: 0,
+      amps: 0,
+      breakerAmps: 0,
+      circuits: 0,
+      needsRelay: false,
+      assumptions,
+    };
   }
 
   const totalWatts = areaVal.value * wattVal.value;
@@ -357,7 +399,7 @@ export function calculateHeatedFloorLoad({
     breakerAmps,
     circuits,
     needsRelay,
-    assumptions
+    assumptions,
   };
 }
 
@@ -379,7 +421,7 @@ export function evaluateMoistureReadings({
   mverLbs,
   rhPercent,
   productLimitMver = 5,
-  productLimitRh = 75
+  productLimitRh = 75,
 }) {
   const errors = [];
   const assumptions = [];
@@ -391,7 +433,14 @@ export function evaluateMoistureReadings({
   if (!rhVal.valid) errors.push(rhVal.error);
 
   if (errors.length > 0) {
-    return { valid: false, errors, mverPass: false, rhPass: false, requiresMitigation: false, assumptions };
+    return {
+      valid: false,
+      errors,
+      mverPass: false,
+      rhPass: false,
+      requiresMitigation: false,
+      assumptions,
+    };
   }
 
   const mverPass = mverVal.value <= productLimitMver;
@@ -425,7 +474,7 @@ export function calculateThinsetMix({
   waterQuartsPerBagMax = 6,
   batchWeightLbs,
   potLifeMinutes = 120,
-  yieldCuFtPerBag = 0.45
+  yieldCuFtPerBag = 0.45,
 }) {
   const errors = [];
   const assumptions = [];
@@ -444,14 +493,22 @@ export function calculateThinsetMix({
   if (batchVal && !batchVal.valid) errors.push(batchVal.error);
 
   if (errors.length > 0) {
-    return { valid: false, errors, waterQuartsRange: [0, 0], batchWeightLbs: 0, potLifeMinutes: 0, estimatedYieldCuFt: 0, assumptions };
+    return {
+      valid: false,
+      errors,
+      waterQuartsRange: [0, 0],
+      batchWeightLbs: 0,
+      potLifeMinutes: 0,
+      estimatedYieldCuFt: 0,
+      assumptions,
+    };
   }
 
   const batchWeight = batchVal?.value || bagVal.value;
   const ratio = batchWeight / bagVal.value;
   const waterQuartsRange = [
     roundToDecimals(waterMinVal.value * ratio, 2),
-    roundToDecimals(waterMaxVal.value * ratio, 2)
+    roundToDecimals(waterMaxVal.value * ratio, 2),
   ];
 
   assumptions.push('Linear water scaling used for partial batches');
@@ -464,7 +521,7 @@ export function calculateThinsetMix({
     batchWeightLbs: batchWeight,
     potLifeMinutes,
     estimatedYieldCuFt: roundToDecimals(yieldVal.value * ratio, 2),
-    assumptions
+    assumptions,
   };
 }
 
@@ -481,11 +538,7 @@ export function calculateThinsetMix({
  * @param {number} [params.coats=2]
  * @returns {{ valid: boolean, errors: string[], gallons: number, coverageUsedSqFtPerGal: number, assumptions: string[] }}
  */
-export function estimateSealer({
-  areaSqFt,
-  surface = 'natural_stone',
-  coats = 2
-}) {
+export function estimateSealer({ areaSqFt, surface = 'natural_stone', coats = 2 }) {
   const errors = [];
   const assumptions = [];
 
@@ -509,7 +562,13 @@ export function estimateSealer({
   assumptions.push(`Coverage (conservative): ${coverageSqFtPerGal} sq ft/gal`);
   assumptions.push(`Coats: ${coatsVal.value}`);
 
-  return { valid: true, errors: [], gallons, coverageUsedSqFtPerGal: coverageSqFtPerGal, assumptions };
+  return {
+    valid: true,
+    errors: [],
+    gallons,
+    coverageUsedSqFtPerGal: coverageSqFtPerGal,
+    assumptions,
+  };
 }
 
 // ==
@@ -532,7 +591,7 @@ export function calculateDeckMud({
   runFeet,
   minThicknessInches = 1.25,
   slopeInchesPerFoot = 0.25,
-  bagYieldCuFt = 0.5
+  bagYieldCuFt = 0.5,
 }) {
   const errors = [];
   const assumptions = [];
@@ -567,7 +626,7 @@ export function calculateDeckMud({
     volumeCuFt: roundToDecimals(volumeCuFt, 2),
     bags,
     maxThicknessInches: roundToDecimals(maxThicknessInches, 2),
-    assumptions
+    assumptions,
   };
 }
 
@@ -577,7 +636,7 @@ export function calculateDeckMud({
 
 const PRIMER_COVERAGE = {
   porous: 200,
-  nonporous: 300
+  nonporous: 300,
 };
 
 /**
@@ -589,11 +648,7 @@ const PRIMER_COVERAGE = {
  * @param {boolean} [params.doublePrime=false]
  * @returns {{ valid: boolean, errors: string[], gallons: number, coverageSqFtPerGal: number, assumptions: string[] }}
  */
-export function estimatePrimer({
-  areaSqFt,
-  porosity = 'porous',
-  doublePrime = false
-}) {
+export function estimatePrimer({ areaSqFt, porosity = 'porous', doublePrime = false }) {
   const errors = [];
   const assumptions = [];
 
@@ -633,7 +688,7 @@ export function estimatePrimer({
 export function estimateSealantTubes({
   linearFeet,
   beadDiameterInches = 0.25,
-  tubeVolumeOz = 10.1
+  tubeVolumeOz = 10.1,
 }) {
   const errors = [];
   const assumptions = [];
@@ -658,9 +713,17 @@ export function estimateSealantTubes({
   const tubes = roundUp(totalVolumeIn3 / volumePerTubeIn3);
 
   assumptions.push(`Bead: ${beadVal.value}" diameter`);
-  assumptions.push(`Tube volume: ${tubeVal.value} oz (≈${roundToDecimals(volumePerTubeIn3, 1)} in³)`);
+  assumptions.push(
+    `Tube volume: ${tubeVal.value} oz (≈${roundToDecimals(volumePerTubeIn3, 1)} in³)`
+  );
 
-  return { valid: true, errors: [], tubes, volumePerTubeIn3: roundToDecimals(volumePerTubeIn3, 2), assumptions };
+  return {
+    valid: true,
+    errors: [],
+    tubes,
+    volumePerTubeIn3: roundToDecimals(volumePerTubeIn3, 2),
+    assumptions,
+  };
 }
 
 // ==
@@ -670,19 +733,19 @@ export function estimateSealantTubes({
 const COMPLEXITY_MULTIPLIERS = {
   standard: 1,
   medium: 1.15,
-  high: 1.3
+  high: 1.3,
 };
 
 const PATTERN_MULTIPLIERS = {
   straight: 1,
   diagonal: 1.15,
-  herringbone: 1.3
+  herringbone: 1.3,
 };
 
 const SURFACE_MULTIPLIERS = {
   floor: 1,
   wall: 1.2,
-  ceiling: 1.4
+  ceiling: 1.4,
 };
 
 /**
@@ -703,7 +766,7 @@ export function estimateLaborSensitivity({
   complexity = 'standard',
   pattern = 'straight',
   surface = 'floor',
-  crewSize = 1
+  crewSize = 1,
 }) {
   const errors = [];
   const assumptions = [];
@@ -725,7 +788,14 @@ export function estimateLaborSensitivity({
   if (!surfaceMultiplier) errors.push(`Unknown surface: ${surface}`);
 
   if (errors.length > 0) {
-    return { valid: false, errors, hours: 0, crewDays: 0, effectiveProductivitySqFtPerHour: 0, assumptions };
+    return {
+      valid: false,
+      errors,
+      hours: 0,
+      crewDays: 0,
+      effectiveProductivitySqFtPerHour: 0,
+      assumptions,
+    };
   }
 
   const totalMultiplier = complexityMultiplier * patternMultiplier * surfaceMultiplier;
@@ -734,7 +804,9 @@ export function estimateLaborSensitivity({
   const crewDays = hours / (crewVal.value * 8); // 8-hour day
 
   assumptions.push(`Base productivity: ${baseVal.value} sf/hr`);
-  assumptions.push(`Multipliers -> complexity ${complexityMultiplier}, pattern ${patternMultiplier}, surface ${surfaceMultiplier}`);
+  assumptions.push(
+    `Multipliers -> complexity ${complexityMultiplier}, pattern ${patternMultiplier}, surface ${surfaceMultiplier}`
+  );
   assumptions.push(`Crew size: ${crewVal.value}`);
 
   return {
@@ -743,7 +815,7 @@ export function estimateLaborSensitivity({
     hours: roundToDecimals(hours, 2),
     crewDays: roundToDecimals(crewDays, 2),
     effectiveProductivitySqFtPerHour: roundToDecimals(effectiveProductivity, 2),
-    assumptions
+    assumptions,
   };
 }
 
@@ -804,7 +876,7 @@ export function calculateBathLayout(params) {
     includeVanity = true,
     vanityWidthIn = 48,
     vanityDepthIn = 22,
-    vanityFrontClearIn = 30
+    vanityFrontClearIn = 30,
   } = params;
 
   const roomLengthVal = validatePositiveNumber(roomLengthFt, 'Room length');
@@ -812,7 +884,7 @@ export function calculateBathLayout(params) {
   const doorWidthVal = validatePositiveNumber(doorWidthIn, 'Door width');
   const walkwayVal = validatePositiveNumber(walkwayMinIn, 'Walkway minimum');
 
-  [roomLengthVal, roomWidthVal, doorWidthVal, walkwayVal].forEach(v => {
+  [roomLengthVal, roomWidthVal, doorWidthVal, walkwayVal].forEach((v) => {
     if (!v.valid) errors.push(v.error);
   });
 
@@ -828,7 +900,7 @@ export function calculateBathLayout(params) {
       maxDepthClearIn: 0,
       assumptions,
       warnings,
-      notes
+      notes,
     };
   }
 
@@ -844,7 +916,7 @@ export function calculateBathLayout(params) {
       maxDepthClearIn: 0,
       assumptions,
       warnings,
-      notes
+      notes,
     };
   }
 
@@ -854,7 +926,7 @@ export function calculateBathLayout(params) {
     fixtures.push({
       type: 'tub',
       width: tubLengthIn,
-      depth: tubWidthIn + tubFrontClearIn
+      depth: tubWidthIn + tubFrontClearIn,
     });
     if (tubWidthIn < 30) warnings.push('Tub width under 30" may feel tight.');
     notes.push(`Tub front clearance: ${tubFrontClearIn}"`);
@@ -864,9 +936,10 @@ export function calculateBathLayout(params) {
     fixtures.push({
       type: 'shower',
       width: showerWidthIn,
-      depth: showerDepthIn + showerFrontClearIn
+      depth: showerDepthIn + showerFrontClearIn,
     });
-    if (showerWidthIn < 30 || showerDepthIn < 30) warnings.push('Shower minimum is 30" x 30" per IPC; aim for 36" x 36".');
+    if (showerWidthIn < 30 || showerDepthIn < 30)
+      warnings.push('Shower minimum is 30" x 30" per IPC; aim for 36" x 36".');
     notes.push(`Shower front clearance: ${showerFrontClearIn}"`);
   }
 
@@ -875,18 +948,21 @@ export function calculateBathLayout(params) {
     fixtures.push({
       type: 'toilet',
       width: toiletZoneWidth,
-      depth: toiletDepthIn + toiletFrontClearIn
+      depth: toiletDepthIn + toiletFrontClearIn,
     });
     if (toiletSideClearIn < 15) warnings.push('Toilet side clearance below 15" violates IPC/IRC.');
-    if (toiletFrontClearIn < 21) warnings.push('Toilet front clearance below 21" may violate code; 24"+ recommended.');
-    notes.push(`Toilet zone width uses ${toiletSideClearIn}" side clearances (30" min). Front clearance: ${toiletFrontClearIn}"`);
+    if (toiletFrontClearIn < 21)
+      warnings.push('Toilet front clearance below 21" may violate code; 24"+ recommended.');
+    notes.push(
+      `Toilet zone width uses ${toiletSideClearIn}" side clearances (30" min). Front clearance: ${toiletFrontClearIn}"`
+    );
   }
 
   if (includeVanity) {
     fixtures.push({
       type: 'vanity',
       width: vanityWidthIn,
-      depth: vanityDepthIn + vanityFrontClearIn
+      depth: vanityDepthIn + vanityFrontClearIn,
     });
     notes.push(`Vanity front clearance: ${vanityFrontClearIn}"`);
   }
@@ -923,7 +999,7 @@ export function calculateBathLayout(params) {
       walkwayWidthIn,
       walkwayPassBool,
       fitsLinearBool,
-      doorDeductIn
+      doorDeductIn,
     };
   };
 
@@ -941,22 +1017,40 @@ export function calculateBathLayout(params) {
   const a = score(evalLength);
   const b = score(evalWidth);
   const selected =
-    a[0] !== b[0] ? (a[0] > b[0] ? evalLength : evalWidth) :
-      a[1] !== b[1] ? (a[1] > b[1] ? evalLength : evalWidth) :
-        (a[2] >= b[2] ? evalLength : evalWidth);
+    a[0] !== b[0]
+      ? a[0] > b[0]
+        ? evalLength
+        : evalWidth
+      : a[1] !== b[1]
+        ? a[1] > b[1]
+          ? evalLength
+          : evalWidth
+        : a[2] >= b[2]
+          ? evalLength
+          : evalWidth;
 
   const alternate = selected.fixtureWall === 'length' ? evalWidth : evalLength;
 
   assumptions.push(`Layout wall tested: length + width (best chosen)`);
   assumptions.push(`Selected fixture wall: ${selected.fixtureWall}`);
   assumptions.push(`Door wall setting: ${doorWall}`);
-  assumptions.push(`Door width deducted on selected wall: ${roundToDecimals(selected.doorDeductIn, 1)}"`);
+  assumptions.push(
+    `Door width deducted on selected wall: ${roundToDecimals(selected.doorDeductIn, 1)}"`
+  );
   assumptions.push(`Walkway minimum target: ${walkwayVal.value}"`);
 
-  notes.push(`Alternate (${alternate.fixtureWall}) — Available wall: ${roundToDecimals(alternate.availableWallIn, 1)}", Clear path: ${roundToDecimals(alternate.walkwayWidthIn, 1)}"`);
+  notes.push(
+    `Alternate (${alternate.fixtureWall}) — Available wall: ${roundToDecimals(alternate.availableWallIn, 1)}", Clear path: ${roundToDecimals(alternate.walkwayWidthIn, 1)}"`
+  );
 
-  if (!selected.fitsLinearBool) warnings.push('Fixtures exceed available wall length—consider switching walls or reducing widths.');
-  if (!selected.walkwayPassBool) warnings.push(`Clear path under ${walkwayVal.value}" — increase room width or reduce front clearances.`);
+  if (!selected.fitsLinearBool)
+    warnings.push(
+      'Fixtures exceed available wall length—consider switching walls or reducing widths.'
+    );
+  if (!selected.walkwayPassBool)
+    warnings.push(
+      `Clear path under ${walkwayVal.value}" — increase room width or reduce front clearances.`
+    );
 
   return {
     valid: true,
@@ -970,7 +1064,7 @@ export function calculateBathLayout(params) {
     maxDepthClearIn: roundToDecimals(selected.maxDepthClearIn, 1),
     assumptions,
     warnings,
-    notes
+    notes,
   };
 }
 
@@ -981,7 +1075,8 @@ export function calculateBathLayout(params) {
 export const ADVANCED_FORMULA_INFO = {
   name: 'Advanced Installation Calculators',
   version: '1.0.0',
-  description: 'Movement joints, deflection, heated floors, moisture, mixing, sealer, deck mud, primer, sealant, labor sensitivity, bath layout',
+  description:
+    'Movement joints, deflection, heated floors, moisture, mixing, sealer, deck mud, primer, sealant, labor sensitivity, bath layout',
   modules: [
     'calculateMovementJoints',
     'calculateDeflection',
@@ -993,6 +1088,6 @@ export const ADVANCED_FORMULA_INFO = {
     'estimatePrimer',
     'estimateSealantTubes',
     'estimateLaborSensitivity',
-    'calculateBathLayout'
-  ]
+    'calculateBathLayout',
+  ],
 };

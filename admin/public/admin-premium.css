@@ -4,7 +4,7 @@
    = */
 
 /* ===== THEME SWITCHER ===== */
-:root[data-theme="light"] {
+:root[data-theme='light'] {
   --admin-bg: #f9fafb;
   --admin-bg-elevated: #ffffff;
   --admin-text-primary: #111827;
@@ -13,7 +13,7 @@
   --admin-shadow: 0 1px 3px rgb(0 0 0 / 10%);
 }
 
-:root[data-theme="dark"],
+:root[data-theme='dark'],
 :root {
   --admin-bg: #0f172a;
   --admin-bg-elevated: #1e293b;
@@ -102,7 +102,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ===== KEYBOARD SHORTCUTS PANEL ===== */

@@ -78,13 +78,10 @@ function refactorFile(filePath) {
     // Replace each unprefixed property with its prefixed version
     for (const [oldProp, newProp] of Object.entries(propertyMap)) {
       // Match both definitions (--prop:) and usages (var(--prop))
-      const defRegex = new RegExp(
-        `\\b${oldProp.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}:`,
-        'g',
-      );
+      const defRegex = new RegExp(`\\b${oldProp.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}:`, 'g');
       const varRegex = new RegExp(
         `var\\(${oldProp.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\)`,
-        'g',
+        'g'
       );
 
       if (defRegex.test(content) || varRegex.test(content)) {
@@ -96,9 +93,7 @@ function refactorFile(filePath) {
 
     if (changesMade > 0) {
       fs.writeFileSync(filePath, content, 'utf8');
-      console.log(
-        `✓ Refactored ${path.basename(filePath)} (${changesMade} properties updated)`,
-      );
+      console.log(`✓ Refactored ${path.basename(filePath)} (${changesMade} properties updated)`);
       return changesMade;
     }
 
@@ -113,9 +108,7 @@ function refactorFile(filePath) {
  * Main refactoring process
  */
 async function main() {
-  console.log(
-    'Tillerstead CSS Custom Property Refactor\n=====\n',
-  );
+  console.log('Tillerstead CSS Custom Property Refactor\n=====\n');
 
   try {
     // Find all SCSS files

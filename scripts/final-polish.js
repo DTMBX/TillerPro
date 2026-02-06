@@ -14,14 +14,8 @@ let content = fs.readFileSync(BUNDLE_PATH, 'utf8');
 
 // Fix: Add empty lines before specific declarations that need them
 console.log('Adding empty lines before declarations...');
-content = content.replace(
-  /(max-width:[^\n]+;\n)(  width: min)/g,
-  '$1\n$2'
-);
-content = content.replace(
-  /(text-align: center;\n)(  padding-inline:)/g,
-  '$1\n$2'
-);
+content = content.replace(/(max-width:[^\n]+;\n)(  width: min)/g, '$1\n$2');
+content = content.replace(/(text-align: center;\n)(  padding-inline:)/g, '$1\n$2');
 content = content.replace(
   /(\}\n)(\s+border-radius: var\(--tiller-input-border-radius\);)/g,
   '$1\n$2'
@@ -37,30 +31,31 @@ let lastLineWasRule = false;
 for (let i = 0; i < lines.length; i++) {
   const line = lines[i];
   const trimmed = line.trim();
-  
+
   // Track if we're in a @media block
   if (trimmed.startsWith('@media')) {
     inMediaBlock = true;
   }
-  
+
   // Check if this line starts a new rule (selector)
-  const isRule = !trimmed.startsWith('/*') && 
-                 !trimmed.startsWith('*/') &&
-                 !trimmed.startsWith('@') &&
-                 (trimmed.match(/^[.#a-z*:][\w-]*.*\{/) || 
-                  (trimmed.match(/^[.#a-z*:]/) && !trimmed.includes(':')));
-  
+  const isRule =
+    !trimmed.startsWith('/*') &&
+    !trimmed.startsWith('*/') &&
+    !trimmed.startsWith('@') &&
+    (trimmed.match(/^[.#a-z*:][\w-]*.*\{/) ||
+      (trimmed.match(/^[.#a-z*:]/) && !trimmed.includes(':')));
+
   // Check if previous line was closing brace
   const prevLine = i > 0 ? lines[i - 1].trim() : '';
   const prevWasCloseBrace = prevLine === '}';
-  
+
   // Add empty line before rule if needed
   if (inMediaBlock && isRule && prevWasCloseBrace && !lines[i - 1].match(/^\s*$/)) {
     fixedLines.push('');
   }
-  
+
   fixedLines.push(line);
-  
+
   // Exit media block
   if (inMediaBlock && trimmed === '}' && line.match(/^}/)) {
     inMediaBlock = false;

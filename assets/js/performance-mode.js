@@ -3,7 +3,7 @@
  * Reduces animations, simplifies effects for better performance
  */
 
-(function() {
+(function () {
   'use strict';
 
   const PERF_KEY = 'ts:performance-mode';
@@ -80,24 +80,24 @@
 
     disableHeavyAnimations() {
       // Disable parallax
-      document.querySelectorAll('[data-parallax]').forEach(el => {
+      document.querySelectorAll('[data-parallax]').forEach((el) => {
         el.style.transform = 'none';
       });
 
       // Disable 3D transforms
-      document.querySelectorAll('[data-tilt]').forEach(el => {
+      document.querySelectorAll('[data-tilt]').forEach((el) => {
         el.style.transform = 'none';
       });
 
       // Disable complex animations
-      document.querySelectorAll('[data-magnetic]').forEach(el => {
+      document.querySelectorAll('[data-magnetic]').forEach((el) => {
         el.style.transition = 'none';
       });
     }
 
     enableAnimations() {
       // Re-enable by removing inline styles
-      document.querySelectorAll('[data-parallax], [data-tilt], [data-magnetic]').forEach(el => {
+      document.querySelectorAll('[data-parallax], [data-tilt], [data-magnetic]').forEach((el) => {
         el.style.transform = '';
         el.style.transition = '';
       });
@@ -157,5 +157,4 @@
 
   // Expose globally
   window.tsPerformanceMode = perfMode;
-
 })();

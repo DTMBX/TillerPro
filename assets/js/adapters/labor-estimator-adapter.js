@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-(function() {
+(function () {
   'use strict';
 
   class LaborEstimatorAdapter {
@@ -39,7 +39,7 @@
         complexity: document.getElementById('labor-complexity'),
         prepWork: document.getElementById('labor-prep-work'),
         calcButton: document.getElementById('calc-labor-btn'),
-        results: document.getElementById('labor-calc-results')
+        results: document.getElementById('labor-calc-results'),
       };
     }
 
@@ -125,10 +125,10 @@
         this.elements.pattern,
         this.elements.area,
         this.elements.surface,
-        this.elements.complexity
+        this.elements.complexity,
       ].filter(Boolean);
 
-      autoSaveInputs.forEach(input => {
+      autoSaveInputs.forEach((input) => {
         input.addEventListener('change', () => this.saveToState());
       });
 
@@ -183,13 +183,13 @@
 
       // Base installation rates (sq ft per hour)
       const baseRates = {
-        mosaic: 15,       // Slow: many small pieces
-        subway: 25,       // Moderate-slow
-        small: 35,        // Moderate
-        standard: 50,     // Fast
-        medium: 45,       // Moderate-fast
-        large: 35,        // Slower: heavy, need precision
-        plank: 30         // Moderate-slow: many cuts
+        mosaic: 15, // Slow: many small pieces
+        subway: 25, // Moderate-slow
+        small: 35, // Moderate
+        standard: 50, // Fast
+        medium: 45, // Moderate-fast
+        large: 35, // Slower: heavy, need precision
+        plank: 30, // Moderate-slow: many cuts
       };
 
       // Pattern multipliers
@@ -198,27 +198,28 @@
         offset: 1.15,
         diagonal: 1.35,
         herringbone: 1.6,
-        versailles: 1.7
+        versailles: 1.7,
       };
 
       // Surface multipliers
       const surfaceMultipliers = {
         floor: 1.0,
-        wall: 1.25,      // Slower: vertical, gravity
-        shower: 1.5,     // Much slower: waterproofing, niches, angles
-        backsplash: 1.1  // Slight slower: cuts around outlets
+        wall: 1.25, // Slower: vertical, gravity
+        shower: 1.5, // Much slower: waterproofing, niches, angles
+        backsplash: 1.1, // Slight slower: cuts around outlets
       };
 
       // Complexity multipliers
       const complexityMultipliers = {
         simple: 0.9,
         moderate: 1.0,
-        complex: 1.3
+        complex: 1.3,
       };
 
       // Calculate effective rate
       const baseRate = baseRates[tileType] || 40;
-      const effectiveRate = baseRate *
+      const effectiveRate =
+        baseRate *
         (1 / patternMultipliers[pattern]) *
         (1 / surfaceMultipliers[surface]) *
         (1 / complexityMultipliers[complexity]);
@@ -248,8 +249,8 @@
           installation: Math.round(installHours * hourlyRate),
           waterproofing: Math.round(waterproofHours * hourlyRate),
           slope: Math.round(slopeHours * hourlyRate),
-          leveling: Math.round(levelingHours * hourlyRate)
-        }
+          leveling: Math.round(levelingHours * hourlyRate),
+        },
       };
 
       this.displayResults(result);
@@ -271,12 +272,16 @@
             <span class="calc-result__label">Installation time</span>
             <span class="calc-result__value">${result.installHours} hours</span>
           </div>
-          ${result.prepHours > 0 ? `
+          ${
+            result.prepHours > 0
+              ? `
           <div class="calc-result">
             <span class="calc-result__label">Prep work</span>
             <span class="calc-result__value">${result.prepHours} hours</span>
           </div>
-          ` : ''}
+          `
+              : ''
+          }
           <div class="calc-result">
             <span class="calc-result__label">Total time</span>
             <span class="calc-result__value calc-result__value--highlight">${result.totalHours} hours (${result.days} days)</span>
@@ -292,8 +297,9 @@
 
       const noteText = `Professional installation at $60/hr (mid-range NJ rate). ${result.days}-day project based on 8-hour days.`;
 
-      const noteEl = this.elements.results.querySelector('.calc-results__note') ||
-                      this.elements.results.querySelector('#labor-calc-note');
+      const noteEl =
+        this.elements.results.querySelector('.calc-results__note') ||
+        this.elements.results.querySelector('#labor-calc-note');
       if (noteEl) {
         noteEl.textContent = noteText;
       } else {
@@ -319,7 +325,11 @@
       this.state.set('budget.total.labor', result.laborCost);
       this.state.set('budget.total.estimate', totalCost);
 
-      console.log('[LaborAdapter] Budget updated:', { materials: materialsCost, labor: result.laborCost, total: totalCost });
+      console.log('[LaborAdapter] Budget updated:', {
+        materials: materialsCost,
+        labor: result.laborCost,
+        total: totalCost,
+      });
     }
 
     calculateMaterialsCost() {
@@ -344,7 +354,7 @@
       const waterproofGallons = this.state.get('waterproofing.calculated.gallons') || 0;
       const waterproofRolls = this.state.get('waterproofing.calculated.rolls') || 0;
       total += waterproofGallons * 45; // Liquid: $45/gal
-      total += waterproofRolls * 200;  // Membrane: $200/roll
+      total += waterproofRolls * 200; // Membrane: $200/roll
 
       // Leveling: $40/bag
       const levelingBags = this.state.get('leveling.calculated.bagsNeeded') || 0;
@@ -407,5 +417,4 @@
       adapter.init();
     }
   }
-
 })();

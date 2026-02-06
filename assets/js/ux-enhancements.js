@@ -3,7 +3,7 @@
  * Handles: Form feedback, back-to-top, loading states, error visibility
  */
 
-(function() {
+(function () {
   'use strict';
 
   const UXEnhancements = {
@@ -34,22 +34,26 @@
 
       // Show/hide based on scroll
       let scrollTimeout;
-      window.addEventListener('scroll', () => {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-          if (window.pageYOffset > 400) {
-            btn.classList.add('visible');
-          } else {
-            btn.classList.remove('visible');
-          }
-        }, 100);
-      }, { passive: true });
+      window.addEventListener(
+        'scroll',
+        () => {
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            if (window.pageYOffset > 400) {
+              btn.classList.add('visible');
+            } else {
+              btn.classList.remove('visible');
+            }
+          }, 100);
+        },
+        { passive: true }
+      );
 
       // Scroll to top on click
       btn.addEventListener('click', () => {
         window.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
 
         // Focus skip link after scrolling
@@ -66,7 +70,7 @@
     initFormEnhancements() {
       const forms = document.querySelectorAll('form[action]');
 
-      forms.forEach(form => {
+      forms.forEach((form) => {
         form.addEventListener('submit', (e) => {
           // Skip if form is invalid
           if (!form.checkValidity()) {
@@ -92,7 +96,7 @@
 
         // Real-time validation on blur
         const inputs = form.querySelectorAll('input, textarea, select');
-        inputs.forEach(input => {
+        inputs.forEach((input) => {
           input.addEventListener('blur', () => {
             this.validateField(input);
           });
@@ -109,7 +113,7 @@
       // Check for success message on load
       if (sessionStorage.getItem('form-submitted') === 'true') {
         sessionStorage.removeItem('form-submitted');
-        this.showSuccessToast('Thank you! We\'ll get back to you soon.');
+        this.showSuccessToast("Thank you! We'll get back to you soon.");
       }
     },
 
@@ -152,7 +156,7 @@
       const invalidFields = form.querySelectorAll(':invalid');
 
       // Validate all invalid fields
-      invalidFields.forEach(field => this.validateField(field));
+      invalidFields.forEach((field) => this.validateField(field));
 
       // Create or update error summary
       let errorSummary = form.querySelector('.error-summary');
@@ -167,11 +171,13 @@
       errorSummary.innerHTML = `
         <strong class="error-summary__title">Please fix the following errors:</strong>
         <ul class="error-list">
-          ${Array.from(invalidFields).map(field => {
-    const label = form.querySelector(`label[for="${field.id}"]`);
-    const fieldName = label ? label.textContent : field.name;
-    return `<li><a href="#${field.id}">${fieldName}: ${field.validationMessage}</a></li>`;
-  }).join('')}
+          ${Array.from(invalidFields)
+            .map((field) => {
+              const label = form.querySelector(`label[for="${field.id}"]`);
+              const fieldName = label ? label.textContent : field.name;
+              return `<li><a href="#${field.id}">${fieldName}: ${field.validationMessage}</a></li>`;
+            })
+            .join('')}
         </ul>
       `;
 
@@ -192,8 +198,8 @@
       // Add loading state to buttons with data-loading attribute
       const loadingButtons = document.querySelectorAll('[data-loading]');
 
-      loadingButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
+      loadingButtons.forEach((btn) => {
+        btn.addEventListener('click', function () {
           this.classList.add('btn--loading');
           this.setAttribute('aria-busy', 'true');
           this.disabled = true;
@@ -326,7 +332,8 @@
       if (skipLink) {
         skipLink.addEventListener('click', (e) => {
           e.preventDefault();
-          const mainContent = document.getElementById('main-content') || document.querySelector('main');
+          const mainContent =
+            document.getElementById('main-content') || document.querySelector('main');
           if (mainContent) {
             mainContent.setAttribute('tabindex', '-1');
             mainContent.focus();
@@ -358,7 +365,7 @@
     trapFocusInModals() {
       const modals = document.querySelectorAll('[role="dialog"], .modal, .lead-magnet');
 
-      modals.forEach(modal => {
+      modals.forEach((modal) => {
         const observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
             if (mutation.attributeName === 'aria-hidden') {
@@ -380,7 +387,7 @@
 
         observer.observe(modal, { attributes: true });
       });
-    }
+    },
   };
 
   // Initialize on DOM ready
@@ -392,5 +399,4 @@
 
   // Expose global API
   window.tsUXEnhancements = UXEnhancements;
-
 })();

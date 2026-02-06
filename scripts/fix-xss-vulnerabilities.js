@@ -20,7 +20,8 @@ const FIXES = [
     replacements: [
       {
         // Fix notification innerHTML (line 953-956)
-        search: /notification\.innerHTML = `[\s\S]*?<span class="notification-message">\$\{message\}<\/span>[\s\S]*?`;/,
+        search:
+          /notification\.innerHTML = `[\s\S]*?<span class="notification-message">\$\{message\}<\/span>[\s\S]*?`;/,
         replace: `// XSS-safe: Create elements without innerHTML
       const iconSpan = document.createElement('span');
       iconSpan.className = 'notification-icon';
@@ -32,11 +33,12 @@ const FIXES = [
       messageSpan.textContent = message;
       
       notification.appendChild(iconSpan);
-      notification.appendChild(messageSpan);`
+      notification.appendChild(messageSpan);`,
       },
       {
         // Fix captions warning (line 1021)
-        search: /warning\.innerHTML = '<span aria-hidden="true">🔇<\/span> <span>Captions not available for this video<\/span>';/,
+        search:
+          /warning\.innerHTML = '<span aria-hidden="true">🔇<\/span> <span>Captions not available for this video<\/span>';/,
         replace: `// XSS-safe: Create elements without innerHTML
           const iconSpan = document.createElement('span');
           iconSpan.setAttribute('aria-hidden', 'true');
@@ -45,13 +47,13 @@ const FIXES = [
           textSpan.textContent = 'Captions not available for this video';
           warning.appendChild(iconSpan);
           warning.appendChild(document.createTextNode(' '));
-          warning.appendChild(textSpan);`
+          warning.appendChild(textSpan);`,
       },
       {
         // Fix button icon (line 1098)
         search: /btn\.innerHTML = icon;/,
         replace: `// XSS-safe: Use textContent for icons
-      btn.textContent = icon;`
+      btn.textContent = icon;`,
       },
       {
         // Fix error summary (line 1198)
@@ -59,9 +61,9 @@ const FIXES = [
         replace: `// XSS-safe: Create element without innerHTML
           const heading = document.createElement('h3');
           heading.textContent = 'Please correct the following errors:';
-          errorSummary.appendChild(heading);`
-      }
-    ]
+          errorSummary.appendChild(heading);`,
+      },
+    ],
   },
   {
     file: 'assets/js/animation-engine.js',
@@ -80,7 +82,7 @@ const FIXES = [
           if (i < words.length - 1) {
             el.appendChild(document.createTextNode(' '));
           }
-        });`
+        });`,
       },
       {
         // Fix char split (line 464)
@@ -93,9 +95,9 @@ const FIXES = [
           span.style.transitionDelay = \`\${i * 10}ms\`;
           span.textContent = char || ' ';
           el.appendChild(span);
-        });`
-      }
-    ]
+        });`,
+      },
+    ],
   },
   {
     file: 'assets/js/contact-form-handler.js',
@@ -118,9 +120,9 @@ const FIXES = [
     
     messageDiv.appendChild(heading);
     messageDiv.appendChild(para);
-    container.appendChild(messageDiv);`
-      }
-    ]
+    container.appendChild(messageDiv);`,
+      },
+    ],
   },
   {
     file: 'assets/js/dev-overlay.js',
@@ -154,10 +156,10 @@ const FIXES = [
     
     panel.appendChild(heading);
     panel.appendChild(breakpointDiv);
-    panel.appendChild(viewportDiv);`
-      }
-    ]
-  }
+    panel.appendChild(viewportDiv);`,
+      },
+    ],
+  },
 ];
 
 let totalFixes = 0;

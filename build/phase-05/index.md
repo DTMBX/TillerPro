@@ -2,52 +2,64 @@
 layout: default
 build_guide: true
 toc: true
-title: "Benches, Seats & Niches"
-permalink: /build/framing-benches-niches/
+title: 'Benches, Seats & Niches'
+permalink: /build/phase-05/
 order: 5
-meta_title: "Shower Benches, Seats & Niches | Tillerstead Build Phase 5"
-meta_description: "How to properly frame and waterproof shower benches, fold-down seats, and recessed niches. TCNA-compliant methods."
-description: "Built-in shower features require careful framing, waterproofing, and slope. Learn how to do it right."
-parent: "Build Phases"
-parent_url: "/build/"
-prev_phase: "/build/curbs-curbless/"
-prev_phase_title: "Curbs & Curbless Showers"
-next_phase: "/build/tile-installation-standards/"
-next_phase_title: "Tile Installation Standards"
+meta_title: 'Shower Benches, Seats & Niches | Tillerstead Build Phase 5'
+meta_description:
+  'How to properly frame and waterproof shower benches, fold-down seats, and
+  recessed niches. TCNA-compliant methods.'
+description:
+  'Built-in shower features require careful framing, waterproofing, and slope.
+  Learn how to do it right.'
+parent: 'Build Phases'
+parent_url: '/build/'
+prev_phase: '/build/curbs-curbless/'
+prev_phase_title: 'Curbs & Curbless Showers'
+next_phase: '/build/tile-installation-standards/'
+next_phase_title: 'Tile Installation Standards'
 ---
 
 ## Functional Features Done Right
 
-Shower benches, fold-down seats, and recessed niches add convenience—but only if they're waterproofed correctly and built to last.
+Shower benches, fold-down seats, and recessed niches add convenience—but only if
+they're waterproofed correctly and built to last.
 
 ## Shower Benches
 
 ### Construction Methods
 
 **Pre-formed foam benches:**
+
 - Lightweight, pre-sloped
 - Integrated with waterproofing system
 
 **Mortar bed benches:**
+
 - Custom-built using metal lath + mortar
 - Fully customizable size/shape
 
 **Framed benches:**
+
 - Wood or metal framing + cement board
 - Requires waterproofing and slope verification
 
 ### Critical Requirements
 
-✅ **Top must slope toward drain** (minimum 1/4" per foot)  
+✅ **Top must slope toward drain** (minimum 1/4" per foot)
+
 - Prevents standing water and mildew
 
-✅ **All sides must be waterproofed**  
+✅ **All sides must be waterproofed**
+
 - Top, front, sides, underneath (if not against wall)
 
-✅ **Load-bearing capacity**  
+✅ **Load-bearing capacity**
+
 - Must support 250+ lbs (standard adult weight)
 
-✅ **Proper height**  
+✅ **Proper height**
+
 - 17-19" is standard seat height (accessible design)
 
 ### Common Mistakes
@@ -75,10 +87,12 @@ Shower benches, fold-down seats, and recessed niches add convenience—but only 
 ### Types
 
 **Wall-mounted:**
+
 - Folds flat against wall
 - Requires solid blocking
 
 **L-shaped:**
+
 - Provides back support
 - Larger footprint when deployed
 
@@ -93,10 +107,12 @@ Shower benches, fold-down seats, and recessed niches add convenience—but only 
 ### Construction Methods
 
 **Pre-formed niches:**
+
 - Ready-to-install units (Kerdi-Board-SN, Schluter, Wedi, etc.)
 - Built-in slope and waterproofing flanges
 
 **Site-built niches:**
+
 - Cut into wall framing between studs
 - Lined with cement board or foam board
 - Fully waterproofed before tile
@@ -112,11 +128,13 @@ Shower benches, fold-down seats, and recessed niches add convenience—but only 
 ### Location
 
 **Ideal placement:**
+
 - Within reach of shower user (not too high)
 - Not in direct water spray (if possible)
 - Between studs (avoids structural cuts)
 
 **Avoid:**
+
 - Exterior walls (moisture/insulation issues)
 - Load-bearing walls (without engineering approval)
 

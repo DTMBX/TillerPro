@@ -13,7 +13,7 @@
  * ======
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ======
@@ -23,8 +23,9 @@
   const A11Y_CONFIG = {
     storageKey: 'tillerstead-a11y-prefs',
     announceDelay: 100,
-    focusTrapSelectors: 'a[href], button:not([disabled]), textarea, input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
-    skipLinkTarget: '#main-content'
+    focusTrapSelectors:
+      'a[href], button:not([disabled]), textarea, input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    skipLinkTarget: '#main-content',
   };
 
   // ======
@@ -50,13 +51,10 @@
    * Get all focusable elements within a container
    */
   function getFocusableElements(container = document) {
-    return Array.from(container.querySelectorAll(A11Y_CONFIG.focusTrapSelectors))
-      .filter(el => {
-        const style = window.getComputedStyle(el);
-        return style.display !== 'none' &&
-               style.visibility !== 'hidden' &&
-               el.offsetParent !== null;
-      });
+    return Array.from(container.querySelectorAll(A11Y_CONFIG.focusTrapSelectors)).filter((el) => {
+      const style = window.getComputedStyle(el);
+      return style.display !== 'none' && style.visibility !== 'hidden' && el.offsetParent !== null;
+    });
   }
 
   /**
@@ -70,8 +68,10 @@
    * Check if user prefers high contrast
    */
   function prefersHighContrast() {
-    return window.matchMedia('(forced-colors: active)').matches ||
-           window.matchMedia('(prefers-contrast: more)').matches;
+    return (
+      window.matchMedia('(forced-colors: active)').matches ||
+      window.matchMedia('(prefers-contrast: more)').matches
+    );
   }
 
   // ======
@@ -116,9 +116,7 @@
    * Announce message to screen readers (polite)
    */
   function announce(message, options = {}) {
-    const announcer = options.assertive
-      ? createAssertiveRegion()
-      : createLiveRegion();
+    const announcer = options.assertive ? createAssertiveRegion() : createLiveRegion();
 
     // Clear and re-announce to ensure it's read
     announcer.textContent = '';
@@ -238,7 +236,7 @@
   function initMenuKeyboardNav() {
     const menus = document.querySelectorAll('[role="menu"], [role="menubar"]');
 
-    menus.forEach(menu => {
+    menus.forEach((menu) => {
       const items = menu.querySelectorAll('[role="menuitem"]');
 
       items.forEach((item, index) => {
@@ -271,8 +269,9 @@
               break;
 
             case 'Escape':
-              const trigger = menu.closest('[aria-haspopup]') ||
-                             document.querySelector(`[aria-controls="${menu.id}"]`);
+              const trigger =
+                menu.closest('[aria-haspopup]') ||
+                document.querySelector(`[aria-controls="${menu.id}"]`);
               if (trigger) {
                 trigger.focus();
                 // Close menu if it has aria-expanded
@@ -293,7 +292,7 @@
   function initTabPanelKeyboardNav() {
     const tabLists = document.querySelectorAll('[role="tablist"]');
 
-    tabLists.forEach(tabList => {
+    tabLists.forEach((tabList) => {
       const tabs = tabList.querySelectorAll('[role="tab"]');
 
       tabs.forEach((tab, index) => {
@@ -345,7 +344,9 @@
       // Close any open modals
       const openModal = document.querySelector('[role="dialog"][aria-modal="true"]:not([hidden])');
       if (openModal) {
-        const closeBtn = openModal.querySelector('[data-close], .modal-close, [aria-label*="close" i]');
+        const closeBtn = openModal.querySelector(
+          '[data-close], .modal-close, [aria-label*="close" i]'
+        );
         if (closeBtn) {
           closeBtn.click();
           return;
@@ -354,7 +355,7 @@
 
       // Close any open dropdowns
       const openDropdowns = document.querySelectorAll('[aria-expanded="true"]');
-      openDropdowns.forEach(dropdown => {
+      openDropdowns.forEach((dropdown) => {
         dropdown.setAttribute('aria-expanded', 'false');
         const menu = document.getElementById(dropdown.getAttribute('aria-controls'));
         if (menu) menu.hidden = true;
@@ -370,9 +371,11 @@
    * Enhance skip links functionality
    */
   function initSkipLinks() {
-    const skipLinks = document.querySelectorAll('.skip-link, [href^="#main"], [href="#main-content"]');
+    const skipLinks = document.querySelectorAll(
+      '.skip-link, [href^="#main"], [href="#main-content"]'
+    );
 
-    skipLinks.forEach(link => {
+    skipLinks.forEach((link) => {
       link.addEventListener('click', (e) => {
         const targetId = link.getAttribute('href').substring(1);
         const target = document.getElementById(targetId);
@@ -582,7 +585,11 @@
     // User preference for high contrast overrides system
     if (prefs.highContrast === true) {
       document.documentElement.setAttribute('data-high-contrast', 'true');
-    } else if (prefs.highContrast === false && !systemPrefs.highContrast && !systemPrefs.forcedColors) {
+    } else if (
+      prefs.highContrast === false &&
+      !systemPrefs.highContrast &&
+      !systemPrefs.forcedColors
+    ) {
       document.documentElement.removeAttribute('data-high-contrast');
     }
 
@@ -712,9 +719,10 @@
      */
     setVoice(voiceName) {
       const voices = this.getVoices();
-      this.voice = voices.find(v => v.name === voiceName) ||
-                   voices.find(v => v.lang.startsWith('en')) ||
-                   voices[0];
+      this.voice =
+        voices.find((v) => v.name === voiceName) ||
+        voices.find((v) => v.lang.startsWith('en')) ||
+        voices[0];
 
       const prefs = loadPreferences();
       prefs.ttsVoice = voiceName;
@@ -886,13 +894,13 @@
             this.setVoice(prefs.ttsVoice);
           } else if (voices.length > 0) {
             // Prefer English voice
-            this.voice = voices.find(v => v.lang.startsWith('en')) || voices[0];
+            this.voice = voices.find((v) => v.lang.startsWith('en')) || voices[0];
           }
         };
       }
 
       // // // // // // // // // // // // // // // console.log('[A11Y] Text-to-Speech initialized'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
-    }
+    },
   };
 
   // Make TTS globally available
@@ -1000,7 +1008,7 @@
         // Also show native alert for screen readers
         originalAlert(message);
       };
-    }
+    },
   };
 
   window.a11yVisualAlerts = VisualAlerts;
@@ -1011,7 +1019,7 @@
   function checkMediaCaptions() {
     const videos = document.querySelectorAll('video');
 
-    videos.forEach(video => {
+    videos.forEach((video) => {
       const hasTrack = video.querySelector('track[kind="captions"], track[kind="subtitles"]');
 
       if (!hasTrack) {
@@ -1103,7 +1111,7 @@
 
     // High contrast is now permanently enabled - only text size toggle remains
     const buttons = [
-      { icon: 'A+', label: 'Increase text size', action: toggleTextSize, pref: 'textSize' }
+      { icon: 'A+', label: 'Increase text size', action: toggleTextSize, pref: 'textSize' },
     ];
 
     const prefs = loadPreferences();
@@ -1142,14 +1150,14 @@
   function enhanceForms() {
     const forms = document.querySelectorAll('form');
 
-    forms.forEach(form => {
+    forms.forEach((form) => {
       // Add novalidate to use custom validation
       form.setAttribute('novalidate', '');
 
       // Find all required fields
       const requiredFields = form.querySelectorAll('[required], [aria-required="true"]');
 
-      requiredFields.forEach(field => {
+      requiredFields.forEach((field) => {
         // Ensure aria-required is set
         field.setAttribute('aria-required', 'true');
 
@@ -1184,7 +1192,7 @@
 
           const errorList = document.createElement('ul');
 
-          invalidFields.forEach(field => {
+          invalidFields.forEach((field) => {
             // Mark field as invalid
             field.setAttribute('aria-invalid', 'true');
 
@@ -1220,7 +1228,10 @@
 
           // Focus error summary
           errorSummary.focus();
-          announce(`Form has ${invalidFields.length} error${invalidFields.length > 1 ? 's' : ''}. Please correct them.`, { assertive: true });
+          announce(
+            `Form has ${invalidFields.length} error${invalidFields.length > 1 ? 's' : ''}. Please correct them.`,
+            { assertive: true }
+          );
         }
       });
 
@@ -1253,7 +1264,7 @@
 
       if (imagesWithoutAlt.length > 0) {
         // // // // // // // // // // // // // // // console.warn(`[A11Y] Found ${imagesWithoutAlt.length} images without alt text:`); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
-        imagesWithoutAlt.forEach(img => {
+        imagesWithoutAlt.forEach((img) => {
           // // // // // // // // // // // // // // // console.warn(`  - ${img.src}`); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
         });
       }
@@ -1270,7 +1281,7 @@
   function enhanceExternalLinks() {
     const externalLinks = document.querySelectorAll('a[href^="http"]:not([href*="tillerstead"])');
 
-    externalLinks.forEach(link => {
+    externalLinks.forEach((link) => {
       // Add rel attributes for security
       link.setAttribute('rel', 'noopener noreferrer');
 
@@ -1315,7 +1326,9 @@
         const level = parseInt(heading.tagName[1]);
 
         if (index > 0 && level > lastLevel + 1) {
-          issues.push(`Skipped heading level: H${lastLevel} to H${level} ("${heading.textContent.substring(0, 30)}...")`);
+          issues.push(
+            `Skipped heading level: H${lastLevel} to H${level} ("${heading.textContent.substring(0, 30)}...")`
+          );
         }
 
         lastLevel = level;
@@ -1323,7 +1336,7 @@
 
       if (issues.length > 0) {
         // console.warn('[A11Y] Heading structure issues:');
-        issues.forEach(issue => {
+        issues.forEach((issue) => {
           // console.warn(`  - ${issue}`);
         });
       }
@@ -1409,15 +1422,16 @@
   }
 
   // Re-initialize on dynamic content changes
-  const observer = new MutationObserver(debounce(() => {
-    initMenuKeyboardNav();
-    initTabPanelKeyboardNav();
-    enhanceForms();
-  }, 250));
+  const observer = new MutationObserver(
+    debounce(() => {
+      initMenuKeyboardNav();
+      initTabPanelKeyboardNav();
+      enhanceForms();
+    }, 250)
+  );
 
   observer.observe(document.body, {
     childList: true,
-    subtree: true
+    subtree: true,
   });
-
 })();

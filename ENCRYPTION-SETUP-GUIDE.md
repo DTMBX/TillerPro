@@ -2,36 +2,43 @@
 
 ## ✅ Encryption System Installed
 
-Your repository now has **AES-256 encryption** protecting all proprietary TillerPro Suite and calculator files.
+Your repository now has **AES-256 encryption** protecting all proprietary
+TillerPro Suite and calculator files.
 
 ---
 
 ## 🔒 What's Protected
 
 ### TillerPro Suite
+
 - `tillerpro.html`
 - `assets/js/tillerpro-config.js`
 - `assets/css/pages/tillerpro.css`
 - `_includes/sections/tillerpro-banner.html`
 
 ### Calculator System - Backend
+
 - `tillerstead-toolkit/backend/app/calculators/*.py` (all Python calculators)
 - `tillerstead-toolkit/backend/app/api/calculators.py`
 
 ### Calculator System - Frontend
+
 - `assets/js/build-calculators.js`
 - `assets/js/financing-calculator.js`
 - `assets/js/adapters/*-calculator-adapter.js` (all calculator adapters)
 
 ### Calculator Components
+
 - `_includes/tools/*-calculator.html` (all calculator HTML)
 - `tools/pricing-calculator.html`
 
 ### Documentation (Proprietary Formulas)
+
 - `tillerstead-toolkit/CALCULATOR_SYSTEM.md`
 - `tillerstead-toolkit/CALCULATOR_ROADMAP.md`
 
 ### Tests
+
 - `tests/calculator-formulas.test.js`
 
 ---
@@ -105,6 +112,7 @@ Working Directory (Decrypted)
 - ✅ Netlify/deployment works (with key setup)
 
 ### Local Development
+
 ```powershell
 # Works exactly as before
 bundle exec jekyll serve
@@ -112,6 +120,7 @@ npm run dev
 ```
 
 ### Production Build
+
 ```powershell
 # Works exactly as before
 bundle exec jekyll build
@@ -179,7 +188,8 @@ git commit -m "Add AES-256 encryption for proprietary TillerPro and calculator f
 git push origin main
 ```
 
-**Note:** The encryption key (`.git-encrypt/encryption.key`) is in `.gitignore` and will NOT be committed.
+**Note:** The encryption key (`.git-encrypt/encryption.key`) is in `.gitignore`
+and will NOT be committed.
 
 ---
 
@@ -188,12 +198,14 @@ git push origin main
 When someone clones the repository:
 
 ### Step 1: Clone Repository
+
 ```powershell
 git clone https://github.com/yourusername/Tillerstead.com.git
 cd Tillerstead.com
 ```
 
 ### Step 2: Install Encryption Key
+
 ```powershell
 # Create the encryption directory
 New-Item -ItemType Directory -Path .git-encrypt -Force
@@ -204,12 +216,14 @@ Set-Content -Path .git-encrypt/encryption.key -Value "YOUR_KEY_HERE" -NoNewline
 ```
 
 ### Step 3: Configure Git Filters
+
 ```powershell
 # Run the setup script
 .\.git-encrypt\setup-encryption.ps1
 ```
 
 ### Step 4: Decrypt Files
+
 ```powershell
 # Force checkout to decrypt all files
 git checkout HEAD -- .
@@ -224,6 +238,7 @@ git checkout HEAD -- .
 **Cause:** Encryption key is missing or Git filters not configured
 
 **Solution:**
+
 ```powershell
 # Verify key exists
 Test-Path .git-encrypt/encryption.key
@@ -240,6 +255,7 @@ git checkout HEAD -- .
 **Cause:** Files weren't decrypted properly
 
 **Solution:**
+
 ```powershell
 # Check if filters are configured
 git config --get filter.tillerstead-encrypt.smudge
@@ -255,6 +271,7 @@ git config --get filter.tillerstead-encrypt.smudge
 **Cause:** Missing encryption key file
 
 **Solution:**
+
 ```powershell
 # Restore key from backup (password manager, USB, etc.)
 # Place at: .git-encrypt/encryption.key
@@ -275,12 +292,14 @@ git config --get filter.tillerstead-encrypt.smudge
 ## 📊 What This Protects
 
 ### Intellectual Property Value
+
 - **Calculation algorithms:** $25,000-50,000
 - **Business logic:** $10,000-25,000
 - **Proprietary methods:** $5,000-10,000
 - **Total protected value:** $40,000-85,000
 
 ### Legal Protection
+
 - ✅ Trade secret protection under NJ Uniform Trade Secrets Act
 - ✅ Demonstrates reasonable security measures
 - ✅ Prevents unauthorized disclosure
@@ -293,11 +312,13 @@ git config --get filter.tillerstead-encrypt.smudge
 If you lose the encryption key:
 
 ### Option 1: Restore from Backup
+
 - Check password manager
 - Check USB backup
 - Check cloud storage backup
 
 ### Option 2: Re-encrypt with New Key
+
 ```powershell
 # Generate new key
 Remove-Item .git-encrypt/encryption.key
@@ -316,6 +337,7 @@ git commit -m "Rotate encryption key"
 ## 📞 Support
 
 For issues or questions:
+
 - Review `.git-encrypt/README.md` for technical details
 - Check `.gitattributes` for encryption rules
 - Test with: `git show :filename` (encrypted) vs `cat filename` (decrypted)
@@ -338,4 +360,5 @@ Before pushing to GitHub:
 
 **© 2026 Tillerstead LLC. All Rights Reserved.**
 
-**This encryption system protects trade secrets valued at $40,000-85,000 under the New Jersey Uniform Trade Secrets Act.**
+**This encryption system protects trade secrets valued at $40,000-85,000 under
+the New Jersey Uniform Trade Secrets Act.**

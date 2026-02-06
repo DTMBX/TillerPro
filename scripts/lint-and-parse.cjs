@@ -20,16 +20,16 @@ async function lintCSS() {
 function lintHTML() {
   const htmlFiles = [];
   function walk(dir) {
-    fs.readdirSync(dir).forEach(f => {
+    fs.readdirSync(dir).forEach((f) => {
       const fp = path.join(dir, f);
       if (fs.statSync(fp).isDirectory()) walk(fp);
       else if (fp.endsWith('.html')) htmlFiles.push(fp);
     });
   }
   walk(process.cwd());
-  return htmlFiles.map(file => ({
+  return htmlFiles.map((file) => ({
     file,
-    result: HTMLHint.verify(fs.readFileSync(file, 'utf8'))
+    result: HTMLHint.verify(fs.readFileSync(file, 'utf8')),
   }));
 }
 
@@ -52,8 +52,8 @@ async function main() {
   console.log('Linting HTML...');
   const htmlResults = lintHTML();
   console.log('Parsing YAML front matter...');
-  const htmlFiles = htmlResults.map(r => r.file);
-  const yamlResults = htmlFiles.map(f => ({ file: f, yaml: parseYAMLFrontMatter(f) }));
+  const htmlFiles = htmlResults.map((r) => r.file);
+  const yamlResults = htmlFiles.map((f) => ({ file: f, yaml: parseYAMLFrontMatter(f) }));
 
   // Output summary
   console.log('JS Lint:', jsResults);
@@ -62,4 +62,7 @@ async function main() {
   console.log('YAML Parse:', yamlResults);
 }
 
-main().catch(e => { console.error(e); process.exit(1); });
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

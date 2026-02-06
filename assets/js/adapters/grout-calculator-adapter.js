@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-(function() {
+(function () {
   'use strict';
 
   /**
@@ -55,7 +55,7 @@
         results: document.getElementById('grout-calc-results'),
         resultPounds: document.getElementById('result-grout-pounds'),
         resultBags: document.getElementById('result-grout-bags'),
-        groutNote: document.getElementById('grout-calc-note')
+        groutNote: document.getElementById('grout-calc-note'),
       };
     }
 
@@ -105,9 +105,11 @@
       }
 
       // Auto-calculate if we have enough data
-      if (this.elements.area?.value &&
-          this.elements.tileWidth?.value &&
-          this.elements.tileLength?.value) {
+      if (
+        this.elements.area?.value &&
+        this.elements.tileWidth?.value &&
+        this.elements.tileLength?.value
+      ) {
         setTimeout(() => this.calculate(), 100);
       }
     }
@@ -137,10 +139,10 @@
         this.elements.tileLength,
         this.elements.tileWidth,
         this.elements.jointWidth,
-        this.elements.groutType
+        this.elements.groutType,
       ].filter(Boolean);
 
-      autoSaveInputs.forEach(input => {
+      autoSaveInputs.forEach((input) => {
         input.addEventListener('change', () => this.saveToState());
       });
 
@@ -229,7 +231,8 @@
       const tileThicknessInches = tileThickness / 25.4; // mm to inches
 
       // Calculate grout volume (cubic inches per sq ft)
-      const groutVolumeCubicInches = (tilePerimeter / tileArea) * jointWidthInches * tileThicknessInches * area * 144;
+      const groutVolumeCubicInches =
+        (tilePerimeter / tileArea) * jointWidthInches * tileThicknessInches * area * 144;
 
       // Convert to pounds (density varies by grout type)
       const density = groutType === 'epoxy' ? 1.7 : 1.6; // lb per cubic inch (approximate)
@@ -247,7 +250,7 @@
         pounds: wastedGrout.toFixed(1),
         bags: bagsNeeded,
         groutType,
-        isMosaic
+        isMosaic,
       });
 
       // Save to ProjectState
@@ -256,7 +259,7 @@
         groutType,
         isMosaic,
         pounds: wastedGrout,
-        bagsNeeded
+        bagsNeeded,
       });
 
       console.log('[GroutAdapter] Calculation complete');
@@ -286,9 +289,10 @@
       }
 
       // Update note
-      const noteText = results.groutType === 'epoxy'
-        ? `Epoxy grout (~5.5 lbs per bag). ${results.isMosaic ? 'Mosaic adjustment applied (+10%).' : ''}`
-        : `Cement-based grout (~25 lbs per bag). ${results.isMosaic ? 'Mosaic adjustment applied (+10%).' : ''}`;
+      const noteText =
+        results.groutType === 'epoxy'
+          ? `Epoxy grout (~5.5 lbs per bag). ${results.isMosaic ? 'Mosaic adjustment applied (+10%).' : ''}`
+          : `Cement-based grout (~25 lbs per bag). ${results.isMosaic ? 'Mosaic adjustment applied (+10%).' : ''}`;
 
       if (this.elements.groutNote) {
         this.elements.groutNote.textContent = noteText;
@@ -378,5 +382,4 @@
       adapter.init();
     }
   }
-
 })();

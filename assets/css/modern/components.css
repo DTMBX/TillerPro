@@ -359,11 +359,11 @@
   .card-modern {
     padding: var(--space-6);
   }
-  
+
   .nav-links {
     gap: var(--space-3);
   }
-  
+
   .btn-modern {
     width: 100%;
     justify-content: center;

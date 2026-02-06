@@ -53,10 +53,7 @@ const LOGOS_TO_CONVERT = [
 ];
 
 async function convertSvgToPng(inputPath, outputPath, width, height) {
-  await sharp(inputPath, { density: 300 })
-    .resize(width, height)
-    .png()
-    .toFile(outputPath);
+  await sharp(inputPath, { density: 300 }).resize(width, height).png().toFile(outputPath);
 }
 
 async function main() {
@@ -79,12 +76,7 @@ async function main() {
       const outputPath = path.join(OUTPUT_DIR, output.name);
 
       try {
-        await convertSvgToPng(
-          inputPath,
-          outputPath,
-          output.width,
-          output.height,
-        );
+        await convertSvgToPng(inputPath, outputPath, output.width, output.height);
         console.log(`  OK ${output.name} (${output.width}x${output.height})`);
         converted++;
       } catch (error) {

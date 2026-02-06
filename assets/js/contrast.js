@@ -46,8 +46,7 @@
       return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
     }
     const match = computed.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-    if (match)
-      return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
+    if (match) return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
     // Fallback: white
     return [255, 255, 255];
   }
@@ -80,10 +79,7 @@
       // Get computed background color (walk up if transparent)
       let bg = window.getComputedStyle(el).backgroundColor;
       let parent = el;
-      while (
-        (bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent') &&
-        parent.parentElement
-      ) {
+      while ((bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent') && parent.parentElement) {
         parent = parent.parentElement;
         bg = window.getComputedStyle(parent).backgroundColor;
       }
@@ -112,10 +108,7 @@
       // Apply as inline style for specificity and legal traceability
       el.style.color = chosenStr;
       el.setAttribute('data-contrast-applied', 'true');
-      el.setAttribute(
-        'aria-label',
-        'High-contrast text for accessibility compliance',
-      );
+      el.setAttribute('aria-label', 'High-contrast text for accessibility compliance');
     });
   }
 

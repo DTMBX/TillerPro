@@ -6,7 +6,7 @@
  * @author Tillerstead LLC
  */
 
-(function() {
+(function () {
   'use strict';
 
   class FinancingCalculator {
@@ -33,27 +33,29 @@
             minAmount: 5000,
             maxAmount: 100000,
             url: 'https://www.lightstream.com/',
-            disclosure: 'Rate is quoted with AutoPay discount. AutoPay discount is only available prior to loan funding. Rates without AutoPay are 0.50% points higher. Subject to credit approval. Conditions and limitations apply.'
+            disclosure:
+              'Rate is quoted with AutoPay discount. AutoPay discount is only available prior to loan funding. Rates without AutoPay are 0.50% points higher. Subject to credit approval. Conditions and limitations apply.',
           },
           {
             id: 'greensky',
             name: 'GreenSky',
             logo: '/assets/img/partners/greensky.png',
-            aprRange: { min: 0.00, max: 17.99 },
+            aprRange: { min: 0.0, max: 17.99 },
             termsMonths: [12, 24, 36, 48, 60, 72],
             minAmount: 1000,
             maxAmount: 55000,
             promotions: ['12 months same as cash', '6 months deferred interest'],
             url: 'https://www.greensky.com/',
-            disclosure: 'GreenSky® financing is subject to credit approval. Minimum monthly payments required. See store for details.'
-          }
+            disclosure:
+              'GreenSky® financing is subject to credit approval. Minimum monthly payments required. See store for details.',
+          },
         ],
 
         // Default calculation settings
         defaults: {
           apr: 9.99,
           termMonths: 60,
-          estimatedCreditScore: 'excellent' // excellent, good, fair
+          estimatedCreditScore: 'excellent', // excellent, good, fair
         },
 
         // Credit score tiers
@@ -61,7 +63,7 @@
           excellent: { min: 740, aprAdjustment: 0 },
           good: { min: 670, aprAdjustment: 2.0 },
           fair: { min: 580, aprAdjustment: 5.0 },
-          poor: { min: 300, aprAdjustment: 10.0 }
+          poor: { min: 300, aprAdjustment: 10.0 },
         },
 
         // Truth in Lending disclosures
@@ -69,14 +71,18 @@
           apr: 'APR (Annual Percentage Rate) represents the cost of credit as a yearly rate.',
           financeCharge: 'The dollar amount the credit will cost you.',
           amountFinanced: 'The amount of credit provided to you or on your behalf.',
-          totalPayments: 'The amount you will have paid after you have made all payments as scheduled.',
+          totalPayments:
+            'The amount you will have paid after you have made all payments as scheduled.',
           paymentSchedule: 'Number and amounts of payments, and when payments are due.',
           latePayment: 'Late payment fees may apply if payment is not received by the due date.',
-          prepayment: 'If you pay off early, you may or may not be entitled to a refund of part of the finance charge.',
+          prepayment:
+            'If you pay off early, you may or may not be entitled to a refund of part of the finance charge.',
           security: 'This credit agreement is not secured by collateral.',
-          assumption: 'Someone buying your home cannot assume the remainder of the debt on the original terms.',
-          creditCheck: 'Applying for financing will result in a credit inquiry which may affect your credit score.'
-        }
+          assumption:
+            'Someone buying your home cannot assume the remainder of the debt on the original terms.',
+          creditCheck:
+            'Applying for financing will result in a credit inquiry which may affect your credit score.',
+        },
       };
     }
 
@@ -94,8 +100,9 @@
       }
 
       const monthlyRate = annualRate / 100 / 12;
-      const payment = principal * (monthlyRate * Math.pow(1 + monthlyRate, termMonths)) /
-                      (Math.pow(1 + monthlyRate, termMonths) - 1);
+      const payment =
+        (principal * (monthlyRate * Math.pow(1 + monthlyRate, termMonths))) /
+        (Math.pow(1 + monthlyRate, termMonths) - 1);
 
       return payment;
     }
@@ -119,7 +126,7 @@
      * @returns {number} Estimated APR
      */
     getEstimatedAPR(creditTier, partnerId) {
-      const partner = this.financing.partners.find(p => p.id === partnerId);
+      const partner = this.financing.partners.find((p) => p.id === partnerId);
       if (!partner) return this.financing.defaults.apr;
 
       const tier = this.financing.creditTiers[creditTier];
@@ -143,7 +150,7 @@
     generateFinancingOptions(quoteTotal, creditTier = 'good') {
       const options = [];
 
-      this.financing.partners.forEach(partner => {
+      this.financing.partners.forEach((partner) => {
         // Skip if quote is outside partner's range
         if (quoteTotal < partner.minAmount || quoteTotal > partner.maxAmount) {
           return;
@@ -151,7 +158,7 @@
 
         const apr = this.getEstimatedAPR(creditTier, partner.id);
 
-        partner.termsMonths.forEach(term => {
+        partner.termsMonths.forEach((term) => {
           const monthlyPayment = this.calculateMonthlyPayment(quoteTotal, apr, term);
           const totalInterest = this.calculateTotalInterest(quoteTotal, monthlyPayment, term);
           const totalPayment = quoteTotal + totalInterest;
@@ -166,7 +173,7 @@
             totalInterest: totalInterest,
             totalPayment: totalPayment,
             promotions: partner.promotions || [],
-            disclosure: partner.disclosure
+            disclosure: partner.disclosure,
           });
         });
       });
@@ -187,7 +194,7 @@
         style: 'currency',
         currency: 'USD',
         minimumFractionDigits: 2,
-        maximumFractionDigits: 2
+        maximumFractionDigits: 2,
       }).format(amount);
     }
 
@@ -214,7 +221,7 @@
 
       // Group by partner
       const byPartner = {};
-      options.forEach(opt => {
+      options.forEach((opt) => {
         if (!byPartner[opt.partnerId]) {
           byPartner[opt.partnerId] = [];
         }
@@ -239,23 +246,31 @@
           </div>
           
           <div class="financing-partners">
-            ${Object.keys(byPartner).map(partnerId => {
-    const partnerOptions = byPartner[partnerId];
-    const partner = this.financing.partners.find(p => p.id === partnerId);
+            ${Object.keys(byPartner)
+              .map((partnerId) => {
+                const partnerOptions = byPartner[partnerId];
+                const partner = this.financing.partners.find((p) => p.id === partnerId);
 
-    return `
+                return `
                 <div class="financing-partner">
                   <div class="partner-header">
                     <h4>${partner.name}</h4>
-                    ${partner.promotions && partner.promotions.length > 0 ? `
+                    ${
+                      partner.promotions && partner.promotions.length > 0
+                        ? `
                       <div class="partner-promotions">
-                        ${partner.promotions.map(promo => `<span class="promo-badge">${promo}</span>`).join('')}
+                        ${partner.promotions.map((promo) => `<span class="promo-badge">${promo}</span>`).join('')}
                       </div>
-                    ` : ''}
+                    `
+                        : ''
+                    }
                   </div>
                   
                   <div class="financing-options-grid">
-                    ${partnerOptions.slice(0, 3).map(opt => `
+                    ${partnerOptions
+                      .slice(0, 3)
+                      .map(
+                        (opt) => `
                       <div class="financing-option">
                         <div class="option-header">
                           <span class="term">${opt.termMonths} Months</span>
@@ -278,7 +293,9 @@
                           Select This Option
                         </button>
                       </div>
-                    `).join('')}
+                    `
+                      )
+                      .join('')}
                   </div>
                   
                   <div class="partner-disclosure">
@@ -286,18 +303,23 @@
                   </div>
                 </div>
               `;
-  }).join('')}
+              })
+              .join('')}
           </div>
           
           <div class="tila-disclosures">
             <h4>Truth in Lending Act Disclosures</h4>
             <div class="disclosure-grid">
-              ${Object.keys(this.financing.disclosures).map(key => `
+              ${Object.keys(this.financing.disclosures)
+                .map(
+                  (key) => `
                 <div class="disclosure-item">
                   <strong>${this.formatDisclosureKey(key)}:</strong>
                   <span>${this.financing.disclosures[key]}</span>
                 </div>
-              `).join('')}
+              `
+                )
+                .join('')}
             </div>
           </div>
           
@@ -322,7 +344,7 @@
     formatDisclosureKey(key) {
       return key
         .replace(/([A-Z])/g, ' $1')
-        .replace(/^./, str => str.toUpperCase())
+        .replace(/^./, (str) => str.toUpperCase())
         .trim();
     }
 
@@ -335,7 +357,7 @@
      * @returns {Object} Financing summary
      */
     getFinancingSummary(quoteTotal, partnerId, termMonths, creditTier = 'good') {
-      const partner = this.financing.partners.find(p => p.id === partnerId);
+      const partner = this.financing.partners.find((p) => p.id === partnerId);
       if (!partner) return null;
 
       const apr = this.getEstimatedAPR(creditTier, partnerId);
@@ -350,7 +372,7 @@
         monthlyPayment: monthlyPayment,
         totalInterest: totalInterest,
         totalPayment: quoteTotal + totalInterest,
-        disclosure: partner.disclosure
+        disclosure: partner.disclosure,
       };
     }
   }
@@ -364,9 +386,12 @@
   /**
    * Global helper: Update financing calculator when credit tier changes
    */
-  window.updateFinancingCalculator = function(creditTier) {
+  window.updateFinancingCalculator = function (creditTier) {
     const container = document.querySelector('.financing-calculator-container');
-    const quoteTotal = parseFloat(document.getElementById('quote-total-value')?.textContent?.replace(/[^0-9.]/g, '')) || 0;
+    const quoteTotal =
+      parseFloat(
+        document.getElementById('quote-total-value')?.textContent?.replace(/[^0-9.]/g, '')
+      ) || 0;
 
     if (container && quoteTotal > 0) {
       window.financingCalc.renderFinancingOptions(quoteTotal, container, creditTier);
@@ -376,7 +401,7 @@
   /**
    * Global helper: Select financing option
    */
-  window.selectFinancingOption = function(partnerId, termMonths, apr) {
+  window.selectFinancingOption = function (partnerId, termMonths, apr) {
     // Store selected financing option
     if (window.ProjectState) {
       window.ProjectState.set('quote.financing', {
@@ -384,14 +409,14 @@
         termMonths: termMonths,
         apr: apr,
         selected: true,
-        selectedAt: new Date().toISOString()
+        selectedAt: new Date().toISOString(),
       });
     }
 
     // Update UI
     const selectedOption = document.querySelector('.financing-option .btn-select-financing');
     if (selectedOption) {
-      document.querySelectorAll('.btn-select-financing').forEach(btn => {
+      document.querySelectorAll('.btn-select-financing').forEach((btn) => {
         btn.textContent = 'Select This Option';
         btn.classList.remove('selected');
       });
@@ -421,5 +446,4 @@
       setTimeout(() => notification.remove(), 300);
     }, 3000);
   };
-
 })();

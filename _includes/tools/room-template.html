@@ -6,9 +6,23 @@
         <label class="form-label form-label--required sr-only">Room Name</label>
         <input type="text" class="form-input room-name-input" placeholder="Room name (e.g., Master Bath)" required />
       </div>
-      <button type="button" class="btn btn--ghost btn--sm room-remove-btn" aria-label="Remove room" title="Remove this room">
-        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+      <button
+        type="button"
+        class="btn btn--ghost btn--sm room-remove-btn"
+        aria-label="Remove room"
+        title="Remove this room"
+      >
+        <svg
+          aria-hidden="true"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="3 6 5 6 21 6" />
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
         </svg>
       </button>
     </div>
@@ -20,7 +34,14 @@
           <div class="form-inline">
             <input type="number" class="form-input form-input--sm room-length-ft" placeholder="ft" min="0" step="1" />
             <span class="form-inline__sep">'</span>
-            <input type="number" class="form-input form-input--sm room-length-in" placeholder="in" min="0" max="11" step="1" />
+            <input
+              type="number"
+              class="form-input form-input--sm room-length-in"
+              placeholder="in"
+              min="0"
+              max="11"
+              step="1"
+            />
             <span class="form-inline__sep">"</span>
           </div>
         </div>
@@ -29,7 +50,14 @@
           <div class="form-inline">
             <input type="number" class="form-input form-input--sm room-width-ft" placeholder="ft" min="0" step="1" />
             <span class="form-inline__sep">'</span>
-            <input type="number" class="form-input form-input--sm room-width-in" placeholder="in" min="0" max="11" step="1" />
+            <input
+              type="number"
+              class="form-input form-input--sm room-width-in"
+              placeholder="in"
+              min="0"
+              max="11"
+              step="1"
+            />
             <span class="form-inline__sep">"</span>
           </div>
         </div>
@@ -38,7 +66,14 @@
           <div class="form-inline">
             <input type="number" class="form-input form-input--sm room-height-ft" placeholder="ft" min="0" step="1" />
             <span class="form-inline__sep">'</span>
-            <input type="number" class="form-input form-input--sm room-height-in" placeholder="in" min="0" max="11" step="1" />
+            <input
+              type="number"
+              class="form-input form-input--sm room-height-in"
+              placeholder="in"
+              min="0"
+              max="11"
+              step="1"
+            />
             <span class="form-inline__sep">"</span>
           </div>
         </div>
@@ -51,8 +86,16 @@
           <label class="surface-toggle">
             <input type="checkbox" class="surface-checkbox" data-surface="floor" />
             <span class="surface-toggle__label">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <svg
+                aria-hidden="true"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
               </svg>
               Floor
             </span>
@@ -60,8 +103,17 @@
           <label class="surface-toggle">
             <input type="checkbox" class="surface-checkbox" data-surface="full-walls" />
             <span class="surface-toggle__label">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/>
+              <svg
+                aria-hidden="true"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <line x1="3" y1="9" x2="21" y2="9" />
               </svg>
               Full Walls
             </span>
@@ -69,8 +121,17 @@
           <label class="surface-toggle">
             <input type="checkbox" class="surface-checkbox" data-surface="shower-walls" />
             <span class="surface-toggle__label">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4v16h16"/><path d="M4 12h8v8"/>
+              <svg
+                aria-hidden="true"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M4 4v16h16" />
+                <path d="M4 12h8v8" />
               </svg>
               Shower Walls
             </span>
@@ -78,8 +139,17 @@
           <label class="surface-toggle">
             <input type="checkbox" class="surface-checkbox" data-surface="tub-surround" />
             <span class="surface-toggle__label">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 12h16v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6z"/><path d="M6 12V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v7"/>
+              <svg
+                aria-hidden="true"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M4 12h16v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6z" />
+                <path d="M6 12V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v7" />
               </svg>
               Tub Surround
             </span>
@@ -87,8 +157,19 @@
           <label class="surface-toggle">
             <input type="checkbox" class="surface-checkbox" data-surface="backsplash" />
             <span class="surface-toggle__label">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="8" width="18" height="6" rx="1"/><line x1="7" y1="8" x2="7" y2="14"/><line x1="12" y1="8" x2="12" y2="14"/><line x1="17" y1="8" x2="17" y2="14"/>
+              <svg
+                aria-hidden="true"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="8" width="18" height="6" rx="1" />
+                <line x1="7" y1="8" x2="7" y2="14" />
+                <line x1="12" y1="8" x2="12" y2="14" />
+                <line x1="17" y1="8" x2="17" y2="14" />
               </svg>
               Backsplash
             </span>
@@ -115,7 +196,11 @@
         </label>
         <div class="room-lock-reason" hidden>
           <label class="form-label form-label--sm">Reason for change:</label>
-          <input type="text" class="form-input form-input--sm room-lock-reason-input" placeholder="Why are you editing locked measurements?" />
+          <input
+            type="text"
+            class="form-input form-input--sm room-lock-reason-input"
+            placeholder="Why are you editing locked measurements?"
+          />
         </div>
       </div>
 

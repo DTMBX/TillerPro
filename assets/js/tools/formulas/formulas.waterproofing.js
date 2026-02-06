@@ -23,38 +23,38 @@ export const WATERPROOFING_FORMULA_INFO = {
       name: 'Custom Building Products - RedGard TDS',
       url: 'https://www.custombuildingproducts.com/wp-content/uploads/TDS-104-021425.pdf',
       retrieved: '2026-01-19',
-      excerpt: 'Coverage: 55 sq ft/gal at 2 coats for ANSI A118.10 compliance (40 mils wet)'
+      excerpt: 'Coverage: 55 sq ft/gal at 2 coats for ANSI A118.10 compliance (40 mils wet)',
     },
     {
       name: 'Custom Building Products - TB94',
       url: 'https://www.custombuildingproducts.com/media/60997801/tb94-understanding-the-coverage-rate-for-redgard.pdf',
-      excerpt: '110 sq ft/gal per coat; 55 sq ft/gal total for 2 coats waterproofing'
+      excerpt: '110 sq ft/gal per coat; 55 sq ft/gal total for 2 coats waterproofing',
     },
     {
       name: 'Mapei - AquaDefense TDS',
       url: 'https://www.wjgrosvenor.com/wp-content/uploads/2024/05/AquaDefense_TDS.pdf',
       retrieved: '2026-01-19',
-      excerpt: 'Coverage: up to 60 sq ft/gal for waterproofing with 2 coats'
+      excerpt: 'Coverage: up to 60 sq ft/gal for waterproofing with 2 coats',
     },
     {
       name: 'LATICRETE - Hydro Ban TDS',
       url: 'https://cdn-global.laticrete.com/-/media/project/laticrete-international/north-america/product-documents/product-data-sheets/lds6630_hydro-ban.ashx',
       retrieved: '2026-01-19',
-      excerpt: 'Coverage: ~50 sq ft/gal for 2 coats; exceeds ANSI A118.10'
+      excerpt: 'Coverage: ~50 sq ft/gal for 2 coats; exceeds ANSI A118.10',
     },
     {
       name: 'Schluter - KERDI Datasheet',
       url: 'https://assets.schluter.com/asset/570120892212/document_6plrad34eh1rj0g61f54npqu6c/Waterproofing%20Data%20Sheet.pdf',
       retrieved: '2026-01-19',
-      excerpt: 'KERDI rolls: 54.5 sf (standard), 108 sf, 215 sf, 323 sf, 646 sf sizes'
-    }
+      excerpt: 'KERDI rolls: 54.5 sf (standard), 108 sf, 215 sf, 323 sf, 646 sf sizes',
+    },
   ],
   assumptions: [
     'Coverage rates are manufacturer-specified for proper application thickness',
     'Liquid membranes require 2 coats for ANSI A118.10 waterproofing compliance',
     '15% waste factor included for cuts and overlaps',
-    'Seam tape calculated at 2 ft per inside corner plus 8 ft per niche'
-  ]
+    'Seam tape calculated at 2 ft per inside corner plus 8 ft per niche',
+  ],
 };
 
 // ==
@@ -68,7 +68,7 @@ export const WATERPROOFING_FORMULA_INFO = {
  * Coverage is for complete waterproofing (2 coats for liquid).
  */
 export const WP_PRODUCTS = {
-  'redgard': {
+  redgard: {
     brand: 'Custom Building Products',
     productName: 'RedGard',
     type: 'liquid',
@@ -81,12 +81,13 @@ export const WP_PRODUCTS = {
     source: {
       name: 'TDS-104',
       url: 'https://www.custombuildingproducts.com/wp-content/uploads/TDS-104-021425.pdf',
-      retrieved: '2026-01-19'
+      retrieved: '2026-01-19',
     },
     accessories: ['Mesh tape', 'Inside corners', 'Outside corners'],
-    notes: 'Apply with 3/4" nap roller or 3/16"×1/4" V-notch trowel. Allow to dry pink to red between coats.'
+    notes:
+      'Apply with 3/4" nap roller or 3/16"×1/4" V-notch trowel. Allow to dry pink to red between coats.',
   },
-  'aquadefense': {
+  aquadefense: {
     brand: 'Mapei',
     productName: 'Mapelastic AquaDefense',
     type: 'liquid',
@@ -97,12 +98,12 @@ export const WP_PRODUCTS = {
     source: {
       name: 'AquaDefense TDS',
       url: 'https://www.wjgrosvenor.com/wp-content/uploads/2024/05/AquaDefense_TDS.pdf',
-      retrieved: '2026-01-19'
+      retrieved: '2026-01-19',
     },
     accessories: ['Fabric tape'],
-    notes: 'Apply 2 coats. Embed fabric tape in first coat at corners and seams.'
+    notes: 'Apply 2 coats. Embed fabric tape in first coat at corners and seams.',
   },
-  'hydroban': {
+  hydroban: {
     brand: 'LATICRETE',
     productName: 'Hydro Ban',
     type: 'liquid',
@@ -113,12 +114,12 @@ export const WP_PRODUCTS = {
     source: {
       name: 'Hydro Ban TDS',
       url: 'https://cdn-global.laticrete.com/-/media/project/laticrete-international/north-america/product-documents/product-data-sheets/lds6630_hydro-ban.ashx',
-      retrieved: '2026-01-19'
+      retrieved: '2026-01-19',
     },
     accessories: ['Hydro Ban Board', 'Seam Tape'],
-    notes: 'Apply 2 coats with drying time between. Use with Hydro Ban Board for shower niches.'
+    notes: 'Apply 2 coats with drying time between. Use with Hydro Ban Board for shower niches.',
   },
-  'kerdi': {
+  kerdi: {
     brand: 'Schluter',
     productName: 'KERDI',
     type: 'sheet',
@@ -129,34 +130,34 @@ export const WP_PRODUCTS = {
     source: {
       name: 'Schluter Waterproofing Data Sheet',
       url: 'https://assets.schluter.com/asset/570120892212/document_6plrad34eh1rj0g61f54npqu6c/Waterproofing%20Data%20Sheet.pdf',
-      retrieved: '2026-01-19'
+      retrieved: '2026-01-19',
     },
     rollSizes: [
       { sqFt: 54.5, dimensions: '3\'3" × 16\'5"' },
-      { sqFt: 108, dimensions: '3\'3" × 33\'' },
+      { sqFt: 108, dimensions: "3'3\" × 33'" },
       { sqFt: 215, dimensions: '3\'3" × 65\'7"' },
       { sqFt: 323, dimensions: '3\'3" × 98\'5"' },
-      { sqFt: 646, dimensions: '6\'7" × 98\'5"' }
+      { sqFt: 646, dimensions: '6\'7" × 98\'5"' },
     ],
     thinsetRequirement: 'unmodified',
     accessories: ['KERDI-BAND', 'KERDI-SEAL', 'KERDI-DRAIN', 'KERDI-KERECK'],
-    notes: 'Must be set in unmodified thinset (ANSI A118.1). Use KERDI-BAND for seams and corners.'
+    notes: 'Must be set in unmodified thinset (ANSI A118.1). Use KERDI-BAND for seams and corners.',
   },
-  'goboard': {
+  goboard: {
     brand: 'Johns Manville',
     productName: 'GoBoard',
     type: 'panel',
     unit: 'panel (15 sf)',
     coverageSqFtPerUnit: 15,
-    panelDimensions: '3\' × 5\' × 1/2"',
+    panelDimensions: "3' × 5' × 1/2\"",
     standards: ['ANSI A118.10'],
     source: {
       name: 'GoBoard manufacturer specs',
-      retrieved: '2026-01-19'
+      retrieved: '2026-01-19',
     },
     accessories: ['GoBoard Sealant', 'Seam Tape'],
-    notes: 'Waterproof at joints only. Seal all fastener holes with sealant.'
-  }
+    notes: 'Waterproof at joints only. Seal all fastener holes with sealant.',
+  },
 };
 
 // ==
@@ -174,18 +175,18 @@ export const WET_AREA_REQUIREMENTS = {
     'Tub surrounds (recommended)',
     'Steam showers (required - use vapor barrier membrane)',
     'Exterior installations (required)',
-    'Pools and fountains (required)'
+    'Pools and fountains (required)',
   ],
   membrane_extension: {
     beyond_wet_area: 'Minimum 3" beyond wet area perimeter',
     above_shower_head: 'Minimum 3" above shower head or to ceiling',
-    source: 'TCNA Handbook'
+    source: 'TCNA Handbook',
   },
   coverage_requirement: {
     mortar: '95% minimum coverage on waterproofed surfaces',
     note: 'Full edge support required',
-    source: 'ANSI A108 / TCNA Handbook'
-  }
+    source: 'ANSI A108 / TCNA Handbook',
+  },
 };
 
 /**
@@ -197,25 +198,25 @@ export const WATERPROOFING_PRO_TIPS = {
     'Maintain minimum wet film thickness per TDS (typically 15-20 mils/coat)',
     'Use mil gauge to verify thickness during application',
     'Allow complete drying between coats - color change indicates dry',
-    'Do NOT thin liquid membrane - affects waterproofing performance'
+    'Do NOT thin liquid membrane - affects waterproofing performance',
   ],
   corner_treatment: [
     'Embed fabric/mesh tape in FIRST coat at all corners and seams',
     'Pre-form inside corners with KERDI-KERECK or fabric corner pieces',
     'Outside corners: wrap membrane minimum 2" around corner',
-    'Changes of plane (floor-to-wall): embed reinforcing fabric'
+    'Changes of plane (floor-to-wall): embed reinforcing fabric',
   ],
   penetrations: [
     'Seal around ALL penetrations (valves, pipes, drains)',
     'Use manufacturer-specific seals for drains (KERDI-DRAIN, etc.)',
     'Apply membrane TO drain flange, not just adjacent to it',
-    'Mixing valve body: seal behind escutcheon plate area'
+    'Mixing valve body: seal behind escutcheon plate area',
   ],
   flood_testing: [
     'TCNA/ANSI recommend flood testing before tiling',
     'Plug drain, fill to 1-2" above finished threshold',
     'Hold for minimum 24 hours (some specs require 48 hours)',
-    'Document with photos for warranty and inspection purposes'
+    'Document with photos for warranty and inspection purposes',
   ],
   common_failures: [
     'Insufficient thickness - use mil gauge to verify',
@@ -223,15 +224,15 @@ export const WATERPROOFING_PRO_TIPS = {
     'Membrane not properly bonded to substrate (bubbles, fisheyes)',
     'Not extending membrane far enough beyond wet area',
     'Using modified thinset on KERDI (requires unmodified only)',
-    'Tiling before membrane fully cured'
+    'Tiling before membrane fully cured',
   ],
   kerdi_specific: [
     'MUST use unmodified thinset (ANSI A118.1) - modified will NOT bond',
     'Overlap seams minimum 2"',
     'Apply thinset to substrate AND to KERDI back (thin-set to thin-set)',
     'Use KERDI-BAND (not fabric tape) for seams',
-    'KERDI-KERECK for pre-formed corners saves time and improves reliability'
-  ]
+    'KERDI-KERECK for pre-formed corners saves time and improves reliability',
+  ],
 };
 
 /**
@@ -243,16 +244,16 @@ export const WATERPROOF_MOVEMENT_JOINTS = {
     required: true,
     location: 'Where tile meets walls, curbs, and other restraining surfaces',
     minimum_width: '1/4"',
-    sealant: 'ASTM C920 compatible with waterproofing system'
+    sealant: 'ASTM C920 compatible with waterproofing system',
   },
   field: {
     interior_wet: 'Every 8-12 ft in each direction',
-    note: 'Movement joints must be sealed with flexible sealant, NOT grout'
+    note: 'Movement joints must be sealed with flexible sealant, NOT grout',
   },
   transition: {
     location: 'Where waterproofed area meets non-waterproofed area',
-    treatment: 'Seal with compatible sealant, not grout'
-  }
+    treatment: 'Seal with compatible sealant, not grout',
+  },
 };
 
 // ==
@@ -285,7 +286,7 @@ export function calculateWaterproofing({
   areaSqFt,
   insideCorners = 0,
   niches = 0,
-  wastePercent = 15
+  wastePercent = 15,
 }) {
   const errors = [];
   const assumptions = [];
@@ -302,15 +303,35 @@ export function calculateWaterproofing({
   const product = WP_PRODUCTS[productId];
   if (!product) {
     errors.push(`Unknown waterproofing product: ${productId}`);
-    return { valid: false, errors, unitsNeeded: 0, unit: '', seamTapeFt: 0, cornerSeals: 0, accessories: [], assumptions, sources };
+    return {
+      valid: false,
+      errors,
+      unitsNeeded: 0,
+      unit: '',
+      seamTapeFt: 0,
+      cornerSeals: 0,
+      accessories: [],
+      assumptions,
+      sources,
+    };
   }
 
   if (errors.length > 0) {
-    return { valid: false, errors, unitsNeeded: 0, unit: '', seamTapeFt: 0, cornerSeals: 0, accessories: [], assumptions, sources };
+    return {
+      valid: false,
+      errors,
+      unitsNeeded: 0,
+      unit: '',
+      seamTapeFt: 0,
+      cornerSeals: 0,
+      accessories: [],
+      assumptions,
+      sources,
+    };
   }
 
   // Calculate area with waste
-  const wasteFactor = 1 + (wasteVal.value / 100);
+  const wasteFactor = 1 + wasteVal.value / 100;
   const areaWithWaste = areaVal.value * wasteFactor;
 
   // Calculate units needed
@@ -335,7 +356,7 @@ export function calculateWaterproofing({
   // Add source
   sources.push({
     name: `${product.brand} ${product.productName} TDS`,
-    url: product.source.url
+    url: product.source.url,
   });
 
   return {
@@ -349,7 +370,7 @@ export function calculateWaterproofing({
     productNotes: product.notes,
     standards: product.standards,
     assumptions,
-    sources
+    sources,
   };
 }
 
@@ -364,7 +385,7 @@ export function getWaterproofingProducts() {
     name: product.productName,
     type: product.type,
     coverage: product.coverageSqFtPerUnit,
-    unit: product.unit
+    unit: product.unit,
   }));
 }
 

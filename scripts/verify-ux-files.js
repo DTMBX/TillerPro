@@ -14,15 +14,15 @@ const files = [
   'assets/css/ux-enhancements.css',
   'assets/js/main.js',
   '_includes/layout/head-clean.html',
-  '_includes/layout/scripts.html'
+  '_includes/layout/scripts.html',
 ];
 
 let allPresent = true;
 
-files.forEach(file => {
+files.forEach((file) => {
   const fullPath = path.join(__dirname, '..', file);
   const exists = fs.existsSync(fullPath);
-  
+
   if (exists) {
     const stats = fs.statSync(fullPath);
     console.log(`✓ ${file} (${stats.size} bytes)`);
@@ -35,7 +35,10 @@ files.forEach(file => {
 console.log('\n=== Integration Check ===\n');
 
 try {
-  const headContent = fs.readFileSync(path.join(__dirname, '..', '_includes/layout/head-clean.html'), 'utf8');
+  const headContent = fs.readFileSync(
+    path.join(__dirname, '..', '_includes/layout/head-clean.html'),
+    'utf8'
+  );
   if (headContent.includes('ux-enhancements.css')) {
     console.log('✓ ux-enhancements.css referenced in head-clean.html');
   } else {
@@ -48,7 +51,10 @@ try {
 }
 
 try {
-  const scriptsContent = fs.readFileSync(path.join(__dirname, '..', '_includes/layout/scripts.html'), 'utf8');
+  const scriptsContent = fs.readFileSync(
+    path.join(__dirname, '..', '_includes/layout/scripts.html'),
+    'utf8'
+  );
   if (scriptsContent.includes('ux-enhancements.js')) {
     console.log('✓ ux-enhancements.js referenced in scripts.html');
   } else {

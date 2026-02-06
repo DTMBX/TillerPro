@@ -18,7 +18,6 @@ async function selectCalculator(page, calcId) {
 }
 
 test.describe('TillerPro App', () => {
-
   test.beforeEach(async ({ page }) => {
     await gotoToolsRoute(page, 'dashboard');
   });
@@ -59,7 +58,9 @@ test.describe('TillerPro App', () => {
     await page.fill('.calc-form[data-calc="tile"] input[name="waste"]', '10');
 
     await page.click('.calc-form[data-calc="tile"] button[type="submit"]');
-    await expect(page.locator('.calc-form[data-calc="tile"] .calc-results')).toBeVisible({ timeout: 5000 });
+    await expect(page.locator('.calc-form[data-calc="tile"] .calc-results')).toBeVisible({
+      timeout: 5000,
+    });
   });
 
   test('Mortar Calculator - basic calculation', async ({ page }) => {
@@ -71,7 +72,9 @@ test.describe('TillerPro App', () => {
     await page.check('.calc-form[data-calc="mortar"] input[name="backButter"]');
 
     await page.click('.calc-form[data-calc="mortar"] button[type="submit"]');
-    await expect(page.locator('.calc-form[data-calc="mortar"] .calc-results')).toBeVisible({ timeout: 5000 });
+    await expect(page.locator('.calc-form[data-calc="mortar"] .calc-results')).toBeVisible({
+      timeout: 5000,
+    });
   });
 
   test('Grout Calculator - basic calculation', async ({ page }) => {
@@ -85,7 +88,9 @@ test.describe('TillerPro App', () => {
     await page.fill('.calc-form[data-calc="grout"] input[name="jointWidth"]', '0.125');
 
     await page.click('.calc-form[data-calc="grout"] button[type="submit"]');
-    await expect(page.locator('.calc-form[data-calc="grout"] .calc-results')).toBeVisible({ timeout: 5000 });
+    await expect(page.locator('.calc-form[data-calc="grout"] .calc-results')).toBeVisible({
+      timeout: 5000,
+    });
   });
 
   test('Leveling Calculator - basic calculation', async ({ page }) => {
@@ -97,8 +102,12 @@ test.describe('TillerPro App', () => {
     await avgDepth.fill('0.25', { force: true });
 
     // Trigger calculation explicitly (avoids auto-calc timing/rerender flakiness)
-    await page.locator('.calc-form[data-calc="leveling"] button[type="submit"]').evaluate((el) => el.click());
-    await expect(page.locator('.calc-form[data-calc="leveling"] .calc-results')).toBeVisible({ timeout: 10000 });
+    await page
+      .locator('.calc-form[data-calc="leveling"] button[type="submit"]')
+      .evaluate((el) => el.click());
+    await expect(page.locator('.calc-form[data-calc="leveling"] .calc-results')).toBeVisible({
+      timeout: 10000,
+    });
   });
 
   test('Slope Calculator - basic calculation', async ({ page }) => {
@@ -109,7 +118,9 @@ test.describe('TillerPro App', () => {
     await page.fill('.calc-form[data-calc="slope"] input[name="slopeRatio"]', '0.25');
 
     await page.click('.calc-form[data-calc="slope"] button[type="submit"]');
-    await expect(page.locator('.calc-form[data-calc="slope"] .calc-results')).toBeVisible({ timeout: 5000 });
+    await expect(page.locator('.calc-form[data-calc="slope"] .calc-results')).toBeVisible({
+      timeout: 5000,
+    });
   });
 
   test('Waterproof Calculator - basic calculation', async ({ page }) => {
@@ -122,7 +133,9 @@ test.describe('TillerPro App', () => {
     await page.fill('.calc-form[data-calc="waterproof"] input[name="pipes"]', '2');
 
     await page.click('.calc-form[data-calc="waterproof"] button[type="submit"]');
-    await expect(page.locator('.calc-form[data-calc="waterproof"] .calc-results')).toBeVisible({ timeout: 5000 });
+    await expect(page.locator('.calc-form[data-calc="waterproof"] .calc-results')).toBeVisible({
+      timeout: 5000,
+    });
   });
 
   test('Labor Calculator - basic calculation', async ({ page }) => {
@@ -134,7 +147,9 @@ test.describe('TillerPro App', () => {
     await page.check('.calc-form[data-calc="labor"] input[name="includePrep"]');
 
     await page.click('.calc-form[data-calc="labor"] button[type="submit"]');
-    await expect(page.locator('.calc-form[data-calc="labor"] .calc-results')).toBeVisible({ timeout: 5000 });
+    await expect(page.locator('.calc-form[data-calc="labor"] .calc-results')).toBeVisible({
+      timeout: 5000,
+    });
   });
 
   test('Calculator clear button works', async ({ page }) => {
@@ -142,11 +157,14 @@ test.describe('TillerPro App', () => {
     await selectCalculator(page, 'tile');
 
     await page.fill('.calc-form[data-calc="tile"] input[name="area"]', '120');
-    await page.locator('.calc-form[data-calc="tile"] button:has-text("Clear")').evaluate((el) => el.click());
+    await page
+      .locator('.calc-form[data-calc="tile"] button:has-text("Clear")')
+      .evaluate((el) => el.click());
 
-    await expect(page.locator('.calc-form[data-calc="tile"] input[name="area"]')).toHaveValue('', { timeout: 10000 });
+    await expect(page.locator('.calc-form[data-calc="tile"] input[name="area"]')).toHaveValue('', {
+      timeout: 10000,
+    });
   });
-
 });
 
 test.describe('TillerPro - Mobile', () => {

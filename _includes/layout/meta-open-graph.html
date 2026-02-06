@@ -1,6 +1,6 @@
-{%- assign og_title = page.meta_title | default: page.title | default: site.title -%}
-{%- assign og_desc = page.meta_description | default: page.description | default: site.description -%}
-{%- assign og_image = page.og_image | default: page.featured_image | default: site.default_og_image -%}
+{%- assign og_title = page.meta_title | default: page.title | default: site.title -%} {%- assign og_desc =
+page.meta_description | default: page.description | default: site.description -%} {%- assign og_image = page.og_image |
+default: page.featured_image | default: site.default_og_image -%}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="{{ page.og_type | default: 'website' }}" />

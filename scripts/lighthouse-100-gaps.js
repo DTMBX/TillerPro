@@ -133,10 +133,7 @@ function auditLighthouseGaps() {
 
 function generateReport() {
   const timestamp = new Date().toISOString().split('T')[0];
-  const reportPath = path.join(
-    'reports',
-    `lighthouse-100-gaps-${timestamp}.md`,
-  );
+  const reportPath = path.join('reports', `lighthouse-100-gaps-${timestamp}.md`);
 
   let md = '# Phase 4: Lighthouse 100/100 Gap Analysis\n\n';
   md += `**Date:** ${new Date().toLocaleDateString()}\n`;

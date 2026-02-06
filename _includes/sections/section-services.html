@@ -1,11 +1,5 @@
-{%- comment -%}
-  Homepage Services Section
-  
-  Parameters:
-    - data: The services data object from _data/home.yml
-{%- endcomment -%}
-
-{%- assign services = include.data -%}
+{%- comment -%} Homepage Services Section Parameters: - data: The services data object from _data/home.yml {%-
+endcomment -%} {%- assign services = include.data -%}
 
 <section class="home-services" aria-labelledby="services-title">
   <div class="container container--wide">
@@ -21,7 +15,7 @@
       <article class="service-card ts-ceramic-card">
         <h3 class="service-title">{{ card.title }}</h3>
         <p class="service-description">{{ card.description }}</p>
-        
+
         {% if card.details %}
         <ul class="service-details">
           {% for detail in card.details %}
@@ -29,18 +23,14 @@
           {% endfor %}
         </ul>
         {% endif %}
-        
-        <a href="{{ card.url }}" class="service-link" aria-label="Learn more about {{ card.title }}">
-          Learn more →
-        </a>
+
+        <a href="{{ card.url }}" class="service-link" aria-label="Learn more about {{ card.title }}"> Learn more → </a>
       </article>
       {% endfor %}
     </div>
 
     <div class="services-actions">
-      <a href="{{ services.actions.primary.url }}" class="btn btn--primary">
-        {{ services.actions.primary.label }}
-      </a>
+      <a href="{{ services.actions.primary.url }}" class="btn btn--primary"> {{ services.actions.primary.label }} </a>
       <a href="{{ services.actions.secondary.url }}" class="btn btn--secondary-outline">
         {{ services.actions.secondary.label }}
       </a>

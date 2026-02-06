@@ -20,13 +20,13 @@ export const initScrollAnimations = () => {
     scrollTrigger: {
       trigger: '[data-animate-hero]',
       start: 'top 80%',
-      toggleActions: 'play none none none'
+      toggleActions: 'play none none none',
     },
     opacity: 0,
     y: 40,
     duration: 1,
     stagger: 0.1,
-    ease: 'power2.out'
+    ease: 'power2.out',
   });
 
   // Trust bar - count-up numbers
@@ -34,26 +34,26 @@ export const initScrollAnimations = () => {
     scrollTrigger: {
       trigger: '[data-count-up]',
       start: 'top 85%',
-      toggleActions: 'play none none none'
+      toggleActions: 'play none none none',
     },
     textContent: 0,
     duration: 2,
     ease: 'power2.out',
-    snap: { textContent: 1 }
+    snap: { textContent: 1 },
   });
 
   // Feature cards - staggered entrance from bottom
   gsap.from('[data-feature-card]', {
     scrollTrigger: {
       trigger: '[data-feature-card]',
-      start: 'top 80%'
+      start: 'top 80%',
     },
     opacity: 0,
     y: 50,
     x: -20,
     duration: 0.8,
     stagger: 0.15,
-    ease: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+    ease: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
   });
 
   // Portfolio grid - parallax effect on images
@@ -61,24 +61,24 @@ export const initScrollAnimations = () => {
     scrollTrigger: {
       trigger: '[data-portfolio-image]',
       start: 'top center',
-      scrub: 0.5
+      scrub: 0.5,
     },
     y: -50,
     duration: 1,
-    ease: 'none'
+    ease: 'none',
   });
 
   // Text reveal animations
   gsap.from('[data-reveal-text]', {
     scrollTrigger: {
       trigger: '[data-reveal-text]',
-      start: 'top 85%'
+      start: 'top 85%',
     },
     opacity: 0,
     y: 30,
     duration: 0.8,
     stagger: 0.1,
-    ease: 'power2.out'
+    ease: 'power2.out',
   });
 };
 
@@ -89,17 +89,13 @@ export const initScrollAnimations = () => {
 export const initButtonAnimations = () => {
   // Premium button shine effect
   const buttons = document.querySelectorAll('[data-button-premium]');
-  buttons.forEach(button => {
+  buttons.forEach((button) => {
     const shine = document.createElement('span');
     shine.className = 'shine-effect';
     button.appendChild(shine);
 
     button.addEventListener('mouseenter', () => {
-      gsap.fromTo(
-        shine,
-        { x: '-100%' },
-        { x: '100%', duration: 0.6, ease: 'power2.out' }
-      );
+      gsap.fromTo(shine, { x: '-100%' }, { x: '100%', duration: 0.6, ease: 'power2.out' });
     });
 
     button.addEventListener('mousedown', () => {
@@ -126,10 +122,10 @@ export const initParallaxHero = () => {
       start: 'top top',
       end: 'bottom top',
       scrub: 1,
-      markers: false
+      markers: false,
     },
     y: 200,
-    ease: 'none'
+    ease: 'none',
   });
 };
 
@@ -141,13 +137,13 @@ export const initListAnimations = () => {
   gsap.from('[data-list-item]', {
     scrollTrigger: {
       trigger: '[data-list-container]',
-      start: 'top 80%'
+      start: 'top 80%',
     },
     opacity: 0,
     x: -20,
     duration: 0.6,
     stagger: 0.08,
-    ease: 'power2.out'
+    ease: 'power2.out',
   });
 };
 
@@ -164,7 +160,7 @@ export const initTestimonialAnimations = () => {
     gsap.to(testimonials[current], {
       opacity: 0,
       duration: 0.5,
-      pointerEvents: 'none'
+      pointerEvents: 'none',
     });
 
     current = (current + 1) % testimonials.length;
@@ -172,7 +168,7 @@ export const initTestimonialAnimations = () => {
     gsap.to(testimonials[current], {
       opacity: 1,
       duration: 0.5,
-      pointerEvents: 'auto'
+      pointerEvents: 'auto',
     });
 
     setTimeout(rotateTestimonials, 5000);
@@ -196,10 +192,10 @@ export const initScrollProgressBar = () => {
       start: 'top top',
       end: 'bottom bottom',
       scrub: 0.5,
-      markers: false
+      markers: false,
     },
     transformOrigin: '0% 50%',
-    ease: 'none'
+    ease: 'none',
   });
 };
 
@@ -213,7 +209,7 @@ export const initAllAnimations = () => {
     duration: 800,
     offset: 100,
     once: true,
-    easing: 'ease-in-out-cubic'
+    easing: 'ease-in-out-cubic',
   });
 
   // Initialize premium GSAP animations

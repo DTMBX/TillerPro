@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-(function() {
+(function () {
   'use strict';
 
   class SlopeCalculatorAdapter {
@@ -36,7 +36,7 @@
         drainType: document.getElementById('slope-drain-type'),
         method: document.getElementById('slope-method'),
         calcButton: document.getElementById('calc-slope-btn'),
-        results: document.getElementById('slope-calc-results')
+        results: document.getElementById('slope-calc-results'),
       };
     }
 
@@ -82,10 +82,10 @@
       const autoSaveInputs = [
         this.elements.length,
         this.elements.drainType,
-        this.elements.method
+        this.elements.method,
       ].filter(Boolean);
 
-      autoSaveInputs.forEach(input => {
+      autoSaveInputs.forEach((input) => {
         input.addEventListener('change', () => this.saveToState());
       });
 
@@ -140,7 +140,7 @@
         distance,
         drainType,
         method,
-        ...result
+        ...result,
       });
 
       console.log('[SlopeAdapter] Calculation complete');
@@ -168,7 +168,7 @@
         slope: slopeInches,
         bags: bagsNeeded,
         unit: 'bags',
-        note: `Deck mud (${bagsNeeded} × 80lb bags). ¼" per ft slope = ${slopeInches.toFixed(2)}" drop.`
+        note: `Deck mud (${bagsNeeded} × 80lb bags). ¼" per ft slope = ${slopeInches.toFixed(2)}" drop.`,
       };
     }
 
@@ -185,7 +185,7 @@
         type: 'foam-pan',
         panSize: standardSize,
         unit: 'panel',
-        note: `Pre-sloped foam pan (${standardSize}). No slope materials needed.`
+        note: `Pre-sloped foam pan (${standardSize}). No slope materials needed.`,
       };
     }
 
@@ -196,7 +196,7 @@
       const areaSqFt = panDimension * panDimension;
 
       // Thin-set for slope: ~40-50 lbs per cubic foot
-      const avgHeightFeet = (slopeInches / 2) / 12;
+      const avgHeightFeet = slopeInches / 2 / 12;
       const volumeCuFt = areaSqFt * avgHeightFeet;
 
       // Thin-set bags (50 lbs)
@@ -207,7 +207,7 @@
         slope: slopeInches,
         bags: bagsNeeded,
         unit: 'bags',
-        note: `Modified thin-set (${bagsNeeded} × 50lb bags). Bonded to membrane.`
+        note: `Modified thin-set (${bagsNeeded} × 50lb bags). Bonded to membrane.`,
       };
     }
 
@@ -243,8 +243,9 @@
         resultsGrid.innerHTML = html;
       }
 
-      const noteEl = this.elements.results.querySelector('.calc-results__note') ||
-                      this.elements.results.querySelector('#slope-calc-note');
+      const noteEl =
+        this.elements.results.querySelector('.calc-results__note') ||
+        this.elements.results.querySelector('#slope-calc-note');
       if (noteEl) {
         noteEl.textContent = result.note;
       } else {
@@ -313,5 +314,4 @@
       adapter.init();
     }
   }
-
 })();

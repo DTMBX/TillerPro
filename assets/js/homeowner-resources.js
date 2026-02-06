@@ -83,18 +83,18 @@ function showArticle(articleType) {
   const toolContent = document.getElementById('tool-content');
 
   const articles = {
-    'timeline': {
+    timeline: {
       title: '⏱️ Bathroom Remodel Timeline',
-      content: getTimelineArticleHTML()
+      content: getTimelineArticleHTML(),
     },
-    'cost': {
+    cost: {
       title: '💵 Bathroom Remodel Costs in NJ',
-      content: getCostArticleHTML()
+      content: getCostArticleHTML(),
     },
     'shower-types': {
       title: '🚿 Curbless vs. Traditional Showers',
-      content: getShowerComparisonHTML()
-    }
+      content: getShowerComparisonHTML(),
+    },
   };
 
   const article = articles[articleType];
@@ -516,7 +516,7 @@ function calculateBudget() {
 
   // Breakdown
   const labor = Math.round(baseCost * 0.45);
-  const materials = Math.round(baseCost * 0.40);
+  const materials = Math.round(baseCost * 0.4);
   const fixtures = Math.round(baseCost * 0.15);
 
   const resultsHTML = `
@@ -1634,7 +1634,8 @@ function evaluatePermitNeed() {
     return;
   }
 
-  const needsPermit = q1.value === 'yes' || q2.value === 'yes' || q3.value === 'yes' || q4.value === 'yes';
+  const needsPermit =
+    q1.value === 'yes' || q2.value === 'yes' || q3.value === 'yes' || q4.value === 'yes';
 
   const resultDiv = document.getElementById('permit-result');
 
@@ -1911,15 +1912,21 @@ function getShowerComparisonHTML() {
 
 // PDF Generation placeholders (would integrate with jsPDF in production)
 function generateProjectPlanner() {
-  alert('PDF generation would be implemented here using jsPDF library. For now, you can print this page (Ctrl/Cmd+P) and select "Save as PDF".');
+  alert(
+    'PDF generation would be implemented here using jsPDF library. For now, you can print this page (Ctrl/Cmd+P) and select "Save as PDF".'
+  );
 }
 
 function generateContractorChecklist() {
-  alert('PDF generation would be implemented here using jsPDF library. For now, you can print this page (Ctrl/Cmd+P) and select "Save as PDF".');
+  alert(
+    'PDF generation would be implemented here using jsPDF library. For now, you can print this page (Ctrl/Cmd+P) and select "Save as PDF".'
+  );
 }
 
 function generateSpecTemplate() {
-  alert('PDF generation would be implemented here using jsPDF library. For now, you can print this page (Ctrl/Cmd+P) and select "Save as PDF".');
+  alert(
+    'PDF generation would be implemented here using jsPDF library. For now, you can print this page (Ctrl/Cmd+P) and select "Save as PDF".'
+  );
 }
 
 // Initialize on page load

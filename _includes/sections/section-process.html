@@ -1,11 +1,5 @@
-{%- comment -%}
-  Homepage Process Section
-  
-  Parameters:
-    - data: The process data object from _data/home.yml
-{%- endcomment -%}
-
-{%- assign process = include.data -%}
+{%- comment -%} Homepage Process Section Parameters: - data: The process data object from _data/home.yml {%- endcomment
+-%} {%- assign process = include.data -%}
 
 <section class="home-process bg-soft" aria-labelledby="process-title">
   <div class="container container--wide">
@@ -25,8 +19,6 @@
       {% endfor %}
     </div>
 
-    <p class="process-fun-fact">
-      <strong>Why this matters:</strong> {{ process.fun_fact }}
-    </p>
+    <p class="process-fun-fact"><strong>Why this matters:</strong> {{ process.fun_fact }}</p>
   </div>
 </section>

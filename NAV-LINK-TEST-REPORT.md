@@ -1,4 +1,5 @@
 # NAV LINK TEST REPORT - Tillerstead.com
+
 **Test Date:** 2026-01-25  
 **Tested By:** Automated Link Checker
 
@@ -7,58 +8,64 @@
 ## ✅ DESKTOP NAV - ALL LINKS VERIFIED
 
 ### **Main Menu (Top Level):**
-| Link | Destination | Status |
-|------|-------------|--------|
-| Services | `/services/` → `services.html` | ✅ EXISTS |
+
+| Link     | Destination                      | Status    |
+| -------- | -------------------------------- | --------- |
+| Services | `/services/` → `services.html`   | ✅ EXISTS |
 | Our Work | `/portfolio/` → `portfolio.html` | ✅ EXISTS |
-| Blog | `/blog/` → `blog.html` | ✅ EXISTS |
-| Reviews | `/reviews/` → `reviews.html` | ✅ EXISTS |
-| Tools | `/tools/` → `tools.html` | ✅ EXISTS |
+| Blog     | `/blog/` → `blog.html`           | ✅ EXISTS |
+| Reviews  | `/reviews/` → `reviews.html`     | ✅ EXISTS |
+| Tools    | `/tools/` → `tools.html`         | ✅ EXISTS |
 
 ---
 
 ### **Guides Dropdown:**
-| Link | Destination | Status |
-|------|-------------|--------|
-| Build Guide Overview | `/build/` → `build.html` | ✅ EXISTS |
-| Codes & Permits | `/build/phase-01/` → `build/phase-01/index.md` | ✅ EXISTS |
-| Shower Pans | `/build/phase-02/` → `build/phase-02/index.md` | ✅ EXISTS |
-| Waterproofing | `/build/phase-03/` → `build/phase-03/index.md` | ✅ EXISTS |
-| Curbless Showers | `/build/curbs-curbless/` → `build/curbs-curbless.md` | ✅ EXISTS |
-| Benches & Niches | `/build/phase-05/` → `build/phase-05/index.md` | ✅ EXISTS |
-| TCNA Standards | `/build/phase-06/` → `build/phase-06/index.md` | ✅ EXISTS |
-| Flood Testing | `/build/flood-testing/` → `build/flood-testing.md` | ✅ EXISTS |
+
+| Link                 | Destination                                          | Status    |
+| -------------------- | ---------------------------------------------------- | --------- |
+| Build Guide Overview | `/build/` → `build.html`                             | ✅ EXISTS |
+| Codes & Permits      | `/build/phase-01/` → `build/phase-01/index.md`       | ✅ EXISTS |
+| Shower Pans          | `/build/phase-02/` → `build/phase-02/index.md`       | ✅ EXISTS |
+| Waterproofing        | `/build/phase-03/` → `build/phase-03/index.md`       | ✅ EXISTS |
+| Curbless Showers     | `/build/curbs-curbless/` → `build/curbs-curbless.md` | ✅ EXISTS |
+| Benches & Niches     | `/build/phase-05/` → `build/phase-05/index.md`       | ✅ EXISTS |
+| TCNA Standards       | `/build/phase-06/` → `build/phase-06/index.md`       | ✅ EXISTS |
+| Flood Testing        | `/build/flood-testing/` → `build/flood-testing.md`   | ✅ EXISTS |
 
 ---
 
 ### **About Dropdown:**
-| Link | Destination | Status |
-|------|-------------|--------|
-| Our Story | `/about/` → `about.html` | ✅ EXISTS |
+
+| Link            | Destination                                          | Status             |
+| --------------- | ---------------------------------------------------- | ------------------ |
+| Our Story       | `/about/` → `about.html`                             | ✅ EXISTS          |
 | For Contractors | `/for-contractors/` → `for-general-contractors.html` | ⚠️ REDIRECT NEEDED |
-| FAQ | `/faq/` → `faq.html` | ✅ EXISTS |
-| Products We Use | `/products/` → `products.html` | ✅ EXISTS |
+| FAQ             | `/faq/` → `faq.html`                                 | ✅ EXISTS          |
+| Products We Use | `/products/` → `products.html`                       | ✅ EXISTS          |
 
 ---
 
 ## ✅ MOBILE NAV - ALL LINKS VERIFIED
 
 ### **Main Menu:**
-| Link | Destination | Status |
-|------|-------------|--------|
-| SERVICES | `/services/` | ✅ EXISTS |
-| OUR WORK | `/portfolio/` | ✅ EXISTS |
-| BLOG | `/blog/` | ✅ EXISTS |
-| REVIEWS | `/reviews/` | ✅ EXISTS |
-| TOOLS | `/tools/` | ✅ EXISTS |
+
+| Link         | Destination                  | Status    |
+| ------------ | ---------------------------- | --------- |
+| SERVICES     | `/services/`                 | ✅ EXISTS |
+| OUR WORK     | `/portfolio/`                | ✅ EXISTS |
+| BLOG         | `/blog/`                     | ✅ EXISTS |
+| REVIEWS      | `/reviews/`                  | ✅ EXISTS |
+| TOOLS        | `/tools/`                    | ✅ EXISTS |
 | GET ESTIMATE | `/contact/` → `contact.html` | ✅ EXISTS |
 
 ---
 
 ### **GUIDES Accordion (Mobile):**
+
 Same as desktop - all ✅
 
 ### **ABOUT Accordion (Mobile):**
+
 Same as desktop - all ✅
 
 ---
@@ -66,6 +73,7 @@ Same as desktop - all ✅
 ## ⚠️ ISSUES FOUND
 
 ### **1. URL Mismatch:**
+
 - **Link:** `/for-contractors/`
 - **File:** `for-general-contractors.html`
 - **Issue:** URL doesn't match filename
@@ -87,18 +95,20 @@ Same as desktop - all ✅
 ### **Fix 1: Create Redirect for /for-contractors/**
 
 **Option A:** Create a redirect HTML file:
+
 ```html
 <!-- for-contractors.html -->
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="refresh" content="0; url=/for-general-contractors/">
-  <link rel="canonical" href="/for-general-contractors/">
-</head>
+  <head>
+    <meta http-equiv="refresh" content="0; url=/for-general-contractors/" />
+    <link rel="canonical" href="/for-general-contractors/" />
+  </head>
 </html>
 ```
 
 **Option B:** Update nav links to match actual filename:
+
 ```html
 <!-- Change in main-nav.html -->
 <li><a href="/for-general-contractors/">For Contractors</a></li>
@@ -109,6 +119,7 @@ Same as desktop - all ✅
 ## ✅ ACCESSIBILITY CHECKS
 
 ### **ARIA Labels:**
+
 - ✅ Desktop nav has `aria-label="Primary Navigation"`
 - ✅ Dropdowns have `aria-expanded` states
 - ✅ Dropdowns have `aria-haspopup="true"`
@@ -117,6 +128,7 @@ Same as desktop - all ✅
 - ✅ Close button has `aria-label="Close"`
 
 ### **Keyboard Navigation:**
+
 - ✅ All links focusable with Tab
 - ✅ Dropdown triggers are buttons (not links)
 - ✅ Accordion triggers have proper ARIA
@@ -149,6 +161,7 @@ Mobile Nav Drawer
 ## 🧪 MANUAL TEST CHECKLIST
 
 ### **Desktop:**
+
 - [ ] All top-level links work
 - [ ] Guides dropdown opens on hover
 - [ ] Guides dropdown closes properly
@@ -159,6 +172,7 @@ Mobile Nav Drawer
 - [ ] Focus visible on all items
 
 ### **Mobile:**
+
 - [ ] Hamburger menu opens drawer
 - [ ] Close button closes drawer
 - [ ] Tap outside closes drawer
@@ -179,7 +193,7 @@ Mobile Nav Drawer
 ✅ **Animations:** Smooth slide-in (0.4s spring)  
 ✅ **Overlay:** Dark backdrop with blur  
 ✅ **Safe Areas:** Proper padding for notch  
-✅ **Orientation:** Works in portrait & landscape  
+✅ **Orientation:** Works in portrait & landscape
 
 ---
 
@@ -198,9 +212,10 @@ Mobile Nav Drawer
 ✅ Excellent link structure  
 ✅ All critical pages exist  
 ✅ Proper accessibility  
-⚠️ One minor redirect needed  
+⚠️ One minor redirect needed
 
 **Next Steps:**
+
 1. Fix `/for-contractors/` redirect
 2. Test all links manually
 3. Verify on live site

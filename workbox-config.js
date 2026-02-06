@@ -5,11 +5,9 @@
 
 export default {
   globDirectory: '_site/',
-  globPatterns: [
-    '**/*.{html,css,js,json,webp,avif,jpg,png,svg,woff2,woff}',
-  ],
+  globPatterns: ['**/*.{html,css,js,json,webp,avif,jpg,png,svg,woff2,woff}'],
   swDest: '_site/sw.js',
-  
+
   // Runtime caching strategies
   runtimeCaching: [
     {
@@ -88,7 +86,7 @@ export default {
 
   // Ignore specific files
   ignoreURLParametersMatching: [/^utm_/, /^fbclid$/],
-  
+
   // Don't cache admin or form submission pages
   navigateFallback: '/offline.html',
   navigateFallbackDenylist: [/^\/_/, /\/[^/?]+\.[^/]+$/],

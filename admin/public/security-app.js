@@ -129,7 +129,7 @@ async function verify2FA() {
     const response = await fetch('/api/auth/2fa/enable', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token })
+      body: JSON.stringify({ token }),
     });
 
     const data = await response.json();
@@ -153,9 +153,7 @@ async function verify2FA() {
 
 function displayBackupCodes(codes) {
   const container = document.getElementById('backup-codes');
-  container.innerHTML = codes.map(code =>
-    `<div class="backup-code">${code}</div>`
-  ).join('');
+  container.innerHTML = codes.map((code) => `<div class="backup-code">${code}</div>`).join('');
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -167,7 +165,7 @@ async function regenerateBackupCodes() {
     const response = await fetch('/api/auth/2fa/regenerate-codes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token })
+      body: JSON.stringify({ token }),
     });
 
     const data = await response.json();
@@ -199,7 +197,7 @@ async function disable2FA() {
     const response = await fetch('/api/auth/2fa/disable', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token })
+      body: JSON.stringify({ token }),
     });
 
     const data = await response.json();
@@ -244,7 +242,9 @@ function displayAuditLogs(logs) {
     return;
   }
 
-  container.innerHTML = logs.map(log => `
+  container.innerHTML = logs
+    .map(
+      (log) => `
     <div class="audit-entry ${log.severity}">
       <span class="audit-timestamp">${new Date(log.timestamp).toLocaleString()}</span>
       <div class="audit-details">
@@ -252,7 +252,9 @@ function displayAuditLogs(logs) {
         ${log.details ? `<br><small>${JSON.stringify(log.details)}</small>` : ''}
       </div>
     </div>
-  `).join('');
+  `
+    )
+    .join('');
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -283,7 +285,9 @@ function displayAPIKeys(keys) {
     return;
   }
 
-  container.innerHTML = keys.map(key => `
+  container.innerHTML = keys
+    .map(
+      (key) => `
     <div class="api-key-item">
       <div class="api-key-header">
         <span class="api-key-name">${key.name}</span>
@@ -296,7 +300,9 @@ function displayAPIKeys(keys) {
         <span>Usage: ${key.usageCount}</span>
       </div>
     </div>
-  `).join('');
+  `
+    )
+    .join('');
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -308,12 +314,14 @@ async function createAPIKey() {
     const response = await fetch('/api/security/api-keys', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, permissions: [] })
+      body: JSON.stringify({ name, permissions: [] }),
     });
 
     const data = await response.json();
 
-    alert(`API Key created!\n\n${data.key}\n\n⚠️ Save this key now - you won't be able to see it again!`);
+    alert(
+      `API Key created!\n\n${data.key}\n\n⚠️ Save this key now - you won't be able to see it again!`
+    );
 
     await loadAPIKeys();
     await loadSecurityOverview();
@@ -330,7 +338,7 @@ async function revokeAPIKey(hash) {
 
   try {
     await fetch(`/api/security/api-keys/${hash}`, {
-      method: 'DELETE'
+      method: 'DELETE',
     });
 
     await loadAPIKeys();
@@ -365,12 +373,16 @@ function displayIPList(type, ips) {
     return;
   }
 
-  container.innerHTML = ips.map(ip => `
+  container.innerHTML = ips
+    .map(
+      (ip) => `
     <div class="ip-item">
       <span>${ip}</span>
       <span class="remove-btn" onclick="removeIP('${type}', '${ip}')">×</span>
     </div>
-  `).join('');
+  `
+    )
+    .join('');
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -396,7 +408,7 @@ async function addIP(type, ip) {
     await fetch(`/api/security/ip-filter/${type}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ip })
+      body: JSON.stringify({ ip }),
     });
 
     await loadIPFilters();
@@ -411,7 +423,7 @@ async function addIP(type, ip) {
 async function removeIP(type, ip) {
   try {
     await fetch(`/api/security/ip-filter/${type}/${ip}`, {
-      method: 'DELETE'
+      method: 'DELETE',
     });
 
     await loadIPFilters();
@@ -439,7 +451,9 @@ async function loadRoles() {
 function displayRoles(roles) {
   const container = document.getElementById('roles-list');
 
-  container.innerHTML = roles.map(role => `
+  container.innerHTML = roles
+    .map(
+      (role) => `
     <div class="api-key-item">
       <div class="api-key-header">
         <span class="api-key-name">${role.name}</span>
@@ -450,7 +464,9 @@ function displayRoles(roles) {
         <strong>Permissions:</strong> ${role.permissions.join(', ')}
       </div>
     </div>
-  `).join('');
+  `
+    )
+    .join('');
 }
 
 // ==

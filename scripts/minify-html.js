@@ -45,7 +45,7 @@ async function findHTMLFiles(dir) {
 
   for (const file of files) {
     const fullPath = path.join(dir, file.name);
-    
+
     if (file.isDirectory()) {
       htmlFiles.push(...(await findHTMLFiles(fullPath)));
     } else if (file.name.endsWith('.html')) {
@@ -60,15 +60,15 @@ async function minifyHTMLFile(filePath) {
   try {
     const html = await fs.readFile(filePath, 'utf8');
     const originalSize = Buffer.byteLength(html, 'utf8');
-    
+
     const minified = await minify(html, minifyOptions);
     const minifiedSize = Buffer.byteLength(minified, 'utf8');
-    
+
     await fs.writeFile(filePath, minified, 'utf8');
-    
+
     const savings = originalSize - minifiedSize;
     const percent = ((savings / originalSize) * 100).toFixed(1);
-    
+
     return { originalSize, minifiedSize, savings, percent };
   } catch (error) {
     console.error(`Error minifying ${filePath}:`, error.message);
@@ -89,11 +89,13 @@ async function main() {
 
     for (const file of htmlFiles) {
       const result = await minifyHTMLFile(file);
-      
+
       if (result) {
         const relativePath = path.relative(SITE_DIR, file);
-        console.log(`✓ ${relativePath}: ${result.originalSize} → ${result.minifiedSize} bytes (${result.percent}% savings)`);
-        
+        console.log(
+          `✓ ${relativePath}: ${result.originalSize} → ${result.minifiedSize} bytes (${result.percent}% savings)`
+        );
+
         totalOriginal += result.originalSize;
         totalMinified += result.minifiedSize;
         processedCount++;

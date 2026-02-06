@@ -7,7 +7,11 @@
   /* ===== HERO SECTION - Mobile Optimized ===== */
   .ts-hero--home {
     padding: 2rem 1rem 3rem !important;
-    background: linear-gradient(135deg, #ffffff 0%, var(--tiller-color-silver-bright, #f8f9fa) 100%);
+    background: linear-gradient(
+      135deg,
+      #ffffff 0%,
+      var(--tiller-color-silver-bright, #f8f9fa) 100%
+    );
     position: relative;
     overflow: hidden;
   }
@@ -122,7 +126,10 @@
   /* ===== TESTIMONIALS - Mobile Carousel ===== */
   #testimonials {
     padding: 2.5rem 1rem !important;
-    background: var(--tiller-gradient-emerald-accessible, linear-gradient(135deg, #006c47 0%, #008f5d 100%));
+    background: var(
+      --tiller-gradient-emerald-accessible,
+      linear-gradient(135deg, #006c47 0%, #008f5d 100%)
+    );
   }
 
   #testimonials h2 {
@@ -242,7 +249,10 @@
   }
 
   /* ===== TOUCH TARGETS - WCAG AAA ===== */
-  a, button, input, select {
+  a,
+  button,
+  input,
+  select {
     min-height: 44px !important;
     min-width: 44px !important;
   }
@@ -253,8 +263,9 @@
   .testimonial-card,
   .portfolio-item,
   .faq-item {
-    box-shadow: 0 2px 8px rgb(0 0 0 / 8%),
-                0 4px 16px rgb(0 0 0 / 4%) !important;
+    box-shadow:
+      0 2px 8px rgb(0 0 0 / 8%),
+      0 4px 16px rgb(0 0 0 / 4%) !important;
   }
 
   /* ===== SMOOTH CORNERS ===== */
@@ -269,7 +280,10 @@
   /* ===== PREMIUM GRADIENT BUTTONS ===== */
   .btn--primary {
     background: #006c47 !important; /* WCAG AA: 8.59:1 contrast fallback */
-    background: var(--tiller-gradient-emerald-accessible, linear-gradient(135deg, #008f5d 0%, #006c47 100%)) !important;
+    background: var(
+      --tiller-gradient-emerald-accessible,
+      linear-gradient(135deg, #008f5d 0%, #006c47 100%)
+    ) !important;
     color: white !important; /* WCAG AA compliant on both gradient colors */
     border: none !important;
     box-shadow: 0 4px 12px rgb(0 163 92 / 30%) !important;
@@ -308,7 +322,8 @@
 
   /* Pulse urgency badge */
   @keyframes pulse-urgency {
-    0%, 100% {
+    0%,
+    100% {
       transform: scale(1);
     }
 

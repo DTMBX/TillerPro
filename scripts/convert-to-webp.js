@@ -16,7 +16,7 @@ async function convertToWebP() {
   console.log(chalk.blue.bold('\n🖼️  WEBP CONVERSION\n'));
 
   const images = await glob(`${IMAGE_DIR}/**/*.{jpg,jpeg,png}`, {
-    ignore: ['**/*.webp', '**/node_modules/**']
+    ignore: ['**/*.webp', '**/node_modules/**'],
   });
 
   console.log(`Found ${images.length} images\n`);
@@ -37,13 +37,11 @@ async function convertToWebP() {
     }
 
     try {
-      await sharp(imagePath)
-        .webp({ quality: QUALITY })
-        .toFile(webpPath);
+      await sharp(imagePath).webp({ quality: QUALITY }).toFile(webpPath);
 
       const originalSize = fs.statSync(imagePath).size;
       const webpSize = fs.statSync(webpPath).size;
-      const savings = ((originalSize - webpSize) / originalSize * 100).toFixed(1);
+      const savings = (((originalSize - webpSize) / originalSize) * 100).toFixed(1);
 
       console.log(chalk.green(`✓ ${name}.webp (saved ${savings}%)`));
       converted++;

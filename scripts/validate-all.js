@@ -17,14 +17,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
-const EXCLUDE_DIRS = [
-  '.git',
-  'node_modules',
-  '_site',
-  '.github',
-  'vendor',
-  'dist',
-];
+const EXCLUDE_DIRS = ['.git', 'node_modules', '_site', '.github', 'vendor', 'dist'];
 
 class Validator {
   constructor() {
@@ -66,19 +59,12 @@ class Validator {
             const content = buffer.toString('utf8');
 
             // Check for BOM
-            if (
-              buffer[0] === 0xef &&
-              buffer[1] === 0xbb &&
-              buffer[2] === 0xbf
-            ) {
+            if (buffer[0] === 0xef && buffer[1] === 0xbb && buffer[2] === 0xbf) {
               this.log('error', `${filePath}: Contains UTF-8 BOM`);
             }
             // Check for invalid UTF-8 sequences
             if (content.includes('\ufffd')) {
-              this.log(
-                'error',
-                `${filePath}: Contains invalid UTF-8 characters`,
-              );
+              this.log('error', `${filePath}: Contains invalid UTF-8 characters`);
             } else {
               this.log('success', `${filePath}: UTF-8 valid`);
             }
@@ -95,12 +81,7 @@ class Validator {
   // Validate YAML structure
   validateYaml() {
     console.log('\n📋 Validating YAML Files...');
-    const yamlFiles = [
-      '_config.yml',
-      '_data/theme.yml',
-      '_data/nav.yml',
-      '_data/social.yml',
-    ];
+    const yamlFiles = ['_config.yml', '_data/theme.yml', '_data/nav.yml', '_data/social.yml'];
 
     yamlFiles.forEach((file) => {
       const filePath = path.join(ROOT, file);
@@ -209,7 +190,7 @@ class Validator {
         {
           stdio: 'pipe',
           cwd: ROOT,
-        },
+        }
       );
       this.log('success', 'HTML validation passed');
     } catch (_err) {
@@ -220,13 +201,7 @@ class Validator {
   // Check critical files exist
   validateCriticalFiles() {
     console.log('\n📦 Validating Critical Files...');
-    const critical = [
-      '_config.yml',
-      'package.json',
-      'Gemfile',
-      'favicon.ico',
-      'CNAME',
-    ];
+    const critical = ['_config.yml', 'package.json', 'Gemfile', 'favicon.ico', 'CNAME'];
 
     critical.forEach((file) => {
       const filePath = path.join(ROOT, file);

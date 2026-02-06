@@ -22,14 +22,14 @@ export const TILE_FORMULA_INFO = {
     {
       name: 'Mathematical derivation',
       note: 'Area-based calculation: Area / Tile Size = Quantity',
-      type: 'mathematical'
-    }
+      type: 'mathematical',
+    },
   ],
   assumptions: [
     'Tile dimensions are nominal (actual tile size excluding grout joint)',
     'Waste factor is user-configurable with industry-typical defaults',
-    'Box/carton quantities vary by manufacturer - user must input'
-  ]
+    'Box/carton quantities vary by manufacturer - user must input',
+  ],
 };
 
 // ==
@@ -51,44 +51,44 @@ export const WASTE_FACTORS = {
     min: 8,
     max: 12,
     typical: 10,
-    note: 'Grid/stacked pattern - minimal cuts required'
+    note: 'Grid/stacked pattern - minimal cuts required',
   },
   offset_third: {
     min: 10,
     max: 15,
     typical: 12,
-    note: '1/3 offset (recommended) - moderate cuts at edges'
+    note: '1/3 offset (recommended) - moderate cuts at edges',
   },
   offset_half: {
     min: 12,
     max: 18,
     typical: 15,
-    note: '50% offset (brick) - more cuts, lippage risk with long tiles'
+    note: '50% offset (brick) - more cuts, lippage risk with long tiles',
   },
   running_bond: {
     min: 10,
     max: 15,
     typical: 12,
-    note: 'Running bond - similar to 1/3 offset'
+    note: 'Running bond - similar to 1/3 offset',
   },
   diagonal: {
     min: 15,
     max: 22,
     typical: 18,
-    note: 'Diagonal - all edges require cuts'
+    note: 'Diagonal - all edges require cuts',
   },
   herringbone: {
     min: 20,
     max: 30,
     typical: 25,
-    note: 'Herringbone - complex cutting, many small pieces'
+    note: 'Herringbone - complex cutting, many small pieces',
   },
   mosaic: {
     min: 10,
     max: 15,
     typical: 12,
-    note: 'Mosaic sheets - edge trimming'
-  }
+    note: 'Mosaic sheets - edge trimming',
+  },
 };
 
 // ==
@@ -159,7 +159,7 @@ export function calculateTileQuantity({
   areaSqFt,
   tileWidthInches,
   tileHeightInches,
-  wastePercent = 10
+  wastePercent = 10,
 }) {
   const errors = [];
   const assumptions = [];
@@ -181,7 +181,7 @@ export function calculateTileQuantity({
 
   // Calculate
   const tileAreaSqFt = calculateTileArea(widthVal.value, heightVal.value);
-  const wasteFactor = 1 + (wasteVal.value / 100);
+  const wasteFactor = 1 + wasteVal.value / 100;
   const areaWithWaste = areaVal.value * wasteFactor;
   const tilesNeeded = roundUp(areaWithWaste / tileAreaSqFt);
 
@@ -199,7 +199,7 @@ export function calculateTileQuantity({
     tiles: tilesNeeded,
     areaWithWaste: roundUp(areaWithWaste * 10) / 10, // round to 1 decimal
     tileAreaSqFt,
-    assumptions
+    assumptions,
   };
 }
 
@@ -227,7 +227,7 @@ export function calculateBoxesNeeded({
   tilesPerBox,
   sqFtPerBox,
   tileAreaSqFt,
-  addAtticStock = false
+  addAtticStock = false,
 }) {
   const errors = [];
   const assumptions = [];
@@ -250,8 +250,7 @@ export function calculateBoxesNeeded({
     const tilesPerBoxCalc = sqFtPerBox / tileAreaSqFt;
     boxes = roundUp(tilesVal.value / tilesPerBoxCalc);
     assumptions.push(`Using ${sqFtPerBox} sq ft per box (from packaging)`);
-  }
-  else {
+  } else {
     errors.push('Provide either tiles per box or sq ft per box from product packaging');
     return { valid: false, errors, boxes: 0, atticStockBoxes: 0, assumptions };
   }
@@ -269,7 +268,7 @@ export function calculateBoxesNeeded({
     errors: [],
     boxes,
     atticStockBoxes,
-    assumptions
+    assumptions,
   };
 }
 
@@ -283,11 +282,7 @@ export function calculateBoxesNeeded({
  * @param {number} params.wastePercent - Waste factor
  * @returns {{ valid: boolean, errors: string[], sheets: number, assumptions: string[] }}
  */
-export function calculateMosaicSheets({
-  areaSqFt,
-  sheetCoverageSqFt,
-  wastePercent = 12
-}) {
+export function calculateMosaicSheets({ areaSqFt, sheetCoverageSqFt, wastePercent = 12 }) {
   const errors = [];
   const assumptions = [];
 
@@ -303,7 +298,7 @@ export function calculateMosaicSheets({
     return { valid: false, errors, sheets: 0, assumptions };
   }
 
-  const wasteFactor = 1 + (wasteVal.value / 100);
+  const wasteFactor = 1 + wasteVal.value / 100;
   const areaWithWaste = areaVal.value * wasteFactor;
   const sheets = roundUp(areaWithWaste / coverageVal.value);
 
@@ -314,6 +309,6 @@ export function calculateMosaicSheets({
     valid: true,
     errors: [],
     sheets,
-    assumptions
+    assumptions,
   };
 }

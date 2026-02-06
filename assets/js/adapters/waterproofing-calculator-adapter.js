@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-(function() {
+(function () {
   'use strict';
 
   class WaterproofingCalculatorAdapter {
@@ -39,7 +39,7 @@
         corners: document.getElementById('wp-corners'),
         niches: document.getElementById('wp-niches'),
         calcButton: document.getElementById('calc-waterproof-btn'),
-        results: document.getElementById('waterproof-calc-results')
+        results: document.getElementById('waterproof-calc-results'),
       };
     }
 
@@ -98,10 +98,10 @@
         this.elements.floorArea,
         this.elements.wallArea,
         this.elements.corners,
-        this.elements.niches
+        this.elements.niches,
       ].filter(Boolean);
 
-      autoSaveInputs.forEach(input => {
+      autoSaveInputs.forEach((input) => {
         input.addEventListener('change', () => this.saveToState());
       });
 
@@ -144,7 +144,11 @@
 
       // Calculate based on system type
       let result;
-      if (system.includes('liquid') || system === 'custom-redgard' || system === 'mapei-aquadefense') {
+      if (
+        system.includes('liquid') ||
+        system === 'custom-redgard' ||
+        system === 'mapei-aquadefense'
+      ) {
         result = this.calculateLiquidSystem(totalArea, system);
       } else if (system === 'go-board') {
         result = this.calculateBoardSystem(floorArea, wallArea);
@@ -160,7 +164,7 @@
         wallArea,
         corners,
         niches,
-        ...result
+        ...result,
       });
 
       console.log('[WaterproofAdapter] Calculation complete');
@@ -175,7 +179,7 @@
         type: 'liquid',
         gallons: gallonsNeeded,
         unit: 'gallons',
-        note: 'Apply 2 coats. Fabric corners/joints sold separately.'
+        note: 'Apply 2 coats. Fabric corners/joints sold separately.',
       };
     }
 
@@ -188,7 +192,7 @@
         type: 'board',
         boards: totalBoards,
         unit: 'panels',
-        note: 'Includes 10% waste. Adhesive/tape sold separately.'
+        note: 'Includes 10% waste. Adhesive/tape sold separately.',
       };
     }
 
@@ -221,7 +225,7 @@
         unit: 'rolls',
         corners: cornerPieces,
         niches: nichePieces,
-        note: `${rolls} roll(s), ${cornerPieces} corners, ${nichePieces} niche kit(s). Adhesive required.`
+        note: `${rolls} roll(s), ${cornerPieces} corners, ${nichePieces} niche kit(s). Adhesive required.`,
       };
     }
 
@@ -258,20 +262,25 @@
               <span class="calc-result__label">Inside corners</span>
               <span class="calc-result__value">${result.corners}</span>
             </div>
-            ${result.niches > 0 ? `
+            ${
+              result.niches > 0
+                ? `
             <div class="calc-result">
               <span class="calc-result__label">Niche kits</span>
               <span class="calc-result__value">${result.niches}</span>
             </div>
-            ` : ''}
+            `
+                : ''
+            }
           `;
         }
 
         resultsGrid.innerHTML = html;
       }
 
-      const noteEl = this.elements.results.querySelector('.calc-results__note') ||
-                      this.elements.results.querySelector('#waterproof-calc-note');
+      const noteEl =
+        this.elements.results.querySelector('.calc-results__note') ||
+        this.elements.results.querySelector('#waterproof-calc-note');
       if (noteEl) {
         noteEl.textContent = result.note;
       } else {
@@ -351,5 +360,4 @@
       adapter.init();
     }
   }
-
 })();

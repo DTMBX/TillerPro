@@ -13,14 +13,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
-const EXCLUDE_DIRS = [
-  '.git',
-  'node_modules',
-  '_site',
-  '.github',
-  'vendor',
-  'dist',
-];
+const EXCLUDE_DIRS = ['.git', 'node_modules', '_site', '.github', 'vendor', 'dist'];
 
 class EncodingFixer {
   constructor() {

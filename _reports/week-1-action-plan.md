@@ -1,4 +1,5 @@
 # WEEK 1 IMPLEMENTATION CHECKLIST
+
 **Tillerstead.com - Immediate Action Items**  
 **Start Date:** 2026-01-26  
 **Goal:** Execute quick wins for immediate impact
@@ -8,7 +9,9 @@
 ## MONDAY: Brand Foundation (2-3 hours)
 
 ### Task 1: Logo Consolidation Plan
+
 - [ ] **Audit current logos** (15 min)
+
   ```bash
   cd assets/img
   ls -la | grep logo
@@ -22,19 +25,23 @@
   - WebP header variant (performance)
 
 - [ ] **Document logo guidelines** (30 min)
+
   ```markdown
   # Logo Usage Guidelines
-  
+
   ## Primary Logo
+
   - File: logo-master.svg
   - Use: All web applications
   - Min size: 40px height
-  
+
   ## Favicon
+
   - File: logo-icon-180.png
   - Use: Browser tab icons
-  
+
   ## Social Sharing
+
   - File: logo-social-512.png
   - Use: OG images, social media
   ```
@@ -46,21 +53,23 @@
   - Create accessibility matrix
 
 ### Task 2: Fix Missing Meta Descriptions
+
 - [ ] **Add meta to test pages** (30 min)
+
   ```yaml
   # tile-pattern-demo.html
   meta_description: "Interactive tile pattern designer. Preview herringbone, subway, basketweave, and custom patterns before installation."
-  
-  # offline.html  
+
+  # offline.html
   meta_description: "Offline page for Tillerstead PWA. Continue browsing cached content while connection is restored."
-  
+
   # form-detection.html
   meta_description: "Internal testing page for form validation and detection systems."
   ```
 
 - [ ] **Set test pages to noindex** (15 min)
   ```html
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="noindex, nofollow" />
   ```
 
 ---
@@ -68,64 +77,68 @@
 ## TUESDAY: SEO Foundation (3-4 hours)
 
 ### Task 3: Structured Data Implementation
+
 - [ ] **Create schema templates** (60 min)
-  
+
   **Template 1: Service Schema**
+
   ```html
   <!-- _includes/schema/service.html -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "{{ include.name }}",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Tillerstead LLC"
-    },
-    "areaServed": {
-      "@type": "State",
-      "name": "New Jersey"
-    },
-    "description": "{{ include.description }}"
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "{{ include.name }}",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Tillerstead LLC"
+      },
+      "areaServed": {
+        "@type": "State",
+        "name": "New Jersey"
+      },
+      "description": "{{ include.description }}"
+    }
   </script>
   ```
 
   **Template 2: Review Schema**
+
   ```html
   <!-- _includes/schema/reviews.html -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AggregateRating",
-    "itemReviewed": {
-      "@type": "LocalBusiness",
-      "name": "Tillerstead LLC"
-    },
-    "ratingValue": "5.0",
-    "reviewCount": "47"
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "AggregateRating",
+      "itemReviewed": {
+        "@type": "LocalBusiness",
+        "name": "Tillerstead LLC"
+      },
+      "ratingValue": "5.0",
+      "reviewCount": "47"
+    }
   </script>
   ```
 
   **Template 3: FAQ Schema**
+
   ```html
   <!-- _includes/schema/faq.html -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "{{ include.question }}",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "{{ include.answer }}"
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "{{ include.question }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ include.answer }}"
+          }
         }
-      }
-    ]
-  }
+      ]
+    }
   </script>
   ```
 
@@ -141,6 +154,7 @@
   - Fix any validation errors
 
 ### Task 4: Google Search Console Setup
+
 - [ ] **Verify ownership** (10 min)
 - [ ] **Submit sitemap.xml** (5 min)
 - [ ] **Request indexing for key pages** (10 min)
@@ -151,6 +165,7 @@
 ## WEDNESDAY: Content Launch (4-5 hours)
 
 ### Task 5: Write First Strategic Blog Post
+
 - [ ] **Choose topic** (15 min)
   - Recommended: "Ultimate Guide to NJ Tile Shower Building Codes 2026"
   - Why: High search volume + establishes authority
@@ -162,33 +177,39 @@
   - Competitor posts
 
 - [ ] **Outline** (30 min)
+
   ```markdown
   # NJ Tile Shower Building Codes: Complete 2026 Guide
-  
+
   ## Introduction
+
   - Why codes matter
   - What homeowners need to know
-  
+
   ## NJ-Specific Requirements
+
   - HIC licensing
   - Permit requirements
   - Inspection process
-  
+
   ## TCNA Standards
+
   - Waterproofing requirements
   - Substrate preparation
   - Tile installation
-  
+
   ## Common Code Violations
+
   - Missing waterproofing
   - Improper slope
   - Wrong materials
-  
+
   ## Working with Inspectors
+
   - What they check
   - How to pass inspection
   - Common issues
-  
+
   ## Conclusion + CTA
   ```
 
@@ -200,7 +221,8 @@
 
 - [ ] **Optimize** (30 min)
   - Meta title: "NJ Tile Shower Building Codes 2026 | Complete Guide"
-  - Meta description: "Everything NJ homeowners need to know about tile shower codes, permits, and inspections. TCNA-compliant expert guidance."
+  - Meta description: "Everything NJ homeowners need to know about tile shower
+    codes, permits, and inspections. TCNA-compliant expert guidance."
   - Headers: H2/H3 structure
   - Alt text on all images
   - Internal links to services
@@ -215,6 +237,7 @@
 ## THURSDAY: Google Business Profile (2-3 hours)
 
 ### Task 6: Optimize GBP Listing
+
 - [ ] **Claim/verify business** (30 min)
   - https://business.google.com
 
@@ -249,6 +272,7 @@
 ## FRIDAY: Analytics & Tracking (2-3 hours)
 
 ### Task 7: Google Analytics Setup
+
 - [ ] **Create GA4 property** (15 min)
 
 - [ ] **Set up goals** (45 min)
@@ -263,17 +287,18 @@
   - Test with GA debugger
 
 - [ ] **Create custom events** (30 min)
+
   ```javascript
   // Quote calculator completion
   gtag('event', 'quote_completed', {
-    'project_type': 'shower',
-    'estimated_cost': '$5000'
+    project_type: 'shower',
+    estimated_cost: '$5000',
   });
-  
+
   // Blog post read
   gtag('event', 'content_engagement', {
-    'content_type': 'blog',
-    'scroll_depth': '75%'
+    content_type: 'blog',
+    scroll_depth: '75%',
   });
   ```
 
@@ -282,6 +307,7 @@
   - Facebook pixel (if running)
 
 ### Task 8: Create Content Calendar
+
 - [ ] **Set up spreadsheet** (45 min)
   - Columns: Date, Title, Status, Keywords, Author
   - Pre-populate 12 weeks (24 posts)
@@ -299,7 +325,9 @@
 ## WEEKEND: Quick Optimizations (1-2 hours)
 
 ### Task 9: Performance Tweaks
+
 - [ ] **Enable Netlify optimizations** (15 min)
+
   ```toml
   # netlify.toml
   [build.processing.css]
@@ -318,10 +346,11 @@
   ```
 
 - [ ] **Add preconnect hints** (15 min)
+
   ```html
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-  <link rel="dns-prefetch" href="https://calendly.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://calendly.com" />
   ```
 
 - [ ] **Compress images** (30 min)
@@ -329,6 +358,7 @@
   - Convert remaining JPGs to WebP/AVIF
 
 ### Task 10: Social Proof Collection
+
 - [ ] **Email 5 recent customers** (30 min)
   - Request Google review
   - Ask for testimonial
@@ -340,6 +370,7 @@
 ## SUCCESS METRICS (Week 1)
 
 ### Goals:
+
 - ✅ Logo files reduced from 35 → 4
 - ✅ Color system documented
 - ✅ 9 meta descriptions added
@@ -352,15 +383,16 @@
 - ✅ 5 review requests sent
 
 ### Time Investment:
+
 - Monday: 2-3 hours
 - Tuesday: 3-4 hours
 - Wednesday: 4-5 hours
 - Thursday: 2-3 hours
 - Friday: 2-3 hours
-- Weekend: 1-2 hours
-**Total: 14-20 hours**
+- Weekend: 1-2 hours **Total: 14-20 hours**
 
 ### Expected Outcomes:
+
 - 📈 SEO foundation strengthened
 - 📝 Content machine started
 - 🎯 Tracking/analytics in place
@@ -372,11 +404,13 @@
 ## NEXT WEEK PREVIEW (Week 2)
 
 ### Monday-Wednesday:
+
 - Publish 2nd blog post
 - Create 2 case studies
 - Film first project video
 
 ### Thursday-Friday:
+
 - Build email signup form
 - Set up welcome email sequence
 - Create lead magnet (downloadable guide)
@@ -386,6 +420,7 @@
 ## TOOLS NEEDED
 
 ### Free:
+
 - ✅ Google Search Console
 - ✅ Google Analytics
 - ✅ Google Business Profile
@@ -393,6 +428,7 @@
 - ✅ Netlify (already have)
 
 ### Paid (Optional but Recommended):
+
 - **Grammarly** ($12/mo) - Writing quality
 - **Canva Pro** ($13/mo) - Graphics
 - **Mailchimp** (Free < 500 subscribers) - Email
@@ -403,15 +439,19 @@
 ## TROUBLESHOOTING
 
 ### Issue: Don't have time for 14-20 hours this week
+
 **Solution:** Prioritize tasks 1, 2, 3, 6 (8-10 hours)
 
 ### Issue: Don't know how to write 2,000-word post
+
 **Solution:** Use ChatGPT/Claude to create outline + first draft, then edit
 
 ### Issue: No recent projects to photograph
+
 **Solution:** Use stock photos (attribution) or create diagrams/infographics
 
 ### Issue: Can't access Google Business Profile
+
 **Solution:** Verify ownership via postcard (takes 5-7 days)
 
 ---
@@ -422,6 +462,6 @@ Print this checklist. Check boxes as you complete tasks. Update progress daily.
 
 ---
 
-*Created: 2026-01-26*  
-*Implementation Week: 1 of 52*  
-*Next Review: 2026-02-02*
+_Created: 2026-01-26_  
+_Implementation Week: 1 of 52_  
+_Next Review: 2026-02-02_

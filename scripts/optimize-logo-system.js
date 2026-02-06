@@ -22,22 +22,23 @@ const CONFIG = {
   alternateImage: 'assets/img/logo/tillerstead_wolf_crest_refined_1080p.png',
   outputDirs: {
     logos: 'assets/img/logo',
-    icons: 'assets/icons'
+    icons: 'assets/icons',
   },
   brand: {
     name: 'Tillerstead LLC',
     shortName: 'Tillerstead',
-    description: 'Where Craft Meets Accountability - TCNA-compliant tile installation in South Jersey',
+    description:
+      'Where Craft Meets Accountability - TCNA-compliant tile installation in South Jersey',
     themeColor: '#10b981',
-    backgroundColor: '#1f2937'
-  }
+    backgroundColor: '#1f2937',
+  },
 };
 
 // Logo specifications
 const LOGOS = [
   { name: 'logo-wolf-crest', width: 1200, quality: 85, maxSize: 100 * 1024 },
   { name: 'logo-wolf-crest-header', width: 800, quality: 85, maxSize: 50 * 1024 },
-  { name: 'logo-wolf-crest-compact', width: 400, quality: 80, maxSize: 30 * 1024 }
+  { name: 'logo-wolf-crest-compact', width: 400, quality: 80, maxSize: 30 * 1024 },
 ];
 
 // Icon specifications
@@ -45,30 +46,30 @@ const ICONS = {
   favicons: [
     { name: 'favicon-16x16', size: 16 },
     { name: 'favicon-32x32', size: 32 },
-    { name: 'favicon-48x48', size: 48 }
+    { name: 'favicon-48x48', size: 48 },
   ],
   appleTouchIcons: [
     { name: 'apple-touch-icon', size: 180 },
     { name: 'apple-touch-icon-precomposed', size: 180 },
     { name: 'apple-touch-icon-120x120', size: 120 },
-    { name: 'apple-touch-icon-152x152', size: 152 }
+    { name: 'apple-touch-icon-152x152', size: 152 },
   ],
   androidChrome: [
     { name: 'android-chrome-192x192', size: 192 },
     { name: 'android-chrome-512x512', size: 512 },
-    { name: 'android-chrome-maskable-512x512', size: 512, maskable: true }
+    { name: 'android-chrome-maskable-512x512', size: 512, maskable: true },
   ],
   msTiles: [
     { name: 'mstile-70x70', size: 70 },
     { name: 'mstile-144x144', size: 144 },
     { name: 'mstile-150x150', size: 150 },
     { name: 'mstile-310x310', size: 310 },
-    { name: 'mstile-310x150', width: 310, height: 150 }
+    { name: 'mstile-310x150', width: 310, height: 150 },
   ],
   social: [
     { name: 'og-image', width: 1200, height: 630 },
-    { name: 'twitter-card', width: 1200, height: 675 }
-  ]
+    { name: 'twitter-card', width: 1200, height: 675 },
+  ],
 };
 
 // Utility functions
@@ -98,16 +99,14 @@ async function optimizeLogo(sourcePath, outputPath, width, quality) {
   return image
     .resize(width, height, {
       fit: 'contain',
-      background: { r: 0, g: 0, b: 0, alpha: 0 }
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
     })
     .png({ quality, compressionLevel: 9, adaptiveFiltering: true })
     .toBuffer();
 }
 
 async function createWebP(pngBuffer, quality = 80) {
-  return sharp(pngBuffer)
-    .webp({ quality, effort: 6 })
-    .toBuffer();
+  return sharp(pngBuffer).webp({ quality, effort: 6 }).toBuffer();
 }
 
 async function createIcon(sourcePath, size, outputPath, options = {}) {
@@ -115,7 +114,7 @@ async function createIcon(sourcePath, size, outputPath, options = {}) {
 
   let pipeline = image.resize(size, size, {
     fit: 'contain',
-    background: { r: 0, g: 0, b: 0, alpha: 0 }
+    background: { r: 0, g: 0, b: 0, alpha: 0 },
   });
 
   // Add safe zone for maskable icons (20% padding)
@@ -127,7 +126,7 @@ async function createIcon(sourcePath, size, outputPath, options = {}) {
       bottom: padding,
       left: padding,
       right: padding,
-      background: CONFIG.brand.themeColor
+      background: CONFIG.brand.themeColor,
     });
   }
 
@@ -138,7 +137,7 @@ async function createRectangularIcon(sourcePath, width, height, _outputPath) {
   return sharp(sourcePath)
     .resize(width, height, {
       fit: 'contain',
-      background: { r: 0, g: 0, b: 0, alpha: 0 }
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
     })
     .png({ quality: 90, compressionLevel: 9 })
     .toBuffer();
@@ -164,7 +163,9 @@ async function optimizeLogos() {
     const pngBuffer = await optimizeLogo(CONFIG.sourceImage, pngPath, logo.width, logo.quality);
     await fs.writeFile(pngPath, pngBuffer);
     const pngSize = pngBuffer.length;
-    console.log(`✓ ${baseName}.png - ${formatBytes(pngSize)} ${pngSize <= logo.maxSize ? '✓' : '⚠️ over target'}`);
+    console.log(
+      `✓ ${baseName}.png - ${formatBytes(pngSize)} ${pngSize <= logo.maxSize ? '✓' : '⚠️ over target'}`
+    );
 
     // 1x WebP
     const webpBuffer = await createWebP(pngBuffer, 80);
@@ -174,7 +175,12 @@ async function optimizeLogos() {
     console.log(`✓ ${baseName}.webp - ${formatBytes(webpSize)} (${savings}% smaller)`);
 
     // 2x PNG (Retina)
-    const png2xBuffer = await optimizeLogo(CONFIG.sourceImage, png2xPath, logo.width * 2, logo.quality);
+    const png2xBuffer = await optimizeLogo(
+      CONFIG.sourceImage,
+      png2xPath,
+      logo.width * 2,
+      logo.quality
+    );
     await fs.writeFile(png2xPath, png2xBuffer);
     console.log(`✓ ${baseName}@2x.png - ${formatBytes(png2xBuffer.length)}`);
 
@@ -212,7 +218,9 @@ async function generateAndroidIcons() {
 
   for (const icon of ICONS.androidChrome) {
     const outputPath = path.join(CONFIG.outputDirs.icons, `${icon.name}.png`);
-    const buffer = await createIcon(CONFIG.sourceImage, icon.size, outputPath, { maskable: icon.maskable });
+    const buffer = await createIcon(CONFIG.sourceImage, icon.size, outputPath, {
+      maskable: icon.maskable,
+    });
     await fs.writeFile(outputPath, buffer);
     console.log(`✓ ${icon.name}.png - ${formatBytes(buffer.length)}`);
   }
@@ -241,7 +249,12 @@ async function generateSocialImages() {
 
   for (const social of ICONS.social) {
     const outputPath = path.join(CONFIG.outputDirs.icons, `${social.name}.png`);
-    const buffer = await createRectangularIcon(CONFIG.sourceImage, social.width, social.height, outputPath);
+    const buffer = await createRectangularIcon(
+      CONFIG.sourceImage,
+      social.width,
+      social.height,
+      outputPath
+    );
     await fs.writeFile(outputPath, buffer);
     console.log(`✓ ${social.name}.png - ${formatBytes(buffer.length)}`);
   }
@@ -249,7 +262,9 @@ async function generateSocialImages() {
 
 async function generateSafariPinnedTab() {
   console.log('\n🧭 Safari Pinned Tab SVG...\n');
-  console.log('⚠️  Note: Safari pinned tab SVG should be created manually as a monochrome silhouette');
+  console.log(
+    '⚠️  Note: Safari pinned tab SVG should be created manually as a monochrome silhouette'
+  );
   console.log('   Recommendation: Use vector editing tool to create simplified wolf outline');
 }
 
@@ -291,7 +306,6 @@ async function main() {
     console.log(`   3. Update _includes with new logo components`);
     console.log(`   4. Update manifest.webmanifest and browserconfig.xml`);
     console.log(`   5. Test on all devices and browsers\n`);
-
   } catch (error) {
     console.error('❌ Error:', error.message);
     process.exit(1);

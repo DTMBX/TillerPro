@@ -17,38 +17,27 @@
 
   // Collect all elements with auto-contrast adjustments, including compliance metadata
   function collectContrast() {
-    return [...document.querySelectorAll('[data-contrast-fixed]')].map(
-      (el) => ({
-        tag: el.tagName.toLowerCase(),
-        text: el.textContent.trim().slice(0, 80),
-        original: el.getAttribute('data-contrast-original'),
-        background: el.getAttribute('data-contrast-bg'),
-        applied: el.style.color || '',
-        ratio: el.getAttribute('data-contrast-ratio'),
-        tcnaCompliant:
-          el.getAttribute('data-tcna-compliant') === 'true' ? true : false,
-      }),
-    );
+    return [...document.querySelectorAll('[data-contrast-fixed]')].map((el) => ({
+      tag: el.tagName.toLowerCase(),
+      text: el.textContent.trim().slice(0, 80),
+      original: el.getAttribute('data-contrast-original'),
+      background: el.getAttribute('data-contrast-bg'),
+      applied: el.style.color || '',
+      ratio: el.getAttribute('data-contrast-ratio'),
+      tcnaCompliant: el.getAttribute('data-tcna-compliant') === 'true' ? true : false,
+    }));
   }
 
   // SEO summary with explicit compliance checks and alt text validation
   function collectSEO() {
     const title = document.title.trim();
     const metaDesc =
-      document
-        .querySelector('meta[name="description"]')
-        ?.getAttribute('content') || '';
-    const canonical =
-      document.querySelector('link[rel="canonical"]')?.getAttribute('href') ||
-      '';
+      document.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+    const canonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href') || '';
     const ogImage =
-      document
-        .querySelector('meta[property="og:image"]')
-        ?.getAttribute('content') || '';
+      document.querySelector('meta[property="og:image"]')?.getAttribute('content') || '';
     const ogImageAlt =
-      document
-        .querySelector('meta[property="og:image:alt"]')
-        ?.getAttribute('content') || '';
+      document.querySelector('meta[property="og:image:alt"]')?.getAttribute('content') || '';
     const imgAlts = [...document.querySelectorAll('img')].map((img) => ({
       src: img.getAttribute('src'),
       alt: img.getAttribute('alt') || '',
@@ -100,8 +89,8 @@
     const data = collectContrast();
     listEl.innerHTML = data.length
       ? data
-        .map(
-          (d) => `
+          .map(
+            (d) => `
     <div class="ts-dev-item">
       <code>${d.tag}</code>
       <span class="ts-dev-text">${d.text || '(empty)'}</span>
@@ -112,12 +101,11 @@
        <span>ratio: <b>${d.ratio}</b></span>
        <span class="ts-dev-tcna" title="TCNA/ADA Compliance">${d.tcnaCompliant ? 'TCNA/ADA' : '—'}</span>
       </div>
-    </div>`,
-        )
-        .join('')
+    </div>`
+          )
+          .join('')
       : '<em>No auto-contrast adjustments detected.</em>';
-    panel.querySelector('[data-contrast-count]').textContent =
-      `(${data.length})`;
+    panel.querySelector('[data-contrast-count]').textContent = `(${data.length})`;
     return data;
   }
 
@@ -129,7 +117,7 @@
       preEl.setAttribute('aria-live', 'polite');
       preEl.insertAdjacentHTML(
         'beforebegin',
-        '<div class="ts-dev-warn" role="alert">⚠️ Some images lack alt text (required by New Jersey HIC & ADA).</div>',
+        '<div class="ts-dev-warn" role="alert">⚠️ Some images lack alt text (required by New Jersey HIC & ADA).</div>'
       );
     }
     return seo;

@@ -18,7 +18,7 @@ class SystemMonitor {
       memory: [],
       disk: [],
       requests: [],
-      errors: []
+      errors: [],
     };
     this.maxMetrics = 1000;
     this.startTime = Date.now();
@@ -44,16 +44,17 @@ class SystemMonitor {
 
     // CPU Usage
     const cpus = os.cpus();
-    const cpuUsage = cpus.reduce((acc, cpu) => {
-      const total = Object.values(cpu.times).reduce((a, b) => a + b, 0);
-      const idle = cpu.times.idle;
-      return acc + ((total - idle) / total) * 100;
-    }, 0) / cpus.length;
+    const cpuUsage =
+      cpus.reduce((acc, cpu) => {
+        const total = Object.values(cpu.times).reduce((a, b) => a + b, 0);
+        const idle = cpu.times.idle;
+        return acc + ((total - idle) / total) * 100;
+      }, 0) / cpus.length;
 
     this.metrics.cpu.push({
       timestamp,
       usage: cpuUsage,
-      cores: cpus.length
+      cores: cpus.length,
     });
 
     // Memory Usage
@@ -67,7 +68,7 @@ class SystemMonitor {
       total: totalMem,
       used: usedMem,
       free: freeMem,
-      usage: memUsagePercent
+      usage: memUsagePercent,
     });
 
     // Disk Usage (approximate for workspace)
@@ -75,7 +76,7 @@ class SystemMonitor {
       const diskUsage = await this.getDiskUsage();
       this.metrics.disk.push({
         timestamp,
-        ...diskUsage
+        ...diskUsage,
       });
     } catch (error) {
       // Disk metrics not available
@@ -120,12 +121,12 @@ class SystemMonitor {
 
     return {
       workspaceSize: totalSize,
-      workspaceSizeMB: (totalSize / 1024 / 1024).toFixed(2)
+      workspaceSizeMB: (totalSize / 1024 / 1024).toFixed(2),
     };
   }
 
   trimMetrics() {
-    Object.keys(this.metrics).forEach(key => {
+    Object.keys(this.metrics).forEach((key) => {
       if (this.metrics[key].length > this.maxMetrics) {
         this.metrics[key] = this.metrics[key].slice(-this.maxMetrics);
       }
@@ -138,7 +139,7 @@ class SystemMonitor {
       timestamp: new Date().toISOString(),
       duration,
       endpoint,
-      status
+      status,
     });
 
     if (status >= 400) {
@@ -146,7 +147,7 @@ class SystemMonitor {
       this.metrics.errors.push({
         timestamp: new Date().toISOString(),
         endpoint,
-        status
+        status,
       });
     }
   }
@@ -162,7 +163,7 @@ class SystemMonitor {
       cpuCount: os.cpus().length,
       cpuModel: os.cpus()[0]?.model,
       totalMemory: os.totalmem(),
-      freeMemory: os.freemem()
+      freeMemory: os.freemem(),
     };
   }
 
@@ -170,7 +171,7 @@ class SystemMonitor {
     const latest = {
       cpu: this.metrics.cpu[this.metrics.cpu.length - 1],
       memory: this.metrics.memory[this.metrics.memory.length - 1],
-      disk: this.metrics.disk[this.metrics.disk.length - 1]
+      disk: this.metrics.disk[this.metrics.disk.length - 1],
     };
 
     return {
@@ -179,8 +180,8 @@ class SystemMonitor {
       requests: {
         total: this.requestCount,
         errors: this.errorCount,
-        errorRate: this.requestCount > 0 ? (this.errorCount / this.requestCount) * 100 : 0
-      }
+        errorRate: this.requestCount > 0 ? (this.errorCount / this.requestCount) * 100 : 0,
+      },
     };
   }
 
@@ -200,27 +201,27 @@ class SystemMonitor {
         avgResponseTime: 0,
         minResponseTime: 0,
         maxResponseTime: 0,
-        requestsPerMinute: 0
+        requestsPerMinute: 0,
       };
     }
 
-    const durations = recentRequests.map(r => r.duration);
+    const durations = recentRequests.map((r) => r.duration);
     const avgResponseTime = durations.reduce((a, b) => a + b, 0) / durations.length;
     const minResponseTime = Math.min(...durations);
     const maxResponseTime = Math.max(...durations);
 
     // Calculate requests per minute
     const now = Date.now();
-    const oneMinuteAgo = now - (60 * 1000);
-    const recentRequestsCount = recentRequests.filter(r =>
-      new Date(r.timestamp).getTime() > oneMinuteAgo
+    const oneMinuteAgo = now - 60 * 1000;
+    const recentRequestsCount = recentRequests.filter(
+      (r) => new Date(r.timestamp).getTime() > oneMinuteAgo
     ).length;
 
     return {
       avgResponseTime: avgResponseTime.toFixed(2),
       minResponseTime,
       maxResponseTime,
-      requestsPerMinute: recentRequestsCount
+      requestsPerMinute: recentRequestsCount,
     };
   }
 
@@ -257,7 +258,7 @@ class SystemMonitor {
     return {
       status,
       issues,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 }
@@ -274,7 +275,7 @@ export function requestTimingMiddleware(req, res, next) {
   // Capture original end function
   const originalEnd = res.end;
 
-  res.end = function(...args) {
+  res.end = function (...args) {
     const duration = Date.now() - startTime;
     systemMonitor.recordRequest(duration, req.path, res.statusCode);
     originalEnd.apply(res, args);
@@ -295,12 +296,12 @@ export function getHealthCheckData() {
     system: systemMonitor.getSystemInfo(),
     metrics: systemMonitor.getCurrentMetrics(),
     performance: systemMonitor.getPerformanceStats(),
-    health: systemMonitor.getHealthStatus()
+    health: systemMonitor.getHealthStatus(),
   };
 }
 
 export default {
   systemMonitor,
   requestTimingMiddleware,
-  getHealthCheckData
+  getHealthCheckData,
 };

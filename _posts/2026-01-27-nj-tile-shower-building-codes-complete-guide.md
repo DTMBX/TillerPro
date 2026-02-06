@@ -1,14 +1,27 @@
 ---
 layout: post
-title: "NJ Tile Shower Building Codes: Complete 2026 Compliance Guide"
-meta_title: "NJ Tile Shower Building Codes 2026 | TCNA Compliance Guide"
-meta_description: "Complete guide to New Jersey tile shower building codes for 2026. HIC licensing, permit requirements, TCNA standards, inspection process, and code compliance. Expert contractor insights."
-description: "Everything New Jersey homeowners and contractors need to know about tile shower building codes, permits, inspections, and TCNA compliance in 2026."
+title: 'NJ Tile Shower Building Codes: Complete 2026 Compliance Guide'
+meta_title: 'NJ Tile Shower Building Codes 2026 | TCNA Compliance Guide'
+meta_description:
+  'Complete guide to New Jersey tile shower building codes for 2026. HIC
+  licensing, permit requirements, TCNA standards, inspection process, and code
+  compliance. Expert contractor insights.'
+description:
+  'Everything New Jersey homeowners and contractors need to know about tile
+  shower building codes, permits, inspections, and TCNA compliance in 2026.'
 date: 2026-01-27
-author: "Tillerstead LLC"
-category: "Building Codes & Regulations"
-tags: ["NJ building codes", "tile shower codes", "TCNA standards", "permits", "inspections", "compliance"]
-image: "/assets/images/blog/nj-building-codes-2026.jpg"
+author: 'Tillerstead LLC'
+category: 'Building Codes & Regulations'
+tags:
+  [
+    'NJ building codes',
+    'tile shower codes',
+    'TCNA standards',
+    'permits',
+    'inspections',
+    'compliance',
+  ]
+image: '/assets/images/blog/nj-building-codes-2026.jpg'
 featured: true
 permalink: /blog/nj-tile-shower-building-codes-complete-guide/
 ---
@@ -17,13 +30,23 @@ permalink: /blog/nj-tile-shower-building-codes-complete-guide/
 
 **Last Updated:** January 27, 2026 | **Reading Time:** 12 minutes
 
-Look, I've been installing tile showers in New Jersey for 15 years, and I've seen some *stuff*. The kind of stuff that makes building inspectors cry. The kind of stuff that turns a $15,000 bathroom into a $60,000 mold remediation project.
+Look, I've been installing tile showers in New Jersey for 15 years, and I've
+seen some _stuff_. The kind of stuff that makes building inspectors cry. The
+kind of stuff that turns a $15,000 bathroom into a $60,000 mold remediation
+project.
 
-Want to know the difference between a shower that lasts 30 years and one that leaks in 3? **Building codes.**
+Want to know the difference between a shower that lasts 30 years and one that
+leaks in 3? **Building codes.**
 
-Yeah, I know—"codes" sounds about as exciting as watching grout dry. But here's the thing: NJ building codes are actually your secret weapon against contractor horror stories. They're the reason guys like me can sleep at night knowing our showers won't leak, and they're the reason homeowners don't end up on the evening news with a collapsed bathroom.
+Yeah, I know—"codes" sounds about as exciting as watching grout dry. But here's
+the thing: NJ building codes are actually your secret weapon against contractor
+horror stories. They're the reason guys like me can sleep at night knowing our
+showers won't leak, and they're the reason homeowners don't end up on the
+evening news with a collapsed bathroom.
 
-This guide covers everything you need to know about NJ tile shower codes in 2026—no boring legal jargon, just straight talk from someone who's passed more inspections than I can count.
+This guide covers everything you need to know about NJ tile shower codes in
+2026—no boring legal jargon, just straight talk from someone who's passed more
+inspections than I can count.
 
 ## Table of Contents
 
@@ -38,42 +61,64 @@ This guide covers everything you need to know about NJ tile shower codes in 2026
 9. [Code Compliance Checklist](#compliance-checklist)
 
 **📚 Technical Resources:**
-- [Complete TCNA Methods Guide](/tcna-methods/) - Installation standards explained
-- [NJ Code Compliance Reference](/nj-code-compliance/) - IRC requirements & inspection checklists
+
+- [Complete TCNA Methods Guide](/tcna-methods/) - Installation standards
+  explained
+- [NJ Code Compliance Reference](/nj-code-compliance/) - IRC requirements &
+  inspection checklists
 
 ---
 
 ## Why New Jersey Building Codes Matter (And Why I Love Them) {#why-codes-matter}
 
-New Jersey has some of the strictest building codes in the nation—and honestly? *Good.* 
+New Jersey has some of the strictest building codes in the nation—and honestly?
+_Good._
 
-Those codes are tighter than my trowel lines, and after 15 years of tile work, I can tell you my lines are **tight**. But here's what nobody tells you: these codes are actually protecting you from the weekend warriors who think three YouTube videos make them waterproofing experts. (Spoiler alert: they don't.)
+Those codes are tighter than my trowel lines, and after 15 years of tile work, I
+can tell you my lines are **tight**. But here's what nobody tells you: these
+codes are actually protecting you from the weekend warriors who think three
+YouTube videos make them waterproofing experts. (Spoiler alert: they don't.)
 
-Between our coastal location (hello, humidity), brutal winters (freeze-thaw cycles are real), and the fact that we're packed tighter than subway cars during rush hour, NJ needs codes that don't mess around.
+Between our coastal location (hello, humidity), brutal winters (freeze-thaw
+cycles are real), and the fact that we're packed tighter than subway cars during
+rush hour, NJ needs codes that don't mess around.
 
 ### What Happens When You Skip Codes? (Grab Popcorn, This Gets Good)
 
 **Failed Inspections = Your Bathroom Becomes a Crime Scene**
-- Work stops immediately. Like, tools-down, everyone-goes-home immediately.
-- Re-inspection fees: $150-300 *per visit* (inspectors don't work for free, folks)
-- Delays of 2-4 weeks minimum (good luck explaining that to your spouse who's been showering at the gym)
 
-**Insurance Companies Get *Really* Interested**
+- Work stops immediately. Like, tools-down, everyone-goes-home immediately.
+- Re-inspection fees: $150-300 _per visit_ (inspectors don't work for free,
+  folks)
+- Delays of 2-4 weeks minimum (good luck explaining that to your spouse who's
+  been showering at the gym)
+
+**Insurance Companies Get _Really_ Interested**
+
 - Water damage claim? Denied. "Should've pulled a permit, pal."
-- Trying to sell your house? Congrats, you now have to disclose unpermitted work to every buyer (and their attorney, and their inspector)
+- Trying to sell your house? Congrats, you now have to disclose unpermitted work
+  to every buyer (and their attorney, and their inspector)
 - Home value? Just dropped faster than a tile without mortar
 
 **Legal Consequences (The Fun Part)**
-- Fines up to $2,000 **per day** for unpermitted work (yes, *per day*)
+
+- Fines up to $2,000 **per day** for unpermitted work (yes, _per day_)
 - Contractors face license suspension or outright revocation (career over)
-- Homeowners get sued when the contractor disappears (guess who's left holding the bag?)
+- Homeowners get sued when the contractor disappears (guess who's left holding
+  the bag?)
 
 **The Stuff Nightmares Are Made Of**
+
 - Structural damage from water sneaking where it shouldn't
 - Mold growing behind your walls like a science experiment
 - Electrical hazards (water + electricity = bad math)
 
-> **War Story:** Atlantic County, 2024. Homeowner hires unlicensed "contractor" (let's call him Chuck the Charlatan). Chuck installs a gorgeous shower—no waterproofing membrane, no permit, no clue. Eighteen months later: $43,000 in mold remediation. Insurance says, "Nope, not our problem—you didn't permit it." Chuck? Gone like a ghost. Last seen offering "great deals" in Monmouth County.
+> **War Story:** Atlantic County, 2024. Homeowner hires unlicensed "contractor"
+> (let's call him Chuck the Charlatan). Chuck installs a gorgeous shower—no
+> waterproofing membrane, no permit, no clue. Eighteen months later: $43,000 in
+> mold remediation. Insurance says, "Nope, not our problem—you didn't permit
+> it." Chuck? Gone like a ghost. Last seen offering "great deals" in Monmouth
+> County.
 >
 > Don't be like this homeowner. Don't hire Chuck.
 
@@ -83,24 +128,34 @@ Between our coastal location (hello, humidity), brutal winters (freeze-thaw cycl
 
 ### What's an HIC License? (And Why You Should Care)
 
-**HIC** = **Home Improvement Contractor** license. It's issued by the New Jersey Division of Consumer Affairs, and it's basically the state saying, "Yeah, this person knows what they're doing and won't disappear with your deposit."
+**HIC** = **Home Improvement Contractor** license. It's issued by the New Jersey
+Division of Consumer Affairs, and it's basically the state saying, "Yeah, this
+person knows what they're doing and won't disappear with your deposit."
 
 Getting one isn't easy. It requires:
-- **$500,000 general liability insurance** (so if we break something, you're covered)
+
+- **$500,000 general liability insurance** (so if we break something, you're
+  covered)
 - **$20,000 surety bond** (if we ghost you, you get paid)
-- **Workers' Compensation proof** (if someone gets hurt, your homeowner's insurance doesn't take the hit)
-- **Clean background check** (no felonies for fraud—shocking requirement, I know)
+- **Workers' Compensation proof** (if someone gets hurt, your homeowner's
+  insurance doesn't take the hit)
+- **Clean background check** (no felonies for fraud—shocking requirement, I
+  know)
 - **$200/year registration** (renewal every year, or the license goes poof)
 
-Here's the dirty little secret: a shocking number of "contractors" don't have this license. They're operating illegally, and when things go south (they always do), you have **zero** recourse.
+Here's the dirty little secret: a shocking number of "contractors" don't have
+this license. They're operating illegally, and when things go south (they always
+do), you have **zero** recourse.
 
 ### How to Verify Your Contractor Isn't a Con Artist
 
 This takes 60 seconds and could save you $50,000. Seriously.
 
-**Step 1:** Visit [NJ Consumer Affairs Verify](https://newjersey.mylicense.com/verification/)  
+**Step 1:** Visit
+[NJ Consumer Affairs Verify](https://newjersey.mylicense.com/verification/)  
 **Step 2:** Enter the contractor's name or license number  
 **Step 3:** Look for:
+
 - License status: **ACTIVE** (not "pending," not "suspended," not "expired")
 - Insurance: **Current** (check the dates)
 - Disciplinary actions: **None** (if there's a list... run)
@@ -108,7 +163,8 @@ This takes 60 seconds and could save you $50,000. Seriously.
 ### Red Flags Bigger Than a Stop Sign
 
 🚩 **"My license is being processed"**  
-Translation: "I don't have one and I'm hoping you won't check." (It's illegal to work without an active license.)
+Translation: "I don't have one and I'm hoping you won't check." (It's illegal to
+work without an active license.)
 
 🚩 **Refuses to provide license number**  
 Why? What's he hiding? (Hint: everything.)
@@ -120,18 +176,22 @@ Ah yes, tax evasion. When the job goes bad, good luck proving you paid him.
 Oh, we absolutely do. He just doesn't want an inspector seeing his "work."
 
 🚩 **Can't provide proof of insurance**  
-You know what's fun? Getting sued when someone falls off a ladder in your house. Just kidding—that's not fun at all.
+You know what's fun? Getting sued when someone falls off a ladder in your house.
+Just kidding—that's not fun at all.
 
 ### Our License (Because Transparency Matters)
 
-**Tillerstead LLC**  
+**Tillerstead LLC**
+
 - NJ HIC License: **#13VH10808800** (go ahead, look it up)
 - Insurance: **$1 million liability** ($500K is the minimum; we doubled it)
-- Workers' Comp: **Current and active**  
+- Workers' Comp: **Current and active**
 - Years in business: **15+ years** (still here, still answering our phone)
 - Disciplinary actions: **Zero** (clean record, clean work)
 
-I put this info right here because I have nothing to hide. If your contractor gets squirrely when you ask for their license number, that's all you need to know.
+I put this info right here because I have nothing to hide. If your contractor
+gets squirrely when you ask for their license number, that's all you need to
+know.
 
 ---
 
@@ -139,9 +199,11 @@ I put this info right here because I have nothing to hide. If your contractor ge
 
 ### When Do You Actually Need a Permit?
 
-Let me settle this once and for all, because I get this question at every consultation:
+Let me settle this once and for all, because I get this question at every
+consultation:
 
 **ALWAYS Required (Yes, Even If Your Neighbor Says Otherwise):**
+
 - New shower installation (obviously)
 - Moving the drain (touching plumbing = permit time)
 - Any plumbing modifications (see above)
@@ -149,25 +211,32 @@ Let me settle this once and for all, because I get this question at every consul
 - Electrical work (new circuits, outlets, lighting upgrades)
 
 **Sometimes Required (Ask Your Local Building Department):**
-- Re-tiling over existing tile (if you're not touching plumbing, *some* towns don't care)
+
+- Re-tiling over existing tile (if you're not touching plumbing, _some_ towns
+  don't care)
 - Installing waterproofing membrane (yeah, this varies by town—wild, I know)
 
 **Never Required (The Only Time You're Safe):**
+
 - Cosmetic grout repairs (re-grouting doesn't need a permit)
-- Re-caulking (though you probably need to do this every year if we're being honest)
+- Re-caulking (though you probably need to do this every year if we're being
+  honest)
 - Installing accessories like towel bars and soap dishes (go nuts)
 
 ### The Permit Process: Less Painful Than You Think
 
-Look, I know permit applications sound about as fun as a root canal, but it's actually pretty straightforward:
+Look, I know permit applications sound about as fun as a root canal, but it's
+actually pretty straightforward:
 
 **Step 1:** Submit plans to your local building department  
 **Step 2:** Pay the fee ($150-500 depending on your town)  
 **Step 3:** Wait 3-10 business days for approval (grab coffee, be patient)  
-**Step 4:** Post the permit placard at the job site (inspectors love this thing)  
+**Step 4:** Post the permit placard at the job site (inspectors love this
+thing)  
 **Step 5:** Schedule inspections (rough-in first, final after tile)
 
 **What You'll Need:**
+
 - Site plan (basically a property survey)
 - Construction drawings (shower layout—doesn't need to be fancy)
 - Plumbing schematics (where the water goes in, where it goes out)
@@ -176,6 +245,7 @@ Look, I know permit applications sound about as fun as a root canal, but it's ac
 - Your contractor's HIC license (see why this matters?)
 
 **Timeline Reality Check:**
+
 - Day 1: Submit application
 - Day 3-10: Permit approved (or questions from building department)
 - During construction: Rough-in inspection (after framing, before tile)
@@ -183,13 +253,13 @@ Look, I know permit applications sound about as fun as a root canal, but it's ac
 
 ### Permit Costs by County
 
-| County | Permit Fee | Plan Review | Re-Inspection |
-|--------|-----------|-------------|---------------|
-| Atlantic | $200 | $75 | $150 |
-| Ocean | $250 | $100 | $175 |
-| Cape May | $175 | $50 | $125 |
+| County   | Permit Fee | Plan Review | Re-Inspection |
+| -------- | ---------- | ----------- | ------------- |
+| Atlantic | $200       | $75         | $150          |
+| Ocean    | $250       | $100        | $175          |
+| Cape May | $175       | $50         | $125          |
 
-*Fees current as of January 2026, verify with your local building department*
+_Fees current as of January 2026, verify with your local building department_
 
 ---
 
@@ -197,141 +267,195 @@ Look, I know permit applications sound about as fun as a root canal, but it's ac
 
 ### What the Heck is TCNA? (And Why Should You Care?)
 
-**TCNA** = **Tile Council of North America**. Think of it as the Tile Installation Hall of Fame mixed with a really obsessive standards committee.
+**TCNA** = **Tile Council of North America**. Think of it as the Tile
+Installation Hall of Fame mixed with a really obsessive standards committee.
 
-The TCNA Handbook is **the** definitive guide on how to install tile correctly. It's not suggestions. It's not "one possible way." It's **the way** that meets ANSI (American National Standards Institute) requirements—and New Jersey building codes (IRC R302.5.2) directly reference these methods.
+The TCNA Handbook is **the** definitive guide on how to install tile correctly.
+It's not suggestions. It's not "one possible way." It's **the way** that meets
+ANSI (American National Standards Institute) requirements—and New Jersey
+building codes (IRC R302.5.2) directly reference these methods.
 
-When an inspector shows up and says, "Is this TCNA compliant?" they're asking, "Did you follow the industry standard, or did you just wing it?"
+When an inspector shows up and says, "Is this TCNA compliant?" they're asking,
+"Did you follow the industry standard, or did you just wing it?"
 
 Spoiler: Inspectors **hate** when you wing it.
 
-> **📚 Deep Dive:** Want to understand every TCNA method? See our [Complete TCNA Methods Guide](/tcna-methods/) - explains A108 installation series, A118 material specs, and what each code means for your project.
+> **📚 Deep Dive:** Want to understand every TCNA method? See our
+> [Complete TCNA Methods Guide](/tcna-methods/) - explains A108 installation
+> series, A118 material specs, and what each code means for your project.
 
 ### The Standards That Actually Matter
 
-I could bore you with every ANSI standard known to mankind, but let's focus on the ones that affect your shower:
+I could bore you with every ANSI standard known to mankind, but let's focus on
+the ones that affect your shower:
 
 **ANSI A108 Series** (Installation Methods):
-- **[A108.1A](/tcna-methods/#substrate)** - Thin-set installation over cement board (what I use for 90% of shower walls)
-- **[A108.10](/tcna-methods/#installation-methods)** - Bonded mortar bed method (shower floors with proper slope)
+
+- **[A108.1A](/tcna-methods/#substrate)** - Thin-set installation over cement
+  board (what I use for 90% of shower walls)
+- **[A108.10](/tcna-methods/#installation-methods)** - Bonded mortar bed method
+  (shower floors with proper slope)
 - **A108.11** - Cement board installation specs (screw spacing, joint treatment)
 - **A108.13** - Waterproofing membrane installation (the critical layer)
 
 **ANSI A118 Series** (Materials):
-- **[A118.10](/tcna-methods/#waterproofing)** - Waterproofing membrane performance standard (**THE BIG ONE—memorize this**)
+
+- **[A118.10](/tcna-methods/#waterproofing)** - Waterproofing membrane
+  performance standard (**THE BIG ONE—memorize this**)
 - **A118.4** - Modified thin-set mortar specifications
 - **A118.6** - Polymer-modified grout (stain-resistant, flexible)
 - **A118.7** - Polymer-modified cement grout (premium option)
 
 **TCNA Movement Joints:**
-- **[EJ171](/tcna-methods/#movement-joints)** - Expansion joint requirements (silicone at changes of plane—NOT grout)
+
+- **[EJ171](/tcna-methods/#movement-joints)** - Expansion joint requirements
+  (silicone at changes of plane—NOT grout)
 
 ### TCNA Method B415: The Schluter Kerdi Standard (What I Use)
 
-This is my go-to method for residential showers—inspector-approved, manufacturer-warrantied, and it actually works:
+This is my go-to method for residential showers—inspector-approved,
+manufacturer-warrantied, and it actually works:
 
 **The Layer Cake** (from studs to tile):
 
 1. **Studs** (16" on center—standard framing)
 2. **Vapor barrier** (6-mil poly—exterior walls only, keeps moisture out)
-3. **Kerdi-Board** (cement-coated foam substrate—replaces cement board + membrane in one)
+3. **Kerdi-Board** (cement-coated foam substrate—replaces cement board +
+   membrane in one)
 4. **Schluter Kerdi membrane** (bonded sheet membrane—ANSI A118.10 compliant)
-5. **Unmodified thin-set** (Schluter ALL-SET—manufacturer-specified for Kerdi compatibility)
+5. **Unmodified thin-set** (Schluter ALL-SET—manufacturer-specified for Kerdi
+   compatibility)
 6. **Tile** (the pretty part you actually see)
 7. **Grout** (ANSI A118.6 polymer-modified—Laticrete PermaColor is my favorite)
 
 **Shower Floor Assembly** (using Kerdi-Shower-Kit):
-- **Kerdi-Shower-SB:** Pre-sloped foam shower base (slope built in—no mortar bed needed)
+
+- **Kerdi-Shower-SB:** Pre-sloped foam shower base (slope built in—no mortar bed
+  needed)
 - **Kerdi-Drain:** Integrated bonding flange (waterproof connection to membrane)
 - **Mortar bed:** 1-1/4" minimum over foam base (for tile support)
-- **Tile:** Maintaining 1/4" per foot slope to drain (so water drains, not pools)
+- **Tile:** Maintaining 1/4" per foot slope to drain (so water drains, not
+  pools)
 
 **Why This Method Wins:**
+
 - ✅ Passes ANSI A118.10 waterproofing standard
 - ✅ Pre-formed corners (no cutting, no failure points)
 - ✅ Flood-testable (I test every shower 24-48 hours before tile)
 - ✅ Lifetime warranty (if installed per Schluter specs)
 - ✅ Inspectors recognize it instantly (quick approval)
 
-> **Inspector's Favorite Question:** "Is your membrane ANSI A118.10 compliant?"  
-> **Correct Answer:** "Yes—TCNA Method B415 using Schluter Kerdi system, flood-tested and documented"  
+> **Inspector's Favorite Question:** "Is your membrane ANSI A118.10
+> compliant?"  
+> **Correct Answer:** "Yes—TCNA Method B415 using Schluter Kerdi system,
+> flood-tested and documented"  
 > **Wrong Answer:** "Uh... it's waterproof paint?"  
-> *(Inspector writes you up faster than you can say "re-inspection fee")*
+> _(Inspector writes you up faster than you can say "re-inspection fee")_
 
-> **📋 Inspector Checklist:** See our [NJ Code Compliance Guide](/nj-code-compliance/#waterproofing) for the exact waterproofing inspection checklist NJ inspectors use.
+> **📋 Inspector Checklist:** See our
+> [NJ Code Compliance Guide](/nj-code-compliance/#waterproofing) for the exact
+> waterproofing inspection checklist NJ inspectors use.
 
 ---
 
 ## Waterproofing Codes: Where Most DIYers Crash and Burn {#waterproofing-codes}
 
-Alright, let's talk about the section where I've seen more disasters than a reality TV show marathon. Waterproofing is **the** most critical part of a shower—mess this up and you're not just redoing tile, you're gutting walls and replacing subfloors.
+Alright, let's talk about the section where I've seen more disasters than a
+reality TV show marathon. Waterproofing is **the** most critical part of a
+shower—mess this up and you're not just redoing tile, you're gutting walls and
+replacing subfloors.
 
-- **🔧 Technical Deep Dive:** For contractor-level waterproofing details, see our [Waterproofing System Comparison](/blog/waterproofing-redgard-vs-kerdi-vs-hydroban/) with Schluter vs. Laticrete vs. RedGard analysis.
+- **🔧 Technical Deep Dive:** For contractor-level waterproofing details, see
+  our
+  [Waterproofing System Comparison](/blog/waterproofing-redgard-vs-kerdi-vs-hydroban/)
+  with Schluter vs. Laticrete vs. RedGard analysis.
 
 ### NJ's Non-Negotiable Waterproofing Requirements (IRC R302.5.2)
 
-**New Jersey IRC Section R302.5.2:**  
-> *"Floors under shower compartments and receptors shall be waterproofed."*
+**New Jersey IRC Section R302.5.2:**
 
-**Translation:** Your shower floor MUST have a waterproof membrane that meets ANSI A118.10 performance standards. Not "water-resistant paint." Not "moisture barrier." Actual waterproofing.
+> _"Floors under shower compartments and receptors shall be waterproofed."_
+
+**Translation:** Your shower floor MUST have a waterproof membrane that meets
+ANSI A118.10 performance standards. Not "water-resistant paint." Not "moisture
+barrier." Actual waterproofing.
 
 **What Passes Code (ANSI A118.10-Compliant Systems):**
-- ✅ **Schluter Kerdi** (sheet membrane—my #1 choice, [TCNA Method B415](/tcna-methods/#waterproofing))
+
+- ✅ **Schluter Kerdi** (sheet membrane—my #1 choice,
+  [TCNA Method B415](/tcna-methods/#waterproofing))
 - ✅ **Laticrete Hydroban** (liquid or board—solid performer)
 - ✅ **Mapei Aquadefense** (liquid membrane—budget-friendly)
 - ✅ **Wedi Building Panels** (foam board with built-in waterproofing)
 - ✅ **Noble Company Seal** (sheet membrane—less common but approved)
 
 **What FAILS Code:**
+
 - ❌ Drywall (even "green board" moisture-resistant drywall)
 - ❌ Painted cement board (cement board alone is NOT waterproof)
 - ❌ Plastic sheeting (not bonded, not rated, not A118.10)
 - ❌ "Waterproof" paint (marketing ≠ code compliance)
 - ❌ Tar paper (1960s method—grandfathered for repairs, not new construction)
 
-> **📋 Full Inspection Requirements:** See [NJ Code Compliance Guide - Waterproofing Inspection](/nj-code-compliance/#waterproofing) for the exact checklist inspectors use at rough-in and waterproofing inspections.
+> **📋 Full Inspection Requirements:** See
+> [NJ Code Compliance Guide - Waterproofing Inspection](/nj-code-compliance/#waterproofing)
+> for the exact checklist inspectors use at rough-in and waterproofing
+> inspections.
 
 **1. ANSI A118.10 Compliance** (Say It With Me: A-One-Eighteen-Point-Ten)
-- Must be either sheet membrane OR liquid-applied (both work if installed correctly)
-- Follow manufacturer's instructions **to the letter** (they wrote them for a reason)
+
+- Must be either sheet membrane OR liquid-applied (both work if installed
+  correctly)
+- Follow manufacturer's instructions **to the letter** (they wrote them for a
+  reason)
 - Proper overlaps and seams (no gaps, no shortcuts, no "close enough")
 
 **2. The Flood Test** (My Favorite Part)
+
 - Fill pan with 2" of water minimum
 - Let it sit for 24 hours (go binge a show, we'll wait)
 - **Zero leaks allowed** (not "a little seepage"—**zero**)
 - Inspector must witness it OR we provide photo documentation with timestamp
 
-I actually love flood tests because they prove the work before we tile over it. Can't fake a dry floor after 24 hours of standing water.
+I actually love flood tests because they prove the work before we tile over it.
+Can't fake a dry floor after 24 hours of standing water.
 
 **3. Membrane Height Requirements**
+
 - **Walls:** 6" above the shower head height (water splashes, folks)
 - **Curbless showers:** 9" beyond the wet area (no curb means water can travel)
 - **Corners:** Continuous coverage, no breaks (corners are where leaks start)
 
 **4. Pre-Formed Corners & Transitions**
+
 - Use factory-made corners (Schluter, Wedi, etc.)
-- **Do NOT** field-cut membrane at inside corners (I've seen this end badly too many times)
+- **Do NOT** field-cut membrane at inside corners (I've seen this end badly too
+  many times)
 - Proper bonding verified with a trowel test
 
 ### Waterproofing Systems That Actually Work
 
 **Sheet Membranes** (The Most Popular):
+
 - **Schluter Kerdi** - Polyethylene, thin-bed installation, my personal go-to
-- **Wedi Building Panels** - Foam board with integrated coating, great for curbless
+- **Wedi Building Panels** - Foam board with integrated coating, great for
+  curbless
 - **Laticrete Hydroban Board** - Blue board, affordable, effective
 - **Custom RedGard Board** - Orange board, readily available at big box stores
 
 **Liquid-Applied** (The Alternative):
+
 - **Laticrete Hydroban Liquid** - Trowel or roll-on, easy to detail
 - **Custom RedGard Liquid** - The classic red waterproofing
 - **Ardex 8+9** - Two-part system, bulletproof when done right
 - **Mapei Aquadefense** - Quick cure time, good for tight schedules
 
 **Traditional Mortar Bed Systems** (Old School):
+
 - 40-mil PVC liner (still code-compliant, just labor-intensive)
 - CPE membrane (chlorinated polyethylene—less common now)
-- Hot-mopped membrane (practically extinct in residential—insurance hates torches)
+- Hot-mopped membrane (practically extinct in residential—insurance hates
+  torches)
 
 ### Common Waterproofing Mistakes That Make Me Wince
 
@@ -348,31 +472,44 @@ I actually love flood tests because they prove the work before we tile over it. 
 ✅ **RIGHT:** Pre-formed inside and outside corners, properly bonded and sealed
 
 ❌ **WRONG:** "Drywall is fine behind tile, right? It's 'moisture-resistant.'"  
-✅ **RIGHT:** Cement board or foam board ONLY in wet areas (greenboard is not rated for direct water contact)
+✅ **RIGHT:** Cement board or foam board ONLY in wet areas (greenboard is not
+rated for direct water contact)
 
-> **Real Talk:** I once did a remediation job where the previous "contractor" (and I use that term loosely) used **painted drywall** as his waterproofing. Not greenboard. Regular drywall. With paint. In a shower.
+> **Real Talk:** I once did a remediation job where the previous "contractor"
+> (and I use that term loosely) used **painted drywall** as his waterproofing.
+> Not greenboard. Regular drywall. With paint. In a shower.
 >
-> The mold behind the walls looked like a science experiment. The homeowner's kid had been having respiratory issues for months. Insurance paid out $60,000 for the fix.
+> The mold behind the walls looked like a science experiment. The homeowner's
+> kid had been having respiratory issues for months. Insurance paid out $60,000
+> for the fix.
 >
-> That contractor? Unlicensed, uninsured, and unfindable. Don't be that homeowner.
+> That contractor? Unlicensed, uninsured, and unfindable. Don't be that
+> homeowner.
 
 ---
 
 ## Inspection Process: Where Contractors Sweat {#inspection-process}
 
-Inspections are my favorite part—seriously. I love them. Know why? Because I have nothing to hide.
+Inspections are my favorite part—seriously. I love them. Know why? Because I
+have nothing to hide.
 
-Bad contractors **hate** inspections. They'll do anything to avoid them. They'll tell you "it's just a tile job, we don't need an inspection" or "let's skip the permit to save money." Translation: "I cut corners and don't want anyone official seeing my work."
+Bad contractors **hate** inspections. They'll do anything to avoid them. They'll
+tell you "it's just a tile job, we don't need an inspection" or "let's skip the
+permit to save money." Translation: "I cut corners and don't want anyone
+official seeing my work."
 
-Good contractors? We **want** the inspector to show up. It's proof we did it right.
+Good contractors? We **want** the inspector to show up. It's proof we did it
+right.
 
 ### The Three Critical Inspections
 
 **Inspection #1: Rough-In** (Before Waterproofing)
 
-This happens after framing and plumbing, but before any waterproofing or tile goes up.
+This happens after framing and plumbing, but before any waterproofing or tile
+goes up.
 
 **What's Visible:**
+
 - Framing (studs 16" on center, properly blocked)
 - Shower pan pre-slope (if using mortar bed method)
 - Plumbing rough-in (drain, supply lines, valves)
@@ -380,6 +517,7 @@ This happens after framing and plumbing, but before any waterproofing or tile go
 - Vapor barrier installed behind cement board
 
 **What the Inspector Checks:**
+
 - Studs are straight and properly spaced (no wavy walls)
 - Drain is properly positioned and sloped
 - Adequate slope on pan (1/4" per foot minimum)
@@ -390,15 +528,19 @@ This happens after framing and plumbing, but before any waterproofing or tile go
 
 **Inspection #2: Waterproofing** (Optional But Smart)
 
-Not all municipalities require this, but I **highly recommend** requesting it anyway. Why? Because once you tile over the membrane, there's no proving it was done right.
+Not all municipalities require this, but I **highly recommend** requesting it
+anyway. Why? Because once you tile over the membrane, there's no proving it was
+done right.
 
 **What's Visible:**
+
 - Waterproofing membrane fully installed
 - Pre-formed corners and transitions
 - Flood test results (24-hour standing water test)
 - Photo documentation with timestamps
 
 **What the Inspector Checks:**
+
 - ANSI A118.10 compliance (asks for product data sheet)
 - Membrane extends 6" above shower head
 - Corners are factory-made, not field-cut
@@ -412,12 +554,14 @@ Not all municipalities require this, but I **highly recommend** requesting it an
 This is the big one—the "certificate of occupancy" moment.
 
 **What's Visible:**
+
 - Tile installation complete
 - Grout fully cured (3-7 days minimum)
 - All fixtures installed and functional
 - Caulking complete around tub/shower perimeter
 
 **What the Inspector Checks:**
+
 - Tile is properly adhered (tap test—hollow sounds = failure)
 - Grout is installed correctly (no voids or cracks)
 - Proper slope maintained (water flows to drain)
@@ -429,15 +573,16 @@ This is the big one—the "certificate of occupancy" moment.
 
 ### Inspection Timing & Logistics
 
-| Phase | When to Call | Inspector Arrival | Typical Result |
-|-------|-------------|-------------------|----------------|
-| Rough-In | Day before ready | Within 48 hours | 90% pass first visit |
-| Waterproofing | Same-day call OK | Within 24 hours | 75% pass (membrane errors common) |
-| Final | 7+ days after grout | Within 3-5 days | 85% pass (mostly minor fixes) |
+| Phase         | When to Call        | Inspector Arrival | Typical Result                    |
+| ------------- | ------------------- | ----------------- | --------------------------------- |
+| Rough-In      | Day before ready    | Within 48 hours   | 90% pass first visit              |
+| Waterproofing | Same-day call OK    | Within 24 hours   | 75% pass (membrane errors common) |
+| Final         | 7+ days after grout | Within 3-5 days   | 85% pass (mostly minor fixes)     |
 
 ### What to Have Ready (Don't Make the Inspector Grumpy)
 
 **Documents the Inspector Wants to See:**
+
 - Approved permit (posted visibly at job site)
 - Contractor's HIC license (have a copy ready)
 - Product specification sheets (membrane, mortar, grout)
@@ -445,31 +590,38 @@ This is the big one—the "certificate of occupancy" moment.
 - Manufacturer installation instructions (proves you followed them)
 
 **Job Site Should Look Like:**
+
 - **Clean** (sweep the floor, remove debris)
 - **Well-lit** (inspector can't see in the dark)
 - **Accessible** (clear path to shower, no obstacles)
 - **Professional** (tools organized, not scattered everywhere)
 
-**Pro Tip:** Inspectors are human. Treat them respectfully, have your paperwork ready, and keep the site clean. They remember contractors who make their job easy—and they remember the ones who don't.
+**Pro Tip:** Inspectors are human. Treat them respectfully, have your paperwork
+ready, and keep the site clean. They remember contractors who make their job
+easy—and they remember the ones who don't.
 
 ---
 
 ## Common Code Violations (And How to Avoid Them) {#common-violations}
 
-I've seen every violation in the book. Some are innocent mistakes. Others are... let's call them "creative interpretations" of the code.
+I've seen every violation in the book. Some are innocent mistakes. Others are...
+let's call them "creative interpretations" of the code.
 
-Here are the Top 10 violations that'll get you a red tag faster than you can say "re-inspection fee":
+Here are the Top 10 violations that'll get you a red tag faster than you can say
+"re-inspection fee":
 
 ### **#1: Missing or Improper Waterproofing** (40% of All Failures)
 
 **The Violation:**
+
 - No waterproofing membrane at all ("tile is waterproof, right?" Wrong.)
 - Using non-compliant products (paint, tar paper, plastic sheeting)
 - Gaps in membrane coverage
 - Installed backward or upside down (yes, this happens)
 
 **The Fix:**  
-Install an ANSI A118.10 compliant membrane system. Follow the manufacturer's instructions **exactly**. Not "kinda close"—**exactly**.
+Install an ANSI A118.10 compliant membrane system. Follow the manufacturer's
+instructions **exactly**. Not "kinda close"—**exactly**.
 
 **Cost of Mistake:** $8,000-15,000 (tear out tile, install membrane, re-tile)
 
@@ -478,12 +630,14 @@ Install an ANSI A118.10 compliant membrane system. Follow the manufacturer's ins
 ### **#2: Inadequate Slope** (25% of Failures)
 
 **The Violation:**
+
 - Shower floor less than 1/4" per foot slope
 - Flat spots where water pools (aka "bird baths")
 - Reverse slope (water flows AWAY from drain—impressive, but wrong)
 
 **The Fix:**  
-Verify slope with a 4-foot level during installation. Rebuild the pan if it's not draining.
+Verify slope with a 4-foot level during installation. Rebuild the pan if it's
+not draining.
 
 **Cost of Mistake:** $3,000-7,000 (rebuild shower floor)
 
@@ -492,12 +646,14 @@ Verify slope with a 4-foot level during installation. Rebuild the pan if it's no
 ### **#3: No Permit** (15% of Failures)
 
 **The Violation:**
+
 - Working without any permit
 - Expired permit
 - Wrong permit type (got electrical, needed plumbing)
 
 **The Fix:**  
-Stop work immediately. Get the proper permit. Pay the fine. Don't be this person.
+Stop work immediately. Get the proper permit. Pay the fine. Don't be this
+person.
 
 **Cost of Mistake:** $2,000-5,000 in fines, plus project delay
 
@@ -506,12 +662,14 @@ Stop work immediately. Get the proper permit. Pay the fine. Don't be this person
 ### **#4: Unlicensed Contractor** (10% of Failures)
 
 **The Violation:**
+
 - Contractor has no HIC license
 - License is suspended or expired
 - Using someone else's license number
 
 **The Fix:**  
-Homeowner is liable. You'll need to hire a licensed contractor to **redo the work** with permits. Ouch.
+Homeowner is liable. You'll need to hire a licensed contractor to **redo the
+work** with permits. Ouch.
 
 **Cost of Mistake:** $15,000-30,000 (complete tear-out and rebuild)
 
@@ -520,6 +678,7 @@ Homeowner is liable. You'll need to hire a licensed contractor to **redo the wor
 ### **#5: Wrong Substrate** (5% of Failures)
 
 **The Violation:**
+
 - Drywall or greenboard in direct wet areas (huge no-no)
 - Regular plywood as substrate
 - No backer board at all
@@ -545,20 +704,25 @@ The pattern? **Shortcuts lead to expensive do-overs.**
 
 ## Working with NJ Building Inspectors (They're Not the Enemy) {#working-inspectors}
 
-Let me share something that'll blow your mind: **Inspectors are actually helpful.**
+Let me share something that'll blow your mind: **Inspectors are actually
+helpful.**
 
-I know, I know—contractors love to complain about inspectors. But here's the truth: A good inspector catches mistakes BEFORE they become $40,000 mold problems. They're quality control, not adversaries.
+I know, I know—contractors love to complain about inspectors. But here's the
+truth: A good inspector catches mistakes BEFORE they become $40,000 mold
+problems. They're quality control, not adversaries.
 
 ### What Inspectors Actually Care About
 
 **1. Safety**  
-Is this shower going to hurt someone? Will it leak and cause mold? Is the structure sound?
+Is this shower going to hurt someone? Will it leak and cause mold? Is the
+structure sound?
 
 **2. Code Compliance**  
 Did you follow the rules? (Not "kinda"—actually follow them.)
 
 **3. Professionalism**  
-Is this contractor competent? Is the work site organized? Do they know what they're doing?
+Is this contractor competent? Is the work site organized? Do they know what
+they're doing?
 
 **4. Documentation**  
 Can you prove you did it right? Do you have permits, specs, photos?
@@ -566,12 +730,14 @@ Can you prove you did it right? Do you have permits, specs, photos?
 ### How to Pass Inspection on the First Visit
 
 **Before You Call the Inspector:**
+
 - Self-inspect using the code checklist (see below)
 - Clean the work site (seriously—sweep the floor)
 - Have all documents organized and ready
 - Double-check everything against your approved plans
 
 **When the Inspector Arrives:**
+
 - Be professional and respectful
 - Have your permit posted visibly
 - Answer questions directly and honestly
@@ -579,12 +745,15 @@ Can you prove you did it right? Do you have permits, specs, photos?
 - Don't argue (even if you disagree—fix it first, discuss later)
 
 **If You Fail:**
+
 - Ask specifically what needs to be corrected
 - Get it in writing if possible
 - Fix it immediately
 - Request re-inspection within 48 hours
 
-**Pro Tip:** If an inspector finds a minor issue, fix it immediately while they're still there. Most will re-check it on the spot and pass you. Saves a $150-300 re-inspection fee.
+**Pro Tip:** If an inspector finds a minor issue, fix it immediately while
+they're still there. Most will re-check it on the spot and pass you. Saves a
+$150-300 re-inspection fee.
 
 ---
 
@@ -637,15 +806,21 @@ Copy this checklist. Use it before every inspection. Thank me later.
 
 ## Final Thoughts: Code Compliance is Your Friend
 
-After 15 years of building tile showers in New Jersey, I can tell you this with absolute certainty:
+After 15 years of building tile showers in New Jersey, I can tell you this with
+absolute certainty:
 
 **Following building codes isn't a burden—it's protection.**
 
-Protection from leaks. Protection from lawsuits. Protection from costly mistakes. Protection from charlatan contractors who disappear when problems arise.
+Protection from leaks. Protection from lawsuits. Protection from costly
+mistakes. Protection from charlatan contractors who disappear when problems
+arise.
 
-Every single code requirement exists because someone, somewhere, had a shower fail spectacularly. The codes are lessons written in water damage and mold spores.
+Every single code requirement exists because someone, somewhere, had a shower
+fail spectacularly. The codes are lessons written in water damage and mold
+spores.
 
-When someone tells you codes are "overkill" or "unnecessary red tape," what they're really saying is, "I don't want anyone checking my work."
+When someone tells you codes are "overkill" or "unnecessary red tape," what
+they're really saying is, "I don't want anyone checking my work."
 
 **Run. Fast.**
 
@@ -653,9 +828,11 @@ When someone tells you codes are "overkill" or "unnecessary red tape," what they
 
 ### Need Help with Your NJ Tile Shower Project?
 
-We're Tillerstead LLC—fully licensed (NJ HIC #13VH10808800), insured, and we've been passing inspections in South Jersey for over 15 years.
+We're Tillerstead LLC—fully licensed (NJ HIC #13VH10808800), insured, and we've
+been passing inspections in South Jersey for over 15 years.
 
-- **Free consultations** - We'll review your project and explain exactly what codes apply
+- **Free consultations** - We'll review your project and explain exactly what
+  codes apply
 - **Permit assistance** - We handle all the paperwork and inspector coordination
 - **TCNA-compliant methods** - Every shower built to last 30+ years
 - **Transparent pricing** - No surprises, no hidden fees
@@ -665,11 +842,13 @@ We're Tillerstead LLC—fully licensed (NJ HIC #13VH10808800), insured, and we'v
 **📧 Email:** [Your Email]  
 **🌐 Website:** [Tillerstead.com](https://tillerstead.com)
 
-**Service Areas:** Atlantic County, Ocean County, Cape May County, and surrounding South Jersey communities.
+**Service Areas:** Atlantic County, Ocean County, Cape May County, and
+surrounding South Jersey communities.
 
 ---
 
 **Related Articles:**
+
 - [Waterproofing Membrane Comparison: Schluter vs. Laticrete vs. RedGard](#)
 - [Atlantic County Tile Trends 2026](#)
 - [Brigantine Bathroom Renovation Case Study](#)
@@ -677,10 +856,12 @@ We're Tillerstead LLC—fully licensed (NJ HIC #13VH10808800), insured, and we'v
 
 **Last Updated:** January 27, 2026  
 **Author:** Tyler, Tillerstead LLC  
-**License Verification:** [NJ Consumer Affairs](https://newjersey.mylicense.com/verification/)
-5. Don't argue—ask for clarification
+**License Verification:**
+[NJ Consumer Affairs](https://newjersey.mylicense.com/verification/) 5. Don't
+argue—ask for clarification
 
 **If You Fail:**
+
 1. Get written list of violations
 2. Understand each item
 3. Correct all issues
@@ -690,6 +871,7 @@ We're Tillerstead LLC—fully licensed (NJ HIC #13VH10808800), insured, and we'v
 ### Building Inspector Red Flags
 
 **Immediate Stop Work Orders:**
+
 - No permit
 - Unlicensed contractor
 - Safety violations
@@ -697,6 +879,7 @@ We're Tillerstead LLC—fully licensed (NJ HIC #13VH10808800), insured, and we'v
 - Major code violations
 
 **Reinspection Required:**
+
 - Minor code violations
 - Missing documentation
 - Incomplete work
@@ -763,7 +946,9 @@ We're Tillerstead LLC—fully licensed (NJ HIC #13VH10808800), insured, and we'v
 
 ### Q: Can I install my own tile shower in NJ?
 
-**A:** Yes, if it's your primary residence and you pull the permit yourself. However:
+**A:** Yes, if it's your primary residence and you pull the permit yourself.
+However:
+
 - You're responsible for code compliance
 - Failed inspections delay project
 - Insurance may not cover DIY work
@@ -773,6 +958,7 @@ We're Tillerstead LLC—fully licensed (NJ HIC #13VH10808800), insured, and we'v
 ### Q: How long does the permit process take?
 
 **A:** Typical timeline:
+
 - Permit application: 1-2 days to prepare
 - Plan review: 3-10 business days
 - Permit issuance: Same day after approval
@@ -783,6 +969,7 @@ Rush permits available in some municipalities for additional fee.
 ### Q: What happens if I get caught without a permit?
 
 **A:** Consequences:
+
 1. Stop Work Order (immediate halt)
 2. Obtain permit retroactively
 3. Pay double permit fees ($300-1,000)
@@ -793,6 +980,7 @@ Rush permits available in some municipalities for additional fee.
 ### Q: Do I need TCNA certification to install tile?
 
 **A:** No certification required for contractors in NJ. However:
+
 - TCNA methods are code-referenced
 - Following TCNA ensures compliance
 - Many contractors advertise "TCNA-compliant" work
@@ -801,6 +989,7 @@ Rush permits available in some municipalities for additional fee.
 ### Q: Can inspectors fail me for workmanship?
 
 **A:** Partially. Inspectors check:
+
 - **Code compliance: YES** (must meet code)
 - **Safety: YES** (must be safe)
 - **Aesthetic quality: NO** (not their jurisdiction)
@@ -810,17 +999,22 @@ Example: Crooked tiles aren't a code violation, but missing waterproofing is.
 ### Q: What if my contractor doesn't want to get a permit?
 
 **A:** Major red flag. They're likely:
+
 - Unlicensed (can't pull permits)
 - Uninsured (afraid of documentation)
 - Cutting corners (won't pass inspection)
 
-**Action:** Find a different contractor. Legal and compliant work requires permits.
+**Action:** Find a different contractor. Legal and compliant work requires
+permits.
 
 ---
 
 ## Conclusion
 
-New Jersey tile shower building codes exist to protect homeowners from costly water damage and ensure safe, durable installations. While the permit and inspection process adds time and cost to your project, it's invaluable insurance against future problems.
+New Jersey tile shower building codes exist to protect homeowners from costly
+water damage and ensure safe, durable installations. While the permit and
+inspection process adds time and cost to your project, it's invaluable insurance
+against future problems.
 
 **Key Takeaways:**
 
@@ -829,11 +1023,14 @@ New Jersey tile shower building codes exist to protect homeowners from costly wa
 ✅ **Use ANSI A118.10 waterproofing** (not optional)  
 ✅ **Follow TCNA methods** (industry standard)  
 ✅ **Schedule inspections promptly** (rough-in, final minimum)  
-✅ **Document everything** (photos, receipts, permits)  
+✅ **Document everything** (photos, receipts, permits)
 
 **Need Expert Help?**
 
-Tillerstead LLC is a fully licensed NJ HIC contractor (#13VH10808800) specializing in TCNA-compliant tile shower installations. We handle all permitting, inspections, and code compliance—guaranteeing a leak-proof shower that passes inspection the first time.
+Tillerstead LLC is a fully licensed NJ HIC contractor (#13VH10808800)
+specializing in TCNA-compliant tile shower installations. We handle all
+permitting, inspections, and code compliance—guaranteeing a leak-proof shower
+that passes inspection the first time.
 
 **Free Consultation:** [Schedule Now](https://calendly.com/tillerstead/30min)  
 **Call/Text:** [(609) 862-8808](tel:+16098628808)  
@@ -844,22 +1041,33 @@ Tillerstead LLC is a fully licensed NJ HIC contractor (#13VH10808800) specializi
 ## Additional Resources
 
 **NJ State Resources:**
-- [NJ Division of Consumer Affairs](https://www.njconsumeraffairs.gov/hic/Pages/default.aspx) - HIC Licensing
+
+- [NJ Division of Consumer Affairs](https://www.njconsumeraffairs.gov/hic/Pages/default.aspx) -
+  HIC Licensing
 - [NJ Building Officials Association](https://www.njboa.org/) - Code Updates
-- [NJ Uniform Construction Code](https://www.nj.gov/dca/divisions/codes/) - Full Code Text
+- [NJ Uniform Construction Code](https://www.nj.gov/dca/divisions/codes/) - Full
+  Code Text
 
 **Industry Standards:**
+
 - [TCNA Handbook](https://www.tcnatile.com/handbook.html) - Installation Methods
 - [ANSI Standards](https://www.ansi.org/) - Product Specifications
 - [NTCA](https://www.tile-assn.com/) - National Tile Contractors Association
 
 **Further Reading:**
+
 - [Complete TCNA Shower Installation Guide](/build/waterproofing-systems/)
 - [Choosing the Right Waterproofing Membrane](/blog/waterproofing-redgard-vs-kerdi-vs-hydroban/)
 <!-- [NJ Building Code Updates 2026](/blog/nj-code-updates-2026/) -->
 
 ---
 
-*Last Updated: January 27, 2026 | This guide is for informational purposes and should not be considered legal advice. Always consult your local building department for specific requirements in your municipality.*
+_Last Updated: January 27, 2026 | This guide is for informational purposes and
+should not be considered legal advice. Always consult your local building
+department for specific requirements in your municipality._
 
-**About the Author:** Tillerstead LLC is a licensed New Jersey Home Improvement Contractor (HIC #13VH10808800) with over a decade of experience in TCNA-compliant tile and waterproofing installations. We serve homeowners throughout Atlantic, Ocean, and Cape May Counties with expert craftsmanship and code-compliant results.
+**About the Author:** Tillerstead LLC is a licensed New Jersey Home Improvement
+Contractor (HIC #13VH10808800) with over a decade of experience in
+TCNA-compliant tile and waterproofing installations. We serve homeowners
+throughout Atlantic, Ocean, and Cape May Counties with expert craftsmanship and
+code-compliant results.

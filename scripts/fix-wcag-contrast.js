@@ -16,14 +16,14 @@ const ROOT = path.join(__dirname, '..');
 // WCAG AA Compliant Color Palette
 const _COMPLIANT_COLORS = {
   // Gold variants (darker for better contrast on white)
-  goldDark: '#8a7830',        // 4.52:1 on white (PASSES AA)
-  goldMuted: '#6f5f26',       // 5.52:1 on white (PASSES AA)
-  goldDeep: '#5c4e20',        // 7.02:1 on white (PASSES AAA)
+  goldDark: '#8a7830', // 4.52:1 on white (PASSES AA)
+  goldMuted: '#6f5f26', // 5.52:1 on white (PASSES AA)
+  goldDeep: '#5c4e20', // 7.02:1 on white (PASSES AAA)
 
   // Original colors (safe combinations)
-  gold: '#c9a227',            // Use on dark backgrounds only
-  emerald: '#10b981',         // 3.03:1 on white (PASSES large text)
-  emeraldDark: '#059669',     // 4.52:1 on white (PASSES AA)
+  gold: '#c9a227', // Use on dark backgrounds only
+  emerald: '#10b981', // 3.03:1 on white (PASSES large text)
+  emeraldDark: '#059669', // 4.52:1 on white (PASSES AA)
 
   // Background colors (verified)
   bgDarker: '#121414',
@@ -34,7 +34,7 @@ const _COMPLIANT_COLORS = {
   // Text colors
   textPrimary: '#ffffff',
   textSecondary: 'rgba(255, 255, 255, 0.9)',
-  textMuted: 'rgba(255, 255, 255, 0.7)'
+  textMuted: 'rgba(255, 255, 255, 0.7)',
 };
 
 // Contrast calculation function
@@ -44,7 +44,7 @@ function getLuminance(hex) {
   const g = (rgb >> 8) & 0xff;
   const b = (rgb >> 0) & 0xff;
 
-  const [rs, gs, bs] = [r, g, b].map(c => {
+  const [rs, gs, bs] = [r, g, b].map((c) => {
     c = c / 255;
     return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
   });
@@ -62,11 +62,31 @@ function getContrastRatio(color1, color2) {
 
 // Verify our compliant colors
 console.log('\n🎨 WCAG AA Contrast Verification\n');
-console.log('Gold Dark (#8a7830) on white:', getContrastRatio('#8a7830', '#ffffff').toFixed(2) + ':1', '✅ AA');
-console.log('Gold Muted (#6f5f26) on white:', getContrastRatio('#6f5f26', '#ffffff').toFixed(2) + ':1', '✅ AA');
-console.log('Gold Deep (#5c4e20) on white:', getContrastRatio('#5c4e20', '#ffffff').toFixed(2) + ':1', '✅ AAA');
-console.log('Emerald Dark (#059669) on white:', getContrastRatio('#059669', '#ffffff').toFixed(2) + ':1', '✅ AA');
-console.log('\nOriginal Gold (#c9a227) on white:', getContrastRatio('#c9a227', '#ffffff').toFixed(2) + ':1', '❌ FAILS\n');
+console.log(
+  'Gold Dark (#8a7830) on white:',
+  getContrastRatio('#8a7830', '#ffffff').toFixed(2) + ':1',
+  '✅ AA'
+);
+console.log(
+  'Gold Muted (#6f5f26) on white:',
+  getContrastRatio('#6f5f26', '#ffffff').toFixed(2) + ':1',
+  '✅ AA'
+);
+console.log(
+  'Gold Deep (#5c4e20) on white:',
+  getContrastRatio('#5c4e20', '#ffffff').toFixed(2) + ':1',
+  '✅ AAA'
+);
+console.log(
+  'Emerald Dark (#059669) on white:',
+  getContrastRatio('#059669', '#ffffff').toFixed(2) + ':1',
+  '✅ AA'
+);
+console.log(
+  '\nOriginal Gold (#c9a227) on white:',
+  getContrastRatio('#c9a227', '#ffffff').toFixed(2) + ':1',
+  '❌ FAILS\n'
+);
 
 // Files to update with compliant colors
 const CSS_FIXES = [
@@ -76,14 +96,14 @@ const CSS_FIXES = [
     replacements: [
       {
         search: /(--tiller-color-gold:\s*#c9a227;)/,
-        replace: `--tiller-color-gold: #c9a227; /* Use on dark backgrounds only */\n  --tiller-color-gold-accessible: #8a7830; /* WCAG AA compliant on white (4.52:1) */\n  --tiller-color-gold-muted: #6f5f26; /* WCAG AA+ compliant on white (5.52:1) */\n  --tiller-color-gold-deep: #5c4e20; /* WCAG AAA compliant on white (7.02:1) */`
+        replace: `--tiller-color-gold: #c9a227; /* Use on dark backgrounds only */\n  --tiller-color-gold-accessible: #8a7830; /* WCAG AA compliant on white (4.52:1) */\n  --tiller-color-gold-muted: #6f5f26; /* WCAG AA+ compliant on white (5.52:1) */\n  --tiller-color-gold-deep: #5c4e20; /* WCAG AAA compliant on white (7.02:1) */`,
       },
       {
         search: /(--tiller-color-emerald:\s*#10b981;)/,
-        replace: `--tiller-color-emerald: #10b981; /* Use for large text or backgrounds */\n  --tiller-color-emerald-accessible: #059669; /* WCAG AA compliant on white (4.52:1) */`
-      }
-    ]
-  }
+        replace: `--tiller-color-emerald: #10b981; /* Use for large text or backgrounds */\n  --tiller-color-emerald-accessible: #059669; /* WCAG AA compliant on white (4.52:1) */`,
+      },
+    ],
+  },
 ];
 
 let totalFixes = 0;

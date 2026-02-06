@@ -9,7 +9,7 @@ import readline from 'readline';
 
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
 });
 
 console.log('\n🔐 Tillerstead Admin - Password Hash Generator\n');

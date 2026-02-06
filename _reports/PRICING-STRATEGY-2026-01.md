@@ -1,9 +1,11 @@
 # Smart Pricing Strategy Guide
+
 **Protecting Margins While Attracting Customers**
 
 ## 🎯 The Pricing Challenge
 
-**Problem**: 
+**Problem**:
+
 - Price too high → Scare away customers
 - Price too low → Lose money, attract price shoppers, can't deliver quality
 
@@ -23,7 +25,7 @@ CERAMIC/BASIC TILE
 
 PORCELAIN/STANDARD
 - Your Cost: $12-16/sqft
-- What to Quote: $14-18/sqft range  
+- What to Quote: $14-18/sqft range
 - Margin: 15-20%
 
 LARGE FORMAT/PREMIUM
@@ -51,16 +53,11 @@ MOSAIC/LUXURY
 ### 1. Always Include These Disclaimers
 
 ```html
-"This is an ESTIMATED range based on typical projects.
-
-Your actual quote may vary based on:
-✓ Site conditions (substrate, moisture, structural)
-✓ Tile selection and current availability
-✓ Access challenges (stairs, narrow doorways)
-✓ Timeline and scheduling
-✓ Code requirements discovered during inspection
-
-A FREE on-site consultation is required for accurate pricing."
+"This is an ESTIMATED range based on typical projects. Your actual quote may
+vary based on: ✓ Site conditions (substrate, moisture, structural) ✓ Tile
+selection and current availability ✓ Access challenges (stairs, narrow doorways)
+✓ Timeline and scheduling ✓ Code requirements discovered during inspection A
+FREE on-site consultation is required for accurate pricing."
 ```
 
 ### 2. Minimum Project Fees
@@ -77,7 +74,7 @@ Protects: Against tiny jobs that lose money
 EASY (New construction, ground floor)
 - Use base rate × 1.0
 
-MODERATE (Second floor, some obstacles)  
+MODERATE (Second floor, some obstacles)
 - Use base rate × 1.15 (+15%)
 
 COMPLEX (Difficult access, waterproofing issues)
@@ -103,6 +100,7 @@ Custom Shower: $3,500-8,000 flat fee
 ## 📊 Sample Pricing Scenarios
 
 ### Scenario 1: Basic Bathroom (50 sqft)
+
 ```
 Customer sees online: $500-700 (too low!)
 Your quote range: $850-1,400
@@ -119,6 +117,7 @@ What to quote: $1,400-1,800 (covers unknowns)
 ```
 
 ### Scenario 2: Kitchen Floor (150 sqft)
+
 ```
 Basic porcelain, easy access:
 - Base: 150 × $14-18 = $2,100-2,700
@@ -129,6 +128,7 @@ QUOTE: $2,650-3,400
 ```
 
 ### Scenario 3: Luxury Shower (45 sqft)
+
 ```
 Mosaic tile, full custom:
 - Tile: 45 × $25-40 = $1,125-1,800
@@ -147,11 +147,13 @@ QUOTE: $5,600-8,300
 ### Don't Compete on Price
 
 **BAD**: "We're the cheapest!"
+
 - Attracts price shoppers
 - Forces you to cut corners
 - Race to the bottom
 
 **GOOD**: "Fair pricing for exceptional quality"
+
 - Attracts value-conscious buyers
 - Lets you deliver properly
 - Sustainable business
@@ -171,7 +173,7 @@ When customers say "That's expensive":
 ✓ Debris removal & cleanup
 ✓ No surprises - detailed written estimate
 
-Cheaper quotes often cut these corners. 
+Cheaper quotes often cut these corners.
 That $2,000 savings becomes a $10,000 repair in 3 years."
 ```
 
@@ -186,25 +188,25 @@ That $2,000 savings becomes a $10,000 repair in 3 years."
 
 pricing: {
   tileInstallation: {
-    basic: { 
+    basic: {
       min: 10.00,    // Quote range (higher than cost)
       max: 14.00,    // Upper buffer for unknowns
       materials: 3.50 // Show customer material cost
     },
-    standard: { 
-      min: 14.00, 
-      max: 18.00, 
-      materials: 5.50 
+    standard: {
+      min: 14.00,
+      max: 18.00,
+      materials: 5.50
     },
-    premium: { 
-      min: 18.00, 
-      max: 25.00, 
-      materials: 8.00 
+    premium: {
+      min: 18.00,
+      max: 25.00,
+      materials: 8.00
     },
-    luxury: { 
-      min: 25.00, 
-      max: 40.00, 
-      materials: 12.00 
+    luxury: {
+      min: 25.00,
+      max: 40.00,
+      materials: 12.00
     }
   },
 
@@ -217,6 +219,7 @@ pricing: {
 ## ✅ Best Practices
 
 ### DO:
+
 - ✅ Provide ranges, not exact numbers
 - ✅ Require on-site consultation for final quote
 - ✅ Break down what's included
@@ -227,6 +230,7 @@ pricing: {
 - ✅ Track where leads come from (price shoppers vs. value seekers)
 
 ### DON'T:
+
 - ❌ Give exact prices sight-unseen
 - ❌ Quote below your costs
 - ❌ Forget about access, disposal, prep
@@ -242,7 +246,7 @@ pricing: {
 Online Estimate (Range)
     ↓
 Free Consultation (Build rapport, inspect site)
-    ↓  
+    ↓
 Detailed Written Quote (Exact number with line items)
     ↓
 Signature & Deposit
@@ -250,29 +254,32 @@ Signature & Deposit
 
 **Key**: Online estimate QUALIFIES. In-person quote CLOSES.
 
-If they won't book consultation after seeing range → They're price shopping, not your customer.
+If they won't book consultation after seeing range → They're price shopping, not
+your customer.
 
 ---
 
 ## 🎓 Handling Objections
 
 ### "That's more than I expected"
+
 ```
 "I understand. Most homeowners are surprised by proper tile installation costs.
 
 The online 'calculators' don't include:
 - Demolition and disposal
-- Substrate repair and leveling  
+- Substrate repair and leveling
 - Professional waterproofing
 - Licensed, insured labor
 - Warranty and callbacks
 
-Our range reflects a complete, code-compliant installation that will last 20+ years. 
+Our range reflects a complete, code-compliant installation that will last 20+ years.
 
 Would you like me to show you where costs come from?"
 ```
 
 ### "I got a quote for $X less"
+
 ```
 "That's great you're getting multiple quotes - that's smart.
 
@@ -288,6 +295,7 @@ We're happy to match scope-for-scope if they're truly comparable."
 ```
 
 ### "Can you do it for $X?"
+
 ```
 "I appreciate you have a budget. Let me see what we can do.
 
@@ -333,7 +341,7 @@ Jobs Closed: ___% of consultations
 Average Job Value: $___
 Profit Margin: ___%
 
-GOAL: 
+GOAL:
 - 30-40% of quotes book consultation
 - 60-70% of consultations close
 - 18-25% net profit margin
@@ -344,6 +352,9 @@ If margin is low → Price too low OR scope creep
 
 ---
 
-**Bottom Line**: Use ranges, require consultations, emphasize value, protect your margin. The right customers will pay fair prices for quality work. Price shoppers aren't your customers anyway.
+**Bottom Line**: Use ranges, require consultations, emphasize value, protect
+your margin. The right customers will pay fair prices for quality work. Price
+shoppers aren't your customers anyway.
 
-Let me know when you've set your pricing structure and I'll update the quote wizard!
+Let me know when you've set your pricing structure and I'll update the quote
+wizard!

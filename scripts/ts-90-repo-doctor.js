@@ -69,12 +69,7 @@ function findAssetRefs(html) {
   while ((m = attrRegex.exec(html)) !== null) {
     const v = m[1].trim();
     if (!v) continue;
-    if (
-      v.startsWith('http://') ||
-      v.startsWith('https://') ||
-      v.startsWith('data:')
-    )
-      continue;
+    if (v.startsWith('http://') || v.startsWith('https://') || v.startsWith('data:')) continue;
     if (v.startsWith('#')) continue;
     refs.add(v);
   }
@@ -113,8 +108,7 @@ function selectorAnyPresent(html, selectors) {
         .replace(/.*\[(.+?)\].*/, '$1')
         .split('=')[0]
         .trim();
-      if (attr && new RegExp(`\\b${escapeRe(attr)}\\b`, 'i').test(html))
-        return true;
+      if (attr && new RegExp(`\\b${escapeRe(attr)}\\b`, 'i').test(html)) return true;
     } else if (/^[a-z]+$/i.test(s)) {
       const re = new RegExp(`<\\s*${escapeRe(s)}\\b`, 'i');
       if (re.test(html)) return true;
@@ -144,8 +138,7 @@ function phaseBuild(_cfg) {
   const scripts = pkg?.scripts || {};
 
   const hasNpm = exists('package-lock.json') || exists('package.json');
-  if (!hasNpm)
-    logWarn('No package.json found; skipping npm-based build steps.');
+  if (!hasNpm) logWarn('No package.json found; skipping npm-based build steps.');
 
   // prefer explicit scripts if present
   if (scripts['build:css']) {
@@ -155,9 +148,7 @@ function phaseBuild(_cfg) {
     run('npm run build');
     logOk('npm run build completed.');
   } else {
-    logWarn(
-      'No npm build scripts found (build:css/build). Skipping npm build.',
-    );
+    logWarn('No npm build scripts found (build:css/build). Skipping npm build.');
   }
 
   // Jekyll build
@@ -178,9 +169,7 @@ function phaseBuild(_cfg) {
 function phaseScan(cfg) {
   // Ensure _site exists
   if (!exists(cfg.siteBuildDir)) {
-    logFail(
-      `Missing build output: ${cfg.siteBuildDir}. Run --phase=build first.`,
-    );
+    logFail(`Missing build output: ${cfg.siteBuildDir}. Run --phase=build first.`);
     process.exit(2);
   }
 
@@ -205,9 +194,7 @@ function phaseScan(cfg) {
     // Basic structure checks
     const mustSel = cfg.homeChecks?.mustContainAnySelectors || [];
     if (!selectorAnyPresent(html, mustSel)) {
-      logFail(
-        `Homepage structure check failed: none of ${mustSel.join(', ')} detected.`,
-      );
+      logFail(`Homepage structure check failed: none of ${mustSel.join(', ')} detected.`);
     } else {
       logOk('Homepage structure selectors detected.');
     }
@@ -215,9 +202,7 @@ function phaseScan(cfg) {
     // Nav toggle button check
     const navMust = cfg.homeChecks?.navChecks?.mustHaveAny || [];
     if (!selectorAnyPresent(html, navMust)) {
-      logFail(
-        `Nav toggle check failed: none of ${navMust.join(', ')} detected.`,
-      );
+      logFail(`Nav toggle check failed: none of ${navMust.join(', ')} detected.`);
     } else {
       logOk('Nav toggle / drawer trigger detected.');
     }
@@ -225,9 +210,7 @@ function phaseScan(cfg) {
     // Drawer container check
     const drawerMust = cfg.homeChecks?.navChecks?.drawerMustHaveAny || [];
     if (!selectorAnyPresent(html, drawerMust)) {
-      logFail(
-        `Drawer container check failed: none of ${drawerMust.join(', ')} detected.`,
-      );
+      logFail(`Drawer container check failed: none of ${drawerMust.join(', ')} detected.`);
     } else {
       logOk('Drawer container detected.');
     }
@@ -271,8 +254,7 @@ function phaseScan(cfg) {
       totalMissingRefs += missing.length;
       logFail(`Missing referenced assets (${missing.length}):`);
       for (const m of missing.slice(0, 40)) console.error(`  - ${m}`);
-      if (missing.length > 40)
-        console.error(`  ... plus ${missing.length - 40} more`);
+      if (missing.length > 40) console.error(`  ... plus ${missing.length - 40} more`);
     } else {
       logOk('No missing referenced assets detected on this page.');
     }
@@ -288,14 +270,12 @@ function phaseScan(cfg) {
   }
   if (!anyLogoExists) {
     logFail(
-      `No logo candidates found. Add at least one of: ${(cfg.logoCandidates || []).join(', ')}`,
+      `No logo candidates found. Add at least one of: ${(cfg.logoCandidates || []).join(', ')}`
     );
   }
 
   if (totalMissingRefs > 0) {
-    logFail(
-      `Scan completed with missing asset references: ${totalMissingRefs}`,
-    );
+    logFail(`Scan completed with missing asset references: ${totalMissingRefs}`);
     process.exit(3);
   } else {
     logOk('Scan completed clean (no missing asset references).');
@@ -346,11 +326,7 @@ function phaseFixes(_cfg) {
         },
       ],
     };
-    fs.writeFileSync(
-      launchPath,
-      JSON.stringify(launch, null, 2) + '\n',
-      'utf8',
-    );
+    fs.writeFileSync(launchPath, JSON.stringify(launch, null, 2) + '\n', 'utf8');
     logOk('Created .vscode/launch.json with debugging targets.');
   } else {
     logOk('.vscode/launch.json already exists (not overwritten).');

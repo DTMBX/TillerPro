@@ -38,9 +38,7 @@ function getAllFiles(dir, ext, fileList = []) {
 function auditImages() {
   console.log('🔍 Scanning for images without alt text...\n');
 
-  const htmlFiles = getAllFiles('pages', '.html').filter(
-    (f) => !f.includes('.bak'),
-  );
+  const htmlFiles = getAllFiles('pages', '.html').filter((f) => !f.includes('.bak'));
 
   htmlFiles.forEach((file) => {
     const content = fs.readFileSync(file, 'utf8');
@@ -136,9 +134,7 @@ function generateReport() {
   console.log('📊 Results:');
   console.log(`   Total images: ${results.stats.total}`);
   console.log(`   Missing alt: ${results.stats.withoutAlt}`);
-  console.log(
-    `   Coverage: ${Math.round((results.stats.withAlt / results.stats.total) * 100)}%\n`,
-  );
+  console.log(`   Coverage: ${Math.round((results.stats.withAlt / results.stats.total) * 100)}%\n`);
   console.log(`📄 Report: ${reportPath}`);
 }
 

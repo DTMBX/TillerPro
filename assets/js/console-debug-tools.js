@@ -4,7 +4,7 @@
  * Chrome, Firefox, Safari, Edge compatible
  */
 
-(function() {
+(function () {
   'use strict';
 
   // Prevent duplicate initialization
@@ -17,7 +17,7 @@
       error: 'color: #ef4444; font-weight: bold;',
       warning: 'color: #f59e0b; font-weight: bold;',
       info: 'color: #3b82f6; font-weight: bold;',
-      header: 'color: #8b5cf6; font-size: 18px; font-weight: bold;'
+      header: 'color: #8b5cf6; font-size: 18px; font-weight: bold;',
     },
 
     // Initialize debug tools
@@ -51,10 +51,12 @@
       const elements = document.querySelectorAll('*');
       const zIndexMap = new Map();
 
-      elements.forEach(el => {
+      elements.forEach((el) => {
         const zIndex = window.getComputedStyle(el).zIndex;
         if (zIndex !== 'auto' && zIndex !== '0') {
-          const selector = el.className ? `.${el.className.split(' ')[0]}` : el.tagName.toLowerCase();
+          const selector = el.className
+            ? `.${el.className.split(' ')[0]}`
+            : el.tagName.toLowerCase();
           if (!zIndexMap.has(zIndex)) {
             zIndexMap.set(zIndex, []);
           }
@@ -63,13 +65,17 @@
       });
 
       // Sort by z-index
-      const sorted = Array.from(zIndexMap.entries()).sort((a, b) => parseInt(b[0]) - parseInt(a[0]));
+      const sorted = Array.from(zIndexMap.entries()).sort(
+        (a, b) => parseInt(b[0]) - parseInt(a[0])
+      );
 
-      console.table(sorted.map(([z, els]) => ({
-        'Z-Index': z,
-        'Count': els.length,
-        'Elements': els.slice(0, 3).join(', ')
-      })));
+      console.table(
+        sorted.map(([z, els]) => ({
+          'Z-Index': z,
+          Count: els.length,
+          Elements: els.slice(0, 3).join(', '),
+        }))
+      );
 
       console.log(`%cTotal layered elements: ${elements.length}`, this.styles.info);
       console.log(`%cUnique z-index values: ${zIndexMap.size}`, this.styles.info);
@@ -89,7 +95,7 @@
       console.group('%c⚡ Performance Analysis', this.styles.header);
 
       if (window.measureWebVitals) {
-        window.measureWebVitals().then(vitals => {
+        window.measureWebVitals().then((vitals) => {
           console.table(vitals);
         });
       }
@@ -126,7 +132,7 @@
           totalRules += rules.length;
 
           let selectors = 0;
-          Array.from(rules).forEach(rule => {
+          Array.from(rules).forEach((rule) => {
             if (rule.selectorText) {
               selectors += rule.selectorText.split(',').length;
             }
@@ -138,7 +144,7 @@
             Index: idx,
             URL: sheet.href ? sheet.href.split('/').pop() : 'inline',
             Rules: rules.length,
-            Selectors: selectors
+            Selectors: selectors,
           });
         } catch (e) {
           // Cross-origin stylesheet
@@ -172,18 +178,18 @@
           Rendered: `${img.width}x${img.height}`,
           Oversized: oversized ? '⚠️ Yes' : '✓ No',
           Lazy: img.loading === 'lazy' ? '✓' : '✗',
-          Alt: img.alt ? '✓' : '❌ Missing'
+          Alt: img.alt ? '✓' : '❌ Missing',
         });
       });
 
       console.table(imageData);
 
-      const oversized = imageData.filter(img => img.Oversized === '⚠️ Yes');
+      const oversized = imageData.filter((img) => img.Oversized === '⚠️ Yes');
       if (oversized.length > 0) {
         console.warn(`%c${oversized.length} images are oversized`, this.styles.warning);
       }
 
-      const noAlt = imageData.filter(img => img.Alt === '❌ Missing');
+      const noAlt = imageData.filter((img) => img.Alt === '❌ Missing');
       if (noAlt.length > 0) {
         console.warn(`%c${noAlt.length} images missing alt text`, this.styles.warning);
       }
@@ -200,13 +206,21 @@
       // Check for alt text
       const imgsNoAlt = document.querySelectorAll('img:not([alt])');
       if (imgsNoAlt.length > 0) {
-        issues.push({ Issue: 'Images without alt text', Count: imgsNoAlt.length, Severity: 'High' });
+        issues.push({
+          Issue: 'Images without alt text',
+          Count: imgsNoAlt.length,
+          Severity: 'High',
+        });
       }
 
       // Check for form labels
       const inputsNoLabel = document.querySelectorAll('input:not([aria-label]):not([id])');
       if (inputsNoLabel.length > 0) {
-        issues.push({ Issue: 'Inputs without labels', Count: inputsNoLabel.length, Severity: 'High' });
+        issues.push({
+          Issue: 'Inputs without labels',
+          Count: inputsNoLabel.length,
+          Severity: 'High',
+        });
       }
 
       // Check for heading hierarchy
@@ -219,14 +233,24 @@
       }
 
       // Check for ARIA roles
-      const interactiveNoRole = document.querySelectorAll('div[onclick]:not([role]), span[onclick]:not([role])');
+      const interactiveNoRole = document.querySelectorAll(
+        'div[onclick]:not([role]), span[onclick]:not([role])'
+      );
       if (interactiveNoRole.length > 0) {
-        issues.push({ Issue: 'Interactive elements without roles', Count: interactiveNoRole.length, Severity: 'Medium' });
+        issues.push({
+          Issue: 'Interactive elements without roles',
+          Count: interactiveNoRole.length,
+          Severity: 'Medium',
+        });
       }
 
       // Check color contrast (simplified)
-      const darkBg = document.querySelectorAll('[style*="background: #000"], [style*="background: black"]');
-      const lightText = document.querySelectorAll('[style*="color: #fff"], [style*="color: white"]');
+      const darkBg = document.querySelectorAll(
+        '[style*="background: #000"], [style*="background: black"]'
+      );
+      const lightText = document.querySelectorAll(
+        '[style*="color: #fff"], [style*="color: white"]'
+      );
 
       if (issues.length === 0) {
         console.log('%c✅ No critical accessibility issues found!', this.styles.success);
@@ -255,18 +279,25 @@
 
       console.log(`\nMobile-specific checks:`);
       console.log(`  FAB hidden: ${!fab || getComputedStyle(fab).display === 'none' ? '✓' : '✗'}`);
-      console.log(`  Toast hidden: ${!toast || getComputedStyle(toast).display === 'none' ? '✓' : '✗'}`);
-      console.log(`  Modal hidden: ${!modal || getComputedStyle(modal).display === 'none' ? '✓' : '✗'}`);
+      console.log(
+        `  Toast hidden: ${!toast || getComputedStyle(toast).display === 'none' ? '✓' : '✗'}`
+      );
+      console.log(
+        `  Modal hidden: ${!modal || getComputedStyle(modal).display === 'none' ? '✓' : '✗'}`
+      );
 
       // Check touch targets
       const buttons = document.querySelectorAll('button, a, [role="button"]');
-      const smallTargets = Array.from(buttons).filter(btn => {
+      const smallTargets = Array.from(buttons).filter((btn) => {
         const rect = btn.getBoundingClientRect();
         return rect.width < 44 || rect.height < 44;
       });
 
       if (smallTargets.length > 0 && isMobile) {
-        console.warn(`%c⚠️ ${smallTargets.length} touch targets smaller than 44x44px`, this.styles.warning);
+        console.warn(
+          `%c⚠️ ${smallTargets.length} touch targets smaller than 44x44px`,
+          this.styles.warning
+        );
       }
 
       console.groupEnd();
@@ -299,7 +330,7 @@
         resources: performance.getEntriesByType('resource').length,
         styleSheets: document.styleSheets.length,
         images: document.querySelectorAll('img').length,
-        scripts: document.querySelectorAll('script').length
+        scripts: document.querySelectorAll('script').length,
       };
 
       console.log('%c📊 Debug Report', this.styles.header);
@@ -314,7 +345,7 @@
       a.click();
 
       console.log('%c✓ Report downloaded', this.styles.success);
-    }
+    },
   };
 
   // Initialize on DOM ready

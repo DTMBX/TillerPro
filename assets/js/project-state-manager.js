@@ -13,7 +13,7 @@
  * @author Tillerstead LLC
  */
 
-(function(window) {
+(function (window) {
   'use strict';
 
   const STORAGE_KEY = 'tillerstead_project_state';
@@ -203,7 +203,7 @@
           name: 'Untitled Project',
           type: 'bathroom', // bathroom, kitchen, floor, shower
           status: 'planning', // planning, quoted, scheduled, completed
-          rooms: []
+          rooms: [],
         },
 
         tile: {
@@ -213,7 +213,7 @@
           color: '',
           pattern: 'straight',
           wastePercent: 10,
-          calculated: {}
+          calculated: {},
         },
 
         grout: {
@@ -221,45 +221,45 @@
           jointDepth: 0.375,
           type: 'sanded',
           color: '',
-          calculated: {}
+          calculated: {},
         },
 
         mortar: {
           trowelSize: '',
           backButter: false,
           type: 'polymer-modified',
-          calculated: {}
+          calculated: {},
         },
 
         waterproofing: {
           membraneType: 'liquid',
           coats: 2,
           reinforcingBand: true,
-          calculated: {}
+          calculated: {},
         },
 
         slope: {
           drainType: 'center',
           slopeRate: 0.25,
-          calculated: {}
+          calculated: {},
         },
 
         leveling: {
           pourDepth: 0.25,
           primerCoats: 1,
-          calculated: {}
+          calculated: {},
         },
 
         labor: {
           complexity: 'medium',
           additionalWork: [],
-          calculated: {}
+          calculated: {},
         },
 
         budget: {
           materials: {},
           labor: {},
-          total: {}
+          total: {},
         },
 
         contact: {
@@ -270,7 +270,7 @@
           preferredContact: 'email',
           timeline: '',
           quoteRequested: false,
-          calendlyBooked: false
+          calendlyBooked: false,
         },
 
         exports: [],
@@ -280,8 +280,8 @@
           currency: 'USD',
           showProTips: true,
           showRetailerLinks: true,
-          autoSave: true
-        }
+          autoSave: true,
+        },
       };
     }
 
@@ -374,7 +374,7 @@
      */
     off(event, callback) {
       if (!this.listeners[event]) return;
-      this.listeners[event] = this.listeners[event].filter(cb => cb !== callback);
+      this.listeners[event] = this.listeners[event].filter((cb) => cb !== callback);
     }
 
     /**
@@ -384,7 +384,7 @@
      */
     dispatch(event, data) {
       if (!this.listeners[event]) return;
-      this.listeners[event].forEach(callback => {
+      this.listeners[event].forEach((callback) => {
         try {
           callback(data);
         } catch (e) {
@@ -413,7 +413,7 @@
         id: `export_${Date.now()}`,
         type: 'pdf',
         timestamp: new Date().toISOString(),
-        url
+        url,
       });
       this.save();
 
@@ -430,7 +430,7 @@
       // Build material list CSV
       const rows = [
         ['Material', 'Quantity', 'Unit', 'Notes'],
-        ['---', '---', '---', '---']
+        ['---', '---', '---', '---'],
       ];
 
       // Tile
@@ -439,7 +439,7 @@
           `Tile (${this.state.tile.size.width}x${this.state.tile.size.length}")`,
           this.state.tile.calculated.boxesNeeded || this.state.tile.calculated.tileCount,
           this.state.tile.calculated.boxesNeeded ? 'boxes' : 'pieces',
-          `${this.state.tile.wastePercent}% waste included`
+          `${this.state.tile.wastePercent}% waste included`,
         ]);
       }
 
@@ -449,7 +449,7 @@
           `Grout (${this.state.grout.type})`,
           this.state.grout.calculated.bagsNeeded,
           'bags',
-          `${this.state.grout.calculated.lbsPerBag || 25}lb bags`
+          `${this.state.grout.calculated.lbsPerBag || 25}lb bags`,
         ]);
       }
 
@@ -459,12 +459,12 @@
           `Thin-set Mortar (${this.state.mortar.trowelSize})`,
           this.state.mortar.calculated.bagsNeeded,
           'bags',
-          this.state.mortar.backButter ? 'Includes back-butter' : ''
+          this.state.mortar.backButter ? 'Includes back-butter' : '',
         ]);
       }
 
       // Convert to CSV string
-      const csv = rows.map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+      const csv = rows.map((row) => row.map((cell) => `"${cell}"`).join(',')).join('\n');
 
       return csv;
     }
@@ -486,8 +486,8 @@
         'waterproof_calc_data',
         'slope_calc_data',
         'leveling_calc_data',
-        'labor_calc_data'
-      ].forEach(key => {
+        'labor_calc_data',
+      ].forEach((key) => {
         localStorage.removeItem(key);
       });
     }
@@ -509,7 +509,7 @@
         boxesNeeded: this.state.tile.calculated.boxesNeeded || 0,
         budgetEstimate: this.state.budget.total.estimate || 0,
         laborDays: this.state.labor.calculated.days || 0,
-        completionPercent: this.calculateCompletionPercent()
+        completionPercent: this.calculateCompletionPercent(),
       };
     }
 
@@ -519,14 +519,14 @@
      */
     calculateCompletionPercent() {
       const steps = [
-        !!this.state.project.rooms.length,           // 1. Rooms defined
-        !!this.state.tile.size.width,                // 2. Tile selected
-        !!this.state.tile.calculated.tileCount,      // 3. Tile calculated
-        !!this.state.grout.calculated.bagsNeeded,    // 4. Grout calculated
-        !!this.state.mortar.calculated.bagsNeeded,   // 5. Mortar calculated
-        !!this.state.labor.calculated.hours,         // 6. Labor estimated
-        !!this.state.budget.total.estimate,          // 7. Budget calculated
-        !!this.state.contact.email                   // 8. Contact provided
+        !!this.state.project.rooms.length, // 1. Rooms defined
+        !!this.state.tile.size.width, // 2. Tile selected
+        !!this.state.tile.calculated.tileCount, // 3. Tile calculated
+        !!this.state.grout.calculated.bagsNeeded, // 4. Grout calculated
+        !!this.state.mortar.calculated.bagsNeeded, // 5. Mortar calculated
+        !!this.state.labor.calculated.hours, // 6. Labor estimated
+        !!this.state.budget.total.estimate, // 7. Budget calculated
+        !!this.state.contact.email, // 8. Contact provided
       ];
 
       const completed = steps.filter(Boolean).length;
@@ -544,13 +544,17 @@
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     window.ProjectState.debug = {
       getState: () => ProjectState.state,
-      setState: (state) => { ProjectState.state = state; ProjectState.save(); },
-      clearState: () => { ProjectState.reset(false); },
-      exportJSON: () => JSON.stringify(ProjectState.state, null, 2)
+      setState: (state) => {
+        ProjectState.state = state;
+        ProjectState.save();
+      },
+      clearState: () => {
+        ProjectState.reset(false);
+      },
+      exportJSON: () => JSON.stringify(ProjectState.state, null, 2),
     };
     console.log('[ProjectState] Debug helpers available: ProjectState.debug');
   }
 
   console.log('[ProjectState] Initialized v' + CURRENT_VERSION);
-
 })(window);

@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-(function() {
+(function () {
   'use strict';
 
   /**
@@ -65,7 +65,7 @@
         resultAreaWaste: document.getElementById('result-area-waste'),
         resultTiles: document.getElementById('result-tiles'),
         resultBoxes: document.getElementById('result-boxes'),
-        resultNote: document.getElementById('tile-calc-note')
+        resultNote: document.getElementById('tile-calc-note'),
       };
     }
 
@@ -93,7 +93,7 @@
         if (this.elements.tileSize) {
           // Try to select matching preset
           const option = Array.from(this.elements.tileSize.options).find(
-            opt => opt.value === sizeKey
+            (opt) => opt.value === sizeKey
           );
           if (option) {
             this.elements.tileSize.value = sizeKey;
@@ -162,10 +162,10 @@
         this.elements.customWidth,
         this.elements.customHeight,
         this.elements.layout,
-        this.elements.waste
+        this.elements.waste,
       ].filter(Boolean);
 
-      autoSaveInputs.forEach(input => {
+      autoSaveInputs.forEach((input) => {
         input.addEventListener('change', () => this.saveToState());
       });
     }
@@ -203,7 +203,7 @@
 
       // Calculate tile area
       const tileAreaSqFt = (tileWidth * tileHeight) / 144; // sq inches to sq ft
-      const wasteFactor = 1 + (waste / 100);
+      const wasteFactor = 1 + waste / 100;
       const areaWithWaste = area * wasteFactor;
       const tilesNeeded = Math.ceil(areaWithWaste / tileAreaSqFt);
 
@@ -234,7 +234,7 @@
         areaWithWaste: areaWithWaste.toFixed(1),
         tilesNeeded,
         boxesNeeded,
-        waste
+        waste,
       });
 
       // Save to ProjectState
@@ -244,7 +244,7 @@
         tilesNeeded,
         boxesNeeded,
         areaWithWaste,
-        waste
+        waste,
       });
 
       console.log('[TileAdapter] Calculation complete');
@@ -267,15 +267,13 @@
       }
 
       if (this.elements.resultBoxes) {
-        this.elements.resultBoxes.textContent = results.boxesNeeded > 0
-          ? `${results.boxesNeeded} boxes`
-          : '—';
+        this.elements.resultBoxes.textContent =
+          results.boxesNeeded > 0 ? `${results.boxesNeeded} boxes` : '—';
       }
 
       if (this.elements.resultNote) {
         this.elements.resultNote.textContent =
-          `Includes ${results.waste}% waste factor. ` +
-          `Order extra boxes for future repairs.`;
+          `Includes ${results.waste}% waste factor. ` + `Order extra boxes for future repairs.`;
       }
     }
 
@@ -332,12 +330,14 @@
       if (totalArea > 0) {
         const rooms = this.state.get('project.rooms');
         if (!rooms || rooms.length === 0) {
-          this.state.set('project.rooms', [{
-            id: 'room-1',
-            name: 'Main Area',
-            area: totalArea,
-            type: 'custom'
-          }]);
+          this.state.set('project.rooms', [
+            {
+              id: 'room-1',
+              name: 'Main Area',
+              area: totalArea,
+              type: 'custom',
+            },
+          ]);
         }
       }
 
@@ -371,5 +371,4 @@
       adapter.init();
     }
   }
-
 })();

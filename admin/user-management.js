@@ -27,16 +27,19 @@ class UserManager {
     } catch (error) {
       // File doesn't exist yet, use defaults
       this.users = new Map([
-        ['admin', {
-          username: 'admin',
-          email: 'admin@tillerstead.com',
-          passwordHash: '$2b$10$K8OvMmzY5bD5x6FpN3rJNurKWn2VNx9.EoEQPV9zWqPGUoKnE8WDi',
-          role: 'admin',
-          created: new Date().toISOString(),
-          lastLogin: null,
-          isActive: true,
-          twoFactorEnabled: false
-        }]
+        [
+          'admin',
+          {
+            username: 'admin',
+            email: 'admin@tillerstead.com',
+            passwordHash: '$2b$10$K8OvMmzY5bD5x6FpN3rJNurKWn2VNx9.EoEQPV9zWqPGUoKnE8WDi',
+            role: 'admin',
+            created: new Date().toISOString(),
+            lastLogin: null,
+            isActive: true,
+            twoFactorEnabled: false,
+          },
+        ],
       ]);
       await this.saveUsers();
     }
@@ -82,7 +85,7 @@ class UserManager {
       created: new Date().toISOString(),
       lastLogin: null,
       isActive: true,
-      twoFactorEnabled: false
+      twoFactorEnabled: false,
     };
 
     this.users.set(username, user);
@@ -117,7 +120,7 @@ class UserManager {
     const updatedUser = {
       ...user,
       ...updates,
-      username // Prevent username change
+      username, // Prevent username change
     };
 
     this.users.set(username, updatedUser);
@@ -151,7 +154,7 @@ class UserManager {
   }
 
   getAllUsers() {
-    return Array.from(this.users.values()).map(user => {
+    return Array.from(this.users.values()).map((user) => {
       const { passwordHash: _, ...safeUser } = user;
       return safeUser;
     });
@@ -233,7 +236,7 @@ class UserManager {
     if (!user) return null;
 
     const token = randomBytes(32).toString('hex');
-    const expiry = Date.now() + (60 * 60 * 1000); // 1 hour
+    const expiry = Date.now() + 60 * 60 * 1000; // 1 hour
 
     user.resetToken = token;
     user.resetTokenExpiry = expiry;
@@ -244,8 +247,8 @@ class UserManager {
   }
 
   async resetPasswordWithToken(token, newPassword) {
-    const user = Array.from(this.users.values()).find(u =>
-      u.resetToken === token && u.resetTokenExpiry > Date.now()
+    const user = Array.from(this.users.values()).find(
+      (u) => u.resetToken === token && u.resetTokenExpiry > Date.now()
     );
 
     if (!user) {
@@ -288,7 +291,7 @@ class SessionManager {
       lastActivity: Date.now(),
       ip: sessionData.ip,
       userAgent: sessionData.userAgent,
-      ...sessionData
+      ...sessionData,
     };
 
     this.sessions.set(sessionId, session);
@@ -315,7 +318,7 @@ class SessionManager {
       .filter(([_, session]) => session.username === username)
       .map(([id, session]) => ({
         id,
-        ...session
+        ...session,
       }));
   }
 
@@ -325,21 +328,24 @@ class SessionManager {
       username: session.username,
       created: session.created,
       lastActivity: session.lastActivity,
-      ip: session.ip
+      ip: session.ip,
     }));
   }
 
   cleanup() {
-    setInterval(() => {
-      const now = Date.now();
-      const maxAge = 24 * 60 * 60 * 1000; // 24 hours
+    setInterval(
+      () => {
+        const now = Date.now();
+        const maxAge = 24 * 60 * 60 * 1000; // 24 hours
 
-      for (const [id, session] of this.sessions.entries()) {
-        if (now - session.lastActivity > maxAge) {
-          this.sessions.delete(id);
+        for (const [id, session] of this.sessions.entries()) {
+          if (now - session.lastActivity > maxAge) {
+            this.sessions.delete(id);
+          }
         }
-      }
-    }, 60 * 60 * 1000); // Run every hour
+      },
+      60 * 60 * 1000
+    ); // Run every hour
   }
 }
 
@@ -347,5 +353,5 @@ export const sessionManager = new SessionManager();
 
 export default {
   userManager,
-  sessionManager
+  sessionManager,
 };

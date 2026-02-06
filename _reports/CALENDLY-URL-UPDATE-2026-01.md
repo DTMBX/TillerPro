@@ -11,16 +11,19 @@
 ## 📝 What Changed:
 
 ### Old URL:
+
 ```
 https://calendly.com/dtb33-pm/30min
 ```
 
 ### New URL (Branded):
+
 ```
 https://calendly.com/tillerstead/30min
 ```
 
 **Why this is better:**
+
 - ✅ Professional branded URL
 - ✅ Matches your business name
 - ✅ More memorable for clients
@@ -47,25 +50,28 @@ https://calendly.com/tillerstead/30min
 ✅ **Built successfully** (10.3 seconds)  
 ✅ **Committed to git** (commit: e1c593a6)  
 ✅ **Pushed to GitHub** (deploying now)  
-✅ **URL present in built HTML** (_site/index.html verified)
+✅ **URL present in built HTML** (\_site/index.html verified)
 
 ---
 
 ## 🧪 Test After Deploy (2-3 minutes):
 
 ### **Test 1**: Sticky CTA Button
+
 1. Visit: https://tillerstead.com
 2. Scroll down → Sticky bar appears
 3. Click **"Book Consultation"**
 4. **Expected**: Calendly popup opens with URL: `tillerstead/30min`
 
 ### **Test 2**: Direct Link Test
+
 1. Visit: https://calendly.com/tillerstead/30min
 2. **Expected**: Your "30min" event page loads
 3. Shows your availability
 4. Allows booking
 
 ### **Test 3**: Mobile Test
+
 1. Open site on phone
 2. Scroll → Sticky CTA appears
 3. Tap "Book Consultation"
@@ -87,6 +93,7 @@ Status: Pushed to origin/main
 ## 🎯 All Revenue System Components Now Live:
 
 ### 1. ✅ Pricing Configured:
+
 - Porcelain: $24-28/sq ft (your typical work)
 - Ceramic: $20-24/sq ft
 - Large format: $28-34/sq ft
@@ -94,12 +101,14 @@ Status: Pushed to origin/main
 - Project minimum: $1,500
 
 ### 2. ✅ Calendly Integration:
+
 - **URL**: https://calendly.com/tillerstead/30min
 - **Location**: Sticky CTA (all pages)
 - **Triggers**: Scroll, click, lead magnet
 - **Auto-sync**: Calendar + email reminders
 
 ### 3. ✅ Quote Wizard:
+
 - 5-step smart calculator
 - Real-time pricing ranges
 - Complexity multipliers
@@ -107,12 +116,14 @@ Status: Pushed to origin/main
 - Email estimate option
 
 ### 4. ✅ Sticky CTA:
+
 - Appears after 500px scroll
 - 3 CTAs: Quote, Book, Call
 - Dismissible (7-day cookie)
 - Mobile-optimized
 
 ### 5. ✅ Lead Magnets:
+
 - Time trigger (30 seconds)
 - Scroll trigger (50%)
 - Exit-intent trigger
@@ -152,20 +163,25 @@ Status: Pushed to origin/main
 ## 💡 Next Steps:
 
 ### 1. Test Production (After Deploy):
+
 Visit https://tillerstead.com and test:
+
 - Sticky CTA button
 - Calendly popup opens
 - Booking flow works
 - Mobile responsive
 
 ### 2. Update Calendly Settings (Optional):
+
 Login to Calendly and customize:
+
 - Welcome message (use one of the 5 options I provided)
 - Add custom questions (project type, timeline)
 - Set notification preferences
 - Enable SMS reminders ($10/mo)
 
 ### 3. Promote Your Booking System:
+
 - Add to email signature
 - Share on social media
 - Post on Google My Business
@@ -179,7 +195,7 @@ Login to Calendly and customize:
 **Calendly URL**: https://calendly.com/tillerstead/30min  
 **Status**: ✅ LIVE  
 **Deploy ETA**: 2-3 minutes from push (05:32 UTC)  
-**Expected Live**: ~05:35 UTC  
+**Expected Live**: ~05:35 UTC
 
 ---
 

@@ -17,22 +17,22 @@ console.log('═'.repeat(60) + '\n');
 const steps = [
   {
     name: 'Step 1: Rebuild Bundle from Clean Sources',
-    command: 'node scripts/rebuild-clean-bundle.js'
+    command: 'node scripts/rebuild-clean-bundle.js',
   },
   {
     name: 'Step 2: Apply Automated Lint Fixes',
-    command: 'node scripts/fix-all-css-lint-errors.js'
+    command: 'node scripts/fix-all-css-lint-errors.js',
   },
   {
     name: 'Step 3: Run StyleLint Auto-Fix',
     command: 'npm run lint:css -- --fix --allow-empty-input',
-    optional: true
+    optional: true,
   },
   {
     name: 'Step 4: Verify Results',
     command: 'npm run lint:css',
-    verify: true
-  }
+    verify: true,
+  },
 ];
 
 let currentStep = 0;
@@ -49,12 +49,11 @@ for (const step of steps) {
     execSync(step.command, {
       cwd: path.join(__dirname, '..'),
       stdio: 'inherit',
-      encoding: 'utf8'
+      encoding: 'utf8',
     });
 
     successCount++;
     console.log(`\n✅ ${step.name} completed successfully`);
-
   } catch (error) {
     if (step.optional) {
       console.log(`\n⚠️  ${step.name} had issues but continuing (optional step)`);

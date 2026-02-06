@@ -146,17 +146,12 @@ test.describe.skip('Mobile Navigation Drawer - DISABLED', () => {
 
     // Check for expected menu items (matching navigation.yml)
     // Note: Items are uppercased in the template
-    const expectedItems = [
-      'SERVICES',
-      'OUR WORK',
-      'GUIDES',
-      'REVIEWS',
-      'ABOUT',
-      'GET ESTIMATE',
-    ];
+    const expectedItems = ['SERVICES', 'OUR WORK', 'GUIDES', 'REVIEWS', 'ABOUT', 'GET ESTIMATE'];
 
     for (const item of expectedItems) {
-      const link = drawer.locator('.mobile-nav__link, .mobile-nav__accordion-trigger', { hasText: item });
+      const link = drawer.locator('.mobile-nav__link, .mobile-nav__accordion-trigger', {
+        hasText: item,
+      });
       await expect(link.first()).toBeVisible();
     }
   });

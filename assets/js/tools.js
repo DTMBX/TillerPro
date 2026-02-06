@@ -4,7 +4,7 @@
  * All calculations run client-side; data stored in localStorage
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ==
@@ -14,8 +14,22 @@
   // TCNA defines Large Format Tile (LFT) as any tile with any side ≥15"
   // LFT requires 95% mortar coverage, proper trowel selection, and back-buttering
   const TILE_PRESETS = [
-    { id: 'mosaic-1x1', name: '1×1 Mosaic (12×12 sheet)', width: 1, height: 1, isMosaic: true, sheetCoverage: 1 },
-    { id: 'mosaic-2x2', name: '2×2 Mosaic (12×12 sheet)', width: 2, height: 2, isMosaic: true, sheetCoverage: 1 },
+    {
+      id: 'mosaic-1x1',
+      name: '1×1 Mosaic (12×12 sheet)',
+      width: 1,
+      height: 1,
+      isMosaic: true,
+      sheetCoverage: 1,
+    },
+    {
+      id: 'mosaic-2x2',
+      name: '2×2 Mosaic (12×12 sheet)',
+      width: 2,
+      height: 2,
+      isMosaic: true,
+      sheetCoverage: 1,
+    },
     { id: '3x6', name: '3×6 Subway', width: 3, height: 6 },
     { id: '4x4', name: '4×4', width: 4, height: 4 },
     { id: '4x12', name: '4×12', width: 4, height: 12 },
@@ -27,19 +41,32 @@
     { id: '12x48', name: '12×48 Plank', width: 12, height: 48, isPlank: true, isLargeFormat: true },
     { id: '24x24', name: '24×24', width: 24, height: 24, isLargeFormat: true },
     { id: '24x48', name: '24×48', width: 24, height: 48, isLargeFormat: true },
-    { id: 'custom', name: 'Custom Size', width: 0, height: 0, isCustom: true }
+    { id: 'custom', name: 'Custom Size', width: 0, height: 0, isCustom: true },
   ];
 
   // Layout patterns with waste factors
   // TCNA restricts LFT offset to maximum 33% to minimize lippage risk
   const LAYOUT_PRESETS = [
-    { id: 'straight', name: 'Straight / Stacked', wasteFactor: 0.10, wasteRange: '10%' },
-    { id: 'subway-33', name: '1/3 Offset (Recommended for LFT)', wasteFactor: 0.12, wasteRange: '12%', lftSafe: true },
-    { id: 'subway-50', name: '50% Offset (Brick)', wasteFactor: 0.15, wasteRange: '15%', lippageRisk: true, lftWarning: 'NOT recommended for LFT—max 33% offset per TCNA' },
+    { id: 'straight', name: 'Straight / Stacked', wasteFactor: 0.1, wasteRange: '10%' },
+    {
+      id: 'subway-33',
+      name: '1/3 Offset (Recommended for LFT)',
+      wasteFactor: 0.12,
+      wasteRange: '12%',
+      lftSafe: true,
+    },
+    {
+      id: 'subway-50',
+      name: '50% Offset (Brick)',
+      wasteFactor: 0.15,
+      wasteRange: '15%',
+      lippageRisk: true,
+      lftWarning: 'NOT recommended for LFT—max 33% offset per TCNA',
+    },
     { id: 'brick', name: 'Running Bond', wasteFactor: 0.12, wasteRange: '12%' },
     { id: 'diagonal', name: 'Diagonal', wasteFactor: 0.18, wasteRange: '15–20%' },
     { id: 'herringbone', name: 'Herringbone', wasteFactor: 0.25, wasteRange: '20–30%' },
-    { id: 'mosaic', name: 'Mosaic Sheet', wasteFactor: 0.12, wasteRange: '10–15%' }
+    { id: 'mosaic', name: 'Mosaic Sheet', wasteFactor: 0.12, wasteRange: '10–15%' },
   ];
 
   // Joint width presets per ANSI A108.02
@@ -47,20 +74,65 @@
   const JOINT_PRESETS = [
     { id: '1/16', name: '1/16" (minimum)', size: 0.0625, note: 'Absolute minimum per ANSI' },
     { id: '1/8', name: '1/8" (rectified)', size: 0.125, note: 'Standard for rectified tile' },
-    { id: '3/16', name: '3/16" (calibrated)', size: 0.1875, note: 'Standard for calibrated (non-rectified)' },
+    {
+      id: '3/16',
+      name: '3/16" (calibrated)',
+      size: 0.1875,
+      note: 'Standard for calibrated (non-rectified)',
+    },
     { id: '1/4', name: '1/4" (rustic/handmade)', size: 0.25, note: 'Handmade/high-variation tile' },
-    { id: 'custom', name: 'Custom', size: 0, isCustom: true }
+    { id: 'custom', name: 'Custom', size: 0, isCustom: true },
   ];
 
   // Trowel presets with TDS-verified coverage per 50 lb bag
   // Source: Custom Building Products VersaBond LFT TDS-132 (verified Jan 2026)
   const TROWEL_PRESETS = [
-    { id: '3/16-v', name: '3/16" V-Notch', coverageMin: 100, coverageMax: 130, forTiles: 'mosaic, small wall' },
-    { id: '1/4-sq', name: '1/4" × 1/4" Square', coverageMin: 90, coverageMax: 100, forTiles: 'up to 8×8' },
-    { id: '1/4x3/8-sq', name: '1/4" × 3/8" Square', coverageMin: 60, coverageMax: 67, forTiles: '8×8 to 13×13' },
-    { id: '1/2-sq', name: '1/2" × 1/2" Square', coverageMin: 42, coverageMax: 47, forTiles: 'not recommended for LFT', notForLFT: true },
-    { id: '3/4-u-45', name: '3/4" × 9/16" U-Notch @ 45°', coverageMin: 34, coverageMax: 38, forTiles: 'LFT ≥15"', forLFT: true },
-    { id: '3/4-u-30', name: '3/4" × 9/16" U-Notch @ 30°', coverageMin: 42, coverageMax: 47, forTiles: 'LFT ≥15" (best)', forLFT: true, recommended: true }
+    {
+      id: '3/16-v',
+      name: '3/16" V-Notch',
+      coverageMin: 100,
+      coverageMax: 130,
+      forTiles: 'mosaic, small wall',
+    },
+    {
+      id: '1/4-sq',
+      name: '1/4" × 1/4" Square',
+      coverageMin: 90,
+      coverageMax: 100,
+      forTiles: 'up to 8×8',
+    },
+    {
+      id: '1/4x3/8-sq',
+      name: '1/4" × 3/8" Square',
+      coverageMin: 60,
+      coverageMax: 67,
+      forTiles: '8×8 to 13×13',
+    },
+    {
+      id: '1/2-sq',
+      name: '1/2" × 1/2" Square',
+      coverageMin: 42,
+      coverageMax: 47,
+      forTiles: 'not recommended for LFT',
+      notForLFT: true,
+    },
+    {
+      id: '3/4-u-45',
+      name: '3/4" × 9/16" U-Notch @ 45°',
+      coverageMin: 34,
+      coverageMax: 38,
+      forTiles: 'LFT ≥15"',
+      forLFT: true,
+    },
+    {
+      id: '3/4-u-30',
+      name: '3/4" × 9/16" U-Notch @ 30°',
+      coverageMin: 42,
+      coverageMax: 47,
+      forTiles: 'LFT ≥15" (best)',
+      forLFT: true,
+      recommended: true,
+    },
   ];
 
   // Grout density constant: ~1.86 lbs per cubic inch for sanded cement grout
@@ -84,19 +156,19 @@
 
   const MOVEMENT_JOINT_SPACING = {
     interior: { standard: 24, highTemp: 20 }, // ft
-    exterior: { standard: 12, highTemp: 8 }
+    exterior: { standard: 12, highTemp: 8 },
   };
 
   const SEALER_COVERAGE = {
     polished: { min: 800, max: 1000, note: 'Polished porcelain / dense stone' },
     semi_porcelain: { min: 400, max: 600, note: 'Semi-porous porcelain/ceramic' },
     natural_stone: { min: 200, max: 400, note: 'Honed/rough natural stone' },
-    concrete: { min: 150, max: 250, note: 'Broom finish or open concrete' }
+    concrete: { min: 150, max: 250, note: 'Broom finish or open concrete' },
   };
 
   const PRIMER_COVERAGE = {
-    porous: { min: 200, max: 300 },      // sf/gal (concrete, plywood)
-    nonPorous: { min: 300, max: 400 }    // sf/gal (VCT, sealed surfaces)
+    porous: { min: 200, max: 300 }, // sf/gal (concrete, plywood)
+    nonPorous: { min: 300, max: 400 }, // sf/gal (VCT, sealed surfaces)
   };
 
   function roundUp(value) {
@@ -127,7 +199,13 @@
   /**
    * Movement Joint Spacing per TCNA EJ171
    */
-  function calculateMovementJoints({ lengthFt, widthFt, exposure = 'interior', tempSwingF = 30, isSunExposed = false }) {
+  function calculateMovementJoints({
+    lengthFt,
+    widthFt,
+    exposure = 'interior',
+    tempSwingF = 30,
+    isSunExposed = false,
+  }) {
     const errors = [];
     const assumptions = [];
 
@@ -140,13 +218,26 @@
     if (!tempVal.valid) errors.push(tempVal.error);
 
     if (errors.length > 0) {
-      return { valid: false, errors, spacingFt: 0, jointsLong: 0, jointsShort: 0, totalJoints: 0, assumptions };
+      return {
+        valid: false,
+        errors,
+        spacingFt: 0,
+        jointsLong: 0,
+        jointsShort: 0,
+        totalJoints: 0,
+        assumptions,
+      };
     }
 
     const isExterior = exposure === 'exterior' || isSunExposed;
-    const spacing = tempVal.value >= 40
-      ? (isExterior ? MOVEMENT_JOINT_SPACING.exterior.highTemp : MOVEMENT_JOINT_SPACING.interior.highTemp)
-      : (isExterior ? MOVEMENT_JOINT_SPACING.exterior.standard : MOVEMENT_JOINT_SPACING.interior.standard);
+    const spacing =
+      tempVal.value >= 40
+        ? isExterior
+          ? MOVEMENT_JOINT_SPACING.exterior.highTemp
+          : MOVEMENT_JOINT_SPACING.interior.highTemp
+        : isExterior
+          ? MOVEMENT_JOINT_SPACING.exterior.standard
+          : MOVEMENT_JOINT_SPACING.interior.standard;
 
     const jointsLong = Math.max(0, roundUp(lengthVal.value / spacing) - 1);
     const jointsShort = Math.max(0, roundUp(widthVal.value / spacing) - 1);
@@ -156,13 +247,29 @@
     assumptions.push(`Temperature swing: ${tempVal.value}°F`);
     assumptions.push(`Spacing target per EJ171: ${spacing} ft grid`);
 
-    return { valid: true, errors: [], spacingFt: spacing, jointsLong, jointsShort, totalJoints, assumptions };
+    return {
+      valid: true,
+      errors: [],
+      spacingFt: spacing,
+      jointsLong,
+      jointsShort,
+      totalJoints,
+      assumptions,
+    };
   }
 
   /**
    * Deflection Check (L/360, L/720) using beam formula
    */
-  function calculateDeflection({ spanFeet, joistSpacingInches, joistWidthInches, joistDepthInches, modulusPsi = 1600000, liveLoadPsft = 40, deadLoadPsft = 10 }) {
+  function calculateDeflection({
+    spanFeet,
+    joistSpacingInches,
+    joistWidthInches,
+    joistDepthInches,
+    modulusPsi = 1600000,
+    liveLoadPsft = 40,
+    deadLoadPsft = 10,
+  }) {
     const errors = [];
     const assumptions = [];
 
@@ -179,7 +286,15 @@
     if (!modulusVal.valid) errors.push(modulusVal.error);
 
     if (errors.length > 0) {
-      return { valid: false, errors, deflectionRatio: 0, passesCeramic: false, passesStone: false, deltaInches: 0, assumptions };
+      return {
+        valid: false,
+        errors,
+        deflectionRatio: 0,
+        passesCeramic: false,
+        passesStone: false,
+        deltaInches: 0,
+        assumptions,
+      };
     }
 
     const L = spanVal.value * 12; // inches
@@ -202,14 +317,19 @@
       passesCeramic: deflectionRatio >= 360,
       passesStone: deflectionRatio >= 720,
       deltaInches: roundToDecimals(delta, 3),
-      assumptions
+      assumptions,
     };
   }
 
   /**
    * Heated Floor Electrical Load
    */
-  function calculateHeatedFloorLoad({ areaSqFt, wattsPerSqFt = 12, voltage = 120, thermostatMaxAmps = 15 }) {
+  function calculateHeatedFloorLoad({
+    areaSqFt,
+    wattsPerSqFt = 12,
+    voltage = 120,
+    thermostatMaxAmps = 15,
+  }) {
     const errors = [];
     const assumptions = [];
 
@@ -222,7 +342,16 @@
     if (!voltVal.valid) errors.push(voltVal.error);
 
     if (errors.length > 0) {
-      return { valid: false, errors, totalWatts: 0, amps: 0, breakerAmps: 0, circuits: 0, needsRelay: false, assumptions };
+      return {
+        valid: false,
+        errors,
+        totalWatts: 0,
+        amps: 0,
+        breakerAmps: 0,
+        circuits: 0,
+        needsRelay: false,
+        assumptions,
+      };
     }
 
     const totalWatts = areaVal.value * wattVal.value;
@@ -245,14 +374,19 @@
       breakerAmps,
       circuits,
       needsRelay,
-      assumptions
+      assumptions,
     };
   }
 
   /**
    * Moisture Emission / RH Check (ASTM F1869 / F2170)
    */
-  function evaluateMoistureReadings({ mverLbs, rhPercent, productLimitMver = 5, productLimitRh = 75 }) {
+  function evaluateMoistureReadings({
+    mverLbs,
+    rhPercent,
+    productLimitMver = 5,
+    productLimitRh = 75,
+  }) {
     const errors = [];
     const assumptions = [];
 
@@ -263,7 +397,14 @@
     if (!rhVal.valid) errors.push(rhVal.error);
 
     if (errors.length > 0) {
-      return { valid: false, errors, mverPass: false, rhPass: false, requiresMitigation: false, assumptions };
+      return {
+        valid: false,
+        errors,
+        mverPass: false,
+        rhPass: false,
+        requiresMitigation: false,
+        assumptions,
+      };
     }
 
     const mverPass = mverVal.value <= productLimitMver;
@@ -278,7 +419,14 @@
   /**
    * Thinset Mixing Ratios
    */
-  function calculateThinsetMix({ bagWeightLbs = 50, waterQuartsPerBagMin = 5, waterQuartsPerBagMax = 6, batchWeightLbs, potLifeMinutes = 120, yieldCuFtPerBag = 0.45 }) {
+  function calculateThinsetMix({
+    bagWeightLbs = 50,
+    waterQuartsPerBagMin = 5,
+    waterQuartsPerBagMax = 6,
+    batchWeightLbs,
+    potLifeMinutes = 120,
+    yieldCuFtPerBag = 0.45,
+  }) {
     const errors = [];
     const assumptions = [];
 
@@ -296,14 +444,22 @@
     if (batchVal && !batchVal.valid) errors.push(batchVal.error);
 
     if (errors.length > 0) {
-      return { valid: false, errors, waterQuartsRange: [0, 0], batchWeightLbs: 0, potLifeMinutes: 0, estimatedYieldCuFt: 0, assumptions };
+      return {
+        valid: false,
+        errors,
+        waterQuartsRange: [0, 0],
+        batchWeightLbs: 0,
+        potLifeMinutes: 0,
+        estimatedYieldCuFt: 0,
+        assumptions,
+      };
     }
 
     const batchWeight = batchVal?.value || bagVal.value;
     const ratio = batchWeight / bagVal.value;
     const waterQuartsRange = [
       roundToDecimals(waterMinVal.value * ratio, 2),
-      roundToDecimals(waterMaxVal.value * ratio, 2)
+      roundToDecimals(waterMaxVal.value * ratio, 2),
     ];
 
     assumptions.push('Linear water scaling used for partial batches');
@@ -316,7 +472,7 @@
       batchWeightLbs: batchWeight,
       potLifeMinutes,
       estimatedYieldCuFt: roundToDecimals(yieldVal.value * ratio, 2),
-      assumptions
+      assumptions,
     };
   }
 
@@ -353,7 +509,13 @@
   /**
    * Deck Mud Calculator (Shower Pan Volume)
    */
-  function calculateDeckMud({ areaSqFt, runFeet, minThicknessInches = 1.25, slopeInchesPerFoot = 0.25, bagYieldCuFt = 0.5 }) {
+  function calculateDeckMud({
+    areaSqFt,
+    runFeet,
+    minThicknessInches = 1.25,
+    slopeInchesPerFoot = 0.25,
+    bagYieldCuFt = 0.5,
+  }) {
     const errors = [];
     const assumptions = [];
 
@@ -367,7 +529,7 @@
 
     // Calculate average thickness: minThickness + (slopeInchesPerFoot * runFeet / 2)
     const run = runFeet || Math.sqrt(areaVal.value); // default run = side of square
-    const maxThicknessInches = minThicknessInches + (slopeInchesPerFoot * run);
+    const maxThicknessInches = minThicknessInches + slopeInchesPerFoot * run;
     const avgThicknessInches = (minThicknessInches + maxThicknessInches) / 2;
     const avgThicknessFt = avgThicknessInches / 12;
 
@@ -379,7 +541,14 @@
     assumptions.push(`Avg thickness: ${roundToDecimals(avgThicknessInches, 2)}"`);
     assumptions.push(`Bag yield: ${bagYieldCuFt} cu ft per 50 lb bag`);
 
-    return { valid: true, errors: [], volumeCuFt: roundToDecimals(volumeCuFt, 2), bags, avgThicknessInches: roundToDecimals(avgThicknessInches, 2), assumptions };
+    return {
+      valid: true,
+      errors: [],
+      volumeCuFt: roundToDecimals(volumeCuFt, 2),
+      bags,
+      avgThicknessInches: roundToDecimals(avgThicknessInches, 2),
+      assumptions,
+    };
   }
 
   /**
@@ -437,10 +606,18 @@
     const tubes = roundUp(totalVolumeCuIn / tubeVolumeCuIn);
 
     assumptions.push(`Bead diameter: ${beadVal.value}"`);
-    assumptions.push(`Tube size: ${tubeVolumeOz} oz (~${roundToDecimals(tubeVolumeCuIn, 1)} cu in)`);
+    assumptions.push(
+      `Tube size: ${tubeVolumeOz} oz (~${roundToDecimals(tubeVolumeCuIn, 1)} cu in)`
+    );
     assumptions.push(`Total volume needed: ${roundToDecimals(totalVolumeCuIn, 1)} cu in`);
 
-    return { valid: true, errors: [], tubes, totalVolumeCuIn: roundToDecimals(totalVolumeCuIn, 1), assumptions };
+    return {
+      valid: true,
+      errors: [],
+      tubes,
+      totalVolumeCuIn: roundToDecimals(totalVolumeCuIn, 1),
+      assumptions,
+    };
   }
 
   /**
@@ -473,7 +650,7 @@
       includeVanity = true,
       vanityWidthIn = 48,
       vanityDepthIn = 22,
-      vanityFrontClearIn = 30
+      vanityFrontClearIn = 30,
     } = params;
 
     const roomLengthVal = validatePositiveNumber(roomLengthFt, 'Room length');
@@ -481,16 +658,40 @@
     const doorWidthVal = validatePositiveNumber(doorWidthIn, 'Door width');
     const walkwayVal = validatePositiveNumber(walkwayMinIn, 'Walkway minimum');
 
-    [roomLengthVal, roomWidthVal, doorWidthVal, walkwayVal].forEach(v => {
+    [roomLengthVal, roomWidthVal, doorWidthVal, walkwayVal].forEach((v) => {
       if (!v.valid) errors.push(v.error);
     });
 
     if (errors.length > 0) {
-      return { valid: false, errors, availableWallIn: 0, requiredWallIn: 0, fitsLinear: 'No', walkwayWidthIn: 0, walkwayPass: 'No', maxDepthClearIn: 0, assumptions, warnings, notes };
+      return {
+        valid: false,
+        errors,
+        availableWallIn: 0,
+        requiredWallIn: 0,
+        fitsLinear: 'No',
+        walkwayWidthIn: 0,
+        walkwayPass: 'No',
+        maxDepthClearIn: 0,
+        assumptions,
+        warnings,
+        notes,
+      };
     }
 
     if (!includeTub && !includeShower && !includeToilet && !includeVanity) {
-      return { valid: false, errors: ['Select at least one fixture to place'], availableWallIn: 0, requiredWallIn: 0, fitsLinear: 'No', walkwayWidthIn: 0, walkwayPass: 'No', maxDepthClearIn: 0, assumptions, warnings, notes };
+      return {
+        valid: false,
+        errors: ['Select at least one fixture to place'],
+        availableWallIn: 0,
+        requiredWallIn: 0,
+        fitsLinear: 'No',
+        walkwayWidthIn: 0,
+        walkwayPass: 'No',
+        maxDepthClearIn: 0,
+        assumptions,
+        warnings,
+        notes,
+      };
     }
 
     const fixtures = [];
@@ -502,21 +703,38 @@
     }
 
     if (includeShower) {
-      fixtures.push({ type: 'shower', width: showerWidthIn, depth: showerDepthIn + showerFrontClearIn });
-      if (showerWidthIn < 30 || showerDepthIn < 30) warnings.push('Shower minimum is 30" x 30" per IPC; aim for 36" x 36".');
+      fixtures.push({
+        type: 'shower',
+        width: showerWidthIn,
+        depth: showerDepthIn + showerFrontClearIn,
+      });
+      if (showerWidthIn < 30 || showerDepthIn < 30)
+        warnings.push('Shower minimum is 30" x 30" per IPC; aim for 36" x 36".');
       notes.push(`Shower front clearance: ${showerFrontClearIn}"`);
     }
 
     if (includeToilet) {
       const toiletZoneWidth = Math.max(30, toiletSideClearIn * 2);
-      fixtures.push({ type: 'toilet', width: toiletZoneWidth, depth: toiletDepthIn + toiletFrontClearIn });
-      if (toiletSideClearIn < 15) warnings.push('Toilet side clearance below 15" violates IPC/IRC.');
-      if (toiletFrontClearIn < 21) warnings.push('Toilet front clearance below 21" may violate code; 24"+ recommended.');
-      notes.push(`Toilet zone width uses ${toiletSideClearIn}" side clearances (30" min). Front clearance: ${toiletFrontClearIn}"`);
+      fixtures.push({
+        type: 'toilet',
+        width: toiletZoneWidth,
+        depth: toiletDepthIn + toiletFrontClearIn,
+      });
+      if (toiletSideClearIn < 15)
+        warnings.push('Toilet side clearance below 15" violates IPC/IRC.');
+      if (toiletFrontClearIn < 21)
+        warnings.push('Toilet front clearance below 21" may violate code; 24"+ recommended.');
+      notes.push(
+        `Toilet zone width uses ${toiletSideClearIn}" side clearances (30" min). Front clearance: ${toiletFrontClearIn}"`
+      );
     }
 
     if (includeVanity) {
-      fixtures.push({ type: 'vanity', width: vanityWidthIn, depth: vanityDepthIn + vanityFrontClearIn });
+      fixtures.push({
+        type: 'vanity',
+        width: vanityWidthIn,
+        depth: vanityDepthIn + vanityFrontClearIn,
+      });
       notes.push(`Vanity front clearance: ${vanityFrontClearIn}"`);
     }
 
@@ -551,7 +769,7 @@
         walkwayWidthIn,
         walkwayPassBool,
         fitsLinearBool,
-        doorDeductIn
+        doorDeductIn,
       };
     };
 
@@ -568,22 +786,40 @@
     const a = score(evalLength);
     const b = score(evalWidth);
     const selected =
-      a[0] !== b[0] ? (a[0] > b[0] ? evalLength : evalWidth) :
-        a[1] !== b[1] ? (a[1] > b[1] ? evalLength : evalWidth) :
-          (a[2] >= b[2] ? evalLength : evalWidth);
+      a[0] !== b[0]
+        ? a[0] > b[0]
+          ? evalLength
+          : evalWidth
+        : a[1] !== b[1]
+          ? a[1] > b[1]
+            ? evalLength
+            : evalWidth
+          : a[2] >= b[2]
+            ? evalLength
+            : evalWidth;
 
     const alternate = selected.fixtureWall === 'length' ? evalWidth : evalLength;
 
     assumptions.push(`Layout wall tested: length + width (best chosen)`);
     assumptions.push(`Selected fixture wall: ${selected.fixtureWall}`);
     assumptions.push(`Door wall setting: ${doorWall}`);
-    assumptions.push(`Door width deducted on selected wall: ${roundToDecimals(selected.doorDeductIn, 1)}"`);
+    assumptions.push(
+      `Door width deducted on selected wall: ${roundToDecimals(selected.doorDeductIn, 1)}"`
+    );
     assumptions.push(`Walkway minimum target: ${walkwayVal.value}"`);
 
-    notes.push(`Alternate (${alternate.fixtureWall}) — Available wall: ${roundToDecimals(alternate.availableWallIn, 1)}", Clear path: ${roundToDecimals(alternate.walkwayWidthIn, 1)}"`);
+    notes.push(
+      `Alternate (${alternate.fixtureWall}) — Available wall: ${roundToDecimals(alternate.availableWallIn, 1)}", Clear path: ${roundToDecimals(alternate.walkwayWidthIn, 1)}"`
+    );
 
-    if (!selected.fitsLinearBool) warnings.push('Fixtures exceed available wall length—consider switching walls or reducing widths.');
-    if (!selected.walkwayPassBool) warnings.push(`Clear path under ${walkwayVal.value}" — increase room width or reduce front clearances.`);
+    if (!selected.fitsLinearBool)
+      warnings.push(
+        'Fixtures exceed available wall length—consider switching walls or reducing widths.'
+      );
+    if (!selected.walkwayPassBool)
+      warnings.push(
+        `Clear path under ${walkwayVal.value}" — increase room width or reduce front clearances.`
+      );
 
     return {
       valid: true,
@@ -597,7 +833,7 @@
       maxDepthClearIn: roundToDecimals(selected.maxDepthClearIn, 1),
       assumptions,
       warnings,
-      notes
+      notes,
     };
   }
 
@@ -617,7 +853,7 @@
       // Constants for reference
       MOVEMENT_JOINT_SPACING,
       SEALER_COVERAGE,
-      PRIMER_COVERAGE
+      PRIMER_COVERAGE,
     };
   }
 
@@ -627,38 +863,38 @@
       label: 'Floor',
       calcMode: 'dimensions', // uses L×W
       defaultHeight: null,
-      icon: '▢'
+      icon: '▢',
     },
     'full-walls': {
       label: 'Full Walls',
       calcMode: 'perimeter', // perimeter × height
       defaultHeight: 8,
-      icon: '▤'
+      icon: '▤',
     },
     'shower-walls': {
       label: 'Shower Walls',
       calcMode: 'manual', // user enters or uses preset
       defaultArea: 72, // 3 walls × 3ft × 8ft
-      icon: '▥'
+      icon: '▥',
     },
     'tub-surround': {
       label: 'Tub Surround',
       calcMode: 'manual',
       defaultArea: 60, // 3 walls × 5ft × 4ft
-      icon: '▧'
+      icon: '▧',
     },
     backsplash: {
       label: 'Backsplash',
       calcMode: 'manual',
       defaultArea: 6, // ~4 linear ft × 18"
-      icon: '▨'
-    }
+      icon: '▨',
+    },
   };
 
   // Validation error types
   const VALIDATION_TYPES = {
     ERROR: 'error',
-    WARNING: 'warning'
+    WARNING: 'warning',
   };
 
   // ==
@@ -673,7 +909,7 @@
       county: '',
       phone: '',
       email: '',
-      notes: ''
+      notes: '',
     },
     rooms: [],
     defaults: {
@@ -684,7 +920,7 @@
       layout: '',
       wasteFactor: 12,
       jointSize: '',
-      extraAtticStock: false
+      extraAtticStock: false,
     },
     systems: {
       underlayment: 'none',
@@ -694,17 +930,17 @@
       demoTile: false,
       demoUnderlayment: false,
       subfloorRepair: false,
-      disposal: false
+      disposal: false,
     },
     mode: 'pro', // 'pro' or 'homeowner'
     trowelOverride: {
       selected: null,
-      reason: ''
+      reason: '',
     },
     assumptions: [],
     nudges: [],
     validationErrors: [],
-    validationWarnings: []
+    validationWarnings: [],
   };
 
   let roomIdCounter = 0;
@@ -717,7 +953,7 @@
    * Generate unique ID
    */
   function generateId() {
-    return 'room_' + (++roomIdCounter) + '_' + Date.now();
+    return 'room_' + ++roomIdCounter + '_' + Date.now();
   }
 
   /**
@@ -726,7 +962,7 @@
   function toDecimalFeet(feet, inches) {
     const ft = parseFloat(feet) || 0;
     const inc = parseFloat(inches) || 0;
-    return ft + (inc / 12);
+    return ft + inc / 12;
   }
 
   /**
@@ -766,7 +1002,7 @@
   function formatNumber(num, decimals = 0) {
     return num.toLocaleString('en-US', {
       minimumFractionDigits: decimals,
-      maximumFractionDigits: decimals
+      maximumFractionDigits: decimals,
     });
   }
 
@@ -809,31 +1045,31 @@
         height: h,
         isCustom: true,
         isLargeFormat: largestSide >= 15, // TCNA defines LFT as any side ≥15"
-        isPlank: h >= 24 || w >= 24
+        isPlank: h >= 24 || w >= 24,
       };
     }
-    return TILE_PRESETS.find(t => t.id === presetId) || TILE_PRESETS[8]; // default to 12x12
+    return TILE_PRESETS.find((t) => t.id === presetId) || TILE_PRESETS[8]; // default to 12x12
   }
 
   /**
    * Get layout preset by ID
    */
   function getLayoutPreset(layoutId) {
-    return LAYOUT_PRESETS.find(l => l.id === layoutId) || LAYOUT_PRESETS[0];
+    return LAYOUT_PRESETS.find((l) => l.id === layoutId) || LAYOUT_PRESETS[0];
   }
 
   /**
    * Get joint preset by ID
    */
   function getJointPreset(jointId) {
-    return JOINT_PRESETS.find(j => j.id === jointId) || JOINT_PRESETS[1]; // default to 1/8"
+    return JOINT_PRESETS.find((j) => j.id === jointId) || JOINT_PRESETS[1]; // default to 1/8"
   }
 
   /**
    * Get trowel preset by ID
    */
   function getTrowelPreset(trowelId) {
-    return TROWEL_PRESETS.find(t => t.id === trowelId) || TROWEL_PRESETS[1];
+    return TROWEL_PRESETS.find((t) => t.id === trowelId) || TROWEL_PRESETS[1];
   }
 
   // ==
@@ -849,7 +1085,7 @@
   function calculateTileQuantity(areaSqFt, tile, wastePercent) {
     if (!areaSqFt || areaSqFt <= 0) return { tiles: 0, boxes: 0, areaWithWaste: 0 };
 
-    const wasteFactor = 1 + (wastePercent / 100);
+    const wasteFactor = 1 + wastePercent / 100;
     const areaWithWaste = areaSqFt * wasteFactor;
 
     let tilesNeeded;
@@ -864,14 +1100,21 @@
 
     return {
       tiles: tilesNeeded,
-      areaWithWaste: areaWithWaste
+      areaWithWaste: areaWithWaste,
     };
   }
 
   /**
    * Calculate boxes needed
    */
-  function calculateBoxes(tilesNeeded, tilesPerBox, sqftPerBox, tile, areaWithWaste, addAtticStock) {
+  function calculateBoxes(
+    tilesNeeded,
+    tilesPerBox,
+    sqftPerBox,
+    tile,
+    areaWithWaste,
+    addAtticStock
+  ) {
     let boxes;
 
     if (tilesPerBox && tilesPerBox > 0) {
@@ -905,7 +1148,7 @@
       trowelId: '1/4-sq',
       backButter: false,
       note: '',
-      warning: ''
+      warning: '',
     };
 
     // Mosaic or very small tile (≤2")
@@ -928,8 +1171,10 @@
       // CBP recommends U-notch for LFT, NOT 1/2" square
       result.trowelId = '3/4-u-30';
       result.backButter = true;
-      result.note = 'Large-format tile: 3/4"×9/16" U-notch @ 30° recommended per CBP TDS-132. Back-butter required for 95% coverage.';
-      result.warning = 'CBP does NOT recommend 1/2"×1/2" square notch for LFT—spacing makes it difficult to achieve proper coverage.';
+      result.note =
+        'Large-format tile: 3/4"×9/16" U-notch @ 30° recommended per CBP TDS-132. Back-butter required for 95% coverage.';
+      result.warning =
+        'CBP does NOT recommend 1/2"×1/2" square notch for LFT—spacing makes it difficult to achieve proper coverage.';
     }
     // Transitional sizes (13" to 15")
     else {
@@ -946,7 +1191,8 @@
       if (currentIndex >= 0 && currentIndex < trowelOrder.length - 1) {
         result.trowelId = trowelOrder[currentIndex + 1];
       }
-      result.note += ' Substrate may need flattening—larger notch helps but doesn\'t replace proper substrate prep.';
+      result.note +=
+        " Substrate may need flattening—larger notch helps but doesn't replace proper substrate prep.";
     }
 
     return result;
@@ -975,7 +1221,7 @@
       min: adjustedMin,
       max: adjustedMax,
       coverage: `${trowel.coverageMin}–${trowel.coverageMax} sq ft/bag`,
-      note: backButter ? 'Includes ~25% extra for back-buttering' : ''
+      note: backButter ? 'Includes ~25% extra for back-buttering' : '',
     };
   }
 
@@ -988,20 +1234,20 @@
     if (tile.isMosaic) {
       return {
         jointId: '1/8',
-        note: 'Mosaic tiles: 1/16"–1/8" joints are typical.'
+        note: 'Mosaic tiles: 1/16"–1/8" joints are typical.',
       };
     }
 
     if (tile.isLargeFormat || largestSide >= 24) {
       return {
         jointId: '1/8',
-        note: 'Large-format/rectified tile: 1/8" minimum joint is recommended.'
+        note: 'Large-format/rectified tile: 1/8" minimum joint is recommended.',
       };
     }
 
     return {
       jointId: '1/8',
-      note: '1/8" joint is a common starting point. Adjust based on tile variation and manufacturer guidance.'
+      note: '1/8" joint is a common starting point. Adjust based on tile variation and manufacturer guidance.',
     };
   }
 
@@ -1013,7 +1259,15 @@
    * J = joint width in inches
    * K = density constant (1.86 for lbs per cu in sanded grout)
    */
-  function calculateGrout(areaSqFt, tileLength, tileWidth, tileThicknessMm, jointSizeIn, groutType, isMosaic) {
+  function calculateGrout(
+    areaSqFt,
+    tileLength,
+    tileWidth,
+    tileThicknessMm,
+    jointSizeIn,
+    groutType,
+    isMosaic
+  ) {
     if (!areaSqFt || !tileLength || !tileWidth || !jointSizeIn || !tileThicknessMm) {
       return { quantity: 0, unit: 'lbs', note: 'Enter all values to calculate' };
     }
@@ -1032,7 +1286,7 @@
 
     // Calculate lbs per sq ft: (L + W) / (L × W) × T × J × 1.86
     const K_SANDED = 1.86; // lbs per cu in for sanded cement grout
-    const K_EPOXY = 2.0;   // lbs per cu in for epoxy grout (slightly denser)
+    const K_EPOXY = 2.0; // lbs per cu in for epoxy grout (slightly denser)
 
     const K = groutType === 'epoxy' ? K_EPOXY : K_SANDED;
     const lbsPerSqFt = ((L + W) / (L * W)) * T * J * K;
@@ -1056,7 +1310,7 @@
       unit: 'lbs',
       volume: volumeCuFt.toFixed(3),
       lbsPerSqFt: lbsPerSqFt.toFixed(3),
-      note: `Coverage: ~${lbsPerSqFt.toFixed(2)} lbs/sq ft.${mosaicNote}`
+      note: `Coverage: ~${lbsPerSqFt.toFixed(2)} lbs/sq ft.${mosaicNote}`,
     };
   }
 
@@ -1085,7 +1339,7 @@
       bags: bags,
       bagsMax: bagsMax,
       volume: volumeCuFt.toFixed(2),
-      note: maxDepthIn ? `Range: ${bags}–${bagsMax} bags depending on actual depth variation` : ''
+      note: maxDepthIn ? `Range: ${bags}–${bagsMax} bags depending on actual depth variation` : '',
     };
   }
 
@@ -1109,12 +1363,12 @@
         selector: '#project-name',
         message: 'Project name is required',
         section: 'Project Information',
-        type: VALIDATION_TYPES.ERROR
+        type: VALIDATION_TYPES.ERROR,
       });
       missingFields.push({
         label: 'Project Name',
         selector: '#project-name',
-        message: 'Enter a project name'
+        message: 'Enter a project name',
       });
     }
 
@@ -1125,12 +1379,12 @@
         selector: '#add-room-btn',
         message: 'Add at least one room',
         section: 'Rooms',
-        type: VALIDATION_TYPES.ERROR
+        type: VALIDATION_TYPES.ERROR,
       });
       missingFields.push({
         label: 'Rooms',
         selector: '#add-room-btn',
-        message: 'Click "Add Room" to add your first room'
+        message: 'Click "Add Room" to add your first room',
       });
     }
 
@@ -1144,24 +1398,24 @@
           selector: `${roomSelector} .room-name-input`,
           message: `Room ${index + 1}: Name is required`,
           section: 'Rooms',
-          type: VALIDATION_TYPES.ERROR
+          type: VALIDATION_TYPES.ERROR,
         });
         missingFields.push({
           label: `Room ${index + 1} Name`,
           selector: `${roomSelector} .room-name-input`,
-          message: 'Enter a room name'
+          message: 'Enter a room name',
         });
       }
 
       // Check if any surface is selected
-      const hasSurface = Object.values(room.surfaces || {}).some(s => s.selected);
+      const hasSurface = Object.values(room.surfaces || {}).some((s) => s.selected);
       if (!hasSurface) {
         errors.push({
           field: `room-${room.id}-surfaces`,
           selector: `${roomSelector} .surfaces-fieldset`,
           message: `${room.name || 'Room ' + (index + 1)}: Select at least one surface to tile`,
           section: 'Rooms',
-          type: VALIDATION_TYPES.ERROR
+          type: VALIDATION_TYPES.ERROR,
         });
       }
 
@@ -1175,39 +1429,46 @@
             selector: `${roomSelector} .room-length-ft`,
             message: `${room.name || 'Room ' + (index + 1)}: Enter room dimensions for floor area`,
             section: 'Rooms',
-            type: VALIDATION_TYPES.ERROR
+            type: VALIDATION_TYPES.ERROR,
           });
           missingFields.push({
             label: `${room.name || 'Room ' + (index + 1)} Dimensions`,
             selector: `${roomSelector} .room-length-ft`,
-            message: 'Enter length and width'
+            message: 'Enter length and width',
           });
         }
       }
 
       // Check for manual area overrides that are zero/invalid
       Object.entries(room.surfaces || {}).forEach(([surfaceId, surface]) => {
-        if (surface.selected && surface.areaMode === 'manual' && (!surface.manualArea || surface.manualArea <= 0)) {
+        if (
+          surface.selected &&
+          surface.areaMode === 'manual' &&
+          (!surface.manualArea || surface.manualArea <= 0)
+        ) {
           errors.push({
             field: `room-${room.id}-surface-${surfaceId}`,
             selector: `${roomSelector} [data-surface-id="${surfaceId}"] .surface-manual-area`,
             message: `${room.name || 'Room ' + (index + 1)}: ${SURFACE_CONFIGS[surfaceId]?.label || surfaceId} manual area must be greater than 0`,
             section: 'Rooms',
-            type: VALIDATION_TYPES.ERROR
+            type: VALIDATION_TYPES.ERROR,
           });
         }
       });
 
       // Warning: Room is locked but has no area
       if (room.locked) {
-        const totalArea = Object.values(room.surfaces || {}).reduce((sum, s) => sum + (s.selected ? s.area : 0), 0);
+        const totalArea = Object.values(room.surfaces || {}).reduce(
+          (sum, s) => sum + (s.selected ? s.area : 0),
+          0
+        );
         if (totalArea === 0) {
           warnings.push({
             field: `room-${room.id}-locked`,
             selector: roomSelector,
             message: `${room.name || 'Room ' + (index + 1)}: Measurements locked but no area calculated`,
             section: 'Rooms',
-            type: VALIDATION_TYPES.WARNING
+            type: VALIDATION_TYPES.WARNING,
           });
         }
       }
@@ -1220,7 +1481,7 @@
         selector: '#default-tile-size',
         message: 'Consider selecting a tile size for more accurate calculations',
         section: 'Tile & Layout',
-        type: VALIDATION_TYPES.WARNING
+        type: VALIDATION_TYPES.WARNING,
       });
     }
 
@@ -1231,7 +1492,7 @@
         selector: '#default-layout',
         message: 'Consider selecting a layout pattern for waste factor guidance',
         section: 'Tile & Layout',
-        type: VALIDATION_TYPES.WARNING
+        type: VALIDATION_TYPES.WARNING,
       });
     }
 
@@ -1263,7 +1524,7 @@
     }
 
     // Clear existing visual states
-    document.querySelectorAll('.is-invalid, .is-warning').forEach(el => {
+    document.querySelectorAll('.is-invalid, .is-warning').forEach((el) => {
       el.classList.remove('is-invalid', 'is-warning');
     });
 
@@ -1274,13 +1535,13 @@
     }
 
     // Apply visual states to fields
-    errors.forEach(err => {
+    errors.forEach((err) => {
       if (err.selector) {
         const el = document.querySelector(err.selector);
         if (el) el.classList.add('is-invalid');
       }
     });
-    warnings.forEach(warn => {
+    warnings.forEach((warn) => {
       if (warn.selector) {
         const el = document.querySelector(warn.selector);
         if (el) el.classList.add('is-warning');
@@ -1294,15 +1555,19 @@
       html += `<li class="needs-attention__header needs-attention__header--error" role="status" aria-live="assertive">
         <strong>⚠️ ${errors.length} Required</strong>
       </li>`;
-      errors.forEach(err => {
+      errors.forEach((err) => {
         html += `
           <li class="needs-attention__item needs-attention__item--error">
             <span class="needs-attention__icon">❌</span>
             <span class="needs-attention__message">${escapeHtml(err.message)}</span>
-            ${err.selector ? `<button type="button" class="needs-attention__jump btn btn--ghost btn--xs" 
+            ${
+              err.selector
+                ? `<button type="button" class="needs-attention__jump btn btn--ghost btn--xs" 
               data-selector="${escapeHtml(err.selector)}" aria-label="Go to ${escapeHtml(err.message)}">
               Go →
-            </button>` : ''}
+            </button>`
+                : ''
+            }
           </li>
         `;
       });
@@ -1312,15 +1577,19 @@
       html += `<li class="needs-attention__header needs-attention__header--warning" role="status" aria-live="polite">
         <strong>💡 ${warnings.length} Suggestions</strong>
       </li>`;
-      warnings.forEach(warn => {
+      warnings.forEach((warn) => {
         html += `
           <li class="needs-attention__item needs-attention__item--warning">
             <span class="needs-attention__icon">⚡</span>
             <span class="needs-attention__message">${escapeHtml(warn.message)}</span>
-            ${warn.selector ? `<button type="button" class="needs-attention__jump btn btn--ghost btn--xs" 
+            ${
+              warn.selector
+                ? `<button type="button" class="needs-attention__jump btn btn--ghost btn--xs" 
               data-selector="${escapeHtml(warn.selector)}" aria-label="Go to ${escapeHtml(warn.message)}">
               Go →
-            </button>` : ''}
+            </button>`
+                : ''
+            }
           </li>
         `;
       });
@@ -1350,7 +1619,9 @@
     field.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
     // Focus input inside if available
-    const input = field.matches('input, select, textarea') ? field : field.querySelector('input, select, textarea');
+    const input = field.matches('input, select, textarea')
+      ? field
+      : field.querySelector('input, select, textarea');
     if (input && input.focus) {
       setTimeout(() => input.focus(), 300);
     }
@@ -1379,10 +1650,16 @@
     const auditList = auditDetails.querySelector('.room-audit__list');
     if (!auditList) return;
 
-    auditList.innerHTML = room.auditTrail.map(entry => {
-      const date = new Date(entry.timestamp);
-      const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-      return `
+    auditList.innerHTML = room.auditTrail
+      .map((entry) => {
+        const date = new Date(entry.timestamp);
+        const dateStr = date.toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
+        });
+        return `
         <li class="room-audit__entry">
           <span class="room-audit__time">${escapeHtml(dateStr)}</span>
           <span class="room-audit__action room-audit__action--${entry.action}">${escapeHtml(entry.action)}</span>
@@ -1390,7 +1667,8 @@
           <span class="room-audit__dims">${formatNumber(entry.dimensions.length, 1)}×${formatNumber(entry.dimensions.width, 1)} ft</span>
         </li>
       `;
-    }).join('');
+      })
+      .join('');
   }
 
   // ==
@@ -1414,7 +1692,8 @@
     if (layout.id === 'subway-50' && largestSide >= 15) {
       nudges.push({
         type: 'warning',
-        message: 'Consider 1/3 offset instead of 50% offset for tiles 15"+ to reduce lippage risk. Many installers prefer 1/3 offset for plank tiles.'
+        message:
+          'Consider 1/3 offset instead of 50% offset for tiles 15"+ to reduce lippage risk. Many installers prefer 1/3 offset for plank tiles.',
       });
     }
 
@@ -1422,7 +1701,8 @@
     if (layout.id === 'herringbone' && tile.width === tile.height) {
       nudges.push({
         type: 'info',
-        message: 'Herringbone pattern is typically used with rectangular tiles (planks). Square tiles would create a checkerboard effect.'
+        message:
+          'Herringbone pattern is typically used with rectangular tiles (planks). Square tiles would create a checkerboard effect.',
       });
     }
 
@@ -1476,9 +1756,11 @@
    */
   function populatePresets() {
     // Tile size selects
-    const tileSelects = document.querySelectorAll('#default-tile-size, #calc-tile-size, #mortar-tile-size');
-    tileSelects.forEach(select => {
-      TILE_PRESETS.forEach(tile => {
+    const tileSelects = document.querySelectorAll(
+      '#default-tile-size, #calc-tile-size, #mortar-tile-size'
+    );
+    tileSelects.forEach((select) => {
+      TILE_PRESETS.forEach((tile) => {
         const opt = document.createElement('option');
         opt.value = tile.id;
         opt.textContent = tile.name;
@@ -1488,8 +1770,8 @@
 
     // Layout selects
     const layoutSelects = document.querySelectorAll('#default-layout, #calc-layout');
-    layoutSelects.forEach(select => {
-      LAYOUT_PRESETS.forEach(layout => {
+    layoutSelects.forEach((select) => {
+      LAYOUT_PRESETS.forEach((layout) => {
         const opt = document.createElement('option');
         opt.value = layout.id;
         opt.textContent = `${layout.name} (${layout.wasteRange} waste)`;
@@ -1499,8 +1781,8 @@
 
     // Joint size selects
     const jointSelects = document.querySelectorAll('#default-joint, #grout-joint-width');
-    jointSelects.forEach(select => {
-      JOINT_PRESETS.forEach(joint => {
+    jointSelects.forEach((select) => {
+      JOINT_PRESETS.forEach((joint) => {
         const opt = document.createElement('option');
         opt.value = joint.id;
         opt.textContent = joint.name;
@@ -1510,13 +1792,13 @@
 
     // Trowel selects
     const trowelSelects = document.querySelectorAll('#mortar-trowel');
-    trowelSelects.forEach(select => {
+    trowelSelects.forEach((select) => {
       const autoOpt = document.createElement('option');
       autoOpt.value = 'auto';
       autoOpt.textContent = 'Auto-recommend...';
       select.appendChild(autoOpt);
 
-      TROWEL_PRESETS.forEach(trowel => {
+      TROWEL_PRESETS.forEach((trowel) => {
         const opt = document.createElement('option');
         opt.value = trowel.id;
         opt.textContent = `${trowel.name} (${trowel.coverageMin}–${trowel.coverageMax} sq ft/bag)`;
@@ -1548,7 +1830,7 @@
 
       // Restore surface selections
       if (roomData.surfaces) {
-        Object.keys(roomData.surfaces).forEach(surfaceId => {
+        Object.keys(roomData.surfaces).forEach((surfaceId) => {
           if (roomData.surfaces[surfaceId].selected) {
             const checkbox = card.querySelector(`[data-surface="${surfaceId}"]`);
             if (checkbox) checkbox.checked = true;
@@ -1581,10 +1863,10 @@
           'full-walls': { selected: false, area: 0 },
           'shower-walls': { selected: false, area: 0 },
           'tub-surround': { selected: false, area: 0 },
-          backsplash: { selected: false, area: 0 }
+          backsplash: { selected: false, area: 0 },
         },
         locked: false,
-        lockReason: ''
+        lockReason: '',
       });
       saveToStorage();
     }
@@ -1600,7 +1882,7 @@
     const card = document.querySelector(`[data-room-id="${roomId}"]`);
     if (card) {
       card.remove();
-      state.rooms = state.rooms.filter(r => r.id !== roomId);
+      state.rooms = state.rooms.filter((r) => r.id !== roomId);
       updateAreaSummary();
       saveToStorage();
     }
@@ -1610,11 +1892,14 @@
    * Update room data in state
    */
   function updateRoomData(roomId, field, value) {
-    const room = state.rooms.find(r => r.id === roomId);
+    const room = state.rooms.find((r) => r.id === roomId);
     if (!room) return;
 
     // Check if measurement is locked
-    if (room.locked && ['lengthFt', 'lengthIn', 'widthFt', 'widthIn', 'heightFt', 'heightIn'].includes(field)) {
+    if (
+      room.locked &&
+      ['lengthFt', 'lengthIn', 'widthFt', 'widthIn', 'heightFt', 'heightIn'].includes(field)
+    ) {
       // Show lock reason input
       const card = document.querySelector(`[data-room-id="${roomId}"]`);
       const reasonDiv = card.querySelector('.room-lock-reason');
@@ -1633,7 +1918,7 @@
    * Update room surface selection
    */
   function updateRoomSurface(roomId, surfaceId, selected) {
-    const room = state.rooms.find(r => r.id === roomId);
+    const room = state.rooms.find((r) => r.id === roomId);
     if (!room) return;
 
     if (!room.surfaces) room.surfaces = {};
@@ -1647,7 +1932,7 @@
         overrides: {},
         deductions: [],
         grossArea: 0,
-        netArea: 0
+        netArea: 0,
       };
     }
 
@@ -1689,8 +1974,7 @@
     const container = card.querySelector('[data-surface-details]');
     if (!container) return;
 
-    const selectedSurfaces = Object.entries(room.surfaces || {})
-      .filter(([, s]) => s.selected);
+    const selectedSurfaces = Object.entries(room.surfaces || {}).filter(([, s]) => s.selected);
 
     if (selectedSurfaces.length === 0) {
       container.hidden = true;
@@ -1748,11 +2032,15 @@
               <div class="surface-deductions__list" data-deductions="${surfaceId}">
                 ${renderDeductions(surface.deductions || [], surfaceId)}
               </div>
-              ${deductionsTotal > 0 ? `
+              ${
+                deductionsTotal > 0
+                  ? `
               <div class="surface-deductions__total">
                 Total deductions: <strong>${formatNumber(deductionsTotal, 1)} sf</strong>
               </div>
-              ` : ''}
+              `
+                  : ''
+              }
             </div>
             
             <!-- Net Area -->
@@ -1775,7 +2063,7 @@
                   <label class="form-label form-label--sm">Tile Size Override</label>
                   <select class="form-select form-select--sm surface-tile-override" data-surface="${surfaceId}">
                     <option value="">Same as global</option>
-                    ${TILE_PRESETS.map(t => `<option value="${t.id}" ${surface.overrides?.tilePreset === t.id ? 'selected' : ''}>${t.name}</option>`).join('')}
+                    ${TILE_PRESETS.map((t) => `<option value="${t.id}" ${surface.overrides?.tilePreset === t.id ? 'selected' : ''}>${t.name}</option>`).join('')}
                   </select>
                 </div>
                 <div class="form-field">
@@ -1809,7 +2097,9 @@
       return '<p class="surface-deductions__empty">No deductions</p>';
     }
 
-    return deductions.map((d, i) => `
+    return deductions
+      .map(
+        (d, i) => `
       <div class="deduction-row" data-index="${i}">
         <input type="text" class="form-input form-input--sm deduction-label" 
           value="${escapeHtml(d.label || '')}" placeholder="Label (door, window...)">
@@ -1825,7 +2115,9 @@
         <button type="button" class="btn btn--ghost btn--xs remove-deduction-btn" 
           data-surface="${surfaceId}" data-index="${i}" aria-label="Remove deduction">×</button>
       </div>
-    `).join('');
+    `
+      )
+      .join('');
   }
 
   /**
@@ -1838,7 +2130,7 @@
       if (!surface.selected) return;
 
       const isManual = surface.areaMode === 'manual';
-      const grossArea = isManual ? (surface.manualArea || 0) : (surface.grossArea || 0);
+      const grossArea = isManual ? surface.manualArea || 0 : surface.grossArea || 0;
       const deductionsTotal = (surface.deductions || []).reduce((sum, d) => sum + (d.area || 0), 0);
       const netArea = Math.max(0, grossArea - deductionsTotal);
 
@@ -1854,7 +2146,7 @@
    * Update room area display
    */
   function updateRoomAreaDisplay(roomId) {
-    const room = state.rooms.find(r => r.id === roomId);
+    const room = state.rooms.find((r) => r.id === roomId);
     if (!room) return;
 
     const card = document.querySelector(`[data-room-id="${roomId}"]`);
@@ -1881,7 +2173,8 @@
     const totalEl = document.getElementById('total-area');
 
     if (state.rooms.length === 0) {
-      grid.innerHTML = '<p class="area-summary__empty">Add rooms and select surfaces to see area calculations.</p>';
+      grid.innerHTML =
+        '<p class="area-summary__empty">Add rooms and select surfaces to see area calculations.</p>';
       totalEl.textContent = '0';
       return;
     }
@@ -1889,14 +2182,14 @@
     let html = '';
     let totalArea = 0;
 
-    state.rooms.forEach(room => {
+    state.rooms.forEach((room) => {
       if (!room.surfaces) return;
 
-      Object.keys(room.surfaces).forEach(surfaceId => {
+      Object.keys(room.surfaces).forEach((surfaceId) => {
         const surface = room.surfaces[surfaceId];
         if (surface.selected && surface.area > 0) {
           totalArea += surface.area;
-          const surfaceName = surfaceId.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+          const surfaceName = surfaceId.replace('-', ' ').replace(/\b\w/g, (l) => l.toUpperCase());
           html += `
             <div class="area-summary__row">
               <span class="area-summary__room">${escapeHtml(room.name || 'Unnamed Room')}</span>
@@ -1908,7 +2201,9 @@
       });
     });
 
-    grid.innerHTML = html || '<p class="area-summary__empty">Select surfaces in rooms to see area calculations.</p>';
+    grid.innerHTML =
+      html ||
+      '<p class="area-summary__empty">Select surfaces in rooms to see area calculations.</p>';
     totalEl.textContent = formatNumber(totalArea, 1);
 
     // Sync total area to all calculator inputs
@@ -1932,10 +2227,10 @@
       // Legacy waterproofing calculator IDs (total and/or split floor/wall)
       'wp-area',
       'wp-floor-area',
-      'wp-wall-area'
+      'wp-wall-area',
     ];
 
-    areaInputs.forEach(inputId => {
+    areaInputs.forEach((inputId) => {
       const input = document.getElementById(inputId);
       if (input) {
         // Only update if input is empty or has the previous synced value
@@ -1969,14 +2264,14 @@
       includeTile = true,
       includeMortar = true,
       includeAssumptions = true,
-      includeDisclaimers = true
+      includeDisclaimers = true,
     } = options;
 
     let output = '';
     const date = new Date().toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     });
 
     // Header
@@ -2003,14 +2298,16 @@
       output += `SCOPE OF WORK\n`;
       output += `${'-'.repeat(30)}\n`;
 
-      state.rooms.forEach(room => {
+      state.rooms.forEach((room) => {
         if (!room.name) return;
         output += `\n${room.name}:\n`;
 
-        Object.keys(room.surfaces || {}).forEach(surfaceId => {
+        Object.keys(room.surfaces || {}).forEach((surfaceId) => {
           const surface = room.surfaces[surfaceId];
           if (surface.selected) {
-            const surfaceName = surfaceId.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+            const surfaceName = surfaceId
+              .replace('-', ' ')
+              .replace(/\b\w/g, (l) => l.toUpperCase());
             output += `  • ${surfaceName}: ${formatNumber(surface.area, 1)} sq ft\n`;
           }
         });
@@ -2025,9 +2322,9 @@
       output += `${'-'.repeat(30)}\n`;
 
       let totalArea = 0;
-      state.rooms.forEach(room => {
+      state.rooms.forEach((room) => {
         if (!room.surfaces) return;
-        Object.values(room.surfaces).forEach(s => {
+        Object.values(room.surfaces).forEach((s) => {
           if (s.selected) totalArea += s.area;
         });
       });
@@ -2070,17 +2367,17 @@
       if (systems.underlayment !== 'none') {
         const underlaymentLabels = {
           'cement-board': 'Cement Board (CBU)',
-          'uncoupling': 'Uncoupling Membrane',
+          uncoupling: 'Uncoupling Membrane',
           'mud-bed': 'Mud Bed',
-          'self-leveler': 'Self-Leveling Compound'
+          'self-leveler': 'Self-Leveling Compound',
         };
         output += `Underlayment: ${underlaymentLabels[systems.underlayment] || systems.underlayment}\n`;
       }
 
       if (systems.waterproofing !== 'none') {
         const wpLabels = {
-          'liquid': 'Liquid-Applied Membrane',
-          'sheet': 'Sheet Membrane'
+          liquid: 'Liquid-Applied Membrane',
+          sheet: 'Sheet Membrane',
         };
         output += `Waterproofing: ${wpLabels[systems.waterproofing] || systems.waterproofing}\n`;
       }
@@ -2102,7 +2399,7 @@
 
       if (demoItems.length > 0) {
         output += `\nDemo scope:\n`;
-        demoItems.forEach(item => {
+        demoItems.forEach((item) => {
           output += `  • ${item}\n`;
         });
       }
@@ -2121,7 +2418,7 @@
     if (includeAssumptions && state.assumptions.length > 0) {
       output += `ASSUMPTIONS\n`;
       output += `${'-'.repeat(30)}\n`;
-      state.assumptions.forEach(a => {
+      state.assumptions.forEach((a) => {
         output += `• ${a}\n`;
       });
       output += '\n';
@@ -2188,7 +2485,7 @@
       includeMortar: document.getElementById('output-mortar').checked,
       includeAssumptions: document.getElementById('output-assumptions').checked,
       includeDisclaimers: document.getElementById('output-disclaimers').checked,
-      includeAudit: document.getElementById('output-audit')?.checked || false
+      includeAudit: document.getElementById('output-audit')?.checked || false,
     };
 
     // Validate before generating output
@@ -2219,7 +2516,9 @@
    */
   function generateOutputPacket(options) {
     const date = new Date().toLocaleDateString('en-US', {
-      year: 'numeric', month: 'long', day: 'numeric'
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
     });
 
     // Calculate totals
@@ -2227,13 +2526,13 @@
     let totalDeductions = 0;
     let totalNet = 0;
 
-    state.rooms.forEach(room => {
+    state.rooms.forEach((room) => {
       if (!room.surfaces) return;
-      Object.values(room.surfaces).forEach(s => {
+      Object.values(room.surfaces).forEach((s) => {
         if (s.selected) {
-          totalGross += (s.grossArea || s.area || 0);
+          totalGross += s.grossArea || s.area || 0;
           totalDeductions += (s.deductions || []).reduce((sum, d) => sum + (d.area || 0), 0);
-          totalNet += (s.netArea || s.area || 0);
+          totalNet += s.netArea || s.area || 0;
         }
       });
     });
@@ -2427,16 +2726,16 @@
    * Generate scope narrative
    */
   function generateScopeNarrative() {
-    const roomCount = state.rooms.filter(r => r.name).length;
+    const roomCount = state.rooms.filter((r) => r.name).length;
     const surfaces = [];
     let totalArea = 0;
 
-    state.rooms.forEach(room => {
+    state.rooms.forEach((room) => {
       Object.entries(room.surfaces || {}).forEach(([id, s]) => {
         if (s.selected) {
           const label = id.replace(/-/g, ' ');
           if (!surfaces.includes(label)) surfaces.push(label);
-          totalArea += (s.netArea || s.area || 0);
+          totalArea += s.netArea || s.area || 0;
         }
       });
     });
@@ -2468,17 +2767,22 @@
   function generateMeasurementsTableRows() {
     let rows = '';
 
-    state.rooms.filter(r => r.name).forEach(room => {
-      const surfaces = Object.entries(room.surfaces || {}).filter(([, s]) => s.selected);
-      if (surfaces.length === 0) return;
+    state.rooms
+      .filter((r) => r.name)
+      .forEach((room) => {
+        const surfaces = Object.entries(room.surfaces || {}).filter(([, s]) => s.selected);
+        if (surfaces.length === 0) return;
 
-      surfaces.forEach(([surfaceId, surface], idx) => {
-        const config = SURFACE_CONFIGS[surfaceId] || { label: surfaceId };
-        const gross = surface.grossArea || surface.area || 0;
-        const deductionsTotal = (surface.deductions || []).reduce((sum, d) => sum + (d.area || 0), 0);
-        const net = surface.netArea || (gross - deductionsTotal);
+        surfaces.forEach(([surfaceId, surface], idx) => {
+          const config = SURFACE_CONFIGS[surfaceId] || { label: surfaceId };
+          const gross = surface.grossArea || surface.area || 0;
+          const deductionsTotal = (surface.deductions || []).reduce(
+            (sum, d) => sum + (d.area || 0),
+            0
+          );
+          const net = surface.netArea || gross - deductionsTotal;
 
-        rows += `
+          rows += `
           <tr>
             ${idx === 0 ? `<td rowspan="${surfaces.length}" class="room-name">${escapeHtml(room.name)}${room.locked ? ' 🔒' : ''}</td>` : ''}
             <td>${escapeHtml(config.label)}</td>
@@ -2487,8 +2791,8 @@
             <td class="num">${formatNumber(net, 1)}</td>
           </tr>
         `;
+        });
       });
-    });
 
     return rows;
   }
@@ -2497,7 +2801,7 @@
    * Check if any rooms have audit entries
    */
   function hasAuditEntries() {
-    return state.rooms.some(r => r.auditTrail && r.auditTrail.length > 0);
+    return state.rooms.some((r) => r.auditTrail && r.auditTrail.length > 0);
   }
 
   /**
@@ -2506,17 +2810,24 @@
   function generateAuditHtml() {
     let html = '<ul class="audit-list">';
 
-    state.rooms.filter(r => r.auditTrail && r.auditTrail.length > 0).forEach(room => {
-      html += `<li class="audit-room"><strong>${escapeHtml(room.name || 'Unnamed Room')}</strong><ul>`;
-      room.auditTrail.forEach(entry => {
-        const date = new Date(entry.timestamp);
-        const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-        html += `<li>${escapeHtml(dateStr)}: ${escapeHtml(entry.action)}`;
-        if (entry.reason) html += ` — "${escapeHtml(entry.reason)}"`;
-        html += ` (${formatNumber(entry.dimensions.length, 1)}×${formatNumber(entry.dimensions.width, 1)} ft)</li>`;
+    state.rooms
+      .filter((r) => r.auditTrail && r.auditTrail.length > 0)
+      .forEach((room) => {
+        html += `<li class="audit-room"><strong>${escapeHtml(room.name || 'Unnamed Room')}</strong><ul>`;
+        room.auditTrail.forEach((entry) => {
+          const date = new Date(entry.timestamp);
+          const dateStr = date.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+          });
+          html += `<li>${escapeHtml(dateStr)}: ${escapeHtml(entry.action)}`;
+          if (entry.reason) html += ` — "${escapeHtml(entry.reason)}"`;
+          html += ` (${formatNumber(entry.dimensions.length, 1)}×${formatNumber(entry.dimensions.width, 1)} ft)</li>`;
+        });
+        html += '</ul></li>';
       });
-      html += '</ul></li>';
-    });
 
     html += '</ul>';
     return html;
@@ -2555,7 +2866,7 @@
       includeTile: document.getElementById('output-tile').checked,
       includeMortar: document.getElementById('output-mortar').checked,
       includeAssumptions: document.getElementById('output-assumptions').checked,
-      includeDisclaimers: document.getElementById('output-disclaimers').checked
+      includeDisclaimers: document.getElementById('output-disclaimers').checked,
     };
 
     const html = generateBrandedDocx(options);
@@ -2580,24 +2891,32 @@
    */
   function generateBrandedDocx(options) {
     const date = new Date().toLocaleDateString('en-US', {
-      year: 'numeric', month: 'long', day: 'numeric'
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
     });
     const projectName = state.project.name || 'Tile Project Specification';
 
     // Calculate all project totals
-    let totalGross = 0, totalDeductions = 0, totalNet = 0;
-    state.rooms.forEach(room => {
+    let totalGross = 0,
+      totalDeductions = 0,
+      totalNet = 0;
+    state.rooms.forEach((room) => {
       if (!room.surfaces) return;
-      Object.values(room.surfaces).forEach(s => {
+      Object.values(room.surfaces).forEach((s) => {
         if (s.selected) {
-          totalGross += (s.grossArea || s.area || 0);
+          totalGross += s.grossArea || s.area || 0;
           totalDeductions += (s.deductions || []).reduce((sum, d) => sum + (d.area || 0), 0);
-          totalNet += (s.netArea || s.area || 0);
+          totalNet += s.netArea || s.area || 0;
         }
       });
     });
 
-    const tile = getTilePreset(state.defaults.tilePreset, state.defaults.customTileWidth, state.defaults.customTileHeight);
+    const tile = getTilePreset(
+      state.defaults.tilePreset,
+      state.defaults.customTileWidth,
+      state.defaults.customTileHeight
+    );
     const layout = getLayoutPreset(state.defaults.layout);
     const joint = getJointPreset(state.defaults.jointSize);
     const wasteFactor = state.defaults.wasteFactor || 10;
@@ -2865,7 +3184,7 @@
 
   <!-- Project Summary Box -->
   <div class="summary-box">
-    <p><strong>Project Overview:</strong> ${state.rooms.filter(r => r.name).length} room${state.rooms.filter(r => r.name).length !== 1 ? 's' : ''} • ${escapeHtml(tile.name)} tile • ${escapeHtml(layout?.name || 'Standard')} pattern</p>
+    <p><strong>Project Overview:</strong> ${state.rooms.filter((r) => r.name).length} room${state.rooms.filter((r) => r.name).length !== 1 ? 's' : ''} • ${escapeHtml(tile.name)} tile • ${escapeHtml(layout?.name || 'Standard')} pattern</p>
     <p><span class="summary-highlight">${formatNumber(totalNet, 0)} SF</span> total tile area (${formatNumber(areaWithWaste, 0)} SF with ${wasteFactor}% waste)</p>
   </div>
 
@@ -2898,21 +3217,25 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
    * Generate scope section for branded document
    */
   function generateDocxScopeSection() {
-    const roomCount = state.rooms.filter(r => r.name).length;
+    const roomCount = state.rooms.filter((r) => r.name).length;
     const surfaces = [];
     let totalArea = 0;
 
-    state.rooms.forEach(room => {
+    state.rooms.forEach((room) => {
       Object.entries(room.surfaces || {}).forEach(([id, s]) => {
         if (s.selected) {
           const label = id.replace(/-/g, ' ');
           if (!surfaces.includes(label)) surfaces.push(label);
-          totalArea += (s.netArea || s.area || 0);
+          totalArea += s.netArea || s.area || 0;
         }
       });
     });
 
-    const tile = getTilePreset(state.defaults.tilePreset, state.defaults.customTileWidth, state.defaults.customTileHeight);
+    const tile = getTilePreset(
+      state.defaults.tilePreset,
+      state.defaults.customTileWidth,
+      state.defaults.customTileHeight
+    );
     const layout = getLayoutPreset(state.defaults.layout);
 
     let html = '<h2 class="section-title">📋 Scope of Work</h2>';
@@ -2948,32 +3271,38 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
   function generateDocxMeasurementsSection(totalGross, totalDeductions, totalNet) {
     let html = '<h2 class="section-title">📐 Measurements Detail</h2>';
     html += '<table class="data-table">';
-    html += '<thead><tr><th>Room</th><th>Surface</th><th class="num">Gross (SF)</th><th class="num">Deductions</th><th class="num">Net Area</th></tr></thead>';
+    html +=
+      '<thead><tr><th>Room</th><th>Surface</th><th class="num">Gross (SF)</th><th class="num">Deductions</th><th class="num">Net Area</th></tr></thead>';
     html += '<tbody>';
 
     let rowIdx = 0;
-    state.rooms.filter(r => r.name).forEach(room => {
-      const surfaces = Object.entries(room.surfaces || {}).filter(([, s]) => s.selected);
-      if (surfaces.length === 0) return;
+    state.rooms
+      .filter((r) => r.name)
+      .forEach((room) => {
+        const surfaces = Object.entries(room.surfaces || {}).filter(([, s]) => s.selected);
+        if (surfaces.length === 0) return;
 
-      surfaces.forEach(([surfaceId, surface], idx) => {
-        const config = SURFACE_CONFIGS[surfaceId] || { label: surfaceId };
-        const gross = surface.grossArea || surface.area || 0;
-        const deductionsTotal = (surface.deductions || []).reduce((sum, d) => sum + (d.area || 0), 0);
-        const net = surface.netArea || (gross - deductionsTotal);
+        surfaces.forEach(([surfaceId, surface], idx) => {
+          const config = SURFACE_CONFIGS[surfaceId] || { label: surfaceId };
+          const gross = surface.grossArea || surface.area || 0;
+          const deductionsTotal = (surface.deductions || []).reduce(
+            (sum, d) => sum + (d.area || 0),
+            0
+          );
+          const net = surface.netArea || gross - deductionsTotal;
 
-        html += `<tr class="${rowIdx % 2 === 1 ? 'alt-row' : ''}">`;
-        if (idx === 0) {
-          html += `<td rowspan="${surfaces.length}" class="room-name">${escapeHtml(room.name)}${room.locked ? ' 🔒' : ''}</td>`;
-        }
-        html += `<td>${escapeHtml(config.label)}</td>`;
-        html += `<td class="num">${formatNumber(gross, 1)}</td>`;
-        html += `<td class="num">${deductionsTotal > 0 ? '−' + formatNumber(deductionsTotal, 1) : '—'}</td>`;
-        html += `<td class="num">${formatNumber(net, 1)}</td>`;
-        html += '</tr>';
-        rowIdx++;
+          html += `<tr class="${rowIdx % 2 === 1 ? 'alt-row' : ''}">`;
+          if (idx === 0) {
+            html += `<td rowspan="${surfaces.length}" class="room-name">${escapeHtml(room.name)}${room.locked ? ' 🔒' : ''}</td>`;
+          }
+          html += `<td>${escapeHtml(config.label)}</td>`;
+          html += `<td class="num">${formatNumber(gross, 1)}</td>`;
+          html += `<td class="num">${deductionsTotal > 0 ? '−' + formatNumber(deductionsTotal, 1) : '—'}</td>`;
+          html += `<td class="num">${formatNumber(net, 1)}</td>`;
+          html += '</tr>';
+          rowIdx++;
+        });
       });
-    });
 
     html += '</tbody>';
     html += '<tfoot><tr class="totals-row">';
@@ -2997,11 +3326,20 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     const tileCalc = calculateTileQuantity(totalArea, tile, wasteFactor);
     const trowelRec = getRecommendedTrowel(tile, 'smooth');
     const mortarCalc = calculateMortarBags(totalArea, trowelRec.trowelId, trowelRec.backButter);
-    const groutCalc = calculateGrout(totalArea, tile.width, tile.height, 8, parseFloat(joint.size) || 0.125, 'cement', tile.isMosaic);
+    const groutCalc = calculateGrout(
+      totalArea,
+      tile.width,
+      tile.height,
+      8,
+      parseFloat(joint.size) || 0.125,
+      'cement',
+      tile.isMosaic
+    );
 
     let html = '<h2 class="section-title">🧱 Material Takeoff</h2>';
     html += '<table class="data-table">';
-    html += '<thead><tr><th>Material</th><th class="num">Quantity</th><th>Specification</th><th>Notes</th></tr></thead>';
+    html +=
+      '<thead><tr><th>Material</th><th class="num">Quantity</th><th>Specification</th><th>Notes</th></tr></thead>';
     html += '<tbody>';
 
     // Tile
@@ -3045,14 +3383,16 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       html += '<tr>';
       html += '<td><strong>Waterproofing</strong></td>';
       html += `<td class="num">~${gallons} gal</td>`;
-      html += '<td>Liquid membrane<br><span class="material-detail">RedGard, Hydroban, or equiv.</span></td>';
+      html +=
+        '<td>Liquid membrane<br><span class="material-detail">RedGard, Hydroban, or equiv.</span></td>';
       html += '<td class="material-note">2 coats required + corners/curbs</td>';
       html += '</tr>';
     } else if (state.systems.waterproofing === 'sheet') {
       html += '<tr>';
       html += '<td><strong>Waterproofing</strong></td>';
       html += `<td class="num">${formatNumber(areaWithWaste * 1.1, 0)} SF</td>`;
-      html += '<td>Sheet membrane<br><span class="material-detail">Kerdi, NobleSeal, or equiv.</span></td>';
+      html +=
+        '<td>Sheet membrane<br><span class="material-detail">Kerdi, NobleSeal, or equiv.</span></td>';
       html += '<td class="material-note">Include seam tape, corners, curbs</td>';
       html += '</tr>';
     }
@@ -3112,13 +3452,17 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     let html = '<h2 class="section-title">⚖️ Important Notices</h2>';
     html += '<div class="disclaimers">';
 
-    html += '<p><strong>FOR ESTIMATION PURPOSES ONLY.</strong> This document provides preliminary estimates based on the information entered. Actual material requirements may vary based on site conditions, final tile selection, installation method, and other project-specific factors. Tillerstead recommends professional on-site measurement and consultation before purchasing materials.</p>';
+    html +=
+      '<p><strong>FOR ESTIMATION PURPOSES ONLY.</strong> This document provides preliminary estimates based on the information entered. Actual material requirements may vary based on site conditions, final tile selection, installation method, and other project-specific factors. Tillerstead recommends professional on-site measurement and consultation before purchasing materials.</p>';
 
-    html += '<p><strong>TROWEL & COVERAGE:</strong> Trowel recommendations are starting points based on tile size and substrate type. Always verify with tile and mortar manufacturer specifications. Confirm minimum 80% coverage (95% for wet areas and large format tile) through field testing.</p>';
+    html +=
+      '<p><strong>TROWEL & COVERAGE:</strong> Trowel recommendations are starting points based on tile size and substrate type. Always verify with tile and mortar manufacturer specifications. Confirm minimum 80% coverage (95% for wet areas and large format tile) through field testing.</p>';
 
-    html += '<p><strong>WARRANTY:</strong> Material estimates do not constitute a contract, proposal, or warranty. All installations should follow TCNA Handbook guidelines and manufacturer specifications.</p>';
+    html +=
+      '<p><strong>WARRANTY:</strong> Material estimates do not constitute a contract, proposal, or warranty. All installations should follow TCNA Handbook guidelines and manufacturer specifications.</p>';
 
-    html += '<p style="margin-top: 12pt; border-top: 0.5pt solid #d4a84b; padding-top: 8pt; font-size: 8pt;"><strong>Tillerstead LLC</strong> • NJ Registered Home Improvement Contractor #13VH10808800 • (609) 862-8808 • support@tillerstead.com</p>';
+    html +=
+      '<p style="margin-top: 12pt; border-top: 0.5pt solid #d4a84b; padding-top: 8pt; font-size: 8pt;"><strong>Tillerstead LLC</strong> • NJ Registered Home Improvement Contractor #13VH10808800 • (609) 862-8808 • support@tillerstead.com</p>';
 
     html += '</div>';
     return html;
@@ -3136,7 +3480,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       window.__tillersteadLastDownload = {
         kind: 'txt',
         filename,
-        at: Date.now()
+        at: Date.now(),
       };
     }
     try {
@@ -3214,7 +3558,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       includeTile: document.getElementById('output-tile').checked,
       includeMortar: document.getElementById('output-mortar').checked,
       includeAssumptions: document.getElementById('output-assumptions').checked,
-      includeDisclaimers: document.getElementById('output-disclaimers').checked
+      includeDisclaimers: document.getElementById('output-disclaimers').checked,
     };
 
     // Generate the branded HTML document (same as Word export)
@@ -3231,7 +3575,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     printWindow.document.close();
 
     // Wait for content to load, then trigger print
-    printWindow.onload = function() {
+    printWindow.onload = function () {
       setTimeout(() => {
         printWindow.focus();
         printWindow.print();
@@ -3246,7 +3590,9 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
    */
   function generatePlainTextOutput() {
     const date = new Date().toLocaleDateString('en-US', {
-      year: 'numeric', month: 'long', day: 'numeric'
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
     });
 
     let text = '';
@@ -3266,9 +3612,9 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
 
     // Calculate totals
     let totalArea = 0;
-    state.rooms.forEach(room => {
+    state.rooms.forEach((room) => {
       if (!room.surfaces) return;
-      Object.values(room.surfaces).forEach(s => {
+      Object.values(room.surfaces).forEach((s) => {
         if (s.selected) totalArea += s.area;
       });
     });
@@ -3281,20 +3627,21 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       text += '📐 MEASUREMENTS\n';
       text += thinLine + '\n\n';
 
-      state.rooms.filter(r => r.name).forEach(room => {
-        const surfaces = Object.entries(room.surfaces || {})
-          .filter(([, s]) => s.selected);
+      state.rooms
+        .filter((r) => r.name)
+        .forEach((room) => {
+          const surfaces = Object.entries(room.surfaces || {}).filter(([, s]) => s.selected);
 
-        if (surfaces.length === 0) return;
+          if (surfaces.length === 0) return;
 
-        text += `${room.name}:\n`;
-        surfaces.forEach(([id, s]) => {
-          const name = id.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-          text += `  • ${name}: ${formatNumber(s.area, 1)} sf\n`;
+          text += `${room.name}:\n`;
+          surfaces.forEach(([id, s]) => {
+            const name = id.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
+            text += `  • ${name}: ${formatNumber(s.area, 1)} sf\n`;
+          });
+          const roomTotal = surfaces.reduce((sum, [, s]) => sum + s.area, 0);
+          text += `  Subtotal: ${formatNumber(roomTotal, 1)} sf\n\n`;
         });
-        const roomTotal = surfaces.reduce((sum, [, s]) => sum + s.area, 0);
-        text += `  Subtotal: ${formatNumber(roomTotal, 1)} sf\n\n`;
-      });
 
       text += `TOTAL TILE AREA: ${formatNumber(totalArea, 1)} sf\n`;
       text += `With ${state.defaults.wasteFactor || 12}% waste: ${formatNumber(areaWithWaste, 1)} sf\n`;
@@ -3396,26 +3743,31 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
    */
   function generateRoomsHtml() {
     let html = '';
-    state.rooms.filter(r => r.name).forEach(room => {
-      const surfaces = Object.entries(room.surfaces || {})
-        .filter(([, s]) => s.selected)
-        .map(([id, s]) => ({
-          name: id.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-          area: s.area
-        }));
+    state.rooms
+      .filter((r) => r.name)
+      .forEach((room) => {
+        const surfaces = Object.entries(room.surfaces || {})
+          .filter(([, s]) => s.selected)
+          .map(([id, s]) => ({
+            name: id.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()),
+            area: s.area,
+          }));
 
-      if (surfaces.length === 0) return;
+        if (surfaces.length === 0) return;
 
-      const roomTotal = surfaces.reduce((sum, s) => sum + s.area, 0);
+        const roomTotal = surfaces.reduce((sum, s) => sum + s.area, 0);
 
-      html += '<tr class="room-header"><td colspan="2"><strong>' + escapeHtml(room.name) + '</strong></td></tr>';
-      surfaces.forEach(s => {
-        html += '<tr><td class="indent">' + escapeHtml(s.name) + '</td>';
-        html += '<td class="num">' + formatNumber(s.area, 1) + ' sf</td></tr>';
+        html +=
+          '<tr class="room-header"><td colspan="2"><strong>' +
+          escapeHtml(room.name) +
+          '</strong></td></tr>';
+        surfaces.forEach((s) => {
+          html += '<tr><td class="indent">' + escapeHtml(s.name) + '</td>';
+          html += '<td class="num">' + formatNumber(s.area, 1) + ' sf</td></tr>';
+        });
+        html += '<tr class="room-subtotal"><td class="indent">Subtotal</td>';
+        html += '<td class="num">' + formatNumber(roomTotal, 1) + ' sf</td></tr>';
       });
-      html += '<tr class="room-subtotal"><td class="indent">Subtotal</td>';
-      html += '<td class="num">' + formatNumber(roomTotal, 1) + ' sf</td></tr>';
-    });
     return html;
   }
 
@@ -3425,9 +3777,9 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
   function generateMaterialsHtml() {
     // Calculate totals
     let totalArea = 0;
-    state.rooms.forEach(room => {
+    state.rooms.forEach((room) => {
       if (!room.surfaces) return;
-      Object.values(room.surfaces).forEach(s => {
+      Object.values(room.surfaces).forEach((s) => {
         if (s.selected) totalArea += s.area;
       });
     });
@@ -3463,30 +3815,51 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
 
     // Tile
     html += '<tr class="material-row">';
-    html += '<td><strong>Tile</strong><br><span class="material-detail">' + escapeHtml(tile.name) + '</span></td>';
+    html +=
+      '<td><strong>Tile</strong><br><span class="material-detail">' +
+      escapeHtml(tile.name) +
+      '</span></td>';
     html += '<td class="num">' + formatNumber(areaWithWaste, 0) + ' sf</td>';
-    html += '<td class="material-note">Includes ' + wasteFactor + '% waste' + (state.defaults.extraAtticStock ? ' + attic stock' : '') + '</td>';
+    html +=
+      '<td class="material-note">Includes ' +
+      wasteFactor +
+      '% waste' +
+      (state.defaults.extraAtticStock ? ' + attic stock' : '') +
+      '</td>';
     html += '</tr>';
 
     // Thinset/Mortar
     html += '<tr class="material-row">';
-    html += '<td><strong>Thinset Mortar</strong><br><span class="material-detail">50 lb bags, ' + escapeHtml(getTrowelPreset(trowelRec.trowelId).name) + ' trowel</span></td>';
+    html +=
+      '<td><strong>Thinset Mortar</strong><br><span class="material-detail">50 lb bags, ' +
+      escapeHtml(getTrowelPreset(trowelRec.trowelId).name) +
+      ' trowel</span></td>';
     html += '<td class="num">' + mortarCalc.min + '–' + mortarCalc.max + ' bags</td>';
-    html += '<td class="material-note">' + (trowelRec.backButter ? 'Back-buttering recommended' : 'Standard coverage') + '</td>';
+    html +=
+      '<td class="material-note">' +
+      (trowelRec.backButter ? 'Back-buttering recommended' : 'Standard coverage') +
+      '</td>';
     html += '</tr>';
 
     // Grout
     html += '<tr class="material-row">';
-    html += '<td><strong>Grout</strong><br><span class="material-detail">' + escapeHtml(joint.name) + ' joints</span></td>';
+    html +=
+      '<td><strong>Grout</strong><br><span class="material-detail">' +
+      escapeHtml(joint.name) +
+      ' joints</span></td>';
     html += '<td class="num">~' + groutCalc.quantity + ' lbs</td>';
-    html += '<td class="material-note">' + (tile.isMosaic ? 'Mosaic = more grout' : 'Standard joint volume') + '</td>';
+    html +=
+      '<td class="material-note">' +
+      (tile.isMosaic ? 'Mosaic = more grout' : 'Standard joint volume') +
+      '</td>';
     html += '</tr>';
 
     // Backer Board (if underlayment selected)
     if (state.systems.underlayment === 'cement-board') {
       const sheets = Math.ceil(totalArea / 15); // 3x5 sheets = 15 sf
       html += '<tr class="material-row">';
-      html += '<td><strong>Cement Board</strong><br><span class="material-detail">3×5 ft sheets (1/2")</span></td>';
+      html +=
+        '<td><strong>Cement Board</strong><br><span class="material-detail">3×5 ft sheets (1/2")</span></td>';
       html += '<td class="num">' + sheets + ' sheets</td>';
       html += '<td class="material-note">CBU screws & mesh tape needed</td>';
       html += '</tr>';
@@ -3496,13 +3869,15 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     if (state.systems.waterproofing === 'liquid') {
       const gallons = Math.ceil(totalArea / 50); // ~50 sf per gallon for 2 coats
       html += '<tr class="material-row">';
-      html += '<td><strong>Waterproofing</strong><br><span class="material-detail">Liquid membrane (2 coats)</span></td>';
+      html +=
+        '<td><strong>Waterproofing</strong><br><span class="material-detail">Liquid membrane (2 coats)</span></td>';
       html += '<td class="num">~' + gallons + ' gal</td>';
       html += '<td class="material-note">Plus corners, curbs, fabric</td>';
       html += '</tr>';
     } else if (state.systems.waterproofing === 'sheet') {
       html += '<tr class="material-row">';
-      html += '<td><strong>Waterproofing</strong><br><span class="material-detail">Sheet membrane</span></td>';
+      html +=
+        '<td><strong>Waterproofing</strong><br><span class="material-detail">Sheet membrane</span></td>';
       html += '<td class="num">' + formatNumber(areaWithWaste * 1.1, 0) + ' sf</td>';
       html += '<td class="material-note">Includes corners & seams</td>';
       html += '</tr>';
@@ -3511,7 +3886,8 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     // Uncoupling membrane
     if (state.systems.underlayment === 'uncoupling') {
       html += '<tr class="material-row">';
-      html += '<td><strong>Uncoupling Membrane</strong><br><span class="material-detail">DITRA or equivalent</span></td>';
+      html +=
+        '<td><strong>Uncoupling Membrane</strong><br><span class="material-detail">DITRA or equivalent</span></td>';
       html += '<td class="num">' + formatNumber(areaWithWaste, 0) + ' sf</td>';
       html += '<td class="material-note">Unmodified thinset required</td>';
       html += '</tr>';
@@ -3526,14 +3902,16 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
    */
   function downloadPdfBuildGuide() {
     const date = new Date().toLocaleDateString('en-US', {
-      year: 'numeric', month: 'long', day: 'numeric'
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
     });
 
     // Calculate total area
     let totalArea = 0;
-    state.rooms.forEach(room => {
+    state.rooms.forEach((room) => {
       if (!room.surfaces) return;
-      Object.values(room.surfaces).forEach(s => {
+      Object.values(room.surfaces).forEach((s) => {
         if (s.selected) totalArea += s.area;
       });
     });
@@ -3553,27 +3931,27 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       relevantGuides.push({
         title: 'Waterproofing Systems',
         url: '/build/waterproofing-systems/',
-        summary: 'How your shower is protected from water damage'
+        summary: 'How your shower is protected from water damage',
       });
     }
     if (totalArea > 0) {
       relevantGuides.push({
         title: 'Tile Installation Standards',
         url: '/build/tile-installation-standards/',
-        summary: 'TCNA & ANSI standards for durable installations'
+        summary: 'TCNA & ANSI standards for durable installations',
       });
     }
     if (state.systems.underlayment !== 'none' && state.systems.underlayment !== 'cement-board') {
       relevantGuides.push({
         title: 'Shower Pans & Slopes',
         url: '/build/shower-pans-slopes-drains/',
-        summary: 'Why proper slope and drainage matter'
+        summary: 'Why proper slope and drainage matter',
       });
     }
     relevantGuides.push({
       title: 'NJ Codes & Permits',
       url: '/build/nj-codes-permits/',
-      summary: 'New Jersey building requirements'
+      summary: 'New Jersey building requirements',
     });
 
     // Build the professional HTML document with Tillerstead theme (light variant)
@@ -4056,19 +4434,31 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       <table class="spec-table mt-0">
         <tr>
           <td>Underlayment</td>
-          <td>${state.systems.underlayment === 'none' ? '—' :
-    state.systems.underlayment === 'cement-board' ? 'Cement Board' :
-      state.systems.underlayment === 'uncoupling' ? 'Uncoupling Membrane' :
-        state.systems.underlayment === 'mud-bed' ? 'Mud Bed' :
-          state.systems.underlayment === 'self-leveler' ? 'Self-Leveler' :
-            escapeHtml(state.systems.underlayment)}</td>
+          <td>${
+            state.systems.underlayment === 'none'
+              ? '—'
+              : state.systems.underlayment === 'cement-board'
+                ? 'Cement Board'
+                : state.systems.underlayment === 'uncoupling'
+                  ? 'Uncoupling Membrane'
+                  : state.systems.underlayment === 'mud-bed'
+                    ? 'Mud Bed'
+                    : state.systems.underlayment === 'self-leveler'
+                      ? 'Self-Leveler'
+                      : escapeHtml(state.systems.underlayment)
+          }</td>
         </tr>
         <tr>
           <td>Waterproofing</td>
-          <td>${state.systems.waterproofing === 'none' ? '—' :
-    state.systems.waterproofing === 'liquid' ? 'Liquid Membrane' :
-      state.systems.waterproofing === 'sheet' ? 'Sheet Membrane' :
-        escapeHtml(state.systems.waterproofing)}</td>
+          <td>${
+            state.systems.waterproofing === 'none'
+              ? '—'
+              : state.systems.waterproofing === 'liquid'
+                ? 'Liquid Membrane'
+                : state.systems.waterproofing === 'sheet'
+                  ? 'Sheet Membrane'
+                  : escapeHtml(state.systems.waterproofing)
+          }</td>
         </tr>
         <tr><td>Edge Trim</td><td>${state.systems.edgeTrim === 'none' ? '—' : escapeHtml(state.systems.edgeTrim)}</td></tr>
         <tr><td>Movement Joints</td><td>${state.systems.movementJoints ? '✓ Required' : 'TBD'}</td></tr>
@@ -4076,29 +4466,41 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     </div>
   </div>
 
-  ${tile.isLargeFormat ? `
+  ${
+    tile.isLargeFormat
+      ? `
   <div class="card card-warning no-break">
     <h4>⚠️ Large Format Tile</h4>
     <p>Tiles larger than 15" require substrate flatness within 1/8" in 10 feet per ANSI A108.02. 
     Floor leveling may be needed. Minimum 95% mortar coverage with back-buttering.</p>
   </div>
-  ` : ''}
+  `
+      : ''
+  }
 
-  ${layout.lippageRisk ? `
+  ${
+    layout.lippageRisk
+      ? `
   <div class="card card-warning no-break">
     <h4>⚠️ Lippage Risk</h4>
     <p>A 50% offset pattern with rectangular tiles increases lippage risk. Consider 1/3 offset 
     or verify tiles are within ANSI warpage tolerances.</p>
   </div>
-  ` : ''}
+  `
+      : ''
+  }
 
-  ${state.systems.waterproofing !== 'none' ? `
+  ${
+    state.systems.waterproofing !== 'none'
+      ? `
   <div class="card card-info no-break">
     <h4>✓ Waterproofing Included</h4>
     <p>Your project includes waterproofing per TCNA Handbook and ANSI A118.10 standards. 
     Continuity maintained at corners, penetrations, and transitions.</p>
   </div>
-  ` : ''}
+  `
+      : ''
+  }
 
   <div class="footer">
     <span class="footer-brand">Tillerstead LLC</span>
@@ -4162,7 +4564,12 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     Confirm with your supplier before purchasing.</p>
   </div>
 
-  ${state.systems.demoTile || state.systems.demoUnderlayment || state.systems.subfloorRepair || state.systems.disposal ? `
+  ${
+    state.systems.demoTile ||
+    state.systems.demoUnderlayment ||
+    state.systems.subfloorRepair ||
+    state.systems.disposal
+      ? `
   <h2><span class="icon">🔨</span> Preparation Scope</h2>
   <ul style="padding-left: 20px; margin: 8px 0;">
     ${state.systems.demoTile ? '<li>Remove existing tile and thin-set</li>' : ''}
@@ -4170,14 +4577,20 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     ${state.systems.subfloorRepair ? '<li>Subfloor repair and preparation</li>' : ''}
     ${state.systems.disposal ? '<li>Debris removal and disposal</li>' : ''}
   </ul>
-  ` : ''}
+  `
+      : ''
+  }
 
-  ${state.project.notes ? `
+  ${
+    state.project.notes
+      ? `
   <h2><span class="icon">📝</span> Project Notes</h2>
   <div class="card card-info">
     <p>${escapeHtml(state.project.notes)}</p>
   </div>
-  ` : ''}
+  `
+      : ''
+  }
 
   <div class="footer">
     <span class="footer-brand">Tillerstead LLC</span>
@@ -4205,13 +4618,17 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
   <p class="text-muted" style="font-size: 9pt; margin-bottom: 12px;">These guides explain the standards relevant to your project. Visit tillerstead.com to read more.</p>
   
   <div class="guide-grid">
-    ${relevantGuides.map(g => `
+    ${relevantGuides
+      .map(
+        (g) => `
     <div class="guide-card">
       <h4>${escapeHtml(g.title)}</h4>
       <p>${escapeHtml(g.summary)}</p>
       <div class="url">tillerstead.com${g.url}</div>
     </div>
-    `).join('')}
+    `
+      )
+      .join('')}
   </div>
 
   <h2><span class="icon">✅</span> Homeowner Checklist</h2>
@@ -4312,7 +4729,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     const printWindow = window.open(url, '_blank');
 
     if (printWindow) {
-      printWindow.onload = function() {
+      printWindow.onload = function () {
         // Give the page a moment to render, then trigger print dialog
         setTimeout(() => {
           printWindow.print();
@@ -4322,7 +4739,8 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     } else {
       // Fallback: download as HTML file that user can open and print
       const a = document.createElement('a');
-      const filename = (state.project.name || 'tile-project').replace(/[^a-z0-9]/gi, '-') + '-build-guide.html';
+      const filename =
+        (state.project.name || 'tile-project').replace(/[^a-z0-9]/gi, '-') + '-build-guide.html';
       a.href = url;
       a.download = filename;
       document.body.appendChild(a);
@@ -4375,7 +4793,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
   /**
    * Save state to localStorage
    */
-  const saveToStorage = debounce(function() {
+  const saveToStorage = debounce(function () {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch (e) {
@@ -4397,7 +4815,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
           ...parsed,
           project: { ...state.project, ...parsed.project },
           defaults: { ...state.defaults, ...parsed.defaults },
-          systems: { ...state.systems, ...parsed.systems }
+          systems: { ...state.systems, ...parsed.systems },
         };
         return true;
       }
@@ -4457,7 +4875,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     document.getElementById('disposal').checked = state.systems.disposal || false;
 
     // Re-create room cards
-    state.rooms.forEach(room => {
+    state.rooms.forEach((room) => {
       createRoomCard(room);
     });
 
@@ -4502,11 +4920,11 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     );
 
     // Show results
-    document.getElementById('result-area-waste').textContent = `${formatNumber(result.areaWithWaste, 1)} sq ft`;
+    document.getElementById('result-area-waste').textContent =
+      `${formatNumber(result.areaWithWaste, 1)} sq ft`;
     document.getElementById('result-tiles').textContent = formatNumber(result.tiles);
-    document.getElementById('result-boxes').textContent = boxResult.boxes > 0
-      ? `${formatNumber(boxResult.boxes)} boxes`
-      : boxResult.note;
+    document.getElementById('result-boxes').textContent =
+      boxResult.boxes > 0 ? `${formatNumber(boxResult.boxes)} boxes` : boxResult.note;
 
     const noteEl = document.getElementById('tile-calc-note');
     let note = '';
@@ -4592,7 +5010,9 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     // Store override in state
     state.trowelOverride = {
       selected: isOverride ? useTrowelId : null,
-      reason: isOverride ? (document.getElementById('mortar-trowel-override-reason')?.value || '') : ''
+      reason: isOverride
+        ? document.getElementById('mortar-trowel-override-reason')?.value || ''
+        : '',
     };
 
     // Legacy recommendation display
@@ -4609,7 +5029,9 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       const bbCheckbox = document.getElementById('mortar-backbutter');
       if (bbCheckbox) {
         bbCheckbox.checked = true;
-        showToast('Back-buttering auto-enabled for large format tile (TCNA requirement: 95% coverage)');
+        showToast(
+          'Back-buttering auto-enabled for large format tile (TCNA requirement: 95% coverage)'
+        );
       }
     }
 
@@ -4618,7 +5040,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     if (coverageGoal === 'wet-area') {
       coverageMultiplier = 0.95; // Need better coverage in wet areas
     } else if (coverageGoal === 'large-format') {
-      coverageMultiplier = 0.90; // Large format needs excellent coverage
+      coverageMultiplier = 0.9; // Large format needs excellent coverage
     }
 
     const result = calculateMortarBags(area / coverageMultiplier, useTrowelId, backButter);
@@ -4627,15 +5049,15 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     // Show results
     document.getElementById('result-trowel').textContent = trowel.name;
     document.getElementById('result-coverage').textContent = result.coverage;
-    document.getElementById('result-bags').textContent = result.min === result.max
-      ? `${result.min} bags`
-      : `${result.min}–${result.max} bags`;
+    document.getElementById('result-bags').textContent =
+      result.min === result.max ? `${result.min} bags` : `${result.min}–${result.max} bags`;
 
     // Show substrate nudge if needed
     const substrateNudge = document.getElementById('substrate-nudge');
     const substrateNudgeText = document.getElementById('substrate-nudge-text');
     if (substrate === 'needs-flattening') {
-      substrateNudgeText.textContent = 'Substrate needs flattening. Consider self-leveler or patching before tile installation. Factor in additional material and labor.';
+      substrateNudgeText.textContent =
+        'Substrate needs flattening. Consider self-leveler or patching before tile installation. Factor in additional material and labor.';
       substrateNudge.hidden = false;
     } else {
       substrateNudge.hidden = true;
@@ -4684,7 +5106,15 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       return;
     }
 
-    const result = calculateGrout(area, tileLength, tileWidth, tileThickness, jointSize, groutType, isMosaic);
+    const result = calculateGrout(
+      area,
+      tileLength,
+      tileWidth,
+      tileThickness,
+      jointSize,
+      groutType,
+      isMosaic
+    );
 
     // Show results
     document.getElementById('result-joint-volume').textContent = `${result.volume} cu ft`;
@@ -4710,9 +5140,8 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
 
     // Show results
     document.getElementById('result-level-volume').textContent = `${result.volume} cu ft`;
-    document.getElementById('result-level-bags').textContent = result.bagsMax > result.bags
-      ? `${result.bags}–${result.bagsMax}`
-      : `~${result.bags}`;
+    document.getElementById('result-level-bags').textContent =
+      result.bagsMax > result.bags ? `${result.bags}–${result.bagsMax}` : `~${result.bags}`;
 
     document.getElementById('level-calc-results').hidden = false;
   }
@@ -4735,7 +5164,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     // Form submission prevention
     const estimateForm = document.getElementById('estimate-form');
     if (estimateForm) {
-      estimateForm.addEventListener('submit', e => e.preventDefault());
+      estimateForm.addEventListener('submit', (e) => e.preventDefault());
     }
 
     // Calculator buttons
@@ -4792,16 +5221,17 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     // Keyboard navigation for sticky nav
     const navList = document.querySelector('.tools-nav__list');
     if (navList) {
-      navList.addEventListener('keydown', e => {
+      navList.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
           const links = Array.from(document.querySelectorAll('.tools-nav__link'));
           const current = document.activeElement;
           const idx = links.indexOf(current);
           if (idx > -1) {
             e.preventDefault();
-            const next = e.key === 'ArrowRight'
-              ? links[(idx + 1) % links.length]
-              : links[(idx - 1 + links.length) % links.length];
+            const next =
+              e.key === 'ArrowRight'
+                ? links[(idx + 1) % links.length]
+                : links[(idx - 1 + links.length) % links.length];
             next.focus();
           }
         }
@@ -4864,7 +5294,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
    * Add a deduction to a surface
    */
   function addDeduction(roomId, surfaceId) {
-    const room = state.rooms.find(r => r.id === roomId);
+    const room = state.rooms.find((r) => r.id === roomId);
     if (!room || !room.surfaces || !room.surfaces[surfaceId]) return;
 
     if (!room.surfaces[surfaceId].deductions) {
@@ -4875,7 +5305,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       label: '',
       width: 0,
       height: 0,
-      area: 0
+      area: 0,
     });
 
     const card = document.querySelector(`[data-room-id="${roomId}"]`);
@@ -4889,7 +5319,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
    * Remove a deduction from a surface
    */
   function removeDeduction(roomId, surfaceId, index) {
-    const room = state.rooms.find(r => r.id === roomId);
+    const room = state.rooms.find((r) => r.id === roomId);
     if (!room || !room.surfaces || !room.surfaces[surfaceId]) return;
 
     if (room.surfaces[surfaceId].deductions && room.surfaces[surfaceId].deductions[index]) {
@@ -4909,7 +5339,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
    * Update deduction values
    */
   function updateDeduction(roomId, surfaceId, index, field, value) {
-    const room = state.rooms.find(r => r.id === roomId);
+    const room = state.rooms.find((r) => r.id === roomId);
     if (!room || !room.surfaces || !room.surfaces[surfaceId]) return;
 
     const deduction = room.surfaces[surfaceId].deductions?.[index];
@@ -4929,7 +5359,9 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     // Update display
     const card = document.querySelector(`[data-room-id="${roomId}"]`);
     if (card) {
-      const areaSpan = card.querySelector(`[data-deductions="${surfaceId}"] [data-index="${index}"] .deduction-area`);
+      const areaSpan = card.querySelector(
+        `[data-deductions="${surfaceId}"] [data-index="${index}"] .deduction-area`
+      );
       if (areaSpan) {
         areaSpan.textContent = deduction.area > 0 ? formatNumber(deduction.area, 1) + ' sf' : '—';
       }
@@ -5006,7 +5438,8 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       if (layout) {
         document.getElementById('default-waste').value = Math.round(layout.wasteFactor * 100);
         state.defaults.wasteFactor = Math.round(layout.wasteFactor * 100);
-        document.getElementById('waste-hint').textContent = `Suggested: ${layout.wasteRange} for ${layout.name}`;
+        document.getElementById('waste-hint').textContent =
+          `Suggested: ${layout.wasteRange} for ${layout.name}`;
       }
       showLayoutNudge();
       saveToStorage();
@@ -5070,7 +5503,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
         updateRoomSurface(roomId, target.dataset.surface, target.checked);
       }
       if (target.classList.contains('room-lock-checkbox')) {
-        const room = state.rooms.find(r => r.id === roomId);
+        const room = state.rooms.find((r) => r.id === roomId);
         if (room) {
           const wasLocked = room.locked;
           room.locked = target.checked;
@@ -5079,8 +5512,10 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
           if (!room.auditTrail) room.auditTrail = [];
 
           // Disable/enable inputs based on lock state
-          const dimensionInputs = roomCard.querySelectorAll('.room-length-ft, .room-length-in, .room-width-ft, .room-width-in, .room-height-ft, .room-height-in');
-          dimensionInputs.forEach(input => {
+          const dimensionInputs = roomCard.querySelectorAll(
+            '.room-length-ft, .room-length-in, .room-width-ft, .room-width-in, .room-height-ft, .room-height-in'
+          );
+          dimensionInputs.forEach((input) => {
             input.disabled = target.checked;
           });
 
@@ -5095,8 +5530,8 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
             dimensions: {
               length: toDecimalFeet(room.lengthFt, room.lengthIn),
               width: toDecimalFeet(room.widthFt, room.widthIn),
-              height: toDecimalFeet(room.heightFt, room.heightIn)
-            }
+              height: toDecimalFeet(room.heightFt, room.heightIn),
+            },
           };
 
           // If unlocking, prompt for reason
@@ -5120,11 +5555,13 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       // Surface area mode change
       if (target.classList.contains('surface-area-mode')) {
         const surfaceId = target.dataset.surface;
-        const room = state.rooms.find(r => r.id === roomId);
+        const room = state.rooms.find((r) => r.id === roomId);
         if (room && room.surfaces && room.surfaces[surfaceId]) {
           room.surfaces[surfaceId].areaMode = target.value;
           // Show/hide manual area field
-          const manualField = roomCard.querySelector(`[data-surface-id="${surfaceId}"] .surface-manual-area-field`);
+          const manualField = roomCard.querySelector(
+            `[data-surface-id="${surfaceId}"] .surface-manual-area-field`
+          );
           if (manualField) {
             manualField.hidden = target.value !== 'manual';
           }
@@ -5137,14 +5574,16 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       // Surface manual area change
       if (target.classList.contains('surface-manual-area')) {
         const surfaceId = target.dataset.surface;
-        const room = state.rooms.find(r => r.id === roomId);
+        const room = state.rooms.find((r) => r.id === roomId);
         if (room && room.surfaces && room.surfaces[surfaceId]) {
           room.surfaces[surfaceId].manualArea = parseFloat(target.value) || 0;
           recalculateRoomSurfaces(room);
           updateAreaSummary();
           saveToStorage();
           // Update net display
-          const netSpan = roomCard.querySelector(`[data-surface-id="${surfaceId}"] .surface-net-value`);
+          const netSpan = roomCard.querySelector(
+            `[data-surface-id="${surfaceId}"] .surface-net-value`
+          );
           if (netSpan) {
             netSpan.textContent = formatNumber(room.surfaces[surfaceId].netArea || 0, 1) + ' sf';
           }
@@ -5154,11 +5593,13 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       // Surface use global defaults toggle
       if (target.classList.contains('surface-use-defaults')) {
         const surfaceId = target.dataset.surface;
-        const room = state.rooms.find(r => r.id === roomId);
+        const room = state.rooms.find((r) => r.id === roomId);
         if (room && room.surfaces && room.surfaces[surfaceId]) {
           room.surfaces[surfaceId].useGlobalDefaults = target.checked;
           // Show/hide overrides
-          const overridesDiv = roomCard.querySelector(`[data-surface-id="${surfaceId}"] .surface-overrides`);
+          const overridesDiv = roomCard.querySelector(
+            `[data-surface-id="${surfaceId}"] .surface-overrides`
+          );
           if (overridesDiv) {
             overridesDiv.hidden = target.checked;
           }
@@ -5169,7 +5610,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       // Surface tile override
       if (target.classList.contains('surface-tile-override')) {
         const surfaceId = target.dataset.surface;
-        const room = state.rooms.find(r => r.id === roomId);
+        const room = state.rooms.find((r) => r.id === roomId);
         if (room && room.surfaces && room.surfaces[surfaceId]) {
           if (!room.surfaces[surfaceId].overrides) room.surfaces[surfaceId].overrides = {};
           room.surfaces[surfaceId].overrides.tilePreset = target.value;
@@ -5180,7 +5621,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       // Surface waste override
       if (target.classList.contains('surface-waste-override')) {
         const surfaceId = target.dataset.surface;
-        const room = state.rooms.find(r => r.id === roomId);
+        const room = state.rooms.find((r) => r.id === roomId);
         if (room && room.surfaces && room.surfaces[surfaceId]) {
           if (!room.surfaces[surfaceId].overrides) room.surfaces[surfaceId].overrides = {};
           room.surfaces[surfaceId].overrides.waste = parseFloat(target.value) || null;
@@ -5235,7 +5676,16 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     const roomCard = target.closest('.room-card');
 
     // Clear synced flag if user manually edits a calculator area input
-    const areaInputIds = ['calc-area', 'mortar-area', 'grout-area', 'level-area', 'labor-area', 'wp-area', 'wp-floor-area', 'wp-wall-area'];
+    const areaInputIds = [
+      'calc-area',
+      'mortar-area',
+      'grout-area',
+      'level-area',
+      'labor-area',
+      'wp-area',
+      'wp-floor-area',
+      'wp-wall-area',
+    ];
     if (areaInputIds.includes(target.id)) {
       target.dataset.synced = 'false';
     }
@@ -5262,7 +5712,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
         updateRoomData(roomId, 'heightIn', parseFloat(target.value) || 0);
       }
       if (target.classList.contains('room-lock-reason-input')) {
-        const room = state.rooms.find(r => r.id === roomId);
+        const room = state.rooms.find((r) => r.id === roomId);
         if (room) {
           room.lockReason = target.value;
           saveToStorage();
@@ -5309,12 +5759,16 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       ticking = false;
     }
 
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateBackToTop);
-        ticking = true;
-      }
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(updateBackToTop);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
   }
 
   // ==
@@ -5322,16 +5776,17 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
   // ==
 
   function initSmoothScroll() {
-    document.querySelectorAll('.tools-nav__link').forEach(link => {
-      link.addEventListener('click', e => {
+    document.querySelectorAll('.tools-nav__link').forEach((link) => {
+      link.addEventListener('click', (e) => {
         e.preventDefault();
         const target = document.querySelector(link.getAttribute('href'));
         if (target) {
           const navHeight = document.querySelector('.tools-nav').offsetHeight;
-          const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+          const targetPos =
+            target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
           window.scrollTo({
             top: targetPos,
-            behavior: 'smooth'
+            behavior: 'smooth',
           });
           // Update focus for accessibility
           target.setAttribute('tabindex', '-1');
@@ -5356,13 +5811,13 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       'full-bath': { budget: 6000, mid: 12000, premium: 22000, luxury: 40000 },
       'master-bath': { budget: 10000, mid: 20000, premium: 40000, luxury: 75000 },
       'floor-only': { budget: 1500, mid: 3000, premium: 5500, luxury: 9000 },
-      'backsplash': { budget: 800, mid: 1500, premium: 3000, luxury: 5500 }
+      backsplash: { budget: 800, mid: 1500, premium: 3000, luxury: 5500 },
     },
     perSqFt: {
       budget: 8,
       mid: 15,
       premium: 28,
-      luxury: 50
+      luxury: 50,
     },
     addons: {
       demo: { budget: 300, mid: 500, premium: 800, luxury: 1200 },
@@ -5372,15 +5827,15 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       fixtures: { budget: 200, mid: 500, premium: 1200, luxury: 3000 },
       vanity: { budget: 400, mid: 1000, premium: 2500, luxury: 5000 },
       glass: { budget: 500, mid: 1200, premium: 2500, luxury: 4500 },
-      niche: { budget: 150, mid: 300, premium: 600, luxury: 1000 }
+      niche: { budget: 150, mid: 300, premium: 600, luxury: 1000 },
     },
     zipAdjustments: {
       '08': 1.05, // Atlantic/Cape May
-      '08401': 1.10, // Atlantic City
+      '08401': 1.1, // Atlantic City
       '08204': 1.08, // Cape May
       '08742': 1.12, // Point Pleasant
-      'default': 1.0
-    }
+      default: 1.0,
+    },
   };
 
   /**
@@ -5409,8 +5864,17 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
 
     // Add-ons
     let addonsTotal = 0;
-    const addonIds = ['demo', 'waterproof', 'plumbing', 'electrical', 'fixtures', 'vanity', 'glass', 'niche'];
-    addonIds.forEach(id => {
+    const addonIds = [
+      'demo',
+      'waterproof',
+      'plumbing',
+      'electrical',
+      'fixtures',
+      'vanity',
+      'glass',
+      'niche',
+    ];
+    addonIds.forEach((id) => {
       const checkbox = document.getElementById(`cost-${id}`);
       if (checkbox?.checked) {
         addonsTotal += COST_PRICING.addons[id]?.[qualityKey] || 0;
@@ -5421,21 +5885,22 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     let zipMultiplier = 1.0;
     if (zip.length >= 2) {
       const prefix = zip.substring(0, 2);
-      zipMultiplier = COST_PRICING.zipAdjustments[zip] ||
-                      COST_PRICING.zipAdjustments[prefix] ||
-                      COST_PRICING.zipAdjustments['default'];
+      zipMultiplier =
+        COST_PRICING.zipAdjustments[zip] ||
+        COST_PRICING.zipAdjustments[prefix] ||
+        COST_PRICING.zipAdjustments['default'];
     }
 
     // Calculate totals
     const subtotal = (basePrice + tileLabor + addonsTotal) * zipMultiplier;
-    const contingency = subtotal * 0.10;
+    const contingency = subtotal * 0.1;
     const laborPct = 0.45;
 
     const lowEstimate = Math.round(subtotal * 0.85);
     const highEstimate = Math.round((subtotal + contingency) * 1.15);
     const labor = Math.round(subtotal * laborPct);
     const materials = Math.round(subtotal * 0.35);
-    const fixturesCost = Math.round(subtotal * 0.10);
+    const fixturesCost = Math.round(subtotal * 0.1);
 
     // Update UI
     document.getElementById('cost-result-low').textContent = '$' + formatNumber(lowEstimate);
@@ -5443,7 +5908,8 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     document.getElementById('cost-labor').textContent = '$' + formatNumber(labor);
     document.getElementById('cost-materials').textContent = '$' + formatNumber(materials);
     document.getElementById('cost-fixtures').textContent = '$' + formatNumber(fixturesCost);
-    document.getElementById('cost-contingency').textContent = '$' + formatNumber(Math.round(contingency));
+    document.getElementById('cost-contingency').textContent =
+      '$' + formatNumber(Math.round(contingency));
 
     document.getElementById('cost-calc-results').hidden = false;
   }
@@ -5483,18 +5949,24 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       if (fraction < 0.6875) return inches + ' 5/8"';
       if (fraction < 0.8125) return inches + ' 3/4"';
       if (fraction < 0.9375) return inches + ' 7/8"';
-      return (inches + 1) + '"';
+      return inches + 1 + '"';
     };
 
-    document.getElementById('result-slope-min').textContent = '¼" per ft (' + formatInches(minHeight) + ' at ' + distance + ' ft)';
-    document.getElementById('result-slope-rec').textContent = '5/16" per ft (' + formatInches(recHeight) + ' at ' + distance + ' ft)';
-    document.getElementById('result-slope-height').textContent = formatInches(recHeight) + ' above drain';
+    document.getElementById('result-slope-min').textContent =
+      '¼" per ft (' + formatInches(minHeight) + ' at ' + distance + ' ft)';
+    document.getElementById('result-slope-rec').textContent =
+      '5/16" per ft (' + formatInches(recHeight) + ' at ' + distance + ' ft)';
+    document.getElementById('result-slope-height').textContent =
+      formatInches(recHeight) + ' above drain';
 
     // Method-specific note
     const notes = {
-      'mud-bed': 'Traditional mud bed allows precise slope control. Use dry-pack mortar (4:1 sand:cement ratio) reinforced with metal lath.',
-      'foam-pan': 'Pre-sloped foam pans are factory-made to code. Verify slope before waterproofing. Faster install, consistent results.',
-      'bonded': 'Bonded waterproofing systems (Kerdi, Wedi) require substrate slope. Build slope into substrate before membrane.'
+      'mud-bed':
+        'Traditional mud bed allows precise slope control. Use dry-pack mortar (4:1 sand:cement ratio) reinforced with metal lath.',
+      'foam-pan':
+        'Pre-sloped foam pans are factory-made to code. Verify slope before waterproofing. Faster install, consistent results.',
+      bonded:
+        'Bonded waterproofing systems (Kerdi, Wedi) require substrate slope. Build slope into substrate before membrane.',
     };
     document.getElementById('slope-method-note').textContent = notes[method] || '';
 
@@ -5512,41 +5984,41 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       coverage: 54.5, // TDS: 8 mil sheet, 2" overlap at seams
       tapePerCorner: 2, // feet of KERDI-BAND
       accessories: ['KERDI-BAND', 'KERDI-SEAL', 'KERDI-DRAIN'],
-      thinsetNote: 'MUST use unmodified thinset (ANSI A118.1)'
+      thinsetNote: 'MUST use unmodified thinset (ANSI A118.1)',
     },
-    'laticrete': {
+    laticrete: {
       name: 'LATICRETE Hydro Ban',
       unit: 'gallon (covers 50 sf @ 2 coats)',
       coverage: 50, // TDS: 50 sq ft/gal at 2 coats (20-30 mils cured)
       liquidCoats: 2,
-      accessories: ['Hydro Ban Board', 'Seam Tape']
+      accessories: ['Hydro Ban Board', 'Seam Tape'],
     },
     'custom-redgard': {
       name: 'Custom RedGard',
       unit: 'gallon (covers 55 sf @ 2 coats)',
       coverage: 55, // TDS-104: 55 sq ft/gal for waterproof membrane
       liquidCoats: 2,
-      accessories: ['Mesh Tape', 'Corners']
+      accessories: ['Mesh Tape', 'Corners'],
     },
     'mapei-aquadefense': {
       name: 'Mapei AquaDefense',
       unit: 'gallon (covers 50 sf @ 2 coats)',
       coverage: 50, // TDS: 2 coats at 25 mil wet film each
       liquidCoats: 2,
-      accessories: ['Reinforcing Fabric', 'Mapeband']
+      accessories: ['Reinforcing Fabric', 'Mapeband'],
     },
     'go-board': {
       name: 'GoBoard',
       unit: 'panel (3x5 ft = 15 sf)',
       coverage: 15,
-      accessories: ['GoBoard Sealant', 'Seam Tape']
+      accessories: ['GoBoard Sealant', 'Seam Tape'],
     },
     'noble-deck': {
       name: 'Noble Deck',
       unit: 'roll (varies)',
       coverage: 32.5,
-      accessories: ['Noble Seal TS', 'Corners']
-    }
+      accessories: ['Noble Seal TS', 'Corners'],
+    },
   };
 
   /**
@@ -5562,7 +6034,8 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     // Backward compatible: if split inputs exist, compute effective area by location.
     // If split inputs do not exist, fall back to legacy total area.
     let area = 0;
-    const hasSplitInputs = document.getElementById('wp-floor-area') || document.getElementById('wp-wall-area');
+    const hasSplitInputs =
+      document.getElementById('wp-floor-area') || document.getElementById('wp-wall-area');
     if (hasSplitInputs) {
       if (location === 'shower') area = floorArea + wallArea;
       else if (location === 'shower-walls' || location === 'tub-surround') area = wallArea;
@@ -5588,26 +6061,34 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
 
     // Tape/seam calculation
     const tapePerCorner = system.tapePerCorner || 2;
-    const tapeNeeded = (corners * tapePerCorner) + (niches * 8); // 8 ft per niche
+    const tapeNeeded = corners * tapePerCorner + niches * 8; // 8 ft per niche
 
     // Update UI
-    document.getElementById('wp-membrane-label').textContent = system.liquidCoats ? 'Membrane (liquid)' : 'Membrane';
+    document.getElementById('wp-membrane-label').textContent = system.liquidCoats
+      ? 'Membrane (liquid)'
+      : 'Membrane';
     document.getElementById('result-wp-membrane').textContent = unitsNeeded + ' ' + system.unit;
     document.getElementById('result-wp-tape').textContent = tapeNeeded + ' linear ft';
     document.getElementById('result-wp-corners').textContent = corners + ' pre-formed corners';
 
     // Accessories list
-    const accessoriesHtml = system.accessories.map(a => `<span class="wp-accessory">${a}</span>`).join(', ');
-    document.getElementById('wp-accessories').innerHTML = '<strong>Also need:</strong> ' + accessoriesHtml;
+    const accessoriesHtml = system.accessories
+      .map((a) => `<span class="wp-accessory">${a}</span>`)
+      .join(', ');
+    document.getElementById('wp-accessories').innerHTML =
+      '<strong>Also need:</strong> ' + accessoriesHtml;
 
     // System-specific notes
     const notes = {
-      'schluter-kerdi': 'KERDI must be set in unmodified thinset. Use KERDI-BAND for all seams and corners.',
-      'laticrete': 'Apply 2 coats with drying time between. Use with Hydro Ban Board for shower niches.',
-      'custom-redgard': 'Apply 2 coats at 15 mils wet each. Allow to dry pink to red between coats.',
+      'schluter-kerdi':
+        'KERDI must be set in unmodified thinset. Use KERDI-BAND for all seams and corners.',
+      laticrete:
+        'Apply 2 coats with drying time between. Use with Hydro Ban Board for shower niches.',
+      'custom-redgard':
+        'Apply 2 coats at 15 mils wet each. Allow to dry pink to red between coats.',
       'mapei-aquadefense': 'Apply 2 coats. Embed fabric tape in first coat at corners and seams.',
       'go-board': 'Waterproof at joints only. Seal all fastener holes with sealant.',
-      'noble-deck': 'Can be used with modified thinset. Great for drains and seats.'
+      'noble-deck': 'Can be used with modified thinset. Great for drains and seats.',
     };
     document.getElementById('wp-system-note').textContent = notes[systemId] || '';
 
@@ -5618,7 +6099,8 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     if (document.getElementById('wp-curb')?.checked) extras.push('Curb membrane');
 
     if (extras.length > 0) {
-      document.getElementById('wp-accessories').innerHTML += '<br><strong>Penetrations:</strong> ' + extras.join(', ');
+      document.getElementById('wp-accessories').innerHTML +=
+        '<br><strong>Penetrations:</strong> ' + extras.join(', ');
     }
 
     document.getElementById('waterproof-calc-results').hidden = false;
@@ -5636,7 +6118,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       standard: 25,
       medium: 20,
       large: 15,
-      plank: 18
+      plank: 18,
     },
     // Pattern multipliers (1.0 = baseline)
     patternMultiplier: {
@@ -5644,20 +6126,20 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       offset: 1.15,
       diagonal: 1.35,
       herringbone: 1.6,
-      versailles: 1.4
+      versailles: 1.4,
     },
     // Surface multipliers
     surfaceMultiplier: {
       floor: 1.0,
       wall: 1.2,
       shower: 1.5,
-      backsplash: 1.3
+      backsplash: 1.3,
     },
     // Complexity multipliers
     complexityMultiplier: {
       simple: 0.9,
       moderate: 1.0,
-      complex: 1.3
+      complex: 1.3,
     },
     // Prep work hours
     prepHours: {
@@ -5666,8 +6148,8 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       waterproof: 2,
       backerboard: 3,
       schluter: 1.5,
-      niche: 2.5
-    }
+      niche: 2.5,
+    },
   };
 
   /**
@@ -5704,7 +6186,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     const breakdown = [];
 
     const prepItems = ['demo', 'levelprep', 'waterproof', 'backerboard', 'schluter', 'niche'];
-    prepItems.forEach(id => {
+    prepItems.forEach((id) => {
       const checkbox = document.getElementById(`labor-${id}`);
       if (checkbox?.checked) {
         const hours = LABOR_RATES.prepHours[id] || 0;
@@ -5715,7 +6197,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
           waterproof: 'Waterproofing',
           backerboard: 'Backer board',
           schluter: 'Edge trim',
-          niche: 'Niche install'
+          niche: 'Niche install',
         };
         breakdown.push({ task: labels[id], hours: hours });
       }
@@ -5734,12 +6216,15 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
       `${formatNumber(totalHours, 1)} total hours at ${formatNumber(effectiveRate, 1)} sq ft/hour`;
 
     // Build breakdown list
-    const breakdownHtml = breakdown.map(item =>
-      `<div class="labor-breakdown__item">
+    const breakdownHtml = breakdown
+      .map(
+        (item) =>
+          `<div class="labor-breakdown__item">
         <span class="labor-breakdown__task">${item.task}</span>
         <span class="labor-breakdown__hours">${formatNumber(item.hours, 1)} hrs</span>
       </div>`
-    ).join('');
+      )
+      .join('');
     document.getElementById('labor-breakdown-list').innerHTML = breakdownHtml;
 
     document.getElementById('labor-calc-results').hidden = false;
@@ -5753,10 +6238,14 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     document.getElementById('calc-cost-btn')?.addEventListener('click', calculateCostEstimate);
 
     // Slope calculator
-    document.getElementById('calc-slope-btn')?.addEventListener('click', calculateSlopeRequirements);
+    document
+      .getElementById('calc-slope-btn')
+      ?.addEventListener('click', calculateSlopeRequirements);
 
     // Waterproofing calculator
-    document.getElementById('calc-waterproof-btn')?.addEventListener('click', calculateWaterproofing);
+    document
+      .getElementById('calc-waterproof-btn')
+      ?.addEventListener('click', calculateWaterproofing);
 
     // Labor calculator
     document.getElementById('calc-labor-btn')?.addEventListener('click', calculateLaborTime);
@@ -5770,7 +6259,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     const helpers = root.querySelectorAll('[data-sqft-helper]');
     if (!helpers.length) return;
 
-    helpers.forEach(helper => {
+    helpers.forEach((helper) => {
       if (helper.dataset.sqftHelperInit === 'true') return;
       helper.dataset.sqftHelperInit = 'true';
 
@@ -5795,10 +6284,9 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
         const lengthFt = readNumber(lengthInput);
         const heightFt = readNumber(heightInput);
 
-        const floorSqFt = (widthFt > 0 && lengthFt > 0) ? (widthFt * lengthFt) : 0;
-        const wallSqFt = (widthFt > 0 && lengthFt > 0 && heightFt > 0)
-          ? (2 * heightFt * (widthFt + lengthFt))
-          : 0;
+        const floorSqFt = widthFt > 0 && lengthFt > 0 ? widthFt * lengthFt : 0;
+        const wallSqFt =
+          widthFt > 0 && lengthFt > 0 && heightFt > 0 ? 2 * heightFt * (widthFt + lengthFt) : 0;
 
         return { floorSqFt, wallSqFt };
       }
@@ -5856,20 +6344,25 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     const sections = document.querySelectorAll('.tools-section[id]');
     const navLinks = document.querySelectorAll('.tools-nav__link');
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => {
-            link.classList.toggle('is-active',
-              link.getAttribute('href') === `#${entry.target.id}`);
-          });
-        }
-      });
-    }, {
-      rootMargin: '-20% 0px -70% 0px'
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            navLinks.forEach((link) => {
+              link.classList.toggle(
+                'is-active',
+                link.getAttribute('href') === `#${entry.target.id}`
+              );
+            });
+          }
+        });
+      },
+      {
+        rootMargin: '-20% 0px -70% 0px',
+      }
+    );
 
-    sections.forEach(section => observer.observe(section));
+    sections.forEach((section) => observer.observe(section));
   }
 
   // ==
@@ -5884,7 +6377,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     if (!calcCards.length) return;
 
     // Toggle individual card
-    calcCards.forEach(card => {
+    calcCards.forEach((card) => {
       const header = card.querySelector('.calc-app-card__header');
       if (!header) return;
 
@@ -5900,7 +6393,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     // Expand All button
     if (expandAllBtn) {
       expandAllBtn.addEventListener('click', () => {
-        calcCards.forEach(card => expandCard(card));
+        calcCards.forEach((card) => expandCard(card));
         updateControlsState(true);
       });
     }
@@ -5908,13 +6401,13 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     // Collapse All button
     if (collapseAllBtn) {
       collapseAllBtn.addEventListener('click', () => {
-        calcCards.forEach(card => collapseCard(card));
+        calcCards.forEach((card) => collapseCard(card));
         updateControlsState(false);
       });
     }
 
     // Handle navigation clicks - expand target calculator
-    document.querySelectorAll('.tools-nav__link').forEach(link => {
+    document.querySelectorAll('.tools-nav__link').forEach((link) => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
         if (href && href.startsWith('#')) {
@@ -5999,20 +6492,26 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
   function initAutoCalculate() {
     const calcCards = document.querySelectorAll('.calc-app-card');
 
-    calcCards.forEach(card => {
+    calcCards.forEach((card) => {
       const inputs = card.querySelectorAll('input, select');
       const calculatorType = card.dataset.calculator;
 
-      inputs.forEach(input => {
-        input.addEventListener('change', debounce(() => {
-          autoCalculate(calculatorType, card);
-        }, 300));
+      inputs.forEach((input) => {
+        input.addEventListener(
+          'change',
+          debounce(() => {
+            autoCalculate(calculatorType, card);
+          }, 300)
+        );
 
         // For number inputs, also listen to input event
         if (input.type === 'number') {
-          input.addEventListener('input', debounce(() => {
-            autoCalculate(calculatorType, card);
-          }, 500));
+          input.addEventListener(
+            'input',
+            debounce(() => {
+              autoCalculate(calculatorType, card);
+            }, 500)
+          );
         }
       });
     });
@@ -6116,7 +6615,6 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
     };
   }
 
-
   // ==
   // INITIALIZATION
   // ==
@@ -6167,7 +6665,7 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
         getRecommendedTrowel,
         getRecommendedJoint,
         exportJson,
-        resetProject
+        resetProject,
       };
       // // // // // // // // // // // // // // // console.log('Tillerstead Tools loaded. Access via window.TillersteadTools'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
     }
@@ -6179,5 +6677,4 @@ ${options.includeDisclaimers ? generateDocxDisclaimersSection() : ''}
   } else {
     init();
   }
-
 })();

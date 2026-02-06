@@ -1,12 +1,11 @@
 <!-- Desktop Left Rail Navigation -->
 <nav class="nav-rail__inner">
-  
   <!-- Project Info -->
   <div class="nav-rail__header">
     <h2 class="nav-rail__project-name" id="nav-project-name">Untitled Project</h2>
     <button class="nav-rail__edit-name" aria-label="Edit project name" onclick="editProjectName()">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-        <path d="M11.5 1.5l3 3L5 14H2v-3L11.5 1.5z"/>
+        <path d="M11.5 1.5l3 3L5 14H2v-3L11.5 1.5z" />
       </svg>
     </button>
   </div>
@@ -79,7 +78,7 @@
   </div>
 
   <!-- Divider -->
-  <hr class="nav-rail__divider">
+  <hr class="nav-rail__divider" />
 
   <!-- Quick Actions -->
   <div class="nav-rail__section">
@@ -128,33 +127,32 @@
       <span class="mini-summary__value" id="nav-progress-text">0%</span>
     </div>
   </div>
-
 </nav>
 
 <script>
   // Update nav project name from state
-  (function() {
+  (function () {
     if (!window.ProjectState) return;
-    
+
     function updateNavProjectName() {
       const nameEl = document.getElementById('nav-project-name');
       const name = window.ProjectState.get('project.name') || 'Untitled Project';
       if (nameEl) nameEl.textContent = name;
     }
-    
+
     function updateNavProgress() {
       const progressBar = document.querySelector('.mini-summary__progress-bar');
       const progressText = document.getElementById('nav-progress-text');
       const percent = window.ProjectState.calculateCompletionPercent();
-      
+
       if (progressBar) progressBar.style.width = `${percent}%`;
       if (progressText) progressText.textContent = `${percent}%`;
     }
-    
+
     // Initial update
     updateNavProjectName();
     updateNavProgress();
-    
+
     // Listen for state changes
     window.ProjectState.on('change', (data) => {
       if (data.path.startsWith('project.name')) {
@@ -163,9 +161,9 @@
       updateNavProgress();
     });
   })();
-  
+
   // Edit project name
-  window.editProjectName = function() {
+  window.editProjectName = function () {
     const current = window.ProjectState ? window.ProjectState.get('project.name') : 'Untitled Project';
     const newName = prompt('Enter project name:', current);
     if (newName && newName !== current && window.ProjectState) {

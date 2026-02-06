@@ -43,7 +43,7 @@ function fetchHtml(url) {
             html += chunk.toString();
           });
           res.on('end', () => resolve(html));
-        },
+        }
       )
       .on('error', reject);
   });
@@ -155,9 +155,7 @@ function findJsonLdReviews(html) {
           const description = review.description || review.reviewBody || '';
           const date = toIsoDate(review.datePublished);
           const ratingValue =
-            (review.reviewRating && review.reviewRating.ratingValue) ||
-            review.ratingValue ||
-            null;
+            (review.reviewRating && review.reviewRating.ratingValue) || review.ratingValue || null;
           const rating = ratingValue != null ? Number(ratingValue) : null;
 
           const quote = escapeHtml(description).replace(/\n+/g, '<br>');
@@ -223,12 +221,12 @@ function extractReviews(html) {
       'article:has([data-test="review-card-header"])',
       '.review-card',
       'section:has([itemprop="reviewBody"])',
-    ].join(', '),
+    ].join(', ')
   );
 
   if (!reviewCards.length) {
     throw new Error(
-      'No review cards found in JSON-LD or DOM. Thumbtack may have changed their markup.',
+      'No review cards found in JSON-LD or DOM. Thumbtack may have changed their markup.'
     );
   }
 
@@ -238,7 +236,7 @@ function extractReviews(html) {
 
       const body = card
         .find(
-          '[data-test="review-card-body"], [data-testid="review-body"], [itemprop="reviewBody"], .review-body',
+          '[data-test="review-card-body"], [data-testid="review-body"], [itemprop="reviewBody"], .review-body'
         )
         .first();
       const author =
@@ -246,27 +244,19 @@ function extractReviews(html) {
           $,
           card
             .find(
-              '[data-test*="consumer-name"], [itemprop="author"], [data-testid*="reviewer"], .reviewer, .reviewer-name',
+              '[data-test*="consumer-name"], [itemprop="author"], [data-testid*="reviewer"], .reviewer, .reviewer-name'
             )
-            .first(),
+            .first()
         ) || 'Client';
       const location =
         textFrom(
           $,
-          card
-            .find(
-              '[data-test*="location"], .consumer-location, .reviewer-location',
-            )
-            .first(),
+          card.find('[data-test*="location"], .consumer-location, .reviewer-location').first()
         ) || null;
       const jobType =
         textFrom(
           $,
-          card
-            .find(
-              '[data-test*="project"], [data-test*="job"], .project-type, .job-type',
-            )
-            .first(),
+          card.find('[data-test*="project"], [data-test*="job"], .project-type, .job-type').first()
         ) || null;
       const date = parseDate($, card);
       const badgeEls = card.find('[data-test*="badge"], .badge, .pill, .chip');
@@ -319,9 +309,7 @@ async function main() {
     const reviews = extractReviews(html);
 
     if (!reviews.length) {
-      throw new Error(
-        'Parsed review list is empty; aborting write to prevent data loss.',
-      );
+      throw new Error('Parsed review list is empty; aborting write to prevent data loss.');
     }
 
     backupExisting();

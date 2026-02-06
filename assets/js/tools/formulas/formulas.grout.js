@@ -22,26 +22,26 @@ export const GROUT_FORMULA_INFO = {
     {
       name: 'Mathematical derivation',
       note: 'Joint volume = (L+W)/(L×W) × thickness × joint_width × area × density',
-      type: 'mathematical'
+      type: 'mathematical',
     },
     {
       name: 'TCNA FAQ on Grout',
       url: 'https://tcnatile.com/resource-center/faq/grout/',
-      excerpt: 'Sanded grout for joints 1/8" or larger; unsanded for less than 1/8"'
+      excerpt: 'Sanded grout for joints 1/8" or larger; unsanded for less than 1/8"',
     },
     {
       name: 'Custom Building Products TB85',
       url: 'https://www.custombuildingproducts.com/media/60712312/tb85-grout-joint-width.pdf',
-      excerpt: 'Grout joint width recommendations based on tile type and variation'
-    }
+      excerpt: 'Grout joint width recommendations based on tile type and variation',
+    },
   ],
   assumptions: [
     'Grout joint depth equals tile thickness (typical for floor tile)',
     'Cement grout density approximately 100 lbs/cu ft',
     'Epoxy grout density approximately 110 lbs/cu ft',
     '10% waste factor included in calculations',
-    'Actual coverage varies by mixing consistency and application technique'
-  ]
+    'Actual coverage varies by mixing consistency and application technique',
+  ],
 };
 
 // ==
@@ -58,13 +58,13 @@ export const GROUT_DENSITY = {
   cement: {
     lbsPerCuFt: 100,
     note: 'Typical cement-based grout (sanded or unsanded)',
-    source: 'Industry typical - verify with product TDS'
+    source: 'Industry typical - verify with product TDS',
   },
   epoxy: {
     lbsPerCuFt: 110,
     note: 'Epoxy grout - typically denser than cement',
-    source: 'Industry typical - verify with product TDS'
-  }
+    source: 'Industry typical - verify with product TDS',
+  },
 };
 
 /**
@@ -76,28 +76,28 @@ export const JOINT_RECOMMENDATIONS = {
   rectified: {
     minInches: 0.125, // 1/8"
     note: 'Rectified tile: minimum 1/8" joint',
-    source: 'TCNA / Industry standard'
+    source: 'TCNA / Industry standard',
   },
   calibrated: {
     minInches: 0.1875, // 3/16"
     note: 'Calibrated (non-rectified) tile: minimum 3/16" joint',
-    source: 'TCNA / Industry standard'
+    source: 'TCNA / Industry standard',
   },
   handmade: {
     minInches: 0.25, // 1/4"
     note: 'Handmade/rustic tile: 1/4" or wider based on variation',
-    source: 'TCNA / Industry standard'
+    source: 'TCNA / Industry standard',
   },
   absolute_minimum: {
     minInches: 0.0625, // 1/16"
     note: 'ANSI A108.02 Section 4.3.8: In NO circumstance shall grout joint be less than 1/16"',
-    source: 'ANSI A108.02'
+    source: 'ANSI A108.02',
   },
   variation_rule: {
     note: 'Joint width should be at least 3× the tile facial dimensional variation',
     example: '1/32" tile variation = minimum 3/32" (round to 1/8") joint',
-    source: 'TCNA / Custom Building Products TB85'
-  }
+    source: 'TCNA / Custom Building Products TB85',
+  },
 };
 
 /**
@@ -109,20 +109,20 @@ export const GROUT_TYPE_BY_JOINT = {
     maxJointInches: 0.125, // 1/8"
     note: 'Use unsanded grout for joints < 1/8" to prevent scratching polished surfaces',
     bestFor: 'Polished marble, polished stone, narrow joints',
-    source: 'TCNA FAQ / ANSI A118.6'
+    source: 'TCNA FAQ / ANSI A118.6',
   },
   sanded: {
     minJointInches: 0.125, // 1/8"
     note: 'Use sanded grout for joints 1/8" or larger to prevent shrinking and cracking',
     bestFor: 'Floor tile, wide joints, high-traffic areas',
-    source: 'TCNA FAQ / ANSI A118.6'
+    source: 'TCNA FAQ / ANSI A118.6',
   },
   epoxy: {
     note: 'Chemical resistant, stain resistant, no sealing required',
     bestFor: 'Commercial kitchens, labs, hospitals, pools, areas requiring chemical resistance',
     caution: 'More difficult to work, shorter working time, higher cost',
-    source: 'TCNA Handbook'
-  }
+    source: 'TCNA Handbook',
+  },
 };
 
 /**
@@ -134,13 +134,13 @@ export const LFT_JOINT_REQUIREMENTS = {
     maximum: '33%',
     reason: 'Running bond at 50% offset with LFT causes significant lippage due to tile warpage',
     note: 'Offset should not exceed 33% (1/3) for tiles ≥15"',
-    source: 'TCNA Handbook'
+    source: 'TCNA Handbook',
   },
   joint_width: {
     minimum: '1/8" for rectified, 3/16" for calibrated',
     recommendation: 'Wider joints help mask lippage and accommodate tile variation',
-    source: 'TCNA / Industry best practice'
-  }
+    source: 'TCNA / Industry best practice',
+  },
 };
 
 /**
@@ -151,33 +151,33 @@ export const GROUT_PRO_TIPS = {
     'Mix to peanut butter consistency - not too wet, not too dry',
     'Slake (let rest) for 5-10 minutes after initial mix, then remix briefly',
     'Do NOT add water after slaking - will weaken grout',
-    'Mix only what you can use within working time (typically 30 minutes)'
+    'Mix only what you can use within working time (typically 30 minutes)',
   ],
   application: [
     'Push grout diagonally across joints - not parallel',
     'Work grout into joints with firm pressure to eliminate voids',
     'Remove excess at 45° angle to avoid pulling grout from joints',
-    'Work in small sections (10-20 sq ft) in warm/dry conditions'
+    'Work in small sections (10-20 sq ft) in warm/dry conditions',
   ],
   cleaning: [
     'Initial wipe when grout firms (fingerprint test - should not stick)',
     'Use clean water and change frequently',
     'Second wipe to remove haze after initial set',
-    'Final polish with dry cloth when grout is firm but not fully cured'
+    'Final polish with dry cloth when grout is firm but not fully cured',
   ],
   curing: [
     'Keep grout damp for 72 hours minimum (cement grout) - mist with water',
     'Avoid foot traffic for 24-48 hours depending on product',
     'Do not seal for 28 days (full cure) or per manufacturer instructions',
-    'Epoxy grout: follow manufacturer cure time strictly'
+    'Epoxy grout: follow manufacturer cure time strictly',
   ],
   common_mistakes: [
     'Adding too much water - causes weak, powdery grout',
     'Cleaning too soon - pulls grout from joints',
     'Cleaning too late - grout haze becomes permanent',
     'Using same water for entire floor - redeposits haze',
-    'Not sealing cement grout - allows staining (applies to cement grout only)'
-  ]
+    'Not sealing cement grout - allows staining (applies to cement grout only)',
+  ],
 };
 
 // ==
@@ -221,7 +221,7 @@ export function calculateGrout({
   jointWidthInches,
   groutType = 'cement',
   isMosaic = false,
-  wastePercent = 10
+  wastePercent = 10,
 }) {
   const errors = [];
   const assumptions = [];
@@ -243,7 +243,15 @@ export function calculateGrout({
   if (!wasteVal.valid) errors.push(wasteVal.error);
 
   if (errors.length > 0) {
-    return { valid: false, errors, quantityLbs: 0, volumeCuFt: 0, recommendedType: '', assumptions, sources };
+    return {
+      valid: false,
+      errors,
+      quantityLbs: 0,
+      volumeCuFt: 0,
+      recommendedType: '',
+      assumptions,
+      sources,
+    };
   }
 
   // Convert thickness to inches
@@ -251,7 +259,7 @@ export function calculateGrout({
 
   // Calculate
   const tileSqInches = lengthVal.value * widthVal.value;
-  const jointPerimeterPerTile = (lengthVal.value + widthVal.value); // Each tile contributes half perimeter to joints
+  const jointPerimeterPerTile = lengthVal.value + widthVal.value; // Each tile contributes half perimeter to joints
 
   // Joint volume per tile (cubic inches)
   const jointVolumePerTileCuIn = jointPerimeterPerTile * jointVal.value * tileThicknessInches;
@@ -276,7 +284,7 @@ export function calculateGrout({
   }
 
   // Add waste factor
-  const wasteFactor = 1 + (wasteVal.value / 100);
+  const wasteFactor = 1 + wasteVal.value / 100;
   groutLbs *= wasteFactor;
   const finalVolumeCuFt = totalJointVolumeCuFt * wasteFactor * (isMosaic ? 1.5 : 1);
 
@@ -288,7 +296,9 @@ export function calculateGrout({
 
   // Document assumptions
   assumptions.push(`Tile: ${lengthVal.value}"×${widthVal.value}", ${thicknessVal.value}mm thick`);
-  assumptions.push(`Joint width: ${jointVal.value}" (${jointVal.value < 0.125 ? 'unsanded' : 'sanded'} grout)`);
+  assumptions.push(
+    `Joint width: ${jointVal.value}" (${jointVal.value < 0.125 ? 'unsanded' : 'sanded'} grout)`
+  );
   assumptions.push(`Grout type: ${groutType} (${density} lbs/cu ft density)`);
   assumptions.push(`Waste factor: ${wasteVal.value}%`);
 
@@ -302,7 +312,7 @@ export function calculateGrout({
     volumeCuFt: Math.round(finalVolumeCuFt * 100) / 100, // 2 decimals
     recommendedType,
     assumptions,
-    sources
+    sources,
   };
 }
 
@@ -315,12 +325,12 @@ export function getRecommendedGroutType(jointWidthInches) {
   if (jointWidthInches < 0.125) {
     return {
       type: 'unsanded',
-      note: GROUT_TYPE_BY_JOINT.unsanded.note
+      note: GROUT_TYPE_BY_JOINT.unsanded.note,
     };
   }
   return {
     type: 'sanded',
-    note: GROUT_TYPE_BY_JOINT.sanded.note
+    note: GROUT_TYPE_BY_JOINT.sanded.note,
   };
 }
 
@@ -332,5 +342,5 @@ export const JOINT_PRESETS = [
   { id: '1/8', name: '1/8"', sizeInches: 0.125 },
   { id: '3/16', name: '3/16"', sizeInches: 0.1875 },
   { id: '1/4', name: '1/4"', sizeInches: 0.25 },
-  { id: '3/8', name: '3/8"', sizeInches: 0.375 }
+  { id: '3/8', name: '3/8"', sizeInches: 0.375 },
 ];

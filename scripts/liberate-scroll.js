@@ -37,7 +37,7 @@ if (fs.existsSync(scrollLockManager)) {
   console.log('[Scroll Lock Manager] DISABLED - Natural scrolling enabled ✓');
 })();
 `;
-  
+
   fs.writeFileSync(scrollLockManager, disabledContent, 'utf8');
   console.log('✅ Disabled scroll-lock-manager.js\n');
 }
@@ -77,7 +77,7 @@ html, body {
   z-index: 999;
 }
 `;
-  
+
   fs.writeFileSync(scrollFixCss, cleanCss, 'utf8');
   console.log('✅ Cleaned scroll-fix.css\n');
 }
@@ -89,11 +89,14 @@ html, body {
 const navFile = path.join(__dirname, '..', 'assets', 'js', 'unified-navigation.js');
 if (fs.existsSync(navFile)) {
   let nav = fs.readFileSync(navFile, 'utf8');
-  
+
   // Remove ScrollLockManager calls
-  nav = nav.replace(/if \(window\.ScrollLockManager\) \{[^}]*ScrollLockManager\.(lock|unlock)[^}]*\}/g, '// Scroll lock disabled - using natural scrolling');
+  nav = nav.replace(
+    /if \(window\.ScrollLockManager\) \{[^}]*ScrollLockManager\.(lock|unlock)[^}]*\}/g,
+    '// Scroll lock disabled - using natural scrolling'
+  );
   nav = nav.replace(/window\.ScrollLockManager\.(lock|unlock)\([^)]*\);/g, '// Natural scrolling');
-  
+
   fs.writeFileSync(navFile, nav, 'utf8');
   console.log('✅ Removed scroll locks from navigation\n');
 }
@@ -105,12 +108,12 @@ if (fs.existsSync(navFile)) {
 const leadMagnet = path.join(__dirname, '..', 'assets', 'js', 'lead-magnet-system.js');
 if (fs.existsSync(leadMagnet)) {
   let lm = fs.readFileSync(leadMagnet, 'utf8');
-  
+
   // Remove scroll locking
   lm = lm.replace(/if \(window\.ScrollLockManager\) \{[^}]*\}/g, '// Natural scrolling enabled');
   lm = lm.replace(/window\.ScrollLockManager\.(lock|unlock)[^;]*;/g, '// Natural scrolling');
   lm = lm.replace(/document\.body\.style\.overflow\s*=\s*['"]hidden['"];/g, '// Natural scrolling');
-  
+
   fs.writeFileSync(leadMagnet, lm, 'utf8');
   console.log('✅ Removed scroll locks from lead magnet\n');
 }
@@ -122,11 +125,11 @@ if (fs.existsSync(leadMagnet)) {
 const bundleCss = path.join(__dirname, '..', 'assets', 'css', 'bundle.css');
 if (fs.existsSync(bundleCss)) {
   let bundle = fs.readFileSync(bundleCss, 'utf8');
-  
+
   // Remove problematic scroll blocking
   bundle = bundle.replace(/overflow:\s*hidden\s*!important;/g, 'overflow: visible;');
   bundle = bundle.replace(/position:\s*fixed[^}]*overflow:\s*hidden/g, 'position: relative');
-  
+
   fs.writeFileSync(bundleCss, bundle, 'utf8');
   console.log('✅ Cleaned bundle.css scroll blocks\n');
 }
@@ -138,11 +141,11 @@ if (fs.existsSync(bundleCss)) {
 const mobileEmergency = path.join(__dirname, '..', 'assets', 'css', 'mobile-emergency-fix.css');
 if (fs.existsSync(mobileEmergency)) {
   let css = fs.readFileSync(mobileEmergency, 'utf8');
-  
+
   // Ensure proper overflow
   css = css.replace(/overflow-y:\s*auto\s*!important/g, 'overflow-y: auto');
   css = css.replace(/overflow-x:\s*hidden\s*!important/g, 'overflow-x: hidden');
-  
+
   fs.writeFileSync(mobileEmergency, css, 'utf8');
   console.log('✅ Cleaned mobile-emergency-fix.css\n');
 }

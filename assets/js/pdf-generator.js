@@ -8,7 +8,7 @@
  * @license Proprietary - Unauthorized copying prohibited
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ==
@@ -16,15 +16,18 @@
   // ==
 
   // Brand colors (encoded for IP protection)
-  const _c = [26,61,46,201,162,39,33,37,41,108,117,125,248,249,250,255,255,255,206,212,218];
+  const _c = [
+    26, 61, 46, 201, 162, 39, 33, 37, 41, 108, 117, 125, 248, 249, 250, 255, 255, 255, 206, 212,
+    218,
+  ];
   const COLORS = {
-    primary: _c.slice(0,3),
-    gold: _c.slice(3,6),
-    text: _c.slice(6,9),
-    textMuted: _c.slice(9,12),
-    surface: _c.slice(12,15),
-    white: _c.slice(15,18),
-    border: _c.slice(18,21)
+    primary: _c.slice(0, 3),
+    gold: _c.slice(3, 6),
+    text: _c.slice(6, 9),
+    textMuted: _c.slice(9, 12),
+    surface: _c.slice(12, 15),
+    white: _c.slice(15, 18),
+    border: _c.slice(18, 21),
   };
 
   // Company info (protected)
@@ -35,7 +38,7 @@
     website: 'tillerstead.com',
     phone: '(609) 862-8808',
     email: 'support@tillerstead.com',
-    appName: 'TillerPro'
+    appName: 'TillerPro',
   });
 
   // ==
@@ -63,7 +66,7 @@
     return {
       data: LOGO_FALLBACK_BASE64,
       type: 'PNG',
-      fallback: getTextLogo()
+      fallback: getTextLogo(),
     };
   }
 
@@ -75,7 +78,8 @@
   }
 
   // Embedded fallback logo (wolf crest compact - 100x100)
-  const LOGO_FALLBACK_BASE64 = 'data:image/png;base64,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';
+  const LOGO_FALLBACK_BASE64 =
+    'data:image/png;base64,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';
 
   // Calculator display names (now includes trim calculators)
   const CALC_NAMES = {
@@ -88,7 +92,7 @@
     labor: 'Labor Estimate',
     crown: 'Crown Molding',
     baseboard: 'Baseboard & Chair Rail',
-    quarter: 'Quarter Round'
+    quarter: 'Quarter Round',
   };
 
   /**
@@ -131,7 +135,7 @@
       this.doc = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
-        format: 'letter'
+        format: 'letter',
       });
 
       this.pageWidth = this.doc.internal.pageSize.getWidth();
@@ -144,7 +148,7 @@
      */
     addHeader(title = 'Project Estimate') {
       const doc = this.doc;
-      const contentWidth = this.pageWidth - (this.margin * 2);
+      const contentWidth = this.pageWidth - this.margin * 2;
 
       // Header background
       doc.setFillColor(...COLORS.primary);
@@ -194,7 +198,7 @@
      */
     addProjectInfo(project) {
       const doc = this.doc;
-      const contentWidth = this.pageWidth - (this.margin * 2);
+      const contentWidth = this.pageWidth - this.margin * 2;
 
       // Section background
       doc.setFillColor(...COLORS.surface);
@@ -210,12 +214,16 @@
 
       doc.setFontSize(9);
       doc.setTextColor(...COLORS.textMuted);
-      doc.text(`Date: ${new Date().toLocaleDateString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      })}`, this.margin + 5, this.y + 16);
+      doc.text(
+        `Date: ${new Date().toLocaleDateString('en-US', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}`,
+        this.margin + 5,
+        this.y + 16
+      );
 
       if (project.clientName) {
         doc.text(`Client: ${project.clientName}`, this.margin + 5, this.y + 22);
@@ -236,7 +244,7 @@
       }
 
       doc.setFillColor(...COLORS.primary);
-      doc.rect(this.margin, this.y, this.pageWidth - (this.margin * 2), 8, 'F');
+      doc.rect(this.margin, this.y, this.pageWidth - this.margin * 2, 8, 'F');
 
       doc.setTextColor(...COLORS.white);
       doc.setFont('helvetica', 'bold');
@@ -266,26 +274,26 @@
         doc.autoTable({
           startY: this.y,
           head: [['Material', 'Specification', 'Quantity']],
-          body: materials.map(m => [m.name, m.spec || '—', m.quantity]),
+          body: materials.map((m) => [m.name, m.spec || '—', m.quantity]),
           margin: { left: this.margin, right: this.margin },
           headStyles: {
             fillColor: COLORS.primary,
             textColor: COLORS.white,
             fontStyle: 'bold',
-            fontSize: 9
+            fontSize: 9,
           },
           bodyStyles: {
             textColor: COLORS.text,
-            fontSize: 9
+            fontSize: 9,
           },
           alternateRowStyles: {
-            fillColor: COLORS.surface
+            fillColor: COLORS.surface,
           },
           columnStyles: {
             0: { cellWidth: 50 },
             1: { cellWidth: 70 },
-            2: { cellWidth: 40, halign: 'right', fontStyle: 'bold' }
-          }
+            2: { cellWidth: 40, halign: 'right', fontStyle: 'bold' },
+          },
         });
         this.y = doc.lastAutoTable.finalY + 8;
       } else {
@@ -305,7 +313,13 @@
 
       // Header
       doc.setFillColor(...COLORS.primary);
-      doc.rect(startX, this.y, colWidths.reduce((a, b) => a + b, 0), rowHeight, 'F');
+      doc.rect(
+        startX,
+        this.y,
+        colWidths.reduce((a, b) => a + b, 0),
+        rowHeight,
+        'F'
+      );
       doc.setTextColor(...COLORS.white);
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(9);
@@ -319,7 +333,13 @@
       materials.forEach((m, i) => {
         if (i % 2 === 0) {
           doc.setFillColor(...COLORS.surface);
-          doc.rect(startX, this.y, colWidths.reduce((a, b) => a + b, 0), rowHeight, 'F');
+          doc.rect(
+            startX,
+            this.y,
+            colWidths.reduce((a, b) => a + b, 0),
+            rowHeight,
+            'F'
+          );
         }
         doc.setFont('helvetica', 'normal');
         doc.text(m.name, startX + 2, this.y + 5);
@@ -387,7 +407,7 @@
         this.y += lineHeight;
       });
 
-      this.y = startY + (Math.max(col1.length, col2.length) * lineHeight) + 3;
+      this.y = startY + Math.max(col1.length, col2.length) * lineHeight + 3;
 
       // Results
       if (results) {
@@ -444,7 +464,9 @@
       doc.text(`${COMPANY.website} | ${COMPANY.phone}`, this.margin, footerY + 11);
 
       // Page number
-      doc.text(`Page ${pageNum} of ${totalPages}`, this.pageWidth - this.margin, footerY + 7, { align: 'right' });
+      doc.text(`Page ${pageNum} of ${totalPages}`, this.pageWidth - this.margin, footerY + 7, {
+        align: 'right',
+      });
 
       // Timestamp
       doc.setFontSize(6);
@@ -462,7 +484,7 @@
     addDisclaimer() {
       const doc = this.doc;
       const disclaimerY = this.pageHeight - 45;
-      const contentWidth = this.pageWidth - (this.margin * 2);
+      const contentWidth = this.pageWidth - this.margin * 2;
 
       // Check if we need a new page
       if (this.y > disclaimerY - 10) {
@@ -482,11 +504,11 @@
       const disclaimerText = [
         'DISCLAIMER: This estimate is for planning purposes only and does not constitute a binding quote.',
         'Actual material quantities may vary based on site conditions, tile breakage, pattern complexity, and cutting waste.',
-        'Final pricing requires on-site measurement. Contact Tillerstead LLC for a professional consultation and formal quote.'
+        'Final pricing requires on-site measurement. Contact Tillerstead LLC for a professional consultation and formal quote.',
       ];
 
       let textY = disclaimerY + 5;
-      disclaimerText.forEach(line => {
+      disclaimerText.forEach((line) => {
         doc.text(line, this.margin + 3, textY);
         textY += 4;
       });
@@ -494,8 +516,12 @@
       // NJ Consumer Affairs note
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(6);
-      doc.text('NJ Home Improvement Contractor Lic. #13VH10808800 | Consumer Affairs: 1-800-242-5846',
-        this.pageWidth / 2, disclaimerY + 18, { align: 'center' });
+      doc.text(
+        'NJ Home Improvement Contractor Lic. #13VH10808800 | Consumer Affairs: 1-800-242-5846',
+        this.pageWidth / 2,
+        disclaimerY + 18,
+        { align: 'center' }
+      );
     }
 
     /**
@@ -532,14 +558,14 @@
           waste: 'Waste Factor',
           tilesPerBox: 'Tiles/Box',
           sqftPerBox: 'Sq.Ft./Box',
-          atticStock: 'Attic Stock'
+          atticStock: 'Attic Stock',
         },
         mortar: {
           area: 'Coverage Area',
           trowelSize: 'Trowel Size',
           backButter: 'Back Butter',
           substrate: 'Substrate Type',
-          bagSize: 'Bag Size'
+          bagSize: 'Bag Size',
         },
         grout: {
           area: 'Total Area',
@@ -547,28 +573,28 @@
           tileHeight: 'Tile Height',
           jointWidth: 'Joint Width',
           jointDepth: 'Joint Depth',
-          groutType: 'Grout Type'
+          groutType: 'Grout Type',
         },
         leveling: {
           area: 'Floor Area',
           avgDepth: 'Average Depth',
-          productType: 'Product Type'
+          productType: 'Product Type',
         },
         slope: {
           drainDistance: 'Drain Distance',
-          slopeRatio: 'Slope Ratio'
+          slopeRatio: 'Slope Ratio',
         },
         waterproof: {
           area: 'Total Area',
           coats: 'Number of Coats',
-          membraneType: 'Membrane Type'
+          membraneType: 'Membrane Type',
         },
         labor: {
           area: 'Project Area',
           complexity: 'Complexity',
           tileSize: 'Tile Size',
-          crew: 'Crew Size'
-        }
+          crew: 'Crew Size',
+        },
       };
       return labels[calcId] || {};
     }
@@ -581,32 +607,32 @@
         tile: {
           tilesNeeded: 'Tiles Needed',
           boxesNeeded: 'Boxes Required',
-          totalSqFt: 'Total Coverage'
+          totalSqFt: 'Total Coverage',
         },
         mortar: {
           bagsNeeded: 'Bags Required',
-          coverage: 'Coverage Rate'
+          coverage: 'Coverage Rate',
         },
         grout: {
           bagsNeeded: 'Bags Required',
-          lbs: 'Total Weight'
+          lbs: 'Total Weight',
         },
         leveling: {
           bagsNeeded: 'Bags Required',
-          volume: 'Total Volume'
+          volume: 'Total Volume',
         },
         slope: {
           height: 'Height at Wall',
-          mudDepth: 'Mud Depth'
+          mudDepth: 'Mud Depth',
         },
         waterproof: {
           gallons: 'Gallons Needed',
-          buckets: 'Buckets Required'
+          buckets: 'Buckets Required',
         },
         labor: {
           hours: 'Estimated Hours',
-          days: 'Work Days'
-        }
+          days: 'Work Days',
+        },
       };
       return labels[calcId] || {};
     }
@@ -617,7 +643,7 @@
     formatLabel(key) {
       return key
         .replace(/([A-Z])/g, ' $1')
-        .replace(/^./, str => str.toUpperCase())
+        .replace(/^./, (str) => str.toUpperCase())
         .trim();
     }
 
@@ -655,7 +681,7 @@
               materials.push({
                 name: 'Tile',
                 spec: inputs.tileSize || 'Custom',
-                quantity: `${results.boxesNeeded} boxes`
+                quantity: `${results.boxesNeeded} boxes`,
               });
             }
             break;
@@ -664,7 +690,7 @@
               materials.push({
                 name: 'Thin-Set Mortar',
                 spec: inputs.mortarType || 'Modified',
-                quantity: `${results.bagsNeeded} bags`
+                quantity: `${results.bagsNeeded} bags`,
               });
             }
             break;
@@ -673,7 +699,7 @@
               materials.push({
                 name: 'Grout',
                 spec: inputs.groutType || 'Sanded',
-                quantity: `${results.bagsNeeded} bags`
+                quantity: `${results.bagsNeeded} bags`,
               });
             }
             break;
@@ -682,7 +708,7 @@
               materials.push({
                 name: 'Self-Leveling Compound',
                 spec: inputs.productType || 'Standard',
-                quantity: `${results.bagsNeeded} bags`
+                quantity: `${results.bagsNeeded} bags`,
               });
             }
             break;
@@ -691,7 +717,7 @@
               materials.push({
                 name: 'Waterproofing Membrane',
                 spec: inputs.membraneType || 'Liquid',
-                quantity: results.buckets ? `${results.buckets} buckets` : `${results.gallons} gal`
+                quantity: results.buckets ? `${results.buckets} buckets` : `${results.gallons} gal`,
               });
             }
             break;
@@ -736,8 +762,11 @@
         this.doc.setFont('helvetica', 'normal');
         this.doc.setFontSize(9);
 
-        const lines = this.doc.splitTextToSize(project.notes, this.pageWidth - (this.margin * 2) - 10);
-        lines.forEach(line => {
+        const lines = this.doc.splitTextToSize(
+          project.notes,
+          this.pageWidth - this.margin * 2 - 10
+        );
+        lines.forEach((line) => {
           if (this.y > this.pageHeight - 40) {
             this.addNewPage();
           }
@@ -778,7 +807,11 @@
       this.doc.setTextColor(...COLORS.textMuted);
       this.doc.setFont('helvetica', 'italic');
       this.doc.setFontSize(8);
-      this.doc.text('Note: Quantities include calculated waste factors. Verify availability before purchase.', this.margin, this.y);
+      this.doc.text(
+        'Note: Quantities include calculated waste factors. Verify availability before purchase.',
+        this.margin,
+        this.y
+      );
 
       this.addDisclaimer();
       this.addFooter(1, 1);
@@ -789,7 +822,13 @@
     /**
      * Generate quick estimate PDF (single calculation) with optional shopping list
      */
-    async generateQuickEstimate(calcId, inputs, results, projectName = 'Quick Estimate', shoppingList = []) {
+    async generateQuickEstimate(
+      calcId,
+      inputs,
+      results,
+      projectName = 'Quick Estimate',
+      shoppingList = []
+    ) {
       await this.init();
 
       this.addHeader('Quick Estimate');
@@ -797,7 +836,7 @@
       // Simple project info
       const doc = this.doc;
       doc.setFillColor(...COLORS.surface);
-      doc.rect(this.margin, this.y, this.pageWidth - (this.margin * 2), 15, 'F');
+      doc.rect(this.margin, this.y, this.pageWidth - this.margin * 2, 15, 'F');
 
       doc.setTextColor(...COLORS.text);
       doc.setFont('helvetica', 'bold');
@@ -822,19 +861,19 @@
         materials.push({
           name: 'Tile',
           spec: inputs.tileSize || 'Custom',
-          quantity: `${results.boxesNeeded} boxes`
+          quantity: `${results.boxesNeeded} boxes`,
         });
       } else if (calcId === 'mortar' && results.bagsNeeded) {
         materials.push({
           name: 'Mortar',
           spec: inputs.mortarType || 'Modified',
-          quantity: `${results.bagsNeeded} bags`
+          quantity: `${results.bagsNeeded} bags`,
         });
       } else if (calcId === 'grout' && results.bagsNeeded) {
         materials.push({
           name: 'Grout',
           spec: inputs.groutType || 'Sanded',
-          quantity: `${results.bagsNeeded} bags`
+          quantity: `${results.bagsNeeded} bags`,
         });
       }
 
@@ -875,32 +914,32 @@
         doc.autoTable({
           startY: this.y,
           head: [['Item', 'Quantity', 'Unit', 'Source']],
-          body: shoppingList.map(item => [
+          body: shoppingList.map((item) => [
             item.item,
             item.quantity,
             item.unit || '',
-            this.formatCalcSource(item.source)
+            this.formatCalcSource(item.source),
           ]),
           margin: { left: this.margin, right: this.margin },
           headStyles: {
             fillColor: COLORS.gold,
             textColor: [33, 37, 41],
             fontStyle: 'bold',
-            fontSize: 9
+            fontSize: 9,
           },
           bodyStyles: {
             textColor: COLORS.text,
-            fontSize: 9
+            fontSize: 9,
           },
           alternateRowStyles: {
-            fillColor: COLORS.surface
+            fillColor: COLORS.surface,
           },
           columnStyles: {
             0: { cellWidth: 55 },
             1: { cellWidth: 25, halign: 'right', fontStyle: 'bold' },
             2: { cellWidth: 35 },
-            3: { cellWidth: 40, fontStyle: 'italic' }
-          }
+            3: { cellWidth: 40, fontStyle: 'italic' },
+          },
         });
         this.y = doc.lastAutoTable.finalY + 8;
       } else {
@@ -920,7 +959,13 @@
 
       // Header
       doc.setFillColor(...COLORS.gold);
-      doc.rect(startX, this.y, colWidths.reduce((a, b) => a + b, 0), rowHeight, 'F');
+      doc.rect(
+        startX,
+        this.y,
+        colWidths.reduce((a, b) => a + b, 0),
+        rowHeight,
+        'F'
+      );
       doc.setTextColor(33, 37, 41);
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(9);
@@ -935,7 +980,13 @@
       shoppingList.forEach((item, i) => {
         if (i % 2 === 0) {
           doc.setFillColor(...COLORS.surface);
-          doc.rect(startX, this.y, colWidths.reduce((a, b) => a + b, 0), rowHeight, 'F');
+          doc.rect(
+            startX,
+            this.y,
+            colWidths.reduce((a, b) => a + b, 0),
+            rowHeight,
+            'F'
+          );
         }
         doc.setFont('helvetica', 'normal');
         doc.text(String(item.item || ''), startX + 2, this.y + 5);
@@ -944,7 +995,11 @@
         doc.setFont('helvetica', 'normal');
         doc.text(String(item.unit || ''), startX + colWidths[0] + colWidths[1] + 2, this.y + 5);
         doc.setFont('helvetica', 'italic');
-        doc.text(this.formatCalcSource(item.source), startX + colWidths[0] + colWidths[1] + colWidths[2] + 2, this.y + 5);
+        doc.text(
+          this.formatCalcSource(item.source),
+          startX + colWidths[0] + colWidths[1] + colWidths[2] + 2,
+          this.y + 5
+        );
         this.y += rowHeight;
       });
 
@@ -962,7 +1017,7 @@
         leveling: 'Leveling Calc',
         waterproof: 'Waterproof Calc',
         sealant: 'Sealant Calc',
-        sealer: 'Sealer Calc'
+        sealer: 'Sealer Calc',
       };
       return sourceMap[source] || source || '';
     }
@@ -1069,7 +1124,7 @@
         try {
           await Promise.race([
             window._jsPDFReady,
-            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), timeout))
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), timeout)),
           ]);
           return this.isAvailable();
         } catch {
@@ -1077,7 +1132,6 @@
         }
       }
       return false;
-    }
+    },
   };
-
 })();

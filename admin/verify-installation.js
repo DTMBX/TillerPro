@@ -23,7 +23,7 @@ function checkNodeVersion() {
   checks.push({
     name: 'Node.js version',
     pass,
-    message: pass ? `✓ ${version} (>= 18.0.0 required)` : `✗ ${version} (>= 18.0.0 required)`
+    message: pass ? `✓ ${version} (>= 18.0.0 required)` : `✗ ${version} (>= 18.0.0 required)`,
   });
 }
 
@@ -36,43 +36,38 @@ function checkFiles() {
     'admin/public/admin-styles.css',
     'admin/public/admin-app.js',
     'admin/README.md',
-    'admin/generate-password.js'
+    'admin/generate-password.js',
   ];
 
-  requiredFiles.forEach(file => {
+  requiredFiles.forEach((file) => {
     const fullPath = path.join(__dirname, '..', file);
     const exists = fs.existsSync(fullPath);
     checks.push({
       name: `File: ${file}`,
       pass: exists,
-      message: exists ? `✓ Found` : `✗ Missing`
+      message: exists ? `✓ Found` : `✗ Missing`,
     });
   });
 }
 
 // Check 3: Dependencies installed
 function checkDependencies() {
-  const requiredDeps = [
-    'express',
-    'express-session',
-    'bcrypt',
-    'js-yaml'
-  ];
+  const requiredDeps = ['express', 'express-session', 'bcrypt', 'js-yaml'];
 
-  requiredDeps.forEach(dep => {
+  requiredDeps.forEach((dep) => {
     try {
       const pkgPath = path.join(__dirname, '..', 'node_modules', dep, 'package.json');
       const exists = fs.existsSync(pkgPath);
       checks.push({
         name: `Dependency: ${dep}`,
         pass: exists,
-        message: exists ? `✓ Installed` : `✗ Not installed (run npm install)`
+        message: exists ? `✓ Installed` : `✗ Not installed (run npm install)`,
       });
     } catch (error) {
       checks.push({
         name: `Dependency: ${dep}`,
         pass: false,
-        message: `✗ Not installed`
+        message: `✗ Not installed`,
       });
     }
   });
@@ -89,13 +84,13 @@ function checkScripts() {
     checks.push({
       name: 'npm run admin script',
       pass: hasAdminScript,
-      message: hasAdminScript ? '✓ Configured' : '✗ Missing'
+      message: hasAdminScript ? '✓ Configured' : '✗ Missing',
     });
 
     checks.push({
       name: 'npm run admin:dev script',
       pass: hasAdminDevScript,
-      message: hasAdminDevScript ? '✓ Configured' : '✗ Missing'
+      message: hasAdminDevScript ? '✓ Configured' : '✗ Missing',
     });
   }
 }
@@ -106,7 +101,7 @@ function checkPort() {
   checks.push({
     name: `Port ${port} check`,
     pass: true,
-    message: `ℹ Run 'npm run admin' to verify port availability`
+    message: `ℹ Run 'npm run admin' to verify port availability`,
   });
 }
 
@@ -119,13 +114,13 @@ checkPort();
 
 // Display results
 console.log('═'.repeat(70));
-checks.forEach(check => {
+checks.forEach((check) => {
   const icon = check.pass ? '✅' : '❌';
   console.log(`${icon} ${check.name.padEnd(40)} ${check.message}`);
 });
 console.log('═'.repeat(70));
 
-const passed = checks.filter(c => c.pass).length;
+const passed = checks.filter((c) => c.pass).length;
 const total = checks.length;
 const allPassed = passed === total;
 

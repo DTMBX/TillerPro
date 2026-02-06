@@ -106,17 +106,11 @@ function replaceColorsInFile(filePath, dryRun = false) {
   colorsFound.forEach((color) => {
     const lowerColor = color.toLowerCase();
     if (COLOR_MAP[lowerColor]) {
-      const regex = new RegExp(
-        color.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
-        'gi',
-      );
+      const regex = new RegExp(color.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
       newContent = newContent.replace(regex, COLOR_MAP[lowerColor]);
       replacements++;
     } else if (COLOR_MAP[color]) {
-      const regex = new RegExp(
-        color.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
-        'g',
-      );
+      const regex = new RegExp(color.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
       newContent = newContent.replace(regex, COLOR_MAP[color]);
       replacements++;
     }
@@ -183,16 +177,12 @@ const results = processDirectory(projectRoot, dryRun);
 console.log('\n📊 Results:');
 console.log('====');
 console.log(`Files processed: ${results.length}`);
-console.log(
-  `Total replacements: ${results.reduce((sum, r) => sum + r.replacements, 0)}\n`,
-);
+console.log(`Total replacements: ${results.reduce((sum, r) => sum + r.replacements, 0)}\n`);
 
 if (results.length > 0) {
   console.log('📝 Files modified:');
   results.forEach((r) => {
-    console.log(
-      `  ${r.file.replace(projectRoot, '')}: ${r.replacements} replacements`,
-    );
+    console.log(`  ${r.file.replace(projectRoot, '')}: ${r.replacements} replacements`);
   });
 }
 

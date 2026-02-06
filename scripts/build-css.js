@@ -16,7 +16,6 @@ try {
   // Use sass Node.js API instead of CLI for better Windows compatibility
   const loadPaths = [path.resolve(__dirname, '..', '_sass')];
 
-
   // Use sass.compile for correct import/module resolution
   const result = sass.compile(scssPath, {
     sourceMap: false,
@@ -26,9 +25,7 @@ try {
 
   writeFileSync(cssOutPath, result.css, 'utf8');
 
-  console.log(
-    `\n✓ Built CSS → ${path.relative('.', cssOutPath)} (TCNA/New Jersey HIC compliant)`,
-  );
+  console.log(`\n✓ Built CSS → ${path.relative('.', cssOutPath)} (TCNA/New Jersey HIC compliant)`);
 } catch (err) {
   console.error('CSS build failed:', err.message);
   process.exit(1);

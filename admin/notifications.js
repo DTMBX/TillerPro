@@ -30,8 +30,8 @@ class EmailNotifier {
         secure: process.env.SMTP_SECURE === 'true',
         auth: {
           user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS
-        }
+          pass: process.env.SMTP_PASS,
+        },
       });
     } else {
       // Development: Use ethereal email
@@ -48,8 +48,8 @@ class EmailNotifier {
         secure: false,
         auth: {
           user: testAccount.user,
-          pass: testAccount.pass
-        }
+          pass: testAccount.pass,
+        },
       });
       console.log('📧 Test email account created:', testAccount.user);
     } catch (error) {
@@ -69,7 +69,7 @@ class EmailNotifier {
         to,
         subject,
         text,
-        html
+        html,
       });
 
       console.log('📧 Email sent:', info.messageId);
@@ -299,7 +299,7 @@ class InAppNotifier {
       message,
       metadata,
       timestamp: new Date().toISOString(),
-      read: false
+      read: false,
     };
 
     this.notifications.unshift(notification);
@@ -314,24 +314,24 @@ class InAppNotifier {
 
   getAll(unreadOnly = false) {
     if (unreadOnly) {
-      return this.notifications.filter(n => !n.read);
+      return this.notifications.filter((n) => !n.read);
     }
     return this.notifications;
   }
 
   markAsRead(id) {
-    const notification = this.notifications.find(n => n.id === id);
+    const notification = this.notifications.find((n) => n.id === id);
     if (notification) {
       notification.read = true;
     }
   }
 
   markAllAsRead() {
-    this.notifications.forEach(n => n.read = true);
+    this.notifications.forEach((n) => (n.read = true));
   }
 
   delete(id) {
-    this.notifications = this.notifications.filter(n => n.id !== id);
+    this.notifications = this.notifications.filter((n) => n.id !== id);
   }
 
   clear() {
@@ -343,5 +343,5 @@ export const inAppNotifier = new InAppNotifier();
 
 export default {
   emailNotifier,
-  inAppNotifier
+  inAppNotifier,
 };

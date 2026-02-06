@@ -152,13 +152,16 @@
 
 .form-section {
   background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgb(0 0 0 / 8%);
   border-radius: clamp(1rem, 2vw, 1.5rem);
   padding: clamp(1.5rem, 3vw, 2.5rem);
   margin-bottom: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06),
-              0 8px 24px rgba(0, 0, 0, 0.08);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow:
+    0 2px 8px rgb(0 0 0 / 6%),
+    0 8px 24px rgb(0 0 0 / 8%);
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 .form-section:hover {
@@ -222,9 +225,9 @@
   font-weight: 700;
 }
 
-.form-field input[type="text"],
-.form-field input[type="email"],
-.form-field input[type="tel"],
+.form-field input[type='text'],
+.form-field input[type='email'],
+.form-field input[type='tel'],
 .form-field select,
 .form-field textarea {
   width: 100%;
@@ -232,7 +235,7 @@
   font-size: 1rem;
   color: var(--color-text-primary, #111827);
   background: #ffffff;
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid rgb(0 0 0 / 10%);
   border-radius: clamp(0.5rem, 1vw, 0.75rem);
   transition: all 0.2s ease;
 }
@@ -408,7 +411,7 @@
   box-shadow: 0 2px 8px rgb(59 130 246 / 10%);
 }
 
-.acknowledgment-item input[type="checkbox"] {
+.acknowledgment-item input[type='checkbox'] {
   margin-top: 0.25rem;
   width: 1.25rem;
   height: 1.25rem;
@@ -416,7 +419,7 @@
   flex-shrink: 0;
 }
 
-.acknowledgment-item input[type="checkbox"]:checked {
+.acknowledgment-item input[type='checkbox']:checked {
   accent-color: var(--color-primary, #059669);
 }
 
@@ -507,54 +510,54 @@
   .quote-form-container {
     padding: 1rem 0.5rem;
   }
-  
+
   .quote-form-header {
     margin-bottom: 2rem;
   }
-  
+
   .quote-form-header h1 {
     font-size: 1.5rem;
   }
-  
+
   .quote-form-header .subtitle {
     font-size: 1rem;
   }
-  
+
   .trust-badges {
     gap: 0.75rem;
   }
-  
+
   .trust-badges .badge {
     font-size: 0.75rem;
     padding: 0.375rem 0.75rem;
   }
-  
+
   .form-section {
     padding: 1.5rem 1rem;
   }
-  
+
   .section-title {
     font-size: 1.25rem;
   }
-  
+
   .section-number {
     width: 2rem;
     height: 2rem;
     font-size: 1rem;
   }
-  
+
   .form-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .materials-summary {
     grid-template-columns: 1fr;
   }
-  
+
   .form-actions {
     flex-direction: column-reverse;
   }
-  
+
   .form-actions .btn {
     width: 100%;
     justify-content: center;
@@ -571,7 +574,7 @@
   .summary-note {
     display: none;
   }
-  
+
   .form-section {
     break-inside: avoid;
     box-shadow: none;

@@ -1,4 +1,3 @@
-
 .retro-gradient-teal-purple {
   background: var(--retro-gradient-teal-purple);
   color: #ffffff;
@@ -52,8 +51,8 @@
 .retro-border-double {
   border: var(--retro-border-medium) solid currentcolor;
   box-shadow:
-  inset 0 0 0 var(--retro-border-thin) var(--tiller-bg-dark),
-  inset 0 0 0 calc(var(--retro-border-thin) + 2px) currentcolor;
+    inset 0 0 0 var(--retro-border-thin) var(--tiller-bg-dark),
+    inset 0 0 0 calc(var(--retro-border-thin) + 2px) currentcolor;
 }
 
 .retro-shadow-offset {
@@ -91,10 +90,12 @@
   left: 0;
   width: 60px;
   height: 4px;
-  background: linear-gradient(90deg,
-  var(--retro-teal) 0%,
-  var(--retro-purple) 50%,
-  var(--retro-salmon) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--retro-teal) 0%,
+    var(--retro-purple) 50%,
+    var(--retro-salmon) 100%
+  );
   border-radius: 2px;
 }
 
@@ -126,14 +127,16 @@
 
 .memphis-zigzag {
   height: 4px;
-  background: linear-gradient(135deg,
-  var(--retro-teal) 25%,
-  transparent 25%,
-  transparent 50%,
-  var(--retro-teal) 50%,
-  var(--retro-teal) 75%,
-  transparent 75%,
-  transparent);
+  background: linear-gradient(
+    135deg,
+    var(--retro-teal) 25%,
+    transparent 25%,
+    transparent 50%,
+    var(--retro-teal) 50%,
+    var(--retro-teal) 75%,
+    transparent 75%,
+    transparent
+  );
   background-size: 20px 20px;
   margin: var(--tiller-spacing-lg) auto;
   max-width: 80%;
@@ -175,7 +178,9 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  transition: transform var(--tiller-transition-fast), box-shadow var(--tiller-transition-fast);
+  transition:
+    transform var(--tiller-transition-fast),
+    box-shadow var(--tiller-transition-fast);
 }
 
 .btn-retro-teal:hover {
@@ -197,7 +202,9 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  transition: transform var(--tiller-transition-fast), box-shadow var(--tiller-transition-fast);
+  transition:
+    transform var(--tiller-transition-fast),
+    box-shadow var(--tiller-transition-fast);
 }
 
 .btn-retro-salmon:hover {
@@ -217,7 +224,9 @@
   box-shadow: var(--retro-shadow-offset-md);
   border-radius: var(--tiller-border-radius-sm);
   padding: var(--tiller-spacing-lg);
-  transition: transform var(--tiller-transition-normal), box-shadow var(--tiller-transition-normal);
+  transition:
+    transform var(--tiller-transition-normal),
+    box-shadow var(--tiller-transition-normal);
 }
 
 .card-retro:hover {
@@ -249,18 +258,20 @@
   position: absolute;
   inset: 0;
   background-image:
-  repeating-linear-gradient(45deg,
-  transparent,
-  transparent 10px,
-  rgb(0 128 128 / 3%) 10px,
-  rgb(0 128 128 / 3%) 20px
-  ),
-  repeating-linear-gradient(-45deg,
-  transparent,
-  transparent 10px,
-  rgb(147 112 219 / 3%) 10px,
-  rgb(147 112 219 / 3%) 20px
-  );
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgb(0 128 128 / 3%) 10px,
+      rgb(0 128 128 / 3%) 20px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 10px,
+      rgb(147 112 219 / 3%) 10px,
+      rgb(147 112 219 / 3%) 20px
+    );
   pointer-events: none;
 }
 
@@ -273,52 +284,56 @@
   position: absolute;
   inset: 0;
   background-image:
-  repeating-linear-gradient(90deg,
-  transparent,
-  transparent 8px,
-  rgb(0 128 128 / 5%) 8px,
-  rgb(0 128 128 / 5%) 16px
-  ),
-  repeating-linear-gradient(0deg,
-  transparent,
-  transparent 8px,
-  rgb(147 112 219 / 5%) 8px,
-  rgb(147 112 219 / 5%) 16px
-  );
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 8px,
+      rgb(0 128 128 / 5%) 8px,
+      rgb(0 128 128 / 5%) 16px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 8px,
+      rgb(147 112 219 / 5%) 8px,
+      rgb(147 112 219 / 5%) 16px
+    );
   pointer-events: none;
   opacity: 50%;
 }
 
 .grout-teal {
   background-image:
-  linear-gradient(var(--retro-teal) 1px, transparent 1px),
-  linear-gradient(90deg, var(--retro-teal) 1px, transparent 1px);
+    linear-gradient(var(--retro-teal) 1px, transparent 1px),
+    linear-gradient(90deg, var(--retro-teal) 1px, transparent 1px);
   background-size: 24px 24px;
   opacity: 15%;
 }
 
 .grout-salmon {
   background-image:
-  linear-gradient(var(--retro-salmon) 1px, transparent 1px),
-  linear-gradient(90deg, var(--retro-salmon) 1px, transparent 1px);
+    linear-gradient(var(--retro-salmon) 1px, transparent 1px),
+    linear-gradient(90deg, var(--retro-salmon) 1px, transparent 1px);
   background-size: 24px 24px;
   opacity: 15%;
 }
 
 .grout-mint {
   background-image:
-  linear-gradient(var(--retro-mint-dark) 1px, transparent 1px),
-  linear-gradient(90deg, var(--retro-mint-dark) 1px, transparent 1px);
+    linear-gradient(var(--retro-mint-dark) 1px, transparent 1px),
+    linear-gradient(90deg, var(--retro-mint-dark) 1px, transparent 1px);
   background-size: 24px 24px;
   opacity: 15%;
 }
 
 .hero-retro {
   position: relative;
-  background: linear-gradient(135deg,
-  var(--tiller-bg-dark) 0%,
-  var(--tiller-bg-stone) 50%,
-  var(--tiller-bg-dark) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--tiller-bg-dark) 0%,
+    var(--tiller-bg-stone) 50%,
+    var(--tiller-bg-dark) 100%
+  );
 }
 
 .hero-retro::before {
@@ -364,11 +379,13 @@
 
 .retro-accent-bar {
   height: 4px;
-  background: linear-gradient(90deg,
-  var(--retro-teal) 0%,
-  var(--retro-purple) 33%,
-  var(--retro-salmon) 66%,
-  var(--retro-mint) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--retro-teal) 0%,
+    var(--retro-purple) 33%,
+    var(--retro-salmon) 66%,
+    var(--retro-mint) 100%
+  );
   margin: var(--tiller-spacing-md) 0;
   border-radius: 2px;
 }
@@ -376,41 +393,43 @@
 .retro-accent-bar-vertical {
   width: 4px;
   height: 100%;
-  background: linear-gradient(180deg,
-  var(--retro-teal) 0%,
-  var(--retro-purple) 33%,
-  var(--retro-salmon) 66%,
-  var(--retro-mint) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--retro-teal) 0%,
+    var(--retro-purple) 33%,
+    var(--retro-salmon) 66%,
+    var(--retro-mint) 100%
+  );
   border-radius: 2px;
 }
 
 @media (max-width: 900px) {
   .retro-shadow-offset-lg {
-  box-shadow: var(--retro-shadow-offset-md);
+    box-shadow: var(--retro-shadow-offset-md);
   }
 
   .retro-pattern-geometric::before,
   .retro-pattern-pixel::before {
-  opacity: 30%;
+    opacity: 30%;
   }
 
   .memphis-triangle::after,
   .memphis-circle::before {
-  display: none;
+    display: none;
   }
 }
 
 @media (max-width: 600px) {
   .retro-border-chunky {
-  border-width: var(--retro-border-medium);
+    border-width: var(--retro-border-medium);
   }
 
   .retro-border-double {
-  border-width: var(--retro-border-thin);
+    border-width: var(--retro-border-thin);
   }
 
   .retro-shadow-offset {
-  box-shadow: var(--retro-shadow-offset-sm);
+    box-shadow: var(--retro-shadow-offset-sm);
   }
 }
 
@@ -418,13 +437,13 @@
   .btn-retro-teal,
   .btn-retro-salmon,
   .card-retro {
-  transition: none;
+    transition: none;
   }
 
   .btn-retro-teal:hover,
   .btn-retro-salmon:hover,
   .card-retro:hover {
-  transform: none;
+    transform: none;
   }
 }
 
@@ -433,7 +452,7 @@
   .retro-pattern-pixel::before,
   .hero-retro::before,
   .hero-retro::after {
-  display: none;
+    display: none;
   }
 
   .retro-border-chunky,
@@ -441,6 +460,6 @@
   .retro-border-salmon,
   .retro-border-mint,
   .retro-border-purple {
-  border-width: calc(var(--retro-border-thick) * 1.5);
+    border-width: calc(var(--retro-border-thick) * 1.5);
   }
 }

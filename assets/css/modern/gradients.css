@@ -52,9 +52,17 @@
 }
 
 @keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Mesh gradient backgrounds */
@@ -65,8 +73,9 @@
 
 .bg-gradient-mesh-light {
   background: var(--color-neutral-50);
-  background-image: radial-gradient(at 0% 0%, rgb(14 165 233 / 10%) 0, transparent 50%),
-                    radial-gradient(at 100% 100%, rgb(245 158 11 / 8%) 0, transparent 50%);
+  background-image:
+    radial-gradient(at 0% 0%, rgb(14 165 233 / 10%) 0, transparent 50%),
+    radial-gradient(at 100% 100%, rgb(245 158 11 / 8%) 0, transparent 50%);
 }
 
 /* ========================================
@@ -121,11 +130,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary-700) 0%,
-    var(--color-primary-900) 100%
-  );
+  background: linear-gradient(135deg, var(--color-primary-700) 0%, var(--color-primary-900) 100%);
   opacity: 0%;
   transition: opacity var(--transition-base);
 }
@@ -166,7 +171,9 @@
   border-radius: inherit;
   padding: 2px;
   background: var(--gradient-primary);
-  mask: linear-gradient(#ffffff 0 0) content-box, linear-gradient(#ffffff 0 0);
+  mask:
+    linear-gradient(#ffffff 0 0) content-box,
+    linear-gradient(#ffffff 0 0);
   mask-composite: xor;
   mask-composite: exclude;
 }
@@ -188,9 +195,17 @@
 }
 
 @keyframes border-gradient-rotate {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* ========================================
@@ -210,11 +225,7 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(
-    circle,
-    rgb(14 165 233 / 10%) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle, rgb(14 165 233 / 10%) 0%, transparent 70%);
   opacity: 0%;
   transition: opacity var(--transition-base);
   pointer-events: none;
@@ -243,11 +254,7 @@
   left: 0;
   right: 0;
   height: 200px;
-  background: linear-gradient(
-    to bottom,
-    rgb(15 23 42 / 90%) 0%,
-    transparent 100%
-  );
+  background: linear-gradient(to bottom, rgb(15 23 42 / 90%) 0%, transparent 100%);
   pointer-events: none;
 }
 
@@ -262,11 +269,7 @@
   left: 0;
   right: 0;
   height: 200px;
-  background: linear-gradient(
-    to top,
-    rgb(15 23 42 / 90%) 0%,
-    transparent 100%
-  );
+  background: linear-gradient(to top, rgb(15 23 42 / 90%) 0%, transparent 100%);
   pointer-events: none;
 }
 
@@ -287,11 +290,7 @@
   left: 50%;
   width: 800px;
   height: 800px;
-  background: radial-gradient(
-    circle,
-    rgb(14 165 233 / 15%) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle, rgb(14 165 233 / 15%) 0%, transparent 70%);
   transform: translate(-50%, -50%);
   pointer-events: none;
 }

@@ -21,16 +21,20 @@ class GestureHandler {
   initSwipeNavigation() {
     const portfolioImages = document.querySelectorAll('.portfolio-item, .gallery-item');
 
-    portfolioImages.forEach(item => {
+    portfolioImages.forEach((item) => {
       let startX = 0;
       let startY = 0;
       let moving = false;
 
-      item.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-        moving = true;
-      }, { passive: true });
+      item.addEventListener(
+        'touchstart',
+        (e) => {
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+          moving = true;
+        },
+        { passive: true }
+      );
 
       item.addEventListener('touchmove', (e) => {
         if (!moving) return;
@@ -46,29 +50,33 @@ class GestureHandler {
         }
       });
 
-      item.addEventListener('touchend', (e) => {
-        if (!moving) return;
+      item.addEventListener(
+        'touchend',
+        (e) => {
+          if (!moving) return;
 
-        const endX = e.changedTouches[0].clientX;
-        const endY = e.changedTouches[0].clientY;
-        const deltaX = endX - startX;
-        const deltaY = endY - startY;
+          const endX = e.changedTouches[0].clientX;
+          const endY = e.changedTouches[0].clientY;
+          const deltaX = endX - startX;
+          const deltaY = endY - startY;
 
-        // Horizontal swipe threshold
-        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 100) {
-          if (deltaX > 0) {
-            this.navigatePortfolio(item, 'prev');
-          } else {
-            this.navigatePortfolio(item, 'next');
+          // Horizontal swipe threshold
+          if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 100) {
+            if (deltaX > 0) {
+              this.navigatePortfolio(item, 'prev');
+            } else {
+              this.navigatePortfolio(item, 'next');
+            }
+
+            if (window.haptics) {
+              window.haptics.trigger('swipe');
+            }
           }
 
-          if (window.haptics) {
-            window.haptics.trigger('swipe');
-          }
-        }
-
-        moving = false;
-      }, { passive: true });
+          moving = false;
+        },
+        { passive: true }
+      );
     });
   }
 
@@ -95,37 +103,49 @@ class GestureHandler {
   initLongPress() {
     const portfolioItems = document.querySelectorAll('.portfolio-item img, .gallery-item img');
 
-    portfolioItems.forEach(item => {
+    portfolioItems.forEach((item) => {
       let pressTimer;
       let startX, startY;
 
-      item.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
+      item.addEventListener(
+        'touchstart',
+        (e) => {
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
 
-        pressTimer = setTimeout(() => {
-          this.showContextMenu(item, e.touches[0].clientX, e.touches[0].clientY);
+          pressTimer = setTimeout(() => {
+            this.showContextMenu(item, e.touches[0].clientX, e.touches[0].clientY);
 
-          if (window.haptics) {
-            window.haptics.trigger('longPress');
+            if (window.haptics) {
+              window.haptics.trigger('longPress');
+            }
+          }, 500);
+        },
+        { passive: true }
+      );
+
+      item.addEventListener(
+        'touchmove',
+        (e) => {
+          const moveX = e.touches[0].clientX;
+          const moveY = e.touches[0].clientY;
+          const distance = Math.sqrt(Math.pow(moveX - startX, 2) + Math.pow(moveY - startY, 2));
+
+          // Cancel if finger moved
+          if (distance > 10) {
+            clearTimeout(pressTimer);
           }
-        }, 500);
-      }, { passive: true });
+        },
+        { passive: true }
+      );
 
-      item.addEventListener('touchmove', (e) => {
-        const moveX = e.touches[0].clientX;
-        const moveY = e.touches[0].clientY;
-        const distance = Math.sqrt(Math.pow(moveX - startX, 2) + Math.pow(moveY - startY, 2));
-
-        // Cancel if finger moved
-        if (distance > 10) {
+      item.addEventListener(
+        'touchend',
+        () => {
           clearTimeout(pressTimer);
-        }
-      }, { passive: true });
-
-      item.addEventListener('touchend', () => {
-        clearTimeout(pressTimer);
-      }, { passive: true });
+        },
+        { passive: true }
+      );
     });
   }
 
@@ -180,11 +200,15 @@ class GestureHandler {
 
     // Close on outside click
     setTimeout(() => {
-      document.addEventListener('click', (e) => {
-        if (!menu.contains(e.target)) {
-          menu.remove();
-        }
-      }, { once: true });
+      document.addEventListener(
+        'click',
+        (e) => {
+          if (!menu.contains(e.target)) {
+            menu.remove();
+          }
+        },
+        { once: true }
+      );
     }, 100);
   }
 
@@ -194,7 +218,7 @@ class GestureHandler {
   initPinchZoom() {
     const zoomableImages = document.querySelectorAll('.portfolio-item img, .gallery-item img');
 
-    zoomableImages.forEach(img => {
+    zoomableImages.forEach((img) => {
       let initialDistance = 0;
       let currentScale = 1;
 
@@ -244,7 +268,7 @@ class GestureHandler {
     // Add share buttons to portfolio items
     const shareButtons = document.querySelectorAll('[data-share]');
 
-    shareButtons.forEach(button => {
+    shareButtons.forEach((button) => {
       if (!navigator.share) {
         button.style.display = 'none';
         return;
@@ -271,7 +295,7 @@ class GestureHandler {
       await navigator.share({
         title: data.title,
         text: data.text,
-        url: data.url
+        url: data.url,
       });
 
       // // // // // // // // // // // // // // // console.log('[Gestures] Shared successfully'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
@@ -285,7 +309,7 @@ class GestureHandler {
         gtag('event', 'share', {
           method: 'web_share',
           content_type: 'page',
-          item_id: data.url
+          item_id: data.url,
         });
       }
     } catch (error) {
@@ -308,7 +332,7 @@ class GestureHandler {
       await navigator.share({
         title,
         text: 'Check out this tile installation by Tillerstead',
-        files: [file]
+        files: [file],
       });
 
       // // // // // // // // // // // // // // // console.log('[Gestures] Image shared successfully'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
@@ -317,7 +341,7 @@ class GestureHandler {
       this.share({
         title,
         text: 'Check out this tile installation by Tillerstead',
-        url: window.location.href
+        url: window.location.href,
       });
     }
   }

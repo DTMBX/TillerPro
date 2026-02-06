@@ -8,14 +8,14 @@
  * - Respects prefers-reduced-motion
  */
 
-(function() {
+(function () {
   'use strict';
 
   // Configuration
   const CONFIG = {
     scrollThreshold: 0.15, // 15% of element visible triggers animation
     stickyCtaShowAt: 800, // Show sticky CTA after 800px scroll
-    reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
   };
 
   /**
@@ -24,7 +24,7 @@
   function initScrollAnimations() {
     if (CONFIG.reducedMotion) {
       // Skip animations if user prefers reduced motion
-      document.querySelectorAll('.scroll-fade-in, .scroll-scale-in').forEach(el => {
+      document.querySelectorAll('.scroll-fade-in, .scroll-scale-in').forEach((el) => {
         el.classList.add('animated');
       });
       return;
@@ -34,11 +34,11 @@
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: CONFIG.scrollThreshold
+      threshold: CONFIG.scrollThreshold,
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animated');
           // Optionally unobserve after animation to save resources
@@ -48,7 +48,7 @@
     }, observerOptions);
 
     // Observe all elements with animation classes
-    document.querySelectorAll('.scroll-fade-in, .scroll-scale-in').forEach(el => {
+    document.querySelectorAll('.scroll-fade-in, .scroll-scale-in').forEach((el) => {
       observer.observe(el);
     });
   }
@@ -106,15 +106,18 @@
     // Hide when user reaches footer (already at CTA section)
     const footer = document.querySelector('footer');
     if (footer) {
-      const footerObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            stickyCTA.classList.remove('visible');
-          } else if (window.scrollY > CONFIG.stickyCtaShowAt) {
-            stickyCTA.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.1 });
+      const footerObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              stickyCTA.classList.remove('visible');
+            } else if (window.scrollY > CONFIG.stickyCtaShowAt) {
+              stickyCTA.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
 
       footerObserver.observe(footer);
     }
@@ -140,7 +143,7 @@
 
     const cards = document.querySelectorAll('.service-card, .material-card, .testimonial-card');
 
-    cards.forEach(card => {
+    cards.forEach((card) => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -169,16 +172,19 @@
 
     const sections = document.querySelectorAll('section');
 
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.05 });
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
       if (!CONFIG.reducedMotion) {
         section.style.opacity = '0';
         section.style.transform = 'translateY(20px)';
@@ -212,12 +218,11 @@
       window.homeEnhancements = {
         config: CONFIG,
         reinitScrollAnimations: initScrollAnimations,
-        reinitStickyCTA: initStickyCTA
+        reinitStickyCTA: initStickyCTA,
       };
     }
   }
 
   // Start initialization
   init();
-
 })();

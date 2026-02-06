@@ -3,6 +3,7 @@
 ## Instant Commands
 
 ### Development
+
 ```bash
 npm run dev              # Jekyll dev server
 npm run dev:vite         # Vite dev server (faster, modern)
@@ -10,6 +11,7 @@ npm run dev:webpack      # Webpack dev server
 ```
 
 ### Production Build
+
 ```bash
 npm run build:prod       # Full production build
 npm run build:vite       # Vite production build
@@ -18,6 +20,7 @@ npm run build:tailwind   # Tailwind CSS build
 ```
 
 ### Testing & Quality
+
 ```bash
 npm run test             # Run tests
 npm run lint             # Lint all code
@@ -27,6 +30,7 @@ npm run lighthouse       # Lighthouse audit
 ```
 
 ### Analysis
+
 ```bash
 npm run analyze:bundle   # Webpack bundle analysis
 npm run analyze:size     # Check bundle size limits
@@ -36,6 +40,7 @@ npm run analyze          # Full analysis suite
 ## 🎨 Animation Quick Reference
 
 ### HTML Data Attributes
+
 ```html
 <!-- Fade in on load -->
 <div data-animate="fade-in">Content</div>
@@ -60,8 +65,14 @@ npm run analyze          # Full analysis suite
 ```
 
 ### JavaScript Animation API
+
 ```javascript
-import { fadeIn, slideUp, staggerIn, animateCounter } from './assets/js/animations.js';
+import {
+  fadeIn,
+  slideUp,
+  staggerIn,
+  animateCounter,
+} from './assets/js/animations.js';
 
 // Basic animations
 fadeIn('.element');
@@ -75,39 +86,45 @@ animateCounter(element, 1250, { duration: 2 });
 ## ⚡ Performance Optimization
 
 ### Lazy Load Images
+
 ```html
-<img class="lazy" data-src="path/to/image.jpg" alt="Description">
+<img class="lazy" data-src="path/to/image.jpg" alt="Description" />
 ```
 
 ### Responsive Images
+
 ```html
-<img 
+<img
   class="lazy"
   data-src="image-large.jpg"
   data-srcset="image-small.jpg 480w, image-medium.jpg 768w, image-large.jpg 1200w"
   sizes="(max-width: 768px) 100vw, 50vw"
   alt="Responsive image"
->
+/>
 ```
 
 ### Defer Non-Critical CSS
+
 ```html
-<link rel="stylesheet" href="non-critical.css" data-defer>
+<link rel="stylesheet" href="non-critical.css" data-defer />
 ```
 
 ## 🎯 VS Code Extensions Quick Access
 
 ### Code Quality
+
 - `Ctrl+Shift+P` → "SonarLint: Analyze" - Run code quality check
 - `Ctrl+Shift+P` → "ESLint: Fix all auto-fixable Problems"
 - `Shift+Alt+F` - Format with Prettier
 
 ### Git Operations
+
 - `Ctrl+Shift+G` → Open Git Graph
 - `Ctrl+Shift+P` → "GitLens: Show" - View GitLens features
 - `Ctrl+Shift+P` → "GitHub Pull Requests" - Manage PRs
 
 ### AI Assistance
+
 - `Ctrl+I` - Open GitHub Copilot inline chat
 - `Ctrl+Shift+P` → "Sourcery: Review Code"
 - `Ctrl+Space` - Trigger Copilot suggestions
@@ -115,6 +132,7 @@ animateCounter(element, 1250, { duration: 2 });
 ## 📊 Performance Metrics
 
 ### Web Vitals Targets
+
 - **LCP** (Largest Contentful Paint): < 2.5s
 - **FID** (First Input Delay): < 100ms
 - **CLS** (Cumulative Layout Shift): < 0.1
@@ -122,6 +140,7 @@ animateCounter(element, 1250, { duration: 2 });
 - **TTFB** (Time to First Byte): < 600ms
 
 ### Bundle Size Targets
+
 - Main JS Bundle: < 50 KB (gzipped)
 - CSS Bundle: < 30 KB (gzipped)
 - Critical CSS: < 14 KB (gzipped)
@@ -138,23 +157,27 @@ animateCounter(element, 1250, { duration: 2 });
 ## 🚨 Common Issues & Solutions
 
 ### Dependency Conflicts
+
 ```bash
 npm install --legacy-peer-deps [package-name]
 ```
 
 ### Clear Cache
+
 ```bash
 npm run clean
 npm cache clean --force
 ```
 
 ### Rebuild Node Modules
+
 ```bash
 rm -rf node_modules package-lock.json
 npm install --legacy-peer-deps
 ```
 
 ### Fix Vulnerabilities
+
 ```bash
 npm audit fix
 npm audit fix --force  # For major updates
@@ -172,34 +195,29 @@ npm audit fix --force  # For major updates
 ## 🎉 What's New
 
 ### Animation Tools
-✅ GSAP - Professional animation library
-✅ Lottie - Vector animations
-✅ AOS - Scroll animations
-✅ Custom animation utilities
+
+✅ GSAP - Professional animation library ✅ Lottie - Vector animations ✅ AOS -
+Scroll animations ✅ Custom animation utilities
 
 ### Performance Tools
-✅ Web Vitals tracking
-✅ Lazy loading system
-✅ Prefetching/preloading
-✅ Image optimization pipeline
+
+✅ Web Vitals tracking ✅ Lazy loading system ✅ Prefetching/preloading ✅ Image
+optimization pipeline
 
 ### Build Tools
-✅ Vite - Lightning-fast builds
-✅ Webpack - Advanced bundling
-✅ Tailwind CSS - Utility framework
-✅ PostCSS - Modern CSS processing
+
+✅ Vite - Lightning-fast builds ✅ Webpack - Advanced bundling ✅ Tailwind CSS -
+Utility framework ✅ PostCSS - Modern CSS processing
 
 ### Quality Tools
-✅ Bundle analysis
-✅ Size limits enforcement
-✅ Accessibility testing
-✅ Performance monitoring
+
+✅ Bundle analysis ✅ Size limits enforcement ✅ Accessibility testing ✅
+Performance monitoring
 
 ### AI & Productivity
-✅ GitHub Copilot integration
-✅ Sourcery code reviews
-✅ Cody AI assistant
-✅ SonarLint analysis
+
+✅ GitHub Copilot integration ✅ Sourcery code reviews ✅ Cody AI assistant ✅
+SonarLint analysis
 
 ---
 

@@ -22,7 +22,7 @@ import {
   cuInchesToCuFeet,
   validatePositiveNumber,
   validatePercentage,
-  CONVERSIONS
+  CONVERSIONS,
 } from '../../assets/js/tools/formulas/units.js';
 
 function testUnitConversions() {
@@ -91,7 +91,7 @@ import {
   roundUp,
   roundToDecimals,
   toFractionString,
-  formatNumber
+  formatNumber,
 } from '../../assets/js/tools/formulas/rounding.js';
 
 function testRounding() {
@@ -103,8 +103,16 @@ function testRounding() {
   assert.strictEqual(roundUp(5.0), 5, 'roundUp(5.0) should equal 5');
 
   // roundToDecimals
-  assert.strictEqual(roundToDecimals(5.1234, 2), 5.12, 'roundToDecimals(5.1234, 2) should equal 5.12');
-  assert.strictEqual(roundToDecimals(5.1254, 2), 5.13, 'roundToDecimals(5.1254, 2) should equal 5.13');
+  assert.strictEqual(
+    roundToDecimals(5.1234, 2),
+    5.12,
+    'roundToDecimals(5.1234, 2) should equal 5.12'
+  );
+  assert.strictEqual(
+    roundToDecimals(5.1254, 2),
+    5.13,
+    'roundToDecimals(5.1254, 2) should equal 5.13'
+  );
 
   // toFractionString
   assert.strictEqual(toFractionString(0.25), '1/4', '0.25 should display as 1/4');
@@ -124,7 +132,7 @@ import {
   calculateTileQuantity,
   calculateBoxesNeeded,
   isLargeFormat,
-  isPlankFormat
+  isPlankFormat,
 } from '../../assets/js/tools/formulas/formulas.tile.js';
 import {
   calculateMovementJoints,
@@ -137,7 +145,7 @@ import {
   estimatePrimer,
   estimateSealantTubes,
   estimateLaborSensitivity,
-  calculateBathLayout
+  calculateBathLayout,
 } from '../../assets/js/tools/formulas/formulas.advanced.js';
 
 function testTileFormulas() {
@@ -167,7 +175,7 @@ function testTileFormulas() {
     areaSqFt: 100,
     tileWidthInches: 12,
     tileHeightInches: 12,
-    wastePercent: 10
+    wastePercent: 10,
   });
   assert.strictEqual(result1.valid, true, 'Should be valid calculation');
   assert.strictEqual(result1.tiles, 110, '100 sq ft + 10% waste = 110 tiles for 12x12');
@@ -177,7 +185,7 @@ function testTileFormulas() {
     areaSqFt: 100,
     tileWidthInches: 6,
     tileHeightInches: 6,
-    wastePercent: 10
+    wastePercent: 10,
   });
   assert.strictEqual(result2.valid, true);
   assert.strictEqual(result2.tiles, 440, '100 sq ft + 10% = 110 sq ft / 0.25 = 440 tiles for 6x6');
@@ -185,7 +193,7 @@ function testTileFormulas() {
   // calculateBoxesNeeded
   const boxResult = calculateBoxesNeeded({
     tilesNeeded: 100,
-    tilesPerBox: 10
+    tilesPerBox: 10,
   });
   assert.strictEqual(boxResult.valid, true);
   assert.strictEqual(boxResult.boxes, 10, '100 tiles / 10 per box = 10 boxes');
@@ -194,7 +202,7 @@ function testTileFormulas() {
   const boxResultAttic = calculateBoxesNeeded({
     tilesNeeded: 100,
     tilesPerBox: 10,
-    addAtticStock: true
+    addAtticStock: true,
   });
   assert.strictEqual(boxResultAttic.boxes, 11, '10 boxes + 1 attic stock = 11 boxes');
 
@@ -203,7 +211,7 @@ function testTileFormulas() {
     areaSqFt: -10,
     tileWidthInches: 12,
     tileHeightInches: 12,
-    wastePercent: 10
+    wastePercent: 10,
   });
   assert.strictEqual(invalidResult.valid, false, 'Negative area should be invalid');
 
@@ -217,7 +225,7 @@ function testTileFormulas() {
 import {
   calculateMortarBags,
   getRecommendedTrowel,
-  TROWEL_COVERAGE
+  TROWEL_COVERAGE,
 } from '../../assets/js/tools/formulas/formulas.mortar.js';
 
 function testMortarFormulas() {
@@ -232,7 +240,11 @@ function testMortarFormulas() {
 
   // UPDATED: Per CBP TDS, large format should use U-notch, NOT 1/2" square
   const rec3 = getRecommendedTrowel(24, 24); // Large format
-  assert.strictEqual(rec3.trowelId, '3/4x9/16-u-30', '24x24 LFT should get U-notch per CBP TDS (NOT 1/2" square)');
+  assert.strictEqual(
+    rec3.trowelId,
+    '3/4x9/16-u-30',
+    '24x24 LFT should get U-notch per CBP TDS (NOT 1/2" square)'
+  );
   assert.strictEqual(rec3.backButter, true, 'Large format should recommend back-buttering');
   assert(rec3.warning, 'Large format should include warning about 1/2" square notch');
 
@@ -240,7 +252,7 @@ function testMortarFormulas() {
   // 100 sq ft with 1/4x1/4 trowel (90-100 coverage)
   const mortar1 = calculateMortarBags({
     areaSqFt: 100,
-    trowelId: '1/4-sq'
+    trowelId: '1/4-sq',
   });
   assert.strictEqual(mortar1.valid, true);
   assert.strictEqual(mortar1.bagsMin, 1, '100 sq ft / 100 coverage = 1 bag min');
@@ -249,7 +261,7 @@ function testMortarFormulas() {
   // 200 sq ft with 1/2x1/2 trowel (42-47 coverage)
   const mortar2 = calculateMortarBags({
     areaSqFt: 200,
-    trowelId: '1/2-sq'
+    trowelId: '1/2-sq',
   });
   assert.strictEqual(mortar2.bagsMin, 5, '200 / 47 = 4.25 -> 5 bags min');
   assert.strictEqual(mortar2.bagsMax, 5, '200 / 42 = 4.76 -> 5 bags max');
@@ -258,7 +270,7 @@ function testMortarFormulas() {
   const mortar3 = calculateMortarBags({
     areaSqFt: 100,
     trowelId: '1/4-sq',
-    backButter: true
+    backButter: true,
   });
   assert.strictEqual(mortar3.bagsMin, 2, '1 * 1.2 = 1.2 -> 2 bags with back-butter');
   assert.strictEqual(mortar3.bagsMax, 3, '2 * 1.3 = 2.6 -> 3 bags with back-butter');
@@ -266,7 +278,7 @@ function testMortarFormulas() {
   // Test U-notch trowels for LFT (per CBP TDS)
   const mortar4 = calculateMortarBags({
     areaSqFt: 100,
-    trowelId: '3/4x9/16-u-30'  // U-notch at 30° - 38-47 coverage
+    trowelId: '3/4x9/16-u-30', // U-notch at 30° - 38-47 coverage
   });
   assert.strictEqual(mortar4.valid, true, 'U-notch trowel should be valid');
   assert.strictEqual(mortar4.bagsMin, 3, '100 / 47 = 2.13 -> 3 bags min');
@@ -275,7 +287,7 @@ function testMortarFormulas() {
   // Verify U-notch at 45° (per CBP TDS - 34-42 coverage)
   const mortar5 = calculateMortarBags({
     areaSqFt: 100,
-    trowelId: '3/4x9/16-u-45'
+    trowelId: '3/4x9/16-u-45',
   });
   assert.strictEqual(mortar5.valid, true, 'U-notch 45° should be valid');
   assert.strictEqual(mortar5.bagsMin, 3, '100 / 42 = 2.38 -> 3 bags min');
@@ -290,7 +302,7 @@ function testMortarFormulas() {
 
 import {
   calculateGrout,
-  getRecommendedGroutType
+  getRecommendedGroutType,
 } from '../../assets/js/tools/formulas/formulas.grout.js';
 
 function testGroutFormulas() {
@@ -311,7 +323,7 @@ function testGroutFormulas() {
     tileWidthInches: 12,
     tileThicknessMm: 8,
     jointWidthInches: 0.125,
-    groutType: 'cement'
+    groutType: 'cement',
   });
   assert.strictEqual(grout1.valid, true, 'Should be valid calculation');
   assert.ok(grout1.quantityLbs > 0, 'Should calculate positive grout quantity');
@@ -326,10 +338,13 @@ function testGroutFormulas() {
     tileThicknessMm: 6,
     jointWidthInches: 0.0625,
     groutType: 'cement',
-    isMosaic: true
+    isMosaic: true,
   });
   assert.strictEqual(grout2.valid, true);
-  assert.ok(grout2.quantityLbs > grout1.quantityLbs, 'Mosaic should use more grout than standard tile');
+  assert.ok(
+    grout2.quantityLbs > grout1.quantityLbs,
+    'Mosaic should use more grout than standard tile'
+  );
 
   console.log('  ✓ All grout formula tests passed');
 }
@@ -341,7 +356,7 @@ function testGroutFormulas() {
 import {
   calculateWaterproofing,
   getWaterproofingProducts,
-  WP_PRODUCTS
+  WP_PRODUCTS,
 } from '../../assets/js/tools/formulas/formulas.waterproofing.js';
 
 function testWaterproofingFormulas() {
@@ -358,7 +373,7 @@ function testWaterproofingFormulas() {
     productId: 'redgard',
     areaSqFt: 100,
     insideCorners: 4,
-    wastePercent: 15
+    wastePercent: 15,
   });
   assert.strictEqual(wp1.valid, true);
   // 100 * 1.15 = 115 sq ft / 55 = 2.09 -> 3 gallons
@@ -369,7 +384,7 @@ function testWaterproofingFormulas() {
   const wp2 = calculateWaterproofing({
     productId: 'kerdi',
     areaSqFt: 100,
-    wastePercent: 15
+    wastePercent: 15,
   });
   assert.strictEqual(wp2.valid, true);
   // 100 * 1.15 = 115 sq ft / 54.5 = 2.11 -> 3 rolls
@@ -389,7 +404,7 @@ function testWaterproofingFormulas() {
 import {
   calculateLeveler,
   getLevelerProducts,
-  SLU_PRODUCTS
+  SLU_PRODUCTS,
 } from '../../assets/js/tools/formulas/formulas.leveling.js';
 
 function testLevelingFormulas() {
@@ -401,7 +416,7 @@ function testLevelingFormulas() {
   const level1 = calculateLeveler({
     areaSqFt: 100,
     avgDepthInches: 0.25,
-    productId: 'generic'
+    productId: 'generic',
   });
   assert.strictEqual(level1.valid, true);
   assert.strictEqual(level1.bags, 5, '100 sq ft at 1/4" should need ~5 bags');
@@ -411,7 +426,7 @@ function testLevelingFormulas() {
     areaSqFt: 100,
     avgDepthInches: 0.25,
     maxDepthInches: 0.5,
-    productId: 'generic'
+    productId: 'generic',
   });
   assert.strictEqual(level2.valid, true);
   assert.ok(level2.bagsMax > level2.bags, 'Max depth should give higher bag count');
@@ -420,7 +435,7 @@ function testLevelingFormulas() {
   const level3 = calculateLeveler({
     areaSqFt: 100,
     avgDepthInches: 2,
-    productId: 'mapei-slf-plus' // max 1"
+    productId: 'mapei-slf-plus', // max 1"
   });
   assert.ok(level3.warnings.length > 0, 'Should warn about exceeding max depth');
 
@@ -433,7 +448,7 @@ function testLevelingFormulas() {
 
 import {
   calculateSlope,
-  SLOPE_REQUIREMENTS
+  SLOPE_REQUIREMENTS,
 } from '../../assets/js/tools/formulas/formulas.slope.js';
 
 function testSlopeFormulas() {
@@ -443,7 +458,7 @@ function testSlopeFormulas() {
   // 3 ft distance * 0.25 in/ft = 0.75" min height
   const slope1 = calculateSlope({
     distanceToDrawnFt: 3,
-    drainType: 'center'
+    drainType: 'center',
   });
   assert.strictEqual(slope1.valid, true);
   assert.strictEqual(slope1.minSlopeHeight, 0.75, '3 ft at 1/4"/ft should be 0.75"');
@@ -453,15 +468,23 @@ function testSlopeFormulas() {
   // Test linear drain (reduced distance)
   const slope2 = calculateSlope({
     distanceToDrawnFt: 4,
-    drainType: 'linear'
+    drainType: 'linear',
   });
   // 4 * 0.75 = 3 ft effective, * 0.25 = 0.75" min
   assert.strictEqual(slope2.effectiveDistance, 3, 'Linear drain should reduce effective distance');
-  assert.strictEqual(slope2.minSlopeHeight, 0.75, 'Linear drain: 3 ft effective at 1/4"/ft = 0.75"');
+  assert.strictEqual(
+    slope2.minSlopeHeight,
+    0.75,
+    'Linear drain: 3 ft effective at 1/4"/ft = 0.75"'
+  );
 
   // Test constants
   assert.strictEqual(SLOPE_REQUIREMENTS.minimum.inchesPerFoot, 0.25, 'Min slope should be 1/4"/ft');
-  assert.strictEqual(SLOPE_REQUIREMENTS.recommended.inchesPerFoot, 0.3125, 'Rec slope should be 5/16"/ft');
+  assert.strictEqual(
+    SLOPE_REQUIREMENTS.recommended.inchesPerFoot,
+    0.3125,
+    'Rec slope should be 5/16"/ft'
+  );
 
   console.log('  ✓ All slope formula tests passed');
 }
@@ -474,14 +497,24 @@ function testAdvancedFormulas() {
   console.log('Testing advanced formulas...');
 
   // Movement joints interior normal temp
-  const mj1 = calculateMovementJoints({ lengthFt: 40, widthFt: 20, exposure: 'interior', tempSwingF: 20 });
+  const mj1 = calculateMovementJoints({
+    lengthFt: 40,
+    widthFt: 20,
+    exposure: 'interior',
+    tempSwingF: 20,
+  });
   assert.strictEqual(mj1.valid, true);
   assert.strictEqual(mj1.spacingFt, 24);
   assert.strictEqual(mj1.jointsLong, 1);
   assert.strictEqual(mj1.jointsShort, 0);
 
   // Exterior high temp should tighten spacing
-  const mj2 = calculateMovementJoints({ lengthFt: 40, widthFt: 20, exposure: 'exterior', tempSwingF: 50 });
+  const mj2 = calculateMovementJoints({
+    lengthFt: 40,
+    widthFt: 20,
+    exposure: 'exterior',
+    tempSwingF: 50,
+  });
   assert.strictEqual(mj2.spacingFt, 8);
 
   // Deflection check 2x10, 16" oc, 12 ft span
@@ -490,7 +523,7 @@ function testAdvancedFormulas() {
     joistSpacingInches: 16,
     joistWidthInches: 1.5,
     joistDepthInches: 9.25,
-    modulusPsi: 1600000
+    modulusPsi: 1600000,
   });
   assert.strictEqual(defl.valid, true);
   assert.strictEqual(defl.passesCeramic, true);
@@ -502,14 +535,29 @@ function testAdvancedFormulas() {
   assert.ok(heat.breakerAmps >= 15);
 
   // Moisture limits
-  const moisture = evaluateMoistureReadings({ mverLbs: 4, rhPercent: 70, productLimitMver: 5, productLimitRh: 75 });
+  const moisture = evaluateMoistureReadings({
+    mverLbs: 4,
+    rhPercent: 70,
+    productLimitMver: 5,
+    productLimitRh: 75,
+  });
   assert.strictEqual(moisture.requiresMitigation, false);
 
-  const moistureFail = evaluateMoistureReadings({ mverLbs: 8, rhPercent: 80, productLimitMver: 5, productLimitRh: 75 });
+  const moistureFail = evaluateMoistureReadings({
+    mverLbs: 8,
+    rhPercent: 80,
+    productLimitMver: 5,
+    productLimitRh: 75,
+  });
   assert.strictEqual(moistureFail.requiresMitigation, true);
 
   // Thinset mix partial batch
-  const mix = calculateThinsetMix({ bagWeightLbs: 50, batchWeightLbs: 25, waterQuartsPerBagMin: 5, waterQuartsPerBagMax: 6 });
+  const mix = calculateThinsetMix({
+    bagWeightLbs: 50,
+    batchWeightLbs: 25,
+    waterQuartsPerBagMin: 5,
+    waterQuartsPerBagMax: 6,
+  });
   assert.strictEqual(mix.valid, true);
   assert.ok(mix.waterQuartsRange[0] > 0);
 
@@ -529,7 +577,11 @@ function testAdvancedFormulas() {
   assert.ok(primer.gallons >= 1);
 
   // Sealant
-  const sealant = estimateSealantTubes({ linearFeet: 50, beadDiameterInches: 0.25, tubeVolumeOz: 10.1 });
+  const sealant = estimateSealantTubes({
+    linearFeet: 50,
+    beadDiameterInches: 0.25,
+    tubeVolumeOz: 10.1,
+  });
   assert.strictEqual(sealant.valid, true);
   assert.ok(sealant.tubes >= 1);
 
@@ -540,7 +592,7 @@ function testAdvancedFormulas() {
     complexity: 'high',
     pattern: 'herringbone',
     surface: 'wall',
-    crewSize: 2
+    crewSize: 2,
   });
   assert.strictEqual(labor.valid, true);
   assert.ok(labor.hours > 0);
@@ -568,7 +620,7 @@ function testBathLayout() {
     includeVanity: true,
     vanityWidthIn: 36,
     vanityDepthIn: 22,
-    vanityFrontClearIn: 30
+    vanityFrontClearIn: 30,
   });
 
   assert.strictEqual(result.valid, true, 'Bath layout should be valid');
@@ -603,7 +655,7 @@ function runAllTests() {
     testLevelingFormulas,
     testSlopeFormulas,
     testAdvancedFormulas,
-    testBathLayout
+    testBathLayout,
   ];
 
   for (const test of tests) {
@@ -627,4 +679,3 @@ function runAllTests() {
 }
 
 runAllTests();
-

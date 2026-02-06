@@ -1,9 +1,12 @@
 # Mobile Scroll Fix Implementation
+
 **Date:** 2026-01-31  
 **Status:** ✅ Complete
 
 ## Problem
+
 Mouse wheel scroll was not working on the mobile site due to:
+
 1. Mobile nav stuck open (body.nav-open class)
 2. `overflow-x: clip` on body interfering with scroll
 3. Fixed elements (bottom nav, overlays) blocking scroll interaction
@@ -12,9 +15,11 @@ Mouse wheel scroll was not working on the mobile site due to:
 ## Solution Overview
 
 ### 1. Created CSS Fix File
+
 **File:** `assets/css/scroll-fix-mobile.css`
 
 **Key Fixes:**
+
 - ✅ Ensures `overflow: auto` when nav is closed
 - ✅ Changes `overflow-x: clip` to `overflow-x: hidden`
 - ✅ Sets `pointer-events: none` on closed nav elements
@@ -23,6 +28,7 @@ Mouse wheel scroll was not working on the mobile site due to:
 - ✅ Desktop failsafe prevents nav-open from affecting scroll
 
 **Critical CSS Rules:**
+
 ```css
 /* Restore scroll when nav is closed */
 body:not(.nav-open):not(.menu-open) {
@@ -32,8 +38,8 @@ body:not(.nav-open):not(.menu-open) {
 }
 
 /* Nav elements don't block when closed */
-.ts-drawer[aria-hidden="true"],
-#ts-mobile-nav[aria-hidden="true"] {
+.ts-drawer[aria-hidden='true'],
+#ts-mobile-nav[aria-hidden='true'] {
   pointer-events: none !important;
 }
 
@@ -46,9 +52,11 @@ body:not(.nav-open):not(.menu-open) {
 ```
 
 ### 2. Created JavaScript Guardian
+
 **File:** `assets/js/scroll-guardian-mobile.js`
 
 **Features:**
+
 - 🛡️ Watches for nav state changes (MutationObserver)
 - 🔄 Auto-restores scroll when nav closes
 - 📱 Mobile-specific fixes (only runs on viewport ≤768px)
@@ -56,26 +64,33 @@ body:not(.nav-open):not(.menu-open) {
 - 🐛 Exposes `window.restoreScroll()` for debugging
 
 **Key Functions:**
+
 - `ensureScrollable()` - Removes scroll locks when nav closed
 - `fixNavOverlay()` - Ensures overlays don't block interaction
 - `fixNavDrawer()` - Sets pointer-events:none on hidden drawers
 - `runFixes()` - Runs all fixes together
 
 ### 3. Updated Root Variables
+
 **File:** `assets/css/root-vars.css`
 
 **Changes:**
+
 - Changed `overflow-x: clip` → `overflow-x: hidden` (html)
 - Changed `overflow-x: clip` → `overflow-x: hidden` (body)
 
-**Reason:** `overflow-x: clip` can interfere with scroll on some browsers/devices
+**Reason:** `overflow-x: clip` can interfere with scroll on some
+browsers/devices
 
 ### 4. Integrated into Site
+
 **Files Modified:**
+
 - `_includes/layout/head.html` - Added CSS link
 - `_includes/layout/scripts.html` - Added JS script
 
 **Load Order:**
+
 ```html
 <!-- Early CSS (in head) -->
 <link rel="stylesheet" href="/assets/css/scroll-fix-mobile.css" />
@@ -85,11 +100,13 @@ body:not(.nav-open):not(.menu-open) {
 ```
 
 ### 5. Created Diagnostic Tool
+
 **File:** `scroll-diagnostic.html`
 
 **Access:** Visit `/scroll-diagnostic.html` on your site
 
 **Features:**
+
 - 🔍 Real-time body state inspection
 - 📊 Overflow & scroll status
 - 📡 Mobile nav state monitoring
@@ -101,6 +118,7 @@ body:not(.nav-open):not(.menu-open) {
 ## Testing Checklist
 
 ### Mobile Testing
+
 - [ ] Open site on mobile device
 - [ ] Check if body has `nav-open` class (DevTools)
 - [ ] Try mouse wheel scroll
@@ -110,11 +128,13 @@ body:not(.nav-open):not(.menu-open) {
 - [ ] Verify scroll works after closing nav
 
 ### Desktop Testing
+
 - [ ] Verify scroll works normally
 - [ ] Open/close nav (if applicable)
 - [ ] Verify no scroll blocking on desktop
 
 ### Diagnostic Tool Testing
+
 - [ ] Visit `/scroll-diagnostic.html`
 - [ ] Review all diagnostic cards
 - [ ] Look for red "ISSUE" badges
@@ -125,25 +145,27 @@ body:not(.nav-open):not(.menu-open) {
 ## Browser Console Commands
 
 ### Check Scroll State
+
 ```javascript
 // Check body classes
-document.body.classList
+document.body.classList;
 
 // Check body overflow
-document.body.style.overflow
-getComputedStyle(document.body).overflowY
+document.body.style.overflow;
+getComputedStyle(document.body).overflowY;
 
 // Check nav state
-document.body.classList.contains('nav-open')
+document.body.classList.contains('nav-open');
 
 // Check pointer events
-getComputedStyle(document.body).pointerEvents
+getComputedStyle(document.body).pointerEvents;
 ```
 
 ### Force Restore Scroll
+
 ```javascript
 // Emergency restore function
-window.restoreScroll()
+window.restoreScroll();
 
 // Manual restore
 document.body.style.overflow = '';
@@ -154,6 +176,7 @@ document.body.classList.remove('nav-open', 'menu-open');
 ## What Each File Does
 
 ### CSS File (`scroll-fix-mobile.css`)
+
 - Prevents scroll lock when nav is closed
 - Hides overlays that block interaction
 - Ensures bottom nav doesn't block scroll
@@ -161,6 +184,7 @@ document.body.classList.remove('nav-open', 'menu-open');
 - Desktop failsafes
 
 ### JS File (`scroll-guardian-mobile.js`)
+
 - Monitors nav state changes automatically
 - Removes scroll locks in real-time
 - Fixes pointer-events on nav elements
@@ -168,6 +192,7 @@ document.body.classList.remove('nav-open', 'menu-open');
 - Logs activity to console
 
 ### Diagnostic Tool (`scroll-diagnostic.html`)
+
 - Shows current scroll state
 - Identifies blocking issues
 - Provides manual fixes
@@ -176,6 +201,7 @@ document.body.classList.remove('nav-open', 'menu-open');
 ## Success Indicators
 
 ✅ **Working Correctly When:**
+
 - Body doesn't have `nav-open` class when nav closed
 - Body `overflow-y` is `auto` or `scroll`
 - Body `pointer-events` is `auto` or `initial`
@@ -185,6 +211,7 @@ document.body.classList.remove('nav-open', 'menu-open');
 - Touch gestures scroll the page
 
 ❌ **Issues Present When:**
+
 - Body has `nav-open` class when nav appears closed
 - Body `overflow-y` is `hidden`
 - Body `pointer-events` is `none`
@@ -194,6 +221,7 @@ document.body.classList.remove('nav-open', 'menu-open');
 ## Maintenance Notes
 
 ### If Issues Persist:
+
 1. Check browser console for errors
 2. Run `/scroll-diagnostic.html`
 3. Use `window.restoreScroll()` in console
@@ -201,12 +229,14 @@ document.body.classList.remove('nav-open', 'menu-open');
 5. Check if other scripts override scroll
 
 ### Future Improvements:
+
 - Add scroll position restoration after nav close
 - Track scroll lock sources (which script locked?)
 - Performance metrics (how often fixes trigger)
 - A/B test scroll methods (CSS vs JS)
 
 ## Related Files
+
 - `assets/js/scroll-lock-manager.js` - Manages scroll locks
 - `assets/js/scroll-fix.js` - Desktop scroll fixes
 - `assets/js/scroll-enabler.js` - Emergency scroll enabler
@@ -214,6 +244,7 @@ document.body.classList.remove('nav-open', 'menu-open');
 - `assets/css/navigation-complete.css` - Nav overflow rules
 
 ## References
+
 - Issue: Mouse wheel scroll not working on mobile
 - Cause: Mobile nav state + overflow-x:clip + pointer-events
 - Fix: CSS overrides + JS guardian + diagnostic tool

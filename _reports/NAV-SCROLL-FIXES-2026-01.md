@@ -1,7 +1,9 @@
 # Navigation & Scroll Fixes - 2026-01-26
 
 ## 🐛 Issues Reported
-1. **Desktop navigation dropdown menus disappearing on hover** - couldn't use them
+
+1. **Desktop navigation dropdown menus disappearing on hover** - couldn't use
+   them
 2. **Strange scroll behavior** - page scroll being blocked when it shouldn't
 
 ---
@@ -10,15 +12,18 @@
 
 ### Fix #1: Desktop Dropdown Navigation
 
-**Problem**: JavaScript was looking for `.desktop-nav__item--dropdown` but HTML had `.has-dropdown`
+**Problem**: JavaScript was looking for `.desktop-nav__item--dropdown` but HTML
+had `.has-dropdown`
 
 **Root Causes**:
+
 - CSS used `.is-open` class to show dropdowns
 - JavaScript only used `aria-expanded` attribute
 - No class was being added/removed
 - Hover events weren't keeping dropdown open
 
 **Solution** (`assets/js/main.js` lines 39-110):
+
 ```javascript
 // Before: Wrong selector
 const dropdowns = document.querySelectorAll('.desktop-nav__item--dropdown');
@@ -27,7 +32,7 @@ const dropdowns = document.querySelectorAll('.desktop-nav__item--dropdown');
 const dropdowns = document.querySelectorAll('.has-dropdown');
 
 // Added: Proper class toggling
-item.classList.add('is-open');  // CSS depends on this!
+item.classList.add('is-open'); // CSS depends on this!
 
 // Added: Hover support for desktop
 item.addEventListener('mouseenter', () => {
@@ -41,6 +46,7 @@ dropdown.addEventListener('mouseenter', () => {
 ```
 
 **How It Works Now**:
+
 1. **Desktop (≥1080px)**: Hover over "Guides" or "About" → dropdown appears
 2. **Move mouse to dropdown**: Dropdown stays open
 3. **Click a link**: Navigate properly
@@ -55,11 +61,14 @@ dropdown.addEventListener('mouseenter', () => {
 **Problem**: Desktop scroll was being blocked (page felt "stuck")
 
 **Root Causes**:
-- `scroll-fix.js` was checking `if (isMobile() && navIsOpen)` but still setting styles
+
+- `scroll-fix.js` was checking `if (isMobile() && navIsOpen)` but still setting
+  styles
 - `position: fixed` was being applied when it shouldn't
 - Scroll position wasn't being restored properly
 
 **Solution** (`assets/js/scroll-fix.js`):
+
 ```javascript
 // Before: Complex conditional that still applied styles
 function disableBodyScroll() {
@@ -92,11 +101,13 @@ function enableBodyScroll() {
 ```
 
 **How It Works Now**:
+
 1. **Desktop (≥1080px)**: Scroll is NEVER blocked, even with nav interactions
 2. **Mobile (<1080px) with nav closed**: Scroll works normally
 3. **Mobile with nav drawer open**: Scroll is blocked (intentional)
 4. **Close mobile nav**: Scroll restores to exact position
-5. **Resize to desktop with nav open**: Auto-closes mobile nav and restores scroll
+5. **Resize to desktop with nav open**: Auto-closes mobile nav and restores
+   scroll
 
 ---
 
@@ -105,6 +116,7 @@ function enableBodyScroll() {
 **Test Page Created**: `test-nav-scroll.html`
 
 ### Desktop Tests (width ≥1080px):
+
 - [x] Hover "Guides" → Dropdown appears
 - [x] Move mouse to dropdown → Stays visible
 - [x] Click link in dropdown → Navigates properly
@@ -115,11 +127,13 @@ function enableBodyScroll() {
 - [x] Press ESC → Closes dropdown
 
 ### Mobile Tests (width <1080px):
+
 - [x] Open mobile nav drawer → Scroll blocked
 - [x] Close mobile nav → Scroll restored to exact position
 - [x] Resize to desktop with nav open → Auto-closes, scroll restored
 
 ### Scroll Behavior:
+
 - [x] Desktop: Smooth, never blocked
 - [x] Mobile: Only blocked when nav drawer open (correct)
 - [x] Position restoration works perfectly
@@ -130,7 +144,8 @@ function enableBodyScroll() {
 ## 📁 Files Modified
 
 1. **`assets/js/main.js`** (lines 39-110)
-   - Fixed dropdown selector (`.has-dropdown` instead of `.desktop-nav__item--dropdown`)
+   - Fixed dropdown selector (`.has-dropdown` instead of
+     `.desktop-nav__item--dropdown`)
    - Added `.is-open` class toggling (CSS depends on this)
    - Added proper hover support for desktop (≥1080px)
    - Added hover support for dropdown itself (keeps it open)
@@ -154,20 +169,21 @@ function enableBodyScroll() {
 
 ## 🎯 Behavior Matrix
 
-| Scenario | Screen Size | Nav State | Scroll Behavior |
-|----------|-------------|-----------|-----------------|
-| Normal browsing | Desktop | Closed | ✅ Free scroll |
-| Dropdown hover | Desktop | Open (dropdown) | ✅ Free scroll |
-| Dropdown click | Desktop | Open (dropdown) | ✅ Free scroll |
-| Normal browsing | Mobile | Closed | ✅ Free scroll |
-| Nav drawer open | Mobile | Open (drawer) | 🔒 Scroll locked |
-| Nav drawer close | Mobile | Closed | ✅ Scroll restored |
+| Scenario         | Screen Size | Nav State       | Scroll Behavior    |
+| ---------------- | ----------- | --------------- | ------------------ |
+| Normal browsing  | Desktop     | Closed          | ✅ Free scroll     |
+| Dropdown hover   | Desktop     | Open (dropdown) | ✅ Free scroll     |
+| Dropdown click   | Desktop     | Open (dropdown) | ✅ Free scroll     |
+| Normal browsing  | Mobile      | Closed          | ✅ Free scroll     |
+| Nav drawer open  | Mobile      | Open (drawer)   | 🔒 Scroll locked   |
+| Nav drawer close | Mobile      | Closed          | ✅ Scroll restored |
 
 ---
 
 ## 🔧 Technical Details
 
 ### Dropdown State Management:
+
 ```
 Trigger (hover/click)
     ↓
@@ -180,6 +196,7 @@ CSS: .has-dropdown.is-open > .desktop-nav__dropdown
 ```
 
 ### Scroll Lock on Mobile:
+
 ```
 Open mobile nav
     ↓
@@ -195,6 +212,7 @@ Check: isMobile() ?
 ### Why It Was Broken:
 
 **Dropdown Issue**:
+
 - HTML: `<li class="has-dropdown">`
 - CSS: `.has-dropdown.is-open > .desktop-nav__dropdown { visibility: visible; }`
 - JS: Looking for `.desktop-nav__item--dropdown` ❌ (doesn't exist!)
@@ -202,6 +220,7 @@ Check: isMobile() ?
 - Result: Dropdown never became visible
 
 **Scroll Issue**:
+
 - Desktop user scrolls page
 - JS: `if (isMobile() && navIsOpen)` → False, but...
 - JS: Still ran `enableBodyScroll()` which reset styles
@@ -213,6 +232,7 @@ Check: isMobile() ?
 ## ✅ Verification
 
 Run these commands:
+
 ```bash
 # Rebuild site
 bundle exec jekyll build
@@ -228,6 +248,7 @@ http://localhost:4000/test-nav-scroll.html
 ```
 
 ### Quick Tests:
+
 1. Open site on desktop
 2. Hover "Guides" → Should see dropdown
 3. Move to dropdown → Should stay visible
@@ -247,7 +268,6 @@ http://localhost:4000/test-nav-scroll.html
 
 ---
 
-**Status**: ✅ Both issues resolved and tested
-**Tested**: Desktop Chrome, Mobile Safari simulation
-**Build**: Success (11.5 seconds)
-**Ready**: For production deployment
+**Status**: ✅ Both issues resolved and tested **Tested**: Desktop Chrome,
+Mobile Safari simulation **Build**: Success (11.5 seconds) **Ready**: For
+production deployment

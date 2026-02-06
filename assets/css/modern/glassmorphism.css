@@ -177,7 +177,7 @@
     background: rgb(255 255 255 / 95%);
     color: var(--color-neutral-900);
   }
-  
+
   .glass-dark {
     background: rgb(15 23 42 / 95%);
     color: var(--color-neutral-50);
@@ -192,7 +192,7 @@
   .glass-card {
     padding: var(--space-4);
   }
-  
+
   .glass-modal {
     padding: var(--space-6);
     max-width: 95vw;
@@ -215,12 +215,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgb(255 255 255 / 20%) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg, transparent 0%, rgb(255 255 255 / 20%) 50%, transparent 100%);
   transition: left var(--transition-slower);
 }
 
@@ -243,7 +238,9 @@
   border-radius: inherit;
   padding: 2px;
   background: var(--gradient-primary);
-  mask: linear-gradient(#ffffff 0 0) content-box, linear-gradient(#ffffff 0 0);
+  mask:
+    linear-gradient(#ffffff 0 0) content-box,
+    linear-gradient(#ffffff 0 0);
   mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;

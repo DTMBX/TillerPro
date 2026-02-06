@@ -14,6 +14,7 @@ The authoritative governance documentation lives in:
 ## Purpose
 
 This file provides GitHub Copilot with context about:
+
 - Project structure and conventions
 - Code style and patterns
 - Testing and deployment requirements
@@ -25,4 +26,5 @@ This file should be auto-generated from the canonical sources listed above.
 Manual edits may be overwritten by the governance pipeline.
 
 ---
+
 Generated: 2026-01-26 17:02:24

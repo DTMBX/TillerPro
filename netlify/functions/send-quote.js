@@ -13,7 +13,7 @@ exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
-      body: JSON.stringify({ error: 'Method not allowed' })
+      body: JSON.stringify({ error: 'Method not allowed' }),
     };
   }
 
@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
     if (!quoteData || !pdfBase64 || !customerEmail) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Missing required fields' })
+        body: JSON.stringify({ error: 'Missing required fields' }),
       };
     }
 
@@ -35,7 +35,7 @@ exports.handler = async (event, context) => {
       console.error('SendGrid API key not configured');
       return {
         statusCode: 500,
-        body: JSON.stringify({ error: 'Email service not configured' })
+        body: JSON.stringify({ error: 'Email service not configured' }),
       };
     }
 
@@ -53,27 +53,29 @@ exports.handler = async (event, context) => {
           content: pdfBase64,
           filename: `Quote-${quoteData.quoteNumber}.pdf`,
           type: 'application/pdf',
-          disposition: 'attachment'
-        }
-      ]
+          disposition: 'attachment',
+        },
+      ],
     };
 
     // Email to contractor (CC)
-    const contractorMsg = contractorEmail ? {
-      to: contractorEmail,
-      from: process.env.FROM_EMAIL || 'quotes@tillerstead.com',
-      subject: `Quote #${quoteData.quoteNumber} sent to ${quoteData.customer.name}`,
-      html: getContractorEmailHTML(quoteData),
-      text: getContractorEmailText(quoteData),
-      attachments: [
-        {
-          content: pdfBase64,
-          filename: `Quote-${quoteData.quoteNumber}.pdf`,
-          type: 'application/pdf',
-          disposition: 'attachment'
+    const contractorMsg = contractorEmail
+      ? {
+          to: contractorEmail,
+          from: process.env.FROM_EMAIL || 'quotes@tillerstead.com',
+          subject: `Quote #${quoteData.quoteNumber} sent to ${quoteData.customer.name}`,
+          html: getContractorEmailHTML(quoteData),
+          text: getContractorEmailText(quoteData),
+          attachments: [
+            {
+              content: pdfBase64,
+              filename: `Quote-${quoteData.quoteNumber}.pdf`,
+              type: 'application/pdf',
+              disposition: 'attachment',
+            },
+          ],
         }
-      ]
-    } : null;
+      : null;
 
     // Send emails
     await sgMail.send(customerMsg);
@@ -84,10 +86,9 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({
         success: true,
         message: 'Quote sent successfully',
-        quoteNumber: quoteData.quoteNumber
-      })
+        quoteNumber: quoteData.quoteNumber,
+      }),
     };
-
   } catch (error) {
     console.error('Email send error:', error);
 
@@ -95,8 +96,8 @@ exports.handler = async (event, context) => {
       statusCode: 500,
       body: JSON.stringify({
         error: 'Failed to send email',
-        message: error.message
-      })
+        message: error.message,
+      }),
     };
   }
 };

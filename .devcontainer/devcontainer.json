@@ -22,11 +22,7 @@
           "rubocop": true
         }
       },
-      "extensions": [
-        "shopify.ruby-lsp",
-        "rebornix.ruby",
-        "esbenp.prettier-vscode"
-      ]
+      "extensions": ["shopify.ruby-lsp", "rebornix.ruby", "esbenp.prettier-vscode"]
     }
   },
   "forwardPorts": [4000, 35729],

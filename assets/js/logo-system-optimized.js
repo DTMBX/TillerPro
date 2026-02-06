@@ -5,7 +5,7 @@
  * Reduces initial bundle size by ~120KB
  */
 
-(function() {
+(function () {
   'use strict';
 
   const LogoSystem = {
@@ -16,15 +16,15 @@
       variants: {
         header: '/assets/img/logo/logo-header',
         compact: '/assets/img/logo/logo-compact',
-        optimized: '/assets/img/logo/logo-optimized'
+        optimized: '/assets/img/logo/logo-optimized',
       },
-      formats: ['webp', 'png']
+      formats: ['webp', 'png'],
     },
 
     // Lazy-loaded modules
     _modules: {
       base64Data: null,
-      pdfRenderer: null
+      pdfRenderer: null,
     },
 
     /**
@@ -43,7 +43,7 @@
       const suffix = retina ? '@2x' : '';
       return {
         webp: `${base}${suffix}.webp`,
-        png: `${base}${suffix}.png`
+        png: `${base}${suffix}.png`,
       };
     },
 
@@ -60,7 +60,7 @@
         width = 60,
         height = 60,
         loading = 'eager',
-        fetchpriority = 'auto'
+        fetchpriority = 'auto',
       } = options;
 
       const sources = this.getLogoSrc(variant, true);
@@ -90,12 +90,7 @@
      * @returns {string} SVG use element
      */
     useSpriteSymbol(symbolId = 'logo-mark', options = {}) {
-      const {
-        className = '',
-        width = 60,
-        height = 60,
-        ariaLabel = 'Tillerstead Logo'
-      } = options;
+      const { className = '', width = 60, height = 60, ariaLabel = 'Tillerstead Logo' } = options;
 
       return `
         <svg 
@@ -163,9 +158,12 @@
      * @returns {boolean}
      */
     isRetinaDisplay() {
-      return window.devicePixelRatio >= 2 ||
-             (window.matchMedia &&
-              window.matchMedia('(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)').matches);
+      return (
+        window.devicePixelRatio >= 2 ||
+        (window.matchMedia &&
+          window.matchMedia('(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)')
+            .matches)
+      );
     },
 
     /**
@@ -189,8 +187,7 @@
      */
     init() {
       // Preload sprite if on homepage or critical page
-      if (document.body.classList.contains('page-home') ||
-          document.querySelector('.hero')) {
+      if (document.body.classList.contains('page-home') || document.querySelector('.hero')) {
         this.preloadSprite();
       }
 
@@ -204,7 +201,7 @@
         window.LogoSystem = this;
         console.log('🎨 Logo System initialized', this.config);
       }
-    }
+    },
   };
 
   // Auto-initialize on DOM ready
@@ -220,5 +217,4 @@
   } else {
     window.TillerstreadLogoSystem = LogoSystem;
   }
-
 })();

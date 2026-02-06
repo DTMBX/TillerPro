@@ -1,31 +1,31 @@
 source "https://rubygems.org"
 
-# Ruby version - updated to allow 3.4.x for better compatibility
+# Target Ruby version for local development and CI
 ruby ">= 3.2", "< 3.5"
 
-# Core Jekyll via GitHub Pages (includes all necessary plugins)
-gem "github-pages", "~> 232", group: :jekyll_plugins
+# Use explicit Jekyll (preferred for modern sites and plugin flexibility)
+gem "bundler", ">= 2.3"
+gem "jekyll", "~> 4.2"
 
-# Jekyll plugins (included in github-pages, but explicit for clarity)
-group :jekyll_plugins do
-  gem "jekyll-remote-theme"
-  gem "jekyll-sitemap"
-  gem "jekyll-feed"
-  gem "jekyll-seo-tag"
-  gem "jekyll-paginate"
-end
+# Common, recommended Jekyll plugins for SEO, feeds, sitemaps, redirects
+gem "jekyll-seo-tag"
+gem "jekyll-sitemap"
+gem "jekyll-feed"
+gem "jekyll-redirect-from"
+gem "jekyll-paginate-v2"
+gem "jekyll-include-cache"
 
-# Required dependencies
-gem "activesupport", "~> 7.0"
+# Support for Ruby 3+ local server
 gem "webrick", "~> 1.8"
-gem "bigdecimal", "~> 3.1"
-gem "faraday-retry", "~> 2.4"
-gem "tzinfo-data", "~> 1.2024", platforms: %i[mingw mswin x64_mingw jruby]
 
-# Development dependencies
+# Optional: fast Sass compilation (only if site uses Sass)
+gem "sassc", "~> 2.4"
+
+# Development tools
 group :development do
   gem "jekyll-watch", "~> 2.2"
+  gem "rubocop", "~> 1.43"
 end
 
-# Performance (versions compatible with github-pages)
-gem "sassc", "~> 2.4"  # Faster SASS compilation
+# Platform-specific data
+gem "tzinfo-data", "~> 1.2024", platforms: %i[mingw mswin x64_mingw jruby]

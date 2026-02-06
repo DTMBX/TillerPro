@@ -2,13 +2,10 @@
 layout: default
 body_class: page-build-guide
 ---
-{%- comment -%}
-  Build Phase Layout (visual variant) using default shell and build partials.
-{%- endcomment -%}
 
-{%- assign phase_order = page.order | default: page.build_order -%}
-{%- assign phases = site.data.build_phases.build_phases | sort: "order" -%}
-{%- assign prev_phase = phases | where: "order", phase_order | first -%}
+{%- comment -%} Build Phase Layout (visual variant) using default shell and build partials. {%- endcomment -%} {%-
+assign phase_order = page.order | default: page.build_order -%} {%- assign phases = site.data.build_phases.build_phases
+| sort: "order" -%} {%- assign prev_phase = phases | where: "order", phase_order | first -%}
 
 <section class="build-guide-hero bg-gradient-primary scroll-fade-in premium-hero">
   <div class="container">
@@ -33,16 +30,13 @@ body_class: page-build-guide
         <nav class="toc-nav" id="toc-nav"></nav>
       </aside>
       {% endif %}
-      <article class="guide-article prose">
-        {{ content }}
-      </article>
+      <article class="guide-article prose">{{ content }}</article>
     </div>
 
     <nav class="phase-navigation" aria-label="Build Phase Navigation">
-      {%- assign prev_order = phase_order | minus: 1 -%}
-      {%- assign next_order = phase_order | plus: 1 -%}
-      {%- assign prev_phase = phases | where: "order", prev_order | first -%}
-      {%- assign next_phase = phases | where: "order", next_order | first -%}
+      {%- assign prev_order = phase_order | minus: 1 -%} {%- assign next_order = phase_order | plus: 1 -%} {%- assign
+      prev_phase = phases | where: "order", prev_order | first -%} {%- assign next_phase = phases | where: "order",
+      next_order | first -%}
 
       <div class="phase-nav-links">
         {% if prev_phase %}
@@ -55,15 +49,17 @@ body_class: page-build-guide
           <span class="phase-nav-label">← Back</span>
           <span class="phase-nav-title">All Build Guides</span>
         </a>
-        {% endif %}
-
-        {% if next_phase %}
+        {% endif %} {% if next_phase %}
         <a href="{{ next_phase.url | relative_url }}" class="phase-nav-link phase-nav-next btn btn--primary">
           <span class="phase-nav-label">Next →</span>
           <span class="phase-nav-title">Phase {{ next_phase.order }}: {{ next_phase.title }}</span>
         </a>
         {% else %}
-        <a href="/contact/" class="phase-nav-link phase-nav-next phase-nav-cta btn btn--primary btn--pulse" data-magnetic>
+        <a
+          href="/contact/"
+          class="phase-nav-link phase-nav-next phase-nav-cta btn btn--primary btn--pulse"
+          data-magnetic
+        >
           <span class="phase-nav-label">Ready to Build?</span>
           <span class="phase-nav-title">Request an Estimate</span>
         </a>
@@ -76,10 +72,11 @@ body_class: page-build-guide
 <section class="build-guide-cta bg-gradient-primary ts-section scroll-fade-in premium-cta">
   <div class="container text-center">
     <h2 class="text-white heading-2">Ready to Start Your Project?</h2>
-    <p class="text-white-80 lead">Get a detailed estimate for your bathroom or shower remodel from a licensed NJ contractor who follows these standards.</p>
-    <div class="cta-buttons flex flex-center gap-cta-btns mt-2">
-      {% include components/cta-buttons.html %}
-    </div>
+    <p class="text-white-80 lead">
+      Get a detailed estimate for your bathroom or shower remodel from a licensed NJ contractor who follows these
+      standards.
+    </p>
+    <div class="cta-buttons flex flex-center gap-cta-btns mt-2">{% include components/cta-buttons.html %}</div>
     <p class="cta-credential text-white-60 mt-2">
       <small>{% include components/credential-badges.html %}</small>
     </p>

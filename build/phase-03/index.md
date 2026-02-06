@@ -2,27 +2,33 @@
 layout: default
 build_guide: true
 toc: true
-title: "Waterproofing Systems"
-permalink: /build/waterproofing-systems/
+title: 'Waterproofing Systems'
+permalink: /build/phase-03/
 order: 3
-meta_title: "Shower Waterproofing Systems | Tillerstead Build Phase 3"
-meta_description: "ANSI A118.10 compliant waterproofing for tile showers. Sheet membranes, liquid-applied systems, and proper installation methods."
-description: "Waterproofing is the most critical phase. Learn about ANSI A118.10 systems and proper installation techniques."
-parent: "Build Phases"
-parent_url: "/build/"
-prev_phase: "/build/shower-pans-slopes-drains/"
-prev_phase_title: "Shower Pans, Slopes & Drains"
-next_phase: "/build/curbs-curbless/"
-next_phase_title: "Curbs & Curbless Showers"
+meta_title: 'Shower Waterproofing Systems | Tillerstead Build Phase 3'
+meta_description:
+  'ANSI A118.10 compliant waterproofing for tile showers. Sheet membranes,
+  liquid-applied systems, and proper installation methods.'
+description:
+  'Waterproofing is the most critical phase. Learn about ANSI A118.10 systems
+  and proper installation techniques.'
+parent: 'Build Phases'
+parent_url: '/build/'
+prev_phase: '/build/shower-pans-slopes-drains/'
+prev_phase_title: 'Shower Pans, Slopes & Drains'
+next_phase: '/build/curbs-curbless/'
+next_phase_title: 'Curbs & Curbless Showers'
 ---
 
 ## The Most Critical Phase
 
-Tile is decorative. **Waterproofing is structural.** A beautiful tile job over inadequate waterproofing will fail—every time.
+Tile is decorative. **Waterproofing is structural.** A beautiful tile job over
+inadequate waterproofing will fail—every time.
 
 ## ANSI A118.10 Compliance
 
-All shower waterproofing systems must meet **ANSI A118.10** standards for bonded waterproof membranes in wet areas.
+All shower waterproofing systems must meet **ANSI A118.10** standards for bonded
+waterproof membranes in wet areas.
 
 ### What This Standard Requires
 
@@ -38,11 +44,13 @@ All shower waterproofing systems must meet **ANSI A118.10** standards for bonded
 Pre-fabricated sheets applied with thin-set mortar or adhesive.
 
 **Pros:**
+
 - Predictable thickness
 - Easy to verify coverage
 - Fast installation
 
 **Cons:**
+
 - Requires precise cuts at drains/corners
 - Seams must be carefully detailed
 
@@ -51,11 +59,13 @@ Pre-fabricated sheets applied with thin-set mortar or adhesive.
 Brush/roll-on waterproofing, similar to thick paint.
 
 **Pros:**
+
 - Seamless coverage
 - Easy to detail penetrations
 - No special tools required
 
 **Cons:**
+
 - Thickness variations (multiple coats required)
 - Dry time between coats
 - Harder to verify coverage visually
@@ -69,12 +79,14 @@ Combination of sheet + liquid (e.g., sheet on pan, liquid on walls).
 ### Corners (Inside & Outside)
 
 Most common failure point. Must be reinforced with:
+
 - Pre-formed corners, OR
 - Fabric reinforcement strips embedded in membrane
 
 ### Drains
 
 Drain assembly must integrate with waterproofing membrane:
+
 - Bonding flanges
 - Clamping rings
 - Weep holes (for mortar bed systems)
@@ -82,6 +94,7 @@ Drain assembly must integrate with waterproofing membrane:
 ### Niches
 
 Recessed shelves require:
+
 - Back-sloped bottom (so water drains out)
 - Fully wrapped waterproofing (all 6 sides)
 - Proper bonding to wall membrane
@@ -91,6 +104,7 @@ Recessed shelves require:
 ers, Body Sprays)
 
 Seal around all penetrations using:
+
 - Pre-formed gaskets
 - Liquid membrane collars
 - Overlap with wall membrane
@@ -100,13 +114,15 @@ Seal around all penetrations using:
 For **mortar bed** shower pans: flood testing is required per TCNA.
 
 **How:**
+
 1. Plug drain
 2. Fill pan with water (2" deep)
 3. Mark water level
 4. Wait 24-48 hours
 5. Verify no drop in level
 
-For **bonded membrane** systems over solid substrate: flood testing may not be required, but is recommended.
+For **bonded membrane** systems over solid substrate: flood testing may not be
+required, but is recommended.
 
 ## Documentation
 

@@ -44,13 +44,13 @@ app.add_middleware(
 )
 
 # API routers
-app.include_router(jobs.router, prefix="/api/jobs", tags=["Jobs"])
-app.include_router(rooms.router, prefix="/api/rooms", tags=["Rooms"])
-app.include_router(calculators.router, prefix="/api/calculators", tags=["Calculators"])
-app.include_router(products.router, prefix="/api/products", tags=["Products"])
-app.include_router(imports.router, prefix="/api/imports", tags=["Imports"])
-app.include_router(exports.router, prefix="/api/exports", tags=["Exports"])
-app.include_router(settings.router, prefix="/api/settings", tags=["Settings"])
+app.include_router(jobs, prefix="/api", tags=["Jobs"])
+app.include_router(rooms, prefix="/api", tags=["Rooms"])
+app.include_router(calculators, prefix="/api", tags=["Calculators"])
+app.include_router(products, prefix="/api", tags=["Products"])
+app.include_router(imports, prefix="/api", tags=["Imports"])
+app.include_router(exports, prefix="/api", tags=["Exports"])
+app.include_router(settings, prefix="/api", tags=["Settings"])
 
 
 @app.get("/")

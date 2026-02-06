@@ -77,10 +77,10 @@ async function main() {
   console.log('RESULTS:');
   console.log('='.repeat(60));
 
-  const passed = checks.filter(c => c.status === '✓').length;
-  const failed = checks.filter(c => c.status === '✗').length;
+  const passed = checks.filter((c) => c.status === '✓').length;
+  const failed = checks.filter((c) => c.status === '✗').length;
 
-  checks.forEach(check => {
+  checks.forEach((check) => {
     console.log(`${check.status} ${check.name.padEnd(35)} ${check.message}`);
   });
 

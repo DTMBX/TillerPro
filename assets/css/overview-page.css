@@ -97,19 +97,19 @@
     text-align: center;
     padding: 1.25rem;
   }
-  
+
   .banner-icon {
     font-size: 2rem;
   }
-  
+
   .banner-title {
     font-size: 1.125rem;
   }
-  
+
   .banner-desc {
     font-size: 0.8125rem;
   }
-  
+
   .banner-cta {
     width: 100%;
     justify-content: center;
@@ -164,11 +164,12 @@
 
 .overview-card {
   background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgb(0 0 0 / 8%);
   border-radius: clamp(1rem, 2vw, 1.5rem);
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06),
-              0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 2px 8px rgb(0 0 0 / 6%),
+    0 8px 24px rgb(0 0 0 / 8%);
 }
 
 .overview-card--highlight {

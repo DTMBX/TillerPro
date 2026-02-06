@@ -28,7 +28,7 @@ class ProgressiveImage {
   setupImages() {
     const containers = document.querySelectorAll('.progressive-image[data-src]');
 
-    containers.forEach(container => {
+    containers.forEach((container) => {
       const fullSrc = container.dataset.src;
       const placeholder = container.querySelector('.progressive-image__placeholder');
 
@@ -112,50 +112,53 @@ class ProgressiveImage {
       return;
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const container = entry.target;
-          const fullSrc = container.dataset.src;
-          const placeholder = container.querySelector('.progressive-image__placeholder');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const container = entry.target;
+            const fullSrc = container.dataset.src;
+            const placeholder = container.querySelector('.progressive-image__placeholder');
 
-          if (!placeholder || !fullSrc) return;
+            if (!placeholder || !fullSrc) return;
 
-          // Apply blur
-          placeholder.style.filter = 'blur(20px)';
-          placeholder.style.transform = 'scale(1.05)';
+            // Apply blur
+            placeholder.style.filter = 'blur(20px)';
+            placeholder.style.transform = 'scale(1.05)';
 
-          // Load full image
-          this.loadImage(fullSrc, () => {
-            const fullImage = document.createElement('img');
-            fullImage.src = fullSrc;
-            fullImage.alt = placeholder.alt || '';
-            fullImage.className = 'progressive-image__full';
-            fullImage.style.opacity = '0';
-            fullImage.style.transition = 'opacity 0.6s ease';
+            // Load full image
+            this.loadImage(fullSrc, () => {
+              const fullImage = document.createElement('img');
+              fullImage.src = fullSrc;
+              fullImage.alt = placeholder.alt || '';
+              fullImage.className = 'progressive-image__full';
+              fullImage.style.opacity = '0';
+              fullImage.style.transition = 'opacity 0.6s ease';
 
-            container.appendChild(fullImage);
+              container.appendChild(fullImage);
 
-            requestAnimationFrame(() => {
-              fullImage.style.opacity = '1';
+              requestAnimationFrame(() => {
+                fullImage.style.opacity = '1';
 
-              setTimeout(() => {
-                placeholder.style.opacity = '0';
-                setTimeout(() => placeholder.remove(), 600);
-              }, 100);
+                setTimeout(() => {
+                  placeholder.style.opacity = '0';
+                  setTimeout(() => placeholder.remove(), 600);
+                }, 100);
+              });
             });
-          });
 
-          observer.unobserve(container);
-        }
-      });
-    }, {
-      rootMargin: '50px', // Start loading slightly before image enters viewport
-      threshold: 0.01
-    });
+            observer.unobserve(container);
+          }
+        });
+      },
+      {
+        rootMargin: '50px', // Start loading slightly before image enters viewport
+        threshold: 0.01,
+      }
+    );
 
     const containers = document.querySelectorAll('.progressive-image[data-src]');
-    containers.forEach(container => observer.observe(container));
+    containers.forEach((container) => observer.observe(container));
   }
 }
 

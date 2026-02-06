@@ -18,9 +18,7 @@ const linkDir = path.join(siteDir, 'tillerstead-sandbox');
 
 function ensureSiteDir() {
   if (!fs.existsSync(siteDir)) {
-    throw new Error(
-      `_site directory not found at ${siteDir}. Run "npm run build" first.`,
-    );
+    throw new Error(`_site directory not found at ${siteDir}. Run "npm run build" first.`);
   }
 }
 

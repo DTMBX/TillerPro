@@ -1,4 +1,3 @@
-
 .ts-header {
   background: linear-gradient(135deg, #00e184 0%, #00b46a 100%);
   padding: 1rem 0;
@@ -50,10 +49,10 @@
 
 @media (max-width: 768px) {
   .ts-header__company {
-  font-size: 1.2rem;
+    font-size: 1.2rem;
   }
 
   .ts-header__cta {
-  display: none;
+    display: none;
   }
 }

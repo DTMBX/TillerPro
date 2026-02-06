@@ -6,8 +6,8 @@ import { join } from 'path';
 
 const jsDir = 'assets/js';
 const files = readdirSync(jsDir)
-  .filter(f => f.endsWith('.js') && !f.endsWith('.min.js'))
-  .map(f => join(jsDir, f));
+  .filter((f) => f.endsWith('.js') && !f.endsWith('.min.js'))
+  .map((f) => join(jsDir, f));
 
 await build({
   entryPoints: files,

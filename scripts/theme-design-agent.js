@@ -33,11 +33,7 @@ const ROOT = path.resolve(__dirname, '..');
 function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
-    ? [
-      parseInt(result[1], 16),
-      parseInt(result[2], 16),
-      parseInt(result[3], 16),
-    ]
+    ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
     : null;
 }
 
@@ -74,12 +70,7 @@ function getLevel(ratio) {
 // ==
 
 function updateTokensRadius() {
-  const tokensPath = path.join(
-    ROOT,
-    '_sass',
-    '00-settings',
-    '_tokens-modern.scss',
-  );
+  const tokensPath = path.join(ROOT, '_sass', '00-settings', '_tokens-modern.scss');
   let content = fs.readFileSync(tokensPath, 'utf8');
 
   const changes = [];
@@ -109,12 +100,7 @@ function updateTokensRadius() {
 }
 
 function updateButtonRadius() {
-  const buttonsPath = path.join(
-    ROOT,
-    '_sass',
-    '30-components',
-    '_buttons.scss',
-  );
+  const buttonsPath = path.join(ROOT, '_sass', '30-components', '_buttons.scss');
   let content = fs.readFileSync(buttonsPath, 'utf8');
 
   const changes = [];
@@ -133,12 +119,7 @@ function updateButtonRadius() {
 }
 
 function updateContainerRadius() {
-  const containerPath = path.join(
-    ROOT,
-    '_sass',
-    '20-layout',
-    '_container.scss',
-  );
+  const containerPath = path.join(ROOT, '_sass', '20-layout', '_container.scss');
   let content = fs.readFileSync(containerPath, 'utf8');
 
   const changes = [];
@@ -149,9 +130,7 @@ function updateContainerRadius() {
 
   if (matches) {
     content = content.replace(pattern, 'border-radius: var(--radius-lg);');
-    changes.push(
-      `Updated ${matches.length} container border-radius declarations`,
-    );
+    changes.push(`Updated ${matches.length} container border-radius declarations`);
   }
 
   fs.writeFileSync(containerPath, content, 'utf8');
@@ -163,12 +142,7 @@ function updateContainerRadius() {
 // ==
 
 function auditContrast() {
-  const tokensPath = path.join(
-    ROOT,
-    '_sass',
-    '00-settings',
-    '_tokens-modern.scss',
-  );
+  const tokensPath = path.join(ROOT, '_sass', '00-settings', '_tokens-modern.scss');
   const content = fs.readFileSync(tokensPath, 'utf8');
 
   // Extract color definitions
@@ -277,9 +251,7 @@ function generateReport() {
   console.log('\n🎨 Auditing Contrast Ratios...\n');
   const contrastResults = auditContrast();
   contrastResults.forEach((result) => {
-    console.log(
-      `  ${result.level.padEnd(15)} ${result.name.padEnd(35)} (${result.ratio}:1)`,
-    );
+    console.log(`  ${result.level.padEnd(15)} ${result.name.padEnd(35)} (${result.ratio}:1)`);
     console.log(`  └─ fg: ${result.fg} | bg: ${result.bg}`);
     report.contrastAudit.push(result);
   });

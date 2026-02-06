@@ -1,11 +1,17 @@
 ---
 layout: post
-title: "Large-Format Tile Done Right: Flatness, Mortars, & Trowels"
-description: "Installing large-format tile in South Jersey? Here's how Tillerstead ensures flat substrates, the right mortar choice, and consistent coverage for floors and walls that stay beautiful."
+title: 'Large-Format Tile Done Right: Flatness, Mortars, & Trowels'
+description:
+  "Installing large-format tile in South Jersey? Here's how Tillerstead ensures
+  flat substrates, the right mortar choice, and consistent coverage for floors
+  and walls that stay beautiful."
 permalink: /blog/large-format-tile-flatness-mortars-trowels/
 ---
 
-Large-format tile—**15″ or greater on any side**—delivers a seamless, modern aesthetic. But performance and longevity depend on strict adherence to **TCNA** and **ANSI** standards. At **Tillerstead LLC**, we don't cut corners: every step is engineered for lasting results and New Jersey HIC compliance.
+Large-format tile—**15″ or greater on any side**—delivers a seamless, modern
+aesthetic. But performance and longevity depend on strict adherence to **TCNA**
+and **ANSI** standards. At **Tillerstead LLC**, we don't cut corners: every step
+is engineered for lasting results and New Jersey HIC compliance.
 
 ---
 
@@ -19,15 +25,19 @@ Tile only performs as well as the surface beneath it.
 - Flatness verified with a 10 ft straightedge per TCNA tolerance
 
 **Our process:**  
-We **mechanically grind or float** high/low spots, using self-leveling underlayments or patching compounds as needed. This eliminates lippage and hollow spots—common failures with large-format tile.
+We **mechanically grind or float** high/low spots, using self-leveling
+underlayments or patching compounds as needed. This eliminates lippage and
+hollow spots—common failures with large-format tile.
 
-> **Pro Tip:** The larger the tile, the tighter the flatness tolerance. Substrate prep is non-negotiable.
+> **Pro Tip:** The larger the tile, the tighter the flatness tolerance.
+> Substrate prep is non-negotiable.
 
 ---
 
 ## 🧱 Mortar Selection: Bond Strength That Lasts
 
-Large-format and gauged porcelain panels require **improved bond strength** and **non-sag performance**.  
+Large-format and gauged porcelain panels require **improved bond strength** and
+**non-sag performance**.  
 We specify mortars that meet or exceed:
 
 - **ANSI A118.4** — Modified thin-set mortars
@@ -40,7 +50,8 @@ We specify mortars that meet or exceed:
 - **Non-sag/medium-bed** properties to support heavy tiles
 
 **Why it matters:**  
-Standard thinset (A118.1) can slump, causing uneven bond lines and voids. We use only mortars proven for large-format installations.
+Standard thinset (A118.1) can slump, causing uneven bond lines and voids. We use
+only mortars proven for large-format installations.
 
 ---
 
@@ -60,7 +71,8 @@ Coverage is critical:
 3. **Back-butter** all large tiles to fill depressions
 4. **Lift and check** initial tiles for full coverage and ridge collapse
 
-> Proper ridge orientation and a 45° trowel angle allow air to escape, ensuring continuous contact and eliminating weak spots.
+> Proper ridge orientation and a 45° trowel angle allow air to escape, ensuring
+> continuous contact and eliminating weak spots.
 
 ---
 
@@ -74,10 +86,15 @@ Coverage is critical:
 ---
 
 **Summary:**  
-Precision is non-negotiable with large-format tile. Whether it's a porcelain floor in **Egg Harbor Township**, a shower in **Galloway**, or a full bath remodel in **Atlantic County**, Tillerstead delivers compliant, durable, and beautiful results—every time.
+Precision is non-negotiable with large-format tile. Whether it's a porcelain
+floor in **Egg Harbor Township**, a shower in **Galloway**, or a full bath
+remodel in **Atlantic County**, Tillerstead delivers compliant, durable, and
+beautiful results—every time.
 
 **Ready to start?**  
-[Email us at support@tillerstead.com](mailto:support@tillerstead.com) or schedule a consultation. We'll verify your substrate and recommend the right system for your project.
+[Email us at support@tillerstead.com](mailto:support@tillerstead.com) or
+schedule a consultation. We'll verify your substrate and recommend the right
+system for your project.
 
 ---
 

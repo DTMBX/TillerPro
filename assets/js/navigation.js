@@ -3,7 +3,7 @@
  * Beautiful desktop menu + mobile drawer interactions
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ============================================
@@ -13,16 +13,16 @@
   const desktopTriggers = document.querySelectorAll('.ts-nav__trigger');
 
   if (desktopTriggers.length > 0) {
-    desktopTriggers.forEach(trigger => {
+    desktopTriggers.forEach((trigger) => {
       // Toggle dropdown on click
-      trigger.addEventListener('click', function(e) {
+      trigger.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
 
         const isExpanded = this.getAttribute('aria-expanded') === 'true';
 
         // Close all other dropdowns
-        desktopTriggers.forEach(t => {
+        desktopTriggers.forEach((t) => {
           if (t !== trigger) {
             t.setAttribute('aria-expanded', 'false');
           }
@@ -33,7 +33,7 @@
       });
 
       // Keyboard support
-      trigger.addEventListener('keydown', function(e) {
+      trigger.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
           this.setAttribute('aria-expanded', 'false');
           this.focus();
@@ -42,18 +42,18 @@
     });
 
     // Close dropdowns when clicking outside
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       if (!e.target.closest('.ts-nav__item--dropdown')) {
-        desktopTriggers.forEach(trigger => {
+        desktopTriggers.forEach((trigger) => {
           trigger.setAttribute('aria-expanded', 'false');
         });
       }
     });
 
     // Close dropdowns on Escape key
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
-        desktopTriggers.forEach(trigger => {
+        desktopTriggers.forEach((trigger) => {
           trigger.setAttribute('aria-expanded', 'false');
         });
       }
@@ -70,7 +70,6 @@
   const overlay = drawer?.querySelector('.ts-drawer__overlay');
 
   if (drawer && toggleBtn) {
-
     // Open drawer
     function openDrawer() {
       drawer.setAttribute('aria-hidden', 'false');
@@ -100,7 +99,7 @@
     }
 
     // Toggle button click
-    toggleBtn.addEventListener('click', function() {
+    toggleBtn.addEventListener('click', function () {
       const isOpen = drawer.getAttribute('aria-hidden') === 'false';
       if (isOpen) {
         closeDrawer();
@@ -120,16 +119,18 @@
     }
 
     // Escape key to close
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && drawer.getAttribute('aria-hidden') === 'false') {
         closeDrawer();
       }
     });
 
     // Close on navigation link click (except accordion triggers)
-    const drawerLinks = drawer.querySelectorAll('.ts-drawer__link:not(.ts-drawer__accordion-trigger)');
-    drawerLinks.forEach(link => {
-      link.addEventListener('click', function() {
+    const drawerLinks = drawer.querySelectorAll(
+      '.ts-drawer__link:not(.ts-drawer__accordion-trigger)'
+    );
+    drawerLinks.forEach((link) => {
+      link.addEventListener('click', function () {
         // Small delay to allow navigation
         setTimeout(closeDrawer, 100);
       });
@@ -143,8 +144,8 @@
   const accordionTriggers = document.querySelectorAll('.ts-drawer__accordion-trigger');
 
   if (accordionTriggers.length > 0) {
-    accordionTriggers.forEach(trigger => {
-      trigger.addEventListener('click', function(e) {
+    accordionTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', function (e) {
         e.preventDefault();
 
         const isExpanded = this.getAttribute('aria-expanded') === 'true';
@@ -217,18 +218,22 @@
   const header = document.getElementById('site-header');
 
   if (header) {
-    window.addEventListener('scroll', function() {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    window.addEventListener(
+      'scroll',
+      function () {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-      // Add scrolled class for styling
-      if (scrollTop > 100) {
-        header.classList.add('ts-header--scrolled');
-      } else {
-        header.classList.remove('ts-header--scrolled');
-      }
+        // Add scrolled class for styling
+        if (scrollTop > 100) {
+          header.classList.add('ts-header--scrolled');
+        } else {
+          header.classList.remove('ts-header--scrolled');
+        }
 
-      lastScrollTop = scrollTop;
-    }, { passive: true });
+        lastScrollTop = scrollTop;
+      },
+      { passive: true }
+    );
   }
 
   // ============================================
@@ -238,7 +243,7 @@
   const currentPath = window.location.pathname;
   const navLinks = document.querySelectorAll('.ts-nav__link[href], .ts-drawer__link[href]');
 
-  navLinks.forEach(link => {
+  navLinks.forEach((link) => {
     const href = link.getAttribute('href');
     if (href && currentPath.startsWith(href) && href !== '/') {
       link.setAttribute('aria-current', 'page');
@@ -255,12 +260,12 @@
 
   const logoLink = document.querySelector('.ts-header__logo-link');
   if (logoLink && logoLink.getAttribute('href') === '/') {
-    logoLink.addEventListener('click', function(e) {
+    logoLink.addEventListener('click', function (e) {
       if (window.location.pathname === '/') {
         e.preventDefault();
         window.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
       }
     });
@@ -271,9 +276,9 @@
   // ============================================
 
   let resizeTimer;
-  window.addEventListener('resize', function() {
+  window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
+    resizeTimer = setTimeout(function () {
       // Close mobile drawer if window is resized to desktop
       if (window.innerWidth >= 769 && drawer) {
         if (drawer.getAttribute('aria-hidden') === 'false') {
@@ -285,7 +290,7 @@
 
       // Close desktop dropdowns if window is resized to mobile
       if (window.innerWidth < 769) {
-        desktopTriggers.forEach(trigger => {
+        desktopTriggers.forEach((trigger) => {
           trigger.setAttribute('aria-expanded', 'false');
         });
       }
@@ -297,5 +302,4 @@
   // ============================================
 
   console.log('✅ Tillerstead Navigation initialized');
-
 })();

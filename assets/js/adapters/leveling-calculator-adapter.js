@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-(function() {
+(function () {
   'use strict';
 
   class LevelingCalculatorAdapter {
@@ -36,7 +36,7 @@
         depthAvg: document.getElementById('level-depth-avg'),
         depthMax: document.getElementById('level-depth-max'),
         calcButton: document.getElementById('calc-level-btn'),
-        results: document.getElementById('level-calc-results')
+        results: document.getElementById('level-calc-results'),
       };
     }
 
@@ -81,19 +81,21 @@
       const autoSaveInputs = [
         this.elements.area,
         this.elements.depthAvg,
-        this.elements.depthMax
+        this.elements.depthMax,
       ].filter(Boolean);
 
-      autoSaveInputs.forEach(input => {
+      autoSaveInputs.forEach((input) => {
         input.addEventListener('change', () => this.saveToState());
       });
 
       // Listen for area updates
       if (this.state) {
         this.state.on('change', (data) => {
-          if ((data.path === 'tile.calculated.areaWithWaste' ||
-               data.path.startsWith('project.rooms')) &&
-              !this.elements.area?.value) {
+          if (
+            (data.path === 'tile.calculated.areaWithWaste' ||
+              data.path.startsWith('project.rooms')) &&
+            !this.elements.area?.value
+          ) {
             this.syncArea();
           }
         });
@@ -104,7 +106,9 @@
       if (!this.state) return;
 
       const tileArea = this.state.get('tile.calculated.areaWithWaste');
-      const roomArea = this.state.get('project.rooms')?.reduce((sum, room) => sum + (room.area || 0), 0);
+      const roomArea = this.state
+        .get('project.rooms')
+        ?.reduce((sum, room) => sum + (room.area || 0), 0);
       const area = tileArea || roomArea;
 
       if (area && this.elements.area && !this.elements.area.value) {
@@ -150,7 +154,7 @@
         depthAvg,
         depthMax,
         warning,
-        note: `Self-leveling compound (~50 lbs per bag). ${bagsWithWaste} bags includes 10% waste.`
+        note: `Self-leveling compound (~50 lbs per bag). ${bagsWithWaste} bags includes 10% waste.`,
       };
 
       this.displayResults(result);
@@ -190,8 +194,9 @@
         noteText += ' ' + result.warning;
       }
 
-      const noteEl = this.elements.results.querySelector('.calc-results__note') ||
-                      this.elements.results.querySelector('#level-calc-note');
+      const noteEl =
+        this.elements.results.querySelector('.calc-results__note') ||
+        this.elements.results.querySelector('#level-calc-note');
       if (noteEl) {
         noteEl.textContent = noteText;
         if (result.warning) {
@@ -259,5 +264,4 @@
       adapter.init();
     }
   }
-
 })();

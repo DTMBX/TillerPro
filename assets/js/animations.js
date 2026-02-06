@@ -159,13 +159,13 @@ export function scrollToElement(target, options = {}) {
 // Page Transition
 export function pageTransition(options = {}) {
   const tl = gsap.timeline();
-  
+
   tl.to(options.element || 'body', {
     opacity: 0,
     duration: options.duration || 0.3,
     ease: 'power2.inOut',
   });
-  
+
   return tl;
 }
 

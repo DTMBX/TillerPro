@@ -7,14 +7,14 @@ import { URL } from 'url';
   const browser = await puppeteer.launch({
     headless: true,
     executablePath: 'C:/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe',
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
 
   try {
     const { report } = await lighthouse('http://localhost:3000', {
       port: new URL(browser.wsEndpoint()).port,
       output: 'html',
-      logLevel: 'info'
+      logLevel: 'info',
     });
 
     if (report) {

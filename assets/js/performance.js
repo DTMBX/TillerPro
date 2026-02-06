@@ -7,7 +7,7 @@
 // Web Vitals tracking (gracefully degrades if library not loaded)
 export function trackWebVitals() {
   console.log('📊 Initializing Web Vitals tracking...');
-  
+
   function sendToAnalytics({ name, delta, value, id }) {
     console.log(`📊 ${name}:`, {
       value: Math.round(value),
@@ -32,8 +32,16 @@ export function trackWebVitals() {
       setTimeout(() => {
         const perfData = performance.getEntriesByType('navigation')[0];
         if (perfData) {
-          console.log('📊 Load Time:', Math.round(perfData.loadEventEnd - perfData.fetchStart), 'ms');
-          console.log('📊 DOM Content Loaded:', Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart), 'ms');
+          console.log(
+            '📊 Load Time:',
+            Math.round(perfData.loadEventEnd - perfData.fetchStart),
+            'ms'
+          );
+          console.log(
+            '📊 DOM Content Loaded:',
+            Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart),
+            'ms'
+          );
         }
       }, 0);
     });
@@ -43,10 +51,10 @@ export function trackWebVitals() {
 // Initialize Lazy Loading (native browser support)
 export function initLazyLoad() {
   const lazyImages = document.querySelectorAll('img[loading="lazy"], .lazy');
-  
+
   if ('loading' in HTMLImageElement.prototype) {
     // Native lazy loading support
-    lazyImages.forEach(img => {
+    lazyImages.forEach((img) => {
       if (img.dataset.src) {
         img.src = img.dataset.src;
       }
@@ -58,7 +66,7 @@ export function initLazyLoad() {
   } else {
     // Fallback to Intersection Observer
     const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const img = entry.target;
           if (img.dataset.src) img.src = img.dataset.src;
@@ -69,7 +77,7 @@ export function initLazyLoad() {
       });
     });
 
-    lazyImages.forEach(img => imageObserver.observe(img));
+    lazyImages.forEach((img) => imageObserver.observe(img));
     console.log('🚀 Lazy loading initialized (IntersectionObserver)');
   }
 }
@@ -82,11 +90,11 @@ export function initQuicklink() {
   }
 
   const linkObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const link = entry.target;
         const href = link.href;
-        
+
         // Prefetch the link
         if (href && !link.dataset.prefetched) {
           const linkTag = document.createElement('link');
@@ -100,9 +108,11 @@ export function initQuicklink() {
   });
 
   // Observe all internal links
-  document.querySelectorAll('a[href^="/"], a[href^="' + window.location.origin + '"]').forEach(link => {
-    linkObserver.observe(link);
-  });
+  document
+    .querySelectorAll('a[href^="/"], a[href^="' + window.location.origin + '"]')
+    .forEach((link) => {
+      linkObserver.observe(link);
+    });
 
   console.log('⚡ Link prefetching initialized');
 }
@@ -130,7 +140,7 @@ export function addResourceHints() {
 // Defer Non-Critical CSS
 export function deferNonCriticalCSS() {
   const stylesheets = document.querySelectorAll('link[rel="stylesheet"][data-defer]');
-  
+
   stylesheets.forEach((link) => {
     link.media = 'print';
     link.onload = function () {
@@ -145,15 +155,14 @@ export function deferNonCriticalCSS() {
 // Font Loading Optimization
 export function optimizeFontLoading() {
   if ('fonts' in document) {
-    Promise.all([
-      document.fonts.load('1em Inter'),
-      document.fonts.load('700 1em Inter'),
-    ]).then(() => {
-      document.documentElement.classList.add('fonts-loaded');
-      console.log('🔤 Fonts loaded');
-    }).catch(() => {
-      console.log('🔤 Font loading failed, using fallbacks');
-    });
+    Promise.all([document.fonts.load('1em Inter'), document.fonts.load('700 1em Inter')])
+      .then(() => {
+        document.documentElement.classList.add('fonts-loaded');
+        console.log('🔤 Fonts loaded');
+      })
+      .catch(() => {
+        console.log('🔤 Font loading failed, using fallbacks');
+      });
   }
 }
 
@@ -192,7 +201,8 @@ export function supportsAVIF() {
 // Detect Network Connection
 export function getNetworkType() {
   if ('connection' in navigator) {
-    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const connection =
+      navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     return connection.effectiveType;
   }
   return 'unknown';
@@ -202,10 +212,10 @@ export function getNetworkType() {
 export function shouldLoadHighQuality() {
   const networkType = getNetworkType();
   const saveData = navigator.connection?.saveData;
-  
+
   if (saveData) return false;
   if (networkType === 'slow-2g' || networkType === '2g') return false;
-  
+
   return true;
 }
 

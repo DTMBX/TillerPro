@@ -5,6 +5,7 @@
 ## 📋 What's Tested
 
 ### Desktop Navigation
+
 - ✅ All main nav links (Services, Our Work, Blog, Reviews, Tools)
 - ✅ Guides dropdown (8 links)
 - ✅ About dropdown (4 links)
@@ -14,6 +15,7 @@
 - ✅ Keyboard accessibility
 
 ### Mobile Navigation
+
 - ✅ Hamburger menu visibility
 - ✅ Mobile nav drawer open/close
 - ✅ All mobile nav links
@@ -24,6 +26,7 @@
 - ✅ X button functionality
 
 ### Accessibility
+
 - ✅ ARIA labels
 - ✅ aria-expanded states
 - ✅ aria-haspopup attributes
@@ -31,6 +34,7 @@
 - ✅ Focus states
 
 ### Responsive
+
 - ✅ Desktop → Mobile breakpoint (768px)
 - ✅ Multiple device sizes
 - ✅ iPhone 16 Pro Max
@@ -43,27 +47,32 @@
 ## 🚀 Quick Start
 
 ### Install Playwright (First Time)
+
 ```bash
 npm install -D @playwright/test
 npx playwright install
 ```
 
 ### Run All Tests
+
 ```bash
 npm run test:nav
 ```
 
 ### Run with Browser Visible
+
 ```bash
 npm run test:nav:headed
 ```
 
 ### Debug Mode (Step Through)
+
 ```bash
 npm run test:nav:debug
 ```
 
 ### Test Mobile Only
+
 ```bash
 npm run test:nav:mobile
 ```
@@ -73,16 +82,19 @@ npm run test:nav:mobile
 ## 🎯 PowerShell Scripts
 
 ### Test Production Site
+
 ```powershell
 .\scripts\test-nav-playwright.ps1
 ```
 
 ### Test Local Development
+
 ```powershell
 .\scripts\test-nav-playwright.ps1 -Environment local
 ```
 
 ### Test Specific Browser
+
 ```powershell
 # Chrome only
 .\scripts\test-nav-playwright.ps1 -Browser chrome
@@ -95,6 +107,7 @@ npm run test:nav:mobile
 ```
 
 ### Debug Mode
+
 ```powershell
 .\scripts\test-nav-playwright.ps1 -Debug -Headed
 ```
@@ -104,11 +117,13 @@ npm run test:nav:mobile
 ## 📱 Tested Devices
 
 ### Desktop Browsers
+
 - **Chrome** (1920x1080)
 - **Firefox** (1920x1080)
 - **Safari** (1920x1080)
 
 ### Mobile Devices
+
 - **iPhone 16 Pro Max** (430x932)
 - **iPhone 14** (390x844)
 - **Google Pixel 7** (412x915)
@@ -119,6 +134,7 @@ npm run test:nav:mobile
 ## 🧪 Test Scenarios
 
 ### Desktop Nav Test
+
 1. Load homepage
 2. Verify desktop nav visible
 3. Verify mobile toggle hidden
@@ -131,6 +147,7 @@ npm run test:nav:mobile
 10. Verify navigation
 
 ### Mobile Nav Test
+
 1. Load homepage (mobile viewport)
 2. Verify hamburger visible
 3. Verify desktop nav hidden
@@ -145,6 +162,7 @@ npm run test:nav:mobile
 12. Test outside click close
 
 ### Accessibility Test
+
 1. Check aria-label on nav
 2. Verify aria-expanded states
 3. Test aria-haspopup
@@ -157,16 +175,19 @@ npm run test:nav:mobile
 ## 📊 View Results
 
 ### HTML Report (Interactive)
+
 ```bash
 npx playwright show-report
 ```
 
 ### JSON Results
+
 ```bash
 cat playwright-report/results.json
 ```
 
 ### Screenshots & Videos
+
 ```
 test-results/
   ├── screenshots/
@@ -178,6 +199,7 @@ test-results/
 ## ✅ Expected Results
 
 ### All Tests Passing
+
 ```
 ✅ Desktop Navigation Tests (10 tests)
 ✅ Mobile Navigation - iPhone 16 Pro Max (12 tests)
@@ -194,21 +216,25 @@ Total: 33 tests across 7 device configurations
 ## 🐛 Debugging Failed Tests
 
 ### Run Single Test
+
 ```bash
 npx playwright test tests/navigation.spec.js -g "should open mobile nav"
 ```
 
 ### Debug Mode
+
 ```bash
 npx playwright test tests/navigation.spec.js --debug
 ```
 
 ### Headed Mode (See Browser)
+
 ```bash
 npx playwright test tests/navigation.spec.js --headed
 ```
 
 ### Specific Device
+
 ```bash
 npx playwright test --project=mobile-chrome-iphone-16-pro-max
 ```
@@ -233,16 +259,18 @@ tillerstead.com/
 ## 🔧 Configuration
 
 ### Change Base URL
+
 ```javascript
 // playwright.config.js
 use: {
-  baseURL: 'https://tillerstead.com'  // Production
+  baseURL: 'https://tillerstead.com'; // Production
   // OR
-  baseURL: 'http://localhost:4000'    // Local
+  baseURL: 'http://localhost:4000'; // Local
 }
 ```
 
 ### Add New Device
+
 ```javascript
 // playwright.config.js
 projects: [
@@ -250,10 +278,10 @@ projects: [
     name: 'mobile-samsung-s23',
     use: {
       ...devices['Galaxy S23'],
-      viewport: { width: 360, height: 800 }
-    }
-  }
-]
+      viewport: { width: 360, height: 800 },
+    },
+  },
+];
 ```
 
 ---
@@ -261,6 +289,7 @@ projects: [
 ## 🎯 Continuous Integration
 
 ### GitHub Actions Example
+
 ```yaml
 name: Navigation Tests
 
@@ -296,19 +325,25 @@ jobs:
 ## 🚨 Common Issues
 
 ### Issue: Tests timeout
+
 **Fix:** Increase timeout in playwright.config.js
+
 ```javascript
-timeout: 60 * 1000
+timeout: 60 * 1000;
 ```
 
 ### Issue: Local server not starting
+
 **Fix:** Make sure Jekyll is running
+
 ```bash
 bundle exec jekyll serve
 ```
 
 ### Issue: Browser not found
+
 **Fix:** Install browsers
+
 ```bash
 npx playwright install
 ```
@@ -318,6 +353,7 @@ npx playwright install
 ## 📞 Support
 
 **Test failures?**
+
 1. Check screenshots in `test-results/`
 2. View HTML report: `npx playwright show-report`
 3. Run in debug mode: `npm run test:nav:debug`

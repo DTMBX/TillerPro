@@ -157,7 +157,7 @@ function enhanceTrustBar() {
         <use href="#icon-badge"></use>
       </svg>
       <span>NJ HIC #$1</span>
-    </li>`,
+    </li>`
   );
 
   content = content.replace(
@@ -167,7 +167,7 @@ function enhanceTrustBar() {
         <use href="#icon-check-circle"></use>
       </svg>
       <span>TCNA $1</span>
-    </li>`,
+    </li>`
   );
 
   content = content.replace(
@@ -177,7 +177,7 @@ function enhanceTrustBar() {
         <use href="#icon-badge"></use>
       </svg>
       <span>Fully Insured</span>
-    </li>`,
+    </li>`
   );
 
   if (content !== original) {
@@ -208,7 +208,7 @@ function enhanceCTA() {
         <svg class="ts-icon ts-icon--sm" aria-hidden="true" focusable="false">
           <use href="#icon-phone"></use>
         </svg>
-        <span>$2</span>`,
+        <span>$2</span>`
     );
   }
 
@@ -220,7 +220,7 @@ function enhanceCTA() {
         <svg class="ts-icon ts-icon--sm" aria-hidden="true" focusable="false">
           <use href="#icon-mail"></use>
         </svg>
-        <span>$2</span>`,
+        <span>$2</span>`
     );
   }
 
@@ -475,7 +475,7 @@ function updateMainSCSS() {
   if (!content.includes('30-components/process')) {
     content = content.replace(
       /@import "30-components\/icons";/,
-      `@import "30-components/icons";\n@import "30-components/process";`,
+      `@import "30-components/icons";\n@import "30-components/process";`
     );
 
     fs.writeFileSync(scssPath, content, 'utf8');
@@ -573,9 +573,7 @@ async function main() {
     console.log('1. Run: npm run build:css');
     console.log('2. Run: npm run build');
     console.log('3. Review the changes');
-    console.log(
-      '4. Commit with: git add -A && git commit -m "Implement strategic icon placement"',
-    );
+    console.log('4. Commit with: git add -A && git commit -m "Implement strategic icon placement"');
   } catch (error) {
     console.error('❌ Error:', error.message);
     process.exit(1);

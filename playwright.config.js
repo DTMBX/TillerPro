@@ -52,9 +52,9 @@ export default defineConfig({
   webServer: PROD_URL
     ? undefined // Don't start local server if testing production
     : {
-      command: 'npm run serve:test',
-      url: baseURL,
-      reuseExistingServer: !process.env.CI,
-      timeout: 60000,
-    },
+        command: 'npm run serve:test',
+        url: baseURL,
+        reuseExistingServer: !process.env.CI,
+        timeout: 60000,
+      },
 });

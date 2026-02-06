@@ -2,14 +2,19 @@
 
 ## Overview
 
-This directory contains the encryption system that protects proprietary TillerPro Suite and calculator files in the Tillerstead.com repository. Files are automatically encrypted before being committed to Git and decrypted when checked out.
+This directory contains the encryption system that protects proprietary
+TillerPro Suite and calculator files in the Tillerstead.com repository. Files
+are automatically encrypted before being committed to Git and decrypted when
+checked out.
 
 ## How It Works
 
 The system uses **AES-256 encryption** with Git's clean/smudge filter mechanism:
 
-- **Clean filter (encrypt.ps1)**: Encrypts files before they're committed to the repository
-- **Smudge filter (decrypt.ps1)**: Decrypts files when they're checked out from the repository
+- **Clean filter (encrypt.ps1)**: Encrypts files before they're committed to the
+  repository
+- **Smudge filter (decrypt.ps1)**: Decrypts files when they're checked out from
+  the repository
 - **Encryption key**: A secure 256-bit key stored locally (NOT committed to Git)
 
 ## Protected Files
@@ -17,29 +22,36 @@ The system uses **AES-256 encryption** with Git's clean/smudge filter mechanism:
 The following proprietary files are encrypted:
 
 ### TillerPro Suite
+
 - `tillerpro.html` - Main TillerPro page
 - `assets/js/tillerpro-config.js` - Configuration and logic
 - `assets/css/pages/tillerpro.css` - Styling
 - `_includes/sections/tillerpro-banner.html` - Banner component
 
 ### Calculator System - Backend
-- `tillerstead-toolkit/backend/app/calculators/*.py` - All calculator implementations
+
+- `tillerstead-toolkit/backend/app/calculators/*.py` - All calculator
+  implementations
 - `tillerstead-toolkit/backend/app/api/calculators.py` - API endpoints
 
 ### Calculator System - Frontend
+
 - `assets/js/build-calculators.js` - Calculator builder
 - `assets/js/financing-calculator.js` - Financing calculator
 - `assets/js/adapters/*-calculator-adapter.js` - All calculator adapters
 
 ### Calculator Components
+
 - `_includes/tools/*-calculator.html` - Calculator HTML components
 - `tools/pricing-calculator.html` - Pricing calculator
 
 ### Documentation
+
 - `tillerstead-toolkit/CALCULATOR_SYSTEM.md` - System documentation
 - `tillerstead-toolkit/CALCULATOR_ROADMAP.md` - Development roadmap
 
 ### Tests
+
 - `tests/calculator-formulas.test.js` - Proprietary formula tests
 
 ## Setup Instructions
@@ -47,6 +59,7 @@ The following proprietary files are encrypted:
 ### Initial Setup (First Time)
 
 1. Run the setup script:
+
    ```powershell
    .\.git-encrypt\setup-encryption.ps1
    ```
@@ -58,10 +71,11 @@ The following proprietary files are encrypted:
    - **Without this key, encrypted files cannot be decrypted!**
 
 3. Verify encryption is working:
+
    ```powershell
    # Stage a protected file
    git add tillerpro.html
-   
+
    # View the staged (encrypted) version
    git diff --cached tillerpro.html
    # Should show encrypted base64 content
@@ -88,7 +102,7 @@ When a team member clones the repository:
 ✅ **Automatic**: Encrypts on commit, decrypts on checkout  
 ✅ **Key Not Committed**: Encryption key is in `.gitignore`  
 ✅ **Build Compatible**: Decrypted files work normally in builds  
-✅ **Git History Protected**: All commits contain encrypted versions  
+✅ **Git History Protected**: All commits contain encrypted versions
 
 ## Important Notes
 
@@ -134,7 +148,8 @@ The encryption system is **transparent to the build process**:
 ### Files appear as base64 gibberish
 
 **Cause**: Encryption key is missing or incorrect  
-**Solution**: 
+**Solution**:
+
 1. Verify `encryption.key` exists and is correct
 2. Run `git checkout HEAD -- [filename]` to re-decrypt
 
@@ -146,6 +161,7 @@ The encryption system is **transparent to the build process**:
 ### Need to share with new team member
 
 **Steps**:
+
 1. Securely share the `encryption.key` file
 2. They run `setup-encryption.ps1`
 3. They run `git checkout HEAD -- .`
@@ -155,12 +171,14 @@ The encryption system is **transparent to the build process**:
 If the encryption key is compromised:
 
 1. Generate new key:
+
    ```powershell
    Remove-Item .git-encrypt/encryption.key
    .\.git-encrypt\setup-encryption.ps1
    ```
 
 2. Re-encrypt all files:
+
    ```powershell
    git rm --cached -r .
    git add .
@@ -180,6 +198,7 @@ If the encryption key is compromised:
 ## Support
 
 For issues or questions:
+
 - Check this README
 - Review `.gitattributes` for encryption rules
 - Test with: `git diff --cached [file]`
@@ -188,4 +207,5 @@ For issues or questions:
 ---
 
 **© 2026 Tillerstead LLC. All Rights Reserved.**  
-**This encryption system protects trade secrets under the New Jersey Uniform Trade Secrets Act.**
+**This encryption system protects trade secrets under the New Jersey Uniform
+Trade Secrets Act.**

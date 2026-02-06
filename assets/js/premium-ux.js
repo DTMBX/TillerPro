@@ -11,7 +11,7 @@ class SmoothScroll {
 
   init() {
     // Enable smooth scrolling for all internal anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', (e) => {
         const target = document.querySelector(anchor.getAttribute('href'));
         if (target) {
@@ -31,7 +31,7 @@ class SmoothScroll {
 
     window.scrollTo({
       top: offsetPosition,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
 
     // Update URL hash without jumping
@@ -69,7 +69,7 @@ class SmoothScroll {
     button.addEventListener('click', () => {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     });
   }
@@ -96,11 +96,11 @@ class LazyLoader {
     const options = {
       root: null,
       rootMargin: '50px',
-      threshold: 0.01
+      threshold: 0.01,
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           this.loadElement(entry.target);
           observer.unobserve(entry.target);
@@ -109,8 +109,8 @@ class LazyLoader {
     }, options);
 
     // Observe all lazy-loadable elements
-    this.images.forEach(img => observer.observe(img));
-    this.iframes.forEach(iframe => observer.observe(iframe));
+    this.images.forEach((img) => observer.observe(img));
+    this.iframes.forEach((iframe) => observer.observe(iframe));
   }
 
   loadElement(element) {
@@ -137,8 +137,8 @@ class LazyLoader {
   }
 
   loadAll() {
-    this.images.forEach(img => this.loadElement(img));
-    this.iframes.forEach(iframe => this.loadElement(iframe));
+    this.images.forEach((img) => this.loadElement(img));
+    this.iframes.forEach((iframe) => this.loadElement(iframe));
   }
 }
 
@@ -158,7 +158,8 @@ class ImageOptimizer {
 
   checkWebPSupport() {
     const webP = new Image();
-    webP.src = 'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=';
+    webP.src =
+      'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=';
     webP.onload = webP.onerror = () => {
       document.documentElement.classList.add(webP.height === 1 ? 'webp' : 'no-webp');
     };
@@ -167,7 +168,7 @@ class ImageOptimizer {
   optimizeImages() {
     const images = document.querySelectorAll('img:not([data-optimized])');
 
-    images.forEach(img => {
+    images.forEach((img) => {
       // Add responsive attributes if missing
       if (!img.loading && !img.classList.contains('no-lazy')) {
         img.loading = 'lazy';
@@ -266,14 +267,14 @@ class PageTransitions {
   }
 
   fadeOut() {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       document.body.classList.add('page-transition-out');
       setTimeout(resolve, 300);
     });
   }
 
   fadeIn() {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       document.body.classList.remove('page-transition-out');
       document.body.classList.add('page-transition-in');
       setTimeout(() => {
@@ -295,7 +296,7 @@ class PageTransitions {
     }
 
     // Update meta tags
-    ['description', 'keywords'].forEach(name => {
+    ['description', 'keywords'].forEach((name) => {
       const newMeta = newDoc.querySelector(`meta[name="${name}"]`);
       const currentMeta = document.querySelector(`meta[name="${name}"]`);
       if (newMeta && currentMeta) {
@@ -348,10 +349,10 @@ class FormValidator {
   }
 
   init() {
-    this.forms.forEach(form => {
+    this.forms.forEach((form) => {
       const inputs = form.querySelectorAll('input, textarea, select');
 
-      inputs.forEach(input => {
+      inputs.forEach((input) => {
         // Real-time validation
         input.addEventListener('blur', () => this.validateField(input));
         input.addEventListener('input', () => {
@@ -427,7 +428,7 @@ class FormValidator {
     const inputs = form.querySelectorAll('input, textarea, select');
     let isValid = true;
 
-    inputs.forEach(input => {
+    inputs.forEach((input) => {
       if (!this.validateField(input)) {
         isValid = false;
       }
@@ -435,7 +436,9 @@ class FormValidator {
 
     // Focus first invalid field
     if (!isValid) {
-      const firstError = form.querySelector('.ts-form-group--error input, .ts-form-group--error textarea, .ts-form-group--error select');
+      const firstError = form.querySelector(
+        '.ts-form-group--error input, .ts-form-group--error textarea, .ts-form-group--error select'
+      );
       if (firstError) {
         firstError.focus();
       }
@@ -486,6 +489,6 @@ if (typeof module !== 'undefined' && module.exports) {
     ImageOptimizer,
     PageTransitions,
     ScrollProgress,
-    FormValidator
+    FormValidator,
   };
 }

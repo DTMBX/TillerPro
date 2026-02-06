@@ -65,11 +65,7 @@
 
   // Close on escape key
   document.addEventListener('keydown', (e) => {
-    if (
-      e.key === 'Escape' &&
-      mobileNav &&
-      mobileNav.classList.contains('is-open')
-    ) {
+    if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('is-open')) {
       closeMobileMenu();
     }
   });
@@ -79,11 +75,7 @@
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      if (
-        window.innerWidth > 920 &&
-        mobileNav &&
-        mobileNav.classList.contains('is-open')
-      ) {
+      if (window.innerWidth > 920 && mobileNav && mobileNav.classList.contains('is-open')) {
         closeMobileMenu();
       }
     }, 250);

@@ -2,32 +2,41 @@
 
 ## 🎯 Purpose
 
-Automatically creates dated backups of the Tillerstead.com repository at the end of each day **only if there are changes**. This protects against accidental data loss while keeping a clean history of daily work.
+Automatically creates dated backups of the Tillerstead.com repository at the end
+of each day **only if there are changes**. This protects against accidental data
+loss while keeping a clean history of daily work.
 
 ## 📁 How It Works
 
 ### Backup Location (Industry Standard)
+
 - **Location:** `C:\web-dev\github-repos\tillerstead-backups\`
-- **Outside repository:** Backups are stored in parent directory (not in working tree)
-- **Benefits:** 
+- **Outside repository:** Backups are stored in parent directory (not in working
+  tree)
+- **Benefits:**
   - No gitignore needed
   - Faster git operations
   - Cleaner workspace
   - Industry best practice
 
 ### Backup Folder Naming
+
 - Format: `YYYY-MM-DD`
 - Example: `2026-01-21`
 - Full path: `C:\web-dev\github-repos\tillerstead-backups\2026-01-21\`
 
 ### Automatic Triggers
+
 Backups are created when:
+
 - ✅ Uncommitted changes exist (modified, new, or deleted files)
 - ✅ Unpushed commits exist (local commits not yet pushed to remote)
 - ⏰ Runs daily at 11:59 PM (configurable)
 
 ### What Gets Backed Up
+
 **Everything EXCEPT:**
+
 - `.git/` (git database)
 - `node_modules/` (npm packages)
 - `_site/` (Jekyll build output)
@@ -50,7 +59,8 @@ cd C:\web-dev\github-repos\Tillerstead.com
 
 The script will automatically request Administrator privileges if needed.
 
-This creates a Windows Task Scheduler task that runs automatically at 11:59 PM every day.
+This creates a Windows Task Scheduler task that runs automatically at 11:59 PM
+every day.
 
 ### Option 2: Manual Backup
 
@@ -67,18 +77,22 @@ Run the backup script manually anytime:
 ## 📋 Features
 
 ### Smart Change Detection
+
 - Checks git status for uncommitted changes
 - Checks for unpushed commits
 - Skips backup if no changes (saves disk space)
 - Force flag available for manual backups
 
 ### Automatic Cleanup
+
 - Keeps last **7 daily backups**
 - Automatically removes older backups
 - Prevents disk space bloat
 
 ### Backup Metadata
+
 Each backup includes `_BACKUP_INFO.json` with:
+
 - Backup date and time
 - Git branch name
 - Git commit hash
@@ -86,6 +100,7 @@ Each backup includes `_BACKUP_INFO.json` with:
 - Backup reason (automatic or manual)
 
 ### Efficient Copying
+
 - Uses Windows `robocopy` for fast, reliable copying
 - Excludes unnecessary files
 - Preserves directory structure
@@ -126,6 +141,7 @@ github-repos/
 ## 📊 Backup Info Example
 
 `_backup-2026-01-21/_BACKUP_INFO.json`:
+
 ```json
 {
   "backup_date": "2026-01-21 23:59:01",
@@ -143,6 +159,7 @@ github-repos/
 ### Change Backup Time
 
 Edit the setup script:
+
 ```powershell
 .\scripts\setup-daily-backup-task.ps1 -BackupTime "22:00"  # 10 PM
 ```
@@ -150,6 +167,7 @@ Edit the setup script:
 ### Change Retention Period
 
 Edit `auto-backup-daily.ps1` line ~180:
+
 ```powershell
 # Change from 7 to desired number of days
 Select-Object -Skip 7    # Change this number
@@ -158,6 +176,7 @@ Select-Object -Skip 7    # Change this number
 ### Customize Exclusions
 
 Edit `auto-backup-daily.ps1` line ~80:
+
 ```powershell
 $excludePatterns = @(
     '.git',
@@ -183,7 +202,8 @@ If you prefer to set it up manually:
    - Trigger: Daily at 11:59 PM
    - Action: Start a program
    - Program: `PowerShell.exe`
-   - Arguments: `-NoProfile -ExecutionPolicy Bypass -File "C:\web-dev\github-repos\Tillerstead.com\scripts\auto-backup-daily.ps1"`
+   - Arguments:
+     `-NoProfile -ExecutionPolicy Bypass -File "C:\web-dev\github-repos\Tillerstead.com\scripts\auto-backup-daily.ps1"`
    - Start in: `C:\web-dev\github-repos\Tillerstead.com`
 
 ## 🧪 Testing
@@ -229,22 +249,27 @@ Created: 2026-01-21 23:59:01
 ## 🚨 Troubleshooting
 
 ### Backup Not Running Automatically
+
 1. Check Task Scheduler: `taskschd.msc`
 2. Verify task exists and is enabled
 3. Check "Last Run Result" (should be 0x0 for success)
 4. View task history in Task Scheduler
 
 ### No Backup Created
+
 - **Expected:** No changes detected since last backup
 - Run with `-Force` to create backup anyway
 
 ### Backup Failed
+
 - Check disk space (backups ~40-50 MB each)
 - Verify PowerShell execution policy: `Get-ExecutionPolicy`
 - Check permissions on repository folder
 
 ### Old Backups Not Deleted
-- Manually remove: `Remove-Item ..\tillerstead-backups\YYYY-MM-DD -Recurse -Force`
+
+- Manually remove:
+  `Remove-Item ..\tillerstead-backups\YYYY-MM-DD -Recurse -Force`
 - Check script line ~180 for retention setting
 
 ## 🔒 Security Notes
@@ -257,15 +282,18 @@ Created: 2026-01-21 23:59:01
 
 ## 📦 Git Integration
 
-Backups are stored **outside the repository**, so no gitignore configuration needed!
+Backups are stored **outside the repository**, so no gitignore configuration
+needed!
 
 Location: `..\tillerstead-backups\` (parent directory of repository)
 
-This prevents any possibility of accidentally committing large backup folders to git.
+This prevents any possibility of accidentally committing large backup folders to
+git.
 
 ## 🎯 Use Cases
 
 ### Restore from Backup
+
 ```powershell
 # Copy specific file from backup
 Copy-Item ..\tillerstead-backups\2026-01-20\path\to\file.html .
@@ -278,6 +306,7 @@ code --diff ..\tillerstead-backups\2026-01-20\file.html file.html
 ```
 
 ### Find When File Changed
+
 ```powershell
 # Search all backups for a file
 Get-ChildItem ..\tillerstead-backups\*\path\to\file.html
@@ -287,16 +316,18 @@ fc ..\tillerstead-backups\2026-01-19\file.html ..\tillerstead-backups\2026-01-20
 ```
 
 ### Recover Deleted File
+
 ```powershell
 # Find in latest backup
-Get-ChildItem ..\tillerstead-backups -Recurse -Filter "deleted-file.html" | 
-    Sort-Object DirectoryName -Descending | 
+Get-ChildItem ..\tillerstead-backups -Recurse -Filter "deleted-file.html" |
+    Sort-Object DirectoryName -Descending |
     Select-Object -First 1
 ```
 
 ## 📞 Support
 
 If you encounter issues:
+
 1. Check logs in Task Scheduler History
 2. Run script manually to see errors
 3. Verify PowerShell version: `$PSVersionTable`

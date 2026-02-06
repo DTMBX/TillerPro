@@ -5,6 +5,13 @@ _site/
 dist/
 reports/
 node_modules/
+/.bundle
+vendor/bundle/
+
+# Ruby / build caches
+.sass-cache/
+.cache/
+.rubocop-cache/
 
 # Playwright test artifacts
 playwright-report/
@@ -32,6 +39,9 @@ npm-debug.log*
 .env
 .env.local
 .env.*.local
+
+# Ruby version file
+.ruby-version
 
 # Build artifacts
 *.min.js.map

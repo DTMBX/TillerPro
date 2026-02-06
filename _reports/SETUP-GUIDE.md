@@ -1,4 +1,5 @@
 # 🚀 Revenue System Setup Guide
+
 **Complete step-by-step setup to go live in 30 minutes**
 
 ---
@@ -10,19 +11,19 @@ I've created a **Pricing Calculator** tool for you!
 ### How to use it:
 
 1. **Open in browser**: http://localhost:4173/tools/pricing-calculator.html
-   
 2. **Enter your actual costs**:
+
    ```
    Labor:
    - Your hourly rate: $__ (what you pay yourself/crew)
    - Sqft per hour: __ (how fast you tile)
-   
+
    Materials (per sqft):
    - Basic ceramic: $__
    - Standard porcelain: $__
    - Premium large format: $__
    - Luxury mosaic: $__
-   
+
    Business:
    - Overhead %: __ (insurance, truck, tools)
    - Profit margin %: __ (what you take home)
@@ -36,7 +37,9 @@ I've created a **Pricing Calculator** tool for you!
 5. **Paste into**: `assets/js/quote-wizard.js` (lines 12-50)
 
 ### Example:
+
 If you said:
+
 - $50/hour labor
 - 10 sqft/hour speed
 - $3.50 ceramic materials
@@ -46,7 +49,8 @@ If you said:
 
 **Result**: Your quote range for ceramic = $10.31 - $11.86/sqft
 
-That's your **cost** ($8.25) + **overhead** (20%) + **profit** (25%) + **buffer range** (15%)
+That's your **cost** ($8.25) + **overhead** (20%) + **profit** (25%) + **buffer
+range** (15%)
 
 ---
 
@@ -64,14 +68,15 @@ That's your **cost** ($8.25) + **overhead** (20%) + **profit** (25%) + **buffer 
 2. Event name: **"Free Tile Consultation"**
 3. Duration: **30 minutes**
 4. Description:
+
    ```
    Let's discuss your tile project! During this call we'll:
-   
+
    ✓ Review your project goals and timeline
    ✓ Discuss material options and preferences
    ✓ Answer your questions
    ✓ Schedule an on-site inspection (if ready)
-   
+
    No pressure, no obligation. Just honest advice.
    ```
 
@@ -99,10 +104,11 @@ That's your **cost** ($8.25) + **overhead** (20%) + **profit** (25%) + **buffer 
 1. Open: `_includes/components/sticky-cta.html`
 2. Find line 23 (the button with `data-calendly`)
 3. Replace the URL:
+
    ```html
    <!-- BEFORE -->
    data-calendly="https://calendly.com/tillerstead/consultation"
-   
+
    <!-- AFTER (use YOUR URL) -->
    data-calendly="https://calendly.com/YOURNAME/consultation"
    ```
@@ -112,10 +118,11 @@ That's your **cost** ($8.25) + **overhead** (20%) + **profit** (25%) + **buffer 
 1. Open: `assets/js/calendly-integration.js`
 2. Find line 10
 3. Replace:
+
    ```javascript
    // BEFORE
    url: 'https://calendly.com/tillerstead/consultation',
-   
+
    // AFTER (use YOUR URL)
    url: 'https://calendly.com/YOURNAME/consultation',
    ```
@@ -135,13 +142,15 @@ For now, you can skip this and just use the quote wizard. But when you're ready:
 ### "NJ Tile Project Checklist" PDF Content:
 
 **Page 1: Planning Phase**
-- [ ] Set realistic budget ($__ - $__ based on sqft)
+
+- [ ] Set realistic budget ($** - $** based on sqft)
 - [ ] Measure your space accurately
 - [ ] Research tile styles (save photos)
 - [ ] Check if permits needed (most NJ residential don't need)
 - [ ] Plan for downtime (bathroom: 3-5 days)
 
 **Page 2: Material Selection**
+
 - [ ] Tile type (ceramic, porcelain, natural stone)
 - [ ] Size (small = mosaic, medium = 12x12, large = 12x24+)
 - [ ] Finish (matte, gloss, textured)
@@ -149,6 +158,7 @@ For now, you can skip this and just use the quote wizard. But when you're ready:
 - [ ] Waterproofing method (Schluter, RedGard, Kerdi)
 
 **Page 3: Contractor Vetting**
+
 - [ ] NJ HIC License verified? (check NJ.gov)
 - [ ] Liability insurance? (ask for certificate)
 - [ ] References from past 6 months?
@@ -157,6 +167,7 @@ For now, you can skip this and just use the quote wizard. But when you're ready:
 - [ ] Payment schedule reasonable? (never 100% upfront!)
 
 **Page 4: Installation Day Prep**
+
 - [ ] Clear the room completely
 - [ ] Remove breakables from adjacent rooms (vibration)
 - [ ] Set up alternative bathroom/kitchen if needed
@@ -165,6 +176,7 @@ For now, you can skip this and just use the quote wizard. But when you're ready:
 - [ ] Have final tile selection confirmed in writing
 
 **Page 5: Post-Installation Care**
+
 - [ ] Wait 24-48 hours before use
 - [ ] Seal grout after 48-72 hours
 - [ ] Use pH-neutral cleaners only
@@ -183,6 +195,7 @@ For now, you can skip this and just use the quote wizard. But when you're ready:
 ### Add to Lead Magnet Popup:
 
 Edit the popup component and set:
+
 ```html
 data-download-url="/resources/nj-tile-checklist.pdf"
 ```
@@ -196,6 +209,7 @@ data-download-url="/resources/nj-tile-checklist.pdf"
 Visit your site (http://localhost:4173) and verify:
 
 **Sticky CTA Bar:**
+
 - [ ] Scroll down - does CTA appear after ~500px?
 - [ ] Click "Get Instant Quote" - goes to quote wizard?
 - [ ] Click "Book Consultation" - Calendly popup opens?
@@ -204,6 +218,7 @@ Visit your site (http://localhost:4173) and verify:
 - [ ] Refresh page - CTA stays hidden? (cookie works)
 
 **Quote Wizard** (if you created the page):
+
 - [ ] Answer all 5 questions
 - [ ] Click "Get Estimate"
 - [ ] Range calculates correctly?
@@ -211,12 +226,14 @@ Visit your site (http://localhost:4173) and verify:
 - [ ] Price seems reasonable for your market?
 
 **Lead Magnet Popup** (if configured):
+
 - [ ] Wait 30 seconds on page - popup appears?
 - [ ] Enter email - form submits?
 - [ ] Download triggers?
 - [ ] Popup closes after submit?
 
 **Mobile Testing:**
+
 - [ ] Open on phone
 - [ ] Sticky CTA stacks vertically?
 - [ ] Buttons are tappable (44px min)?
@@ -235,7 +252,7 @@ Visit your site (http://localhost:4173) and verify:
 4. Copy your form endpoint URL
 5. Edit `_includes/components/lead-magnet-popup.html`:
    ```html
-   <form action="https://formspree.io/f/YOUR_ID" method="POST">
+   <form action="https://formspree.io/f/YOUR_ID" method="POST"></form>
    ```
 
 ### Option B: EmailJS (More Control)
@@ -244,14 +261,16 @@ Visit your site (http://localhost:4173) and verify:
 2. Sign up (free plan = 200 emails/month)
 3. Add email service (Gmail, Outlook, etc.)
 4. Create email template:
+
    ```
    Subject: New Lead: {{from_name}}
-   
+
    Name: {{from_name}}
    Email: {{from_email}}
    Download: {{download_type}}
    Page: {{page_url}}
    ```
+
 5. Get Service ID, Template ID, Public Key
 6. Add to `assets/js/lead-magnet-system.js` (line 130)
 
@@ -272,6 +291,7 @@ Visit your site (http://localhost:4173) and verify:
 ### Deploy:
 
 If using Netlify:
+
 ```bash
 git add .
 git commit -m "Add revenue generation system"
@@ -279,15 +299,17 @@ git push origin main
 ```
 
 If using GitHub Pages:
+
 ```bash
 git add .
-git commit -m "Add revenue generation system"  
+git commit -m "Add revenue generation system"
 git push origin gh-pages
 ```
 
 ### Monitor First Week:
 
 Track these in Google Analytics:
+
 - [ ] Sticky CTA clicks
 - [ ] Quote wizard completions
 - [ ] Calendly bookings
@@ -301,24 +323,28 @@ Track these in Google Analytics:
 ## 🆘 Troubleshooting
 
 ### "Sticky CTA not appearing"
+
 - Check browser console for errors
 - Verify sticky-cta.js is loading
 - Try clearing browser cache
 - Check if you scrolled past 500px threshold
 
 ### "Calendly not opening"
+
 - Check URL is correct (https://calendly.com/...)
 - Verify calendly-integration.js loaded
 - Check browser console for errors
 - Test in incognito mode
 
 ### "Quote wizard calculations wrong"
+
 - Verify pricing config in quote-wizard.js
 - Check that minimum project fee is set
 - Test with simple numbers first
 - Review browser console for JavaScript errors
 
 ### "Lead magnet popup not showing"
+
 - Check if cookie was already set (clear cookies)
 - Verify lead-magnet-system.js loaded
 - Check showDelay setting (default 30 seconds)
@@ -329,18 +355,21 @@ Track these in Google Analytics:
 ## 📊 What to Expect (First 30 Days)
 
 ### Week 1-2: Testing & Tweaking
+
 - 5-10 quote requests
 - 2-3 Calendly bookings
 - A few lead magnet downloads
 - Adjust CTA copy if needed
 
 ### Week 3-4: Momentum Builds
+
 - 10-15 quote requests
-- 4-6 Calendly bookings  
+- 4-6 Calendly bookings
 - 1-2 projects closed
 - Refine your pricing if too high/low
 
 ### Week 5-8: Steady Flow
+
 - 20-25 quote requests/month
 - 8-10 consultations/month
 - 5-6 projects/month
@@ -351,18 +380,21 @@ Track these in Google Analytics:
 ## 🎯 Next Enhancements (After Going Live)
 
 ### Week 2-3:
+
 - [ ] Create email nurture sequence
 - [ ] Add Google Ads conversion tracking
 - [ ] Create before/after portfolio slider
 - [ ] Write first 3 blog posts for SEO
 
 ### Month 2:
+
 - [ ] Launch referral program
 - [ ] Create "Bathroom Ready Quiz"
 - [ ] Add video testimonials
 - [ ] Build service area pages
 
 ### Month 3:
+
 - [ ] Analyze conversion data
 - [ ] A/B test CTA copy
 - [ ] Optimize underperforming pages
@@ -373,18 +405,18 @@ Track these in Google Analytics:
 ## 📞 Need Help?
 
 **Quick Questions:**
+
 - Pricing not calculating right? Double-check your inputs in the calculator
 - Calendly not loading? Verify the URL has https:// and /consultation at end
 - Site not building? Run `bundle exec jekyll clean && bundle exec jekyll build`
 
-**Currently Set Up:**
-✅ Pricing calculator (http://localhost:4173/tools/pricing-calculator.html)
-✅ Calendly integration (just needs YOUR URL)
-✅ Sticky CTA (ready to go)
-✅ Lead magnet system (needs PDF or quiz)
-✅ Quote wizard (needs your pricing config)
+**Currently Set Up:** ✅ Pricing calculator
+(http://localhost:4173/tools/pricing-calculator.html) ✅ Calendly integration
+(just needs YOUR URL) ✅ Sticky CTA (ready to go) ✅ Lead magnet system (needs
+PDF or quiz) ✅ Quote wizard (needs your pricing config)
 
-**Your Next Step**: 
+**Your Next Step**:
+
 1. Open the pricing calculator
 2. Enter your real costs
 3. Copy the generated code

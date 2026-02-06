@@ -14,13 +14,13 @@ const API_CONFIG = {
     products: '/api/products',
     imports: '/api/imports',
     exports: '/api/exports',
-    settings: '/api/settings'
+    settings: '/api/settings',
   },
 
   // Helper to build full URL
-  getUrl: function(endpoint) {
+  getUrl: function (endpoint) {
     return `${this.baseUrl}${this.endpoints[endpoint] || endpoint}`;
-  }
+  },
 };
 
 // Export for use in other scripts

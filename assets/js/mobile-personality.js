@@ -38,7 +38,9 @@ class MobilePersonality {
       if (e.target.matches('form')) {
         setTimeout(() => {
           this.throwConfetti();
-          this.showSuccessToast('🎉 Amazing! We\'ll get back to you faster than you can say "perfectly level tile"!');
+          this.showSuccessToast(
+            '🎉 Amazing! We\'ll get back to you faster than you can say "perfectly level tile"!'
+          );
 
           if (window.haptics) {
             window.haptics.trigger('success');
@@ -70,7 +72,7 @@ class MobilePersonality {
     // Portfolio image reactions - tap to appreciate
     const images = document.querySelectorAll('.portfolio-item img, .gallery-item img');
 
-    images.forEach(img => {
+    images.forEach((img) => {
       let tapCount = 0;
       let tapTimer;
 
@@ -112,13 +114,13 @@ class MobilePersonality {
       '🎯 Laser-leveling this page...',
       '🧩 Setting tiles perfectly in place...',
       '💎 Polishing to perfection...',
-      '🚀 Almost there, faster than grouting!'
+      '🚀 Almost there, faster than grouting!',
     ];
 
     // Replace generic loading messages
     const originalShowTransition = window.MobileAppFeatures?.prototype?.showPageTransition;
     if (originalShowTransition) {
-      window.MobileAppFeatures.prototype.showPageTransition = function() {
+      window.MobileAppFeatures.prototype.showPageTransition = function () {
         const overlay = document.createElement('div');
         overlay.className = 'page-transition-overlay';
 
@@ -152,9 +154,9 @@ class MobilePersonality {
     localStorage.setItem('tillerstead-visited-pages', JSON.stringify([...visited]));
 
     const milestones = {
-      3: { emoji: '🎯', message: 'Explorer! You\'ve checked out 3 pages. Like what you see?' },
-      5: { emoji: '🌟', message: 'Wow! 5 pages visited. You\'re serious about quality tile work!' },
-      10: { emoji: '🏆', message: 'Champion browser! Ready to start your project?' }
+      3: { emoji: '🎯', message: "Explorer! You've checked out 3 pages. Like what you see?" },
+      5: { emoji: '🌟', message: "Wow! 5 pages visited. You're serious about quality tile work!" },
+      10: { emoji: '🏆', message: 'Champion browser! Ready to start your project?' },
     };
 
     if (milestones[visited.size]) {
@@ -238,15 +240,19 @@ class MobilePersonality {
     // Floating trust badge on scroll
     let scrollProgress = 0;
 
-    window.addEventListener('scroll', () => {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      scrollProgress = (window.scrollY / docHeight) * 100;
+    window.addEventListener(
+      'scroll',
+      () => {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        scrollProgress = (window.scrollY / docHeight) * 100;
 
-      // DISABLED: Floating trust badge removed per user request (duplicate badge issue)
-      // if (scrollProgress > 50 && !document.querySelector('.trust-badge-float')) {
-      //   this.showFloatingTrustBadge();
-      // }
-    }, { passive: true });
+        // DISABLED: Floating trust badge removed per user request (duplicate badge issue)
+        // if (scrollProgress > 50 && !document.querySelector('.trust-badge-float')) {
+        //   this.showFloatingTrustBadge();
+        // }
+      },
+      { passive: true }
+    );
   }
 
   showFloatingTrustBadge() {
@@ -276,22 +282,27 @@ class MobilePersonality {
       { threshold: 0, text: 'Get Free Quote', icon: '✉' },
       { threshold: 30, text: 'See Our Work', icon: '🖼️' },
       { threshold: 60, text: 'Ready to Start?', icon: '🚀' },
-      { threshold: 90, text: 'Let\'s Talk!', icon: '💬' }
+      { threshold: 90, text: "Let's Talk!", icon: '💬' },
     ];
 
     let currentCTA = 0;
 
-    window.addEventListener('scroll', () => {
-      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    window.addEventListener(
+      'scroll',
+      () => {
+        const scrollPercent =
+          (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
 
-      for (let i = ctaMessages.length - 1; i >= 0; i--) {
-        if (scrollPercent >= ctaMessages[i].threshold && currentCTA !== i) {
-          currentCTA = i;
-          this.updateFABMessage(ctaMessages[i]);
-          break;
+        for (let i = ctaMessages.length - 1; i >= 0; i--) {
+          if (scrollPercent >= ctaMessages[i].threshold && currentCTA !== i) {
+            currentCTA = i;
+            this.updateFABMessage(ctaMessages[i]);
+            break;
+          }
         }
-      }
-    }, { passive: true });
+      },
+      { passive: true }
+    );
   }
 
   updateFABMessage({ text, icon }) {
@@ -335,16 +346,20 @@ class MobilePersonality {
 
     let ticking = false;
 
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrolled = window.scrollY;
-          hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const scrolled = window.scrollY;
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
   }
 
   addSoundEffects() {
@@ -390,7 +405,7 @@ class MobilePersonality {
     // Stagger animations on scroll into view
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
+      rootMargin: '0px 0px -100px 0px',
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -404,7 +419,7 @@ class MobilePersonality {
       });
     }, observerOptions);
 
-    document.querySelectorAll('.card, .service-card, .portfolio-item').forEach(el => {
+    document.querySelectorAll('.card, .service-card, .portfolio-item').forEach((el) => {
       observer.observe(el);
     });
   }
@@ -413,7 +428,7 @@ class MobilePersonality {
     // Add subtle "quality" badge on hover
     const portfolioItems = document.querySelectorAll('.portfolio-item, .gallery-item');
 
-    portfolioItems.forEach(item => {
+    portfolioItems.forEach((item) => {
       const badge = document.createElement('div');
       badge.className = 'quality-badge';
       badge.innerHTML = '✨ TCNA Certified';
@@ -447,7 +462,18 @@ class MobilePersonality {
   }
 
   addKonamiCode() {
-    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    const konamiCode = [
+      'ArrowUp',
+      'ArrowUp',
+      'ArrowDown',
+      'ArrowDown',
+      'ArrowLeft',
+      'ArrowRight',
+      'ArrowLeft',
+      'ArrowRight',
+      'b',
+      'a',
+    ];
     let konamiIndex = 0;
 
     document.addEventListener('keydown', (e) => {
@@ -530,8 +556,12 @@ class MobilePersonality {
   showShakeSurprise() {
     const surprises = [
       { emoji: '🎲', message: 'Whoa! Easy on the device!', cta: 'We handle tiles more gently 😄' },
-      { emoji: '🌪️', message: 'Shake detected!', cta: 'Our tile work stays steady even in earthquakes!' },
-      { emoji: '🎪', message: 'Fun mode activated!', cta: 'Professional work, playful spirit!' }
+      {
+        emoji: '🌪️',
+        message: 'Shake detected!',
+        cta: 'Our tile work stays steady even in earthquakes!',
+      },
+      { emoji: '🎪', message: 'Fun mode activated!', cta: 'Professional work, playful spirit!' },
     ];
 
     const surprise = surprises[Math.floor(Math.random() * surprises.length)];

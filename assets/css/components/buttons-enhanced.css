@@ -24,9 +24,11 @@
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgb(255 255 255 / 20%);
   transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
+  transition:
+    width 0.6s ease,
+    height 0.6s ease;
   pointer-events: none;
 }
 
@@ -49,40 +51,56 @@
 .btn-premium {
   font-weight: 700;
   letter-spacing: 0.02em;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 25%);
   transition: all var(--tiller-transition-normal, 0.25s) var(--tiller-ease-smooth);
 }
 
 .btn-premium:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 35%);
 }
 
 .btn-premium:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 20%);
 }
 
 /* Gradient Primary Button */
 .btn-premium--gradient {
-  background: linear-gradient(135deg, var(--tiller-color-emerald, #00e184) 0%, var(--tiller-color-emerald-dark, #00b46a) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--tiller-color-emerald, #00e184) 0%,
+    var(--tiller-color-emerald-dark, #00b46a) 100%
+  );
   color: #000000;
   border: none;
 }
 
 .btn-premium--gradient:hover {
-  background: linear-gradient(135deg, var(--tiller-color-emerald-light, #3bf0aa) 0%, var(--tiller-color-emerald, #00e184) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--tiller-color-emerald-light, #3bf0aa) 0%,
+    var(--tiller-color-emerald, #00e184) 100%
+  );
 }
 
 /* Gold Button */
 .btn-premium--gold {
-  background: linear-gradient(135deg, var(--tiller-color-gold, #d4af37) 0%, var(--tiller-color-gold-dark, #9c7a14) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--tiller-color-gold, #d4af37) 0%,
+    var(--tiller-color-gold-dark, #9c7a14) 100%
+  );
   color: #000000;
   border: none;
 }
 
 .btn-premium--gold:hover {
-  background: linear-gradient(135deg, var(--tiller-color-gold-bright, #ffe585) 0%, var(--tiller-color-gold, #d4af37) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--tiller-color-gold-bright, #ffe585) 0%,
+    var(--tiller-color-gold, #d4af37) 100%
+  );
 }
 
 /* Outline Button */
@@ -96,19 +114,19 @@
 .btn-premium--outline:hover {
   background: var(--tiller-color-emerald, #00e184);
   color: #000000;
-  box-shadow: 0 4px 14px rgba(0, 225, 132, 0.4);
+  box-shadow: 0 4px 14px rgb(0 225 132 / 40%);
 }
 
 /* Ghost Button (White on dark) */
 .btn--ghost {
   background: transparent;
   color: #ffffff;
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  border: 2px solid rgb(255 255 255 / 40%);
 }
 
 .btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.8);
+  background: rgb(255 255 255 / 10%);
+  border-color: rgb(255 255 255 / 80%);
   color: #ffffff;
 }
 
@@ -226,7 +244,7 @@
 .btn-ripple {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgb(255 255 255 / 50%);
   transform: scale(0);
   animation: ripple-animation 0.6s linear;
   pointer-events: none;
@@ -235,17 +253,17 @@
 @keyframes ripple-animation {
   to {
     transform: scale(4);
-    opacity: 0;
+    opacity: 0%;
   }
 }
 
 /* Glow effect */
 .btn--glow {
-  box-shadow: 0 0 20px var(--tiller-color-emerald-glow, rgba(0, 225, 132, 0.5));
+  box-shadow: 0 0 20px var(--tiller-color-emerald-glow, rgb(0 225 132 / 50%));
 }
 
 .btn--glow:hover {
-  box-shadow: 0 0 30px var(--tiller-color-emerald-glow, rgba(0, 225, 132, 0.7));
+  box-shadow: 0 0 30px var(--tiller-color-emerald-glow, rgb(0 225 132 / 70%));
 }
 
 /* Pulse animation */
@@ -254,11 +272,13 @@
 }
 
 @keyframes btn-pulse {
-  0%, 100% {
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  0%,
+  100% {
+    box-shadow: 0 4px 14px rgb(0 0 0 / 25%);
   }
+
   50% {
-    box-shadow: 0 4px 20px rgba(0, 225, 132, 0.5);
+    box-shadow: 0 4px 20px rgb(0 225 132 / 50%);
   }
 }
 
@@ -267,8 +287,8 @@
    ==================================== */
 
 .btn:disabled,
-.btn[aria-disabled="true"] {
-  opacity: 0.5;
+.btn[aria-disabled='true'] {
+  opacity: 50%;
   cursor: not-allowed;
   pointer-events: none;
 }

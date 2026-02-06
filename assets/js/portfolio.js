@@ -98,8 +98,7 @@
 
     imgEl.src = toAssetUrl(slide.file);
     imgEl.alt =
-        slide.alt ||
-        'Project photo by Tillerstead LLC, installed per TCNA/New Jersey HIC standards.';
+      slide.alt || 'Project photo by Tillerstead LLC, installed per TCNA/New Jersey HIC standards.';
     captionEl.textContent = slide.caption || '';
     metaEl.textContent = `${tagLabels[currentFilter] || 'All work'} · ${index + 1} of ${slides.length}`;
 
@@ -110,8 +109,12 @@
     preloadNext();
   }
 
-  function nextSlide() { showSlide(index + 1); }
-  function prevSlide() { showSlide(index - 1); }
+  function nextSlide() {
+    showSlide(index + 1);
+  }
+  function prevSlide() {
+    showSlide(index - 1);
+  }
 
   function startAutoplay() {
     if (autoplayId || slides.length <= 1) return;
@@ -140,9 +143,9 @@
     currentFilter = filter || 'all';
 
     slides =
-        currentFilter === 'all'
-          ? PROJECTS.slice()
-          : PROJECTS.filter((p) => (p.tags || []).includes(currentFilter));
+      currentFilter === 'all'
+        ? PROJECTS.slice()
+        : PROJECTS.filter((p) => (p.tags || []).includes(currentFilter));
 
     syncChips();
 
@@ -167,8 +170,14 @@
   }
 
   // Events
-  nextBtn.addEventListener('click', () => { nextSlide(); restartAutoplay(); });
-  prevBtn.addEventListener('click', () => { prevSlide(); restartAutoplay(); });
+  nextBtn.addEventListener('click', () => {
+    nextSlide();
+    restartAutoplay();
+  });
+  prevBtn.addEventListener('click', () => {
+    prevSlide();
+    restartAutoplay();
+  });
 
   slider.addEventListener('mouseenter', stopAutoplay);
   slider.addEventListener('mouseleave', startAutoplay);
@@ -176,8 +185,13 @@
   slider.addEventListener('focusout', startAutoplay);
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') { nextSlide(); restartAutoplay(); }
-    else if (e.key === 'ArrowLeft') { prevSlide(); restartAutoplay(); }
+    if (e.key === 'ArrowRight') {
+      nextSlide();
+      restartAutoplay();
+    } else if (e.key === 'ArrowLeft') {
+      prevSlide();
+      restartAutoplay();
+    }
   });
 
   chips.forEach((chip) => {
@@ -190,9 +204,7 @@
   // Initial filter from URL or hash
   const params = new URL(window.location).searchParams;
   const initialFilter =
-      params.get('filter') ||
-      (window.location.hash || '').replace('#', '') ||
-      'all';
+    params.get('filter') || (window.location.hash || '').replace('#', '') || 'all';
 
   setFilter(initialFilter);
 })();

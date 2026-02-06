@@ -22,10 +22,10 @@ const config = {
     '_includes',
     '_layouts',
     'pages',
-    '.',  // Root HTML files
+    '.', // Root HTML files
     'admin',
     'ventures',
-    'build'
+    'build',
   ],
 
   // File extensions to scan
@@ -42,7 +42,7 @@ const config = {
     '.venv',
     'venv',
     '__pycache__',
-    '.jekyll-cache'
+    '.jekyll-cache',
   ],
 
   // Link patterns
@@ -53,8 +53,8 @@ const config = {
     mailTo: /^mailto:/i,
     tel: /^tel:/i,
     anchor: /^#/,
-    javascript: /^javascript:/i
-  }
+    javascript: /^javascript:/i,
+  },
 };
 
 // Colors for output
@@ -66,7 +66,7 @@ const colors = {
   yellow: '\x1b[33m',
   blue: '\x1b[34m',
   cyan: '\x1b[36m',
-  magenta: '\x1b[35m'
+  magenta: '\x1b[35m',
 };
 
 function log(message, color = 'reset') {
@@ -95,7 +95,7 @@ function scanAllLinks() {
     anchor: [],
     javascript: [],
     byFile: {},
-    issues: []
+    issues: [],
   };
 
   function scanFile(filePath, relPath) {
@@ -131,7 +131,7 @@ function scanAllLinks() {
         file: relPath,
         attributes,
         fullTag: fullMatch,
-        line: content.substring(0, match.index).split('\n').length
+        line: content.substring(0, match.index).split('\n').length,
       };
 
       fileLinks.push(linkInfo);
@@ -145,7 +145,8 @@ function scanAllLinks() {
           file: relPath,
           line: linkInfo.line,
           href,
-          message: 'External link missing rel attribute (should have rel="noopener" or rel="nofollow")'
+          message:
+            'External link missing rel attribute (should have rel="noopener" or rel="nofollow")',
         });
       }
 
@@ -156,7 +157,7 @@ function scanAllLinks() {
           file: relPath,
           line: linkInfo.line,
           href,
-          message: 'target="_blank" without rel="noopener" (security risk)'
+          message: 'target="_blank" without rel="noopener" (security risk)',
         });
       }
 
@@ -167,7 +168,7 @@ function scanAllLinks() {
           file: relPath,
           line: linkInfo.line,
           href,
-          message: 'javascript: href is discouraged (use onclick or event listener)'
+          message: 'javascript: href is discouraged (use onclick or event listener)',
         });
       }
 
@@ -180,7 +181,7 @@ function scanAllLinks() {
           file: relPath,
           line: linkInfo.line,
           href,
-          message: 'Empty link text (bad for accessibility)'
+          message: 'Empty link text (bad for accessibility)',
         });
       }
     }
@@ -193,7 +194,7 @@ function scanAllLinks() {
   function scanDirectory(dir, relPath = '') {
     const items = fs.readdirSync(dir);
 
-    items.forEach(item => {
+    items.forEach((item) => {
       // Skip excluded directories
       if (config.exclude.includes(item)) return;
 
@@ -213,7 +214,7 @@ function scanAllLinks() {
   }
 
   // Scan all configured directories
-  config.scanDirs.forEach(dir => {
+  config.scanDirs.forEach((dir) => {
     const dirPath = path.join(REPO_ROOT, dir);
     if (fs.existsSync(dirPath)) {
       const stat = fs.statSync(dirPath);
@@ -239,11 +240,11 @@ function analyzeNavigation(linkData) {
     '_includes/navigation/main-nav.html',
     '_includes/navigation/nav-drawer.html',
     '_includes/footer.html',
-    '_includes/layout/footer.html'
+    '_includes/layout/footer.html',
   ];
 
   const navLinks = [];
-  navFiles.forEach(file => {
+  navFiles.forEach((file) => {
     if (linkData.byFile[file]) {
       navLinks.push(...linkData.byFile[file]);
     }
@@ -252,7 +253,7 @@ function analyzeNavigation(linkData) {
   log(`Total navigation links: ${navLinks.length}`, 'bright');
 
   const byCategory = {};
-  navLinks.forEach(link => {
+  navLinks.forEach((link) => {
     byCategory[link.category] = (byCategory[link.category] || 0) + 1;
   });
 
@@ -263,9 +264,9 @@ function analyzeNavigation(linkData) {
 
   // List all navigation URLs
   log('\nNavigation URLs:', 'cyan');
-  const uniqueUrls = [...new Set(navLinks.map(l => l.href))];
-  uniqueUrls.sort().forEach(url => {
-    const category = navLinks.find(l => l.href === url).category;
+  const uniqueUrls = [...new Set(navLinks.map((l) => l.href))];
+  uniqueUrls.sort().forEach((url) => {
+    const category = navLinks.find((l) => l.href === url).category;
     const icon = category === 'external' ? '🔗' : '📄';
     log(`  ${icon} ${url}`, category === 'external' ? 'yellow' : 'reset');
   });
@@ -283,9 +284,9 @@ function reportIssues(linkData) {
   }
 
   const bySeverity = {
-    high: linkData.issues.filter(i => i.severity === 'high'),
-    warning: linkData.issues.filter(i => i.severity === 'warning'),
-    info: linkData.issues.filter(i => i.severity === 'info')
+    high: linkData.issues.filter((i) => i.severity === 'high'),
+    warning: linkData.issues.filter((i) => i.severity === 'warning'),
+    info: linkData.issues.filter((i) => i.severity === 'info'),
   };
 
   log(`Total issues: ${linkData.issues.length}`, 'bright');
@@ -295,7 +296,7 @@ function reportIssues(linkData) {
 
   if (bySeverity.high.length > 0) {
     log('\n⚠️  HIGH SEVERITY ISSUES:', 'red');
-    bySeverity.high.slice(0, 20).forEach(issue => {
+    bySeverity.high.slice(0, 20).forEach((issue) => {
       log(`  ${issue.file}:${issue.line}`, 'yellow');
       log(`    ${issue.message}`, 'red');
       log(`    → ${issue.href}`, 'reset');
@@ -307,7 +308,7 @@ function reportIssues(linkData) {
 
   if (bySeverity.warning.length > 0) {
     log('\n⚠  WARNING ISSUES:', 'yellow');
-    bySeverity.warning.slice(0, 10).forEach(issue => {
+    bySeverity.warning.slice(0, 10).forEach((issue) => {
       log(`  ${issue.file}:${issue.line}`, 'cyan');
       log(`    ${issue.message}`, 'yellow');
       log(`    → ${issue.href}`, 'reset');
@@ -324,15 +325,23 @@ function reportIssues(linkData) {
 function generateStats(linkData) {
   header('LINK STATISTICS');
 
-  const total = linkData.internal.length + linkData.external.length +
-                linkData.mailto.length + linkData.tel.length +
-                linkData.anchor.length + linkData.javascript.length;
+  const total =
+    linkData.internal.length +
+    linkData.external.length +
+    linkData.mailto.length +
+    linkData.tel.length +
+    linkData.anchor.length +
+    linkData.javascript.length;
 
   log(`Total links: ${total}`, 'bright');
   log('');
   log('By Type:', 'cyan');
-  log(`  Internal: ${linkData.internal.length} (${((linkData.internal.length/total)*100).toFixed(1)}%)`);
-  log(`  External: ${linkData.external.length} (${((linkData.external.length/total)*100).toFixed(1)}%)`);
+  log(
+    `  Internal: ${linkData.internal.length} (${((linkData.internal.length / total) * 100).toFixed(1)}%)`
+  );
+  log(
+    `  External: ${linkData.external.length} (${((linkData.external.length / total) * 100).toFixed(1)}%)`
+  );
   log(`  Email: ${linkData.mailto.length}`);
   log(`  Phone: ${linkData.tel.length}`);
   log(`  Anchor: ${linkData.anchor.length}`);
@@ -345,7 +354,7 @@ function generateStats(linkData) {
     .sort((a, b) => b.count - a.count)
     .slice(0, 10);
 
-  filesByLinkCount.forEach(item => {
+  filesByLinkCount.forEach((item) => {
     log(`  ${item.file}: ${item.count} links`);
   });
 
@@ -354,7 +363,7 @@ function generateStats(linkData) {
     log('');
     log('External Domains:', 'cyan');
     const domains = {};
-    linkData.external.forEach(link => {
+    linkData.external.forEach((link) => {
       try {
         const url = new URL(link.href);
         domains[url.hostname] = (domains[url.hostname] || 0) + 1;
@@ -381,35 +390,35 @@ function generateRecommendations(linkData) {
   const recs = [];
 
   // Security issues
-  const securityIssues = linkData.issues.filter(i => i.type === 'security');
+  const securityIssues = linkData.issues.filter((i) => i.type === 'security');
   if (securityIssues.length > 0) {
     recs.push({
       priority: 'HIGH',
       title: `Fix ${securityIssues.length} security issues`,
       description: 'Add rel="noopener noreferrer" to all links with target="_blank"',
-      impact: 'Prevents security vulnerabilities (tabnabbing attacks)'
+      impact: 'Prevents security vulnerabilities (tabnabbing attacks)',
     });
   }
 
   // Accessibility issues
-  const a11yIssues = linkData.issues.filter(i => i.type === 'accessibility');
+  const a11yIssues = linkData.issues.filter((i) => i.type === 'accessibility');
   if (a11yIssues.length > 0) {
     recs.push({
       priority: 'HIGH',
       title: `Fix ${a11yIssues.length} accessibility issues`,
       description: 'Add descriptive text to all links',
-      impact: 'Improves screen reader experience and SEO'
+      impact: 'Improves screen reader experience and SEO',
     });
   }
 
   // Missing rel attributes
-  const missingRel = linkData.issues.filter(i => i.type === 'missing-rel');
+  const missingRel = linkData.issues.filter((i) => i.type === 'missing-rel');
   if (missingRel.length > 0) {
     recs.push({
       priority: 'MEDIUM',
       title: `Add rel attributes to ${missingRel.length} external links`,
       description: 'Add rel="noopener" to external links for security and SEO',
-      impact: 'Better security, potential SEO improvement'
+      impact: 'Better security, potential SEO improvement',
     });
   }
 
@@ -419,7 +428,7 @@ function generateRecommendations(linkData) {
       priority: 'MEDIUM',
       title: `Replace ${linkData.javascript.length} javascript: hrefs`,
       description: 'Use onclick handlers or event listeners instead',
-      impact: 'Better accessibility and modern best practices'
+      impact: 'Better accessibility and modern best practices',
     });
   }
 
@@ -429,14 +438,14 @@ function generateRecommendations(linkData) {
       priority: 'LOW',
       title: 'Consider link prefetching for internal navigation',
       description: 'Add prefetch hints to frequently accessed pages',
-      impact: 'Faster perceived navigation speed'
+      impact: 'Faster perceived navigation speed',
     });
   }
 
   if (recs.length === 0) {
     log('✅ No recommendations - links are well optimized!', 'green');
   } else {
-    recs.forEach(rec => {
+    recs.forEach((rec) => {
       const color = rec.priority === 'HIGH' ? 'red' : rec.priority === 'MEDIUM' ? 'yellow' : 'cyan';
       log(`[${rec.priority}] ${rec.title}`, color);
       log(`  → ${rec.description}`);
@@ -470,13 +479,13 @@ function saveReport(linkData) {
 
   if (linkData.issues.length > 0) {
     const bySeverity = {
-      high: linkData.issues.filter(i => i.severity === 'high'),
-      warning: linkData.issues.filter(i => i.severity === 'warning')
+      high: linkData.issues.filter((i) => i.severity === 'high'),
+      warning: linkData.issues.filter((i) => i.severity === 'warning'),
     };
 
     if (bySeverity.high.length > 0) {
       report += `### High Severity (${bySeverity.high.length})\n\n`;
-      bySeverity.high.forEach(issue => {
+      bySeverity.high.forEach((issue) => {
         report += `- **${issue.file}:${issue.line}**\n`;
         report += `  - ${issue.message}\n`;
         report += `  - Link: \`${issue.href}\`\n\n`;
@@ -485,7 +494,7 @@ function saveReport(linkData) {
 
     if (bySeverity.warning.length > 0) {
       report += `### Warnings (${bySeverity.warning.length})\n\n`;
-      bySeverity.warning.slice(0, 50).forEach(issue => {
+      bySeverity.warning.slice(0, 50).forEach((issue) => {
         report += `- ${issue.file}:${issue.line} - ${issue.message}\n`;
       });
       if (bySeverity.warning.length > 50) {
@@ -520,7 +529,7 @@ function main() {
     log('✅ Link scan complete!', 'green');
 
     // Exit code based on issues
-    const criticalIssues = linkData.issues.filter(i => i.severity === 'high').length;
+    const criticalIssues = linkData.issues.filter((i) => i.severity === 'high').length;
     if (criticalIssues > 0) {
       log(`⚠️  ${criticalIssues} critical issues found`, 'yellow');
       process.exit(1);

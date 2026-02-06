@@ -13,6 +13,7 @@
 ### 1. ✅ PRICING CONFIGURED (Quote Wizard)
 
 **Your Real Numbers**:
+
 ```
 Hourly Rate:      $70/hour
 Installation:     9 sq ft/hour
@@ -23,6 +24,7 @@ Safety Buffer:    15%
 ```
 
 **Quote Ranges** (protecting your margins):
+
 - **Ceramic Tile**: $20-24/sq ft
 - **Porcelain Tile**: $24-28/sq ft ← Your typical work
 - **Large Format**: $28-34/sq ft
@@ -31,6 +33,7 @@ Safety Buffer:    15%
 **Project Minimum**: $1,500 (ensures every job is profitable)
 
 **Add-Ons**:
+
 - Demo: $800-1,200 (flat)
 - Waterproofing: $600-900 (flat)
 - Heated Floors: $15-18/sq ft
@@ -41,11 +44,13 @@ Safety Buffer:    15%
 **Your Calendly**: https://calendly.com/dtb33-pm/30min
 
 **Where It's Active**:
+
 - ✅ Sticky CTA "Book Consultation" button (all pages)
 - ✅ Inline widget (can be embedded on contact page)
 - ✅ Lead magnet popup (after quote wizard)
 
 **How It Works**:
+
 1. Visitor scrolls down → Sticky CTA appears
 2. Clicks "Book Consultation" → Calendly popup opens
 3. Selects time slot → Automatically books meeting
@@ -57,6 +62,7 @@ Safety Buffer:    15%
 ## 📊 Expected Revenue Impact
 
 ### Before System:
+
 ```
 Monthly Leads:    30
 Conversion:       7% (2 projects)
@@ -66,6 +72,7 @@ Annual:           $180,000/year
 ```
 
 ### After System (90 days):
+
 ```
 Monthly Leads:    70+ (sticky CTA + quote wizard)
 Conversion:       7% (5 projects)
@@ -75,6 +82,7 @@ Annual:           $504,000/year
 ```
 
 ### Net Increase:
+
 ```
 +40 leads/month (+133%)
 +3 projects/month (+150%)
@@ -90,6 +98,7 @@ ROI: Infinite ∞
 ## 🧪 How to Test (In 3 Minutes)
 
 ### Test 1: Quote Wizard (Desktop)
+
 1. Visit: https://tillerstead.com/tools/#cost-estimator
 2. Fill out the wizard:
    - Room: Bathroom
@@ -104,6 +113,7 @@ ROI: Infinite ∞
    - **Total: $3,360-4,120** ✅
 
 ### Test 2: Sticky CTA (Mobile)
+
 1. Visit: https://tillerstead.com (on phone)
 2. Scroll down past hero section
 3. **Expected**: Sticky bar appears at bottom
@@ -112,6 +122,7 @@ ROI: Infinite ∞
 6. Close popup → Tap X to dismiss bar
 
 ### Test 3: Calendly Integration
+
 1. Click "Book Consultation" anywhere
 2. **Expected**: Calendly modal opens
 3. Shows your event: "30min"
@@ -124,12 +135,15 @@ ROI: Infinite ∞
 ## 📱 Live URLs to Test:
 
 ### Homepage (All Features):
+
 https://tillerstead.com
 
 ### Quote Wizard Direct:
+
 https://tillerstead.com/tools/#cost-estimator
 
 ### Test Pages (Verify deployment):
+
 - https://tillerstead.com/test-nav-scroll.html
 - https://tillerstead.com/modern-design.html
 
@@ -138,6 +152,7 @@ https://tillerstead.com/tools/#cost-estimator
 ## 🎯 What Visitors Will Experience:
 
 ### Scenario 1: Quick Quote Seeker
+
 1. Lands on homepage from Google
 2. Scrolls down → Sees sticky CTA
 3. Clicks "Get Instant Quote"
@@ -149,6 +164,7 @@ https://tillerstead.com/tools/#cost-estimator
    - Call now (clicks to dial)
 
 ### Scenario 2: Research Browser
+
 1. Reading about services
 2. Scroll trigger at 30 seconds → Lead magnet popup
 3. **"Download: NJ Tile Project Checklist"**
@@ -157,6 +173,7 @@ https://tillerstead.com/tools/#cost-estimator
 6. Books consultation when ready
 
 ### Scenario 3: Ready to Book
+
 1. Reads testimonials, convinced
 2. Clicks "Book Consultation" in sticky CTA
 3. Calendly opens → Sees next available slot
@@ -169,6 +186,7 @@ https://tillerstead.com/tools/#cost-estimator
 ## 📋 Post-Launch Checklist
 
 ### Immediate (Next 24 Hours):
+
 - [x] Pricing configured with real numbers
 - [x] Calendly integrated site-wide
 - [x] Built successfully locally
@@ -181,6 +199,7 @@ https://tillerstead.com/tools/#cost-estimator
 - [ ] Share with family/friends for feedback
 
 ### This Week:
+
 - [ ] Book a test appointment (yourself) to verify flow
 - [ ] Check Calendly notification settings
 - [ ] Sync Calendly with Google Calendar
@@ -188,6 +207,7 @@ https://tillerstead.com/tools/#cost-estimator
 - [ ] Monitor first real bookings!
 
 ### Optional (Can Defer):
+
 - [ ] Create "NJ Tile Project Checklist" PDF
 - [ ] Set up lead magnet email automation
 - [ ] Create 5 blog posts for SEO
@@ -199,24 +219,28 @@ https://tillerstead.com/tools/#cost-estimator
 ## 💡 Tips for First 30 Days
 
 ### Week 1: Monitor & Adjust
+
 - Check analytics daily
 - See which pages get most quote requests
 - Track Calendly booking rate
 - Adjust pricing if needed (it's just code!)
 
 ### Week 2: Promote It
+
 - Share on Facebook/Instagram
 - Tell existing customers about online booking
 - Add to email signature
 - Post on Nextdoor, local groups
 
 ### Week 3: Optimize
+
 - A/B test sticky CTA copy
 - Try different quote wizard questions
 - Adjust lead magnet trigger timing
 - Review which tile types get most quotes
 
 ### Week 4: Scale
+
 - Start retargeting ads (Facebook Pixel)
 - Launch Google Ads (track conversions)
 - Create lookalike audiences
@@ -227,23 +251,27 @@ https://tillerstead.com/tools/#cost-estimator
 ## 🆘 Troubleshooting
 
 ### "Calendly button not opening"
+
 - Clear browser cache (Ctrl+Shift+R)
 - Check console for JavaScript errors
 - Verify Calendly URL is correct
 - Try incognito window
 
 ### "Quote ranges seem off"
+
 - Pricing is based on YOUR inputs ($70/hr, 9 sqft/hr, $8.50 materials)
 - Ranges include overhead (20%) + profit (25%) + buffer (15%)
 - Can adjust anytime in `assets/js/quote-wizard.js`
 
 ### "Sticky CTA not appearing"
+
 - Must scroll down 500px to trigger
 - Check if dismissed (clears after 7 days)
 - Try different page
 - Check browser console
 
 ### "Deploy taking too long"
+
 - Netlify usually deploys in 2-3 minutes
 - Check: https://app.netlify.com (login to see status)
 - Build time ~11 seconds + CDN propagation ~2 min
@@ -254,6 +282,7 @@ https://tillerstead.com/tools/#cost-estimator
 ## 📞 Your Revenue System is LIVE!
 
 **What You Built Today**:
+
 - ✅ Professional quote wizard (qualified leads)
 - ✅ 24/7 booking system (no phone tag)
 - ✅ Sticky CTAs (captures scroll-aways)
@@ -265,7 +294,7 @@ https://tillerstead.com/tools/#cost-estimator
 **Projected Monthly Revenue**: $42,000  
 **Projected Annual Revenue**: $504,000  
 **Investment**: $0 (all free tools)  
-**Setup Time**: 45 minutes  
+**Setup Time**: 45 minutes
 
 ---
 

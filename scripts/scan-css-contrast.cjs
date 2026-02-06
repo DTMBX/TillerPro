@@ -46,11 +46,7 @@ function _parseColor(colorStr) {
   // Handle rgb(a) colors
   const rgbMatch = colorStr.match(/rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);
   if (rgbMatch) {
-    return [
-      parseInt(rgbMatch[1]),
-      parseInt(rgbMatch[2]),
-      parseInt(rgbMatch[3]),
-    ];
+    return [parseInt(rgbMatch[1]), parseInt(rgbMatch[2]), parseInt(rgbMatch[3])];
   }
 
   return null;
@@ -80,7 +76,7 @@ function scanFile(filePath) {
 
     // Pattern 1: Low opacity white text (potential issue on dark backgrounds)
     const lowOpacityWhite = line.match(
-      /color:\s*rgb\s*\(\s*255\s*,\s*255\s*,\s*255\s*,\s*(0\.[0-6])\s*\)/,
+      /color:\s*rgb\s*\(\s*255\s*,\s*255\s*,\s*255\s*,\s*(0\.[0-6])\s*\)/
     );
     if (lowOpacityWhite) {
       const opacity = parseFloat(lowOpacityWhite[1]);
@@ -99,7 +95,7 @@ function scanFile(filePath) {
 
     // Pattern 2: Low opacity elements on transparent/light backgrounds
     const lowOpacity = line.match(
-      /color:\s*rgb\(a?\)?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(0\.\d+)\s*\)/,
+      /color:\s*rgb\(a?\)?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(0\.\d+)\s*\)/
     );
     if (lowOpacity) {
       const opacity = parseFloat(lowOpacity[4]);
@@ -142,10 +138,7 @@ function scanFile(filePath) {
     }
 
     // Pattern 5: Breadcrumbs with low contrast
-    if (
-      line.includes('rgb(15, 23, 42, 0.4)') ||
-      line.includes('rgb(15, 23, 42, 0.6)')
-    ) {
+    if (line.includes('rgb(15, 23, 42, 0.4)') || line.includes('rgb(15, 23, 42, 0.6)')) {
       ISSUES.push({
         file: filePath,
         line: lineNum,
@@ -153,8 +146,7 @@ function scanFile(filePath) {
         code: line.trim(),
         issue: 'Slate color at low opacity will fail AA on parchment',
         severity: 'high',
-        recommendation:
-          'Replace with var(--ts-color-muted) or increase opacity to 0.9+',
+        recommendation: 'Replace with var(--ts-color-muted) or increase opacity to 0.9+',
       });
     }
 
@@ -188,11 +180,7 @@ function scanDirectory(dir, pattern = /\.scss$/) {
   entries.forEach((entry) => {
     const fullPath = join(dir, entry.name);
 
-    if (
-      entry.isDirectory() &&
-      !entry.name.startsWith('.') &&
-      entry.name !== 'node_modules'
-    ) {
+    if (entry.isDirectory() && !entry.name.startsWith('.') && entry.name !== 'node_modules') {
       scanDirectory(fullPath, pattern);
     } else if (entry.isFile() && pattern.test(entry.name)) {
       // Skip archive files
@@ -252,10 +240,7 @@ const report = {
   },
 };
 
-writeFileSync(
-  'reports/css-contrast-scan.json',
-  JSON.stringify(report, null, 2),
-);
+writeFileSync('reports/css-contrast-scan.json', JSON.stringify(report, null, 2));
 console.log('\n📄 Full report: reports/css-contrast-scan.json');
 
 // Generate markdown

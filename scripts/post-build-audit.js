@@ -88,10 +88,7 @@ function scanBuiltPage(filePath) {
     const inputs = content.match(/<input[^>]*>/gi) || [];
     inputs.forEach((input) => {
       if (input.match(/type=['"](?:text|email|tel|password)/i)) {
-        if (
-          !input.includes('aria-label') &&
-          !input.includes('aria-describedby')
-        ) {
+        if (!input.includes('aria-label') && !input.includes('aria-describedby')) {
           // Check if there's an associated label
           const inputId = input.match(/id=['"]([^'"]+)/i);
           if (inputId) {
@@ -107,9 +104,7 @@ function scanBuiltPage(filePath) {
     });
 
     // 6. Image dimensions
-    const imgWithoutDimensions = (
-      content.match(/<img(?!.*(?:width|height))[^>]*>/gi) || []
-    ).length;
+    const imgWithoutDimensions = (content.match(/<img(?!.*(?:width|height))[^>]*>/gi) || []).length;
     if (imgWithoutDimensions > 0) {
       issues.push({
         type: 'img-no-dimensions',
@@ -119,8 +114,7 @@ function scanBuiltPage(filePath) {
     }
 
     // 7. Lazy loading
-    const imgWithoutLazy = (content.match(/<img(?!.*loading)[^>]*>/gi) || [])
-      .length;
+    const imgWithoutLazy = (content.match(/<img(?!.*loading)[^>]*>/gi) || []).length;
     if (imgWithoutLazy > 0 && images.length > 3) {
       issues.push({
         type: 'missing-lazy-load',
@@ -159,9 +153,7 @@ function scanBuiltPage(filePath) {
 function audit() {
   console.log('🔍 Scanning built HTML files in _site...\n');
 
-  const pages = globSync('_site/**/*.html').filter(
-    (f) => !f.includes('/assets/'),
-  );
+  const pages = globSync('_site/**/*.html').filter((f) => !f.includes('/assets/'));
 
   pages.forEach((page) => {
     const result = scanBuiltPage(page);
@@ -202,9 +194,7 @@ function generateReport() {
   });
 
   md += '\n## Pages with Critical Issues\n\n';
-  const errors = results.pages.filter((p) =>
-    p.issues?.some((i) => i.severity === 'error'),
-  );
+  const errors = results.pages.filter((p) => p.issues?.some((i) => i.severity === 'error'));
   if (errors.length === 0) {
     md += 'None! ✓\n\n';
   } else {
@@ -239,7 +229,7 @@ function generateReport() {
   console.log(`   Pages: ${results.stats.totalPages}`);
   console.log(`   Total issues: ${results.stats.totalIssues}`);
   console.log(
-    `   Alt text coverage: ${Math.round((results.stats.imageStats.withAlt / results.stats.imageStats.total) * 100)}%\n`,
+    `   Alt text coverage: ${Math.round((results.stats.imageStats.withAlt / results.stats.imageStats.total) * 100)}%\n`
   );
   console.log(`📄 Report: ${reportPath}`);
 }

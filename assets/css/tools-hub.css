@@ -19,34 +19,34 @@
   --hub-error: #ef4444;
   --hub-warning: #f59e0b;
   --hub-info: #3b82f6;
-  
+
   /* Spacing */
   --hub-nav-rail-width: 260px;
   --hub-summary-width: 320px;
   --hub-header-height: 64px;
   --hub-mobile-nav-height: 72px;
-  
+
   /* Typography */
   --hub-font-sans: 'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', sans-serif;
   --hub-font-mono: 'SF Mono', monaco, 'Cascadia Code', monospace;
-  
+
   /* Shadows */
   --hub-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 5%);
   --hub-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%);
   --hub-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 10%);
   --hub-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 10%);
-  
+
   /* Border Radius */
   --hub-radius-sm: 0.375rem;
   --hub-radius-md: 0.5rem;
   --hub-radius-lg: 0.75rem;
   --hub-radius-xl: 1rem;
-  
+
   /* Transitions */
   --hub-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --hub-transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
   --hub-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   /* Z-Index Layers */
   --z-backdrop: 1000;
   --z-nav-sheet: 1001;
@@ -426,7 +426,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ============================================
@@ -969,7 +971,7 @@
   .app-logo__text {
     display: inline;
   }
-  
+
   .app-title {
     font-size: 1.125rem;
   }

@@ -14,7 +14,7 @@
  * - Smooth page transitions
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ====
@@ -26,26 +26,26 @@
       enabled: false, // Disabled - intrusive UX, changes user's system cursor
       size: 24,
       glowColor: 'rgba(16, 185, 129, 0.4)',
-      hoverScale: 2.5
+      hoverScale: 2.5,
     },
     scrollProgress: {
       enabled: true,
       color: 'var(--tiller-color-emerald, #10b981)',
-      height: '3px'
+      height: '3px',
     },
     scrollToTop: {
       enabled: false, // Disabled - integrated into accessibility toolbar instead
       showAfter: 400,
-      duration: 600
+      duration: 600,
     },
     toast: {
       duration: 4000,
-      position: 'bottom-right'
+      position: 'bottom-right',
     },
     stickyCTA: {
       enabled: false, // Disabled - integrated into accessibility toolbar instead
-      showAfter: 600
-    }
+      showAfter: 600,
+    },
   };
 
   // Check for reduced motion preference
@@ -266,9 +266,10 @@
       });
 
       // Hover effects on interactive elements
-      const interactiveElements = 'a, button, [role="button"], input, textarea, select, .btn, [data-cursor-hover]';
+      const interactiveElements =
+        'a, button, [role="button"], input, textarea, select, .btn, [data-cursor-hover]';
 
-      document.querySelectorAll(interactiveElements).forEach(el => {
+      document.querySelectorAll(interactiveElements).forEach((el) => {
         el.addEventListener('mouseenter', () => {
           this.cursor.classList.add('hovering');
           this.cursorDot.classList.add('hovering');
@@ -464,7 +465,7 @@
 
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   }
@@ -608,10 +609,13 @@
       toast.className = `toast toast--${type}`;
 
       const icons = {
-        success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
-        error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
-        warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
-        info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'
+        success:
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+        error:
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+        warning:
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+        info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
       };
 
       toast.innerHTML = `
@@ -962,10 +966,12 @@
 
     bindEvents() {
       // Click on images with data-lightbox attribute
-      document.querySelectorAll('[data-lightbox], .portfolio-image img, .gallery img').forEach(img => {
-        img.style.cursor = 'zoom-in';
-        img.addEventListener('click', (e) => this.open(e.target));
-      });
+      document
+        .querySelectorAll('[data-lightbox], .portfolio-image img, .gallery img')
+        .forEach((img) => {
+          img.style.cursor = 'zoom-in';
+          img.addEventListener('click', (e) => this.open(e.target));
+        });
 
       // Close handlers
       this.overlay.querySelector('.lightbox-close').addEventListener('click', () => this.close());
@@ -1012,7 +1018,7 @@
     init() {
       const hamburgers = document.querySelectorAll('.hamburger, .nav-toggle, [data-hamburger]');
 
-      hamburgers.forEach(hamburger => {
+      hamburgers.forEach((hamburger) => {
         // Check if already animated
         if (hamburger.classList.contains('hamburger-animated')) return;
 
@@ -1100,7 +1106,7 @@
 
     init() {
       // Add transition class to internal links
-      document.querySelectorAll('a[href^="/"], a[href^="./"]').forEach(link => {
+      document.querySelectorAll('a[href^="/"], a[href^="./"]').forEach((link) => {
         // Skip if has download attribute or opens in new tab
         if (link.hasAttribute('download') || link.target === '_blank') return;
 
@@ -1186,7 +1192,7 @@
   window.TillersteadCursor = {
     enable: () => features.modules.cursor?.enable(),
     disable: () => features.modules.cursor?.disable(),
-    isActive: () => features.modules.cursor?.isActive || false
+    isActive: () => features.modules.cursor?.isActive || false,
   };
 
   // Convenience methods
@@ -1194,7 +1200,6 @@
     success: (msg, dur) => features.modules.toast?.success(msg, dur),
     error: (msg, dur) => features.modules.toast?.error(msg, dur),
     warning: (msg, dur) => features.modules.toast?.warning(msg, dur),
-    info: (msg, dur) => features.modules.toast?.info(msg, dur)
+    info: (msg, dur) => features.modules.toast?.info(msg, dur),
   };
-
 })();

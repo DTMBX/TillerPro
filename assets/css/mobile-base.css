@@ -7,14 +7,14 @@
   /* ===========================================
      VIEWPORT & DOCUMENT FLOW
      =========================================== */
-  
+
   @media (max-width: 768px) {
     html {
       overflow-x: hidden;
       overflow-y: auto;
       text-size-adjust: 100%;
     }
-    
+
     body {
       overflow-x: hidden;
       overflow-y: auto;
@@ -22,12 +22,12 @@
       display: flex;
       flex-direction: column;
     }
-    
+
     /* Prevent horizontal overflow */
     * {
       max-width: 100%;
     }
-    
+
     img,
     video,
     iframe {
@@ -35,11 +35,11 @@
       height: auto;
     }
   }
-  
+
   /* ===========================================
      NAVIGATION - Mobile Drawer (CORRECT)
      =========================================== */
-  
+
   @media (max-width: 768px) {
     /* Toggle button - MUST be visible */
     .ts-nav-toggle,
@@ -55,7 +55,7 @@
       cursor: pointer;
       z-index: 1001;
     }
-    
+
     /* Drawer - hidden by default */
     #ts-mobile-nav,
     .ts-mobile-nav {
@@ -71,13 +71,13 @@
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
-    
+
     /* Drawer open state */
-    #ts-mobile-nav[aria-hidden="false"],
-    .ts-mobile-nav[aria-hidden="false"] {
+    #ts-mobile-nav[aria-hidden='false'],
+    .ts-mobile-nav[aria-hidden='false'] {
       transform: translateX(0);
     }
-    
+
     /* Overlay */
     .ts-drawer__overlay {
       position: fixed;
@@ -88,14 +88,14 @@
       transition: opacity 0.3s ease;
       z-index: 999;
     }
-    
+
     /* Overlay visible when drawer open */
-    #ts-mobile-nav[aria-hidden="false"] ~ .ts-drawer__overlay,
-    .ts-mobile-nav[aria-hidden="false"] .ts-drawer__overlay {
+    #ts-mobile-nav[aria-hidden='false'] ~ .ts-drawer__overlay,
+    .ts-mobile-nav[aria-hidden='false'] .ts-drawer__overlay {
       opacity: 100%;
       pointer-events: auto;
     }
-    
+
     /* Body scroll lock when nav open */
     body.nav-open {
       overflow: hidden;
@@ -103,11 +103,11 @@
       width: 100%;
     }
   }
-  
+
   /* ===========================================
      CONTENT VISIBILITY - NO FORCED OVERRIDES
      =========================================== */
-  
+
   @media (max-width: 768px) {
     /* Main content - natural display */
     .ts-main-content,
@@ -116,18 +116,18 @@
       width: 100%;
       flex: 1;
     }
-    
+
     /* Sections - natural flow */
     section {
       width: 100%;
       padding-inline: var(--space-sm, 1rem);
     }
   }
-  
+
   /* ===========================================
      REDUCED MOTION SUPPORT
      =========================================== */
-  
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -137,23 +137,23 @@
       transition-duration: 0.01ms !important;
     }
   }
-  
+
   /* ===========================================
      TOUCH TARGETS - WCAG 2.5.5
      =========================================== */
-  
+
   @media (max-width: 768px) {
     button,
     a,
     input,
     select,
     textarea,
-    [role="button"],
-    [tabindex]:not([tabindex="-1"]) {
+    [role='button'],
+    [tabindex]:not([tabindex='-1']) {
       min-height: 44px;
       min-width: 44px;
     }
-    
+
     /* Exception for inline text links */
     p a,
     li a {
@@ -162,14 +162,14 @@
       display: inline;
     }
   }
-  
+
   /* ===========================================
      HEADER - Sticky positioning
      =========================================== */
-  
+
   @media (max-width: 768px) {
     .ts-header,
-    header[role="banner"] {
+    header[role='banner'] {
       position: sticky;
       top: 0;
       z-index: 100;
@@ -178,16 +178,16 @@
       border-bottom: 1px solid var(--color-border, #e5e7eb);
     }
   }
-  
+
   /* ===========================================
      FOCUS MANAGEMENT
      =========================================== */
-  
+
   *:focus-visible {
     outline: 2px solid var(--color-focus, #2563eb);
     outline-offset: 2px;
   }
-  
+
   /* Remove outline for mouse users */
   *:focus:not(:focus-visible) {
     outline: none;

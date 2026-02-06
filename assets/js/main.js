@@ -1,14 +1,14 @@
-(function() {
+(function () {
   'use strict';
 
   // // // // // // // // // // // // // // // console.log('[TILLERSTEAD] Initializing - No Bounce Edition'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
 
   // Premium Performance Features (inline for compatibility)
   console.log('⚡ Initializing Performance Features...');
-  
+
   // Initialize lazy loading
   if ('loading' in HTMLImageElement.prototype) {
-    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
       if (img.dataset.src) img.src = img.dataset.src;
     });
     console.log('🚀 Native lazy loading enabled');
@@ -20,7 +20,11 @@
       if ('performance' in window) {
         const perfData = performance.getEntriesByType('navigation')[0];
         if (perfData) {
-          console.log('📊 Page Load:', Math.round(perfData.loadEventEnd - perfData.fetchStart), 'ms');
+          console.log(
+            '📊 Page Load:',
+            Math.round(perfData.loadEventEnd - perfData.fetchStart),
+            'ms'
+          );
         }
       }
       console.log('✅ Performance features initialized');
@@ -48,12 +52,16 @@
     }
 
     // Use requestAnimationFrame to prevent jank
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateHeader);
-        ticking = true;
-      }
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateHeader);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
   }
 
   // Rest of navigation code...
@@ -64,21 +72,21 @@
     // Desktop dropdown navigation
     const dropdowns = document.querySelectorAll('.has-dropdown');
 
-    dropdowns.forEach(item => {
+    dropdowns.forEach((item) => {
       const trigger = item.querySelector('.desktop-nav__trigger');
       const dropdown = item.querySelector('.desktop-nav__dropdown');
 
       if (!trigger || !dropdown) return;
 
       // Click handler
-      trigger.addEventListener('click', e => {
+      trigger.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
 
         const isOpen = item.classList.contains('is-open');
 
         // Close all other dropdowns
-        dropdowns.forEach(other => {
+        dropdowns.forEach((other) => {
           if (other !== item) {
             other.classList.remove('is-open');
             const t = other.querySelector('.desktop-nav__trigger');
@@ -122,9 +130,9 @@
     });
 
     // Close dropdowns when clicking outside
-    document.addEventListener('click', e => {
+    document.addEventListener('click', (e) => {
       if (!e.target.closest('.has-dropdown')) {
-        dropdowns.forEach(item => {
+        dropdowns.forEach((item) => {
           item.classList.remove('is-open');
           const t = item.querySelector('.desktop-nav__trigger');
           if (t) t.setAttribute('aria-expanded', 'false');
@@ -133,9 +141,9 @@
     });
 
     // Close dropdowns on ESC key
-    document.addEventListener('keydown', e => {
+    document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        dropdowns.forEach(item => {
+        dropdowns.forEach((item) => {
           item.classList.remove('is-open');
           const t = item.querySelector('.desktop-nav__trigger');
           if (t) t.setAttribute('aria-expanded', 'false');
@@ -175,8 +183,8 @@
 
     // Mobile accordions
     const accordions = document.querySelectorAll('.mobile-nav__accordion-trigger');
-    accordions.forEach(acc => {
-      acc.addEventListener('click', function() {
+    accordions.forEach((acc) => {
+      acc.addEventListener('click', function () {
         const isOpen = this.getAttribute('aria-expanded') === 'true';
         const panel = this.nextElementSibling;
         this.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
@@ -186,16 +194,19 @@
   }
 
   function initAnimations() {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
 
-    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
   }
 
   // Don't force scroll styles - let scroll-fix.js handle it

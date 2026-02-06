@@ -14,10 +14,10 @@ console.log('🚀 Optimizing homepage performance...\n');
 const cssFiles = [
   'assets/css/visual-enhancements.css',
   'assets/css/ux-enhancements.css',
-  'assets/css/pages/home.css'
+  'assets/css/pages/home.css',
 ];
 
-cssFiles.forEach(file => {
+cssFiles.forEach((file) => {
   const filePath = path.join(__dirname, '..', file);
   if (fs.existsSync(filePath)) {
     let css = fs.readFileSync(filePath, 'utf8');

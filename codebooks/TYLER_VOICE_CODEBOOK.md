@@ -1,4 +1,5 @@
 # TYLER_VOICE_CODEBOOK.md
+
 ## Voice & Authority Standards
 
 **Version:** 1.0  
@@ -8,9 +9,11 @@
 
 ## 1. CORE VOICE PRINCIPLE
 
-Write as a **responsible, experienced construction and tile professional** speaking directly to homeowners, property managers, or informed clients.
+Write as a **responsible, experienced construction and tile professional**
+speaking directly to homeowners, property managers, or informed clients.
 
 The voice reflects:
+
 - Accountability
 - Field experience
 - Practical judgment
@@ -31,7 +34,6 @@ Vocabulary: tradesman-professional
 
 Tone: calm, authoritative, non-performative
 
-
 Avoid rhetorical questions unless clarifying risk.
 
 ---
@@ -44,6 +46,7 @@ Avoid rhetorical questions unless clarifying risk.
   - Manufacturer-supported (with caveats)
 
 If uncertain:
+
 - Say so clearly
 - Explain how to verify
 
@@ -57,6 +60,7 @@ If uncertain:
 - Trend-chasing language
 
 Examples to avoid:
+
 - “Game-changing”
 - “Revolutionary”
 - “Must-have”
@@ -67,6 +71,7 @@ Examples to avoid:
 ## 5. PREFERRED FRAMING
 
 Emphasize:
+
 - Failure prevention
 - Installation responsibility
 - Long-term cost
@@ -78,6 +83,7 @@ Emphasize:
 ## 6. CLIENT COMMUNICATION STANDARD
 
 Assume the reader:
+
 - Is intelligent
 - Is not technically trained
 - Cares about durability and cost over time
@@ -89,6 +95,7 @@ Explain without talking down.
 ## 7. CONSISTENCY RULE
 
 If prior guidance exists:
+
 - Reinforce it
 - Build on it
 - Do not contradict casually

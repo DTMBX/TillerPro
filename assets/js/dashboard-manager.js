@@ -24,7 +24,7 @@
    * Handles multi-location analytics and management
    */
   class DashboardManager {
-    constructor () {
+    constructor() {
       this.locations = this.loadLocations();
       this.activeLocationId = this.loadActiveLocation();
       this.quotes = this.loadQuotes();
@@ -36,7 +36,7 @@
     /**
      * Initialize dashboard
      */
-    init () {
+    init() {
       // Ensure at least one location exists
       if (this.locations.length === 0) {
         this.addDefaultLocation();
@@ -51,24 +51,26 @@
       console.log('[Dashboard] Initialized', {
         locations: this.locations.length,
         activeLocation: this.getActiveLocation()?.name,
-        totalQuotes: this.quotes.length
+        totalQuotes: this.quotes.length,
       });
     }
 
     /**
      * Add default location
      */
-    addDefaultLocation () {
+    addDefaultLocation() {
       const config = window.TillerProConfig?.company || {};
 
       this.locations.push({
         id: 'main',
         name: config.name || 'Main Office',
-        address: config.address ? `${config.address.street}, ${config.address.city}, ${config.address.state}` : '',
+        address: config.address
+          ? `${config.address.street}, ${config.address.city}, ${config.address.state}`
+          : '',
         manager: config.owner || '',
         phone: config.phone || '',
         createdAt: new Date().toISOString(),
-        active: true
+        active: true,
       });
 
       this.activeLocationId = 'main';
@@ -78,11 +80,11 @@
     /**
      * Location Management
      */
-    getActiveLocation () {
-      return this.locations.find(loc => loc.id === this.activeLocationId);
+    getActiveLocation() {
+      return this.locations.find((loc) => loc.id === this.activeLocationId);
     }
 
-    selectLocation (locationId) {
+    selectLocation(locationId) {
       this.activeLocationId = locationId;
       this.saveActiveLocation();
       this.renderMetrics();
@@ -91,7 +93,7 @@
       this.renderLocationSelector(); // Update active state
     }
 
-    addLocation (data) {
+    addLocation(data) {
       const location = {
         id: `loc-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
         name: data.name,
@@ -99,7 +101,7 @@
         manager: data.manager || '',
         phone: data.phone || '',
         createdAt: new Date().toISOString(),
-        active: true
+        active: true,
       };
 
       this.locations.push(location);
@@ -109,16 +111,18 @@
       return location;
     }
 
-    removeLocation (locationId) {
+    removeLocation(locationId) {
       if (this.locations.length <= 1) {
         alert('Cannot remove the last location.');
         return false;
       }
 
-      const confirmed = confirm('Are you sure you want to remove this location? This cannot be undone.');
+      const confirmed = confirm(
+        'Are you sure you want to remove this location? This cannot be undone.'
+      );
       if (!confirmed) return false;
 
-      this.locations = this.locations.filter(loc => loc.id !== locationId);
+      this.locations = this.locations.filter((loc) => loc.id !== locationId);
 
       // If active location was removed, switch to first available
       if (this.activeLocationId === locationId) {
@@ -137,17 +141,17 @@
     /**
      * Quote Analytics
      */
-    getQuotesForLocation (locationId) {
-      return this.quotes.filter(q => q.locationId === locationId);
+    getQuotesForLocation(locationId) {
+      return this.quotes.filter((q) => q.locationId === locationId);
     }
 
-    getMetricsForLocation (locationId) {
+    getMetricsForLocation(locationId) {
       const quotes = this.getQuotesForLocation(locationId);
       const now = new Date();
       const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
 
       // Filter last 30 days
-      const recentQuotes = quotes.filter(q => {
+      const recentQuotes = quotes.filter((q) => {
         const quoteDate = new Date(q.createdAt);
         return quoteDate >= thirtyDaysAgo;
       });
@@ -155,13 +159,13 @@
       // Calculate metrics
       const totalQuotes = recentQuotes.length;
       const totalValue = recentQuotes.reduce((sum, q) => sum + (q.totals?.grandTotal || 0), 0);
-      const signedQuotes = recentQuotes.filter(q => q.status === 'signed').length;
+      const signedQuotes = recentQuotes.filter((q) => q.status === 'signed').length;
       const winRate = totalQuotes > 0 ? (signedQuotes / totalQuotes) * 100 : 0;
       const avgQuoteValue = totalQuotes > 0 ? totalValue / totalQuotes : 0;
 
       // Calculate trends (compare to previous 30 days)
       const sixtyDaysAgo = new Date(now.getTime() - 60 * 24 * 60 * 60 * 1000);
-      const previousPeriod = quotes.filter(q => {
+      const previousPeriod = quotes.filter((q) => {
         const quoteDate = new Date(q.createdAt);
         return quoteDate >= sixtyDaysAgo && quoteDate < thirtyDaysAgo;
       });
@@ -176,14 +180,14 @@
         winRate,
         avgQuoteValue,
         quoteTrend,
-        period: 'Last 30 days'
+        period: 'Last 30 days',
       };
     }
 
     /**
      * Regional Pricing
      */
-    getPricingForLocation (locationId) {
+    getPricingForLocation(locationId) {
       const override = this.pricingOverrides[locationId];
       const basePricing = window.TillerProConfig?.pricing || {};
 
@@ -194,11 +198,11 @@
       // Merge override with base pricing
       return {
         ...basePricing,
-        ...override
+        ...override,
       };
     }
 
-    setPricingForLocation (locationId, pricing) {
+    setPricingForLocation(locationId, pricing) {
       this.pricingOverrides[locationId] = pricing;
       this.savePricingOverrides();
     }
@@ -206,15 +210,16 @@
     /**
      * Rendering Methods
      */
-    renderLocationSelector () {
+    renderLocationSelector() {
       const container = document.getElementById('location-grid');
       if (!container) return;
 
-      container.innerHTML = this.locations.map(location => {
-        const metrics = this.getMetricsForLocation(location.id);
-        const isActive = location.id === this.activeLocationId;
+      container.innerHTML = this.locations
+        .map((location) => {
+          const metrics = this.getMetricsForLocation(location.id);
+          const isActive = location.id === this.activeLocationId;
 
-        return `
+          return `
           <div class="location-card ${isActive ? 'active' : ''}" onclick="window.dashboard.selectLocation('${location.id}')">
             <div class="location-name">${location.name}</div>
             <div class="location-stats">
@@ -223,10 +228,11 @@
             </div>
           </div>
         `;
-      }).join('');
+        })
+        .join('');
     }
 
-    renderMetrics () {
+    renderMetrics() {
       const container = document.getElementById('metrics-grid');
       if (!container) return;
 
@@ -241,7 +247,7 @@
           value: metrics.totalQuotes,
           icon: '📊',
           change: metrics.quoteTrend,
-          prefix: ''
+          prefix: '',
         },
         {
           label: 'Quote Value',
@@ -249,7 +255,7 @@
           icon: '💰',
           change: null,
           prefix: '$',
-          format: true
+          format: true,
         },
         {
           label: 'Win Rate',
@@ -257,7 +263,7 @@
           icon: '🎯',
           change: null,
           suffix: '%',
-          decimals: 1
+          decimals: 1,
         },
         {
           label: 'Avg Quote',
@@ -265,26 +271,28 @@
           icon: '📈',
           change: null,
           prefix: '$',
-          format: true
-        }
+          format: true,
+        },
       ];
 
-      container.innerHTML = cards.map(card => {
-        let displayValue = card.value;
+      container.innerHTML = cards
+        .map((card) => {
+          let displayValue = card.value;
 
-        if (card.decimals !== undefined) {
-          displayValue = displayValue.toFixed(card.decimals);
-        } else if (card.format) {
-          displayValue = this.formatCurrency(displayValue, false);
-        }
+          if (card.decimals !== undefined) {
+            displayValue = displayValue.toFixed(card.decimals);
+          } else if (card.format) {
+            displayValue = this.formatCurrency(displayValue, false);
+          }
 
-        const changeHtml = card.change !== null && card.change !== undefined
-          ? `<div class="metric-change ${card.change >= 0 ? 'positive' : 'negative'}">
+          const changeHtml =
+            card.change !== null && card.change !== undefined
+              ? `<div class="metric-change ${card.change >= 0 ? 'positive' : 'negative'}">
               ${card.change >= 0 ? '↑' : '↓'} ${Math.abs(card.change).toFixed(1)}%
             </div>`
-          : '';
+              : '';
 
-        return `
+          return `
           <div class="metric-card">
             <div class="metric-header">
               <span class="metric-label">${card.label}</span>
@@ -296,10 +304,11 @@
             ${changeHtml}
           </div>
         `;
-      }).join('');
+        })
+        .join('');
     }
 
-    renderQuotesTable () {
+    renderQuotesTable() {
       const tbody = document.querySelector('#quotes-table tbody');
       if (!tbody) return;
 
@@ -321,7 +330,9 @@
         return;
       }
 
-      tbody.innerHTML = quotes.map(quote => `
+      tbody.innerHTML = quotes
+        .map(
+          (quote) => `
         <tr>
           <td><strong>${quote.quoteNumber}</strong></td>
           <td>${quote.customer?.name || 'N/A'}</td>
@@ -330,10 +341,12 @@
           <td><span class="status-badge ${quote.status || 'pending'}">${quote.status || 'pending'}</span></td>
           <td>${this.formatDate(quote.createdAt)}</td>
         </tr>
-      `).join('');
+      `
+        )
+        .join('');
     }
 
-    renderPricingEditor () {
+    renderPricingEditor() {
       const container = document.getElementById('pricing-grid');
       if (!container) return;
 
@@ -347,14 +360,15 @@
         { key: 'tileMarkup', label: 'Tile Markup', prefix: '', suffix: '%', step: '5' },
         { key: 'groutMarkup', label: 'Grout Markup', prefix: '', suffix: '%', step: '5' },
         { key: 'mortarMarkup', label: 'Mortar Markup', prefix: '', suffix: '%', step: '5' },
-        { key: 'taxRate', label: 'Sales Tax Rate', prefix: '', suffix: '%', step: '0.1' }
+        { key: 'taxRate', label: 'Sales Tax Rate', prefix: '', suffix: '%', step: '0.1' },
       ];
 
-      container.innerHTML = fields.map(field => {
-        const value = pricing[field.key] || 0;
-        const inputId = `pricing-${field.key}`;
+      container.innerHTML = fields
+        .map((field) => {
+          const value = pricing[field.key] || 0;
+          const inputId = `pricing-${field.key}`;
 
-        return `
+          return `
           <div class="pricing-row">
             <label for="${inputId}">${field.label}</label>
             <div class="input-group">
@@ -376,20 +390,21 @@
             </button>
           </div>
         `;
-      }).join('');
+        })
+        .join('');
     }
 
     /**
      * Pricing Actions
      */
-    savePricing () {
+    savePricing() {
       const location = this.getActiveLocation();
       if (!location) return;
 
       const inputs = document.querySelectorAll('#pricing-grid input[data-key]');
       const pricing = {};
 
-      inputs.forEach(input => {
+      inputs.forEach((input) => {
         const key = input.getAttribute('data-key');
         const value = parseFloat(input.value) || 0;
         pricing[key] = value;
@@ -400,7 +415,7 @@
       alert(`Pricing updated for ${location.name}!`);
     }
 
-    resetPricing (key) {
+    resetPricing(key) {
       const basePricing = window.TillerProConfig?.pricing || {};
       const input = document.querySelector(`#pricing-${key}`);
 
@@ -412,35 +427,35 @@
     /**
      * Helper Methods
      */
-    formatCurrency (amount, showCents = true) {
+    formatCurrency(amount, showCents = true) {
       const formatted = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
         minimumFractionDigits: showCents ? 2 : 0,
-        maximumFractionDigits: showCents ? 2 : 0
+        maximumFractionDigits: showCents ? 2 : 0,
       }).format(amount);
 
       return formatted;
     }
 
-    formatDate (dateString) {
+    formatDate(dateString) {
       const date = new Date(dateString);
       return new Intl.DateTimeFormat('en-US', {
         month: 'short',
         day: 'numeric',
-        year: 'numeric'
+        year: 'numeric',
       }).format(date);
     }
 
-    getLocationName (locationId) {
-      const location = this.locations.find(loc => loc.id === locationId);
+    getLocationName(locationId) {
+      const location = this.locations.find((loc) => loc.id === locationId);
       return location ? location.name : 'Unknown';
     }
 
     /**
      * Persistence
      */
-    loadLocations () {
+    loadLocations() {
       try {
         const data = localStorage.getItem('tillerpro_locations');
         return data ? JSON.parse(data) : [];
@@ -450,7 +465,7 @@
       }
     }
 
-    saveLocations () {
+    saveLocations() {
       try {
         localStorage.setItem('tillerpro_locations', JSON.stringify(this.locations));
       } catch (e) {
@@ -458,24 +473,24 @@
       }
     }
 
-    loadActiveLocation () {
+    loadActiveLocation() {
       return localStorage.getItem('tillerpro_active_location') || null;
     }
 
-    saveActiveLocation () {
+    saveActiveLocation() {
       localStorage.setItem('tillerpro_active_location', this.activeLocationId);
     }
 
-    loadQuotes () {
+    loadQuotes() {
       try {
         // Load quotes from QuoteGenerator storage
         const data = localStorage.getItem('tillerpro_quotes');
         const quotes = data ? JSON.parse(data) : [];
 
         // Ensure each quote has a locationId (default to active location)
-        return quotes.map(q => ({
+        return quotes.map((q) => ({
           ...q,
-          locationId: q.locationId || this.activeLocationId || 'main'
+          locationId: q.locationId || this.activeLocationId || 'main',
         }));
       } catch (e) {
         console.error('Failed to load quotes:', e);
@@ -483,7 +498,7 @@
       }
     }
 
-    loadPricingOverrides () {
+    loadPricingOverrides() {
       try {
         const data = localStorage.getItem('tillerpro_pricing_overrides');
         return data ? JSON.parse(data) : {};
@@ -493,7 +508,7 @@
       }
     }
 
-    savePricingOverrides () {
+    savePricingOverrides() {
       try {
         localStorage.setItem('tillerpro_pricing_overrides', JSON.stringify(this.pricingOverrides));
       } catch (e) {
@@ -504,7 +519,7 @@
     /**
      * Refresh data from other systems
      */
-    refresh () {
+    refresh() {
       this.quotes = this.loadQuotes();
       this.renderMetrics();
       this.renderQuotesTable();
@@ -543,7 +558,7 @@
       name,
       address: document.getElementById('location-address').value.trim(),
       manager: document.getElementById('location-manager').value.trim(),
-      phone: document.getElementById('location-phone').value.trim()
+      phone: document.getElementById('location-phone').value.trim(),
     };
 
     window.dashboard.addLocation(data);

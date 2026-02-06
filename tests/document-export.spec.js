@@ -3,7 +3,6 @@
 import { test, expect } from '@playwright/test';
 
 test.describe.skip('TillerPro Document Export - DISABLED (page not built)', () => {
-
   const EXPORT_URL = '/tools/legacy/';
 
   const ensureRoomSurfaceChecked = async (roomCard, surface) => {
@@ -316,9 +315,10 @@ test.describe.skip('TillerPro Document Export - DISABLED (page not built)', () =
     if (download && typeof download.suggestedFilename === 'function') {
       expect(download.suggestedFilename()).toContain('.txt');
     } else {
-      const last = await page.evaluate(() => document.documentElement?.dataset?.tillersteadLastDownload);
+      const last = await page.evaluate(
+        () => document.documentElement?.dataset?.tillersteadLastDownload
+      );
       expect(last || '').toContain('.txt');
     }
   });
-
 });

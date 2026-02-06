@@ -1,14 +1,19 @@
 # Native Scroll Restoration Guide
 
 ## Overview
-This document explains the scroll management system and how native scroll functionality has been restored while maintaining necessary scroll-locking features for modals and navigation.
+
+This document explains the scroll management system and how native scroll
+functionality has been restored while maintaining necessary scroll-locking
+features for modals and navigation.
 
 ---
 
 ## Problem Statement
 
 ### Before (Issues)
+
 Multiple JavaScript files were independently managing body scroll:
+
 - `nav.js` - Set `overflow: hidden` when mobile nav opened
 - `scroll-fix.js` - Applied position: fixed when nav opened
 - `lead-magnet-system.js` - Blocked scroll when popup shown
@@ -17,6 +22,7 @@ Multiple JavaScript files were independently managing body scroll:
 - `scroll-enabler.js` - Override preventDefault on all scroll events
 
 **Problems:**
+
 - ❌ Conflicting scroll locks (one unlocks, another still locked)
 - ❌ Lost scroll position when locking/unlocking
 - ❌ No coordination between components
@@ -49,24 +55,26 @@ Multiple JavaScript files were independently managing body scroll:
 ### How It Works
 
 **Reference Counting:**
+
 - Each component can request a scroll lock
 - Lock counter increments on lock request
 - Counter decrements on unlock request
 - Scroll only restores when counter reaches 0
 
 **Example:**
+
 ```javascript
 // Mobile nav opens
-ScrollLockManager.lock('mobile-nav')  // count: 1 → LOCKED
+ScrollLockManager.lock('mobile-nav'); // count: 1 → LOCKED
 
 // Lead magnet shows while nav open
-ScrollLockManager.lock('lead-magnet') // count: 2 → STILL LOCKED
+ScrollLockManager.lock('lead-magnet'); // count: 2 → STILL LOCKED
 
 // Nav closes
-ScrollLockManager.unlock('mobile-nav') // count: 1 → STILL LOCKED
+ScrollLockManager.unlock('mobile-nav'); // count: 1 → STILL LOCKED
 
 // Lead magnet closes
-ScrollLockManager.unlock('lead-magnet') // count: 0 → UNLOCKED ✅
+ScrollLockManager.unlock('lead-magnet'); // count: 0 → UNLOCKED ✅
 ```
 
 ---
@@ -74,11 +82,13 @@ ScrollLockManager.unlock('lead-magnet') // count: 0 → UNLOCKED ✅
 ## Files Modified
 
 ### 1. **scroll-lock-manager.js** (NEW)
+
 **Location:** `assets/js/scroll-lock-manager.js`
 
 **Purpose:** Master controller for all scroll locking
 
 **API:**
+
 ```javascript
 // Lock scroll
 window.ScrollLockManager.lock('component-name');
@@ -97,6 +107,7 @@ window.ScrollLockManager.getCount(); // 0, 1, 2, etc.
 ```
 
 **Features:**
+
 - ✅ Reference counting
 - ✅ Scroll position preservation
 - ✅ Automatic restoration on page load
@@ -107,9 +118,11 @@ window.ScrollLockManager.getCount(); // 0, 1, 2, etc.
 ---
 
 ### 2. **scroll-fix.js** (UPDATED)
+
 **Location:** `assets/js/scroll-fix.js`
 
 **Before:**
+
 ```javascript
 // Directly manipulated DOM
 document.body.style.position = 'fixed';
@@ -117,12 +130,14 @@ document.body.style.overflow = 'hidden';
 ```
 
 **After:**
+
 ```javascript
 // Uses manager
 window.ScrollLockManager.lock('scroll-fix');
 ```
 
 **Changes:**
+
 - ✅ Removed manual position/overflow manipulation
 - ✅ Removed scroll position saving (manager handles it)
 - ✅ Uses centralized API
@@ -130,9 +145,11 @@ window.ScrollLockManager.lock('scroll-fix');
 ---
 
 ### 3. **nav.js** (UPDATED)
+
 **Location:** `assets/js/nav.js`
 
 **Before:**
+
 ```javascript
 // openNav
 document.body.style.overflow = 'hidden';
@@ -142,6 +159,7 @@ document.body.style.overflow = '';
 ```
 
 **After:**
+
 ```javascript
 // openNav
 window.ScrollLockManager.lock('mobile-nav');
@@ -151,6 +169,7 @@ window.ScrollLockManager.unlock('mobile-nav');
 ```
 
 **Changes:**
+
 - ✅ Uses manager for scroll lock
 - ✅ Fallback if manager not loaded
 - ✅ No more manual overflow manipulation
@@ -158,9 +177,11 @@ window.ScrollLockManager.unlock('mobile-nav');
 ---
 
 ### 4. **lead-magnet-system.js** (UPDATED)
+
 **Location:** `assets/js/lead-magnet-system.js`
 
 **Before:**
+
 ```javascript
 // show
 document.body.style.overflow = 'hidden';
@@ -170,6 +191,7 @@ document.body.style.overflow = '';
 ```
 
 **After:**
+
 ```javascript
 // show
 window.ScrollLockManager.lock('lead-magnet');
@@ -181,6 +203,7 @@ window.ScrollLockManager.unlock('lead-magnet');
 ---
 
 ### 5. **scripts.html** (UPDATED)
+
 **Location:** `_includes/layout/scripts.html`
 
 **Change:** Load order is critical
@@ -202,13 +225,12 @@ window.ScrollLockManager.unlock('lead-magnet');
 
 ### What's Native Now
 
-✅ **Desktop scrolling** - Always enabled, never blocked
-✅ **Mobile scrolling** - Enabled unless nav/modal open
-✅ **Smooth scrolling** - CSS `scroll-behavior: smooth`
-✅ **Touch scrolling** - iOS momentum scrolling preserved
-✅ **Scroll position** - Automatically saved/restored
-✅ **Anchor links** - Jump to sections works
-✅ **Keyboard scrolling** - Arrow keys, Page Up/Down, Home/End
+✅ **Desktop scrolling** - Always enabled, never blocked ✅ **Mobile
+scrolling** - Enabled unless nav/modal open ✅ **Smooth scrolling** - CSS
+`scroll-behavior: smooth` ✅ **Touch scrolling** - iOS momentum scrolling
+preserved ✅ **Scroll position** - Automatically saved/restored ✅ **Anchor
+links** - Jump to sections works ✅ **Keyboard scrolling** - Arrow keys, Page
+Up/Down, Home/End
 
 ### What's Still Locked
 
@@ -217,7 +239,6 @@ The following scenarios STILL lock scroll (intentionally):
 1. **Mobile Navigation Open** (< 1080px width)
    - Prevents scrolling behind nav drawer
    - Unlocks when nav closes
-   
 2. **Modal/Popup Open**
    - Lead magnet popup
    - Tool modals
@@ -233,8 +254,10 @@ The following scenarios STILL lock scroll (intentionally):
 ## CSS Reinforcement
 
 ### scroll-fix.css
+
 ```css
-html, body {
+html,
+body {
   overflow-y: auto !important;
   overflow-x: hidden !important;
   scroll-behavior: smooth !important;
@@ -252,6 +275,7 @@ html, body {
 ### Console Logs
 
 When scroll lock changes, you'll see:
+
 ```
 [Scroll Lock] Locked by mobile-nav (count: 1)
 [Scroll Lock] Already locked, count increased: 2 (by lead-magnet)
@@ -262,15 +286,16 @@ When scroll lock changes, you'll see:
 ### Check Lock State
 
 Open DevTools console:
+
 ```javascript
 // Is scroll locked?
-ScrollLockManager.isLocked()  // true or false
+ScrollLockManager.isLocked(); // true or false
 
 // How many locks?
-ScrollLockManager.getCount()  // 0, 1, 2, etc.
+ScrollLockManager.getCount(); // 0, 1, 2, etc.
 
 // Emergency unlock
-ScrollLockManager.forceUnlock()
+ScrollLockManager.forceUnlock();
 ```
 
 ### Keyboard Shortcut
@@ -282,12 +307,14 @@ ScrollLockManager.forceUnlock()
 ## Testing Scenarios
 
 ### Test 1: Desktop Nav (Should Never Lock)
+
 1. On desktop (>1080px width)
 2. Open navigation
 3. **Expected:** Can still scroll page
 4. **Result:** ✅ Scroll works
 
 ### Test 2: Mobile Nav (Should Lock)
+
 1. On mobile (<1080px width)
 2. Open navigation
 3. **Expected:** Cannot scroll page behind nav
@@ -296,6 +323,7 @@ ScrollLockManager.forceUnlock()
 6. **Result:** ✅ Works as intended
 
 ### Test 3: Modal While Nav Open
+
 1. Open mobile navigation (scroll locked)
 2. Open lead magnet popup (2 locks)
 3. Close navigation (1 lock remains)
@@ -305,6 +333,7 @@ ScrollLockManager.forceUnlock()
 7. **Result:** ✅ Proper reference counting
 
 ### Test 4: Scroll Position Memory
+
 1. Scroll to middle of page
 2. Open modal (position saved)
 3. Try to scroll (blocked)
@@ -319,6 +348,7 @@ ScrollLockManager.forceUnlock()
 ### If You're Adding New Modals/Popups
 
 **Before (OLD WAY - Don't do this):**
+
 ```javascript
 // Opening
 document.body.style.overflow = 'hidden';
@@ -328,6 +358,7 @@ document.body.style.overflow = '';
 ```
 
 **After (NEW WAY - Use this):**
+
 ```javascript
 // Opening
 if (window.ScrollLockManager) {
@@ -346,6 +377,7 @@ if (window.ScrollLockManager) {
 ```
 
 **Component Names:** Use descriptive names like:
+
 - `'mobile-nav'`
 - `'lead-magnet'`
 - `'image-lightbox'`
@@ -358,6 +390,7 @@ if (window.ScrollLockManager) {
 These files still use old methods (low priority):
 
 1. **tools-app.js** (line 1155)
+
    ```javascript
    // TODO: Update to use ScrollLockManager
    document.body.style.overflow = 'hidden';
@@ -374,12 +407,14 @@ These files still use old methods (low priority):
 ## Performance Benefits
 
 ### Before
+
 - 🐌 Multiple scroll position saves (conflicts)
 - 🐌 Competing overflow styles
 - 🐌 Janky unlock transitions
 - 🐌 Lost scroll position
 
 ### After
+
 - ⚡ Single source of truth
 - ⚡ Coordinated locking
 - ⚡ Smooth transitions
@@ -390,15 +425,18 @@ These files still use old methods (low priority):
 ## Browser Support
 
 ✅ **Modern Browsers** (Chrome, Firefox, Safari, Edge)
+
 - Full support for MutationObserver
 - Smooth scroll behavior
 - Touch action support
 
 ✅ **Mobile Browsers** (iOS Safari, Chrome Mobile)
+
 - iOS momentum scrolling preserved
 - Touch gestures work naturally
 
 ✅ **Legacy Browsers**
+
 - Graceful fallback to old method
 - Still functional, just less coordinated
 
@@ -411,8 +449,9 @@ These files still use old methods (low priority):
 **Solution 1:** Press **Ctrl+Shift+U** (emergency unlock)
 
 **Solution 2:** Open console
+
 ```javascript
-ScrollLockManager.forceUnlock()
+ScrollLockManager.forceUnlock();
 ```
 
 **Solution 3:** Refresh page (manager resets on load)
@@ -422,8 +461,9 @@ ScrollLockManager.forceUnlock()
 ### Problem: Scroll position not restoring
 
 **Check:** Is manager loaded?
+
 ```javascript
-console.log(window.ScrollLockManager)
+console.log(window.ScrollLockManager);
 // Should show object, not undefined
 ```
 
@@ -434,11 +474,13 @@ console.log(window.ScrollLockManager)
 ### Problem: Desktop scroll is blocked
 
 **Check:** Breakpoint detection
+
 ```javascript
-window.innerWidth  // Should be > 1080 for desktop
+window.innerWidth; // Should be > 1080 for desktop
 ```
 
 **Check:** Mobile-only locks should not trigger on desktop
+
 - scroll-fix.js checks `isMobile()` before locking
 - Only mobile nav triggers locks
 
@@ -447,30 +489,34 @@ window.innerWidth  // Should be > 1080 for desktop
 ## Summary
 
 ### What We Fixed
+
 ✅ Centralized scroll lock management  
 ✅ Reference counting prevents conflicts  
 ✅ Native scroll is default state  
 ✅ Scroll position memory works  
 ✅ Desktop never blocks scroll  
 ✅ Emergency unlock available  
-✅ Console logging for debugging  
+✅ Console logging for debugging
 
 ### What's Native
+
 ✅ Page scrolling (desktop always, mobile when unlocked)  
 ✅ Smooth scroll behavior  
 ✅ Touch momentum (iOS)  
 ✅ Anchor link navigation  
-✅ Keyboard scrolling  
+✅ Keyboard scrolling
 
 ### What's Still Controlled
+
 🔒 Mobile nav drawer  
 🔒 Modal popups  
 🔒 Image lightbox  
-🔒 Multi-component overlays  
+🔒 Multi-component overlays
 
-**Result:** Best of both worlds - native scroll when appropriate, controlled locks when necessary!
+**Result:** Best of both worlds - native scroll when appropriate, controlled
+locks when necessary!
 
 ---
 
-*Last Updated: 2026-01-26*  
-*Run `npm run site:repair` to verify scroll health*
+_Last Updated: 2026-01-26_  
+_Run `npm run site:repair` to verify scroll health_

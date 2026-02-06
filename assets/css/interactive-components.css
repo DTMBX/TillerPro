@@ -79,7 +79,7 @@
   flex-shrink: 0;
 }
 
-[data-accordion-trigger][aria-expanded="true"]::after {
+[data-accordion-trigger][aria-expanded='true']::after {
   transform: rotate(45deg);
 }
 

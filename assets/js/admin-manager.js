@@ -21,7 +21,7 @@
    * Admin Manager
    */
   class AdminManager {
-    constructor () {
+    constructor() {
       this.config = window.TillerProConfig || {};
       this.settings = this.loadSettings();
 
@@ -31,7 +31,7 @@
     /**
      * Initialize admin panel
      */
-    init () {
+    init() {
       // Populate all form fields
       this.populateCompanyInfo();
       this.populateDisclaimers();
@@ -46,15 +46,15 @@
     /**
      * Tab Switching
      */
-    switchTab (tabName) {
+    switchTab(tabName) {
       // Update tab buttons
-      document.querySelectorAll('.admin-tab').forEach(tab => {
+      document.querySelectorAll('.admin-tab').forEach((tab) => {
         tab.classList.remove('active');
       });
       event.target.classList.add('active');
 
       // Update tab content
-      document.querySelectorAll('.tab-content').forEach(content => {
+      document.querySelectorAll('.tab-content').forEach((content) => {
         content.classList.remove('active');
       });
       document.getElementById(`tab-${tabName}`).classList.add('active');
@@ -63,7 +63,7 @@
     /**
      * Company Info
      */
-    populateCompanyInfo () {
+    populateCompanyInfo() {
       const company = this.config.company || {};
 
       document.getElementById('company-name').value = company.name || '';
@@ -77,7 +77,7 @@
       document.getElementById('company-zip').value = company.address?.zip || '';
     }
 
-    saveCompanyInfo () {
+    saveCompanyInfo() {
       const company = {
         name: document.getElementById('company-name').value,
         license: document.getElementById('company-license').value,
@@ -88,8 +88,8 @@
           street: document.getElementById('company-address').value,
           city: document.getElementById('company-city').value,
           state: document.getElementById('company-state').value,
-          zip: document.getElementById('company-zip').value
-        }
+          zip: document.getElementById('company-zip').value,
+        },
       };
 
       // Validate required fields
@@ -109,11 +109,13 @@
     /**
      * Legal Disclaimers
      */
-    populateDisclaimers () {
+    populateDisclaimers() {
       const disclaimers = this.config.legal?.disclaimers || [];
       const container = document.getElementById('disclaimers-container');
 
-      container.innerHTML = disclaimers.map((disclaimer, index) => `
+      container.innerHTML = disclaimers
+        .map(
+          (disclaimer, index) => `
         <div class="legal-editor" style="margin-bottom: 1rem;">
           <div class="legal-editor-header">
             <span class="legal-editor-title">${index + 1}. ${disclaimer.title}</span>
@@ -132,16 +134,18 @@
             </div>
           </div>
         </div>
-      `).join('');
+      `
+        )
+        .join('');
     }
 
-    saveDisclaimers () {
+    saveDisclaimers() {
       const disclaimers = [];
       const editors = document.querySelectorAll('[data-disclaimer-index]');
 
       // Group by index
       const byIndex = {};
-      editors.forEach(el => {
+      editors.forEach((el) => {
         const index = el.getAttribute('data-disclaimer-index');
         const field = el.getAttribute('data-field');
 
@@ -150,10 +154,10 @@
       });
 
       // Build array
-      Object.keys(byIndex).forEach(index => {
+      Object.keys(byIndex).forEach((index) => {
         disclaimers.push({
           title: byIndex[index].title || '',
-          content: byIndex[index].content || ''
+          content: byIndex[index].content || '',
         });
       });
 
@@ -165,20 +169,20 @@
       console.log('[Admin] Disclaimers saved:', disclaimers.length);
     }
 
-    addDisclaimer () {
+    addDisclaimer() {
       if (!this.settings.legal) this.settings.legal = {};
       if (!this.settings.legal.disclaimers) this.settings.legal.disclaimers = [];
 
       this.settings.legal.disclaimers.push({
         title: 'New Disclaimer',
-        content: 'Enter disclaimer text here...'
+        content: 'Enter disclaimer text here...',
       });
 
       this.saveSettings();
       this.populateDisclaimers();
     }
 
-    removeDisclaimer (index) {
+    removeDisclaimer(index) {
       if (!confirm('Remove this disclaimer?')) return;
 
       this.settings.legal.disclaimers.splice(index, 1);
@@ -189,11 +193,13 @@
     /**
      * Contract Terms
      */
-    populateTerms () {
+    populateTerms() {
       const terms = this.config.legal?.terms || [];
       const container = document.getElementById('terms-container');
 
-      container.innerHTML = terms.map((term, index) => `
+      container.innerHTML = terms
+        .map(
+          (term, index) => `
         <div class="legal-editor" style="margin-bottom: 1rem;">
           <div class="legal-editor-header">
             <span class="legal-editor-title">${index + 1}. ${term.title}</span>
@@ -212,16 +218,18 @@
             </div>
           </div>
         </div>
-      `).join('');
+      `
+        )
+        .join('');
     }
 
-    saveTerms () {
+    saveTerms() {
       const terms = [];
       const editors = document.querySelectorAll('[data-term-index]');
 
       // Group by index
       const byIndex = {};
-      editors.forEach(el => {
+      editors.forEach((el) => {
         const index = el.getAttribute('data-term-index');
         const field = el.getAttribute('data-field');
 
@@ -230,10 +238,10 @@
       });
 
       // Build array
-      Object.keys(byIndex).forEach(index => {
+      Object.keys(byIndex).forEach((index) => {
         terms.push({
           title: byIndex[index].title || '',
-          content: byIndex[index].content || ''
+          content: byIndex[index].content || '',
         });
       });
 
@@ -245,20 +253,20 @@
       console.log('[Admin] Terms saved:', terms.length);
     }
 
-    addTerm () {
+    addTerm() {
       if (!this.settings.legal) this.settings.legal = {};
       if (!this.settings.legal.terms) this.settings.legal.terms = [];
 
       this.settings.legal.terms.push({
         title: 'New Term',
-        content: 'Enter term text here...'
+        content: 'Enter term text here...',
       });
 
       this.saveSettings();
       this.populateTerms();
     }
 
-    removeTerm (index) {
+    removeTerm(index) {
       if (!confirm('Remove this term?')) return;
 
       this.settings.legal.terms.splice(index, 1);
@@ -269,7 +277,7 @@
     /**
      * Pricing Configuration
      */
-    populatePricing () {
+    populatePricing() {
       const pricing = this.config.pricing || {};
 
       document.getElementById('pricing-labor-rate').value = pricing.laborRate || 70;
@@ -280,14 +288,14 @@
       document.getElementById('pricing-deposit').value = pricing.depositPercent || 30;
     }
 
-    savePricing () {
+    savePricing() {
       const pricing = {
         laborRate: parseFloat(document.getElementById('pricing-labor-rate').value) || 70,
         tileMarkup: parseFloat(document.getElementById('pricing-tile-markup').value) || 35,
         groutMarkup: parseFloat(document.getElementById('pricing-grout-markup').value) || 40,
         mortarMarkup: parseFloat(document.getElementById('pricing-mortar-markup').value) || 45,
         taxRate: parseFloat(document.getElementById('pricing-tax-rate').value) || 6.625,
-        depositPercent: parseFloat(document.getElementById('pricing-deposit').value) || 30
+        depositPercent: parseFloat(document.getElementById('pricing-deposit').value) || 30,
       };
 
       this.settings.pricing = pricing;
@@ -300,22 +308,23 @@
     /**
      * Branding
      */
-    populateBranding () {
+    populateBranding() {
       const colors = [
         { key: 'primary', label: 'Primary Color', default: '#8b5cf6' },
         { key: 'secondary', label: 'Secondary Color', default: '#6366f1' },
         { key: 'success', label: 'Success Color', default: '#10b981' },
         { key: 'warning', label: 'Warning Color', default: '#f59e0b' },
-        { key: 'danger', label: 'Danger Color', default: '#ef4444' }
+        { key: 'danger', label: 'Danger Color', default: '#ef4444' },
       ];
 
       const branding = this.settings.branding || {};
       const container = document.getElementById('color-grid');
 
-      container.innerHTML = colors.map(color => {
-        const value = branding[color.key] || color.default;
+      container.innerHTML = colors
+        .map((color) => {
+          const value = branding[color.key] || color.default;
 
-        return `
+          return `
           <div class="color-field">
             <label>${color.label}</label>
             <div class="color-input-wrapper">
@@ -324,23 +333,24 @@
             </div>
           </div>
         `;
-      }).join('');
+        })
+        .join('');
     }
 
-    updateColorHex (key, value) {
+    updateColorHex(key, value) {
       document.querySelector(`[data-color-hex="${key}"]`).value = value;
     }
 
-    updateColorPicker (key, value) {
+    updateColorPicker(key, value) {
       if (/^#[0-9A-F]{6}$/i.test(value)) {
         document.querySelector(`[data-color-key="${key}"]`).value = value;
       }
     }
 
-    saveBranding () {
+    saveBranding() {
       const branding = {};
 
-      document.querySelectorAll('[data-color-key]').forEach(input => {
+      document.querySelectorAll('[data-color-key]').forEach((input) => {
         const key = input.getAttribute('data-color-key');
         branding[key] = input.value;
       });
@@ -355,23 +365,48 @@
     /**
      * Feature Toggles
      */
-    populateFeatures () {
+    populateFeatures() {
       const features = [
-        { key: 'financing', label: 'Financing Calculator', desc: 'Show financing options on quotes' },
-        { key: 'eSignature', label: 'E-Signature Integration', desc: 'Enable electronic signature requests' },
-        { key: 'dashboard', label: 'Multi-Location Dashboard', desc: 'Enterprise dashboard for multiple locations' },
-        { key: 'emailDelivery', label: 'Email Delivery', desc: 'Automatically email quotes to customers' },
-        { key: 'pdfGeneration', label: 'PDF Quote Generation', desc: 'Generate professional PDF quotes' },
-        { key: 'visualizer', label: 'Tile Pattern Visualizer', desc: 'Interactive tile pattern preview tool' }
+        {
+          key: 'financing',
+          label: 'Financing Calculator',
+          desc: 'Show financing options on quotes',
+        },
+        {
+          key: 'eSignature',
+          label: 'E-Signature Integration',
+          desc: 'Enable electronic signature requests',
+        },
+        {
+          key: 'dashboard',
+          label: 'Multi-Location Dashboard',
+          desc: 'Enterprise dashboard for multiple locations',
+        },
+        {
+          key: 'emailDelivery',
+          label: 'Email Delivery',
+          desc: 'Automatically email quotes to customers',
+        },
+        {
+          key: 'pdfGeneration',
+          label: 'PDF Quote Generation',
+          desc: 'Generate professional PDF quotes',
+        },
+        {
+          key: 'visualizer',
+          label: 'Tile Pattern Visualizer',
+          desc: 'Interactive tile pattern preview tool',
+        },
       ];
 
       const settings = this.settings.features || {};
       const container = document.getElementById('features-container');
 
-      container.innerHTML = features.map(feature => {
-        const enabled = settings[feature.key] !== false; // Default to true
+      container.innerHTML = features
+        .map((feature) => {
+          const enabled = settings[feature.key] !== false; // Default to true
 
-        return `
+          return `
           <div class="toggle-field">
             <div class="toggle-field-content">
               <div class="toggle-field-title">${feature.label}</div>
@@ -383,13 +418,14 @@
             </label>
           </div>
         `;
-      }).join('');
+        })
+        .join('');
     }
 
-    saveFeatures () {
+    saveFeatures() {
       const features = {};
 
-      document.querySelectorAll('[data-feature-key]').forEach(input => {
+      document.querySelectorAll('[data-feature-key]').forEach((input) => {
         const key = input.getAttribute('data-feature-key');
         features[key] = input.checked;
       });
@@ -404,7 +440,7 @@
     /**
      * Save All Settings
      */
-    saveAllSettings () {
+    saveAllSettings() {
       this.saveCompanyInfo();
       this.saveDisclaimers();
       this.saveTerms();
@@ -419,7 +455,7 @@
     /**
      * Reset to Defaults
      */
-    resetToDefaults () {
+    resetToDefaults() {
       if (!confirm('This will reset ALL settings to defaults. Are you sure?')) {
         return;
       }
@@ -442,11 +478,11 @@
     /**
      * Import/Export
      */
-    exportSettings () {
+    exportSettings() {
       const data = {
         version: '1.0.0',
         exportedAt: new Date().toISOString(),
-        settings: this.settings
+        settings: this.settings,
       };
 
       const json = JSON.stringify(data, null, 2);
@@ -464,7 +500,7 @@
       console.log('[Admin] Settings exported');
     }
 
-    importSettings () {
+    importSettings() {
       const file = document.getElementById('import-file').files[0];
       if (!file) return;
 
@@ -501,7 +537,7 @@
     /**
      * UI Helpers
      */
-    showSuccess () {
+    showSuccess() {
       const msg = document.getElementById('success-message');
       msg.classList.add('show');
 
@@ -513,7 +549,7 @@
     /**
      * Persistence
      */
-    loadSettings () {
+    loadSettings() {
       try {
         const data = localStorage.getItem('tillerpro_admin_settings');
         return data ? JSON.parse(data) : {};
@@ -523,7 +559,7 @@
       }
     }
 
-    saveSettings () {
+    saveSettings() {
       try {
         localStorage.setItem('tillerpro_admin_settings', JSON.stringify(this.settings));
 
@@ -537,7 +573,7 @@
     /**
      * Apply saved settings to TillerProConfig
      */
-    applySettingsToConfig () {
+    applySettingsToConfig() {
       // Merge settings into config
       if (this.settings.company) {
         Object.assign(window.TillerProConfig.company, this.settings.company);
@@ -553,7 +589,7 @@
 
       if (this.settings.branding) {
         // Apply branding to CSS variables
-        Object.keys(this.settings.branding).forEach(key => {
+        Object.keys(this.settings.branding).forEach((key) => {
           document.documentElement.style.setProperty(`--color-${key}`, this.settings.branding[key]);
         });
       }
@@ -571,13 +607,13 @@
    */
   window.switchTab = function (tabName) {
     // Update tab buttons
-    document.querySelectorAll('.admin-tab').forEach(tab => {
+    document.querySelectorAll('.admin-tab').forEach((tab) => {
       tab.classList.remove('active');
     });
     event.target.classList.add('active');
 
     // Update tab content
-    document.querySelectorAll('.tab-content').forEach(content => {
+    document.querySelectorAll('.tab-content').forEach((content) => {
       content.classList.remove('active');
     });
     document.getElementById(`tab-${tabName}`).classList.add('active');

@@ -16,7 +16,7 @@ async function convertToAVIF() {
   console.log(chalk.blue.bold('\n🖼️  AVIF CONVERSION\n'));
 
   const images = await glob(`${IMAGE_DIR}/**/*.{jpg,jpeg,png}`, {
-    ignore: ['**/*.avif', '**/node_modules/**']
+    ignore: ['**/*.avif', '**/node_modules/**'],
   });
 
   console.log(`Found ${images.length} images\n`);
@@ -37,13 +37,11 @@ async function convertToAVIF() {
     }
 
     try {
-      await sharp(imagePath)
-        .avif({ quality: QUALITY })
-        .toFile(avifPath);
+      await sharp(imagePath).avif({ quality: QUALITY }).toFile(avifPath);
 
       const originalSize = fs.statSync(imagePath).size;
       const avifSize = fs.statSync(avifPath).size;
-      const savings = ((originalSize - avifSize) / originalSize * 100).toFixed(1);
+      const savings = (((originalSize - avifSize) / originalSize) * 100).toFixed(1);
 
       console.log(chalk.green(`✓ ${name}.avif (saved ${savings}%)`));
       converted++;

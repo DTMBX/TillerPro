@@ -4,7 +4,7 @@
  * Version: 1.0.0
  */
 
-(function() {
+(function () {
   'use strict';
 
   const LeadMagnet = {
@@ -14,27 +14,27 @@
       scrollTriggerPercent: 50, // Show after scrolling 50% of page
       cookieName: 'ts_lead_magnet_shown',
       cookieDays: 30, // Don't show again for 30 days
-      formspreeEndpoint: '' // Set in data attribute
+      formspreeEndpoint: '', // Set in data attribute
     },
 
     elements: {
       popup: null,
       overlay: null,
       closeBtn: null,
-      form: null
+      form: null,
     },
 
     state: {
       shown: false,
       submitted: false,
       triggered: false,
-      initialized: false
+      initialized: false,
     },
 
     /**
      * Initialize lead magnet system
      */
-    init: function() {
+    init: function () {
       // Prevent double initialization
       if (this.state.initialized) {
         console.log('[Lead Magnet] Already initialized, skipping');
@@ -74,7 +74,7 @@
     /**
      * Attach event listeners
      */
-    attachEvents: function() {
+    attachEvents: function () {
       // Close button
       if (this.elements.closeBtn) {
         this.elements.closeBtn.addEventListener('click', () => {
@@ -107,7 +107,7 @@
     /**
      * Start all triggers
      */
-    startTriggers: function() {
+    startTriggers: function () {
       // Time trigger
       setTimeout(() => {
         if (!this.state.triggered) {
@@ -127,12 +127,13 @@
     /**
      * Setup scroll trigger
      */
-    setupScrollTrigger: function() {
+    setupScrollTrigger: function () {
       let ticking = false;
       window.addEventListener('scroll', () => {
         if (!ticking && !this.state.triggered) {
           window.requestAnimationFrame(() => {
-            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            const scrollPercent =
+              (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
 
             if (scrollPercent >= this.config.scrollTriggerPercent) {
               this.show('scroll');
@@ -148,7 +149,7 @@
     /**
      * Setup exit intent trigger
      */
-    setupExitIntent: function() {
+    setupExitIntent: function () {
       document.addEventListener('mouseleave', (e) => {
         if (e.clientY < 10 && !this.state.triggered && !this.isMobile()) {
           this.show('exit-intent');
@@ -159,7 +160,7 @@
     /**
      * Show popup
      */
-    show: function(trigger = 'manual') {
+    show: function (trigger = 'manual') {
       if (this.state.shown || this.state.triggered) {
         return;
       }
@@ -172,7 +173,9 @@
       // No scroll locking needed - popup doesn't require full-screen takeover
 
       // Focus first input
-      const firstInput = this.elements.form?.querySelector('input[type="email"], input[type="text"]');
+      const firstInput = this.elements.form?.querySelector(
+        'input[type="email"], input[type="text"]'
+      );
       if (firstInput) {
         setTimeout(() => firstInput.focus(), 100);
       }
@@ -186,7 +189,7 @@
     /**
      * Close popup
      */
-    close: function() {
+    close: function () {
       this.elements.popup.classList.remove('active');
       this.state.shown = false;
 
@@ -203,7 +206,7 @@
     /**
      * Handle form submission
      */
-    handleSubmit: function(e) {
+    handleSubmit: function (e) {
       e.preventDefault();
 
       const formData = new FormData(this.elements.form);
@@ -233,10 +236,10 @@
           method: 'POST',
           body: formData,
           headers: {
-            'Accept': 'application/json'
-          }
+            Accept: 'application/json',
+          },
         })
-          .then(response => {
+          .then((response) => {
             if (response.ok) {
               this.handleSuccess(email, name, downloadUrl, redirectUrl);
             } else {
@@ -259,7 +262,7 @@
     /**
      * Handle successful submission
      */
-    handleSuccess: function(email, name, downloadUrl, redirectUrl) {
+    handleSuccess: function (email, name, downloadUrl, redirectUrl) {
       this.state.submitted = true;
 
       // Show success message
@@ -300,7 +303,7 @@
     /**
      * Handle submission error
      */
-    handleError: function() {
+    handleError: function () {
       alert('Sorry, there was an error. Please try again or contact us directly.');
       this.trackEvent('Form Error', '');
     },
@@ -308,18 +311,18 @@
     /**
      * Check if mobile
      */
-    isMobile: function() {
+    isMobile: function () {
       return window.innerWidth < 768;
     },
 
     /**
      * Track events
      */
-    trackEvent: function(action, label) {
+    trackEvent: function (action, label) {
       if (typeof gtag !== 'undefined') {
         gtag('event', action, {
           event_category: 'Lead Magnet',
-          event_label: label
+          event_label: label,
         });
       }
 
@@ -331,13 +334,13 @@
     /**
      * Cookie helpers
      */
-    setCookie: function(name, value, days) {
+    setCookie: function (name, value, days) {
       const expires = new Date();
-      expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
       document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Strict`;
     },
 
-    getCookie: function(name) {
+    getCookie: function (name) {
       const nameEQ = name + '=';
       const ca = document.cookie.split(';');
       for (let i = 0; i < ca.length; i++) {
@@ -346,7 +349,7 @@
         if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
       }
       return null;
-    }
+    },
   };
 
   // Auto-initialize

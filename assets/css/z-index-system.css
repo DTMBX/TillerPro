@@ -6,17 +6,17 @@
 
 :root {
   /* Z-Index Scale (0-1000) */
-  --z-base: 0;           /* Default page content */
-  --z-content: 1;        /* Main content layer */
-  --z-dropdown: 100;     /* Dropdown menus */
-  --z-sticky: 200;       /* Sticky headers/footers */
-  --z-fixed: 300;        /* Fixed positioned elements */
+  --z-base: 0; /* Default page content */
+  --z-content: 1; /* Main content layer */
+  --z-dropdown: 100; /* Dropdown menus */
+  --z-sticky: 200; /* Sticky headers/footers */
+  --z-fixed: 300; /* Fixed positioned elements */
   --z-modal-backdrop: 400; /* Modal/overlay backdrops */
-  --z-modal: 500;        /* Modal dialogs */
-  --z-popover: 600;      /* Popovers, tooltips */
-  --z-toast: 700;        /* Toast notifications */
-  --z-tooltip: 800;      /* Tooltips (highest UI) */
-  --z-dev-tools: 9999;   /* Dev tools (never in production) */
+  --z-modal: 500; /* Modal dialogs */
+  --z-popover: 600; /* Popovers, tooltips */
+  --z-toast: 700; /* Toast notifications */
+  --z-tooltip: 800; /* Tooltips (highest UI) */
+  --z-dev-tools: 9999; /* Dev tools (never in production) */
 }
 
 /* ===== LAYER 0: BASE ===== */
@@ -82,7 +82,7 @@ footer.sticky,
 .modal-backdrop,
 .overlay,
 .backdrop,
-[class*="-backdrop"] {
+[class*='-backdrop'] {
   z-index: var(--z-modal-backdrop) !important;
 }
 
@@ -92,7 +92,7 @@ footer.sticky,
 .modal,
 .lightbox,
 .dialog,
-[role="dialog"] {
+[role='dialog'] {
   z-index: var(--z-modal) !important;
 }
 
@@ -119,7 +119,7 @@ footer.sticky,
 
 /* Tooltips (highest UI layer) */
 .tooltip,
-[role="tooltip"],
+[role='tooltip'],
 .tip {
   z-index: var(--z-tooltip) !important;
 }
@@ -137,25 +137,25 @@ footer.sticky,
     display: none !important;
     z-index: -1 !important;
   }
-  
+
   /* Simplify z-index on mobile */
   header,
   .ts-header,
   .site-header {
     z-index: 100 !important;
   }
-  
+
   main,
   section,
   article {
     z-index: 1 !important;
   }
-  
+
   footer,
   .site-footer {
     z-index: 10 !important;
   }
-  
+
   /* Hide ALL popups/toasts on mobile */
   .toast,
   .toast-container,

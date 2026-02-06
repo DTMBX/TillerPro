@@ -18,7 +18,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: 
+  background:
     radial-gradient(circle at 20% 30%, rgb(14 165 233 / 8%) 0%, transparent 50%),
     radial-gradient(circle at 80% 70%, rgb(245 158 11 / 6%) 0%, transparent 50%),
     radial-gradient(circle at 50% 50%, rgb(16 185 129 / 5%) 0%, transparent 60%);
@@ -38,8 +38,14 @@
 }
 
 @keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 /* Glassmorphic frame for hero content */
@@ -77,7 +83,7 @@
   background: rgb(255 255 255 / 5%);
   backdrop-filter: blur(12px);
   border: 1px solid rgb(255 255 255 / 10%);
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgb(0 0 0 / 20%),
     inset 0 1px 1px rgb(255 255 255 / 10%);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -92,11 +98,15 @@
   inset: 0;
   border-radius: inherit;
   padding: 2px;
-  background: linear-gradient(135deg, 
-    rgb(16 185 129 / 40%), 
-    rgb(14 165 233 / 30%), 
-    rgb(245 158 11 / 30%));
-  mask: linear-gradient(#ffffff 0 0) content-box, linear-gradient(#ffffff 0 0);
+  background: linear-gradient(
+    135deg,
+    rgb(16 185 129 / 40%),
+    rgb(14 165 233 / 30%),
+    rgb(245 158 11 / 30%)
+  );
+  mask:
+    linear-gradient(#ffffff 0 0) content-box,
+    linear-gradient(#ffffff 0 0);
   mask-composite: xor;
   mask-composite: exclude;
   opacity: 0%;
@@ -109,7 +119,7 @@
 
 .page-home .service-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 
+  box-shadow:
     0 16px 48px rgb(0 0 0 / 30%),
     0 0 40px rgb(16 185 129 / 15%),
     inset 0 1px 1px rgb(255 255 255 / 15%);
@@ -141,7 +151,7 @@
   border-left-color: #0ea5e9;
   border-left-width: 4px;
   transform: translateX(4px);
-  box-shadow: 
+  box-shadow:
     -4px 0 20px rgb(16 185 129 / 30%),
     0 8px 32px rgb(0 0 0 / 25%);
 }
@@ -170,7 +180,7 @@
   background: rgb(15 23 42 / 60%);
   backdrop-filter: blur(16px);
   border: 1px solid rgb(255 255 255 / 12%);
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgb(0 0 0 / 30%),
     inset 0 1px 1px rgb(255 255 255 / 8%);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -179,7 +189,7 @@
 .page-home .material-card:hover {
   background: rgb(15 23 42 / 75%);
   border-color: rgb(245 158 11 / 30%);
-  box-shadow: 
+  box-shadow:
     0 12px 40px rgb(0 0 0 / 40%),
     0 0 30px rgb(245 158 11 / 10%);
   transform: translateY(-6px);
@@ -198,7 +208,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: 
+  background:
     radial-gradient(circle at 80% 20%, rgb(16 185 129 / 6%) 0%, transparent 50%),
     radial-gradient(circle at 20% 80%, rgb(14 165 233 / 5%) 0%, transparent 50%);
   pointer-events: none;
@@ -213,7 +223,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: 
+  background:
     radial-gradient(circle at 30% 40%, rgb(245 158 11 / 4%) 0%, transparent 60%),
     radial-gradient(circle at 70% 60%, rgb(16 185 129 / 3%) 0%, transparent 50%);
   pointer-events: none;
@@ -228,7 +238,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: 
+  background:
     radial-gradient(circle at 50% 30%, rgb(14 165 233 / 5%) 0%, transparent 50%),
     radial-gradient(circle at 50% 70%, rgb(16 185 129 / 4%) 0%, transparent 60%);
   pointer-events: none;
@@ -258,7 +268,7 @@
 .page-home .testimonial-card:hover {
   background: rgb(255 255 255 / 8%);
   border-color: rgb(245 158 11 / 25%);
-  box-shadow: 
+  box-shadow:
     0 12px 40px rgb(0 0 0 / 30%),
     0 0 25px rgb(245 158 11 / 8%);
   transform: translateY(-4px);
@@ -284,7 +294,7 @@
   background: rgb(15 23 42 / 95%);
   backdrop-filter: blur(20px);
   border-top: 1px solid rgb(16 185 129 / 20%);
-  box-shadow: 
+  box-shadow:
     0 -4px 20px rgb(0 0 0 / 40%),
     0 0 30px rgb(16 185 129 / 10%);
   transform: translateY(100%);
@@ -324,7 +334,9 @@
 .scroll-fade-in {
   opacity: 0%;
   transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 .scroll-fade-in.animated {
@@ -333,16 +345,29 @@
 }
 
 /* Stagger delays for cards */
-.scroll-fade-in:nth-child(1) { transition-delay: 0.1s; }
-.scroll-fade-in:nth-child(2) { transition-delay: 0.2s; }
-.scroll-fade-in:nth-child(3) { transition-delay: 0.3s; }
-.scroll-fade-in:nth-child(4) { transition-delay: 0.4s; }
+.scroll-fade-in:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.scroll-fade-in:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.scroll-fade-in:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.scroll-fade-in:nth-child(4) {
+  transition-delay: 0.4s;
+}
 
 /* Scale in effect */
 .scroll-scale-in {
   opacity: 0%;
   transform: scale(0.9);
-  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .scroll-scale-in.animated {
@@ -426,7 +451,7 @@
   .page-home section::before {
     opacity: 50%;
   }
-  
+
   /* Smaller transforms on mobile */
   .page-home .service-card:hover,
   .page-home .material-card:hover {
@@ -439,14 +464,14 @@
   .page-home .hero-title {
     animation: none;
   }
-  
+
   .page-home .service-card,
   .page-home .process-step,
   .page-home .material-card,
   .page-home .testimonial-card {
     transition-duration: 0.01ms;
   }
-  
+
   .scroll-fade-in,
   .scroll-scale-in {
     transition-duration: 0.01ms;

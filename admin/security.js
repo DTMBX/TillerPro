@@ -61,9 +61,7 @@ class BruteForceProtection {
     const attempts = this.attempts.get(identifier);
 
     // Remove old attempts outside the window
-    const recentAttempts = attempts.filter(
-      time => now - time < this.attemptWindow
-    );
+    const recentAttempts = attempts.filter((time) => now - time < this.attemptWindow);
 
     if (success) {
       // Clear attempts on success
@@ -82,13 +80,13 @@ class BruteForceProtection {
       return {
         allowed: false,
         reason: 'Too many failed attempts',
-        unlockTime: now + this.lockoutDuration
+        unlockTime: now + this.lockoutDuration,
       };
     }
 
     return {
       allowed: true,
-      remainingAttempts: this.maxAttempts - recentAttempts.length
+      remainingAttempts: this.maxAttempts - recentAttempts.length,
     };
   }
 
@@ -115,7 +113,7 @@ class BruteForceProtection {
       return {
         locked: true,
         unlockTime,
-        remainingTime: unlockTime - Date.now()
+        remainingTime: unlockTime - Date.now(),
       };
     }
 
@@ -123,7 +121,7 @@ class BruteForceProtection {
     return {
       locked: false,
       attempts: attempts.length,
-      remainingAttempts: this.maxAttempts - attempts.length
+      remainingAttempts: this.maxAttempts - attempts.length,
     };
   }
 }
@@ -139,7 +137,7 @@ export function checkBruteForce(req, res, next) {
     return res.status(429).json({
       error: 'Account temporarily locked due to too many failed attempts',
       unlockTime: new Date(status.unlockTime).toISOString(),
-      remainingTime: Math.ceil(status.remainingTime / 1000 / 60) + ' minutes'
+      remainingTime: Math.ceil(status.remainingTime / 1000 / 60) + ' minutes',
     });
   }
 
@@ -167,14 +165,14 @@ export const securityHeaders = helmet({
   hsts: {
     maxAge: 31536000,
     includeSubDomains: true,
-    preload: true
+    preload: true,
   },
   referrerPolicy: {
-    policy: 'strict-origin-when-cross-origin'
+    policy: 'strict-origin-when-cross-origin',
   },
   noSniff: true,
   xssFilter: true,
-  hidePoweredBy: true
+  hidePoweredBy: true,
 });
 
 // ==
@@ -203,7 +201,7 @@ class AuditLogger {
       user: user || 'anonymous',
       ip,
       details,
-      severity: this.getSeverity(event)
+      severity: this.getSeverity(event),
     };
 
     const logLine = JSON.stringify(entry) + '\n';
@@ -224,19 +222,19 @@ class AuditLogger {
 
   getSeverity(event) {
     const severityMap = {
-      'login_success': 'low',
-      'login_failed': 'medium',
-      'login_locked': 'high',
-      'logout': 'low',
-      'file_read': 'low',
-      'file_write': 'medium',
-      'file_delete': 'high',
-      'config_change': 'high',
-      'user_created': 'medium',
-      'user_deleted': 'high',
-      'permission_denied': 'medium',
-      'suspicious_activity': 'high',
-      'data_breach_attempt': 'critical'
+      login_success: 'low',
+      login_failed: 'medium',
+      login_locked: 'high',
+      logout: 'low',
+      file_read: 'low',
+      file_write: 'medium',
+      file_delete: 'high',
+      config_change: 'high',
+      user_created: 'medium',
+      user_deleted: 'high',
+      permission_denied: 'medium',
+      suspicious_activity: 'high',
+      data_breach_attempt: 'critical',
     };
 
     return severityMap[event] || 'medium';
@@ -248,7 +246,7 @@ class AuditLogger {
       const lines = content.trim().split('\n');
       const logs = lines
         .slice(-limit)
-        .map(line => JSON.parse(line))
+        .map((line) => JSON.parse(line))
         .reverse();
       return logs;
     } catch (error) {
@@ -258,22 +256,18 @@ class AuditLogger {
 
   async getLogsByUser(username, limit = 100) {
     const logs = await this.getRecentLogs(1000);
-    return logs
-      .filter(log => log.user === username)
-      .slice(0, limit);
+    return logs.filter((log) => log.user === username).slice(0, limit);
   }
 
   async getLogsByEvent(event, limit = 100) {
     const logs = await this.getRecentLogs(1000);
-    return logs
-      .filter(log => log.event === event)
-      .slice(0, limit);
+    return logs.filter((log) => log.event === event).slice(0, limit);
   }
 
   async getHighSeverityLogs(limit = 100) {
     const logs = await this.getRecentLogs(1000);
     return logs
-      .filter(log => log.severity === 'high' || log.severity === 'critical')
+      .filter((log) => log.severity === 'high' || log.severity === 'critical')
       .slice(0, limit);
   }
 }
@@ -284,15 +278,20 @@ export const auditLog = new AuditLogger();
 export function auditMiddleware(req, res, next) {
   const originalSend = res.send;
 
-  res.send = function(data) {
+  res.send = function (data) {
     // Log after response
     if (req.session && req.session.userId) {
       const event = `${req.method.toLowerCase()}_${req.path.split('/')[2] || 'request'}`;
-      auditLog.log(event, req.session.userId, {
-        method: req.method,
-        path: req.path,
-        status: res.statusCode
-      }, req.ip);
+      auditLog.log(
+        event,
+        req.session.userId,
+        {
+          method: req.method,
+          path: req.path,
+          status: res.statusCode,
+        },
+        req.ip
+      );
     }
 
     originalSend.call(this, data);
@@ -309,9 +308,7 @@ export function sanitizeInput(input) {
   if (typeof input !== 'string') return input;
 
   // Remove potential XSS
-  return input
-    .replace(/[<>]/g, '')
-    .trim();
+  return input.replace(/[<>]/g, '').trim();
 }
 
 export function validateEmail(email) {
@@ -378,7 +375,7 @@ class APIKeyManager {
       permissions,
       created: new Date().toISOString(),
       lastUsed: null,
-      usageCount: 0
+      usageCount: 0,
     });
 
     this.saveKeys();
@@ -416,7 +413,7 @@ class APIKeyManager {
   listKeys() {
     return Array.from(this.keys.entries()).map(([hash, data]) => ({
       hash: hash.substring(0, 16) + '...',
-      ...data
+      ...data,
     }));
   }
 }
@@ -457,9 +454,9 @@ export function secureSessionConfig() {
       httpOnly: true, // No JS access
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
       sameSite: 'strict', // CSRF protection
-      path: '/admin' // Limit cookie scope
+      path: '/admin', // Limit cookie scope
     },
-    rolling: true // Extend session on activity
+    rolling: true, // Extend session on activity
   };
 }
 
@@ -535,5 +532,5 @@ export default {
   requireAPIKey,
   secureSessionConfig,
   ipFilter,
-  checkIPFilter
+  checkIPFilter,
 };

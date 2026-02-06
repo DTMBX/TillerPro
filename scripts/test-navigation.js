@@ -56,9 +56,7 @@ if (fs.existsSync(headerPath)) {
     ? pass('nav-toggle button exists')
     : fail('nav-toggle button missing');
 
-  header.includes('data-nav-close')
-    ? pass('Close button exists')
-    : fail('Close button missing');
+  header.includes('data-nav-close') ? pass('Close button exists') : fail('Close button missing');
 
   const menuItems = (header.match(/class="mobile-nav-link"/g) || []).length;
   menuItems === 6

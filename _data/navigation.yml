@@ -105,7 +105,6 @@ primary:
     match: "^/contact(/|$)"
     cta: true
 
-
 secondary:
   - id: privacy
     title: "Privacy"

@@ -3,7 +3,7 @@
  * Handles UI interactions, API calls, and dynamic content management
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ==
@@ -16,7 +16,7 @@
     calculatorConfig: null,
     dataFiles: [],
     settings: null,
-    isDirty: false
+    isDirty: false,
   };
 
   // ==
@@ -54,7 +54,7 @@
   function setupNavigation() {
     const navItems = document.querySelectorAll('.nav-item, .card-link');
 
-    navItems.forEach(item => {
+    navItems.forEach((item) => {
       item.addEventListener('click', (e) => {
         e.preventDefault();
         const view = item.dataset.view;
@@ -67,12 +67,12 @@
 
   function switchView(viewName) {
     // Update active nav item
-    document.querySelectorAll('.nav-item').forEach(item => {
+    document.querySelectorAll('.nav-item').forEach((item) => {
       item.classList.toggle('active', item.dataset.view === viewName);
     });
 
     // Update active view
-    document.querySelectorAll('.view').forEach(view => {
+    document.querySelectorAll('.view').forEach((view) => {
       view.classList.toggle('active', view.id === `view-${viewName}`);
     });
 
@@ -111,7 +111,7 @@
       document.getElementById('stat-files').textContent = files.length;
 
       if (files.length > 0) {
-        const latest = new Date(Math.max(...files.map(f => new Date(f.modified))));
+        const latest = new Date(Math.max(...files.map((f) => new Date(f.modified))));
         document.getElementById('stat-updated').textContent = latest.toLocaleDateString();
       }
     } catch (error) {
@@ -143,7 +143,7 @@
       'tile-presets-container': 'Tile presets loaded from tools.js',
       'layout-presets-container': 'Layout presets loaded from tools.js',
       'joint-presets-container': 'Joint presets loaded from tools.js',
-      'trowel-presets-container': 'Trowel presets loaded from tools.js'
+      'trowel-presets-container': 'Trowel presets loaded from tools.js',
     };
 
     Object.entries(containers).forEach(([id, message]) => {
@@ -154,7 +154,7 @@
     });
   }
 
-  window.addPreset = function(type) {
+  window.addPreset = function (type) {
     showToast(`Add ${type} preset - functionality ready for implementation`, 'info');
   };
 
@@ -178,20 +178,24 @@
   function renderFileList(files) {
     const container = document.getElementById('data-files-list');
 
-    container.innerHTML = files.map(file => `
+    container.innerHTML = files
+      .map(
+        (file) => `
       <div class="file-item" data-filename="${file.name}">
         📄 ${file.name}
       </div>
-    `).join('');
+    `
+      )
+      .join('');
 
     // Add click handlers
-    container.querySelectorAll('.file-item').forEach(item => {
+    container.querySelectorAll('.file-item').forEach((item) => {
       item.addEventListener('click', () => {
         const filename = item.dataset.filename;
         loadFile(filename);
 
         // Update active state
-        container.querySelectorAll('.file-item').forEach(i => i.classList.remove('active'));
+        container.querySelectorAll('.file-item').forEach((i) => i.classList.remove('active'));
         item.classList.add('active');
       });
     });
@@ -227,7 +231,7 @@
       const response = await fetch(`/api/content/file/${state.currentFile}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content })
+        body: JSON.stringify({ content }),
       });
 
       const result = await response.json();
@@ -276,7 +280,7 @@
       const response = await fetch('/api/settings', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content })
+        body: JSON.stringify({ content }),
       });
 
       const result = await response.json();
@@ -316,7 +320,7 @@
   async function saveToggles() {
     const toggles = {};
 
-    document.querySelectorAll('[data-config]').forEach(input => {
+    document.querySelectorAll('[data-config]').forEach((input) => {
       const key = input.dataset.config;
       toggles[key] = input.checked;
     });
@@ -378,7 +382,7 @@
     const icons = {
       success: '✓',
       error: '✗',
-      info: 'ℹ'
+      info: 'ℹ',
     };
 
     toast.className = `toast ${type}`;
@@ -404,5 +408,4 @@
   } else {
     init();
   }
-
 })();

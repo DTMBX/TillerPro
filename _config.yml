@@ -1,5 +1,5 @@
 # #  Tillerstead.com — _config.yml
-# 
+#
 # ----------------------------
 # Site identity
 # ----------------------------
@@ -29,9 +29,9 @@ incremental: false
 strict_front_matter: false
 
 # Performance optimizations
-profile: false  # Set to true to profile build performance
+profile: false # Set to true to profile build performance
 quiet: false
-safe: false  # Allow plugins
+safe: false # Allow plugins
 
 # Source and destination
 source: .
@@ -165,8 +165,8 @@ author:
   url: "https://tillerstead.com/about/"
 
 webmaster_verifications:
-  google: ""  # Add Google Search Console verification code
-  bing: ""    # Add Bing Webmaster verification code
+  google: "" # Add Google Search Console verification code
+  bing: "" # Add Bing Webmaster verification code
 
 social:
   name: "Tillerstead LLC"
@@ -184,7 +184,6 @@ twitter:
 
 facebook:
   publisher: "https://www.facebook.com/share/17ZQCR2zdZ/?mibextid=wwXIfr"
-
 
 logo: "/assets/img/logo/logo-optimized.png"
 default_og_image: "/assets/img/social/tillerstead-showcase.jpg"
@@ -213,12 +212,12 @@ company:
   address_region: "NJ"
   address_postal_code: "08205"
   # Email addresses (ProtonMail end-to-end encrypted with catchall)
-  email: "info@tillerstead.com"          # General inquiries (default/fallback)
-  email_support: "support@tillerstead.com"  # Customer support and questions
-  email_sales: "sales@tillerstead.com"      # New business inquiries
-  email_quotes: "quotes@tillerstead.com"    # Quote requests and estimates
-  email_legal: "legal@tillerstead.com"      # Legal, licensing, and trademark inquiries
-  email_dmca: "dmca@tillerstead.com"        # Copyright and DMCA notices
+  email: "info@tillerstead.com" # General inquiries (default/fallback)
+  email_support: "support@tillerstead.com" # Customer support and questions
+  email_sales: "sales@tillerstead.com" # New business inquiries
+  email_quotes: "quotes@tillerstead.com" # Quote requests and estimates
+  email_legal: "legal@tillerstead.com" # Legal, licensing, and trademark inquiries
+  email_dmca: "dmca@tillerstead.com" # Copyright and DMCA notices
   email_warranty: "warranty@tillerstead.com" # Warranty claims and service
 
 # ----------------------------
@@ -233,7 +232,7 @@ ui:
 # Accessibility Settings
 # ----------------------------
 accessibility:
-  toolbar: false  # Set true to show a11y toolbar by default (or use ?a11y-tools URL param)
+  toolbar: false # Set true to show a11y toolbar by default (or use ?a11y-tools URL param)
   auto_detect_preferences: true
   text_to_speech: true
   visual_alerts: true

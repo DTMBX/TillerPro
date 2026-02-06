@@ -2,29 +2,36 @@
 layout: default
 build_guide: true
 toc: true
-title: "Shower Pans, Slopes & Drains"
-permalink: /build/shower-pans-slopes-drains/
+title: 'Shower Pans, Slopes & Drains'
+permalink: /build/phase-02/
 order: 2
-meta_title: "Shower Pan Slopes & Drains | Tillerstead Build Phase 2"
-meta_description: "How to properly slope shower pans, select drains, and prevent standing water in tile showers. TCNA-compliant methods."
-description: "Proper slope and drainage are the foundation of a leak-free shower. Learn TCNA requirements for shower pan construction."
-parent: "Build Phases"
-parent_url: "/build/"
-prev_phase: "/build/nj-codes-permits/"
-prev_phase_title: "Codes, Permits & Inspections"
-next_phase: "/build/waterproofing-systems/"
-next_phase_title: "Waterproofing Systems"
+meta_title: 'Shower Pan Slopes & Drains | Tillerstead Build Phase 2'
+meta_description:
+  'How to properly slope shower pans, select drains, and prevent standing water
+  in tile showers. TCNA-compliant methods.'
+description:
+  'Proper slope and drainage are the foundation of a leak-free shower. Learn
+  TCNA requirements for shower pan construction.'
+parent: 'Build Phases'
+parent_url: '/build/'
+prev_phase: '/build/nj-codes-permits/'
+prev_phase_title: 'Codes, Permits & Inspections'
+next_phase: '/build/waterproofing-systems/'
+next_phase_title: 'Waterproofing Systems'
 ---
 
 ## The Foundation of a Leak-Free Shower
 
-A properly sloped shower pan ensures water flows toward the drain—not pooling on the floor or seeping into walls. This isn't optional; it's required by TCNA standards and building codes.
+A properly sloped shower pan ensures water flows toward the drain—not pooling on
+the floor or seeping into walls. This isn't optional; it's required by TCNA
+standards and building codes.
 
 ## TCNA Slope Requirements
 
 **Minimum slope:** 1/4" per foot (2% grade) toward the drain
 
-This means for every 12 inches away from the drain, the floor must drop by at least 1/4 inch.
+This means for every 12 inches away from the drain, the floor must drop by at
+least 1/4 inch.
 
 ### Why This Matters
 
@@ -36,7 +43,8 @@ This means for every 12 inches away from the drain, the floor must drop by at le
 
 ### Pre-Sloped Foam Pans
 
-Lightweight, pre-formed foam pans with built-in slope. Popular for curbless and standard showers.
+Lightweight, pre-formed foam pans with built-in slope. Popular for curbless and
+standard showers.
 
 **Pros:** Consistent slope, lightweight, easy to cut  
 **Cons:** Requires proper substrate preparation

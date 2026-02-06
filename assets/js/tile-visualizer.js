@@ -34,7 +34,7 @@ class TileVisualizer {
     this.panY = 0;
 
     // Tile price
-    this.tilePrice = 5.00;
+    this.tilePrice = 5.0;
 
     this.init();
   }
@@ -60,9 +60,9 @@ class TileVisualizer {
     });
 
     // Tile size buttons
-    document.querySelectorAll('.tile-size-btn').forEach(btn => {
+    document.querySelectorAll('.tile-size-btn').forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        document.querySelectorAll('.tile-size-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tile-size-btn').forEach((b) => b.classList.remove('active'));
         e.target.classList.add('active');
         this.tileWidth = parseInt(e.target.dataset.width);
         this.tileHeight = parseInt(e.target.dataset.height);
@@ -76,7 +76,7 @@ class TileVisualizer {
       const w = parseFloat(document.getElementById('custom-width').value);
       const h = parseFloat(document.getElementById('custom-height').value);
       if (w && h && w > 0 && h > 0) {
-        document.querySelectorAll('.tile-size-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tile-size-btn').forEach((b) => b.classList.remove('active'));
         this.tileWidth = w;
         this.tileHeight = h;
         this.updateCalculations();
@@ -85,9 +85,9 @@ class TileVisualizer {
     });
 
     // Pattern buttons
-    document.querySelectorAll('.pattern-btn').forEach(btn => {
+    document.querySelectorAll('.pattern-btn').forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        document.querySelectorAll('.pattern-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.pattern-btn').forEach((b) => b.classList.remove('active'));
         e.currentTarget.classList.add('active');
         this.pattern = e.currentTarget.dataset.pattern;
         this.updatePatternInfo();
@@ -104,9 +104,9 @@ class TileVisualizer {
     });
 
     // Grout color buttons
-    document.querySelectorAll('.grout-color-btn').forEach(btn => {
+    document.querySelectorAll('.grout-color-btn').forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        document.querySelectorAll('.grout-color-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.grout-color-btn').forEach((b) => b.classList.remove('active'));
         e.target.classList.add('active');
         this.groutColor = e.target.dataset.color;
         document.getElementById('custom-grout-color').value = this.groutColor;
@@ -116,15 +116,15 @@ class TileVisualizer {
 
     // Custom grout color
     document.getElementById('custom-grout-color').addEventListener('input', (e) => {
-      document.querySelectorAll('.grout-color-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.grout-color-btn').forEach((b) => b.classList.remove('active'));
       this.groutColor = e.target.value;
       this.render();
     });
 
     // Tile color buttons
-    document.querySelectorAll('.tile-color-btn').forEach(btn => {
+    document.querySelectorAll('.tile-color-btn').forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        document.querySelectorAll('.tile-color-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tile-color-btn').forEach((b) => b.classList.remove('active'));
         e.target.classList.add('active');
         this.tileColor = e.target.dataset.color;
         document.getElementById('custom-tile-color').value = this.tileColor;
@@ -134,7 +134,7 @@ class TileVisualizer {
 
     // Custom tile color
     document.getElementById('custom-tile-color').addEventListener('input', (e) => {
-      document.querySelectorAll('.tile-color-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tile-color-btn').forEach((b) => b.classList.remove('active'));
       this.tileColor = e.target.value;
       this.render();
     });
@@ -169,7 +169,7 @@ class TileVisualizer {
       0.3125: '5/16"',
       0.375: '3/8"',
       0.4375: '7/16"',
-      0.5: '1/2"'
+      0.5: '1/2"',
     };
     const display = fractions[this.groutWidth] || `${this.groutWidth}"`;
     document.querySelector('.grout-width-display').textContent = display;
@@ -258,7 +258,8 @@ class TileVisualizer {
     for (let y = 0; y < roomHeight; y += tileH + grout) {
       const offset = (row % 2) * (tileW / 2);
       for (let x = -offset; x < roomWidth; x += tileW + grout) {
-        if (x + tileW > 0) { // Only draw if visible
+        if (x + tileW > 0) {
+          // Only draw if visible
           this.drawTile(x, y, tileW, tileH, grout);
         }
       }
@@ -341,12 +342,12 @@ class TileVisualizer {
     // Draw tile with slight variation for realism
     const variation = this.getTileColorVariation();
     this.ctx.fillStyle = variation;
-    this.ctx.fillRect(x + grout/2, y + grout/2, w, h);
+    this.ctx.fillRect(x + grout / 2, y + grout / 2, w, h);
 
     // Add subtle edge shadow for depth
     this.ctx.strokeStyle = 'rgba(0,0,0,0.1)';
     this.ctx.lineWidth = 1;
-    this.ctx.strokeRect(x + grout/2, y + grout/2, w, h);
+    this.ctx.strokeRect(x + grout / 2, y + grout / 2, w, h);
   }
 
   getTileColorVariation() {
@@ -361,11 +362,13 @@ class TileVisualizer {
 
   hexToRgb(hex) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : { r: 0, g: 0, b: 0 };
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
+      : { r: 0, g: 0, b: 0 };
   }
 
   drawDimensions(roomWidth, roomHeight, scale, offsetX, offsetY) {
@@ -405,7 +408,7 @@ class TileVisualizer {
     document.getElementById('tiles-needed').textContent = tilesNeeded;
 
     // Coverage percentage
-    const coverage = ((tilesNeeded * tileAreaSqFt) / roomArea * 100);
+    const coverage = ((tilesNeeded * tileAreaSqFt) / roomArea) * 100;
     document.getElementById('coverage-percent').textContent = coverage.toFixed(1) + '%';
 
     // Tiles with 10% waste
@@ -439,18 +442,28 @@ class TileVisualizer {
     document.getElementById('thinset-cost').textContent = '$' + thinsetCost;
 
     // Total materials cost
-    const totalCost = (parseFloat(tileCost) + parseFloat(groutCost) + parseFloat(thinsetCost)).toFixed(2);
+    const totalCost = (
+      parseFloat(tileCost) +
+      parseFloat(groutCost) +
+      parseFloat(thinsetCost)
+    ).toFixed(2);
     document.getElementById('materials-total').textContent = '$' + totalCost;
   }
 
   updatePatternInfo() {
     const info = {
-      straight: '<p><strong>Straight Pattern:</strong> Classic grid layout. Easiest to install, minimal waste (5-10%). Works well with any tile size. Best for rectangular tiles.</p>',
-      brick: '<p><strong>Brick/Offset Pattern:</strong> Each row offset by half tile width. Creates visual interest. Moderate waste (10-15%). Popular for subway tile.</p>',
-      herringbone: '<p><strong>Herringbone Pattern:</strong> Tiles laid in zigzag pattern at 45° or 90°. Adds visual complexity. Higher waste (15-20%). Requires precision cutting.</p>',
-      diagonal: '<p><strong>Diagonal Pattern:</strong> Tiles rotated 45° to room walls. Makes small spaces feel larger. Higher waste (15-20%) due to perimeter cuts.</p>',
-      basketweave: '<p><strong>Basketweave Pattern:</strong> Pairs of tiles alternating horizontal/vertical. Traditional look. Moderate waste (10-15%). Works best with square tiles.</p>',
-      vertical: '<p><strong>Vertical Pattern:</strong> Tiles installed vertically (especially for rectangular). Makes ceilings appear higher. Similar waste to straight pattern.</p>'
+      straight:
+        '<p><strong>Straight Pattern:</strong> Classic grid layout. Easiest to install, minimal waste (5-10%). Works well with any tile size. Best for rectangular tiles.</p>',
+      brick:
+        '<p><strong>Brick/Offset Pattern:</strong> Each row offset by half tile width. Creates visual interest. Moderate waste (10-15%). Popular for subway tile.</p>',
+      herringbone:
+        '<p><strong>Herringbone Pattern:</strong> Tiles laid in zigzag pattern at 45° or 90°. Adds visual complexity. Higher waste (15-20%). Requires precision cutting.</p>',
+      diagonal:
+        '<p><strong>Diagonal Pattern:</strong> Tiles rotated 45° to room walls. Makes small spaces feel larger. Higher waste (15-20%) due to perimeter cuts.</p>',
+      basketweave:
+        '<p><strong>Basketweave Pattern:</strong> Pairs of tiles alternating horizontal/vertical. Traditional look. Moderate waste (10-15%). Works best with square tiles.</p>',
+      vertical:
+        '<p><strong>Vertical Pattern:</strong> Tiles installed vertically (especially for rectangular). Makes ceilings appear higher. Similar waste to straight pattern.</p>',
     };
 
     document.getElementById('pattern-info').innerHTML = info[this.pattern] || info.straight;
@@ -484,7 +497,7 @@ class TileVisualizer {
       tileColor: this.tileColor,
       pattern: this.pattern,
       tilePrice: this.tilePrice,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     localStorage.setItem('tileDesign', JSON.stringify(design));
@@ -521,7 +534,7 @@ class TileVisualizer {
       document.getElementById('tile-price').value = this.tilePrice;
 
       // Update active buttons
-      document.querySelectorAll('.pattern-btn').forEach(btn => {
+      document.querySelectorAll('.pattern-btn').forEach((btn) => {
         btn.classList.toggle('active', btn.dataset.pattern === this.pattern);
       });
 
@@ -554,7 +567,11 @@ class TileVisualizer {
     tempCtx.fillStyle = 'rgba(0, 0, 0, 0.5)';
     tempCtx.font = '14px Arial';
     tempCtx.textAlign = 'right';
-    tempCtx.fillText('Created with Tillerstead Visualizer', tempCanvas.width - 10, tempCanvas.height - 10);
+    tempCtx.fillText(
+      'Created with Tillerstead Visualizer',
+      tempCanvas.width - 10,
+      tempCanvas.height - 10
+    );
 
     // Download
     tempCanvas.toBlob((blob) => {

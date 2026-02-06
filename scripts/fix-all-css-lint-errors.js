@@ -40,7 +40,12 @@ for (let i = 0; i < lines.length; i++) {
     inBlock = false;
     seenPropertiesInBlock.clear();
     fixedLines.push(line);
-  } else if (inBlock && trimmed.includes(':') && !trimmed.startsWith('/*') && !trimmed.startsWith('*')) {
+  } else if (
+    inBlock &&
+    trimmed.includes(':') &&
+    !trimmed.startsWith('/*') &&
+    !trimmed.startsWith('*')
+  ) {
     // Extract property name
     const propMatch = trimmed.match(/^\s*([a-z-]+)\s*:/);
     if (propMatch) {

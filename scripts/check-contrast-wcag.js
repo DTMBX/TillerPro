@@ -36,11 +36,7 @@ const ROOT = join(__dirname, '..');
 function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
-    ? [
-      parseInt(result[1], 16),
-      parseInt(result[2], 16),
-      parseInt(result[3], 16),
-    ]
+    ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
     : null;
 }
 
@@ -248,8 +244,7 @@ function runContrastAudit() {
         normalText: wcagLevel,
         largeText: wcagLevelLarge,
       },
-      status:
-        wcagLevel === 'AAA' ? 'PASS' : wcagLevel === 'AA' ? 'WARNING' : 'FAIL',
+      status: wcagLevel === 'AAA' ? 'PASS' : wcagLevel === 'AA' ? 'WARNING' : 'FAIL',
     };
 
     if (result.status === 'PASS') {
@@ -267,10 +262,7 @@ function runContrastAudit() {
   });
 
   // Write JSON report
-  writeFileSync(
-    join(ROOT, 'contrast-audit-report.json'),
-    JSON.stringify(REPORT, null, 2),
-  );
+  writeFileSync(join(ROOT, 'contrast-audit-report.json'), JSON.stringify(REPORT, null, 2));
 
   // Write Markdown report
   let markdown = `# WCAG 2.1 Contrast Audit Report
@@ -318,8 +310,7 @@ function runContrastAudit() {
     markdown += `\n### ❌ Non-Compliant (${failed.length})\n\n`;
     failed.forEach((result) => {
       markdown += `- **${result.combination}**: ${result.contrastRatio}:1 ⚠️\n`;
-      markdown +=
-        '  - Recommendation: Adjust colors or use different combination\n';
+      markdown += '  - Recommendation: Adjust colors or use different combination\n';
     });
   }
 
@@ -352,9 +343,7 @@ function runContrastAudit() {
 
   // Print summary
   console.log('\n📊 Summary:');
-  console.log(
-    `   AAA Compliant: ${REPORT.passAAA}/${REPORT.totalCombinations}`,
-  );
+  console.log(`   AAA Compliant: ${REPORT.passAAA}/${REPORT.totalCombinations}`);
   console.log(`   AA Only: ${REPORT.passAA}`);
   console.log(`   Failures: ${REPORT.failures}`);
   console.log('\n📄 Reports written to:');

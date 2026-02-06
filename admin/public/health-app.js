@@ -55,7 +55,7 @@ function updateHealthStatus(health) {
   const statusText = {
     healthy: 'All Systems Operational',
     warning: 'Performance Degraded',
-    critical: 'Critical Issues Detected'
+    critical: 'Critical Issues Detected',
   };
 
   let text = statusText[health.status] || 'Unknown Status';
@@ -83,45 +83,35 @@ function updateCurrentMetrics(metrics) {
   document.getElementById('uptime').textContent = uptimeHours;
 
   // Requests
-  document.getElementById('request-count').textContent =
-    (metrics.requests?.total || 0).toLocaleString();
+  document.getElementById('request-count').textContent = (
+    metrics.requests?.total || 0
+  ).toLocaleString();
 }
 
 function updatePerformanceMetrics(performance) {
-  document.getElementById('avg-response').textContent =
-    performance.avgResponseTime || '—';
+  document.getElementById('avg-response').textContent = performance.avgResponseTime || '—';
 
-  document.getElementById('requests-per-min').textContent =
-    performance.requestsPerMinute || 0;
+  document.getElementById('requests-per-min').textContent = performance.requestsPerMinute || 0;
 
-  document.getElementById('error-rate').textContent =
-    (performance.errorRate || 0) + '%';
+  document.getElementById('error-rate').textContent = (performance.errorRate || 0) + '%';
 
-  document.getElementById('max-response').textContent =
-    performance.maxResponseTime || '—';
+  document.getElementById('max-response').textContent = performance.maxResponseTime || '—';
 }
 
 function updateSystemInfo(system) {
-  document.getElementById('platform').textContent =
-    system.platform || '—';
+  document.getElementById('platform').textContent = system.platform || '—';
 
-  document.getElementById('architecture').textContent =
-    system.architecture || '—';
+  document.getElementById('architecture').textContent = system.architecture || '—';
 
-  document.getElementById('node-version').textContent =
-    system.nodeVersion || '—';
+  document.getElementById('node-version').textContent = system.nodeVersion || '—';
 
-  document.getElementById('cpu-count').textContent =
-    system.cpuCount || '—';
+  document.getElementById('cpu-count').textContent = system.cpuCount || '—';
 
-  document.getElementById('total-memory').textContent =
-    formatBytes(system.totalMemory);
+  document.getElementById('total-memory').textContent = formatBytes(system.totalMemory);
 
-  document.getElementById('free-memory').textContent =
-    formatBytes(system.freeMemory);
+  document.getElementById('free-memory').textContent = formatBytes(system.freeMemory);
 
-  document.getElementById('process-uptime').textContent =
-    formatUptime(system.processUptime);
+  document.getElementById('process-uptime').textContent = formatUptime(system.processUptime);
 }
 
 function updateProgressBar(id, value) {

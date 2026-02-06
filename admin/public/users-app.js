@@ -78,7 +78,9 @@ function displayUsers(users) {
     return;
   }
 
-  tbody.innerHTML = users.map(user => `
+  tbody.innerHTML = users
+    .map(
+      (user) => `
     <tr>
       <td><strong>${user.username}</strong></td>
       <td>${user.email}</td>
@@ -97,18 +99,24 @@ function displayUsers(users) {
           <button class="btn-icon btn-edit" onclick="editUser('${user.username}')" title="Edit">
             ✏️
           </button>
-          ${user.username !== 'admin' ? `
+          ${
+            user.username !== 'admin'
+              ? `
             <button class="btn-icon btn-toggle" onclick="toggleUserStatus('${user.username}', ${!user.isActive})" title="${user.isActive ? 'Deactivate' : 'Activate'}">
               ${user.isActive ? '🔒' : '🔓'}
             </button>
             <button class="btn-icon btn-delete" onclick="deleteUser('${user.username}')" title="Delete">
               🗑️
             </button>
-          ` : '<span style="color: #cbd5e0; font-size: 12px;">Protected</span>'}
+          `
+              : '<span style="color: #cbd5e0; font-size: 12px;">Protected</span>'
+          }
         </div>
       </td>
     </tr>
-  `).join('');
+  `
+    )
+    .join('');
 }
 
 // ==
@@ -130,7 +138,7 @@ function openCreateUserModal() {
 
 // eslint-disable-next-line no-unused-vars
 function editUser(username) {
-  editingUser = users.find(u => u.username === username);
+  editingUser = users.find((u) => u.username === username);
 
   if (!editingUser) return;
 
@@ -174,7 +182,7 @@ async function saveUser(event) {
     const body = {
       username,
       email,
-      role
+      role,
     };
 
     // Only include password if provided
@@ -185,7 +193,7 @@ async function saveUser(event) {
     const response = await fetch(endpoint, {
       method,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
 
     const data = await response.json();
@@ -215,7 +223,7 @@ async function deleteUser(username) {
 
   try {
     const response = await fetch(`/api/users/${username}`, {
-      method: 'DELETE'
+      method: 'DELETE',
     });
 
     if (!response.ok) {
@@ -241,7 +249,7 @@ async function toggleUserStatus(username, newStatus) {
     const response = await fetch(`/api/users/${username}/status`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ isActive: newStatus })
+      body: JSON.stringify({ isActive: newStatus }),
     });
 
     if (!response.ok) {

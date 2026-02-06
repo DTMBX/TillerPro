@@ -3,7 +3,7 @@
  * Real-time activity feed, project counter, review highlights
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ==
@@ -29,11 +29,36 @@
     // Live Activity Feed
     setupLiveActivityFeed() {
       const activities = [
-        { type: 'quote', text: 'John D. just requested a quote', location: 'Atlantic County', time: '3 min ago' },
-        { type: 'review', text: 'Sarah M. left a 5-star review', location: 'Ocean County', time: '12 min ago' },
-        { type: 'project', text: 'New bathroom project started', location: 'Cape May County', time: '25 min ago' },
-        { type: 'quote', text: 'Mike R. used the tile calculator', location: 'Atlantic County', time: '38 min ago' },
-        { type: 'completion', text: 'Kitchen renovation completed', location: 'Ocean County', time: '1 hour ago' }
+        {
+          type: 'quote',
+          text: 'John D. just requested a quote',
+          location: 'Atlantic County',
+          time: '3 min ago',
+        },
+        {
+          type: 'review',
+          text: 'Sarah M. left a 5-star review',
+          location: 'Ocean County',
+          time: '12 min ago',
+        },
+        {
+          type: 'project',
+          text: 'New bathroom project started',
+          location: 'Cape May County',
+          time: '25 min ago',
+        },
+        {
+          type: 'quote',
+          text: 'Mike R. used the tile calculator',
+          location: 'Atlantic County',
+          time: '38 min ago',
+        },
+        {
+          type: 'completion',
+          text: 'Kitchen renovation completed',
+          location: 'Ocean County',
+          time: '1 hour ago',
+        },
       ];
 
       this.activities = activities;
@@ -57,11 +82,15 @@
       setTimeout(showNextActivity, 10000);
 
       // Show new activity every 45-90 seconds
-      setInterval(() => {
-        if (Math.random() > 0.3) { // 70% chance
-          showNextActivity();
-        }
-      }, 60000 + Math.random() * 30000);
+      setInterval(
+        () => {
+          if (Math.random() > 0.3) {
+            // 70% chance
+            showNextActivity();
+          }
+        },
+        60000 + Math.random() * 30000
+      );
     }
 
     showActivityNotification(activity) {
@@ -97,7 +126,7 @@
         review: '⭐',
         project: '🔨',
         completion: '✅',
-        calculator: '🧮'
+        calculator: '🧮',
       };
       return icons[type] || '📌';
     }
@@ -106,7 +135,7 @@
     setupProjectCounter() {
       const counters = document.querySelectorAll('[data-counter]');
 
-      counters.forEach(counter => {
+      counters.forEach((counter) => {
         const target = parseInt(counter.dataset.target);
         const duration = parseInt(counter.dataset.duration) || 2000;
 
@@ -120,7 +149,7 @@
       let current = start;
 
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const timer = setInterval(() => {
               current += increment;
@@ -163,21 +192,50 @@
     // Trust Badges
     setupTrustBadges() {
       const badges = [
-        { id: 'licensed', icon: '✓', text: 'NJ Licensed HIC', tooltip: 'New Jersey Home Improvement Contractor License' },
-        { id: 'insured', icon: '🛡️', text: 'Fully Insured', tooltip: 'Comprehensive liability & workers comp insurance' },
-        { id: 'tcna', icon: '📜', text: 'TCNA Compliant', tooltip: 'Work follows TCNA Handbook standards' },
-        { id: 'guarantee', icon: '⭐', text: '5-Year Guarantee', tooltip: 'Workmanship guaranteed for 5 years' },
-        { id: 'reviews', icon: '💬', text: '50+ 5-Star Reviews', tooltip: 'Rated 5.0 on multiple platforms' }
+        {
+          id: 'licensed',
+          icon: '✓',
+          text: 'NJ Licensed HIC',
+          tooltip: 'New Jersey Home Improvement Contractor License',
+        },
+        {
+          id: 'insured',
+          icon: '🛡️',
+          text: 'Fully Insured',
+          tooltip: 'Comprehensive liability & workers comp insurance',
+        },
+        {
+          id: 'tcna',
+          icon: '📜',
+          text: 'TCNA Compliant',
+          tooltip: 'Work follows TCNA Handbook standards',
+        },
+        {
+          id: 'guarantee',
+          icon: '⭐',
+          text: '5-Year Guarantee',
+          tooltip: 'Workmanship guaranteed for 5 years',
+        },
+        {
+          id: 'reviews',
+          icon: '💬',
+          text: '50+ 5-Star Reviews',
+          tooltip: 'Rated 5.0 on multiple platforms',
+        },
       ];
 
       const container = document.getElementById('trust-badges');
       if (container) {
-        container.innerHTML = badges.map(badge => `
+        container.innerHTML = badges
+          .map(
+            (badge) => `
           <div class="trust-badge" data-tooltip="${badge.tooltip}">
             <span class="badge-icon">${badge.icon}</span>
             <span class="badge-text">${badge.text}</span>
           </div>
-        `).join('');
+        `
+          )
+          .join('');
       }
     }
 
@@ -203,7 +261,7 @@
         'Someone from Atlantic County just requested a quote',
         'A new 5-star review was just posted',
         'Project completed in Ocean County this week',
-        '3 people are currently using the tile calculator'
+        '3 people are currently using the tile calculator',
       ];
 
       const banner = document.getElementById('recent-activity-banner');
@@ -237,7 +295,7 @@
     setupImageComparison() {
       const comparisons = document.querySelectorAll('.before-after');
 
-      comparisons.forEach(container => {
+      comparisons.forEach((container) => {
         const slider = container.querySelector('.slider');
         const beforeImage = container.querySelector('.before');
         const afterImage = container.querySelector('.after');
@@ -291,22 +349,22 @@
       const filters = document.querySelectorAll('[data-filter]');
       const items = document.querySelectorAll('[data-category]');
 
-      filters.forEach(filter => {
+      filters.forEach((filter) => {
         filter.addEventListener('click', () => {
           const category = filter.dataset.filter;
 
           // Update active filter
-          filters.forEach(f => f.classList.remove('active'));
+          filters.forEach((f) => f.classList.remove('active'));
           filter.classList.add('active');
 
           // Filter items
-          items.forEach(item => {
+          items.forEach((item) => {
             if (category === 'all' || item.dataset.category === category) {
               item.style.display = 'block';
               setTimeout(() => item.classList.add('visible'), 10);
             } else {
               item.classList.remove('visible');
-              setTimeout(() => item.style.display = 'none', 300);
+              setTimeout(() => (item.style.display = 'none'), 300);
             }
           });
         });
@@ -316,7 +374,7 @@
     setupLightbox() {
       const galleryImages = document.querySelectorAll('.gallery-item img');
 
-      galleryImages.forEach(img => {
+      galleryImages.forEach((img) => {
         img.addEventListener('click', () => {
           this.openLightbox(img.src, img.alt);
         });
@@ -386,7 +444,7 @@
         `;
 
         day.addEventListener('click', () => {
-          document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
+          document.querySelectorAll('.calendar-day').forEach((d) => d.classList.remove('selected'));
           day.classList.add('selected');
           this.selectedDate = day.dataset.date;
           this.loadTimeSlots(date);
@@ -405,18 +463,22 @@
       container.innerHTML = `
         <h4>Available Times for ${date.toLocaleDateString()}</h4>
         <div class="time-slots-grid">
-          ${slots.map(slot => `
+          ${slots
+            .map(
+              (slot) => `
             <button class="time-slot" data-time="${slot}">
               ${this.formatTime(slot)}
             </button>
-          `).join('')}
+          `
+            )
+            .join('')}
         </div>
       `;
 
       // Add click handlers
-      container.querySelectorAll('.time-slot').forEach(slot => {
+      container.querySelectorAll('.time-slot').forEach((slot) => {
         slot.addEventListener('click', () => {
-          container.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+          container.querySelectorAll('.time-slot').forEach((s) => s.classList.remove('selected'));
           slot.classList.add('selected');
           this.selectedTime = slot.dataset.time;
           this.enableBooking();
@@ -477,7 +539,7 @@
         const response = await fetch('/api/appointments/book', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
 
         if (response.ok) {
@@ -492,10 +554,10 @@
     showConfirmation(data) {
       const modal = document.getElementById('appointment-confirmation');
       if (modal) {
-        modal.querySelector('.confirmation-date').textContent =
-          new Date(data.date).toLocaleDateString();
-        modal.querySelector('.confirmation-time').textContent =
-          this.formatTime(data.time);
+        modal.querySelector('.confirmation-date').textContent = new Date(
+          data.date
+        ).toLocaleDateString();
+        modal.querySelector('.confirmation-time').textContent = this.formatTime(data.time);
         modal.classList.add('show');
       }
     }
@@ -513,5 +575,4 @@
     window.beforeAfter = new BeforeAfterGallery();
     window.scheduler = new AppointmentScheduler();
   }
-
 })();

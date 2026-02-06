@@ -45,16 +45,11 @@
 
   // Observe all images with data-src or data-srcset attributes
   document.addEventListener('DOMContentLoaded', () => {
-    const lazyImages = document.querySelectorAll(
-      'img[data-src], img[data-srcset]',
-    );
+    const lazyImages = document.querySelectorAll('img[data-src], img[data-srcset]');
     lazyImages.forEach((img) => {
       // Enforce descriptive alt text for accessibility and legal compliance
       if (!img.hasAttribute('alt') || !img.getAttribute('alt').trim()) {
-        img.setAttribute(
-          'alt',
-          'Decorative image – Tillerstead New Jersey HIC compliant',
-        );
+        img.setAttribute('alt', 'Decorative image – Tillerstead New Jersey HIC compliant');
       }
       imageObserver.observe(img);
     });

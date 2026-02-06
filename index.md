@@ -2,13 +2,20 @@
 layout: default
 title: Home
 permalink: /
-meta_title: "Expert Tile & Waterproofing Contractor in South Jersey | Tillerstead LLC"
-meta_description: "South Jersey's trusted tile installation & waterproofing experts. Licensed NJ HIC #13VH10808800. TCNA-compliant showers, bathroom remodeling & leak-proof systems. 5-Star rated. Free estimates in Atlantic, Ocean & Cape May Counties."
-description: "Professional tile installation and waterproofing services for South Jersey homeowners. Expert craftsmanship, industry-leading warranties, and TCNA-compliant methods. Licensed NJ HIC #13VH10808800."
+meta_title:
+  'Expert Tile & Waterproofing Contractor in South Jersey | Tillerstead LLC'
+meta_description:
+  "South Jersey's trusted tile installation & waterproofing experts. Licensed NJ
+  HIC #13VH10808800. TCNA-compliant showers, bathroom remodeling & leak-proof
+  systems. 5-Star rated. Free estimates in Atlantic, Ocean & Cape May Counties."
+description:
+  'Professional tile installation and waterproofing services for South Jersey
+  homeowners. Expert craftsmanship, industry-leading warranties, and
+  TCNA-compliant methods. Licensed NJ HIC #13VH10808800.'
 body_class: page-home
 is_home: true
 schema_type: LocalBusiness
-canonical_url: "https://tillerstead.com/"
+canonical_url: 'https://tillerstead.com/'
 priority: 1.0
 sitemap:
   changefreq: weekly
@@ -24,41 +31,47 @@ preload_assets:
 robots: index, follow
 og_type: website
 og_image: /assets/images/og-home.webp
-og_title: "South Jersey's Premier Tile & Waterproofing Experts | Tillerstead LLC"
-og_description: "Transform your bathroom with leak-proof tile showers & expert waterproofing. Licensed, insured & 5-star rated. Serving Atlantic, Ocean & Cape May Counties."
+og_title:
+  "South Jersey's Premier Tile & Waterproofing Experts | Tillerstead LLC"
+og_description:
+  'Transform your bathroom with leak-proof tile showers & expert waterproofing.
+  Licensed, insured & 5-star rated. Serving Atlantic, Ocean & Cape May Counties.'
 twitter_card: summary_large_image
-twitter_title: "Expert Tile & Waterproofing in South Jersey | Tillerstead LLC"
-twitter_description: "TCNA-compliant tile installation & waterproofing. Licensed NJ contractor with 5-star reviews. Free estimates!"
-keywords: "tile contractor South Jersey, waterproofing contractor NJ, bathroom remodeling Atlantic County, tile shower installation, TCNA certified, Ocean County tile installer, Cape May bathroom contractor"
+twitter_title: 'Expert Tile & Waterproofing in South Jersey | Tillerstead LLC'
+twitter_description:
+  'TCNA-compliant tile installation & waterproofing. Licensed NJ contractor with
+  5-star reviews. Free estimates!'
+keywords:
+  'tile contractor South Jersey, waterproofing contractor NJ, bathroom
+  remodeling Atlantic County, tile shower installation, TCNA certified, Ocean
+  County tile installer, Cape May bathroom contractor'
 ---
 
-{%- comment -%}
-  ====
-  TILLERSTEAD HOMEPAGE - Conversion-Optimized Architecture
-  ====
-  
-  Performance & SEO Optimizations:
-  - Critical CSS inlined via layout
-  - Lazy loading for below-fold content
-  - Structured data for rich snippets
-  - Core Web Vitals optimized (LCP, FID, CLS)
+# {%- comment -%} ==== TILLERSTEAD HOMEPAGE - Conversion-Optimized Architecture
 
-  1. Hero - ATTENTION: Bold value prop + social proof + urgency
-  2. Trust Bar - INTEREST: Instant credibility (license, 5-star reviews)
-  3. Services - INTEREST: Solution-focused offerings
-  4. Social Proof - DESIRE: Testimonials near decision point
-  5. Why Us - DESIRE: Unique differentiators
-  6. Process - DESIRE: Remove friction, build confidence
-  7. Portfolio - DESIRE: Visual proof of quality
-  8. Materials - DESIRE: Technical authority
-  9. FAQ - DESIRE: Objection handling
-  10. CTA - ACTION: Low-friction conversion
-  
-  A/B Testing Notes:
-  - Hero CTA variations tracked
-  - Trust bar position tested (winner: after hero)
-  - Testimonials moved higher for social proof impact
-{%- endcomment -%}
+Performance & SEO Optimizations:
+
+- Critical CSS inlined via layout
+- Lazy loading for below-fold content
+- Structured data for rich snippets
+- Core Web Vitals optimized (LCP, FID, CLS)
+
+1. Hero - ATTENTION: Bold value prop + social proof + urgency
+2. Trust Bar - INTEREST: Instant credibility (license, 5-star reviews)
+3. Services - INTEREST: Solution-focused offerings
+4. Social Proof - DESIRE: Testimonials near decision point
+5. Why Us - DESIRE: Unique differentiators
+6. Process - DESIRE: Remove friction, build confidence
+7. Portfolio - DESIRE: Visual proof of quality
+8. Materials - DESIRE: Technical authority
+9. FAQ - DESIRE: Objection handling
+10. CTA - ACTION: Low-friction conversion
+
+A/B Testing Notes:
+
+- Hero CTA variations tracked
+- Trust bar position tested (winner: after hero)
+- Testimonials moved higher for social proof impact {%- endcomment -%}
 
 {% assign data = site.data.home %}
 
@@ -68,7 +81,9 @@ keywords: "tile contractor South Jersey, waterproofing contractor NJ, bathroom r
 </section>
 
 <!-- Trust Bar - Immediate Credibility (Critical for Conversion) -->
+
 {% if data.trust_bar %}
+
 <section id="trust" aria-label="{{ data.trust_bar.aria_label | default: 'Credentials and protections' }}" class="scroll-fade-in">
 {% include sections/section-trust-bar.html data=data.trust_bar %}
 </section>
@@ -85,7 +100,9 @@ keywords: "tile contractor South Jersey, waterproofing contractor NJ, bathroom r
 </section>
 
 <!-- Why Choose Us - Competitive Differentiation -->
+
 {% if data.why_us %}
+
 <section id="why-us" aria-labelledby="why-us-heading" class="scroll-scale-in">
 {% include sections/section-why-us.html data=data.why_us %}
 </section>
@@ -97,7 +114,9 @@ keywords: "tile contractor South Jersey, waterproofing contractor NJ, bathroom r
 </section>
 
 <!-- Portfolio/Gallery - Visual Social Proof -->
+
 {% if data.portfolio %}
+
 <section id="portfolio" aria-labelledby="portfolio-heading" loading="lazy" class="scroll-scale-in">
 {% include sections/section-portfolio.html data=data.portfolio %}
 </section>
@@ -109,7 +128,9 @@ keywords: "tile contractor South Jersey, waterproofing contractor NJ, bathroom r
 </section>
 
 <!-- FAQ Section - Objection Handling -->
+
 {% if data.faq %}
+
 <section id="faq" aria-labelledby="faq-heading" class="scroll-scale-in">
 {% include sections/section-faq.html data=data.faq %}
 </section>

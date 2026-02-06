@@ -1,14 +1,9 @@
-{%- comment -%} Homepage Portfolio Preview Include Displays a brief portfolio
-teaser with CTA Usage: {% include sections/home-portfolio-preview.html %} {%-
-endcomment -%} {%- assign eyebrow = include.eyebrow | default: "Our Work" -%}
-{%- assign title = include.title | default: "Bathrooms Built for South Jersey"
--%} {%- assign summary = include.summary | default: "See completed tile and
-bathroom projects in Atlantic, Ocean & Cape May Counties." -%}
+{%- comment -%} Homepage Portfolio Preview Include Displays a brief portfolio teaser with CTA Usage: {% include
+sections/home-portfolio-preview.html %} {%- endcomment -%} {%- assign eyebrow = include.eyebrow | default: "Our Work"
+-%} {%- assign title = include.title | default: "Bathrooms Built for South Jersey" -%} {%- assign summary =
+include.summary | default: "See completed tile and bathroom projects in Atlantic, Ocean & Cape May Counties." -%}
 
-<section
-  class="ts-section ts-portfolio-preview bg-soft"
-  aria-labelledby="portfolio-preview-title"
->
+<section class="ts-section ts-portfolio-preview bg-soft" aria-labelledby="portfolio-preview-title">
   <div class="container">
     <header class="section-header text-center">
       <span class="eyebrow">{{ eyebrow }}</span>
@@ -19,10 +14,7 @@ bathroom projects in Atlantic, Ocean & Cape May Counties." -%}
     </header>
 
     <div class="section-action text-center">
-      <a href="{{ '/portfolio/' | relative_url }}" class="btn btn--primary"
-        >See Completed Projects</a
-      >
+      <a href="{{ '/portfolio/' | relative_url }}" class="btn btn--primary">See Completed Projects</a>
     </div>
   </div>
 </section>
-

@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   // // // // // // // // // // // // // // // console.log('[TILLERSTEAD] Initializing - No Bounce Edition'); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
@@ -24,12 +24,16 @@
     }
 
     // Use requestAnimationFrame to prevent jank
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateHeader);
-        ticking = true;
-      }
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateHeader);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
   }
 
   // Rest of navigation code...
@@ -40,21 +44,21 @@
     // Desktop dropdown navigation
     const dropdowns = document.querySelectorAll('.has-dropdown');
 
-    dropdowns.forEach(item => {
+    dropdowns.forEach((item) => {
       const trigger = item.querySelector('.desktop-nav__trigger');
       const dropdown = item.querySelector('.desktop-nav__dropdown');
 
       if (!trigger || !dropdown) return;
 
       // Click handler
-      trigger.addEventListener('click', e => {
+      trigger.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
 
         const isOpen = item.classList.contains('is-open');
 
         // Close all other dropdowns
-        dropdowns.forEach(other => {
+        dropdowns.forEach((other) => {
           if (other !== item) {
             other.classList.remove('is-open');
             const t = other.querySelector('.desktop-nav__trigger');
@@ -98,9 +102,9 @@
     });
 
     // Close dropdowns when clicking outside
-    document.addEventListener('click', e => {
+    document.addEventListener('click', (e) => {
       if (!e.target.closest('.has-dropdown')) {
-        dropdowns.forEach(item => {
+        dropdowns.forEach((item) => {
           item.classList.remove('is-open');
           const t = item.querySelector('.desktop-nav__trigger');
           if (t) t.setAttribute('aria-expanded', 'false');
@@ -109,9 +113,9 @@
     });
 
     // Close dropdowns on ESC key
-    document.addEventListener('keydown', e => {
+    document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        dropdowns.forEach(item => {
+        dropdowns.forEach((item) => {
           item.classList.remove('is-open');
           const t = item.querySelector('.desktop-nav__trigger');
           if (t) t.setAttribute('aria-expanded', 'false');
@@ -151,8 +155,8 @@
 
     // Mobile accordions
     const accordions = document.querySelectorAll('.mobile-nav__accordion-trigger');
-    accordions.forEach(acc => {
-      acc.addEventListener('click', function() {
+    accordions.forEach((acc) => {
+      acc.addEventListener('click', function () {
         const isOpen = this.getAttribute('aria-expanded') === 'true';
         const panel = this.nextElementSibling;
         this.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
@@ -162,16 +166,19 @@
   }
 
   function initAnimations() {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
 
-    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
   }
 
   // Don't force scroll styles - let scroll-fix.js handle it
@@ -184,7 +191,7 @@
  * Handles: Form feedback, back-to-top, loading states, error visibility
  */
 
-(function() {
+(function () {
   'use strict';
 
   const UXEnhancements = {
@@ -215,22 +222,26 @@
 
       // Show/hide based on scroll
       let scrollTimeout;
-      window.addEventListener('scroll', () => {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-          if (window.pageYOffset > 400) {
-            btn.classList.add('visible');
-          } else {
-            btn.classList.remove('visible');
-          }
-        }, 100);
-      }, { passive: true });
+      window.addEventListener(
+        'scroll',
+        () => {
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            if (window.pageYOffset > 400) {
+              btn.classList.add('visible');
+            } else {
+              btn.classList.remove('visible');
+            }
+          }, 100);
+        },
+        { passive: true }
+      );
 
       // Scroll to top on click
       btn.addEventListener('click', () => {
         window.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
 
         // Focus skip link after scrolling
@@ -247,7 +258,7 @@
     initFormEnhancements() {
       const forms = document.querySelectorAll('form[action]');
 
-      forms.forEach(form => {
+      forms.forEach((form) => {
         form.addEventListener('submit', (e) => {
           // Skip if form is invalid
           if (!form.checkValidity()) {
@@ -273,7 +284,7 @@
 
         // Real-time validation on blur
         const inputs = form.querySelectorAll('input, textarea, select');
-        inputs.forEach(input => {
+        inputs.forEach((input) => {
           input.addEventListener('blur', () => {
             this.validateField(input);
           });
@@ -290,7 +301,7 @@
       // Check for success message on load
       if (sessionStorage.getItem('form-submitted') === 'true') {
         sessionStorage.removeItem('form-submitted');
-        this.showSuccessToast('Thank you! We\'ll get back to you soon.');
+        this.showSuccessToast("Thank you! We'll get back to you soon.");
       }
     },
 
@@ -333,7 +344,7 @@
       const invalidFields = form.querySelectorAll(':invalid');
 
       // Validate all invalid fields
-      invalidFields.forEach(field => this.validateField(field));
+      invalidFields.forEach((field) => this.validateField(field));
 
       // Create or update error summary
       let errorSummary = form.querySelector('.error-summary');
@@ -348,11 +359,13 @@
       errorSummary.innerHTML = `
         <strong class="error-summary__title">Please fix the following errors:</strong>
         <ul class="error-list">
-          ${Array.from(invalidFields).map(field => {
-    const label = form.querySelector(`label[for="${field.id}"]`);
-    const fieldName = label ? label.textContent : field.name;
-    return `<li><a href="#${field.id}">${fieldName}: ${field.validationMessage}</a></li>`;
-  }).join('')}
+          ${Array.from(invalidFields)
+            .map((field) => {
+              const label = form.querySelector(`label[for="${field.id}"]`);
+              const fieldName = label ? label.textContent : field.name;
+              return `<li><a href="#${field.id}">${fieldName}: ${field.validationMessage}</a></li>`;
+            })
+            .join('')}
         </ul>
       `;
 
@@ -373,8 +386,8 @@
       // Add loading state to buttons with data-loading attribute
       const loadingButtons = document.querySelectorAll('[data-loading]');
 
-      loadingButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
+      loadingButtons.forEach((btn) => {
+        btn.addEventListener('click', function () {
           this.classList.add('btn--loading');
           this.setAttribute('aria-busy', 'true');
           this.disabled = true;
@@ -507,7 +520,8 @@
       if (skipLink) {
         skipLink.addEventListener('click', (e) => {
           e.preventDefault();
-          const mainContent = document.getElementById('main-content') || document.querySelector('main');
+          const mainContent =
+            document.getElementById('main-content') || document.querySelector('main');
           if (mainContent) {
             mainContent.setAttribute('tabindex', '-1');
             mainContent.focus();
@@ -539,7 +553,7 @@
     trapFocusInModals() {
       const modals = document.querySelectorAll('[role="dialog"], .modal, .lead-magnet');
 
-      modals.forEach(modal => {
+      modals.forEach((modal) => {
         const observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
             if (mutation.attributeName === 'aria-hidden') {
@@ -561,7 +575,7 @@
 
         observer.observe(modal, { attributes: true });
       });
-    }
+    },
   };
 
   // Initialize on DOM ready
@@ -573,7 +587,6 @@
 
   // Expose global API
   window.tsUXEnhancements = UXEnhancements;
-
 })();
 
 /**
@@ -581,7 +594,7 @@
  * Now uses ScrollLockManager for centralized control
  */
 
-(function() {
+(function () {
   'use strict';
 
   const MOBILE_BREAKPOINT = 1080;
@@ -632,33 +645,36 @@
   // Start observing
   observer.observe(document.body, {
     attributes: true,
-    attributeFilter: ['class']
+    attributeFilter: ['class'],
   });
 
   // Handle window resize - close mobile nav if resized to desktop
   let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      // If we're on desktop and nav is open, close it
-      if (!isMobile() && navIsOpen) {
-        document.body.classList.remove('nav-open');
-        enableBodyScroll();
+  window.addEventListener(
+    'resize',
+    () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        // If we're on desktop and nav is open, close it
+        if (!isMobile() && navIsOpen) {
+          document.body.classList.remove('nav-open');
+          enableBodyScroll();
 
-        // Close mobile nav drawer
-        const mobileNav = document.getElementById('mobile-nav-drawer');
-        if (mobileNav) {
-          mobileNav.setAttribute('aria-hidden', 'true');
+          // Close mobile nav drawer
+          const mobileNav = document.getElementById('mobile-nav-drawer');
+          if (mobileNav) {
+            mobileNav.setAttribute('aria-hidden', 'true');
+          }
         }
-      }
-    }, 150);
-  }, { passive: true });
+      }, 150);
+    },
+    { passive: true }
+  );
 
   // Expose global API
   window.tsScrollFix = {
     enable: enableBodyScroll,
     disable: disableBodyScroll,
-    isEnabled: () => !navIsOpen || !isMobile()
+    isEnabled: () => !navIsOpen || !isMobile(),
   };
-
 })();

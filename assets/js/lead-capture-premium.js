@@ -3,7 +3,7 @@
  * Premium feature for capturing and scoring leads with analytics
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ==
@@ -48,7 +48,7 @@
 
       // Portfolio views
       const portfolioLinks = document.querySelectorAll('a[href*="portfolio"]');
-      portfolioLinks.forEach(link => {
+      portfolioLinks.forEach((link) => {
         link.addEventListener('click', () => {
           this.addInteraction('portfolio_view', { score: 5 });
           this.leadScore += 5;
@@ -63,11 +63,11 @@
 
       // Service page engagement
       const serviceCards = document.querySelectorAll('[data-service]');
-      serviceCards.forEach(card => {
+      serviceCards.forEach((card) => {
         card.addEventListener('click', () => {
           this.addInteraction('service_interest', {
             service: card.dataset.service,
-            score: 8
+            score: 8,
           });
           this.leadScore += 8;
         });
@@ -78,7 +78,7 @@
       this.interactions.push({
         type,
         data,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
 
       // Store in localStorage
@@ -92,7 +92,7 @@
     setupSmartForms() {
       const forms = document.querySelectorAll('.lead-capture-form');
 
-      forms.forEach(form => {
+      forms.forEach((form) => {
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
           await this.captureLead(new FormData(form));
@@ -100,7 +100,7 @@
 
         // Auto-save as user types
         const inputs = form.querySelectorAll('input, textarea');
-        inputs.forEach(input => {
+        inputs.forEach((input) => {
           input.addEventListener('input', () => {
             this.leadData[input.name] = input.value;
             this.saveLeadProgress();
@@ -113,7 +113,7 @@
       // Start with minimal fields, reveal more based on interest
       const progressiveForms = document.querySelectorAll('[data-progressive-form]');
 
-      progressiveForms.forEach(form => {
+      progressiveForms.forEach((form) => {
         const step1 = form.querySelector('[data-step="1"]');
         const step2 = form.querySelector('[data-step="2"]');
         const step3 = form.querySelector('[data-step="3"]');
@@ -185,10 +185,10 @@
       // - Quote requested: +30 points
 
       this.scoreThresholds = {
-        cold: 0,      // 0-20 points
-        warm: 20,     // 20-50 points
-        hot: 50,      // 50-80 points
-        qualified: 80 // 80+ points
+        cold: 0, // 0-20 points
+        warm: 20, // 20-50 points
+        hot: 50, // 50-80 points
+        qualified: 80, // 80+ points
       };
     }
 
@@ -212,7 +212,7 @@
 
     showInlineLeadCapture() {
       const banners = document.querySelectorAll('.smart-lead-banner');
-      banners.forEach(banner => {
+      banners.forEach((banner) => {
         if (banner.dataset.shown !== 'true') {
           banner.classList.add('show');
           banner.dataset.shown = 'true';
@@ -237,7 +237,7 @@
         const response = await fetch('/api/leads/capture', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(this.leadData)
+          body: JSON.stringify(this.leadData),
         });
 
         if (response.ok) {
@@ -248,7 +248,7 @@
           if (typeof gtag !== 'undefined') {
             gtag('event', 'generate_lead', {
               value: this.leadScore,
-              currency: 'USD'
+              currency: 'USD',
             });
           }
         }
@@ -301,11 +301,11 @@
 
     trackConversionFunnel() {
       const funnelSteps = {
-        'landing': () => true,
-        'service_view': () => !!document.querySelector('[data-service]'),
-        'calculator_use': () => this.hasUsedCalculator(),
-        'contact_intent': () => this.hasContactIntent(),
-        'lead_captured': () => this.hasSubmittedForm()
+        landing: () => true,
+        service_view: () => !!document.querySelector('[data-service]'),
+        calculator_use: () => this.hasUsedCalculator(),
+        contact_intent: () => this.hasContactIntent(),
+        lead_captured: () => this.hasSubmittedForm(),
       };
 
       Object.entries(funnelSteps).forEach(([step, condition]) => {
@@ -326,14 +326,15 @@
           x,
           y,
           element,
-          page: window.location.pathname
+          page: window.location.pathname,
         });
       });
 
       // Track scroll depth
       let maxScroll = 0;
       window.addEventListener('scroll', () => {
-        const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+        const scrollPercent =
+          (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
         if (scrollPercent > maxScroll) {
           maxScroll = scrollPercent;
           if (scrollPercent >= 25 && scrollPercent < 50) {
@@ -352,15 +353,19 @@
     trackFormAbandonment() {
       const forms = document.querySelectorAll('form');
 
-      forms.forEach(form => {
+      forms.forEach((form) => {
         let formStarted = false;
 
-        form.addEventListener('focus', () => {
-          if (!formStarted) {
-            formStarted = true;
-            this.trackEvent('form_started', { form: form.id || form.className });
-          }
-        }, true);
+        form.addEventListener(
+          'focus',
+          () => {
+            if (!formStarted) {
+              formStarted = true;
+              this.trackEvent('form_started', { form: form.id || form.className });
+            }
+          },
+          true
+        );
 
         form.addEventListener('submit', () => {
           this.trackEvent('form_submitted', { form: form.id || form.className });
@@ -377,12 +382,12 @@
     trackCTAClicks() {
       const ctas = document.querySelectorAll('.btn--primary, .cta-button, [data-cta]');
 
-      ctas.forEach(cta => {
+      ctas.forEach((cta) => {
         cta.addEventListener('click', () => {
           this.trackEvent('cta_click', {
             text: cta.textContent.trim(),
             href: cta.href || '',
-            location: this.getElementPosition(cta)
+            location: this.getElementPosition(cta),
           });
         });
       });
@@ -394,7 +399,7 @@
         data,
         timestamp: new Date().toISOString(),
         page: window.location.pathname,
-        sessionId: this.getSessionId()
+        sessionId: this.getSessionId(),
       };
 
       this.events.push(event);
@@ -411,7 +416,7 @@
         await fetch('/api/analytics/track', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(event)
+          body: JSON.stringify(event),
         });
       } catch (error) {
         console.error('Analytics error:', error);
@@ -437,7 +442,7 @@
         x: rect.left,
         y: rect.top,
         width: rect.width,
-        height: rect.height
+        height: rect.height,
       };
     }
 
@@ -464,5 +469,4 @@
     window.leadCapture = new LeadCaptureSystem();
     window.analytics = new ConversionAnalytics();
   }
-
 })();

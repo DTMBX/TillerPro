@@ -53,10 +53,10 @@ bundle = fixedLines.join('\n');
 // We'll just add a comment to ignore these specific rules
 const typeSelectorsToFix = [
   'main.light-theme tr:nth-child(even) td',
-  'main.light-theme tr:hover td'
+  'main.light-theme tr:hover td',
 ];
 
-typeSelectorsToFix.forEach(selector => {
+typeSelectorsToFix.forEach((selector) => {
   const regex = new RegExp(`(${selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\s*{`, 'g');
   bundle = bundle.replace(regex, `/* stylelint-disable-next-line selector-max-type */\n$1 {`);
 });
@@ -96,38 +96,38 @@ const filesToCleanDuplicates = [
   {
     file: 'assets/css/header-emergency-fix.css',
     selector: '.ts-header',
-    keepFirst: true
+    keepFirst: true,
   },
   {
     file: 'assets/css/mobile-emergency-fix.css',
     selector: '.ts-main-content',
-    keepFirst: true
+    keepFirst: true,
   },
   {
     file: 'assets/css/navigation-complete.css',
     selector: '.mobile-nav__toggle',
-    keepFirst: true
+    keepFirst: true,
   },
   {
     file: 'assets/css/navigation-complete.css',
     selector: '.mobile-nav',
-    keepFirst: true
+    keepFirst: true,
   },
   {
     file: 'assets/css/mobile-app.css',
     selector: '.progressive-image img',
-    keepFirst: true
+    keepFirst: true,
   },
   {
     file: 'assets/css/popup-fixes.css',
     selector: '.license-badge__popup',
-    keepFirst: true
+    keepFirst: true,
   },
   {
     file: 'assets/css/popup-fixes.css',
     selector: '.scheduling-bar',
-    keepFirst: true
-  }
+    keepFirst: true,
+  },
 ];
 
 console.log('📝 Adding stylelint-disable comments for duplicate selectors...\n');
@@ -163,4 +163,4 @@ console.log('\n✨ All fixable errors have been addressed!');
 console.log('\n⚠️  Remaining warnings (26) are for:');
 console.log('   - Duplicate selectors across different files (bundle.css aggregation)');
 console.log('   - Deprecated "clip" property (used for accessibility, safe to ignore)');
-console.log('\nThese warnings don\'t affect functionality and can be suppressed.\n');
+console.log("\nThese warnings don't affect functionality and can be suppressed.\n");

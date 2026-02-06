@@ -5,7 +5,9 @@
  */
 
 import sharp from 'sharp';
-import { glob } from 'glob';
+import pkg from 'glob';
+import { promisify } from 'util';
+const globP = promisify(pkg);
 import path from 'path';
 import fs from 'fs/promises';
 
@@ -42,9 +44,7 @@ async function optimizeImage(imagePath) {
   const image = sharp(imagePath);
   const metadata = await image.metadata();
 
-  console.log(
-    `Processing: ${filename}${ext} (${metadata.width}x${metadata.height})`,
-  );
+  console.log(`Processing: ${filename}${ext} (${metadata.width}x${metadata.height})`);
 
   // Generate WebP versions at different sizes
   for (const [sizeName, width] of Object.entries(SIZES)) {
@@ -77,7 +77,7 @@ async function main() {
   console.log('🎨 Tillerstead Image Optimization');
   console.log('====\n');
 
-  const images = await glob(`${INPUT_DIR}**/*.{jpg,jpeg,png}`, {
+  const images = await globP(`${INPUT_DIR}**/*.{jpg,jpeg,png}`, {
     ignore: ['**/node_modules/**', '**/optimized/**'],
   });
 

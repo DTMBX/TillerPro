@@ -7,49 +7,54 @@ on:
     branches: [main]
   schedule:
     # Run weekly on Sundays at 00:00 UTC
-    - cron: '0 0 * * 0'
-  workflow_dispatch:  # Manual trigger
+    - cron: "0 0 * * 0"
+  workflow_dispatch: # Manual trigger
 
 permissions:
   contents: read
-  pull-requests: write  # For PR comments
+  pull-requests: write # For PR comments
 
 jobs:
   lighthouse:
     name: Run Lighthouse CI
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-      
+          node-version: "20"
+          cache: "npm"
+
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@v2
         with:
-          ruby-version: '3.4'
+          ruby-version: "3.4"
           bundler-cache: true
-      
+
       - name: Install Dependencies
         run: npm ci
-      
+
+      - name: Install Bundler and Gems
+        run: |
+          gem install bundler -v ">=2.3" --no-document
+          bundle install --jobs 4 --retry 3
+
       - name: Build Jekyll Site
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
-      
+
       - name: Run Lighthouse CI
         uses: treosh/lighthouse-ci-action@v11
         with:
-          configPath: './lighthouserc.js'
+          configPath: "./lighthouserc.js"
           uploadArtifacts: true
           temporaryPublicStorage: true
-      
+
       - name: Lighthouse Summary
         if: always()
         run: |
@@ -69,20 +74,20 @@ jobs:
     name: Lighthouse - Production Site
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-      
+          node-version: "20"
+          cache: "npm"
+
       - name: Install Dependencies
         run: npm ci
-      
+
       - name: Run Lighthouse on Production
         uses: treosh/lighthouse-ci-action@v11
         with:
@@ -93,7 +98,7 @@ jobs:
           uploadArtifacts: true
           temporaryPublicStorage: true
           runs: 3
-      
+
       - name: Production Lighthouse Summary
         run: |
           echo "=== Production Site Performance ==="

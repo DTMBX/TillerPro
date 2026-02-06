@@ -24,25 +24,25 @@ const criticalPages = [
 const criticalOptions = {
   // Dimensions for above-the-fold calculation
   dimensions: [
-    { width: 375, height: 667 },  // Mobile
+    { width: 375, height: 667 }, // Mobile
     { width: 768, height: 1024 }, // Tablet
     { width: 1920, height: 1080 }, // Desktop
   ],
-  
+
   // Inline critical CSS and defer the rest
   inline: true,
   extract: true,
-  
+
   // CSS optimization
   minify: true,
-  
+
   // Penthouse options for accuracy
   penthouse: {
     timeout: 30000,
     maxEmbeddedBase64Length: 1000,
     keepLargerMediaQueries: false,
   },
-  
+
   // Ignore problematic assets
   ignore: {
     atrule: ['@font-face', '@import'],
@@ -56,7 +56,7 @@ async function extractCriticalCSS(page) {
 
   try {
     console.log(`Processing ${page.src}...`);
-    
+
     const { html } = await generate({
       ...criticalOptions,
       base: SITE_DIR,

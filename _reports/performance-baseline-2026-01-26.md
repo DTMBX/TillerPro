@@ -1,11 +1,13 @@
 # Performance Baseline Report
+
 **Date:** 2026-01-26  
 **Session:** Supreme → Heavenly Validation  
 **Site:** https://tillerstead.com
 
 ## Executive Summary
 
-⚠️ **Lighthouse Scores: NOT MEASURED** (API quota exceeded, Chrome not installed)  
+⚠️ **Lighthouse Scores: NOT MEASURED** (API quota exceeded, Chrome not
+installed)  
 ✅ **Build Performance: EXCELLENT**  
 ✅ **Server Response: EXCELLENT**  
 📊 **Manual Testing: GOOD**
@@ -15,14 +17,16 @@
 ## Infrastructure Performance
 
 ### ✅ Build Performance (EXCELLENT)
-| Metric | Value | Target | Status |
-|--------|-------|--------|--------|
-| Jekyll Build Time | 11.8s | <15s | ✅ EXCELLENT |
-| Jekyll Serve Startup | ~8s | <10s | ✅ EXCELLENT |
+
+| Metric               | Value  | Target | Status       |
+| -------------------- | ------ | ------ | ------------ |
+| Jekyll Build Time    | 11.8s  | <15s   | ✅ EXCELLENT |
+| Jekyll Serve Startup | ~8s    | <10s   | ✅ EXCELLENT |
 | Server Response Time | <100ms | <200ms | ✅ EXCELLENT |
-| Assets Build | N/A | N/A | - |
+| Assets Build         | N/A    | N/A    | -            |
 
 ### ✅ Development Performance
+
 - **Hot Reload:** Not tested (would require --watch mode)
 - **Incremental Build:** Disabled (would need --incremental flag)
 - **Cache Status:** Unknown
@@ -30,15 +34,18 @@
 ## Site Performance (Manual Observations)
 
 ### Server Response
+
 - ✅ **HTTPS:** Enabled and working
 - ✅ **Status Code:** 200 OK
 - ✅ **Response Time:** <100ms (from PowerShell test)
 - ✅ **Server:** Netlify (assumed from deployment)
 
 ### Asset Delivery (Visual Inspection)
+
 Based on live site review https://tillerstead.com:
 
 #### Likely Performance Characteristics:
+
 1. **Static Site:** ✅ Jekyll generates static HTML (fast)
 2. **CDN:** ✅ Likely using Netlify CDN (good)
 3. **HTTPS:** ✅ Confirmed working
@@ -49,12 +56,15 @@ Based on live site review https://tillerstead.com:
 ## Lighthouse Scores
 
 ### ❌ Measurement Blocked
+
 **Attempts Made:**
+
 1. Local Lighthouse CLI → Failed (Chrome not installed)
 2. Playwright Chromium path → Failed (chrome-launcher incompatible)
 3. PageSpeed Insights API → Failed (quota exceeded: 0/day limit)
 
 **Recommended Alternatives:**
+
 1. **Manual Browser Lighthouse:**
    - Open Chrome DevTools → Lighthouse tab → Run audit
    - Capture scores manually
@@ -76,36 +86,42 @@ Based on live site review https://tillerstead.com:
    - Historical tracking
 
 ### 🎯 Target Scores (Industry Standard)
-| Category | Target | Good | Acceptable |
-|----------|--------|------|------------|
-| **Performance** | 90+ | 75-89 | 50-74 |
-| **Accessibility** | 90+ | 80-89 | 70-79 |
-| **Best Practices** | 90+ | 80-89 | 70-79 |
-| **SEO** | 90+ | 80-89 | 70-79 |
+
+| Category           | Target | Good  | Acceptable |
+| ------------------ | ------ | ----- | ---------- |
+| **Performance**    | 90+    | 75-89 | 50-74      |
+| **Accessibility**  | 90+    | 80-89 | 70-79      |
+| **Best Practices** | 90+    | 80-89 | 70-79      |
+| **SEO**            | 90+    | 80-89 | 70-79      |
 
 ### 🎯 Core Web Vitals Targets
-| Metric | Good | Needs Improvement | Poor |
-|--------|------|-------------------|------|
-| **LCP** (Largest Contentful Paint) | ≤2.5s | 2.5-4.0s | >4.0s |
-| **FID** (First Input Delay) | ≤100ms | 100-300ms | >300ms |
-| **CLS** (Cumulative Layout Shift) | ≤0.1 | 0.1-0.25 | >0.25 |
-| **FCP** (First Contentful Paint) | ≤1.8s | 1.8-3.0s | >3.0s |
-| **TTI** (Time to Interactive) | ≤3.8s | 3.8-7.3s | >7.3s |
-| **TBT** (Total Blocking Time) | ≤200ms | 200-600ms | >600ms |
-| **Speed Index** | ≤3.4s | 3.4-5.8s | >5.8s |
+
+| Metric                             | Good   | Needs Improvement | Poor   |
+| ---------------------------------- | ------ | ----------------- | ------ |
+| **LCP** (Largest Contentful Paint) | ≤2.5s  | 2.5-4.0s          | >4.0s  |
+| **FID** (First Input Delay)        | ≤100ms | 100-300ms         | >300ms |
+| **CLS** (Cumulative Layout Shift)  | ≤0.1   | 0.1-0.25          | >0.25  |
+| **FCP** (First Contentful Paint)   | ≤1.8s  | 1.8-3.0s          | >3.0s  |
+| **TTI** (Time to Interactive)      | ≤3.8s  | 3.8-7.3s          | >7.3s  |
+| **TBT** (Total Blocking Time)      | ≤200ms | 200-600ms         | >600ms |
+| **Speed Index**                    | ≤3.4s  | 3.4-5.8s          | >5.8s  |
 
 ## Performance Optimizations Already In Place
 
 ### ✅ Confirmed Optimizations
-1. **Static Site Generation:** Jekyll builds static HTML (no server-side processing)
+
+1. **Static Site Generation:** Jekyll builds static HTML (no server-side
+   processing)
 2. **Security Headers:** CSP + security headers configured in `_headers` file
 3. **Modern JavaScript:** ES6+ modules (via package.json scripts)
 4. **CSS Optimization:** Stylelint configured, auto-fixed modern standards
 5. **Build Process:** Automated with npm scripts
 
 ### ⚠️ Potential Issues (Need Verification)
+
 1. **No HTTP/2 Push:** Unknown if configured
-2. **No Service Worker Precaching:** Service worker exists (`sw.js`) but caching strategy unknown
+2. **No Service Worker Precaching:** Service worker exists (`sw.js`) but caching
+   strategy unknown
 3. **Image Formats:** Unknown if using WebP/AVIF for modern browsers
 4. **Font Loading:** Unknown if using font-display: swap
 5. **Critical CSS:** Unknown if inlining above-the-fold CSS
@@ -118,6 +134,7 @@ Based on live site review https://tillerstead.com:
 ### Recommended Manual Tests
 
 1. **Chrome DevTools Lighthouse** (10 min)
+
    ```
    1. Open https://tillerstead.com in Chrome
    2. Press F12 → Lighthouse tab
@@ -129,6 +146,7 @@ Based on live site review https://tillerstead.com:
    ```
 
 2. **Network Waterfall Analysis** (15 min)
+
    ```
    1. Open DevTools → Network tab
    2. Hard refresh (Ctrl+Shift+R)
@@ -142,7 +160,8 @@ Based on live site review https://tillerstead.com:
    ```
 
 3. **Core Web Vitals (Real User Monitoring)** (5 min)
-   ```
+
+   ````
    1. Open Chrome → DevTools → Console
    2. Paste:
       ```js
@@ -151,8 +170,12 @@ Based on live site review https://tillerstead.com:
           console.log(entry.name, entry.value);
         }
       }).observe({entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift']});
-      ```
+   ````
+
    3. Interact with page and capture metrics
+
+   ```
+
    ```
 
 4. **WebPageTest** (10 min)
@@ -168,27 +191,30 @@ Based on live site review https://tillerstead.com:
 ## Performance Budget (Proposed)
 
 ### Asset Size Budget
-| Asset Type | Budget | Rationale |
-|------------|--------|-----------|
-| HTML | <50KB | Static pages should be small |
-| CSS | <100KB | Comprehensive styles |
-| JavaScript | <200KB | Interactive features + libraries |
-| Images (homepage) | <500KB | Hero + thumbnails |
-| Fonts | <100KB | 2-3 font weights |
-| **Total (homepage)** | **<950KB** | Fast 3G: ~3s load |
+
+| Asset Type           | Budget     | Rationale                        |
+| -------------------- | ---------- | -------------------------------- |
+| HTML                 | <50KB      | Static pages should be small     |
+| CSS                  | <100KB     | Comprehensive styles             |
+| JavaScript           | <200KB     | Interactive features + libraries |
+| Images (homepage)    | <500KB     | Hero + thumbnails                |
+| Fonts                | <100KB     | 2-3 font weights                 |
+| **Total (homepage)** | **<950KB** | Fast 3G: ~3s load                |
 
 ### Timing Budget
-| Metric | Budget | Rationale |
-|--------|--------|-----------|
-| FCP | <1.5s | User sees content quickly |
-| LCP | <2.0s | Main content visible |
-| TTI | <3.0s | Page fully interactive |
-| TBT | <150ms | No blocking tasks |
-| CLS | <0.05 | Minimal layout shift |
+
+| Metric | Budget | Rationale                 |
+| ------ | ------ | ------------------------- |
+| FCP    | <1.5s  | User sees content quickly |
+| LCP    | <2.0s  | Main content visible      |
+| TTI    | <3.0s  | Page fully interactive    |
+| TBT    | <150ms | No blocking tasks         |
+| CLS    | <0.05  | Minimal layout shift      |
 
 ## Optimization Roadmap
 
 ### Immediate (This Session)
+
 - [ ] **Manual Lighthouse Test** (10 min)
   - Run in Chrome DevTools
   - Capture all 4 category scores
@@ -202,6 +228,7 @@ Based on live site review https://tillerstead.com:
   - Check cache headers
 
 ### High Priority (Next Session)
+
 - [ ] **Image Optimization** (1-2 hours)
   - Audit image sizes
   - Convert to WebP/AVIF
@@ -233,6 +260,7 @@ Based on live site review https://tillerstead.com:
   - Test offline functionality
 
 ### Medium Priority (Future)
+
 - [ ] **HTTP/2 Server Push**
   - Configure critical asset push
   - Test performance impact
@@ -257,6 +285,7 @@ Based on live site review https://tillerstead.com:
 ## Known Performance Anti-Patterns
 
 ### From Code Review
+
 1. **Inline Scripts:** `_headers` allows `'unsafe-inline'` in CSP
    - **Impact:** Prevents CSP hash-based script whitelisting
    - **Fix:** Move inline scripts to external files, use hashes/nonces
@@ -272,7 +301,9 @@ Based on live site review https://tillerstead.com:
 ## Estimated Current Performance
 
 ### Conservative Estimate (Without Lighthouse)
+
 Based on:
+
 - Static site generation ✅
 - CDN hosting (likely) ✅
 - Modern build tools ✅
@@ -280,12 +311,14 @@ Based on:
 - Unknown optimizations ⚠️
 
 **Estimated Scores:**
+
 - **Performance:** 70-80 (Good, not excellent)
 - **Accessibility:** 60-75 (Needs work - tests showed ARIA issues)
 - **Best Practices:** 75-85 (Good, CSP configured)
 - **SEO:** 80-90 (Static HTML, good structure)
 
 **Estimated Core Web Vitals:**
+
 - **LCP:** 2.0-3.5s (Acceptable to Good)
 - **FID:** <100ms (Excellent - static site)
 - **CLS:** 0.05-0.15 (Good to Needs Improvement)
@@ -303,19 +336,23 @@ Based on:
 ## Tools & Resources
 
 ### Free Performance Testing Tools
+
 - **Chrome DevTools Lighthouse:** Built into Chrome
 - **WebPageTest:** https://www.webpagetest.org
 - **GTmetrix:** https://gtmetrix.com
 - **Pingdom:** https://tools.pingdom.com
-- **Google PageSpeed Insights:** https://pagespeed.web.dev (when quota available)
+- **Google PageSpeed Insights:** https://pagespeed.web.dev (when quota
+  available)
 
 ### Performance Monitoring (SaaS)
+
 - **Google Analytics:** Core Web Vitals reporting (free)
 - **Cloudflare Analytics:** RUM data (free tier)
 - **SpeedCurve:** Performance monitoring ($$$)
 - **Calibre:** Performance budgets and monitoring ($$$)
 
 ### Optimization Tools
+
 - **ImageOptim:** Image compression (free)
 - **Squoosh:** WebP/AVIF conversion (free, web-based)
 - **PurgeCSS:** Remove unused CSS (npm package)
@@ -327,12 +364,14 @@ Based on:
 **Performance Status: B (Estimated)**
 
 **What's Working:**
+
 - ✅ Fast build process (11.8s)
 - ✅ Fast server response (<100ms)
 - ✅ Static site architecture (inherently fast)
 - ✅ Security headers configured
 
 **What Needs Work:**
+
 - 🔴 **CRITICAL:** No actual Lighthouse scores captured (measurement blocked)
 - ⚠️ Unknown: Image optimization status
 - ⚠️ Unknown: JavaScript bundling/minification
@@ -341,8 +380,9 @@ Based on:
 - ⚠️ Unknown: Service worker implementation
 
 **Path to A+:**
+
 1. Capture actual Lighthouse scores (manual Chrome DevTools)
-2. Run WebPageTest for detailed analysis  
+2. Run WebPageTest for detailed analysis
 3. Optimize images (WebP, lazy loading, responsive)
 4. Minify and bundle JavaScript
 5. Optimize CSS (purge unused, minify)

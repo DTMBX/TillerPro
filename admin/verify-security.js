@@ -16,15 +16,10 @@ const REQUIRED_FILES = [
   'admin/auth-enhanced.js',
   'admin/public/security.html',
   'admin/public/security-app.js',
-  'SECURITY-GUIDE.md'
+  'SECURITY-GUIDE.md',
 ];
 
-const REQUIRED_PACKAGES = [
-  'helmet',
-  'express-rate-limit',
-  'speakeasy',
-  'qrcode'
-];
+const REQUIRED_PACKAGES = ['helmet', 'express-rate-limit', 'speakeasy', 'qrcode'];
 
 async function checkFile(filePath) {
   try {
@@ -96,7 +91,7 @@ async function main() {
     console.log('  ✅ All security packages present in package.json');
   } else {
     console.log('  ❌ Missing packages:');
-    missingPackages.forEach(pkg => console.log(`     - ${pkg}`));
+    missingPackages.forEach((pkg) => console.log(`     - ${pkg}`));
     console.log('\n  Run: npm install');
     process.exit(1);
   }
@@ -158,7 +153,7 @@ async function main() {
   console.log('✅ Security features verification complete!\n');
 }
 
-main().catch(error => {
+main().catch((error) => {
   console.error('\n❌ Verification failed:', error.message);
   process.exit(1);
 });

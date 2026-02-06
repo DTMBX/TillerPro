@@ -1,64 +1,54 @@
-\# FAILURE\_MODE\_MAP.md
+\# FAILURE_MODE_MAP.md
 
 \## Photographic Failure-Mode Reference Map (Tile + Wet Areas + Floors)
 
+\*\*Version:\*\* 1.0
 
+\*\*Owner:\*\* Tyler
 
-\*\*Version:\*\* 1.0  
+\*\*Purpose:\*\* Provide “photographic memory” anchors for technical
+explanations, client education, QA checklists, and post-mortems.
 
-\*\*Owner:\*\* Tyler  
-
-\*\*Purpose:\*\* Provide “photographic memory” anchors for technical explanations, client education, QA checklists, and post-mortems.  
-
-\*\*Use Rule:\*\* Every technical output must anchor to \*\*at least one\*\* failure mode below and describe it as if referencing a jobsite photo.
-
-
+\*\*Use Rule:\*\* Every technical output must anchor to \*\*at least one\*\*
+failure mode below and describe it as if referencing a jobsite photo.
 
 ---
-
-
 
 \## How to Use This Map (Operational)
 
 When discussing a technique, product, or news item, run this internal chain:
 
-
-
-\*\*Topic → Assembly → Failure Mode(s) → Visual Anchor → Root Cause(s) → Fast Diagnostics → Prevention Spec → Client Consequence\*\*
-
-
+\*\*Topic → Assembly → Failure Mode(s) → Visual Anchor → Root Cause(s) → Fast
+Diagnostics → Prevention Spec → Client Consequence\*\*
 
 ---
-
-
 
 \## Universal Root-Cause Buckets (Use These First)
 
 Most tile failures reduce to one (or more) of these:
 
+1\. \*\*Movement not accommodated\*\* (perimeter/field joints, transitions,
+changes of plane)
 
+2\. \*\*Substrate not suitable\*\* (deflection, flatness, bonding surface,
+contamination)
 
-1\. \*\*Movement not accommodated\*\* (perimeter/field joints, transitions, changes of plane)  
+3\. \*\*Coverage / bond failure\*\* (trowel selection, collapse, back-butter,
+open time)
 
-2\. \*\*Substrate not suitable\*\* (deflection, flatness, bonding surface, contamination)  
+4\. \*\*Water management failure\*\* (no waterproofing, discontinuity, bad
+drains, penetrations)
 
-3\. \*\*Coverage / bond failure\*\* (trowel selection, collapse, back-butter, open time)  
+5\. \*\*Material mismatch\*\* (mortar/grout selection vs use, tile type, thermal
+exposure)
 
-4\. \*\*Water management failure\*\* (no waterproofing, discontinuity, bad drains, penetrations)  
+6\. \*\*Cure / environment issues\*\* (temperature, rapid drying, freezing,
+early loading)
 
-5\. \*\*Material mismatch\*\* (mortar/grout selection vs use, tile type, thermal exposure)  
-
-6\. \*\*Cure / environment issues\*\* (temperature, rapid drying, freezing, early loading)
-
-
-
-> Movement-joint guidance is commonly referenced via TCNA EJ171. :contentReference\[oaicite:1]{index=1}
-
-
+> Movement-joint guidance is commonly referenced via TCNA EJ171.
+> :contentReference\[oaicite:1]{index=1}
 
 ---
-
-
 
 \## Failure Mode Index (Quick Jump)
 
@@ -86,11 +76,7 @@ Most tile failures reduce to one (or more) of these:
 
 \- FM-12 Exterior freeze/thaw spall + bond loss (where applicable)
 
-
-
 ---
-
-
 
 \# FM-01 — Cracked Grout (Random or Patterned)
 
@@ -102,23 +88,18 @@ Most tile failures reduce to one (or more) of these:
 
 \- Corners/cracks at changes of plane
 
-
-
 \## Primary Root Causes
 
-\- Substrate movement/deflection (common)  
+\- Substrate movement/deflection (common)
 
-\- Grout washed out / overwatered mixing or cleanup  
+\- Grout washed out / overwatered mixing or cleanup
 
-\- Movement joints missing at perimeter/field/changes of plane  
+\- Movement joints missing at perimeter/field/changes of plane
 
 \- Marginal subfloor build-up or underlayment attachment
 
-
-
-TCNA notes grout commonly fails due to substrate movement or improper grout installation. :contentReference\[oaicite:2]{index=2}
-
-
+TCNA notes grout commonly fails due to substrate movement or improper grout
+installation. :contentReference\[oaicite:2]{index=2}
 
 \## Fast Diagnostics (Jobsite)
 
@@ -130,27 +111,21 @@ TCNA notes grout commonly fails due to substrate movement or improper grout inst
 
 \- Ask: “When did it start?” (early = install; later = movement/seasonal)
 
-
-
 \## Prevention Spec (Executive Standard)
 
-\- Treat movement as design requirement (perimeter + field joints as needed) :contentReference\[oaicite:3]{index=3}
+\- Treat movement as design requirement (perimeter + field joints as needed)
+:contentReference\[oaicite:3]{index=3}
 
 \- Confirm subfloor stiffness/underlayment suitability and fastening
 
 \- Grout: correct mix ratio, minimal water, proper cure conditions
 
-
-
 \## Client Consequence
 
-\- Cosmetic starts first, then water/movement escalates; repairs become partial demo.
-
-
+\- Cosmetic starts first, then water/movement escalates; repairs become partial
+demo.
 
 ---
-
-
 
 \# FM-02 — Hollow / Loose Tile (Debond)
 
@@ -162,8 +137,6 @@ TCNA notes grout commonly fails due to substrate movement or improper grout inst
 
 \- Loose tile lifts clean with mortar mostly on one side
 
-
-
 \## Primary Root Causes
 
 \- Inadequate mortar coverage / poor trowel technique
@@ -174,8 +147,6 @@ TCNA notes grout commonly fails due to substrate movement or improper grout inst
 
 \- Wrong mortar type for tile/assembly (e.g., requirements for specific mortars)
 
-
-
 \## Fast Diagnostics
 
 \- Lift one sacrificial tile: mortar transfer pattern tells truth
@@ -184,25 +155,19 @@ TCNA notes grout commonly fails due to substrate movement or improper grout inst
 
 \- Check for powdery substrate surface or primer needed
 
-
-
 \## Prevention Spec
 
 \- Correct trowel + key-in + directional troweling + ridge collapse
 
-\- Use mortar meeting appropriate ANSI performance category for the application (e.g., A118 classes as relevant). :contentReference\[oaicite:4]{index=4}
-
-
+\- Use mortar meeting appropriate ANSI performance category for the application
+(e.g., A118 classes as relevant). :contentReference\[oaicite:4]{index=4}
 
 \## Client Consequence
 
-\- Localized repairs rarely hold if root cause is systemic technique or substrate.
-
-
+\- Localized repairs rarely hold if root cause is systemic technique or
+substrate.
 
 ---
-
-
 
 \# FM-03 — Tenting / “Popped Tile” (Compression Failure)
 
@@ -214,8 +179,6 @@ TCNA notes grout commonly fails due to substrate movement or improper grout inst
 
 \- Often starts mid-field or near constrained perimeters
 
-
-
 \## Primary Root Causes
 
 \- No movement accommodation (hard-tight perimeter, no soft joints)
@@ -224,11 +187,8 @@ TCNA notes grout commonly fails due to substrate movement or improper grout inst
 
 \- Thermal expansion (sunlit floors, darker tile, exterior, radiant, big glass)
 
-
-
-Movement-joint guidance is commonly referenced via TCNA EJ171. :contentReference\[oaicite:5]{index=5}
-
-
+Movement-joint guidance is commonly referenced via TCNA EJ171.
+:contentReference\[oaicite:5]{index=5}
 
 \## Fast Diagnostics
 
@@ -238,25 +198,18 @@ Movement-joint guidance is commonly referenced via TCNA EJ171. :contentReference
 
 \- Look for cracks aligned with slab/control joints
 
-
-
 \## Prevention Spec
 
 \- Perimeter and field movement joints designed intentionally (not optional)
 
 \- Honor substrate joints through the tilework where required
 
-
-
 \## Client Consequence
 
-\- Safety hazard and rapid cascade failure; usually requires larger-area correction.
-
-
+\- Safety hazard and rapid cascade failure; usually requires larger-area
+correction.
 
 ---
-
-
 
 \# FM-04 — Lippage / Poor Plane Control
 
@@ -268,8 +221,6 @@ Movement-joint guidance is commonly referenced via TCNA EJ171. :contentReference
 
 \- Often appears as “waves” across a run
 
-
-
 \## Primary Root Causes
 
 \- Substrate flatness not achieved before setting
@@ -278,15 +229,11 @@ Movement-joint guidance is commonly referenced via TCNA EJ171. :contentReference
 
 \- Inconsistent mortar thickness / poor collapse / rushing
 
-
-
 \## Fast Diagnostics
 
 \- Straightedge across multiple tiles: measure peaks/valleys
 
 \- Identify whether lippage tracks substrate dips or tile warpage pattern
-
-
 
 \## Prevention Spec
 
@@ -296,17 +243,11 @@ Movement-joint guidance is commonly referenced via TCNA EJ171. :contentReference
 
 \- Use appropriate leveling strategy \*only after\* substrate prep
 
-
-
 \## Client Consequence
 
 \- Aesthetic + safety; often cannot be “fixed” without reset.
 
-
-
 ---
-
-
 
 \# FM-05 — Water Intrusion (Showers / Wet Areas)
 
@@ -320,8 +261,6 @@ Movement-joint guidance is commonly referenced via TCNA EJ171. :contentReference
 
 \- Musty odor
 
-
-
 \## Primary Root Causes
 
 \- Missing waterproofing or discontinuity at seams/corners/penetrations
@@ -330,15 +269,11 @@ Movement-joint guidance is commonly referenced via TCNA EJ171. :contentReference
 
 \- Fasteners or penetrations through critical waterproof zones
 
-
-
 \## Fast Diagnostics
 
 \- Moisture readings (if available), visual weep points, perimeter inspection
 
 \- Inspect corners/valves/niches for continuity and seal integrity
-
-
 
 \## Prevention Spec
 
@@ -346,17 +281,12 @@ Movement-joint guidance is commonly referenced via TCNA EJ171. :contentReference
 
 \- Flood test where applicable before finish work (project dependent)
 
-
-
 \## Client Consequence
 
-\- Hidden structural damage; insurance/claims become complicated; remediation costs climb.
-
-
+\- Hidden structural damage; insurance/claims become complicated; remediation
+costs climb.
 
 ---
-
-
 
 \# FM-06 — Efflorescence / Mineral Staining
 
@@ -366,8 +296,6 @@ Movement-joint guidance is commonly referenced via TCNA EJ171. :contentReference
 
 \- Returns after cleaning; worse near edges or damp zones
 
-
-
 \## Primary Root Causes
 
 \- Moisture migration through mortar bed or slab
@@ -376,15 +304,11 @@ Movement-joint guidance is commonly referenced via TCNA EJ171. :contentReference
 
 \- In wet areas: water management design issue
 
-
-
 \## Fast Diagnostics
 
 \- Identify moisture source; check perimeter and below-grade conditions
 
 \- Determine whether deposits are mineral (efflorescence) vs cleaner residue
-
-
 
 \## Prevention Spec
 
@@ -392,17 +316,11 @@ Movement-joint guidance is commonly referenced via TCNA EJ171. :contentReference
 
 \- Use appropriate materials and cure conditions
 
-
-
 \## Client Consequence
 
 \- Persistent appearance issues; may signal deeper moisture problem.
 
-
-
 ---
-
-
 
 \# FM-07 — Soft / Powdery Grout
 
@@ -412,11 +330,8 @@ Movement-joint guidance is commonly referenced via TCNA EJ171. :contentReference
 
 \- Sandy residue; joints low or washed
 
-
-
-Common causes include too much water, washing too early/aggressively, or poor joint filling. :contentReference\[oaicite:6]{index=6}
-
-
+Common causes include too much water, washing too early/aggressively, or poor
+joint filling. :contentReference\[oaicite:6]{index=6}
 
 \## Fast Diagnostics
 
@@ -424,23 +339,15 @@ Common causes include too much water, washing too early/aggressively, or poor jo
 
 \- Review cleaning timing and mix ratios
 
-
-
 \## Prevention Spec
 
 \- Control water; pack joints fully; proper cure; avoid harsh acids early
-
-
 
 \## Client Consequence
 
 \- Early failure and staining; joints become maintenance liabilities.
 
-
-
 ---
-
-
 
 \# FM-11 — Transition Cracking (Mixed Materials)
 
@@ -450,8 +357,6 @@ Common causes include too much water, washing too early/aggressively, or poor jo
 
 \- Repeats seasonally; worsens with traffic
 
-
-
 \## Primary Root Causes
 
 \- Movement mismatch; no transition detail
@@ -460,41 +365,27 @@ Common causes include too much water, washing too early/aggressively, or poor jo
 
 \- Assembly changes without isolation
 
-
-
 \## Prevention Spec
 
 \- Treat transitions as engineered details (movement + isolation)
-
-
 
 \## Client Consequence
 
 \- “Recurring repair” trap if detail is not rebuilt correctly.
 
-
-
 ---
-
-
 
 \## Photo Capture \& Naming Standard (Build Your Library)
 
 Use a consistent tag system so posts can reference “that exact failure photo.”
 
-
-
 \*\*Filename format:\*\*
 
 `YYYY-MM-DD\_\_FM-XX\_\_location\_\_room\_\_note.jpg`
 
-
-
 \*\*Example:\*\*
 
 `2026-01-26\_\_FM-03\_\_AtlanticCounty\_\_kitchen\_\_tented\_midfield.jpg`
-
-
 
 \*\*Minimum photo set per failure:\*\*
 
@@ -506,11 +397,7 @@ Use a consistent tag system so posts can reference “that exact failure photo.�
 
 \- If demo occurs: bond/coverage underside photo
 
-
-
 ---
-
-
 
 \## “Caption Templates” (Tyler Voice)
 
@@ -520,21 +407,15 @@ Use a consistent tag system so posts can reference “that exact failure photo.�
 
 \- “Water doesn’t need a big hole. It needs one weak seam.”
 
-
-
 ---
-
-
 
 \## Standards \& References (High-Level)
 
-\- TCNA Handbook guidance commonly referenced via EJ171 movement joint detail. :contentReference\[oaicite:7]{index=7}  
+\- TCNA Handbook guidance commonly referenced via EJ171 movement joint detail.
+:contentReference\[oaicite:7]{index=7}
 
-\- ANSI A108/A118 series are the common US standards set used across ceramic tile installation materials and methods. :contentReference\[oaicite:8]{index=8}
+\- ANSI A108/A118 series are the common US standards set used across ceramic
+tile installation materials and methods. :contentReference\[oaicite:8]{index=8}
 
-
-
-> This map does not replace project-specific engineering, code, or manufacturer system requirements.
-
-
-
+> This map does not replace project-specific engineering, code, or manufacturer
+> system requirements.

@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 
-(function() {
+(function () {
   'use strict';
 
   class QuoteFormAdapter {
@@ -263,7 +263,7 @@
       if (slopeBags) materials.push(`Deck Mud: ${slopeBags} bags`);
 
       if (materials.length > 0) {
-        materialsList.innerHTML = materials.map(m => `<li>${m}</li>`).join('');
+        materialsList.innerHTML = materials.map((m) => `<li>${m}</li>`).join('');
 
         // Update hidden field
         const materialsField = document.getElementById('quote-project-materials');
@@ -367,5 +367,4 @@
       adapter.init();
     }
   }
-
 })();

@@ -1,9 +1,9 @@
 # Tillerstead Technical Products Database
 # =====
-# 
+#
 # PURPOSE: Source-backed technical specifications for calculator formulas
 # WARNING: Do NOT modify coverage values without updating the source citation
-# 
+#
 # Each product entry must have:
 #   - brand, product_name, category
 #   - packaging (size, unit)
@@ -40,11 +40,11 @@ thinset_mortars:
         - trowel: "1/4 x 1/4 sq"
           min_sqft: 90
           max_sqft: 100
-          note: "For tile up to 8\"×8\""
+          note: 'For tile up to 8"×8"'
         - trowel: "1/4 x 3/8 sq"
           min_sqft: 60
           max_sqft: 67
-          note: "For tile 8\"×8\" to 13\"×13\""
+          note: 'For tile 8"×8" to 13"×13"'
         - trowel: "1/2 x 1/2 sq"
           min_sqft: 42
           max_sqft: 47
@@ -52,15 +52,15 @@ thinset_mortars:
         - trowel: "3/4 x 9/16 U-notch @ 45°"
           min_sqft: 34
           max_sqft: 42
-          note: "RECOMMENDED for LFT ≥15\""
+          note: 'RECOMMENDED for LFT ≥15"'
         - trowel: "3/4 x 9/16 U-notch @ 30°"
           min_sqft: 38
           max_sqft: 47
-          note: "RECOMMENDED for LFT ≥15\" - same yield as 1/2\" sq but better coverage"
+          note: 'RECOMMENDED for LFT ≥15" - same yield as 1/2" sq but better coverage'
     thickness_range:
       min_inches: 0.09375
       max_inches: 0.75
-      note: "3/32\" minimum to 3/4\" maximum continuous thickness"
+      note: '3/32" minimum to 3/4" maximum continuous thickness'
     standards:
       - "ANSI A118.4"
       - "ANSI A118.11"
@@ -234,19 +234,19 @@ waterproofing_membranes:
     packaging:
       - size: 54.5
         unit: "sqft"
-        dimensions: "3'3\" x 16'5\""
+        dimensions: '3''3" x 16''5"'
       - size: 108
         unit: "sqft"
-        dimensions: "3'3\" x 33'"
+        dimensions: '3''3" x 33'''
       - size: 215
         unit: "sqft"
-        dimensions: "3'3\" x 65'7\""
+        dimensions: '3''3" x 65''7"'
       - size: 323
         unit: "sqft"
-        dimensions: "3'3\" x 98'5\""
+        dimensions: '3''3" x 98''5"'
       - size: 646
         unit: "sqft"
-        dimensions: "6'7\" x 98'5\""
+        dimensions: '6''7" x 98''5"'
     coverage:
       model: "sheet_membrane"
       thickness_mils: 8

@@ -21,20 +21,20 @@ export const SLOPE_FORMULA_INFO = {
     {
       name: 'IPC Section 417.5.2',
       note: 'Minimum 1/4" per foot slope toward drain',
-      type: 'code'
+      type: 'code',
     },
     {
       name: 'NJ Building Code',
       note: 'New Jersey adopts IPC with local amendments',
-      type: 'code'
-    }
+      type: 'code',
+    },
   ],
   assumptions: [
     'Minimum slope per IPC: 1/4" per foot',
     'Recommended slope: 5/16" per foot for better drainage',
     'Linear drains may reduce effective slope distance',
-    'Substrate must achieve slope before waterproofing (bonded systems)'
-  ]
+    'Substrate must achieve slope before waterproofing (bonded systems)',
+  ],
 };
 
 // ==
@@ -50,14 +50,14 @@ export const SLOPE_REQUIREMENTS = {
     inchesPerFoot: 0.25, // 1/4"
     fraction: '1/4"',
     source: 'IPC Section 417.5.2',
-    note: 'Code minimum'
+    note: 'Code minimum',
   },
   recommended: {
     inchesPerFoot: 0.3125, // 5/16"
     fraction: '5/16"',
     source: 'Industry best practice',
-    note: 'Recommended for better drainage'
-  }
+    note: 'Recommended for better drainage',
+  },
 };
 
 /**
@@ -67,18 +67,18 @@ export const DRAIN_TYPES = {
   center: {
     name: 'Center Drain',
     distanceMultiplier: 1.0,
-    note: 'Standard center drain - slope from all directions'
+    note: 'Standard center drain - slope from all directions',
   },
   linear: {
     name: 'Linear Drain',
     distanceMultiplier: 0.75,
-    note: 'Linear drains reduce effective slope distance (single direction slope)'
+    note: 'Linear drains reduce effective slope distance (single direction slope)',
   },
   offset: {
     name: 'Offset Drain',
     distanceMultiplier: 1.15,
-    note: 'Offset drain may require additional slope considerations'
-  }
+    note: 'Offset drain may require additional slope considerations',
+  },
 };
 
 /**
@@ -88,18 +88,18 @@ export const CONSTRUCTION_METHODS = {
   'mud-bed': {
     name: 'Traditional Mud Bed',
     note: 'Traditional mud bed allows precise slope control. Use dry-pack mortar (4:1 sand:cement ratio) reinforced with metal lath.',
-    source: 'TCNA Handbook'
+    source: 'TCNA Handbook',
   },
   'foam-pan': {
     name: 'Pre-Sloped Foam Pan',
     note: 'Pre-sloped foam pans are factory-made to code. Verify slope before waterproofing. Faster install, consistent results.',
-    source: 'Product manufacturers'
+    source: 'Product manufacturers',
   },
-  'bonded': {
+  bonded: {
     name: 'Bonded System (Kerdi, Wedi)',
     note: 'Bonded waterproofing systems require substrate slope. Build slope into substrate before membrane installation.',
-    source: 'Schluter, Wedi installation guides'
-  }
+    source: 'Schluter, Wedi installation guides',
+  },
 };
 
 // ==
@@ -131,7 +131,7 @@ export const CONSTRUCTION_METHODS = {
 export function calculateSlope({
   distanceToDrawnFt,
   drainType = 'center',
-  constructionMethod = 'mud-bed'
+  constructionMethod = 'mud-bed',
 }) {
   const errors = [];
   const assumptions = [];
@@ -150,7 +150,7 @@ export function calculateSlope({
       effectiveDistance: 0,
       constructionNote: '',
       assumptions,
-      sources
+      sources,
     };
   }
 
@@ -193,7 +193,7 @@ export function calculateSlope({
     effectiveDistance,
     constructionNote: method.note,
     assumptions,
-    sources
+    sources,
   };
 }
 
@@ -205,7 +205,7 @@ export function getDrainTypes() {
   return Object.entries(DRAIN_TYPES).map(([id, data]) => ({
     id,
     name: data.name,
-    note: data.note
+    note: data.note,
   }));
 }
 
@@ -217,6 +217,6 @@ export function getConstructionMethods() {
   return Object.entries(CONSTRUCTION_METHODS).map(([id, data]) => ({
     id,
     name: data.name,
-    note: data.note
+    note: data.note,
   }));
 }

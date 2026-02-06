@@ -7,9 +7,7 @@
   'use strict';
 
   // Check for reduced motion preference
-  const prefersReducedMotion = window.matchMedia(
-    '(prefers-reduced-motion: reduce)',
-  ).matches;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /**
    * Fade-in on Scroll Observer
@@ -60,9 +58,7 @@
           e.preventDefault();
 
           const targetPosition =
-            targetElement.getBoundingClientRect().top +
-            window.pageYOffset -
-            headerHeight;
+            targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
 
           window.scrollTo({
             top: targetPosition,
@@ -91,10 +87,7 @@
         const sectionHeight = section.offsetHeight;
         const sectionId = section.getAttribute('id');
 
-        if (
-          scrollPosition >= sectionTop &&
-          scrollPosition < sectionTop + sectionHeight
-        ) {
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
           navLinks.forEach((link) => {
             link.classList.remove('active');
             if (link.getAttribute('href') === `#${sectionId}`) {

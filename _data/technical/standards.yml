@@ -1,6 +1,6 @@
 # Tillerstead Standards Reference
 # ====
-# 
+#
 # Standards referenced in calculator formulas and product compliance.
 # This file provides context for standards citations, NOT the standards themselves.
 #
@@ -49,9 +49,9 @@ ansi_standards:
     official_source: "https://tcnatile.com/ansi/"
     key_requirements:
       substrate_flatness:
-        standard_tile: "≤1/4\" variation in 10 ft, ≤1/16\" in 12\""
-        large_format_tile: "≤1/8\" variation in 10 ft, ≤1/16\" in 24\""
-      grout_joint_minimum: "Never less than 1/16\" (ANSI A108.02 Section 4.3.8)"
+        standard_tile: '≤1/4" variation in 10 ft, ≤1/16" in 12"'
+        large_format_tile: '≤1/8" variation in 10 ft, ≤1/16" in 24"'
+      grout_joint_minimum: 'Never less than 1/16" (ANSI A108.02 Section 4.3.8)'
       grout_joint_width: "At least 3× the facial dimensional variation of the tiles"
     notes: >
       If substrate does not meet flatness tolerances, lippage standards do not apply.
@@ -86,8 +86,8 @@ ansi_standards:
     publisher: "ANSI/TCA"
     official_source: "https://tcnatile.com/ansi/"
     key_requirements:
-      sanded_grout: "For joints ≥1/8\" (3mm)"
-      unsanded_grout: "For joints <1/8\" (3mm) and polished stone"
+      sanded_grout: 'For joints ≥1/8" (3mm)'
+      unsanded_grout: 'For joints <1/8" (3mm) and polished stone'
     used_in_calculators:
       - "grout calculator"
 
@@ -111,7 +111,7 @@ ansi_standards:
     publisher: "ANSI/TCA"
     official_source: "https://tcnatile.com/ansi/"
     requirements:
-      - "Must isolate tiles from in-plane substrate cracks up to 1/8\" (3mm)"
+      - 'Must isolate tiles from in-plane substrate cracks up to 1/8" (3mm)'
     notes: >
       Many waterproofing membranes also meet crack isolation requirements.
       RedGard, AquaDefense, and Hydro Ban meet both A118.10 and A118.12.
@@ -168,7 +168,7 @@ tcna:
     key_requirements:
       perimeter_joints:
         required: "At all restraining surfaces (walls, columns, curbs, pipes)"
-        minimum_width: "1/4\" (6mm)"
+        minimum_width: '1/4" (6mm)'
       field_joints:
         interior_normal: "Every 20-25 ft (6-8m) in each direction"
         interior_sunlit: "Every 8-12 ft (2.5-3.7m)"
@@ -191,7 +191,7 @@ plumbing_codes:
     relevant_sections:
       - "Section 417.5.2 - Shower compartment slope requirements"
     requirements:
-      - "Minimum 1/4\" per foot slope to drain"
+      - 'Minimum 1/4" per foot slope to drain'
     notes: >
       New Jersey adopts IPC with local amendments.
       Always check local jurisdiction for specific requirements.
@@ -229,11 +229,11 @@ deflection_requirements:
   ceramic_tile:
     maximum: "L/360"
     description: "Span length (inches) divided by 360"
-    example: "10 ft span (120\") = max 1/3\" deflection"
+    example: '10 ft span (120") = max 1/3" deflection'
   natural_stone:
     maximum: "L/720"
     description: "Span length (inches) divided by 720"
-    example: "10 ft span (120\") = max 1/6\" deflection"
+    example: '10 ft span (120") = max 1/6" deflection'
   notes: >
     Deflection is measured under total live and dead loads.
     Excessive deflection causes grout and tile cracking.
@@ -249,17 +249,17 @@ pro_notes_failure_prevention:
       - "Always lift test tiles to verify coverage"
       - "Comb mortar in ONE direction (not swirling)"
       - "Press tile perpendicular to ridges to collapse them"
-      - "Back-butter large format tile (≥15\") and tiles with deep lugs"
+      - 'Back-butter large format tile (≥15") and tiles with deep lugs'
       - "Use U-notch trowel for LFT - promotes better ridge collapse"
-  
+
   lippage:
     issue: "Height differences between adjacent tiles"
     prevention:
       - "Verify substrate meets flatness tolerances BEFORE starting"
       - "Use leveling system (clips/wedges) for large format tile"
-      - "Limit offset patterns to 33% max for tiles ≥15\""
+      - 'Limit offset patterns to 33% max for tiles ≥15"'
       - "Check tile boxes for warpage - return excessively warped tiles"
-  
+
   movement_joints:
     issue: "Cracking, tenting, or debonding due to expansion/contraction"
     prevention:
@@ -268,7 +268,7 @@ pro_notes_failure_prevention:
       - "Honor ALL substrate control joints through tile"
       - "Never grout movement joints - use sealant only"
       - "Use backer rod to prevent three-sided adhesion"
-  
+
   waterproofing:
     issue: "Water intrusion causing mold, substrate damage, structural issues"
     prevention:
@@ -276,7 +276,7 @@ pro_notes_failure_prevention:
       - "Embed fabric tape at seams and changes of plane"
       - "Pre-form corners with KERDI-KERECK or fabric corners"
       - "Flood test before tiling (per TCNA/manufacturer)"
-      - "Extend membrane min 3\" beyond wet area"
+      - 'Extend membrane min 3" beyond wet area'
 
 # ==
 # HOW STANDARDS ARE USED IN CALCULATORS
@@ -287,23 +287,23 @@ calculator_compliance_notes:
     Coverage requirements per ANSI A108: minimum 80% dry areas, 95% wet areas.
     For LFT ≥15\": use U-notch trowel (NOT 1/2\" square) per manufacturer TDS.
     Back-buttering required per ANSI A108.5 when 95% coverage specified.
-  
+
   grout_calculator: >
     Joint width per ANSI A108.02: minimum 1/16\", at least 3× tile facial variation.
     Sanded vs. unsanded per ANSI A118.6: sanded ≥1/8\", unsanded <1/8\".
     Formula is mathematical (joint volume calculation), not standard-mandated.
-  
+
   waterproofing_calculator: >
     Products listed claim ANSI A118.10 and/or A118.12 compliance.
     Coverage rates from manufacturer TDS, not from ANSI standard.
     ANSI standard defines performance, not coverage rates.
     Two coats required for ANSI A118.10 compliance.
-  
+
   slope_calculator: >
     Minimum slope from IPC Section 417.5.2 (1/4\" per foot).
     Recommended slope (5/16\" per foot) is industry best practice, not code.
     Local codes may vary - verify with local jurisdiction.
-  
+
   leveling_calculator: >
     Product coverage from manufacturer TDS.
     Substrate must meet ANSI A108.02 flatness after leveling.

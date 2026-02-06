@@ -4,7 +4,7 @@
  * Runs immediately to avoid FOUC
  */
 
-(function() {
+(function () {
   'use strict';
 
   // Get stored preferences
@@ -306,7 +306,7 @@
    * Initialize keyboard shortcuts
    */
   function initKeyboardShortcuts() {
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       // Alt+A: Open accessibility toolbar
       if (e.altKey && e.key === 'a') {
         e.preventDefault();
@@ -347,14 +347,19 @@
    */
   function enhanceForms() {
     // Add aria-required to required fields
-    document.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
-      field.setAttribute('aria-required', 'true');
-    });
+    document
+      .querySelectorAll('input[required], select[required], textarea[required]')
+      .forEach((field) => {
+        field.setAttribute('aria-required', 'true');
+      });
 
     // Link errors to fields
-    document.querySelectorAll('.form-error, [role="alert"]').forEach(error => {
+    document.querySelectorAll('.form-error, [role="alert"]').forEach((error) => {
       const field = error.previousElementSibling;
-      if (field && (field.tagName === 'INPUT' || field.tagName === 'SELECT' || field.tagName === 'TEXTAREA')) {
+      if (
+        field &&
+        (field.tagName === 'INPUT' || field.tagName === 'SELECT' || field.tagName === 'TEXTAREA')
+      ) {
         const errorId = error.id || `error-${Math.random().toString(36).substr(2, 9)}`;
         error.id = errorId;
 

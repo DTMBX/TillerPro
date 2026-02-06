@@ -13,7 +13,7 @@
  * - Performance optimized with RAF
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ====
@@ -37,7 +37,7 @@
     tiltPerspective: 1000,
 
     // Debug mode
-    debug: false
+    debug: false,
   };
 
   // ====
@@ -61,7 +61,7 @@
     const rect = el.getBoundingClientRect();
     return {
       x: rect.left + rect.width / 2,
-      y: rect.top + rect.height / 2
+      y: rect.top + rect.height / 2,
     };
   };
 
@@ -82,7 +82,7 @@
       duration = CONFIG.defaultDuration,
       easing = easeOutQuint,
       onUpdate,
-      onComplete
+      onComplete,
     } = options;
 
     const startTime = performance.now();
@@ -114,15 +114,14 @@
   // ====
 
   const easeOutQuint = (t) => 1 - Math.pow(1 - t, 5);
-  const easeOutExpo = (t) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
   const easeOutBack = (t) => {
     const c1 = 1.70158;
     const c3 = c1 + 1;
     return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
   };
-  const easeInOutQuint = (t) => t < 0.5
-    ? 16 * t * t * t * t * t
-    : 1 - Math.pow(-2 * t + 2, 5) / 2;
+  const easeInOutQuint = (t) =>
+    t < 0.5 ? 16 * t * t * t * t * t : 1 - Math.pow(-2 * t + 2, 5) / 2;
 
   // ====
   // SCROLL-TRIGGERED ANIMATIONS
@@ -137,19 +136,19 @@
     init() {
       if (prefersReducedMotion()) {
         // Show all elements immediately if reduced motion preferred
-        document.querySelectorAll('.animate-on-scroll, .scroll-fade-in, .scroll-scale-in, .scroll-slide-left, .scroll-slide-right, .stagger-children')
-          .forEach(el => el.classList.add('is-visible'));
+        document
+          .querySelectorAll(
+            '.animate-on-scroll, .scroll-fade-in, .scroll-scale-in, .scroll-slide-left, .scroll-slide-right, .stagger-children'
+          )
+          .forEach((el) => el.classList.add('is-visible'));
         return;
       }
 
       // Create intersection observer
-      this.observer = new IntersectionObserver(
-        (entries) => this.handleIntersection(entries),
-        {
-          threshold: CONFIG.scrollThreshold,
-          rootMargin: '0px 0px -50px 0px'
-        }
-      );
+      this.observer = new IntersectionObserver((entries) => this.handleIntersection(entries), {
+        threshold: CONFIG.scrollThreshold,
+        rootMargin: '0px 0px -50px 0px',
+      });
 
       // Observe all scroll-animated elements
       this.observeElements();
@@ -163,16 +162,16 @@
         '.scroll-slide-left',
         '.scroll-slide-right',
         '.stagger-children',
-        '[data-animate]'
+        '[data-animate]',
       ];
 
-      document.querySelectorAll(selectors.join(', ')).forEach(el => {
+      document.querySelectorAll(selectors.join(', ')).forEach((el) => {
         this.observer.observe(el);
       });
     }
 
     handleIntersection(entries) {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const el = entry.target;
 
@@ -212,7 +211,7 @@
     init() {
       if (prefersReducedMotion()) return;
 
-      document.querySelectorAll('[data-magnetic]').forEach(el => {
+      document.querySelectorAll('[data-magnetic]').forEach((el) => {
         this.setupElement(el);
       });
     }
@@ -224,7 +223,7 @@
         y: 0,
         targetX: 0,
         targetY: 0,
-        isHovering: false
+        isHovering: false,
       };
 
       this.elements.push(data);
@@ -283,7 +282,7 @@
     init() {
       if (prefersReducedMotion()) return;
 
-      document.querySelectorAll('[data-tilt]').forEach(el => {
+      document.querySelectorAll('[data-tilt]').forEach((el) => {
         this.setupElement(el);
       });
     }
@@ -343,7 +342,7 @@
     init() {
       if (prefersReducedMotion()) return;
 
-      document.querySelectorAll('.card-spotlight').forEach(el => {
+      document.querySelectorAll('.card-spotlight').forEach((el) => {
         this.setupElement(el);
       });
     }
@@ -373,7 +372,7 @@
     init() {
       if (prefersReducedMotion()) {
         // Just show final values
-        document.querySelectorAll('[data-count-to]').forEach(el => {
+        document.querySelectorAll('[data-count-to]').forEach((el) => {
           el.textContent = el.dataset.countTo;
         });
         return;
@@ -381,7 +380,7 @@
 
       this.observer = new IntersectionObserver(
         (entries) => {
-          entries.forEach(entry => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
               this.animateCounter(entry.target);
               this.observer.unobserve(entry.target);
@@ -391,7 +390,7 @@
         { threshold: 0.5 }
       );
 
-      document.querySelectorAll('[data-count-to]').forEach(el => {
+      document.querySelectorAll('[data-count-to]').forEach((el) => {
         this.observer.observe(el);
       });
     }
@@ -409,7 +408,7 @@
         easing: easeOutQuint,
         onUpdate: ({ value }) => {
           el.textContent = `${prefix}${Math.round(value)}${suffix}`;
-        }
+        },
       });
     }
   }
@@ -428,14 +427,14 @@
       if (prefersReducedMotion()) return;
 
       // Split text into spans
-      document.querySelectorAll('[data-split-text]').forEach(el => {
+      document.querySelectorAll('[data-split-text]').forEach((el) => {
         this.splitText(el);
       });
 
       // Observe for animation trigger
       this.observer = new IntersectionObserver(
         (entries) => {
-          entries.forEach(entry => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
               this.animateText(entry.target);
               this.observer.unobserve(entry.target);
@@ -445,7 +444,7 @@
         { threshold: 0.3 }
       );
 
-      document.querySelectorAll('[data-split-text]').forEach(el => {
+      document.querySelectorAll('[data-split-text]').forEach((el) => {
         this.observer.observe(el);
       });
     }
@@ -488,7 +487,7 @@
     init() {
       if (prefersReducedMotion()) return;
 
-      document.querySelectorAll('.ripple-effect').forEach(el => {
+      document.querySelectorAll('.ripple-effect').forEach((el) => {
         el.addEventListener('click', (e) => this.createRipple(e, el));
       });
     }
@@ -539,11 +538,15 @@
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
 
-        setTimeout(() => {
-          el.style.transition = 'opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-        }, index * CONFIG.staggerDelay + 100);
+        setTimeout(
+          () => {
+            el.style.transition =
+              'opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          },
+          index * CONFIG.staggerDelay + 100
+        );
       });
     }
   }
@@ -590,7 +593,7 @@
     init() {
       if (prefersReducedMotion()) return;
 
-      document.querySelectorAll('[data-parallax]').forEach(el => {
+      document.querySelectorAll('[data-parallax]').forEach((el) => {
         const speed = parseFloat(el.dataset.parallax) || 0.5;
         this.elements.push({ el, speed });
       });
@@ -624,7 +627,7 @@
     const {
       delay = CONFIG.staggerDelay,
       animation = 'fade-in-up',
-      duration = CONFIG.defaultDuration
+      duration = CONFIG.defaultDuration,
     } = options;
 
     const elements = document.querySelectorAll(selector);
@@ -764,7 +767,6 @@
     easeOutExpo,
     easeOutBack,
     easeInOutQuint,
-    staggerElements
+    staggerElements,
   };
-
 })();

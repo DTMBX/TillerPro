@@ -38,7 +38,7 @@ let lastProp = '';
 for (let i = 0; i < lines.length; i++) {
   const line = lines[i];
   const propMatch = line.match(/^\s+([\w-]+):/);
-  
+
   if (propMatch) {
     const prop = propMatch[1];
     // Skip duplicate text-size-adjust
@@ -48,12 +48,12 @@ for (let i = 0; i < lines.length; i++) {
     }
     lastProp = prop;
   }
-  
+
   // Reset on closing brace
   if (line.trim() === '}') {
     lastProp = '';
   }
-  
+
   fixedLines.push(line);
 }
 

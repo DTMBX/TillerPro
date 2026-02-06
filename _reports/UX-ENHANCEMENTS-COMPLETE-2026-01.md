@@ -128,6 +128,7 @@
 ### **Enhanced 404 Page**: `404.html`
 
 **New Search Feature**:
+
 - Search input field
 - Smart query mapping:
   - "contact" → /contact/
@@ -136,7 +137,6 @@
   - "portfolio" → /portfolio/
   - "quote" → /tools/#cost-estimator
   - "booking" → /contact/
-  
 - Fallback to Google site search
 - Search suggestions shown
 - Fully accessible (aria-label, role="search")
@@ -146,34 +146,40 @@
 ## 🎯 Expected Impact:
 
 ### **Mobile Usability**: +40%
+
 - WCAG AAA compliant touch targets
 - Safe area support eliminates notch conflicts
 - Larger tap areas reduce mis-taps
 
 ### **Form Completion Rate**: +25%
+
 - Real-time validation catches errors early
 - Clear error messages guide users
 - Loading states prevent double-submission
 
 ### **Error Recovery**: +60%
+
 - Prominent error visibility
 - Shake animation draws attention
 - Jump links to errors
 - Field-specific guidance
 
 ### **Keyboard Navigation**: +100%
+
 - Clear focus indicators on all elements
 - Skip link enhancement
 - Focus trap in modals
 - Logical tab order
 
 ### **User Confidence**: +35%
+
 - Loading spinners show system is working
 - Success toasts confirm actions
 - Error toasts explain problems
 - Back to top always available
 
 ### **404 Bounce Rate**: -30%
+
 - Search helps users find content
 - Smart redirects for common queries
 - Quick navigation links
@@ -184,12 +190,14 @@
 ## 📱 Features by Device:
 
 ### **Desktop (≥768px)**:
+
 - Focus indicators: 3px outline
 - Back to top: 52x52px button
 - Toasts: Top-right corner
 - Touch targets: Standard sizing
 
 ### **Mobile (<768px)**:
+
 - Touch targets: 48x48px minimum
 - Safe area insets: Full support
 - Back to top: 48x48px, adjusted for sticky CTA
@@ -197,6 +205,7 @@
 - Inputs: 48px height minimum
 
 ### **Tablet**:
+
 - Hybrid behavior
 - Touch-optimized buttons
 - Safe areas where applicable
@@ -206,6 +215,7 @@
 ## ♿ Accessibility Features:
 
 ### **Keyboard Navigation**:
+
 - ✅ Skip to main content (enhanced)
 - ✅ Focus indicators on all interactive elements
 - ✅ Modal focus trap
@@ -213,6 +223,7 @@
 - ✅ ESC key to close modals
 
 ### **Screen Readers**:
+
 - ✅ `aria-label` on all buttons
 - ✅ `aria-live` regions for toasts
 - ✅ `aria-invalid` on error fields
@@ -221,12 +232,14 @@
 - ✅ Page title announcements
 
 ### **Visual Accessibility**:
+
 - ✅ High contrast support
 - ✅ Focus indicators (3-4px visible)
 - ✅ Error colors meet WCAG AA
 - ✅ Success colors meet WCAG AA
 
 ### **Motion Preferences**:
+
 - ✅ `prefers-reduced-motion`: Respects user preference
 - ✅ Animations disabled for users who prefer reduced motion
 - ✅ Transitions still work (0.01s fallback)
@@ -236,11 +249,13 @@
 ## 🧪 How to Test (After Deploy):
 
 ### **Test 1: Touch Targets (Mobile)**
+
 1. Visit on phone: https://tillerstead.com
 2. Scroll to any CTA button
 3. **Expected**: Easy to tap, 48x48px minimum
 
 ### **Test 2: Back to Top**
+
 1. Visit any long page
 2. Scroll down >400px
 3. **Expected**: Circular button appears bottom-right
@@ -248,6 +263,7 @@
 5. **Expected**: Smooth scroll to top
 
 ### **Test 3: Form Validation**
+
 1. Visit: https://tillerstead.com/contact/
 2. Click submit without filling form
 3. **Expected**: Error summary at top, shake animation
@@ -256,18 +272,21 @@
 6. **Expected**: Error clears on that field
 
 ### **Test 4: Success Toast**
+
 1. Submit a valid form (or use ?success URL param)
 2. **Expected**: Green toast slides in from right
 3. Shows ✓ checkmark
 4. Auto-dismisses after 5s
 
 ### **Test 5: Keyboard Navigation**
+
 1. Use Tab key to navigate
 2. **Expected**: Blue outline (3px) on focused elements
 3. Press Shift+Tab to go backward
 4. **Expected**: Outline follows focus
 
 ### **Test 6: 404 Search**
+
 1. Visit: https://tillerstead.com/nonexistent-page
 2. Type "contact" in search
 3. **Expected**: Redirects to /contact/
@@ -275,12 +294,14 @@
 5. **Expected**: Redirects to /services/#tile
 
 ### **Test 7: Safe Area (iPhone)**
+
 1. Open on iPhone X or newer
 2. Look at sticky CTA at bottom
 3. **Expected**: Doesn't overlap home indicator
 4. No content hidden by notch
 
 ### **Test 8: Loading State**
+
 1. Submit any form
 2. **Expected**: Button shows spinner
 3. Button disabled
@@ -291,11 +312,13 @@
 ## 📋 Files Changed:
 
 ### **New Files (3)**:
+
 - `assets/css/ux-enhancements.css` ← All UX styles
 - `assets/js/ux-enhancements.js` ← All UX logic
 - `_reports/SCROLL-BLOCKING-FIX-2026-01.md` ← Scroll fix docs
 
 ### **Modified Files (3)**:
+
 - `404.html` ← Added search
 - `_includes/layout/head.html` ← Linked UX CSS
 - `_includes/layout/scripts.html` ← Linked UX JS
@@ -318,6 +341,7 @@ Deploy:   ⏳ In progress (2-3 min)
 ## 💡 How Users Will Experience It:
 
 ### **Mobile User**:
+
 1. Opens site on iPhone
 2. Notices larger, easier-to-tap buttons
 3. Sticky CTA doesn't overlap home indicator
@@ -329,6 +353,7 @@ Deploy:   ⏳ In progress (2-3 min)
 9. Never frustrated by mis-taps or hidden content
 
 ### **Keyboard User**:
+
 1. Tabs through site
 2. Clearly sees focus on each element
 3. Uses skip link to jump to main content
@@ -338,6 +363,7 @@ Deploy:   ⏳ In progress (2-3 min)
 7. Can navigate entire site without mouse
 
 ### **Screen Reader User**:
+
 1. Hears "Page loaded: Homepage"
 2. Skip link announced first
 3. Error summary read aloud when visible
@@ -347,6 +373,7 @@ Deploy:   ⏳ In progress (2-3 min)
 7. Full semantic HTML structure
 
 ### **User on Slow Connection**:
+
 1. Submits form
 2. Sees loading spinner (knows form is submitting)
 3. Doesn't click multiple times (button disabled)
@@ -358,6 +385,7 @@ Deploy:   ⏳ In progress (2-3 min)
 ## 🎉 Summary:
 
 **10 High-Impact UX Improvements**:
+
 1. ✅ WCAG AAA touch targets
 2. ✅ iPhone safe area support
 3. ✅ Keyboard focus indicators
@@ -369,7 +397,8 @@ Deploy:   ⏳ In progress (2-3 min)
 9. ✅ Skeleton loading screens
 10. ✅ Accessibility enhancements
 
-**Result**: Professional, polished, accessible user experience that works for everyone on every device.
+**Result**: Professional, polished, accessible user experience that works for
+everyone on every device.
 
 ---
 

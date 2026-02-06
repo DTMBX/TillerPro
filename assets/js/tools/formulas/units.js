@@ -33,7 +33,7 @@ export const CONVERSIONS = {
   // Weight
   GRAMS_PER_POUND: 453.592,
   KG_PER_POUND: 0.453592,
-  POUNDS_PER_KG: 2.20462
+  POUNDS_PER_KG: 2.20462,
 };
 
 // ==

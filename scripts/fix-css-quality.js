@@ -21,7 +21,7 @@ console.log('🔧 Step 1: Fixing deprecated properties...\n');
 const clipFix = {
   file: 'assets/css/pages/contact.css',
   search: /clip:\s*rect\([^)]+\)/g,
-  replace: 'clip-path: inset(50%)'
+  replace: 'clip-path: inset(50%)',
 };
 
 if (fs.existsSync(path.join(ROOT, clipFix.file))) {
@@ -29,7 +29,9 @@ if (fs.existsSync(path.join(ROOT, clipFix.file))) {
   const before = (content.match(clipFix.search) || []).length;
   content = content.replace(clipFix.search, clipFix.replace);
   fs.writeFileSync(path.join(ROOT, clipFix.file), content, 'utf8');
-  console.log(`✅ ${clipFix.file}: Replaced deprecated 'clip' with 'clip-path' (${before} occurrences)`);
+  console.log(
+    `✅ ${clipFix.file}: Replaced deprecated 'clip' with 'clip-path' (${before} occurrences)`
+  );
 }
 
 // Step 2: Fix keyframe naming (kebab-case)
@@ -41,22 +43,22 @@ const keyframeFixes = [
     replacements: [
       {
         search: /@keyframes fadeInLeft/g,
-        replace: '@keyframes fade-in-left'
+        replace: '@keyframes fade-in-left',
       },
       {
         search: /animation:\s*fadeInLeft/g,
-        replace: 'animation: fade-in-left'
+        replace: 'animation: fade-in-left',
       },
       {
         search: /@keyframes fadeInRight/g,
-        replace: '@keyframes fade-in-right'
+        replace: '@keyframes fade-in-right',
       },
       {
         search: /animation:\s*fadeInRight/g,
-        replace: 'animation: fade-in-right'
-      }
-    ]
-  }
+        replace: 'animation: fade-in-right',
+      },
+    ],
+  },
 ];
 
 keyframeFixes.forEach(({ file, replacements }) => {
@@ -86,7 +88,7 @@ console.log('\n🔧 Step 3: Running Stylelint auto-fix...\n');
 try {
   execSync('npm run lint:css:fix', {
     cwd: ROOT,
-    stdio: 'inherit'
+    stdio: 'inherit',
   });
   console.log('\n✅ Stylelint auto-fix complete');
 } catch (_error) {

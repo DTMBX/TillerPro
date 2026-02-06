@@ -4,7 +4,7 @@
  * Version: 1.0.0
  */
 
-(function() {
+(function () {
   'use strict';
 
   const StickyCTA = {
@@ -12,24 +12,24 @@
       scrollThreshold: 500, // Show after scrolling 500px
       hideOnPages: [], // Pages where CTA should never show
       cookieName: 'ts_sticky_cta_dismissed',
-      cookieDays: 7 // Remember dismissal for 7 days
+      cookieDays: 7, // Remember dismissal for 7 days
     },
 
     elements: {
       cta: null,
-      closeBtn: null
+      closeBtn: null,
     },
 
     state: {
       isVisible: false,
       isDismissed: false,
-      scrollY: 0
+      scrollY: 0,
     },
 
     /**
      * Initialize sticky CTA
      */
-    init: function() {
+    init: function () {
       this.elements.cta = document.querySelector('.sticky-cta');
 
       if (!this.elements.cta) {
@@ -56,7 +56,7 @@
     /**
      * Attach event listeners
      */
-    attachEvents: function() {
+    attachEvents: function () {
       // Scroll listener with throttle
       let ticking = false;
       window.addEventListener('scroll', () => {
@@ -80,7 +80,7 @@
 
       // Track button clicks
       const buttons = this.elements.cta.querySelectorAll('.sticky-cta__btn');
-      buttons.forEach(btn => {
+      buttons.forEach((btn) => {
         btn.addEventListener('click', () => {
           this.trackClick(btn.textContent.trim());
         });
@@ -90,7 +90,7 @@
     /**
      * Check scroll position and show/hide CTA
      */
-    checkScroll: function() {
+    checkScroll: function () {
       const shouldShow = this.state.scrollY >= this.config.scrollThreshold;
 
       // Check if we're near footer (hide CTA)
@@ -108,7 +108,7 @@
     /**
      * Show CTA
      */
-    show: function() {
+    show: function () {
       this.elements.cta.classList.add('visible');
       this.elements.cta.classList.remove('hidden');
       this.state.isVisible = true;
@@ -122,7 +122,7 @@
     /**
      * Hide CTA (temporarily)
      */
-    hide: function() {
+    hide: function () {
       this.elements.cta.classList.remove('visible');
       this.elements.cta.classList.add('hidden');
       this.state.isVisible = false;
@@ -133,7 +133,7 @@
     /**
      * Dismiss CTA (permanently for session/cookie duration)
      */
-    dismiss: function() {
+    dismiss: function () {
       this.hide();
       this.state.isDismissed = true;
 
@@ -151,11 +151,11 @@
     /**
      * Track events
      */
-    trackEvent: function(action, label = '') {
+    trackEvent: function (action, label = '') {
       if (typeof gtag !== 'undefined') {
         gtag('event', action, {
           event_category: 'Sticky CTA',
-          event_label: label
+          event_label: label,
         });
       }
 
@@ -167,23 +167,23 @@
     /**
      * Track button clicks
      */
-    trackClick: function(buttonText) {
+    trackClick: function (buttonText) {
       this.trackEvent('CTA Click', buttonText);
     },
 
     /**
      * Set cookie
      */
-    setCookie: function(name, value, days) {
+    setCookie: function (name, value, days) {
       const expires = new Date();
-      expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
       document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Strict`;
     },
 
     /**
      * Get cookie
      */
-    getCookie: function(name) {
+    getCookie: function (name) {
       const nameEQ = name + '=';
       const ca = document.cookie.split(';');
       for (let i = 0; i < ca.length; i++) {
@@ -192,7 +192,7 @@
         if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
       }
       return null;
-    }
+    },
   };
 
   // Auto-initialize

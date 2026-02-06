@@ -82,10 +82,7 @@ const config = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: [
-                  'autoprefixer',
-                  'cssnano',
-                ],
+                plugins: ['autoprefixer', 'cssnano'],
               },
             },
           },

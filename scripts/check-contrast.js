@@ -23,11 +23,7 @@ import { join } from 'path';
 function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
-    ? [
-      parseInt(result[1], 16),
-      parseInt(result[2], 16),
-      parseInt(result[3], 16),
-    ]
+    ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
     : null;
 }
 
@@ -36,9 +32,7 @@ function hexToRgb(hex) {
  */
 function rgbaToRgb(rgba) {
   const match = rgba.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-  return match
-    ? [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])]
-    : null;
+  return match ? [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])] : null;
 }
 
 /**
@@ -167,7 +161,7 @@ function auditContrast() {
     const reset = '\x1b[0m';
 
     console.log(
-      `${status} ${color}${result.ratio}:1${reset} ${gradeNormal} (${gradeLarge} large) - ${context}`,
+      `${status} ${color}${result.ratio}:1${reset} ${gradeNormal} (${gradeLarge} large) - ${context}`
     );
     console.log(`   ${fg} on ${bg}`);
 
@@ -188,9 +182,7 @@ function auditContrast() {
       console.log(`❌ ${f.context}`);
       console.log(`   ${f.foreground} on ${f.background}`);
       console.log(`   Ratio: ${f.ratio}:1 (needs 4.5:1 minimum)`);
-      console.log(
-        '   Recommendation: Darken foreground or lighten background\n',
-      );
+      console.log('   Recommendation: Darken foreground or lighten background\n');
     });
   } else {
     console.log('\n🎉 All color combinations meet WCAG 2.1 AA standards!');

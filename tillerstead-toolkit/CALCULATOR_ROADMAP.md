@@ -1,4 +1,5 @@
 # Premium Calculator Recommendations for Tillerstead
+
 ## Making Tillerstead New Jersey's #1 Contractor Choice
 
 ---
@@ -6,13 +7,15 @@
 ## ✅ Already Implemented
 
 ### Core Tile Installation
+
 - ✅ Tile Floor Calculator
-- ✅ Thinset Mortar Calculator  
+- ✅ Thinset Mortar Calculator
 - ✅ Drywall Compound Calculator
 - ✅ **NEW** Large Format Tile Calculator (>15" tiles)
 - ✅ **NEW** Shower Pan Liner Calculator (traditional mortar bed)
 
 ### NJ Compliance & Legal (COMPETITIVE ADVANTAGE!)
+
 - ✅ **NEW** NJ HIC Contract Generator
 - ✅ **NEW** NJ Sales Tax Calculator (6.625%, county-specific)
 
@@ -21,13 +24,14 @@
 ## 🚀 Priority 1: Must-Have Calculators (Implement Next)
 
 ### Waterproofing Category
+
 1. **Liquid Waterproofing Calculator**
    - RedGard, AquaDefense, Hydro Ban coverage
    - Square footage → gallons/buckets
    - Corner reinforcement fabric
    - TCNA EJ171 compliant
 
-2. **Sheet Membrane Calculator** 
+2. **Sheet Membrane Calculator**
    - Kerdi, Wedi, Durock waterproofing
    - Roll quantities with overlap
    - Curb/bench coverage
@@ -38,7 +42,8 @@
    - Modified vs unmodified mortar requirements
    - Roll sizing optimization
 
-### Tile Installation  
+### Tile Installation
+
 4. **Tile Wall Calculator**
    - Walls minus windows/doors
    - Niches and openings
@@ -64,6 +69,7 @@
    - Edge trim/profiles
 
 ### Substrate Preparation
+
 8. **Self-Leveling Compound Calculator**
    - Area × thickness → bags
    - Primer coverage
@@ -83,6 +89,7 @@
     - Sand-to-cement ratios
 
 ### Grouting
+
 11. **Grout Calculator**
     - Tile size + joint width → lbs/bags
     - Sanded vs unsanded recommendations
@@ -102,24 +109,28 @@
     - Annual maintenance amounts
 
 ### Trim & Finishing
+
 14. **Baseboard/Trim Calculator**
-   - Linear feet with waste
-   - Inside/outside corners
-   - Coped vs mitered joints
-   - Nail/adhesive quantities
+
+- Linear feet with waste
+- Inside/outside corners
+- Coped vs mitered joints
+- Nail/adhesive quantities
 
 15. **Schluter Profile Calculator**
-   - Jolly (edge trim)
-   - Rondec (bullnose)
-   - Quadec (square edge)
-   - Dilex (movement joints)
-   - Correct profile for tile thickness
+
+- Jolly (edge trim)
+- Rondec (bullnose)
+- Quadec (square edge)
+- Dilex (movement joints)
+- Correct profile for tile thickness
 
 ---
 
 ## 🎯 Priority 2: Professional Edge Calculators
 
 ### NJ-Specific Compliance (Major Differentiator!)
+
 16. **NJ Permit Estimator**
     - Building permit costs by municipality
     - Electrical/plumbing permit requirements
@@ -145,6 +156,7 @@
     - Material delivery coordination
 
 ### Estimating & Bidding
+
 20. **Labor Estimator**
     - Production rates (sqft/hour by trade)
     - Crew size optimization
@@ -176,6 +188,7 @@
     - Inspection milestones
 
 ### Advanced Tile Work
+
 25. **Heated Floor Calculator**
     - Electric radiant mat sizing
     - Wattage requirements
@@ -199,6 +212,7 @@
 ## 💎 Priority 3: Premium/Advanced Features
 
 ### Professional Tools
+
 28. **Change Order Generator**
     - Original scope vs new scope
     - Price adjustments
@@ -218,6 +232,7 @@
     - Future estimating improvements
 
 ### Specialty Installations
+
 31. **Exterior Tile/Stone Calculator**
     - Frost-rated materials
     - Enhanced waterproofing
@@ -237,6 +252,7 @@
     - Grout vs epoxy fill
 
 ### Drywall & Painting
+
 34. **Drywall Sheet Calculator**
     - 4×8, 4×10, 4×12 sheets
     - Ceiling vs wall optimization
@@ -256,6 +272,7 @@
     - Sanding supplies
 
 ### Other Flooring
+
 37. **Hardwood Flooring Calculator**
     - Solid vs engineered wood
     - Acclimation time
@@ -273,6 +290,7 @@
 ## 🎨 UX Improvements for Premium Experience
 
 ### Visual Categorization
+
 ```
 🔲 Tile Installation (MOST POPULAR)
    └─ Tile Floor, Tile Wall, Shower, Large Format, Backsplash
@@ -297,6 +315,7 @@
 ```
 
 ### Smart Features
+
 - **Recently Used** - Quick access to last 5 calculators
 - **Favorites** - Star calculators for easy access
 - **Project Bundles** - Pre-grouped calculators for common jobs
@@ -305,6 +324,7 @@
   - "Kitchen Backsplash" → Backsplash + Grout + Sealer
 
 ### Search & Filters
+
 - Search by keyword, material type, or project
 - Filter by:
   - Difficulty (Easy / Medium / Advanced)
@@ -314,6 +334,7 @@
   - Popular / Trending
 
 ### Badges & Labels
+
 - 🔥 POPULAR - Most-used calculators
 - ⭐ FEATURED - NJ-specific competitive advantage
 - 🆕 NEW - Recently added
@@ -324,36 +345,39 @@
 
 ## 📊 Implementation Priority Matrix
 
-| Priority | Calculator | Impact | Complexity | Time Est. |
-|----------|-----------|--------|------------|-----------|
-| 🔴 HIGH | Liquid Waterproofing | Very High | Low | 2 hrs |
-| 🔴 HIGH | Sheet Membrane | Very High | Low | 2 hrs |
-| 🔴 HIGH | Tile Wall | Very High | Medium | 3 hrs |
-| 🔴 HIGH | Tile Shower Complete | Very High | High | 6 hrs |
-| 🔴 HIGH | NJ Permit Estimator | High | Medium | 4 hrs |
-| 🟡 MED | Self-Leveling | High | Low | 2 hrs |
-| 🟡 MED | Grout | High | Medium | 3 hrs |
-| 🟡 MED | Backer Board | Medium | Low | 2 hrs |
-| 🟡 MED | Labor Estimator | High | Medium | 4 hrs |
-| 🟢 LOW | Heated Floor | Medium | Medium | 3 hrs |
+| Priority | Calculator           | Impact    | Complexity | Time Est. |
+| -------- | -------------------- | --------- | ---------- | --------- |
+| 🔴 HIGH  | Liquid Waterproofing | Very High | Low        | 2 hrs     |
+| 🔴 HIGH  | Sheet Membrane       | Very High | Low        | 2 hrs     |
+| 🔴 HIGH  | Tile Wall            | Very High | Medium     | 3 hrs     |
+| 🔴 HIGH  | Tile Shower Complete | Very High | High       | 6 hrs     |
+| 🔴 HIGH  | NJ Permit Estimator  | High      | Medium     | 4 hrs     |
+| 🟡 MED   | Self-Leveling        | High      | Low        | 2 hrs     |
+| 🟡 MED   | Grout                | High      | Medium     | 3 hrs     |
+| 🟡 MED   | Backer Board         | Medium    | Low        | 2 hrs     |
+| 🟡 MED   | Labor Estimator      | High      | Medium     | 4 hrs     |
+| 🟢 LOW   | Heated Floor         | Medium    | Medium     | 3 hrs     |
 
 ---
 
 ## 🎯 Success Metrics
 
 ### User Engagement
+
 - Daily active calculators
 - Calculator completion rate
 - Average calculators per session
 - Return user rate
 
 ### Business Impact
+
 - Lead generation from calculator usage
 - Quote conversion rate
 - Average project value
 - Customer satisfaction (NPS)
 
 ### Competitive Advantage
+
 - % of users using NJ-specific tools
 - TCNA compliance calculator usage
 - Professional tier adoption
@@ -373,6 +397,7 @@
 6. Self-Leveling
 
 **Deliverables**:
+
 - Category-based navigation
 - Search functionality
 - Badge system
@@ -383,25 +408,30 @@
 ## 💡 Marketing Angles
 
 ### "The Contractor's Edge"
+
 - Only calculator app with NJ HIC compliance built-in
 - TCNA Handbook compliance verification
 - Save hours on estimates
 - Never underbid again
 
 ### "Professional Grade, Free to Use"
+
 - Enterprise-quality tools
 - No registration required
 - Export PDF estimates
 - Save projects locally
 
 ### Social Proof
+
 - "Used by licensed NJ contractors"
 - "TCNA Handbook compliant"
 - "Trusted by 500+ South Jersey pros"
 
 ---
 
-**This positions Tillerstead as THE go-to contractor in New Jersey by providing tools that:**
+**This positions Tillerstead as THE go-to contractor in New Jersey by providing
+tools that:**
+
 1. Save contractors time (better estimates, faster bids)
 2. Ensure legal compliance (NJ HIC, permits, tax)
 3. Guarantee quality (TCNA standards)

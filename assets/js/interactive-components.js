@@ -38,7 +38,7 @@ class InteractiveComponents {
   setupFAQAccordion() {
     const accordions = document.querySelectorAll('[data-accordion]');
 
-    accordions.forEach(accordion => {
+    accordions.forEach((accordion) => {
       const items = accordion.querySelectorAll('[data-accordion-item]');
 
       items.forEach((item, index) => {
@@ -64,7 +64,7 @@ class InteractiveComponents {
           // Close all items if you want exclusive accordion behavior
           const closeOthers = accordion.hasAttribute('data-accordion-exclusive');
           if (closeOthers) {
-            items.forEach(otherItem => {
+            items.forEach((otherItem) => {
               if (otherItem !== item) {
                 const otherTrigger = otherItem.querySelector('[data-accordion-trigger]');
                 const otherContent = otherItem.querySelector('[data-accordion-content]');
@@ -104,7 +104,7 @@ class InteractiveComponents {
   setupBeforeAfterSlider() {
     const sliders = document.querySelectorAll('[data-before-after]');
 
-    sliders.forEach(slider => {
+    sliders.forEach((slider) => {
       const handle = slider.querySelector('[data-ba-handle]');
       const overlay = slider.querySelector('[data-ba-overlay]');
 
@@ -144,16 +144,24 @@ class InteractiveComponents {
       });
 
       // Touch events
-      handle.addEventListener('touchstart', (e) => {
-        isDragging = true;
-        startX = e.touches[0].clientX;
-        handle.classList.add('is-dragging');
-      }, { passive: true });
+      handle.addEventListener(
+        'touchstart',
+        (e) => {
+          isDragging = true;
+          startX = e.touches[0].clientX;
+          handle.classList.add('is-dragging');
+        },
+        { passive: true }
+      );
 
-      document.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        updatePosition(e.touches[0].clientX);
-      }, { passive: true });
+      document.addEventListener(
+        'touchmove',
+        (e) => {
+          if (!isDragging) return;
+          updatePosition(e.touches[0].clientX);
+        },
+        { passive: true }
+      );
 
       document.addEventListener('touchend', () => {
         if (isDragging) {
@@ -163,7 +171,7 @@ class InteractiveComponents {
       });
 
       // Initialize position
-      updatePosition(slider.getBoundingClientRect().left + (slider.offsetWidth / 2));
+      updatePosition(slider.getBoundingClientRect().left + slider.offsetWidth / 2);
     });
   }
 
@@ -173,7 +181,7 @@ class InteractiveComponents {
   setupPricingCalculator() {
     const calculators = document.querySelectorAll('[data-pricing-calculator]');
 
-    calculators.forEach(calculator => {
+    calculators.forEach((calculator) => {
       const inputs = calculator.querySelectorAll('[data-calc-input]');
       const output = calculator.querySelector('[data-calc-output]');
 
@@ -183,7 +191,7 @@ class InteractiveComponents {
         let total = 0;
         const values = {};
 
-        inputs.forEach(input => {
+        inputs.forEach((input) => {
           const name = input.name || input.dataset.calcInput;
           const value = parseFloat(input.value) || 0;
           const multiplier = parseFloat(input.dataset.multiplier) || 1;
@@ -200,13 +208,15 @@ class InteractiveComponents {
         output.textContent = `$${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
         // Emit custom event
-        calculator.dispatchEvent(new CustomEvent('calculationUpdate', {
-          detail: { total, values }
-        }));
+        calculator.dispatchEvent(
+          new CustomEvent('calculationUpdate', {
+            detail: { total, values },
+          })
+        );
       };
 
       // Listen for input changes
-      inputs.forEach(input => {
+      inputs.forEach((input) => {
         input.addEventListener('input', calculate);
         input.addEventListener('change', calculate);
       });
@@ -240,7 +250,7 @@ class InteractiveComponents {
         success: '✓',
         error: '✕',
         warning: '⚠',
-        info: 'ℹ'
+        info: 'ℹ',
       };
 
       toast.innerHTML = `
@@ -277,7 +287,7 @@ class InteractiveComponents {
   setupImageGallery() {
     const galleries = document.querySelectorAll('[data-gallery]');
 
-    galleries.forEach(gallery => {
+    galleries.forEach((gallery) => {
       const images = gallery.querySelectorAll('[data-gallery-item]');
 
       images.forEach((img, index) => {

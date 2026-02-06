@@ -5,8 +5,7 @@
 (() => {
   // Utility selectors
   const $ = (selector, context = document) => context.querySelector(selector);
-  const $$ = (selector, context = document) =>
-    Array.from(context.querySelectorAll(selector));
+  const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
 
   // DOM references
   const header = $('.site-header');
@@ -40,10 +39,7 @@
     // // // // // // // // // // // // // // // console.log('[DEBUG] navOverlay:', navOverlay); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
 
     navToggle?.setAttribute('aria-expanded', state);
-    navToggle?.setAttribute(
-      'aria-label',
-      open ? 'Close navigation menu' : 'Open navigation menu',
-    );
+    navToggle?.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
     nav?.setAttribute('aria-expanded', state);
     if (nav) nav.dataset.open = state;
     if (navShell) navShell.dataset.open = state;
@@ -63,7 +59,7 @@
     if (!isNavOpen() || e.key !== 'Tab' || !nav) return;
     const focusables = $$(
       'a[href]:not([tabindex="-1"]), button:not([disabled]):not([tabindex="-1"])',
-      nav,
+      nav
     ).filter((el) => el.offsetParent !== null);
     if (!focusables.length) return;
     const first = focusables[0];
@@ -325,7 +321,7 @@
         ticking = true;
       }
     },
-    { passive: true },
+    { passive: true }
   );
 
   // === Responsive Handling ===

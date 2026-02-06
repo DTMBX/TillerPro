@@ -40,13 +40,14 @@ const CORE_ASSETS = [
   '/manifest.webmanifest',
   '/assets/icons/favicon-32x32.png',
   '/assets/icons/apple-touch-icon.png',
-  '/offline.html'
+  '/offline.html',
 ];
 
 // Install: Cache core assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(STATIC_CACHE)
+    caches
+      .open(STATIC_CACHE)
       .then((cache) => {
         console.log('[SW] Caching core assets');
         return cache.addAll(CORE_ASSETS);
@@ -58,11 +59,14 @@ self.addEventListener('install', (event) => {
 // Activate: Clean up old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys()
+    caches
+      .keys()
       .then((cacheNames) => {
         return Promise.all(
           cacheNames
-            .filter((name) => name !== STATIC_CACHE && name !== DYNAMIC_CACHE && name !== OFFLINE_CACHE)
+            .filter(
+              (name) => name !== STATIC_CACHE && name !== DYNAMIC_CACHE && name !== OFFLINE_CACHE
+            )
             .map((name) => {
               console.log('[SW] Deleting old cache:', name);
               return caches.delete(name);
@@ -89,7 +93,7 @@ async function syncForms() {
         const response = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(item.data)
+          body: JSON.stringify(item.data),
         });
 
         if (response.ok) {
@@ -121,9 +125,7 @@ self.addEventListener('message', (event) => {
     event.waitUntil(
       caches.keys().then((cacheNames) => {
         return Promise.all(
-          cacheNames
-            .filter((name) => name === DYNAMIC_CACHE)
-            .map((name) => caches.delete(name))
+          cacheNames.filter((name) => name === DYNAMIC_CACHE).map((name) => caches.delete(name))
         );
       })
     );
@@ -150,8 +152,7 @@ self.addEventListener('fetch', (event) => {
           return response;
         })
         .catch(() =>
-          caches.match(request)
-            .then((cached) => cached || caches.match('/offline.html'))
+          caches.match(request).then((cached) => cached || caches.match('/offline.html'))
         )
     );
     return;
@@ -168,15 +169,14 @@ self.addEventListener('fetch', (event) => {
     url.pathname.endsWith('.svg')
   ) {
     event.respondWith(
-      caches.match(request)
-        .then((cached) => {
-          if (cached) return cached;
-          return fetch(request).then((response) => {
-            const clone = response.clone();
-            caches.open(STATIC_CACHE).then((cache) => cache.put(request, clone));
-            return response;
-          });
-        })
+      caches.match(request).then((cached) => {
+        if (cached) return cached;
+        return fetch(request).then((response) => {
+          const clone = response.clone();
+          caches.open(STATIC_CACHE).then((cache) => cache.put(request, clone));
+          return response;
+        });
+      })
     );
     return;
   }

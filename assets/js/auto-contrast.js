@@ -64,8 +64,7 @@
       return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
     }
     const match = computed.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-    if (match)
-      return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
+    if (match) return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
     return null;
   }
 

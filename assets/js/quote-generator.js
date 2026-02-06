@@ -6,7 +6,7 @@
  * @author Tillerstead LLC
  */
 
-(function() {
+(function () {
   'use strict';
 
   class QuoteGenerator {
@@ -26,7 +26,9 @@
       const year = now.getFullYear();
       const month = String(now.getMonth() + 1).padStart(2, '0');
       const day = String(now.getDate()).padStart(2, '0');
-      const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+      const random = Math.floor(Math.random() * 1000)
+        .toString()
+        .padStart(3, '0');
       return `Q${year}${month}${day}-${random}`;
     }
 
@@ -48,7 +50,7 @@
           name: customerData.name || '',
           email: customerData.email || '',
           phone: customerData.phone || '',
-          address: customerData.address || ''
+          address: customerData.address || '',
         },
 
         project: {
@@ -58,7 +60,7 @@
           totalArea: summary.totalArea || 0,
           roomCount: summary.roomCount || 1,
           tileType: summary.tileSize || 'Standard',
-          complexity: customerData.complexity || 'moderate'
+          complexity: customerData.complexity || 'moderate',
         },
 
         materials: materials,
@@ -68,7 +70,7 @@
         timeline: {
           estimatedDays: this.estimateProjectDuration(summary.totalArea),
           startAvailability: 'Within 2-3 weeks',
-          seasonalNote: this.getSeasonalNote()
+          seasonalNote: this.getSeasonalNote(),
         },
 
         acknowledgments: {},
@@ -76,7 +78,7 @@
         notes: customerData.notes || '',
 
         createdBy: this.config.company.name,
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
       };
     }
 
@@ -86,7 +88,7 @@
     calculateMaterials(summary) {
       const materials = [];
       const area = summary.totalArea || 0;
-      const wasteFactor = 1.10; // 10% waste
+      const wasteFactor = 1.1; // 10% waste
 
       // Tile
       if (summary.tilesNeeded) {
@@ -94,9 +96,9 @@
           item: 'Porcelain Tile',
           quantity: Math.ceil(summary.tilesNeeded * wasteFactor),
           unit: 'pieces',
-          unitPrice: 4.50,
-          total: Math.ceil(summary.tilesNeeded * wasteFactor) * 4.50,
-          category: 'tile'
+          unitPrice: 4.5,
+          total: Math.ceil(summary.tilesNeeded * wasteFactor) * 4.5,
+          category: 'tile',
         });
       }
 
@@ -106,9 +108,9 @@
           item: 'Premium Grout',
           quantity: summary.groutBags,
           unit: 'bags',
-          unitPrice: 35.00,
-          total: summary.groutBags * 35.00,
-          category: 'grout'
+          unitPrice: 35.0,
+          total: summary.groutBags * 35.0,
+          category: 'grout',
         });
       }
 
@@ -118,9 +120,9 @@
         item: 'Modified Thinset Mortar',
         quantity: mortarBags,
         unit: 'bags',
-        unitPrice: 28.00,
-        total: mortarBags * 28.00,
-        category: 'mortar'
+        unitPrice: 28.0,
+        total: mortarBags * 28.0,
+        category: 'mortar',
       });
 
       // Underlayment/Membrane
@@ -129,9 +131,9 @@
           item: 'Crack Isolation Membrane',
           quantity: Math.ceil(area * 1.05),
           unit: 'sqft',
-          unitPrice: 1.20,
-          total: Math.ceil(area * 1.05) * 1.20,
-          category: 'underlayment'
+          unitPrice: 1.2,
+          total: Math.ceil(area * 1.05) * 1.2,
+          category: 'underlayment',
         });
       }
 
@@ -140,9 +142,9 @@
         item: 'Supplies & Miscellaneous',
         quantity: 1,
         unit: 'lot',
-        unitPrice: 150.00,
-        total: 150.00,
-        category: 'misc'
+        unitPrice: 150.0,
+        total: 150.0,
+        category: 'misc',
       });
 
       return materials;
@@ -153,7 +155,7 @@
      */
     calculateLabor(summary) {
       const area = summary.totalArea || 0;
-      const hourlyRate = 70.00;
+      const hourlyRate = 70.0;
       const sqftPerHour = 9; // Typical installation rate
       const hours = Math.ceil(area / sqftPerHour);
 
@@ -165,8 +167,8 @@
         breakdown: [
           { task: 'Surface Preparation', hours: Math.ceil(hours * 0.2), rate: hourlyRate },
           { task: 'Tile Installation', hours: Math.ceil(hours * 0.6), rate: hourlyRate },
-          { task: 'Grouting & Finishing', hours: Math.ceil(hours * 0.2), rate: hourlyRate }
-        ]
+          { task: 'Grouting & Finishing', hours: Math.ceil(hours * 0.2), rate: hourlyRate },
+        ],
       };
     }
 
@@ -190,8 +192,8 @@
         salesTax: salesTax,
         salesTaxRate: salesTaxRate,
         total: total,
-        deposit: total * 0.30, // 30% deposit
-        balanceOnCompletion: total * 0.70
+        deposit: total * 0.3, // 30% deposit
+        balanceOnCompletion: total * 0.7,
       };
     }
 
@@ -314,7 +316,7 @@
       doc.setFontSize(10);
       doc.text(quote.customer.name, 20, y);
       y += 5;
-      if (quote.customer.address) doc.text(quote.customer.address, 20, y), y += 5;
+      if (quote.customer.address) (doc.text(quote.customer.address, 20, y), (y += 5));
       doc.text(quote.customer.email, 20, y);
       y += 5;
       doc.text(quote.customer.phone, 20, y);
@@ -353,7 +355,7 @@
       y += 5;
 
       doc.setFont('helvetica', 'normal');
-      quote.materials.forEach(item => {
+      quote.materials.forEach((item) => {
         if (y > 250) {
           doc.addPage();
           y = 20;
@@ -410,7 +412,12 @@
       y = 280;
       doc.setFontSize(8);
       doc.setTextColor(100);
-      doc.text('This quote is valid for 30 days. See pages 2-4 for complete terms and conditions.', 105, y, { align: 'center' });
+      doc.text(
+        'This quote is valid for 30 days. See pages 2-4 for complete terms and conditions.',
+        105,
+        y,
+        { align: 'center' }
+      );
     }
 
     /**
@@ -443,7 +450,7 @@
         doc.setFont('helvetica', 'normal');
         const lines = doc.splitTextToSize(disclaimer.text, 170);
         doc.text(lines, 20, y);
-        y += (lines.length * 4) + 5;
+        y += lines.length * 4 + 5;
       });
     }
 
@@ -477,7 +484,7 @@
         doc.setFont('helvetica', 'normal');
         const lines = doc.splitTextToSize(term.text, 170);
         doc.text(lines, 20, y);
-        y += (lines.length * 4) + 5;
+        y += lines.length * 4 + 5;
       });
     }
 
@@ -578,5 +585,4 @@
 
   // Export globally
   window.QuoteGenerator = QuoteGenerator;
-
 })();

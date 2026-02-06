@@ -23,37 +23,28 @@ const config = {
     'assets/img/logo/tillerstead-logo-main.png',
     'assets/img/tillerstead-logo-stacked.svg',
     'assets/img/tillerstead-logo-mark-with-word.svg',
-    'assets/img/tillerstead-logo-inverse.svg'
+    'assets/img/tillerstead-logo-inverse.svg',
   ],
 
   // Directories to scan for images
-  imageDirs: [
-    'assets/img',
-    'assets/images',
-    'assets/icons'
-  ],
+  imageDirs: ['assets/img', 'assets/images', 'assets/icons'],
 
   // CSS files to analyze
-  cssDirs: [
-    'assets/css',
-    '_site/assets/css'
-  ],
+  cssDirs: ['assets/css', '_site/assets/css'],
 
   // JS files to optimize
-  jsDirs: [
-    'assets/js'
-  ],
+  jsDirs: ['assets/js'],
 
   // Image optimization settings
   imageOptimization: {
     quality: {
       webp: 85,
       png: 90,
-      jpg: 85
+      jpg: 85,
     },
     maxWidth: 2400,
-    maxHeight: 2400
-  }
+    maxHeight: 2400,
+  },
 };
 
 // ANSI colors for terminal output
@@ -64,7 +55,7 @@ const colors = {
   green: '\x1b[32m',
   yellow: '\x1b[33m',
   blue: '\x1b[34m',
-  cyan: '\x1b[36m'
+  cyan: '\x1b[36m',
 };
 
 function log(message, color = 'reset') {
@@ -88,7 +79,7 @@ function cleanupLogoFiles() {
   let totalSaved = 0;
   let filesDeleted = 0;
 
-  config.filesToDelete.forEach(file => {
+  config.filesToDelete.forEach((file) => {
     const filePath = path.join(REPO_ROOT, file);
 
     if (fs.existsSync(filePath)) {
@@ -108,7 +99,10 @@ function cleanupLogoFiles() {
     }
   });
 
-  log(`\nTotal: ${filesDeleted} files deleted, ${(totalSaved / 1024 / 1024).toFixed(2)} MB saved`, 'bright');
+  log(
+    `\nTotal: ${filesDeleted} files deleted, ${(totalSaved / 1024 / 1024).toFixed(2)} MB saved`,
+    'bright'
+  );
 }
 
 /**
@@ -122,10 +116,10 @@ function auditImages() {
     byType: {},
     large: [], // > 500KB
     missingWebP: [],
-    totalSize: 0
+    totalSize: 0,
   };
 
-  config.imageDirs.forEach(dir => {
+  config.imageDirs.forEach((dir) => {
     const dirPath = path.join(REPO_ROOT, dir);
 
     if (!fs.existsSync(dirPath)) {
@@ -136,7 +130,7 @@ function auditImages() {
     function scanDir(currentPath, relPath = '') {
       const items = fs.readdirSync(currentPath);
 
-      items.forEach(item => {
+      items.forEach((item) => {
         const fullPath = path.join(currentPath, item);
         const itemRelPath = path.join(relPath, item);
         const stat = fs.statSync(fullPath);
@@ -157,7 +151,7 @@ function auditImages() {
             if (stat.size > 500 * 1024) {
               images.large.push({
                 file: path.join(dir, itemRelPath),
-                size: (stat.size / 1024).toFixed(2)
+                size: (stat.size / 1024).toFixed(2),
               });
             }
 
@@ -187,7 +181,7 @@ function auditImages() {
   if (images.large.length > 0) {
     log('');
     log(`⚠ Large files (>500KB): ${images.large.length}`, 'yellow');
-    images.large.slice(0, 10).forEach(img => {
+    images.large.slice(0, 10).forEach((img) => {
       log(`  ${img.file} (${img.size} KB)`, 'yellow');
     });
     if (images.large.length > 10) {
@@ -198,7 +192,7 @@ function auditImages() {
   if (images.missingWebP.length > 0) {
     log('');
     log(`⚠ Missing WebP versions: ${images.missingWebP.length}`, 'yellow');
-    images.missingWebP.slice(0, 10).forEach(img => {
+    images.missingWebP.slice(0, 10).forEach((img) => {
       log(`  ${img}`, 'yellow');
     });
     if (images.missingWebP.length > 10) {
@@ -216,7 +210,7 @@ function analyzeCSS() {
   const cssFiles = [];
   let totalSize = 0;
 
-  config.cssDirs.forEach(dir => {
+  config.cssDirs.forEach((dir) => {
     const dirPath = path.join(REPO_ROOT, dir);
 
     if (!fs.existsSync(dirPath)) return;
@@ -224,7 +218,7 @@ function analyzeCSS() {
     function scanDir(currentPath, relPath = '') {
       const items = fs.readdirSync(currentPath);
 
-      items.forEach(item => {
+      items.forEach((item) => {
         const fullPath = path.join(currentPath, item);
         const itemRelPath = path.join(relPath, item);
         const stat = fs.statSync(fullPath);
@@ -234,7 +228,7 @@ function analyzeCSS() {
         } else if (path.extname(item) === '.css') {
           cssFiles.push({
             file: path.join(dir, itemRelPath),
-            size: stat.size
+            size: stat.size,
           });
           totalSize += stat.size;
         }
@@ -251,7 +245,7 @@ function analyzeCSS() {
   cssFiles
     .sort((a, b) => b.size - a.size)
     .slice(0, 10)
-    .forEach(css => {
+    .forEach((css) => {
       log(`  ${css.file} (${(css.size / 1024).toFixed(2)} KB)`);
     });
 
@@ -272,7 +266,7 @@ function analyzeJS() {
   const jsFiles = [];
   let totalSize = 0;
 
-  config.jsDirs.forEach(dir => {
+  config.jsDirs.forEach((dir) => {
     const dirPath = path.join(REPO_ROOT, dir);
 
     if (!fs.existsSync(dirPath)) return;
@@ -280,7 +274,7 @@ function analyzeJS() {
     function scanDir(currentPath, relPath = '') {
       const items = fs.readdirSync(currentPath);
 
-      items.forEach(item => {
+      items.forEach((item) => {
         const fullPath = path.join(currentPath, item);
         const itemRelPath = path.join(relPath, item);
         const stat = fs.statSync(fullPath);
@@ -291,7 +285,7 @@ function analyzeJS() {
           jsFiles.push({
             file: path.join(dir, itemRelPath),
             size: stat.size,
-            isMin: item.includes('.min.')
+            isMin: item.includes('.min.'),
           });
           totalSize += stat.size;
         }
@@ -301,7 +295,7 @@ function analyzeJS() {
     scanDir(dirPath);
   });
 
-  const unminified = jsFiles.filter(js => !js.isMin);
+  const unminified = jsFiles.filter((js) => !js.isMin);
 
   log(`Total JS files: ${jsFiles.length}`, 'bright');
   log(`Unminified: ${unminified.length}`, 'bright');
@@ -311,7 +305,7 @@ function analyzeJS() {
   jsFiles
     .sort((a, b) => b.size - a.size)
     .slice(0, 10)
-    .forEach(js => {
+    .forEach((js) => {
       const status = js.isMin ? '✓ minified' : '⚠ not minified';
       log(`  ${js.file} (${(js.size / 1024).toFixed(2)} KB) ${status}`);
     });

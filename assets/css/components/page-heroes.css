@@ -12,7 +12,11 @@
 
 .about-hero {
   padding: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
-  background: linear-gradient(135deg, var(--tiller-bg-dark, #1a1c1a) 0%, var(--tiller-bg-stone, #222524) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--tiller-bg-dark, #1a1c1a) 0%,
+    var(--tiller-bg-stone, #222524) 100%
+  );
   position: relative;
   overflow: hidden;
 }
@@ -46,7 +50,7 @@
 .about-hero__summary {
   font-size: clamp(1.0625rem, 2.2vw, 1.375rem);
   line-height: 1.6;
-  color: var(--tiller-text-secondary, rgba(255, 255, 255, 0.9));
+  color: var(--tiller-text-secondary, rgb(255 255 255 / 90%));
   margin: 0;
   font-weight: 500;
 }
@@ -57,7 +61,11 @@
 
 .services-hero {
   padding: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
-  background: linear-gradient(135deg, var(--tiller-color-green, #1a3d2e) 0%, var(--tiller-color-green-dark, #0f2a1f) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--tiller-color-green, #1a3d2e) 0%,
+    var(--tiller-color-green-dark, #0f2a1f) 100%
+  );
   position: relative;
   overflow: hidden;
 }
@@ -91,7 +99,7 @@
 .services-hero__summary {
   font-size: clamp(1.0625rem, 2.2vw, 1.375rem);
   line-height: 1.6;
-  color: var(--tiller-text-secondary, rgba(255, 255, 255, 0.9));
+  color: var(--tiller-text-secondary, rgb(255 255 255 / 90%));
   margin: 0;
   font-weight: 500;
 }
@@ -102,7 +110,11 @@
 
 .blog-hero {
   padding: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
-  background: linear-gradient(135deg, var(--tiller-bg-darker, #000000) 0%, var(--tiller-bg-dark, #1a1c1a) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--tiller-bg-darker, #000000) 0%,
+    var(--tiller-bg-dark, #1a1c1a) 100%
+  );
   position: relative;
 }
 
@@ -135,7 +147,7 @@
 .blog-hero__summary {
   font-size: clamp(1.0625rem, 2.2vw, 1.375rem);
   line-height: 1.6;
-  color: var(--tiller-text-secondary, rgba(255, 255, 255, 0.9));
+  color: var(--tiller-text-secondary, rgb(255 255 255 / 90%));
   margin: 0;
   font-weight: 500;
 }
@@ -146,7 +158,11 @@
 
 .faq-hero {
   padding: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
-  background: linear-gradient(135deg, var(--tiller-bg-dark, #1a1c1a) 0%, var(--tiller-bg-stone, #222524) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--tiller-bg-dark, #1a1c1a) 0%,
+    var(--tiller-bg-stone, #222524) 100%
+  );
   position: relative;
 }
 
@@ -179,7 +195,7 @@
 .faq-hero__summary {
   font-size: clamp(1.0625rem, 2.2vw, 1.375rem);
   line-height: 1.6;
-  color: var(--tiller-text-secondary, rgba(255, 255, 255, 0.9));
+  color: var(--tiller-text-secondary, rgb(255 255 255 / 90%));
   margin: 0;
   font-weight: 500;
 }
@@ -191,7 +207,7 @@
 .legal-hero {
   padding: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
   background: var(--tiller-bg-dark, #1a1c1a);
-  border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+  border-bottom: 2px solid rgb(212 175 55 / 20%);
 }
 
 .legal-hero__content {
@@ -223,14 +239,14 @@
 .legal-hero__summary {
   font-size: clamp(1rem, 2vw, 1.125rem);
   line-height: 1.6;
-  color: var(--tiller-text-secondary, rgba(255, 255, 255, 0.9));
+  color: var(--tiller-text-secondary, rgb(255 255 255 / 90%));
   margin: 0 0 1rem;
   font-weight: 500;
 }
 
 .legal-hero__effective {
   font-size: clamp(0.875rem, 1.8vw, 0.9375rem);
-  color: var(--tiller-text-tertiary, rgba(255, 255, 255, 0.75));
+  color: var(--tiller-text-tertiary, rgb(255 255 255 / 75%));
   font-style: italic;
   margin: 0;
 }
@@ -241,7 +257,11 @@
 
 .portfolio-hero {
   padding: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
-  background: linear-gradient(135deg, var(--tiller-bg-darker, #000000) 0%, var(--tiller-bg-dark, #1a1c1a) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--tiller-bg-darker, #000000) 0%,
+    var(--tiller-bg-dark, #1a1c1a) 100%
+  );
   position: relative;
 }
 
@@ -274,7 +294,7 @@
 .portfolio-hero__summary {
   font-size: clamp(1.0625rem, 2.2vw, 1.375rem);
   line-height: 1.6;
-  color: var(--tiller-text-secondary, rgba(255, 255, 255, 0.9));
+  color: var(--tiller-text-secondary, rgb(255 255 255 / 90%));
   margin: 0;
   font-weight: 500;
 }
@@ -288,8 +308,8 @@
 .services-trust,
 .portfolio-stats {
   padding: clamp(2rem, 4vw, 3rem) 0;
-  background: rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgb(0 0 0 / 30%);
+  border-bottom: 1px solid rgb(212 175 55 / 15%);
 }
 
 .about-stats__grid,
@@ -333,7 +353,7 @@
 .portfolio-stats__text {
   display: block;
   font-size: clamp(0.875rem, 1.8vw, 0.9375rem);
-  color: var(--tiller-text-secondary, rgba(255, 255, 255, 0.85));
+  color: var(--tiller-text-secondary, rgb(255 255 255 / 85%));
   line-height: 1.5;
 }
 

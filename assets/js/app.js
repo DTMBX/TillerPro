@@ -55,7 +55,7 @@ function initFormEnhancements() {
 
       // Show success message
       submitBtn.textContent = '✓ Sent!';
-      
+
       setTimeout(() => {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
@@ -77,7 +77,7 @@ function initInteractiveElements() {
   if (parallaxElements.length > 0) {
     window.addEventListener('scroll', () => {
       const scrolled = window.pageYOffset;
-      
+
       parallaxElements.forEach((el) => {
         const speed = el.dataset.parallaxSpeed || 0.5;
         el.style.transform = `translateY(${scrolled * speed}px)`;

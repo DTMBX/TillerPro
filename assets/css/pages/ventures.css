@@ -1,4 +1,3 @@
-
 .page-ventures img,
 .page-ventures svg {
   max-width: 100% !important;
@@ -6,7 +5,7 @@
 }
 
 .page-ventures .icon,
-.page-ventures [class*="icon"] {
+.page-ventures [class*='icon'] {
   width: 48px !important;
   height: 48px !important;
   max-width: 48px !important;
@@ -93,30 +92,30 @@
 
 @media (max-width: 768px) {
   .page-ventures .icon,
-  .page-ventures [class*="icon"] {
-  width: 40px !important;
-  height: 40px !important;
+  .page-ventures [class*='icon'] {
+    width: 40px !important;
+    height: 40px !important;
   }
 
   .page-ventures .feature-icon,
   .page-ventures .service-icon,
   .page-ventures .venture-icon {
-  width: 56px !important;
-  height: 56px !important;
+    width: 56px !important;
+    height: 56px !important;
   }
 
   .page-ventures h1 {
-  font-size: 2rem;
+    font-size: 2rem;
   }
 
   .page-ventures h2 {
-  font-size: 1.75rem;
+    font-size: 1.75rem;
   }
 
   .page-ventures .venture-grid,
   .page-ventures .service-grid {
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 

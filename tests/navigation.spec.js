@@ -36,7 +36,7 @@ test.describe('Desktop Navigation Tests', () => {
       { text: 'Our Work', href: '/portfolio/' },
       { text: 'Blog', href: '/blog/' },
       { text: 'Reviews', href: '/reviews/' },
-      { text: 'Tools', href: '/tools/' }
+      { text: 'Tools', href: '/tools/' },
     ];
 
     for (const link of mainLinks) {
@@ -69,7 +69,7 @@ test.describe('Desktop Navigation Tests', () => {
       'Curbless Showers',
       'Benches & Niches',
       'TCNA Standards',
-      'Flood Testing'
+      'Flood Testing',
     ];
 
     for (const linkText of dropdownLinks) {
@@ -87,12 +87,7 @@ test.describe('Desktop Navigation Tests', () => {
     const dropdown = page.locator('.desktop-nav__dropdown').nth(1);
     await expect(dropdown).toBeVisible({ timeout: 2000 });
 
-    const dropdownLinks = [
-      'Our Story',
-      'For Contractors',
-      'FAQ',
-      'Products We Use'
-    ];
+    const dropdownLinks = ['Our Story', 'For Contractors', 'FAQ', 'Products We Use'];
 
     for (const linkText of dropdownLinks) {
       const link = dropdown.locator(`a:has-text("${linkText}")`);
@@ -178,11 +173,13 @@ test.describe.skip('Mobile Navigation Tests - iPhone 16 Pro Max - DISABLED', () 
       'REVIEWS',
       'TOOLS',
       'ABOUT',
-      'GET ESTIMATE'
+      'GET ESTIMATE',
     ];
 
     for (const linkText of mobileLinks) {
-      const link = page.locator(`.mobile-nav a:has-text("${linkText}"), .mobile-nav button:has-text("${linkText}")`);
+      const link = page.locator(
+        `.mobile-nav a:has-text("${linkText}"), .mobile-nav button:has-text("${linkText}")`
+      );
       await expect(link).toBeVisible();
     }
   });
@@ -244,7 +241,7 @@ test.describe.skip('Mobile Navigation Tests - iPhone 16 Pro Max - DISABLED', () 
       'Build Guide Overview',
       'Codes & Permits',
       'Shower Pans',
-      'Waterproofing'
+      'Waterproofing',
     ];
 
     for (const linkText of submenuLinks) {
@@ -309,9 +306,7 @@ test.describe.skip('Mobile Navigation Tests - iPhone 16 Pro Max - DISABLED', () 
 
     // Visual check (hamburger lines should transform)
     const firstLine = hamburger.locator('.hamburger').first();
-    const transform = await firstLine.evaluate(el =>
-      window.getComputedStyle(el).transform
-    );
+    const transform = await firstLine.evaluate((el) => window.getComputedStyle(el).transform);
 
     // Should have some transform applied
     expect(transform).not.toBe('none');
@@ -425,9 +420,7 @@ test.describe('Header Tests', () => {
 
     const header = page.locator('.ts-header');
 
-    const position = await header.evaluate(el =>
-      window.getComputedStyle(el).position
-    );
+    const position = await header.evaluate((el) => window.getComputedStyle(el).position);
 
     expect(position).toBe('sticky');
   });

@@ -13,11 +13,11 @@
 .ts-card {
   position: relative;
   background: var(--tiller-bg-card, #161616);
-  border: 1px solid rgba(212, 175, 55, 0.15);
+  border: 1px solid rgb(212 175 55 / 15%);
   border-radius: 12px;
   padding: clamp(1.5rem, 3vw, 2rem);
   transition: all var(--tiller-transition-normal, 0.25s) var(--tiller-ease-smooth);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
 }
 
 .ts-card::before {
@@ -27,21 +27,25 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--tiller-color-emerald, #00e184) 0%, var(--tiller-color-gold, #d4af37) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--tiller-color-emerald, #00e184) 0%,
+    var(--tiller-color-gold, #d4af37) 100%
+  );
   border-radius: 12px 12px 0 0;
-  opacity: 0.8;
+  opacity: 80%;
 }
 
 .ts-card:hover,
 .ts-card:focus-within {
-  border-color: rgba(212, 175, 55, 0.3);
+  border-color: rgb(212 175 55 / 30%);
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 40%);
 }
 
 .ts-card:hover::before,
 .ts-card:focus-within::before {
-  opacity: 1;
+  opacity: 100%;
 }
 
 /* ====================================
@@ -51,14 +55,14 @@
 /* Service Card */
 .service-card {
   background: var(--tiller-bg-card, #161616);
-  border: 1px solid rgba(212, 175, 55, 0.15);
+  border: 1px solid rgb(212 175 55 / 15%);
   border-radius: 12px;
   padding: clamp(1.5rem, 3vw, 2rem);
   display: flex;
   flex-direction: column;
   gap: 1rem;
   transition: all var(--tiller-transition-normal, 0.25s) var(--tiller-ease-smooth);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
   position: relative;
   overflow: hidden;
 }
@@ -76,9 +80,9 @@
 
 .service-card:hover,
 .service-card:focus-within {
-  border-color: rgba(212, 175, 55, 0.3);
+  border-color: rgb(212 175 55 / 30%);
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 40%);
 }
 
 .service-title {
@@ -92,7 +96,7 @@
 .service-description {
   font-size: clamp(0.9375rem, 2vw, 1.0625rem);
   line-height: 1.6;
-  color: var(--tiller-text-secondary, rgba(255, 255, 255, 0.85));
+  color: var(--tiller-text-secondary, rgb(255 255 255 / 85%));
   margin: 0;
   flex: 1;
 }
@@ -110,7 +114,7 @@
   padding-left: 1.5rem;
   position: relative;
   font-size: clamp(0.875rem, 1.8vw, 0.9375rem);
-  color: var(--tiller-text-tertiary, rgba(255, 255, 255, 0.75));
+  color: var(--tiller-text-tertiary, rgb(255 255 255 / 75%));
   line-height: 1.5;
 }
 
@@ -151,14 +155,14 @@
 
 .testimonial-card {
   background: var(--tiller-bg-card, #161616);
-  border: 2px solid rgba(212, 175, 55, 0.15);
+  border: 2px solid rgb(212 175 55 / 15%);
   border-radius: 12px;
   padding: clamp(1.5rem, 3vw, 2rem);
   display: flex;
   flex-direction: column;
   gap: 1rem;
   transition: all var(--tiller-transition-normal, 0.25s) var(--tiller-ease-smooth);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
   position: relative;
 }
 
@@ -170,15 +174,15 @@
   font-size: 4rem;
   font-weight: 900;
   color: var(--tiller-color-gold, #d4af37);
-  opacity: 0.2;
+  opacity: 20%;
   line-height: 1;
 }
 
 .testimonial-card:hover,
 .testimonial-card:focus-within {
-  border-color: rgba(212, 175, 55, 0.4);
+  border-color: rgb(212 175 55 / 40%);
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 40%);
 }
 
 .testimonial-rating {
@@ -203,7 +207,7 @@
   gap: 0.25rem;
   margin-top: 0.5rem;
   padding-top: 1rem;
-  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  border-top: 1px solid rgb(212 175 55 / 15%);
 }
 
 .testimonial-author strong {
@@ -214,12 +218,12 @@
 
 .testimonial-author .job-type {
   font-size: clamp(0.8125rem, 1.6vw, 0.875rem);
-  color: var(--tiller-text-tertiary, rgba(255, 255, 255, 0.7));
+  color: var(--tiller-text-tertiary, rgb(255 255 255 / 70%));
 }
 
 .testimonial-source {
   font-size: clamp(0.75rem, 1.5vw, 0.8125rem);
-  color: var(--tiller-text-muted, rgba(255, 255, 255, 0.6));
+  color: var(--tiller-text-muted, rgb(255 255 255 / 60%));
   font-style: italic;
 }
 
@@ -229,20 +233,20 @@
 
 .card--post {
   background: var(--tiller-bg-card, #161616);
-  border: 1px solid rgba(212, 175, 55, 0.15);
+  border: 1px solid rgb(212 175 55 / 15%);
   border-radius: 12px;
   overflow: hidden;
   transition: all var(--tiller-transition-normal, 0.25s) var(--tiller-ease-smooth);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
   display: flex;
   flex-direction: column;
 }
 
 .card--post:hover,
 .card--post:focus-within {
-  border-color: rgba(212, 175, 55, 0.3);
+  border-color: rgb(212 175 55 / 30%);
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 40%);
 }
 
 .card--post__image {
@@ -281,7 +285,7 @@
 .card--post__excerpt {
   font-size: clamp(0.9375rem, 2vw, 1rem);
   line-height: 1.6;
-  color: var(--tiller-text-secondary, rgba(255, 255, 255, 0.85));
+  color: var(--tiller-text-secondary, rgb(255 255 255 / 85%));
   margin: 0;
   flex: 1;
 }
@@ -291,9 +295,9 @@
   gap: 1rem;
   align-items: center;
   font-size: clamp(0.8125rem, 1.6vw, 0.875rem);
-  color: var(--tiller-text-tertiary, rgba(255, 255, 255, 0.7));
+  color: var(--tiller-text-tertiary, rgb(255 255 255 / 70%));
   padding-top: 0.75rem;
-  border-top: 1px solid rgba(212, 175, 55, 0.1);
+  border-top: 1px solid rgb(212 175 55 / 10%);
 }
 
 /* ====================================
@@ -303,29 +307,29 @@
 /* Ceramic Tile Card Effect */
 .ts-ceramic-card {
   position: relative;
-  background: linear-gradient(135deg, rgba(22, 22, 22, 0.95) 0%, rgba(15, 15, 15, 0.9) 100%);
-  border: 2px solid rgba(212, 175, 55, 0.2);
-  box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgb(22 22 22 / 95%) 0%, rgb(15 15 15 / 90%) 100%);
+  border: 2px solid rgb(212 175 55 / 20%);
+  box-shadow:
+    0 4px 12px rgb(0 0 0 / 30%),
+    inset 0 1px 0 rgb(255 255 255 / 10%);
 }
 
 .ts-ceramic-card::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: 
+  background:
     repeating-linear-gradient(
       90deg,
-      transparent 0px,
-      rgba(212, 175, 55, 0.03) 1px,
+      transparent 0,
+      rgb(212 175 55 / 3%) 1px,
       transparent 2px,
       transparent 20px
     ),
     repeating-linear-gradient(
       0deg,
-      transparent 0px,
-      rgba(212, 175, 55, 0.03) 1px,
+      transparent 0,
+      rgb(212 175 55 / 3%) 1px,
       transparent 2px,
       transparent 20px
     );
@@ -336,7 +340,12 @@
 /* Tile Framed Card */
 .ts-tile-framed {
   border: 3px solid;
-  border-image: linear-gradient(135deg, var(--tiller-color-gold, #d4af37), var(--tiller-color-emerald, #00e184)) 1;
+  border-image: linear-gradient(
+      135deg,
+      var(--tiller-color-gold, #d4af37),
+      var(--tiller-color-emerald, #00e184)
+    )
+    1;
   border-radius: 0;
 }
 

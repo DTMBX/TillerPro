@@ -2,23 +2,29 @@
 layout: default
 build_guide: true
 toc: true
-title: "Curbs & Curbless Showers"
-permalink: /build/curbs-curbless/
+title: 'Curbs & Curbless Showers'
+permalink: /build/phase-04/
 order: 4
-meta_title: "Shower Curbs & Curbless Construction | Tillerstead Build Phase 4"
-meta_description: "How to build code-compliant shower curbs and curbless shower entries. TCNA methods for water containment and accessibility."
-description: "Shower curbs contain water. Curbless showers require careful planning. Learn proper construction methods for both."
-parent: "Build Phases"
-parent_url: "/build/"
-prev_phase: "/build/waterproofing-systems/"
-prev_phase_title: "Waterproofing Systems"
-next_phase: "/build/framing-benches-niches/"
-next_phase_title: "Benches, Seats & Niches"
+meta_title: 'Shower Curbs & Curbless Construction | Tillerstead Build Phase 4'
+meta_description:
+  'How to build code-compliant shower curbs and curbless shower entries. TCNA
+  methods for water containment and accessibility.'
+description:
+  'Shower curbs contain water. Curbless showers require careful planning. Learn
+  proper construction methods for both.'
+parent: 'Build Phases'
+parent_url: '/build/'
+prev_phase: '/build/waterproofing-systems/'
+prev_phase_title: 'Waterproofing Systems'
+next_phase: '/build/framing-benches-niches/'
+next_phase_title: 'Benches, Seats & Niches'
 ---
 
 ## Water Containment vs. Accessibility
 
-**Shower curbs** (thresholds) prevent water from escaping the shower. **Curbless showers** eliminate the barrier for accessibility—but require more careful slope planning.
+**Shower curbs** (thresholds) prevent water from escaping the shower. **Curbless
+showers** eliminate the barrier for accessibility—but require more careful slope
+planning.
 
 Both can be code-compliant and waterproof when done correctly.
 
@@ -29,19 +35,23 @@ Both can be code-compliant and waterproof when done correctly.
 **6 inches** is standard, but can vary by local code and door type.
 
 - Too low → water escapes
-- Too high → difficult to step over (especially for elderly or mobility-impaired)
+- Too high → difficult to step over (especially for elderly or
+  mobility-impaired)
 
 ### Construction Methods
 
 **Pre-formed foam curbs:**
+
 - Lightweight, easy to cut
 - Waterproofing wraps over top
 
 **Mortar bed curbs:**
+
 - Built-in-place using metal lath + mortar
 - Fully customizable height/width
 
 **Curb-forming systems:**
+
 - Plastic/metal forms filled with mortar
 - Integrated with waterproofing membrane
 
@@ -63,6 +73,7 @@ Both can be code-compliant and waterproof when done correctly.
 ### Structural Considerations
 
 Curbless showers often require:
+
 - **Recessed subfloor** (to accommodate slope + tile thickness)
 - **Structural modification** (cutting joists, adding support)
 - **Permit and inspection** (structural changes require approval)
@@ -70,21 +81,25 @@ Curbless showers often require:
 ### Drainage Strategies
 
 **Linear drain:**
+
 - Rectangular drain channel
 - Allows single-plane slope
 - Popular for curbless designs
 
 **Center point drain:**
+
 - Requires four-way slope
 - More complex to build curbless
 
 **Trench/channel drain:**
+
 - Outside shower area
 - Collects water from bathroom floor
 
 ### Waterproofing Requirements
 
 Waterproofing must extend:
+
 - **Entire shower area** (obviously)
 - **At least 9" beyond curb line** (TCNA recommendation)
 - **Full bathroom floor** (if using trench drain strategy)
@@ -92,11 +107,13 @@ Waterproofing must extend:
 ## Hybrid Approach: Low-Profile Curbs
 
 **2-3 inch curbs** provide:
+
 - Easier step-over than 6" curbs
 - Water containment (with proper slope + door seal)
 - Less structural modification than full curbless
 
-Not technically "curbless," but achieves similar accessibility goals with less risk.
+Not technically "curbless," but achieves similar accessibility goals with less
+risk.
 
 ## Common Failures
 

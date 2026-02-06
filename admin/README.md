@@ -5,9 +5,11 @@ Backend dashboard portal for managing calculators and website content online.
 ## Features
 
 - 🔐 **Secure Authentication** - Password-protected admin access
-- 🧮 **Calculator Management** - Edit tile presets, layouts, joints, trowel sizes
-- 📝 **Content Editor** - Edit YAML data files (services, portfolio, FAQs, reviews)
-- ⚙️ **Site Settings** - Configure Jekyll _config.yml
+- 🧮 **Calculator Management** - Edit tile presets, layouts, joints, trowel
+  sizes
+- 📝 **Content Editor** - Edit YAML data files (services, portfolio, FAQs,
+  reviews)
+- ⚙️ **Site Settings** - Configure Jekyll \_config.yml
 - 🎛️ **Feature Toggles** - Enable/disable site features with simple switches
 - 💾 **Auto-Backup** - Automatic backups before saving changes
 - 🎨 **Modern UI** - Clean, responsive dashboard interface
@@ -23,6 +25,7 @@ npm install
 ```
 
 This installs:
+
 - `express` - Web server framework
 - `express-session` - Session management
 - `bcrypt` - Password hashing
@@ -42,6 +45,7 @@ npm run admin:dev
 ```
 
 The admin panel will be available at:
+
 - **URL:** http://localhost:3001
 - **Login:** http://localhost:3001/login
 - **Dashboard:** http://localhost:3001
@@ -67,8 +71,8 @@ Then update the `passwordHash` in `admin/server.js`:
 const ADMIN_USERS = {
   admin: {
     username: 'admin',
-    passwordHash: 'YOUR_NEW_HASH_HERE'
-  }
+    passwordHash: 'YOUR_NEW_HASH_HERE',
+  },
 };
 ```
 
@@ -141,20 +145,24 @@ const ADMIN_USERS = {
 ## API Endpoints
 
 ### Authentication
+
 - `POST /api/auth/login` - Login
 - `POST /api/auth/logout` - Logout
 - `GET /api/auth/status` - Check auth status
 
 ### Calculators
+
 - `GET /api/calculators/config` - Get calculator configuration
 - `PUT /api/calculators/config` - Update calculator configuration
 
 ### Content
+
 - `GET /api/content/files` - List all data files
 - `GET /api/content/file/:filename` - Get file content
 - `PUT /api/content/file/:filename` - Update file content
 
 ### Settings
+
 - `GET /api/settings` - Get site configuration
 - `PUT /api/settings` - Update site configuration
 
@@ -192,7 +200,7 @@ Backups are created before every save operation.
 ### Changes Not Appearing
 
 - For YAML files: Rebuild Jekyll (`npm run build`)
-- For _config.yml: **Restart Jekyll completely**
+- For \_config.yml: **Restart Jekyll completely**
 - For calculator config: Hard refresh browser (Ctrl+F5)
 
 ### Server Won't Start

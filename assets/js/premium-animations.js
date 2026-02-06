@@ -27,28 +27,31 @@ class PremiumAnimations {
   setupScrollAnimations() {
     const animatedElements = document.querySelectorAll('[data-animate]');
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const delay = entry.target.dataset.delay || 0;
-          setTimeout(() => {
-            entry.target.classList.add('animated');
-          }, delay);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const delay = entry.target.dataset.delay || 0;
+            setTimeout(() => {
+              entry.target.classList.add('animated');
+            }, delay);
 
-          // Unobserve after animation
-          if (!entry.target.dataset.repeat) {
-            observer.unobserve(entry.target);
+            // Unobserve after animation
+            if (!entry.target.dataset.repeat) {
+              observer.unobserve(entry.target);
+            }
+          } else if (entry.target.dataset.repeat) {
+            entry.target.classList.remove('animated');
           }
-        } else if (entry.target.dataset.repeat) {
-          entry.target.classList.remove('animated');
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    });
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px',
+      }
+    );
 
-    animatedElements.forEach(el => observer.observe(el));
+    animatedElements.forEach((el) => observer.observe(el));
     this.observers.push(observer);
   }
 
@@ -64,7 +67,7 @@ class PremiumAnimations {
     const handleScroll = () => {
       const scrolled = window.pageYOffset;
 
-      parallaxElements.forEach(el => {
+      parallaxElements.forEach((el) => {
         const speed = parseFloat(el.dataset.parallax) || 0.5;
         const yPos = -(scrolled * speed);
         el.style.transform = `translate3d(0, ${yPos}px, 0)`;
@@ -73,15 +76,19 @@ class PremiumAnimations {
 
     // Use requestAnimationFrame for smooth performance
     let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            handleScroll();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
   }
 
   /**
@@ -91,7 +98,7 @@ class PremiumAnimations {
   setupMagneticButtons() {
     const magneticButtons = document.querySelectorAll('[data-magnetic]');
 
-    magneticButtons.forEach(button => {
+    magneticButtons.forEach((button) => {
       button.addEventListener('mousemove', (e) => {
         const rect = button.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
@@ -141,22 +148,25 @@ class PremiumAnimations {
   setupStaggerAnimations() {
     const staggerContainers = document.querySelectorAll('[data-stagger]');
 
-    staggerContainers.forEach(container => {
+    staggerContainers.forEach((container) => {
       const items = container.children;
       const delay = parseInt(container.dataset.staggerDelay) || 100;
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            Array.from(items).forEach((item, index) => {
-              setTimeout(() => {
-                item.classList.add('stagger-animate');
-              }, index * delay);
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              Array.from(items).forEach((item, index) => {
+                setTimeout(() => {
+                  item.classList.add('stagger-animate');
+                }, index * delay);
+              });
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
 
       observer.observe(container);
       this.observers.push(observer);
@@ -171,8 +181,8 @@ class PremiumAnimations {
     // Ripple effect on buttons
     const rippleButtons = document.querySelectorAll('[data-ripple]');
 
-    rippleButtons.forEach(button => {
-      button.addEventListener('click', function(e) {
+    rippleButtons.forEach((button) => {
+      button.addEventListener('click', function (e) {
         const ripple = document.createElement('span');
         ripple.className = 'ripple';
 
@@ -194,8 +204,8 @@ class PremiumAnimations {
     // Shine effect on cards
     const shineCards = document.querySelectorAll('[data-shine]');
 
-    shineCards.forEach(card => {
-      card.addEventListener('mousemove', function(e) {
+    shineCards.forEach((card) => {
+      card.addEventListener('mousemove', function (e) {
         const rect = this.getBoundingClientRect();
         const x = ((e.clientX - rect.left) / rect.width) * 100;
         const y = ((e.clientY - rect.top) / rect.height) * 100;
@@ -210,7 +220,7 @@ class PremiumAnimations {
    * Cleanup when needed
    */
   destroy() {
-    this.observers.forEach(observer => observer.disconnect());
+    this.observers.forEach((observer) => observer.disconnect());
     this.observers = [];
   }
 }

@@ -37,7 +37,7 @@ function getPrefix(propName) {
   // Color-like properties (comprehensive)
   if (
     prop.match(
-      /^(neon|sunset|hot|lime|electric|cyber|cool|brand|warm|navy|cartoon|comic|bubble|golden|success|attention|warning|danger|error|info|retro|pow|boom|zap|shadow-|gradient|bg-|pattern|surface-|alert|slate)/,
+      /^(neon|sunset|hot|lime|electric|cyber|cool|brand|warm|navy|cartoon|comic|bubble|golden|success|attention|warning|danger|error|info|retro|pow|boom|zap|shadow-|gradient|bg-|pattern|surface-|alert|slate)/
     )
   ) {
     return 'color-';
@@ -54,11 +54,7 @@ function getPrefix(propName) {
   }
 
   // Spacing (including hero, section, card)
-  if (
-    prop.match(
-      /^(space-|container|gap|flow|stack|cluster|hero-|section-|card-)/,
-    )
-  ) {
+  if (prop.match(/^(space-|container|gap|flow|stack|cluster|hero-|section-|card-)/)) {
     return 'spacing-';
   }
 

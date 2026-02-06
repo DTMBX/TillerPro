@@ -17,9 +17,9 @@ async function validateLinks() {
   console.log(chalk.blue.bold('\n🔗 LINK VALIDATION\n'));
 
   const htmlFiles = await glob(`${SITE_DIR}/**/*.html`);
-  const validPaths = new Set(htmlFiles.map(f =>
-    '/' + path.relative(SITE_DIR, f).replace(/\\/g, '/')
-  ));
+  const validPaths = new Set(
+    htmlFiles.map((f) => '/' + path.relative(SITE_DIR, f).replace(/\\/g, '/'))
+  );
 
   for (const file of htmlFiles) {
     const html = fs.readFileSync(file, 'utf-8');
@@ -61,7 +61,7 @@ async function validateLinks() {
           broken.push({
             source: relPath,
             href,
-            target: absolutePath
+            target: absolutePath,
           });
         }
       }
@@ -82,10 +82,12 @@ function printReport() {
       return acc;
     }, {});
 
-    Object.entries(grouped).slice(0, 20).forEach(([source, links]) => {
-      console.log(`  ${chalk.cyan(source)}`);
-      links.forEach(link => console.log(chalk.gray(`    → ${link}`)));
-    });
+    Object.entries(grouped)
+      .slice(0, 20)
+      .forEach(([source, links]) => {
+        console.log(`  ${chalk.cyan(source)}`);
+        links.forEach((link) => console.log(chalk.gray(`    → ${link}`)));
+      });
 
     if (Object.keys(grouped).length > 20) {
       console.log(chalk.gray(`  ... and ${Object.keys(grouped).length - 20} more files`));

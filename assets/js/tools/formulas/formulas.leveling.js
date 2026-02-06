@@ -22,20 +22,20 @@ export const LEVELING_FORMULA_INFO = {
       name: 'Mapei Self-Leveler Plus',
       url: 'https://www.mapei.com/us/en-us/products-and-solutions/products/detail/self-leveler-plus',
       retrieved: '2026-01-19',
-      excerpt: '~48 sq ft at 1/8" thick = ~0.5 cu ft per 50 lb bag'
+      excerpt: '~48 sq ft at 1/8" thick = ~0.5 cu ft per 50 lb bag',
     },
     {
       name: 'Industry typical',
       note: '0.45-0.5 cu ft per 50 lb bag at 1" depth is conservative estimate',
-      type: 'industry'
-    }
+      type: 'industry',
+    },
   ],
   assumptions: [
     'Coverage varies by product - always verify with specific product TDS',
     'Substrate must be properly primed before application',
     'Self-leveling ≠ self-flattening; substrate must be within product limits',
-    'Average depth used for calculation; actual pour varies across floor'
-  ]
+    'Average depth used for calculation; actual pour varies across floor',
+  ],
 };
 
 // ==
@@ -60,9 +60,9 @@ export const SLU_PRODUCTS = {
     source: {
       name: 'Mapei Self-Leveler Plus',
       url: 'https://www.mapei.com/us/en-us/products-and-solutions/products/detail/self-leveler-plus',
-      retrieved: '2026-01-19'
+      retrieved: '2026-01-19',
     },
-    notes: 'Use Mapei Primer T or ECO Prim Grip for priming. Can be extended with aggregate.'
+    notes: 'Use Mapei Primer T or ECO Prim Grip for priming. Can be extended with aggregate.',
   },
   'ardex-k15': {
     brand: 'ARDEX',
@@ -74,11 +74,11 @@ export const SLU_PRODUCTS = {
     maxThicknessInches: 2,
     source: {
       name: 'ARDEX K 15 (industry reference)',
-      retrieved: '2026-01-19'
+      retrieved: '2026-01-19',
     },
-    notes: 'Premium self-leveler. Primer required.'
+    notes: 'Premium self-leveler. Primer required.',
   },
-  'generic': {
+  generic: {
     brand: 'Generic',
     productName: 'Self-Leveling Compound',
     bagSizeLbs: 50,
@@ -88,10 +88,10 @@ export const SLU_PRODUCTS = {
     maxThicknessInches: 1,
     source: {
       name: 'Industry typical (conservative)',
-      type: 'industry'
+      type: 'industry',
     },
-    notes: 'Conservative estimate. Verify with specific product TDS.'
-  }
+    notes: 'Conservative estimate. Verify with specific product TDS.',
+  },
 };
 
 // ==
@@ -124,7 +124,7 @@ export function calculateLeveler({
   areaSqFt,
   avgDepthInches,
   maxDepthInches,
-  productId = 'generic'
+  productId = 'generic',
 }) {
   const errors = [];
   const warnings = [];
@@ -142,15 +142,28 @@ export function calculateLeveler({
   const product = SLU_PRODUCTS[productId] || SLU_PRODUCTS.generic;
 
   if (errors.length > 0) {
-    return { valid: false, errors, warnings, bags: 0, bagsMax: null, volumeCuFt: 0, assumptions, sources };
+    return {
+      valid: false,
+      errors,
+      warnings,
+      bags: 0,
+      bagsMax: null,
+      volumeCuFt: 0,
+      assumptions,
+      sources,
+    };
   }
 
   // Check depth against product limits
   if (depthVal.value < product.minThicknessInches) {
-    warnings.push(`Depth ${depthVal.value}" is below minimum ${product.minThicknessInches}" for ${product.productName}`);
+    warnings.push(
+      `Depth ${depthVal.value}" is below minimum ${product.minThicknessInches}" for ${product.productName}`
+    );
   }
   if (depthVal.value > product.maxThicknessInches) {
-    warnings.push(`Depth ${depthVal.value}" exceeds maximum ${product.maxThicknessInches}" for ${product.productName}. Multiple pours required.`);
+    warnings.push(
+      `Depth ${depthVal.value}" exceeds maximum ${product.maxThicknessInches}" for ${product.productName}. Multiple pours required.`
+    );
   }
 
   // Calculate volume (cubic feet)
@@ -170,7 +183,9 @@ export function calculateLeveler({
 
   // Document assumptions
   assumptions.push(`Product: ${product.brand} ${product.productName}`);
-  assumptions.push(`Coverage: ${product.coverageCuFtPerBag} cu ft per ${product.bagSizeLbs} lb bag`);
+  assumptions.push(
+    `Coverage: ${product.coverageCuFtPerBag} cu ft per ${product.bagSizeLbs} lb bag`
+  );
   assumptions.push(`Depth: ${formatNumber(depthVal.value, 3)}" average`);
   if (product.notes) {
     assumptions.push(product.notes);
@@ -180,11 +195,11 @@ export function calculateLeveler({
   if (product.source.url) {
     sources.push({
       name: product.source.name,
-      url: product.source.url
+      url: product.source.url,
     });
   } else {
     sources.push({
-      name: product.source.name
+      name: product.source.name,
     });
   }
 
@@ -196,7 +211,7 @@ export function calculateLeveler({
     bagsMax,
     volumeCuFt: Math.round(volumeCuFt * 100) / 100, // 2 decimals
     assumptions,
-    sources
+    sources,
   };
 }
 
@@ -212,6 +227,6 @@ export function getLevelerProducts() {
     coverage: product.coverageCuFtPerBag,
     bagSize: product.bagSizeLbs,
     minDepth: product.minThicknessInches,
-    maxDepth: product.maxThicknessInches
+    maxDepth: product.maxThicknessInches,
   }));
 }

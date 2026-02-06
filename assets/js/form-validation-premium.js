@@ -22,7 +22,7 @@ export class PremiumContactForm {
 
   init() {
     // Real-time validation on input
-    Object.values(this.fields).forEach(field => {
+    Object.values(this.fields).forEach((field) => {
       if (!field) return;
       field.addEventListener('blur', () => this.validateField(field));
       field.addEventListener('input', () => this.clearError(field));
@@ -105,7 +105,7 @@ export class PremiumContactForm {
         { transform: 'translateX(-5px)' },
         { transform: 'translateX(5px)' },
         { transform: 'translateX(-5px)' },
-        { transform: 'translateX(0)' }
+        { transform: 'translateX(0)' },
       ],
       { duration: 300, easing: 'ease-in-out' }
     );
@@ -128,7 +128,7 @@ export class PremiumContactForm {
 
     // Validate all fields
     let isValid = true;
-    Object.values(this.fields).forEach(field => {
+    Object.values(this.fields).forEach((field) => {
       if (field && !this.validateField(field)) {
         isValid = false;
       }
@@ -153,7 +153,7 @@ export class PremiumContactForm {
       submitBtn.textContent = originalText;
 
       // Reset field states
-      Object.values(this.fields).forEach(field => {
+      Object.values(this.fields).forEach((field) => {
         if (field) {
           field.classList.remove('has-error', 'has-success');
         }
@@ -168,10 +168,7 @@ export class PremiumContactForm {
     this.form.insertBefore(alert, this.form.firstChild);
 
     setTimeout(() => {
-      alert.animate(
-        [{ opacity: 1 }, { opacity: 0 }],
-        { duration: 300 }
-      );
+      alert.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 300 });
       setTimeout(() => alert.remove(), 300);
     }, 4000);
   }
@@ -184,10 +181,7 @@ export class PremiumContactForm {
     this.form.insertBefore(alert, this.form.firstChild);
 
     setTimeout(() => {
-      alert.animate(
-        [{ opacity: 1 }, { opacity: 0 }],
-        { duration: 300 }
-      );
+      alert.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 300 });
       setTimeout(() => alert.remove(), 300);
     }, 4000);
   }

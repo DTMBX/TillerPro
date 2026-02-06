@@ -1,26 +1,12 @@
-{% comment %}
-Homepage Reviews Highlights Include
-Renders top N reviews from _data/reviews.yml as trust cards
-
-Params:
-limit (default: 3)
-eyebrow, title, summary, cta_url, cta_label
-section_id (optional, default: home-reviews)
-heading_id (optional, default: section_id + '-title')
-
-Usage:
-{% include components/reviews-highlights.html limit=3 %}
-{% endcomment %}
-
-{% assign all = site.data.reviews.reviews | default: [] %}
-{% assign limit = include.limit | default: 3 %}
-{% assign items = all | slice: 0, limit %}
-{% assign section_id = include.section_id | default: 'home-reviews' %}
-{% assign heading_id = include.heading_id | default: section_id | append: '-title' %}
+{% comment %} Homepage Reviews Highlights Include Renders top N reviews from _data/reviews.yml as trust cards Params:
+limit (default: 3) eyebrow, title, summary, cta_url, cta_label section_id (optional, default: home-reviews) heading_id
+(optional, default: section_id + '-title') Usage: {% include components/reviews-highlights.html limit=3 %} {% endcomment
+%} {% assign all = site.data.reviews.reviews | default: [] %} {% assign limit = include.limit | default: 3 %} {% assign
+items = all | slice: 0, limit %} {% assign section_id = include.section_id | default: 'home-reviews' %} {% assign
+heading_id = include.heading_id | default: section_id | append: '-title' %}
 
 <section class="ts-section section reviews" aria-labelledby="{{ heading_id }}">
   <div class="container">
-
     <!-- Section Header -->
     <header class="section-header text-center">
       {% if include.eyebrow %}
@@ -29,9 +15,7 @@ Usage:
       <span class="eyebrow eyebrow--dark">Verified Client Feedback</span>
       {% endif %}
 
-      <h2 id="{{ heading_id }}" class="heading-2">
-        {{ include.title | default: 'South Jersey Tile & Bath Reviews' }}
-      </h2>
+      <h2 id="{{ heading_id }}" class="heading-2">{{ include.title | default: 'South Jersey Tile & Bath Reviews' }}</h2>
 
       <p class="lead">
         {{ include.summary | default: 'Clients consistently highlight disciplined workmanship, clear communication, and
@@ -44,18 +28,21 @@ Usage:
     {% if items.size > 0 %}
     <!-- Reviews Cards -->
     <ul class="cards cards--3col" role="list" aria-label="Highlighted client reviews">
-      {% for r in items %}
-      {% assign stars = r.rating | default: 5 %}
+      {% for r in items %} {% assign stars = r.rating | default: 5 %}
       <li>
-        <article class="card card--review" itemscope itemtype="https://schema.org/Review"
-          aria-label="Review from {{ r.author | default: 'Client' | escape }}">
-
+        <article
+          class="card card--review"
+          itemscope
+          itemtype="https://schema.org/Review"
+          aria-label="Review from {{ r.author | default: 'Client' | escape }}"
+        >
           <!-- Rating Stars -->
           <div class="card-rating" role="img" aria-label="{{ stars }} out of 5 stars">
             {% for i in (1..5) %}
-            <span class="star{% if i <= stars %} star--filled{% endif %}" aria-hidden="true">{% if i <= stars %}★{% else
-                %}☆{% endif %}</span>
-                {% endfor %}
+            <span class="star{% if i <= stars %} star--filled{% endif %}" aria-hidden="true"
+              >{% if i <= stars %}★{% else %}☆{% endif %}</span
+            >
+            {% endfor %}
           </div>
           <meta itemprop="reviewRating" content="{{ stars }}" />
 
@@ -68,19 +55,14 @@ Usage:
           <p class="card-author">
             {% if r.author %}
             <strong id="review--name-{{ forloop.index }}" itemprop="author">{{ r.author | escape }}</strong>
-            {% endif %}
-
-            {% if r.job_type %}
+            {% endif %} {% if r.job_type %}
             <span class="card-role"> · {{ r.job_type | escape }}</span>
             {% elsif r.source %}
             <span class="card-role"> · {{ r.source | escape }}</span>
-            {% endif %}
-
-            {% if r.date %}
+            {% endif %} {% if r.date %}
             <span class="card-date"> · {{ r.date | date: "%b %Y" }}</span>
             {% endif %}
           </p>
-
         </article>
       </li>
       {% endfor %}
@@ -89,11 +71,13 @@ Usage:
 
     <!-- Call to Action -->
     <div class="section-action text-center mt-4">
-      <a href="{{ include.cta_url | default: '/reviews/' | relative_url }}" class="btn btn--ghost"
-        aria-label="Read more client reviews">
+      <a
+        href="{{ include.cta_url | default: '/reviews/' | relative_url }}"
+        class="btn btn--ghost"
+        aria-label="Read more client reviews"
+      >
         {{ include.cta_label | default: 'Read More Client Reviews →' }}
       </a>
     </div>
-
   </div>
 </section>

@@ -24,7 +24,7 @@
   --fluid-min: 320;
   --fluid-max: 3840;
   --fluid-screen: 100vw;
-  
+
   /* Fluid font sizes - adapt to ANY viewport */
   --font-xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.875rem);
   --font-sm: clamp(0.8rem, 0.75rem + 0.3vw, 1rem);
@@ -36,7 +36,7 @@
   --font-3xl: clamp(2.25rem, 1.75rem + 2.5vw, 4.5rem);
   --font-4xl: clamp(2.75rem, 2rem + 3.75vw, 6rem);
   --font-5xl: clamp(3.5rem, 2.5rem + 5vw, 8rem);
-  
+
   /* Fluid spacing - works everywhere */
   --space-3xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem);
   --space-2xs: clamp(0.5rem, 0.4rem + 0.5vw, 1rem);
@@ -47,7 +47,7 @@
   --space-xl: clamp(3rem, 2rem + 5vw, 6rem);
   --space-2xl: clamp(4rem, 3rem + 5vw, 8rem);
   --space-3xl: clamp(6rem, 4rem + 10vw, 12rem);
-  
+
   /* Fluid containers - percentage-based for ultimate flexibility */
   --container-fluid: clamp(85%, 90vw, 98%);
   --container-narrow: clamp(280px, 90%, 640px);
@@ -55,14 +55,14 @@
   --container-normal: clamp(280px, 92%, 1600px);
   --container-wide: clamp(280px, 94%, 2400px);
   --container-ultra: clamp(280px, 96%, 3600px);
-  
+
   /* Fluid grid gaps */
   --gap-xs: clamp(0.5rem, 1vw, 1rem);
   --gap-sm: clamp(0.75rem, 1.5vw, 1.5rem);
   --gap-md: clamp(1rem, 2vw, 2rem);
   --gap-lg: clamp(1.5rem, 3vw, 3rem);
   --gap-xl: clamp(2rem, 4vw, 4rem);
-  
+
   /* Fluid border radius */
   --radius-sm: clamp(4px, 0.5vw, 8px);
   --radius-md: clamp(8px, 1vw, 16px);
@@ -85,14 +85,44 @@ body {
 }
 
 /* Fluid typography system */
-h1, .h1 { font-size: var(--font-4xl); line-height: 1.1; }
-h2, .h2 { font-size: var(--font-3xl); line-height: 1.2; }
-h3, .h3 { font-size: var(--font-2xl); line-height: 1.3; }
-h4, .h4 { font-size: var(--font-xl); line-height: 1.4; }
-h5, .h5 { font-size: var(--font-lg); line-height: 1.5; }
-h6, .h6 { font-size: var(--font-md); line-height: 1.5; }
+h1,
+.h1 {
+  font-size: var(--font-4xl);
+  line-height: 1.1;
+}
 
-p, .p { 
+h2,
+.h2 {
+  font-size: var(--font-3xl);
+  line-height: 1.2;
+}
+
+h3,
+.h3 {
+  font-size: var(--font-2xl);
+  line-height: 1.3;
+}
+
+h4,
+.h4 {
+  font-size: var(--font-xl);
+  line-height: 1.4;
+}
+
+h5,
+.h5 {
+  font-size: var(--font-lg);
+  line-height: 1.5;
+}
+
+h6,
+.h6 {
+  font-size: var(--font-md);
+  line-height: 1.5;
+}
+
+p,
+.p {
   font-size: var(--font-base);
   line-height: 1.7;
   max-width: 75ch; /* Optimal reading width regardless of screen */
@@ -107,11 +137,25 @@ p, .p {
   padding-inline: var(--space-sm);
 }
 
-.container-supreme--narrow { width: var(--container-narrow); }
-.container-supreme--reading { width: var(--container-reading); }
-.container-supreme--wide { width: var(--container-wide); }
-.container-supreme--ultra { width: var(--container-ultra); }
-.container-supreme--fluid { width: var(--container-fluid); }
+.container-supreme--narrow {
+  width: var(--container-narrow);
+}
+
+.container-supreme--reading {
+  width: var(--container-reading);
+}
+
+.container-supreme--wide {
+  width: var(--container-wide);
+}
+
+.container-supreme--ultra {
+  width: var(--container-ultra);
+}
+
+.container-supreme--fluid {
+  width: var(--container-fluid);
+}
 
 /* ====================================
    ASPECT RATIO CONTAINERS
@@ -189,7 +233,7 @@ p, .p {
     --orientation-gap: var(--gap-sm);
     --hero-height: 60vh;
   }
-  
+
   .orientation-aware {
     grid-template-columns: 1fr;
   }
@@ -201,7 +245,7 @@ p, .p {
     --orientation-gap: var(--gap-lg);
     --hero-height: 85vh;
   }
-  
+
   .orientation-aware {
     grid-template-columns: repeat(auto-fit, minmax(clamp(300px, 40%, 600px), 1fr));
   }
@@ -231,11 +275,11 @@ p, .p {
     --console-font-scale: 1.05;
     --console-spacing: var(--space-md);
   }
-  
+
   body {
     font-size: calc(var(--font-base) * var(--console-font-scale));
   }
-  
+
   .container-supreme {
     width: 96%;
   }
@@ -246,7 +290,7 @@ p, .p {
   :root {
     --console-font-scale: 1.1;
   }
-  
+
   .grid-auto-fit,
   .grid-fluid-3 {
     grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 40%, 500px), 1fr));
@@ -259,16 +303,16 @@ p, .p {
     --tv-font-scale: 1.25;
     --tv-spacing: var(--space-xl);
   }
-  
+
   body {
     font-size: calc(var(--font-base) * var(--tv-font-scale));
   }
-  
+
   .container-supreme {
     width: var(--container-wide);
     padding-inline: var(--space-lg);
   }
-  
+
   /* Larger touch targets for TV remotes */
   button,
   .btn,
@@ -283,15 +327,15 @@ p, .p {
   :root {
     --tv-4k-scale: 1.5;
   }
-  
+
   html {
     font-size: 20px;
   }
-  
+
   .container-supreme {
     width: var(--container-ultra);
   }
-  
+
   /* Extra large touch targets */
   button,
   .btn,
@@ -310,7 +354,7 @@ p, .p {
   :root {
     --fold-columns: 2;
   }
-  
+
   .fold-aware {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -336,7 +380,7 @@ p, .p {
     width: 85%;
     max-width: 900px;
   }
-  
+
   .vertical-optimize {
     display: flex;
     flex-direction: column;
@@ -352,13 +396,13 @@ p, .p {
   .container-supreme {
     width: var(--container-ultra);
   }
-  
+
   .ultrawide-split {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: var(--gap-xl);
   }
-  
+
   .grid-fluid-3 {
     grid-template-columns: repeat(auto-fit, minmax(clamp(320px, 25%, 480px), 1fr));
   }
@@ -368,7 +412,7 @@ p, .p {
   .grid-fluid-4 {
     grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 20%, 400px), 1fr));
   }
-  
+
   .super-ultrawide-layout {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -396,7 +440,7 @@ p, .p {
   :root {
     --border-width: 2px;
   }
-  
+
   button,
   .btn,
   .card {
@@ -420,18 +464,18 @@ p, .p {
   :root {
     --print-font: 12pt;
   }
-  
+
   body {
     font-size: var(--print-font);
     color: #000000;
     background: #ffffff;
   }
-  
+
   .container-supreme {
     width: 100%;
     max-width: none;
   }
-  
+
   /* Hide non-essential elements */
   nav,
   .mobile-nav,
@@ -446,25 +490,68 @@ p, .p {
    UTILITY CLASSES - Fluid Spacing
    ==================================== */
 
-.p-fluid { padding: var(--space-sm); }
-.p-fluid-lg { padding: var(--space-lg); }
-.px-fluid { padding-inline: var(--space-sm); }
-.py-fluid { padding-block: var(--space-sm); }
+.p-fluid {
+  padding: var(--space-sm);
+}
 
-.m-fluid { margin: var(--space-sm); }
-.m-fluid-lg { margin: var(--space-lg); }
-.mx-fluid { margin-inline: var(--space-sm); }
-.my-fluid { margin-block: var(--space-sm); }
+.p-fluid-lg {
+  padding: var(--space-lg);
+}
 
-.gap-fluid { gap: var(--gap-md); }
-.gap-fluid-sm { gap: var(--gap-sm); }
-.gap-fluid-lg { gap: var(--gap-lg); }
+.px-fluid {
+  padding-inline: var(--space-sm);
+}
+
+.py-fluid {
+  padding-block: var(--space-sm);
+}
+
+.m-fluid {
+  margin: var(--space-sm);
+}
+
+.m-fluid-lg {
+  margin: var(--space-lg);
+}
+
+.mx-fluid {
+  margin-inline: var(--space-sm);
+}
+
+.my-fluid {
+  margin-block: var(--space-sm);
+}
+
+.gap-fluid {
+  gap: var(--gap-md);
+}
+
+.gap-fluid-sm {
+  gap: var(--gap-sm);
+}
+
+.gap-fluid-lg {
+  gap: var(--gap-lg);
+}
 
 /* Fluid max-widths */
-.max-w-reading { max-width: var(--container-reading); }
-.max-w-normal { max-width: var(--container-normal); }
-.max-w-wide { max-width: var(--container-wide); }
-.max-w-ultra { max-width: var(--container-ultra); }
+.max-w-reading {
+  max-width: var(--container-reading);
+}
+
+.max-w-normal {
+  max-width: var(--container-normal);
+}
+
+.max-w-wide {
+  max-width: var(--container-wide);
+}
+
+.max-w-ultra {
+  max-width: var(--container-ultra);
+}
 
 /* Center alignment */
-.mx-auto { margin-inline: auto; }
+.mx-auto {
+  margin-inline: auto;
+}

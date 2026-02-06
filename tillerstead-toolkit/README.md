@@ -2,13 +2,16 @@
 
 **Contractor Calculator Hub + Inventory + Catalog Connector**
 
-A production-ready web app for NJ tile/general contractor project management. Features calculators, room takeoffs, material lists, and priced shopping lists from a local inventory database.
+A production-ready web app for NJ tile/general contractor project management.
+Features calculators, room takeoffs, material lists, and priced shopping lists
+from a local inventory database.
 
 ## Web App Integration
 
 The TillerPro web app (`/tools/`) integrates with this toolkit:
 
-- **Hybrid Mode**: Uses toolkit API when available, falls back to client-side calculations
+- **Hybrid Mode**: Uses toolkit API when available, falls back to client-side
+  calculations
 - **Project Sync**: Local projects can be synced to the backend database
 - **Shared Calculators**: Both use the same TCNA-compliant formulas
 
@@ -36,6 +39,7 @@ tillerstead-toolkit/
 ## Quick Start
 
 ### Backend
+
 ```bash
 cd backend
 python -m venv venv
@@ -48,6 +52,7 @@ API available at: `http://localhost:8000`
 Docs available at: `http://localhost:8000/docs`
 
 ### Frontend (Optional)
+
 ```bash
 cd frontend
 npm install
@@ -57,6 +62,7 @@ npm run dev
 ## Features
 
 ### Calculators
+
 - **Tile Floor**: Area from shapes + waste% + tile size + box rounding
 - **Tile Wall**: Walls minus openings + niches + waste
 - **Thinset/Mortar**: Coverage by trowel + tile size + substrate factor
@@ -71,15 +77,21 @@ npm run dev
 - **Bid Builder**: Full estimate generation
 
 ### Catalog Connectors
-- **ManualPriceBookConnector** (default): User enters products, prices, uploads receipts/CSV
-- **HomeDepotAffiliateFeedConnector**: Accepts user-uploaded affiliate feed files
-- **ThirdPartyCatalogConnector**: Third-party API integration (requires user API key)
+
+- **ManualPriceBookConnector** (default): User enters products, prices, uploads
+  receipts/CSV
+- **HomeDepotAffiliateFeedConnector**: Accepts user-uploaded affiliate feed
+  files
+- **ThirdPartyCatalogConnector**: Third-party API integration (requires user API
+  key)
 
 ## Compliance Notes
 
-⚠️ **Retailer pricing changes frequently. Always verify prices in cart/receipt before purchasing.**
+⚠️ **Retailer pricing changes frequently. Always verify prices in cart/receipt
+before purchasing.**
 
 This application does NOT scrape retailer websites. All pricing data comes from:
+
 1. Manual entry by the user
 2. User-provided affiliate feed files
 3. Third-party APIs with user-supplied credentials

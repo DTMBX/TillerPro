@@ -29,18 +29,18 @@
     --fluid-spacing: clamp(1rem, 3vw, 1.5rem);
     --fluid-radius: clamp(12px, 2vw, 16px);
   }
-  
+
   /* Leverage 120Hz smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
-  
+
   @supports (scroll-behavior: smooth) {
     * {
       scroll-behavior: smooth;
     }
   }
-  
+
   /* Hardware acceleration for 120Hz animations */
   .sticky-cta-bar,
   .mobile-nav,
@@ -52,19 +52,19 @@
     transform: translateZ(0);
     backface-visibility: hidden;
   }
-  
+
   /* Smooth transitions for ProMotion */
   * {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   /* Optimize fonts for OLED */
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
-  
+
   /* Prevent layout shift */
   img,
   video,
@@ -79,7 +79,7 @@
     .ts-header {
       padding-top: max(16px, env(safe-area-inset-top));
     }
-    
+
     .mobile-nav__header {
       padding-top: max(20px, calc(env(safe-area-inset-top) + 4px));
     }
@@ -99,22 +99,22 @@
     --container-padding: 24px;
     --section-spacing: 4rem;
   }
-  
+
   .container,
   .ts-main-content {
     padding-left: var(--container-padding);
     padding-right: var(--container-padding);
   }
-  
+
   /* Larger typography on big phones */
   h1 {
     font-size: clamp(2.25rem, 6vw, 3rem);
   }
-  
+
   h2 {
     font-size: clamp(1.875rem, 5vw, 2.5rem);
   }
-  
+
   /* Card grids - 2 column on large phones */
   .card-grid,
   .ts-services-grid {
@@ -122,14 +122,14 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
-  
+
   /* Sticky CTA - more comfortable on large screens */
   .sticky-cta-bar {
     min-height: 76px;
     padding: 14px 20px;
     gap: 12px;
   }
-  
+
   .sticky-cta-btn {
     min-height: 64px;
     font-size: 0.9375rem;
@@ -150,27 +150,27 @@
     --section-spacing: 5rem;
     --grid-gap: 2rem;
   }
-  
+
   .container {
     max-width: var(--container-max-width);
     padding-left: 32px;
     padding-right: 32px;
   }
-  
+
   /* Hybrid navigation - show both desktop nav AND mobile toggle */
   .desktop-nav {
     display: flex;
   }
-  
+
   .mobile-nav__toggle {
     display: none; /* Hide hamburger, use desktop nav */
   }
-  
+
   /* Typography - readable but not too large */
   h1 {
     font-size: clamp(2.5rem, 5vw, 3.5rem);
   }
-  
+
   /* 2-column card grids */
   .card-grid,
   .ts-services-grid,
@@ -178,26 +178,26 @@
     grid-template-columns: repeat(2, 1fr);
     gap: var(--grid-gap);
   }
-  
+
   /* 3-column for features */
   .features-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
-  
+
   /* Forms - wider but not full screen */
   form {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   input,
   select,
   textarea {
     font-size: 16px; /* Prevent zoom */
   }
-  
+
   /* Touch targets still important on tablets */
   button,
   .btn,
@@ -205,12 +205,12 @@
     min-height: 48px;
     padding: 12px 24px;
   }
-  
+
   /* No sticky mobile CTA on tablets */
   .sticky-cta-bar {
     display: none;
   }
-  
+
   /* Images - higher quality */
   img {
     image-rendering: -webkit-optimize-contrast;
@@ -231,53 +231,53 @@
     --section-spacing: 6rem;
     --grid-gap: 2.5rem;
   }
-  
+
   .container {
     max-width: var(--container-max-width);
     padding-left: 48px;
     padding-right: 48px;
   }
-  
+
   /* Full desktop navigation */
   .desktop-nav {
     display: flex;
   }
-  
+
   .mobile-nav__toggle,
   .mobile-nav {
     display: none;
   }
-  
+
   /* 3-column layouts */
   .card-grid,
   .ts-services-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--grid-gap);
   }
-  
+
   /* Hero sections - impressive on large tablets */
   .hero {
     min-height: 60vh;
     padding: 6rem 0;
   }
-  
+
   /* Typography - larger, impactful */
   h1 {
     font-size: clamp(3rem, 5vw, 4rem);
     line-height: 1.1;
   }
-  
+
   h2 {
     font-size: clamp(2.25rem, 4vw, 3rem);
   }
-  
+
   /* Sidebar layouts work well */
   .content-with-sidebar {
     display: grid;
     grid-template-columns: 1fr 300px;
     gap: 3rem;
   }
-  
+
   /* Hover states important on tablets with trackpads */
   @media (hover: hover) {
     a:hover,
@@ -303,19 +303,19 @@
     --section-spacing: 8rem;
     --grid-gap: 3rem;
   }
-  
+
   .container {
     max-width: var(--container-max-width);
     padding-left: 64px;
     padding-right: 64px;
   }
-  
+
   /* 4-column layouts for rich content */
   .card-grid--rich {
     grid-template-columns: repeat(4, 1fr);
     gap: var(--grid-gap);
   }
-  
+
   /* 3-column for standard cards */
   .card-grid,
   .ts-services-grid,
@@ -323,51 +323,51 @@
     grid-template-columns: repeat(3, 1fr);
     gap: var(--grid-gap);
   }
-  
+
   /* Hero - full impact */
   .hero {
     min-height: 70vh;
     padding: 8rem 0;
   }
-  
+
   /* Typography - desktop scale */
   h1 {
     font-size: clamp(3.5rem, 5vw, 5rem);
     letter-spacing: -0.02em;
   }
-  
+
   h2 {
     font-size: clamp(2.5rem, 4vw, 3.5rem);
     letter-spacing: -0.01em;
   }
-  
+
   /* Sidebar layouts */
   .content-with-sidebar {
     grid-template-columns: 1fr 360px;
     gap: 4rem;
   }
-  
+
   /* Asymmetric grids */
   .grid-asymmetric {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 3rem;
   }
-  
+
   /* Enhanced hover effects */
   @media (hover: hover) {
     .card:hover {
       transform: translateY(-4px);
-      box-shadow: 
+      box-shadow:
         0 12px 40px rgb(0 0 0 / 20%),
         0 0 0 1px rgb(201 162 39 / 10%);
     }
-    
+
     .btn:hover {
       transform: translateY(-2px) scale(1.02);
     }
   }
-  
+
   /* Parallax effects */
   .parallax-bg {
     background-attachment: fixed;
@@ -392,43 +392,43 @@
     --grid-gap: 4rem;
     --font-size-base: 1.125rem;
   }
-  
+
   body {
     font-size: var(--font-size-base);
   }
-  
+
   .container {
     max-width: var(--container-max-width);
     padding-left: 80px;
     padding-right: 80px;
   }
-  
+
   /* 4-5 column layouts */
   .card-grid--rich {
     grid-template-columns: repeat(5, 1fr);
     gap: var(--grid-gap);
   }
-  
+
   .card-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: var(--grid-gap);
   }
-  
+
   /* Massive typography */
   h1 {
     font-size: clamp(4rem, 6vw, 6rem);
     letter-spacing: -0.03em;
   }
-  
+
   h2 {
     font-size: clamp(3rem, 5vw, 4.5rem);
     letter-spacing: -0.02em;
   }
-  
+
   h3 {
     font-size: clamp(2.25rem, 4vw, 3.25rem);
   }
-  
+
   /* Larger buttons */
   .btn,
   button {
@@ -436,19 +436,19 @@
     padding: 1.25rem 3rem;
     min-height: 64px;
   }
-  
+
   /* Hero sections - cinematic */
   .hero {
     min-height: 80vh;
     padding: 12rem 0;
   }
-  
+
   /* Images - crisp on 4K */
   img {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
   }
-  
+
   /* Multi-column content */
   .content-columns {
     column-count: 2;
@@ -466,27 +466,25 @@
  * 3x displays: iPhone Plus/Pro Max
  */
 /* stylelint-disable-next-line media-feature-name-no-vendor-prefix */
-@media (-webkit-min-device-pixel-ratio: 2),
-       (min-resolution: 192dpi),
-       (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
   /* Font smoothing for retina */
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
-  
+
   /* Sharper borders */
   *::before,
   *::after {
     -webkit-font-smoothing: antialiased;
   }
-  
+
   /* Optimize images */
   img {
     image-rendering: -webkit-optimize-contrast;
   }
-  
+
   /* Thinner borders on retina */
   hr,
   .border {
@@ -496,9 +494,7 @@
 
 /* 3x displays (iPhone Pro Max) */
 /* stylelint-disable-next-line media-feature-name-no-vendor-prefix */
-@media (-webkit-min-device-pixel-ratio: 3),
-       (min-resolution: 288dpi),
-       (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi), (min-resolution: 3dppx) {
   img {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: optimizequality;
@@ -599,7 +595,7 @@
   .grid-featured {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .grid-featured > :first-child {
     grid-column: 1 / 3;
   }
@@ -617,12 +613,12 @@
     container-type: inline-size;
     container-name: card;
   }
-  
+
   @container card (min-width: 400px) {
     .card__title {
       font-size: 1.5rem;
     }
-    
+
     .card__content {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -645,7 +641,7 @@
 }
 
 /* Lazy load images below fold */
-img[loading="lazy"] {
+img[loading='lazy'] {
   content-visibility: auto;
 }
 
@@ -660,7 +656,7 @@ img[loading="lazy"] {
   .smooth-scroll {
     scroll-behavior: smooth;
   }
-  
+
   * {
     scroll-behavior: smooth;
   }
@@ -679,13 +675,13 @@ img[loading="lazy"] {
     backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid rgb(255 255 255 / 20%);
   }
-  
+
   .glass-dark {
     background: rgb(0 0 0 / 60%);
     backdrop-filter: blur(16px) saturate(180%);
     border: 1px solid rgb(255 255 255 / 10%);
   }
-  
+
   .sticky-cta-bar,
   .ts-header,
   .mobile-nav {
@@ -722,7 +718,7 @@ img[loading="lazy"] {
     padding-bottom: 56.25%;
     position: relative;
   }
-  
+
   .aspect-video > * {
     position: absolute;
     top: 0;
@@ -743,12 +739,12 @@ img[loading="lazy"] {
   :root {
     color-scheme: dark;
   }
-  
+
   /* Optimize images for dark mode */
   img {
     opacity: 95%;
   }
-  
+
   img:hover {
     opacity: 100%;
   }
@@ -765,18 +761,18 @@ img[loading="lazy"] {
   @page {
     margin: 2cm;
   }
-  
+
   body {
     font-size: 12pt;
     line-height: 1.6;
     color: #000000;
     background: #ffffff;
   }
-  
+
   .container {
     max-width: 100%;
   }
-  
+
   /* Hide interactive elements */
   .sticky-cta-bar,
   .mobile-nav,
@@ -785,19 +781,21 @@ img[loading="lazy"] {
   nav {
     display: none !important;
   }
-  
+
   /* Expand links */
   a[href]::after {
-    content: " (" attr(href) ")";
+    content: ' (' attr(href) ')';
     font-size: 0.8em;
     color: #666666;
   }
-  
+
   /* Page breaks */
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     break-after: avoid;
   }
-  
+
   img {
     max-width: 100%;
     break-inside: avoid;
@@ -815,11 +813,11 @@ img[loading="lazy"] {
   .container {
     max-width: min(80%, 2000px);
   }
-  
+
   .grid-ultrawide {
     grid-template-columns: repeat(6, 1fr);
   }
-  
+
   .hero {
     padding-left: 10vw;
     padding-right: 10vw;
@@ -839,7 +837,7 @@ img[loading="lazy"] {
     padding-left: 20px;
     padding-right: 20px;
   }
-  
+
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
   }

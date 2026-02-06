@@ -58,9 +58,7 @@ async function backupFile(filePath) {
     const data = await fs.readFile(filePath);
     await fs.writeFile(filePath + '.backup', data);
   } catch (err) {
-    console.error(
-      `(!) Could not create backup for ${filePath}: ${err.message}`,
-    );
+    console.error(`(!) Could not create backup for ${filePath}: ${err.message}`);
     summary.errors.push(`Backup failed for ${filePath}: ${err.message}`);
   }
 }
@@ -83,10 +81,7 @@ async function upgradeSass() {
         } else if (entry.isFile()) {
           if (entry.name.endsWith('.scss')) {
             sassFiles.push(fullPath);
-          } else if (
-            entry.name.endsWith('.css') &&
-            entry.name.toLowerCase().includes('main')
-          ) {
+          } else if (entry.name.endsWith('.css') && entry.name.toLowerCase().includes('main')) {
             // Potential main Sass file with .css extension
             // Read to check if it contains Sass import syntax
             const content = await fs.readFile(fullPath, 'utf8');
@@ -139,12 +134,8 @@ async function upgradeSass() {
         // Also update any references in build scripts to the old file name:
         await updateBuildScriptReferences(baseName, newName);
       } catch (err) {
-        console.error(
-          `Error renaming ${baseName} to ${newName}: ${err.message}`,
-        );
-        summary.errors.push(
-          `Failed to rename ${baseName} to ${newName}: ${err.message}`,
-        );
+        console.error(`Error renaming ${baseName} to ${newName}: ${err.message}`);
+        summary.errors.push(`Failed to rename ${baseName} to ${newName}: ${err.message}`);
       }
       break; // assume only one main file to rename
     }
@@ -183,9 +174,7 @@ async function upgradeSass() {
   for (const filePath of sassFiles) {
     let content = await fs.readFile(filePath, 'utf8');
     const _origContent = content;
-    const fileRelPath = path
-      .relative(projectRoot, filePath)
-      .replace(/\\/g, '/');
+    const fileRelPath = path.relative(projectRoot, filePath).replace(/\\/g, '/');
     let importCount = 0;
     let issues = [];
 
@@ -230,9 +219,7 @@ async function upgradeSass() {
             tryPaths.push(...tryPaths.map((p) => p + '.scss'));
             tryPaths.push(...tryPaths.map((p) => path.join(p, '_index.scss')));
             tryPaths.push(
-              ...tryPaths.map((p) =>
-                path.join(path.dirname(p), '_' + path.basename(p)),
-              ),
+              ...tryPaths.map((p) => path.join(path.dirname(p), '_' + path.basename(p)))
             );
           }
           for (const p of tryPaths) {
@@ -270,7 +257,7 @@ async function upgradeSass() {
         issues,
       });
       console.log(
-        `✓ Converted ${fileRelPath} (${importCount} import statement${importCount > 1 ? 's' : ''} updated)`,
+        `✓ Converted ${fileRelPath} (${importCount} import statement${importCount > 1 ? 's' : ''} updated)`
       );
       if (issues.length) {
         console.log(`   Issues: ${issues.join('; ')}`);
@@ -286,9 +273,7 @@ async function upgradeDependencies() {
   try {
     pkgData = JSON.parse(await fs.readFile(pkgPath, 'utf8'));
   } catch (_err) {
-    console.error(
-      "Failed to read package.json. Ensure you're running in the project root.",
-    );
+    console.error("Failed to read package.json. Ensure you're running in the project root.");
     summary.errors.push('package.json not found or invalid JSON.');
     return;
   }
@@ -342,14 +327,10 @@ async function upgradeDependencies() {
           const data = await res.json();
           latestVersion = data['dist-tags']?.latest;
         } else {
-          console.warn(
-            `Warning: npm registry query for "${name}" failed (status ${res.status})`,
-          );
+          console.warn(`Warning: npm registry query for "${name}" failed (status ${res.status})`);
         }
       } catch (err) {
-        console.warn(
-          `Warning: Could not fetch latest version for "${name}": ${err.message}`,
-        );
+        console.warn(`Warning: Could not fetch latest version for "${name}": ${err.message}`);
       }
       if (!latestVersion) {
         // If fetch failed, skip updating this dependency
@@ -403,20 +384,13 @@ async function upgradeDependencies() {
   }
 
   // If any changes, write them out
-  const pkgChanged =
-    JSON.stringify(pkgData, null, 2) !== JSON.stringify(originalPkg, null, 2);
+  const pkgChanged = JSON.stringify(pkgData, null, 2) !== JSON.stringify(originalPkg, null, 2);
   if (pkgChanged) {
     if (!DRY_RUN) {
       await backupFile(pkgPath);
-      await fs.writeFile(
-        pkgPath,
-        JSON.stringify(pkgData, null, 2) + '\n',
-        'utf8',
-      );
+      await fs.writeFile(pkgPath, JSON.stringify(pkgData, null, 2) + '\n', 'utf8');
     }
-    console.log(
-      `✓ Updated package.json dependencies and engines${DRY_RUN ? ' (dry-run)' : ''}`,
-    );
+    console.log(`✓ Updated package.json dependencies and engines${DRY_RUN ? ' (dry-run)' : ''}`);
   } else {
     console.log('ℹ️ No dependency changes needed (already up-to-date)');
   }
@@ -443,7 +417,7 @@ async function upgradeBuildScripts() {
           requireReplacements++;
           // Use default import syntax
           return `${indent}import ${varName} from '${reqPath}';`;
-        },
+        }
       );
       // Pattern 2: const { A, B } = require('foo');
       content = content.replace(
@@ -451,7 +425,7 @@ async function upgradeBuildScripts() {
         (_, indent, imports, reqPath) => {
           requireReplacements++;
           return `${indent}import { ${imports.trim()} } from '${reqPath}';`;
-        },
+        }
       );
       // Pattern 3: standalone require('foo');
       content = content.replace(
@@ -459,7 +433,7 @@ async function upgradeBuildScripts() {
         (_, indent, reqPath) => {
           requireReplacements++;
           return `${indent}import '${reqPath}';`;
-        },
+        }
       );
       // Replace image conversion exec calls with Sharp
       // We'll look for exec( or execSync( usage with common image tools
@@ -513,23 +487,20 @@ async function upgradeBuildScripts() {
               }
             }
             if (outputFile.toLowerCase().endsWith('.png')) {
-              newSharpCode +=
-                quality !== null ? `.png({ quality: ${quality} })` : '.png()';
+              newSharpCode += quality !== null ? `.png({ quality: ${quality} })` : '.png()';
             } else if (
               outputFile.toLowerCase().endsWith('.jpg') ||
               outputFile.toLowerCase().endsWith('.jpeg')
             ) {
-              newSharpCode +=
-                quality !== null ? `.jpeg({ quality: ${quality} })` : '.jpeg()';
+              newSharpCode += quality !== null ? `.jpeg({ quality: ${quality} })` : '.jpeg()';
             } else if (outputFile.toLowerCase().endsWith('.webp')) {
-              newSharpCode +=
-                quality !== null ? `.webp({ quality: ${quality} })` : '.webp()';
+              newSharpCode += quality !== null ? `.webp({ quality: ${quality} })` : '.webp()';
             }
             newSharpCode += `.toFile('${outputFile}') });\n`;
             // Comment out the original exec call in content
             content = content.replace(
               fullMatch,
-              `/* exec call replaced with Sharp: ${commandStr} */`,
+              `/* exec call replaced with Sharp: ${commandStr} */`
             );
           }
         }
@@ -540,10 +511,7 @@ async function upgradeBuildScripts() {
         // So we just need to inject newSharpCode in content.
         content += `\n${newSharpCode}\n`;
       }
-      if (
-        (requireReplacements > 0 || execReplacements > 0) &&
-        content !== origContent
-      ) {
+      if ((requireReplacements > 0 || execReplacements > 0) && content !== origContent) {
         if (!DRY_RUN) {
           await backupFile(filePath);
           await fs.writeFile(filePath, content, 'utf8');
@@ -554,7 +522,7 @@ async function upgradeBuildScripts() {
           execReplaced: execReplacements,
         });
         console.log(
-          `✓ Refactored ${relPath} (require→import: ${requireReplacements}, exec→sharp: ${execReplacements})`,
+          `✓ Refactored ${relPath} (require→import: ${requireReplacements}, exec→sharp: ${execReplacements})`
         );
       }
     }
@@ -587,7 +555,7 @@ async function updateConfigs() {
             if (config.program.includes(summary.mainFileRenamed.oldName)) {
               config.program = config.program.replace(
                 summary.mainFileRenamed.oldName,
-                summary.mainFileRenamed.newName,
+                summary.mainFileRenamed.newName
               );
               changed = true;
             }
@@ -634,18 +602,12 @@ async function updateConfigs() {
         // Inside [build.environment]
         if (trimmed.startsWith('NODE_VERSION')) {
           // Update Node version
-          line = line.replace(
-            /NODE_VERSION\s*=\s*".*?"/,
-            'NODE_VERSION = "24"',
-          );
+          line = line.replace(/NODE_VERSION\s*=\s*".*?"/, 'NODE_VERSION = "24"');
           nodeSet = true;
         }
         if (trimmed.startsWith('RUBY_VERSION')) {
           // Optionally update Ruby (set to 3.2 latest stable)
-          line = line.replace(
-            /RUBY_VERSION\s*=\s*".*?"/,
-            'RUBY_VERSION = "3.2.0"',
-          );
+          line = line.replace(/RUBY_VERSION\s*=\s*".*?"/, 'RUBY_VERSION = "3.2.0"');
           rubySet = true;
           summary.rubyVersionUpdated = true;
         }
@@ -667,9 +629,7 @@ async function updateConfigs() {
     // For now, only add if user had one before or specifically requested. We'll not add if it wasn't present.
     if (!rubySet && summary.rubyVersionUpdated) {
       // Add Ruby version in build.env section
-      const insertIndex = outputLines.findIndex((line) =>
-        line.trim().startsWith('NODE_VERSION'),
-      );
+      const insertIndex = outputLines.findIndex((line) => line.trim().startsWith('NODE_VERSION'));
       outputLines.splice(insertIndex + 1, 0, 'RUBY_VERSION = "3.2.0"');
       rubySet = true;
     }
@@ -681,8 +641,7 @@ async function updateConfigs() {
       }
       summary.netlifyUpdated = true;
       if (nodeSet) console.log('✓ Updated Node version in netlify.toml to 24');
-      if (rubySet)
-        console.log('✓ Updated Ruby version in netlify.toml to 3.2.0');
+      if (rubySet) console.log('✓ Updated Ruby version in netlify.toml to 3.2.0');
     }
   } catch {
     // netlify.toml not found or unreadable
@@ -695,16 +654,10 @@ function gitCommitAll() {
     execSync('git add -A', { stdio: 'ignore' });
     const msgLines = [];
     msgLines.push('Upgrade project tooling for Node 24 compatibility');
-    if (summary.sassFilesConverted.length)
-      msgLines.push(' - Migrate Sass @import to @use');
-    if (
-      summary.depsUpdated.length ||
-      summary.depsRemoved.length ||
-      summary.depsAdded.length
-    )
+    if (summary.sassFilesConverted.length) msgLines.push(' - Migrate Sass @import to @use');
+    if (summary.depsUpdated.length || summary.depsRemoved.length || summary.depsAdded.length)
       msgLines.push(' - Update NPM dependencies');
-    if (summary.scriptsModified.length)
-      msgLines.push(' - Refactor build scripts (ESM & Sharp)');
+    if (summary.scriptsModified.length) msgLines.push(' - Refactor build scripts (ESM & Sharp)');
     if (summary.launchConfigUpdated || summary.netlifyUpdated)
       msgLines.push(' - Update config files (VSCode/Netlify)');
     const commitMsg = msgLines.join('\n');
@@ -748,13 +701,8 @@ async function main() {
       '- **Sass Imports Converted**: No changes (no @import statements found or already migrated).\n';
   }
   // Dependency updates
-  if (
-    summary.depsUpdated.length ||
-    summary.depsAdded.length ||
-    summary.depsRemoved.length
-  ) {
-    report +=
-      '- **Dependencies Updated**: package versions refreshed to latest stable.';
+  if (summary.depsUpdated.length || summary.depsAdded.length || summary.depsRemoved.length) {
+    report += '- **Dependencies Updated**: package versions refreshed to latest stable.';
     report += '\n  - Changes in `package.json`:\n';
     for (const dep of summary.depsUpdated) {
       report += `    - \`${dep.name}\`: ${dep.oldVersion} → ${dep.newVersion}\n`;
@@ -769,8 +717,7 @@ async function main() {
       report += `    - Set \`engines.node\` to "${summary.enginesUpdated}" (require Node 24+)\n`;
     }
   } else {
-    report +=
-      '- **Dependencies Updated**: All dependencies were already up-to-date.\n';
+    report += '- **Dependencies Updated**: All dependencies were already up-to-date.\n';
   }
   // Scripts modified
   if (summary.scriptsModified.length) {
@@ -784,11 +731,7 @@ async function main() {
     report += '- **Build Scripts Refactored**: No script changes needed.\n';
   }
   // Config updates
-  if (
-    summary.launchConfigUpdated ||
-    summary.netlifyUpdated ||
-    summary.rubyVersionUpdated
-  ) {
+  if (summary.launchConfigUpdated || summary.netlifyUpdated || summary.rubyVersionUpdated) {
     report += '- **Config Updates**:\n';
     if (summary.launchConfigUpdated) {
       report += '    - VSCode `launch.json` adjusted for Node 24 runtime.\n';
@@ -814,27 +757,19 @@ async function main() {
   console.log(report);
   if (!DRY_RUN) {
     try {
-      await fs.writeFile(
-        path.join(projectRoot, 'UPGRADE_SUMMARY.md'),
-        report,
-        'utf8',
-      );
+      await fs.writeFile(path.join(projectRoot, 'UPGRADE_SUMMARY.md'), report, 'utf8');
     } catch (err) {
       console.error(`Could not write UPGRADE_SUMMARY.md: ${err.message}`);
     }
   }
 
   console.log(
-    `\nUpgrade script completed.${DRY_RUN ? ' (Dry-run mode: no files were modified.)' : ''}`,
+    `\nUpgrade script completed.${DRY_RUN ? ' (Dry-run mode: no files were modified.)' : ''}`
   );
   if (!DRY_RUN) {
-    console.log(
-      'Please review the changes above and test your project (run build, etc.).',
-    );
+    console.log('Please review the changes above and test your project (run build, etc.).');
     if (!AUTO_COMMIT) {
-      console.log(
-        'Remember to commit the changes to version control when you are satisfied.',
-      );
+      console.log('Remember to commit the changes to version control when you are satisfied.');
     }
   }
 }

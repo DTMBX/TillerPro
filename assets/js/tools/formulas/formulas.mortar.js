@@ -23,26 +23,27 @@ export const MORTAR_FORMULA_INFO = {
       name: 'Custom Building Products - VersaBond LFT TDS',
       url: 'https://www.custombuildingproducts.com/products/versabond-lft-professional-large-format-tile-mortar',
       retrieved: '2026-01-19',
-      excerpt: 'Coverage: 1/4"x1/4" = 90-100 sq ft, 1/4"x3/8" = 60-67 sq ft, 3/4"x9/16" U-notch @30° = 38-47 sq ft per 50 lb bag. NOTE: 1/2"x1/2" square NOT recommended for LFT.'
+      excerpt:
+        'Coverage: 1/4"x1/4" = 90-100 sq ft, 1/4"x3/8" = 60-67 sq ft, 3/4"x9/16" U-notch @30° = 38-47 sq ft per 50 lb bag. NOTE: 1/2"x1/2" square NOT recommended for LFT.',
     },
     {
       name: 'TCNA Handbook',
       note: 'Minimum 80% coverage dry areas, 95% wet areas, all tile edges supported',
-      type: 'standard'
+      type: 'standard',
     },
     {
       name: 'ANSI A108/A118',
       note: 'Installation standards requiring proper trowel selection for coverage',
-      type: 'standard'
-    }
+      type: 'standard',
+    },
   ],
   assumptions: [
     'Coverage rates are manufacturer-provided ranges for typical conditions',
     'Actual coverage varies by substrate flatness, troweling technique, and tile back pattern',
     'Back-buttering (flat-back troweling) adds approximately 20-30% additional mortar consumption',
     'For LFT ≥15": use U-notch or ridged trowel that promotes ridge collapse',
-    'User should verify with specific product TDS'
-  ]
+    'User should verify with specific product TDS',
+  ],
 };
 
 // ==
@@ -66,21 +67,21 @@ export const TROWEL_COVERAGE = {
     coverageMin: 95,
     coverageMax: 120,
     source: 'Industry typical for mosaic/small tile; verify with product TDS',
-    recommendedFor: 'Mosaic, tile ≤2"'
+    recommendedFor: 'Mosaic, tile ≤2"',
   },
   '1/4-sq': {
     name: '1/4" × 1/4" Square',
     coverageMin: 90,
     coverageMax: 100,
     source: 'Custom Building Products VersaBond LFT TDS: 90-100 sq ft per 50 lb bag',
-    recommendedFor: 'Tile up to 8"×8"'
+    recommendedFor: 'Tile up to 8"×8"',
   },
   '1/4x3/8-sq': {
     name: '1/4" × 3/8" Square',
     coverageMin: 60,
     coverageMax: 67,
     source: 'Custom Building Products VersaBond LFT TDS: 60-67 sq ft per 50 lb bag',
-    recommendedFor: 'Tile 8"×8" to 13"×13"'
+    recommendedFor: 'Tile 8"×8" to 13"×13"',
   },
   '1/2-sq': {
     name: '1/2" × 1/2" Square',
@@ -88,22 +89,23 @@ export const TROWEL_COVERAGE = {
     coverageMax: 47,
     source: 'Custom Building Products VersaBond LFT TDS: 42-47 sq ft per 50 lb bag',
     recommendedFor: 'Medium format tile 13"×13" to 15"×15"',
-    warning: 'NOT RECOMMENDED FOR LFT by manufacturer. Use U-notch trowel instead for tiles ≥15". The 1/2" spacing makes it difficult to bed tiles and achieve proper coverage.'
+    warning:
+      'NOT RECOMMENDED FOR LFT by manufacturer. Use U-notch trowel instead for tiles ≥15". The 1/2" spacing makes it difficult to bed tiles and achieve proper coverage.',
   },
   '3/4x9/16-u-45': {
     name: '3/4" × 9/16" × 3/8" U-Notch @ 45°',
     coverageMin: 34,
     coverageMax: 42,
     source: 'Custom Building Products VersaBond LFT TDS: 34-42 sq ft per 50 lb bag',
-    recommendedFor: 'Large Format Tile (LFT) ≥15", natural stone, tiles with deep back patterns'
+    recommendedFor: 'Large Format Tile (LFT) ≥15", natural stone, tiles with deep back patterns',
   },
   '3/4x9/16-u-30': {
     name: '3/4" × 9/16" × 3/8" U-Notch @ 30°',
     coverageMin: 38,
     coverageMax: 47,
     source: 'Custom Building Products VersaBond LFT TDS: 38-47 sq ft per 50 lb bag',
-    recommendedFor: 'Large Format Tile (LFT) ≥15" - better coverage than 1/2" square, same yield'
-  }
+    recommendedFor: 'Large Format Tile (LFT) ≥15" - better coverage than 1/2" square, same yield',
+  },
 };
 
 /**
@@ -114,18 +116,18 @@ export const COVERAGE_REQUIREMENTS = {
   dry_interior: {
     minimumPercent: 80,
     source: 'TCNA Handbook / ANSI A108',
-    note: 'Dry interior floors - minimum 80% coverage'
+    note: 'Dry interior floors - minimum 80% coverage',
   },
   wet_area: {
     minimumPercent: 95,
     source: 'TCNA Handbook / ANSI A108',
-    note: 'Wet areas, exteriors - minimum 95% coverage with full edge support'
+    note: 'Wet areas, exteriors - minimum 95% coverage with full edge support',
   },
   large_format: {
     minimumPercent: 95,
     source: 'TCNA Handbook / Industry best practice',
-    note: 'Large format tile (≥15") - 95% coverage recommended with back-buttering'
-  }
+    note: 'Large format tile (≥15") - 95% coverage recommended with back-buttering',
+  },
 };
 
 /**
@@ -137,15 +139,15 @@ export const SUBSTRATE_FLATNESS = {
     max_variation_10ft: '1/4"',
     max_variation_12in: '1/16"',
     applies_to: 'Tiles with all edges <15"',
-    source: 'ANSI A108.02'
+    source: 'ANSI A108.02',
   },
   large_format_tile: {
     max_variation_10ft: '1/8"',
     max_variation_24in: '1/16"',
     applies_to: 'Tiles with any edge ≥15" (LFT) and natural stone',
-    source: 'ANSI A108.02'
+    source: 'ANSI A108.02',
   },
-  note: 'If substrate does not meet flatness tolerances, lippage standards do NOT apply. Installer cannot be held responsible for lippage caused by out-of-tolerance substrate.'
+  note: 'If substrate does not meet flatness tolerances, lippage standards do NOT apply. Installer cannot be held responsible for lippage caused by out-of-tolerance substrate.',
 };
 
 /**
@@ -156,15 +158,15 @@ export const DEFLECTION_REQUIREMENTS = {
   ceramic_tile: {
     maximum: 'L/360',
     description: 'Span length (inches) ÷ 360',
-    example: '10 ft span (120") = max 1/3" deflection'
+    example: '10 ft span (120") = max 1/3" deflection',
   },
   natural_stone: {
     maximum: 'L/720',
     description: 'Span length (inches) ÷ 720',
-    example: '10 ft span (120") = max 1/6" deflection'
+    example: '10 ft span (120") = max 1/6" deflection',
   },
   source: 'TCNA Handbook',
-  note: 'Excessive deflection causes grout cracking and tile failure. Verify before installation.'
+  note: 'Excessive deflection causes grout cracking and tile failure. Verify before installation.',
 };
 
 /**
@@ -175,33 +177,33 @@ export const PRO_TIPS = {
     'Comb mortar in ONE direction only (not swirling) - creates consistent ridges',
     'Press tile perpendicular to ridges to collapse them and eliminate voids',
     'Work in small sections - mortar should not skin over before tile is set',
-    'Key in (burn) a thin layer to substrate before combing for better bond'
+    'Key in (burn) a thin layer to substrate before combing for better bond',
   ],
   coverage_verification: [
     'Periodically lift tiles to verify coverage - especially first few tiles',
     'Look for full collapse of ridges with no voids',
     'All tile edges must be supported - especially corners',
-    'Document coverage checks on wet area installations'
+    'Document coverage checks on wet area installations',
   ],
   back_buttering: [
     'Required by ANSI A108.5 when 95% coverage is specified',
     'Flat-back trowel (formerly "back-butter") a skim coat on tile back',
     'For tiles with deep lugs, use notched-back troweling technique',
-    'Back-buttering adds 20-30% mortar consumption - factor into estimates'
+    'Back-buttering adds 20-30% mortar consumption - factor into estimates',
   ],
   large_format_tile: [
     'ALWAYS use U-notch or ridged trowel - NOT 1/2" square (per CBP TDS)',
     'Back-butter every tile - no exceptions',
     'Limit running bond offset to 33% max (not 50%) to reduce lippage',
     'Use tile leveling system (clips/wedges) for consistent lippage control',
-    'Substrate MUST meet LFT flatness tolerance (1/8" in 10 ft) before starting'
+    'Substrate MUST meet LFT flatness tolerance (1/8" in 10 ft) before starting',
   ],
   open_time: [
     'Check mortar open time on TDS - typically 20-30 minutes',
     'If ridges do not collapse when pressing tile, scrape and re-apply',
     'Hot/dry conditions reduce open time significantly',
-    'Do not set tile into skinned-over mortar'
-  ]
+    'Do not set tile into skinned-over mortar',
+  ],
 };
 
 // ==
@@ -238,7 +240,7 @@ export function getRecommendedTrowel(tileWidthInches, tileHeightInches, substrat
     trowelId: '1/4-sq',
     backButter: false,
     note: '',
-    source: 'Custom Building Products VersaBond LFT TDS'
+    source: 'Custom Building Products VersaBond LFT TDS',
   };
 
   // Mosaic or very small tile (< 2")
@@ -259,15 +261,18 @@ export function getRecommendedTrowel(tileWidthInches, tileHeightInches, substrat
   }
   // Large format (>= 15" on any side) - USE U-NOTCH, NOT SQUARE
   else {
-    result.trowelId = '3/4x9/16-u-30';  // U-notch at 30° - per CBP TDS recommendation
+    result.trowelId = '3/4x9/16-u-30'; // U-notch at 30° - per CBP TDS recommendation
     result.backButter = true;
-    result.note = '3/4" × 9/16" U-notch @ 30° for large format tile. Back-buttering (flat-back troweling) required for 95% coverage.';
-    result.warning = 'Per Custom Building Products TDS: Do NOT use 1/2"×1/2" square notch for LFT. U-notch promotes better mortar ridge collapse.';
+    result.note =
+      '3/4" × 9/16" U-notch @ 30° for large format tile. Back-buttering (flat-back troweling) required for 95% coverage.';
+    result.warning =
+      'Per Custom Building Products TDS: Do NOT use 1/2"×1/2" square notch for LFT. U-notch promotes better mortar ridge collapse.';
   }
 
   // Substrate adjustment
   if (substrate === 'needs-flattening') {
-    result.note += ' Substrate may need flattening - larger notch compensates but does not replace proper prep.';
+    result.note +=
+      ' Substrate may need flattening - larger notch compensates but does not replace proper prep.';
   }
 
   return result;
@@ -297,12 +302,7 @@ export function getRecommendedTrowel(tileWidthInches, tileHeightInches, substrat
  *   sources: string[]
  * }}
  */
-export function calculateMortarBags({
-  areaSqFt,
-  trowelId,
-  backButter = false,
-  bagSizeLbs = 50
-}) {
+export function calculateMortarBags({ areaSqFt, trowelId, backButter = false, bagSizeLbs = 50 }) {
   const errors = [];
   const assumptions = [];
   const sources = [];
@@ -310,13 +310,29 @@ export function calculateMortarBags({
   // Validate inputs
   const areaVal = validatePositiveNumber(areaSqFt, 'Area');
   if (!areaVal.valid) {
-    return { valid: false, errors: [areaVal.error], bagsMin: 0, bagsMax: 0, coverageRange: '', assumptions, sources };
+    return {
+      valid: false,
+      errors: [areaVal.error],
+      bagsMin: 0,
+      bagsMax: 0,
+      coverageRange: '',
+      assumptions,
+      sources,
+    };
   }
 
   // Get trowel coverage
   const trowel = TROWEL_COVERAGE[trowelId];
   if (!trowel) {
-    return { valid: false, errors: [`Unknown trowel: ${trowelId}`], bagsMin: 0, bagsMax: 0, coverageRange: '', assumptions, sources };
+    return {
+      valid: false,
+      errors: [`Unknown trowel: ${trowelId}`],
+      bagsMin: 0,
+      bagsMax: 0,
+      coverageRange: '',
+      assumptions,
+      sources,
+    };
   }
 
   // Calculate bag range
@@ -324,7 +340,9 @@ export function calculateMortarBags({
   let bagsMax = roundUp(areaVal.value / trowel.coverageMin);
 
   assumptions.push(`Trowel: ${trowel.name}`);
-  assumptions.push(`Coverage: ${trowel.coverageMin}–${trowel.coverageMax} sq ft per ${bagSizeLbs} lb bag`);
+  assumptions.push(
+    `Coverage: ${trowel.coverageMin}–${trowel.coverageMax} sq ft per ${bagSizeLbs} lb bag`
+  );
   sources.push(trowel.source);
 
   // Back-buttering adjustment
@@ -349,7 +367,7 @@ export function calculateMortarBags({
     bagsMax,
     coverageRange: formatRange(trowel.coverageMin, trowel.coverageMax, 'sq ft/bag'),
     assumptions,
-    sources
+    sources,
   };
 }
 
@@ -363,6 +381,6 @@ export function getTrowelOptions() {
     name: data.name,
     coverageMin: data.coverageMin,
     coverageMax: data.coverageMax,
-    recommendedFor: data.recommendedFor
+    recommendedFor: data.recommendedFor,
   }));
 }

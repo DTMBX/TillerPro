@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 const siteDir = path.join(__dirname, '..', '_site');
 if (!fs.existsSync(siteDir)) {
   console.error(
-    'Error: _site directory missing. Run `npm run build` before link checking. (TCNA/New Jersey HIC compliance)',
+    'Error: _site directory missing. Run `npm run build` before link checking. (TCNA/New Jersey HIC compliance)'
   );
   process.exit(1);
 }
@@ -20,10 +20,7 @@ if (!fs.existsSync(siteDir)) {
 const allowMissing = new Set(['/favicon.ico']);
 
 // Files to skip (contain embedded data URIs, generated reports, etc.)
-const skipFiles = new Set([
-  'lighthouse-report.html',
-  'lighthouse-mobile-report.json'
-]);
+const skipFiles = new Set(['lighthouse-report.html', 'lighthouse-mobile-report.json']);
 
 /**
  * Determines if a link is external or non-checkable.
@@ -72,10 +69,7 @@ function normalizeTarget(href) {
   if (fs.existsSync(primary)) return primary;
 
   if (ext === '.html') {
-    const fallback = path.join(
-      siteDir,
-      target.replace(/\.html$/, '/index.html'),
-    );
+    const fallback = path.join(siteDir, target.replace(/\.html$/, '/index.html'));
     if (fs.existsSync(fallback)) return fallback;
   }
 
@@ -109,18 +103,13 @@ for (const file of collectHtmlFiles(siteDir)) {
   const html = fs.readFileSync(file, 'utf8');
   const $ = cheerio.load(html);
   const links = $('a[href], link[href]');
-  const images = $(
-    'img[src], source[src], video[src], audio[src], script[src]',
-  );
+  const images = $('img[src], source[src], video[src], audio[src], script[src]');
 
   links.each((_, el) => {
     const href = $(el).attr('href');
     if (!href || isExternal(href)) return;
     const target = normalizeTarget(href);
-    if (
-      !fs.existsSync(target) &&
-      !allowMissing.has(stripFragmentsAndQuery(href))
-    ) {
+    if (!fs.existsSync(target) && !allowMissing.has(stripFragmentsAndQuery(href))) {
       missing.push({ source: path.relative(siteDir, file), ref: href });
     }
   });
@@ -129,19 +118,14 @@ for (const file of collectHtmlFiles(siteDir)) {
     const src = $(el).attr('src');
     if (!src || isExternal(src)) return;
     const target = normalizeTarget(src);
-    if (
-      !fs.existsSync(target) &&
-      !allowMissing.has(stripFragmentsAndQuery(src))
-    ) {
+    if (!fs.existsSync(target) && !allowMissing.has(stripFragmentsAndQuery(src))) {
       missing.push({ source: path.relative(siteDir, file), ref: src });
     }
   });
 }
 
 if (missing.length) {
-  console.error(
-    'Broken internal links/assets detected (TCNA/New Jersey HIC compliance required):',
-  );
+  console.error('Broken internal links/assets detected (TCNA/New Jersey HIC compliance required):');
   for (const issue of missing) {
     console.error(`- ${issue.source} → ${issue.ref}`);
   }
@@ -149,5 +133,5 @@ if (missing.length) {
 }
 
 console.log(
-  'Link check passed: all internal references resolved to TCNA/New Jersey HIC standards.',
+  'Link check passed: all internal references resolved to TCNA/New Jersey HIC standards.'
 );

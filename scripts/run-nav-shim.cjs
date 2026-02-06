@@ -65,8 +65,7 @@ function createElement(tag) {
     },
     querySelector(sel) {
       // minimal for nav.querySelector('button, a')
-      if (sel && (sel.includes('button') || sel.includes('a')))
-        return this._button || null;
+      if (sel && (sel.includes('button') || sel.includes('a'))) return this._button || null;
       return null;
     },
     querySelectorAll() {
@@ -164,9 +163,7 @@ try {
   require(navPath);
   console.log(
     'nav.js loaded. Exposed globals:',
-    typeof window.tsOpenNav === 'function'
-      ? 'tsOpenNav() available'
-      : 'not available',
+    typeof window.tsOpenNav === 'function' ? 'tsOpenNav() available' : 'not available'
   );
 } catch (err) {
   console.error('Error loading nav.js:', err);
@@ -179,14 +176,11 @@ const dumpState = (label) => {
   console.log('navShell classes:', navShell.classList.toString());
   console.log('nav classes:', nav.classList.toString());
   console.log('body classes:', document.body.classList.toString());
-  console.log(
-    'nav aria-expanded:',
-    nav.getAttribute && nav.getAttribute('aria-expanded'),
-  );
+  console.log('nav aria-expanded:', nav.getAttribute && nav.getAttribute('aria-expanded'));
   console.log('nav dataset.open:', nav.dataset && nav.dataset.open);
   console.log(
     'navToggle aria-expanded:',
-    navToggle.getAttribute && navToggle.getAttribute('aria-expanded'),
+    navToggle.getAttribute && navToggle.getAttribute('aria-expanded')
   );
 };
 

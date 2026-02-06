@@ -37,7 +37,7 @@ class PerformanceOptimizer {
   setupProgressiveImages() {
     const images = document.querySelectorAll('[data-progressive]');
 
-    images.forEach(img => {
+    images.forEach((img) => {
       const lowResSrc = img.dataset.lowres;
       const highResSrc = img.dataset.src || img.src;
 
@@ -69,7 +69,7 @@ class PerformanceOptimizer {
     // Native lazy loading support check
     if ('loading' in HTMLImageElement.prototype) {
       const lazyImages = document.querySelectorAll('img[data-lazy]');
-      lazyImages.forEach(img => {
+      lazyImages.forEach((img) => {
         img.loading = 'lazy';
         if (img.dataset.src) {
           img.src = img.dataset.src;
@@ -85,36 +85,39 @@ class PerformanceOptimizer {
   lazyLoadWithIntersectionObserver() {
     const lazyElements = document.querySelectorAll('[data-lazy]');
 
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const element = entry.target;
+    const imageObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
 
-          if (element.dataset.src) {
-            element.src = element.dataset.src;
-            element.removeAttribute('data-src');
+            if (element.dataset.src) {
+              element.src = element.dataset.src;
+              element.removeAttribute('data-src');
+            }
+
+            if (element.dataset.srcset) {
+              element.srcset = element.dataset.srcset;
+              element.removeAttribute('data-srcset');
+            }
+
+            if (element.dataset.background) {
+              element.style.backgroundImage = `url(${element.dataset.background})`;
+              element.removeAttribute('data-background');
+            }
+
+            element.classList.add('is-loaded');
+            observer.unobserve(element);
           }
+        });
+      },
+      {
+        rootMargin: '50px 0px',
+        threshold: 0.01,
+      }
+    );
 
-          if (element.dataset.srcset) {
-            element.srcset = element.dataset.srcset;
-            element.removeAttribute('data-srcset');
-          }
-
-          if (element.dataset.background) {
-            element.style.backgroundImage = `url(${element.dataset.background})`;
-            element.removeAttribute('data-background');
-          }
-
-          element.classList.add('is-loaded');
-          observer.unobserve(element);
-        }
-      });
-    }, {
-      rootMargin: '50px 0px',
-      threshold: 0.01
-    });
-
-    lazyElements.forEach(el => imageObserver.observe(el));
+    lazyElements.forEach((el) => imageObserver.observe(el));
   }
 
   /**
@@ -128,7 +131,8 @@ class PerformanceOptimizer {
       document.documentElement.classList.toggle('webp', hasWebP);
       document.documentElement.classList.toggle('no-webp', !hasWebP);
     };
-    webpTest.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+    webpTest.src =
+      'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
 
     // Check AVIF support
     const avifTest = new Image();
@@ -137,7 +141,8 @@ class PerformanceOptimizer {
       document.documentElement.classList.toggle('avif', hasAVIF);
       document.documentElement.classList.toggle('no-avif', !hasAVIF);
     };
-    avifTest.src = 'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
+    avifTest.src =
+      'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
   }
 
   /**
@@ -148,10 +153,10 @@ class PerformanceOptimizer {
     const criticalOrigins = [
       'https://fonts.googleapis.com',
       'https://fonts.gstatic.com',
-      'https://www.google-analytics.com'
+      'https://www.google-analytics.com',
     ];
 
-    criticalOrigins.forEach(origin => {
+    criticalOrigins.forEach((origin) => {
       if (!document.querySelector(`link[href="${origin}"]`)) {
         const link = document.createElement('link');
         link.rel = 'preconnect';
@@ -163,7 +168,7 @@ class PerformanceOptimizer {
 
     // Prefetch next page on link hover
     let prefetchTimer;
-    document.querySelectorAll('a[href^="/"]').forEach(link => {
+    document.querySelectorAll('a[href^="/"]').forEach((link) => {
       link.addEventListener('mouseenter', () => {
         prefetchTimer = setTimeout(() => {
           const href = link.getAttribute('href');
@@ -189,30 +194,35 @@ class PerformanceOptimizer {
     // Observe elements entering viewport
     const observeElements = document.querySelectorAll('[data-observe]');
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          entry.target.dispatchEvent(new CustomEvent('elementVisible', {
-            detail: { element: entry.target }
-          }));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            entry.target.dispatchEvent(
+              new CustomEvent('elementVisible', {
+                detail: { element: entry.target },
+              })
+            );
 
-          // Remove observer if one-time observation
-          if (entry.target.hasAttribute('data-observe-once')) {
-            observer.unobserve(entry.target);
+            // Remove observer if one-time observation
+            if (entry.target.hasAttribute('data-observe-once')) {
+              observer.unobserve(entry.target);
+            }
+          } else {
+            if (!entry.target.hasAttribute('data-observe-once')) {
+              entry.target.classList.remove('is-visible');
+            }
           }
-        } else {
-          if (!entry.target.hasAttribute('data-observe-once')) {
-            entry.target.classList.remove('is-visible');
-          }
-        }
-      });
-    }, {
-      rootMargin: '0px',
-      threshold: 0.1
-    });
+        });
+      },
+      {
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+    );
 
-    observeElements.forEach(el => observer.observe(el));
+    observeElements.forEach((el) => observer.observe(el));
   }
 
   /**
@@ -242,7 +252,7 @@ class PerformanceOptimizer {
           const rule = rules[j];
           if (rule.selectorText) {
             const elements = document.querySelectorAll(rule.selectorText);
-            elements.forEach(el => {
+            elements.forEach((el) => {
               const rect = el.getBoundingClientRect();
               if (rect.top < window.innerHeight) {
                 criticalStyles.push(rule.cssText);
@@ -267,6 +277,6 @@ const performanceOptimizer = new PerformanceOptimizer();
 // Export for module use
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
-    PerformanceOptimizer
+    PerformanceOptimizer,
   };
 }

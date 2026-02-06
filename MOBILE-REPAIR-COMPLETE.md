@@ -8,43 +8,56 @@
 
 ## Executive Summary
 
-Successfully repaired mobile CSS cascade conflicts and HTML structural issues that prevented mobile navigation from functioning. Reduced CSS files from 73 to 18 (75% reduction), eliminated unsafe global overrides, implemented proper CSS layers, and added comprehensive linting infrastructure.
+Successfully repaired mobile CSS cascade conflicts and HTML structural issues
+that prevented mobile navigation from functioning. Reduced CSS files from 73 to
+18 (75% reduction), eliminated unsafe global overrides, implemented proper CSS
+layers, and added comprehensive linting infrastructure.
 
-**Critical Fix**: Mobile navigation was completely broken due to inline styles forcing `display: none !important` on the toggle button and drawer.
+**Critical Fix**: Mobile navigation was completely broken due to inline styles
+forcing `display: none !important` on the toggle button and drawer.
 
 ---
 
 ## Problems Identified
 
 ### 1. Cascade Chaos (73 CSS Files)
+
 - **60+ stylesheet loads** in head.html with massive duplication
 - **23 "fix" or "emergency" files** fighting each other with `!important`
 - **No CSS layer architecture** - unpredictable cascade order
-- **Duplicate loads**: mobile-emergency-fix loaded on lines 14, 15, 112, 118, 213
+- **Duplicate loads**: mobile-emergency-fix loaded on lines 14, 15, 112, 118,
+  213
 
 ### 2. Broken Mobile Navigation
+
 **Root cause**: `_includes/layout/page-shell.html` contained inline styles:
 
 ```html
 <style>
   .mobile-nav__toggle,
-  .mobile-nav { 
+  .mobile-nav {
     display: none !important; /* ❌ Hid the toggle and drawer */
   }
-  * { animation: none !important; transform: none !important; } /* ❌ Broke all transitions */
+  * {
+    animation: none !important;
+    transform: none !important;
+  } /* ❌ Broke all transitions */
 </style>
 ```
 
 **Impact**: No way to access navigation on mobile devices (< 768px)
 
 ### 3. Unsafe Global Overrides
+
 Files like `mobile-layout-emergency.css` and `mobile-emergency-fix.css` forced:
+
 - `display: block !important` on ALL elements
 - `transform: none !important` globally (broke drawer slide-in)
 - `visibility: visible !important` (broke overlays)
 - `opacity: 1 !important` (broke fade animations)
 
 ### 4. No Linting Infrastructure
+
 - No stylelint configuration
 - No HTML validation
 - No prettier formatting
@@ -56,10 +69,13 @@ Files like `mobile-layout-emergency.css` and `mobile-emergency-fix.css` forced:
 ## Solutions Implemented
 
 ### 1. Created `mobile-base.css` - Proper Foundation
+
 **Location**: `/assets/css/mobile-base.css`
 
 **Features**:
-- CSS Cascade Layers: `@layer reset, tokens, mobile-base, base, layout, components, utilities`
+
+- CSS Cascade Layers:
+  `@layer reset, tokens, mobile-base, base, layout, components, utilities`
 - Proper mobile nav drawer (transform-based, not display-based)
 - WCAG 2.5.5 touch targets (44x44px minimum)
 - Reduced motion support (`prefers-reduced-motion`)
@@ -68,6 +84,7 @@ Files like `mobile-layout-emergency.css` and `mobile-emergency-fix.css` forced:
 - NO blanket !important overrides
 
 **Mobile Nav Pattern** (Correct):
+
 ```css
 /* Toggle visible */
 .ts-nav-toggle {
@@ -82,7 +99,7 @@ Files like `mobile-layout-emergency.css` and `mobile-emergency-fix.css` forced:
 }
 
 /* Drawer visible when opened */
-.ts-mobile-nav[aria-hidden="false"] {
+.ts-mobile-nav[aria-hidden='false'] {
   transform: translateX(0);
 }
 
@@ -95,18 +112,21 @@ body.nav-open {
 ```
 
 ### 2. Created `head-clean.html` - Streamlined Loading
+
 **Location**: `/_includes/layout/head-clean.html`
 
 **Reduced CSS loads**:
+
 - **Before**: 73 files (142 KB uncompressed)
 - **After**: 18 files (58 KB uncompressed)
 - **Reduction**: 75% fewer files, 59% smaller payload
 
 **Load Order** (proper cascade):
+
 ```html
 <!-- CSS Layer Declaration -->
 <style>
-@layer reset, tokens, mobile-base, base, layout, components, utilities, page-specific;
+  @layer reset, tokens, mobile-base, base, layout, components, utilities, page-specific;
 </style>
 
 <!-- Core (in cascade order) -->
@@ -121,23 +141,28 @@ body.nav-open {
 ```
 
 ### 3. Fixed `page-shell.html` - Removed Inline Styles
+
 **Location**: `/_includes/layout/page-shell.html`
 
-**Removed**: 50 lines of dangerous inline styles
-**Result**: Clean template that respects CSS cascade
+**Removed**: 50 lines of dangerous inline styles **Result**: Clean template that
+respects CSS cascade
 
 **Before**:
+
 ```html
 <head>
   <style>
     /* 50 lines of emergency overrides */
-    * { display: block !important; }
+    * {
+      display: block !important;
+    }
   </style>
   {% include layout/head.html %}
 </head>
 ```
 
 **After**:
+
 ```html
 <head>
   {% include layout/head-clean.html %}
@@ -147,12 +172,14 @@ body.nav-open {
 ### 4. Linting Infrastructure Added
 
 **Configuration Files Created**:
+
 - `.stylelintrc.json` - CSS linting (stylelint-config-standard)
 - `.eslintrc.cjs` - JavaScript linting (eslint:recommended)
 - `.htmlvalidate.json` - HTML validation (WCAG basics)
 - `.prettierrc.json` - Code formatting
 
 **NPM Scripts Added**:
+
 ```json
 {
   "lint": "npm run lint:css && npm run lint:js && npm run lint:html",
@@ -171,11 +198,13 @@ body.nav-open {
 
 ## Files Deprecated/Removed
 
-See [`DEPRECATION-mobile-fixes.md`](./DEPRECATION-mobile-fixes.md) for complete list.
+See [`DEPRECATION-mobile-fixes.md`](./DEPRECATION-mobile-fixes.md) for complete
+list.
 
 **Summary**: 23 CSS files deprecated/consolidated
 
 **Emergency fix files** (broke navigation):
+
 - mobile-layout-emergency.css
 - mobile-emergency-fix.css
 - mobile-critical-fix.css
@@ -183,6 +212,7 @@ See [`DEPRECATION-mobile-fixes.md`](./DEPRECATION-mobile-fixes.md) for complete 
 - header-emergency-fix.css
 
 **Duplicate/conflicting fix files**:
+
 - header-nav-critical-fixes.css
 - header-nav-fixed.css
 - desktop-layout-fix.css
@@ -198,6 +228,7 @@ See [`DEPRECATION-mobile-fixes.md`](./DEPRECATION-mobile-fixes.md) for complete 
 - scaling-fixes.css
 
 **Redundant mobile files**:
+
 - mobile-ios-fixes.css
 - mobile-header-nav-fixes.css
 - mobile-experience-fix-2026-01-28.css
@@ -208,6 +239,7 @@ See [`DEPRECATION-mobile-fixes.md`](./DEPRECATION-mobile-fixes.md) for complete 
 ## Verification Checklist
 
 ### Mobile Navigation (320px - 768px)
+
 - [x] Toggle button visible and clickable
 - [x] Toggle opens drawer (aria-expanded="true")
 - [x] Drawer slides in from right (transform)
@@ -220,12 +252,14 @@ See [`DEPRECATION-mobile-fixes.md`](./DEPRECATION-mobile-fixes.md) for complete 
 - [x] No layout shift
 
 ### Content Visibility
+
 - [x] Content visible without forced `display: block`
 - [x] Sections flow naturally
 - [x] No horizontal overflow
 - [x] Images/videos scale properly
 
 ### Accessibility (WCAG)
+
 - [x] Touch targets minimum 44x44px (2.5.5)
 - [x] Focus-visible outlines present
 - [x] Reduced motion respected (`prefers-reduced-motion`)
@@ -233,6 +267,7 @@ See [`DEPRECATION-mobile-fixes.md`](./DEPRECATION-mobile-fixes.md) for complete 
 - [x] ARIA attributes correct (aria-hidden, aria-expanded, aria-controls)
 
 ### Performance
+
 - [x] 75% fewer CSS files loaded
 - [x] 59% smaller CSS payload
 - [x] No cascade conflicts
@@ -243,19 +278,23 @@ See [`DEPRECATION-mobile-fixes.md`](./DEPRECATION-mobile-fixes.md) for complete 
 ## Architecture Rules (Going Forward)
 
 ### CSS Best Practices
+
 1. **USE CSS Layers** for predictable cascade
 2. **NO global !important** except documented utilities
-3. **SCOPE selectors** to components (`ts-nav`, `.btn-primary`), not `*, body, div`
+3. **SCOPE selectors** to components (`ts-nav`, `.btn-primary`), not
+   `*, body, div`
 4. **MOBILE-FIRST** - enhance for desktop, don't fix mobile
 5. **NO "fix" or "emergency" files** - fix the root cause
 
 ### File Naming Conventions
+
 - `mobile-base.css` - Foundation (✅ Good)
 - `mobile-emergency-fix.css` - Hack (❌ Bad)
 - `components/button.css` - Component (✅ Good)
 - `button-contrast-fix.css` - Symptom fix (❌ Bad)
 
 ### HTML Template Rules
+
 1. **NO inline styles** in templates (use classes)
 2. **NO duplicate stylesheet loads**
 3. **Conditional loading** for page-specific CSS
@@ -266,17 +305,21 @@ See [`DEPRECATION-mobile-fixes.md`](./DEPRECATION-mobile-fixes.md) for complete 
 ## Migration Path
 
 ### Update Includes
+
 **Old**:
+
 ```liquid
 {% include layout/head.html %}
 ```
 
 **New**:
+
 ```liquid
 {% include layout/head-clean.html %}
 ```
 
 ### Run Linting
+
 ```bash
 npm run lint        # Check all
 npm run lint:fix    # Auto-fix
@@ -284,6 +327,7 @@ npm run format      # Prettier
 ```
 
 ### Test Navigation
+
 ```bash
 npm run dev
 # Open http://localhost:4000
@@ -296,13 +340,13 @@ npm run dev
 
 ## Performance Metrics
 
-| Metric | Before | After | Improvement |
-|--------|--------|-------|-------------|
-| CSS Files Loaded | 73 | 18 | -75% |
-| CSS Payload (uncompressed) | 142 KB | 58 KB | -59% |
-| !important count | 247 | 12 | -95% |
-| Mobile nav functional | ❌ Broken | ✅ Working | Fixed |
-| Lint errors | Not measured | 0 | ✅ Clean |
+| Metric                     | Before       | After      | Improvement |
+| -------------------------- | ------------ | ---------- | ----------- |
+| CSS Files Loaded           | 73           | 18         | -75%        |
+| CSS Payload (uncompressed) | 142 KB       | 58 KB      | -59%        |
+| !important count           | 247          | 12         | -95%        |
+| Mobile nav functional      | ❌ Broken    | ✅ Working | Fixed       |
+| Lint errors                | Not measured | 0          | ✅ Clean    |
 
 ---
 
@@ -318,7 +362,8 @@ git checkout HEAD~1 -- _includes/layout/head.html
 git checkout HEAD~1 -- _includes/layout/page-shell.html
 ```
 
-**Better approach**: 
+**Better approach**:
+
 1. Check browser console for errors
 2. Verify `navigation.js` is loaded
 3. Inspect mobile nav elements in DevTools
@@ -329,6 +374,7 @@ git checkout HEAD~1 -- _includes/layout/page-shell.html
 ## Next Steps
 
 ### Recommended
+
 1. **Delete deprecated files** (see DEPRECATION-mobile-fixes.md)
 2. **Run full build** (`npm run build`)
 3. **Test on real devices** (iPhone, Android)
@@ -336,6 +382,7 @@ git checkout HEAD~1 -- _includes/layout/page-shell.html
 5. **Configure CI/CD** to run `npm run lint`
 
 ### Optional Enhancements
+
 1. Convert remaining CSS to SCSS for variables/nesting
 2. Implement design token system (CSS custom properties)
 3. Add visual regression testing (Percy, Chromatic)
@@ -346,7 +393,8 @@ git checkout HEAD~1 -- _includes/layout/page-shell.html
 
 ## Documentation
 
-- [DEPRECATION-mobile-fixes.md](./DEPRECATION-mobile-fixes.md) - Deprecated files
+- [DEPRECATION-mobile-fixes.md](./DEPRECATION-mobile-fixes.md) - Deprecated
+  files
 - [mobile-base.css](./assets/css/mobile-base.css) - New foundation
 - [navigation.js](./assets/js/navigation.js) - Nav implementation
 
@@ -355,12 +403,14 @@ git checkout HEAD~1 -- _includes/layout/page-shell.html
 ## Support
 
 **Questions?**
+
 1. Check DEPRECATION-mobile-fixes.md
 2. Review mobile-base.css comments
 3. Test with browser DevTools mobile emulation
 4. Check git commit messages for details
 
 **Found a bug?**
+
 1. Verify it's not caused by deprecated file still loaded
 2. Check browser console for JS errors
 3. Inspect mobile nav with DevTools
@@ -370,9 +420,11 @@ git checkout HEAD~1 -- _includes/layout/page-shell.html
 
 ## References
 
-- WCAG 2.5.5 Target Size: https://www.w3.org/WAI/WCAG21/Understanding/target-size.html
+- WCAG 2.5.5 Target Size:
+  https://www.w3.org/WAI/WCAG21/Understanding/target-size.html
 - CSS Cascade Layers: https://developer.mozilla.org/en-US/docs/Web/CSS/@layer
-- Mobile-First CSS: https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Responsive/Mobile_first
+- Mobile-First CSS:
+  https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Responsive/Mobile_first
 - ARIA Dialog Pattern: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
 ---

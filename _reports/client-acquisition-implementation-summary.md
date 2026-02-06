@@ -1,9 +1,10 @@
 # Client Acquisition Expansion - Implementation Summary
+
 **Tillerstead LLC - Quick Wins Deployed**
 
-*Date: January 27, 2026*  
-*Commit: e560f440*  
-*Impact: +200-300% lead generation potential*
+_Date: January 27, 2026_  
+_Commit: e560f440_  
+_Impact: +200-300% lead generation potential_
 
 ---
 
@@ -12,25 +13,31 @@
 ### 1. Homepage Urgency Indicators
 
 **Social Proof Badge:**
+
 ```
 ⭐⭐⭐⭐⭐ 47+ Five-Star Reviews
 ```
+
 - Gold background with pulsing animation
 - Prominently displayed in hero section
 - Builds immediate trust and credibility
 
 **Booking Urgency Badge:**
+
 ```
 🔥 Booking Spring 2026 Now
 ```
+
 - Red background with pulse animation
 - Creates FOMO (fear of missing out)
 - Encourages immediate action
 
 **CTA Discount Badge:**
+
 ```
 Get $250 Off
 ```
+
 - Attached to "Request Free Estimate" button
 - Floating badge with bounce animation
 - Immediate value proposition
@@ -38,16 +45,19 @@ Get $250 Off
 ### 2. Lead Magnet Popup System
 
 **Trigger Mechanisms:**
+
 - ⏱️ **Time-based:** Shows after 30 seconds on page
 - 📜 **Scroll-based:** Activates at 50% page scroll
 - 🚪 **Exit-intent:** Triggers when mouse moves to close tab
 
 **Offer:**
+
 - 📋 **Free:** NJ Homeowner's Tile & Bathroom Checklist
 - 💰 **Bonus:** $250 discount code for first project
 - 📧 **Capture:** Name, email, project timeline
 
 **Checklist Includes:**
+
 - ✓ How to spot red flags before hiring
 - ✓ NJ building code requirements
 - ✓ TCNA waterproofing standards explained
@@ -55,6 +65,7 @@ Get $250 Off
 - ✓ BONUS: $250 discount code
 
 **Cookie System:**
+
 - Won't re-show for 30 days after close
 - Respects user preference
 - Prevents popup fatigue
@@ -62,6 +73,7 @@ Get $250 Off
 ### 3. Email List Building
 
 **Form Fields:**
+
 - First name (required)
 - Email address (required)
 - Project timeline (optional dropdown):
@@ -72,12 +84,14 @@ Get $250 Off
   - Just researching
 
 **Netlify Forms Integration:**
+
 - Auto-captured in Netlify dashboard
 - No backend coding required
 - Spam protection with honeypot
 - Success redirect to `/success/?form=lead-magnet`
 
 **Privacy Assurance:**
+
 - Clear privacy policy link
 - "100% secure, never shared" messaging
 - GDPR/compliance ready
@@ -85,6 +99,7 @@ Get $250 Off
 ### 4. Conversion Optimization
 
 **Visual Hierarchy:**
+
 ```
 1. License Badge (Green - Trust)
    ↓
@@ -96,6 +111,7 @@ Get $250 Off
 ```
 
 **Psychological Triggers:**
+
 - ✅ **Authority:** Licensed NJ HIC contractor
 - ✅ **Social Proof:** 47+ five-star reviews
 - ✅ **Scarcity:** Limited spring availability
@@ -106,22 +122,35 @@ Get $250 Off
 ### 5. CSS Animations
 
 **Urgency Badge Animation:**
+
 ```css
 @keyframes pulse-urgency {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 ```
 
 **Discount Badge Animation:**
+
 ```css
 @keyframes badge-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
 }
 ```
 
 **Mobile Responsive:**
+
 - Badges stack vertically on mobile
 - Font sizes reduce for readability
 - Touch-friendly button sizes maintained
@@ -131,9 +160,11 @@ Get $250 Off
 ## 📄 FILES CREATED (4 files, 27KB)
 
 ### 1. CLIENT-ACQUISITION-STRATEGY.md (14.5KB)
+
 **Comprehensive 90-day growth plan including:**
 
 **Phase 1: FREE Quick Wins**
+
 - Google Business Profile optimization
 - Local directory citations (Yelp, Angi, Thumbtack)
 - Lead magnet activation (DONE ✅)
@@ -141,30 +172,32 @@ Get $250 Off
 - Email nurture setup
 
 **Phase 2: Content Marketing**
+
 - Blog strategy (2-4 posts/month)
 - YouTube channel setup
 - Video testimonials
 - Case studies
 
 **Phase 3: Paid Advertising**
+
 - Google Local Services Ads ($15-50/lead)
 - Google Search Ads ($500/mo budget)
 - Facebook/Instagram retargeting ($300/mo)
 
-**Success Metrics:**
-| Metric | Current | 90-Day Goal | Increase |
-|--------|---------|-------------|----------|
-| Monthly Visitors | 500 | 2,000 | +300% |
-| Contact Forms | 10 | 30 | +200% |
-| Phone Calls | 20 | 40 | +100% |
-| Email List | 0 | 300 | NEW |
+**Success Metrics:** | Metric | Current | 90-Day Goal | Increase |
+|--------|---------|-------------|----------| | Monthly Visitors | 500 | 2,000 |
++300% | | Contact Forms | 10 | 30 | +200% | | Phone Calls | 20 | 40 | +100% | |
+Email List | 0 | 300 | NEW |
 
 **Budget:**
+
 - FREE tactics: $0/month (80% of impact)
 - Paid growth: $500-880/month (optional)
 
 ### 2. lead-magnet-popup.html (9KB)
+
 **Fully-styled popup component:**
+
 - Responsive design (mobile-optimized)
 - Accessibility compliant (WCAG 2.1 AA)
 - Form validation
@@ -173,7 +206,9 @@ Get $250 Off
 - Exit-intent detection
 
 ### 3. urgency-indicators.css (3.2KB)
+
 **Reusable urgency components:**
+
 - Pulse animations
 - Badge styles
 - Trust indicators
@@ -183,14 +218,17 @@ Get $250 Off
 - Mobile responsive breakpoints
 
 ### 4. labor-estimator-adapter.js (auto-generated)
+
 **Calculator integration** (bonus file from tools hub work)
 
 ---
 
 ## 🔧 FILES MODIFIED (3 files)
 
-### 1. _includes/hero/unified-hero-home.html
+### 1. \_includes/hero/unified-hero-home.html
+
 **Changes:**
+
 - Added `.ts-hero__badges` wrapper (3 badges)
 - Integrated social proof badge
 - Added urgency indicator
@@ -198,6 +236,7 @@ Get $250 Off
 - Maintained responsive design
 
 **Before:**
+
 ```html
 <p class="ts-hero__eyebrow">NJ HIC #13VH10808800</p>
 <h1>TCNA-Compliant Tile...</h1>
@@ -205,6 +244,7 @@ Get $250 Off
 ```
 
 **After:**
+
 ```html
 <div class="ts-hero__badges">
   <p class="ts-hero__eyebrow">NJ HIC #13VH10808800</p>
@@ -218,14 +258,18 @@ Get $250 Off
 </a>
 ```
 
-### 2. _includes/layout/head.html
+### 2. \_includes/layout/head.html
+
 **Changes:**
+
 - Added `urgency-indicators.css` stylesheet
 - Positioned before `main.css` for cascade
 - Single line addition
 
-### 3. _includes/layout/page-shell.html
+### 3. \_includes/layout/page-shell.html
+
 **Changes:**
+
 - Added lead magnet popup (homepage only)
 - Conditional include: `{% if page.is_home == true %}`
 - Maintains performance on other pages
@@ -235,6 +279,7 @@ Get $250 Off
 ## 🎯 CONVERSION FUNNEL IMPROVEMENTS
 
 ### Before
+
 ```
 Homepage Visit
    ↓
@@ -244,6 +289,7 @@ Maybe contact form (2-5% conversion)
 ```
 
 ### After
+
 ```
 Homepage Visit
    ↓
@@ -263,6 +309,7 @@ Contact form OR phone call (8-15% conversion) ✅
 ```
 
 **Expected Results:**
+
 - 2-3× more email signups
 - 1.5-2× more contact form submissions
 - 20-30% higher overall conversion rate
@@ -272,39 +319,53 @@ Contact form OR phone call (8-15% conversion) ✅
 ## 📊 PSYCHOLOGICAL PRINCIPLES APPLIED
 
 ### 1. Social Proof (Robert Cialdini)
+
 ```
 ⭐⭐⭐⭐⭐ 47+ Five-Star Reviews
 ```
-**Why it works:** People follow the crowd. If 47+ others trust you, new visitors will too.
+
+**Why it works:** People follow the crowd. If 47+ others trust you, new visitors
+will too.
 
 ### 2. Scarcity (Limited Availability)
+
 ```
 🔥 Booking Spring 2026 Now
 ```
+
 **Why it works:** Fear of missing out (FOMO) drives immediate action.
 
 ### 3. Reciprocity (Free Gift)
+
 ```
 🎁 Get Your FREE Guide + $250 Off
 ```
-**Why it works:** People feel obligated to return a favor (free checklist → contact you).
+
+**Why it works:** People feel obligated to return a favor (free checklist →
+contact you).
 
 ### 4. Authority (Licensing)
+
 ```
 NJ HIC #13VH10808800
 ```
+
 **Why it works:** Official licensing builds credibility and trust.
 
 ### 5. Loss Aversion (Exit Intent)
+
 ```
 "Wait! Get Your FREE Guide"
 ```
+
 **Why it works:** People hate losing opportunities more than they value gains.
 
 ### 6. Anchoring (Discount Positioning)
+
 ```
 Get $250 Off (out of typical $5-15k project = 2-5% savings)
 ```
+
 **Why it works:** Shows immediate value, makes decision easier.
 
 ---
@@ -312,22 +373,26 @@ Get $250 Off (out of typical $5-15k project = 2-5% savings)
 ## 🚀 WHAT'S LIVE ON PRODUCTION
 
 ✅ **Homepage (tillerstead.com):**
+
 - Urgency badges displaying
 - Social proof visible
 - CTA discount badge animated
 - Lead magnet popup active (30sec delay + exit-intent)
 
 ✅ **Email Capture:**
+
 - Form submissions go to Netlify
 - Success page redirect configured
 - Privacy policy linked
 
 ✅ **Mobile Responsive:**
+
 - All badges stack vertically on small screens
 - Font sizes adjust
 - Touch targets meet accessibility standards
 
 ✅ **Performance:**
+
 - CSS: +3.2KB (minified)
 - HTML: +9KB (lazy-loaded, homepage only)
 - No JavaScript libraries added (native JS)
@@ -340,6 +405,7 @@ Get $250 Off (out of typical $5-15k project = 2-5% savings)
 ### Priority 1: FREE Quick Wins (6 hours)
 
 **1. Google Business Profile Optimization (2 hours)**
+
 - [ ] Claim listing at business.google.com
 - [ ] Add 20+ project photos (before/after, process, finished work)
 - [ ] Complete all profile sections:
@@ -352,9 +418,11 @@ Get $250 Off (out of typical $5-15k project = 2-5% savings)
 - [ ] Create first Google Post (weekly updates)
 - [ ] Respond to ALL reviews (build engagement)
 
-**Expected Impact:** Appear in "tile contractor near me" local pack (top 3 results)
+**Expected Impact:** Appear in "tile contractor near me" local pack (top 3
+results)
 
 **2. Local Directory Submissions (1 hour)**
+
 - [ ] Yelp for Business: yelp.com/biz/claim
 - [ ] Angi (Angie's List): angi.com/business
 - [ ] Thumbtack: thumbtack.com/pro
@@ -364,6 +432,7 @@ Get $250 Off (out of typical $5-15k project = 2-5% savings)
 - [ ] Porch: porch.com/professionals
 
 **CRITICAL:** Use IDENTICAL NAP (Name, Address, Phone) everywhere:
+
 ```
 Tillerstead LLC
 (Address if you want local SEO - or use service area only)
@@ -374,39 +443,48 @@ info@tillerstead.com
 **3. Set Up Email Nurture Campaign (3 hours)**
 
 **Tool:** Mailchimp FREE (up to 500 contacts)
+
 - [ ] Sign up: mailchimp.com
 - [ ] Create audience "Tillerstead Leads"
 - [ ] Design 7-email sequence:
 
 **Email 1 (Day 0):** Welcome + PDF delivery
+
 - Subject: "Your FREE NJ Homeowner Checklist + $250 Discount Inside"
 - Body: Thank you, here's your checklist PDF, here's your code: SPRING250
 
 **Email 2 (Day 1):** Educational value
+
 - Subject: "5 Red Flags When Hiring a Tile Contractor in NJ"
 - Body: Tips, mistakes to avoid, what to ask contractors
 
 **Email 3 (Day 3):** Case study
+
 - Subject: "How We Fixed a $15k Shower Leak for $8k"
 - Body: Real customer story, before/after photos
 
 **Email 4 (Day 5):** Authority building
+
 - Subject: "Why TCNA Standards Matter for Your Bathroom"
 - Body: Explain certification, show expertise
 
 **Email 5 (Day 7):** Social proof
+
 - Subject: "See Why 47+ Homeowners Trust Tillerstead"
 - Body: Testimonials, reviews, portfolio link
 
 **Email 6 (Day 10):** Urgency + CTA
+
 - Subject: "Ready to Start? Book This Week for Priority Scheduling"
 - Body: Spring booking filling up, limited slots, CTA to contact
 
 **Email 7 (Day 14):** Final offer
+
 - Subject: "Last Chance: $250 Off Expires in 48 Hours"
 - Body: Remind of discount, urgency, final CTA
 
 **4. Install Live Chat Widget (30 min)**
+
 - [ ] Sign up: tidio.com (FREE plan)
 - [ ] Install widget code in `_includes/layout/head.html`
 - [ ] Configure auto-responses:
@@ -418,6 +496,7 @@ info@tillerstead.com
 ### Priority 2: Content Creation (Next 2 Weeks)
 
 **5. Record Video Testimonials (4 hours)**
+
 - [ ] Reach out to 5 recent happy clients
 - [ ] Schedule 10-min Zoom calls
 - [ ] Ask 3 questions:
@@ -429,6 +508,7 @@ info@tillerstead.com
 - [ ] Embed on homepage testimonials section
 
 **6. Write First Blog Post (6 hours)**
+
 - [ ] Keyword research: "bathroom remodel cost nj" (Google Keyword Planner FREE)
 - [ ] Write 2,000-word guide:
   - Average costs by project size
@@ -441,6 +521,7 @@ info@tillerstead.com
 - [ ] Share on Facebook/Nextdoor
 
 **7. Create YouTube Channel (2 hours)**
+
 - [ ] youtube.com/create_channel
 - [ ] Channel name: "Tillerstead - NJ Tile & Bathroom Experts"
 - [ ] Upload brand logo as avatar
@@ -453,12 +534,14 @@ info@tillerstead.com
 ## 📈 EXPECTED RESULTS (90 Days)
 
 ### Month 1 (FREE Tactics)
+
 - **Website Visitors:** 500 → 800 (+60%)
 - **Email Signups:** 0 → 50
 - **Contact Forms:** 10 → 15 (+50%)
 - **Google Business Views:** 200 → 600 (+200%)
 
 ### Month 2 (Content + Chat)
+
 - **Website Visitors:** 800 → 1,200 (+50%)
 - **Email Signups:** 50 → 150 (+100)
 - **Contact Forms:** 15 → 22 (+47%)
@@ -466,6 +549,7 @@ info@tillerstead.com
 - **YouTube Views:** NEW → 200
 
 ### Month 3 (Paid Ads Optional)
+
 - **Website Visitors:** 1,200 → 2,000 (+67%)
 - **Email Signups:** 150 → 300 (+150)
 - **Contact Forms:** 22 → 30 (+36%)
@@ -473,6 +557,7 @@ info@tillerstead.com
 - **Qualified Leads:** 30/mo → 70-100/mo (+233%)
 
 **ROI Calculation:**
+
 - **Investment:** $0-500/month (mostly FREE)
 - **New Projects:** +2-4 per month (from increased leads)
 - **Average Project Value:** $8,000
@@ -484,6 +569,7 @@ info@tillerstead.com
 ## ✅ SUCCESS CHECKLIST
 
 **This Week (6 hours):**
+
 - [ ] Claim Google Business Profile
 - [ ] Add 20+ photos to Google
 - [ ] Submit to 7 local directories
@@ -492,6 +578,7 @@ info@tillerstead.com
 - [ ] Test lead magnet popup on homepage
 
 **Next 2 Weeks (12 hours):**
+
 - [ ] Record 2-3 video testimonials
 - [ ] Create YouTube channel
 - [ ] Write & publish first blog post
@@ -499,6 +586,7 @@ info@tillerstead.com
 - [ ] Respond to all Google reviews
 
 **Ongoing (2-4 hours/week):**
+
 - [ ] Publish 1 blog post every 2 weeks
 - [ ] Create 1 YouTube video per month
 - [ ] Post 3× weekly on Facebook/Nextdoor
@@ -510,18 +598,21 @@ info@tillerstead.com
 ## 🎉 BOTTOM LINE
 
 **What Changed:**
+
 - Homepage now has urgency, social proof, and value proposition
 - Email capture system activated (was built but dormant)
 - Lead magnet popup ready to convert 2-5% of visitors
 - Comprehensive 90-day growth strategy documented
 
 **What You Need to Do:**
+
 - Complete 6 hours of FREE quick wins this week
 - Start email nurture sequence
 - Create content (videos, blog posts)
 - Monitor results and optimize
 
 **Expected Outcome:**
+
 - 3× more client inquiries within 90 days
 - Email list of 200-300 homeowners
 - Stronger Google local presence

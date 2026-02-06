@@ -1,14 +1,16 @@
 ---
 layout: post
-title: "5 Warning Signs Your Shower Needs Professional Waterproofing Repair"
-meta_title: "5 Warning Signs Your Shower Needs Professional Waterproofing Repair | Tillerstead LLC"
-meta_description: ""
-description: ""
+title: '5 Warning Signs Your Shower Needs Professional Waterproofing Repair'
+meta_title:
+  '5 Warning Signs Your Shower Needs Professional Waterproofing Repair |
+  Tillerstead LLC'
+meta_description: ''
+description: ''
 date: 2026-01-26
-author: "Tillerstead LLC"
-category: ""
+author: 'Tillerstead LLC'
+category: ''
 tags: []
-image: "/assets/images/blog/shower-leak-warning-signs.jpg"
+image: '/assets/images/blog/shower-leak-warning-signs.jpg'
 featured: true
 ---
 
@@ -56,4 +58,4 @@ Licensed NJ HIC #13VH10808800
 
 ---
 
-*Last Updated: 2026-01-26*
+_Last Updated: 2026-01-26_

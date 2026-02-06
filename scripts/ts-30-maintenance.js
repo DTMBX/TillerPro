@@ -57,10 +57,7 @@ if (fs.existsSync(pkgPath)) {
 const netlifyPath = 'netlify.toml';
 if (fs.existsSync(netlifyPath)) {
   const netlifyConf = fs.readFileSync(netlifyPath, 'utf8');
-  const updatedConf = netlifyConf.replace(
-    /NODE_VERSION\s*=\s*"?18"?/,
-    'NODE_VERSION = "20"',
-  );
+  const updatedConf = netlifyConf.replace(/NODE_VERSION\s*=\s*"?18"?/, 'NODE_VERSION = "20"');
   if (updatedConf !== netlifyConf) {
     fs.writeFileSync(netlifyPath, updatedConf, 'utf8');
     console.log('✓ Updated Netlify Node version to 20 in netlify.toml');
@@ -86,13 +83,10 @@ for (const pat of commonPatterns) {
   // Add pattern if not already present (ignoring trailing slashes in comparison)
   const patternNormalized = pat.replace(/\/$/, '');
   if (
-    !gitignoreContent
-      .split(/\r?\n/)
-      .some((line) => line.replace(/\/$/, '') === patternNormalized)
+    !gitignoreContent.split(/\r?\n/).some((line) => line.replace(/\/$/, '') === patternNormalized)
   ) {
     addedPatterns.push(pat);
-    gitignoreContent +=
-      (gitignoreContent.endsWith('\n') ? '' : '\n') + pat + '\n';
+    gitignoreContent += (gitignoreContent.endsWith('\n') ? '' : '\n') + pat + '\n';
   }
 }
 if (addedPatterns.length > 0) {
@@ -113,15 +107,10 @@ if (fs.existsSync(testFile)) {
 const portfolioDataPath = path.join('_data', 'portfolio.yml');
 if (fs.existsSync(portfolioDataPath)) {
   const portfolioText = fs.readFileSync(portfolioDataPath, 'utf8');
-  const cleanedPortfolio = portfolioText.replace(
-    /^\s*#\s*file_webp:.*\r?\n/gm,
-    '',
-  );
+  const cleanedPortfolio = portfolioText.replace(/^\s*#\s*file_webp:.*\r?\n/gm, '');
   if (cleanedPortfolio !== portfolioText) {
     fs.writeFileSync(portfolioDataPath, cleanedPortfolio, 'utf8');
-    console.log(
-      '✓ Removed commented-out file_webp lines in _data/portfolio.yml',
-    );
+    console.log('✓ Removed commented-out file_webp lines in _data/portfolio.yml');
   }
 }
 
@@ -131,13 +120,11 @@ if (fs.existsSync(consolidatePath)) {
   const consolidateText = fs.readFileSync(consolidatePath, 'utf8');
   const cleanedConsolidate = consolidateText.replace(
     /const _FILE_PATTERNS\s*=\s*\[[\s\S]*?\];\r?\n/,
-    '',
+    ''
   );
   if (cleanedConsolidate !== consolidateText) {
     fs.writeFileSync(consolidatePath, cleanedConsolidate, 'utf8');
-    console.log(
-      '✓ Removed unused _FILE_PATTERNS constant in consolidate-colors.js',
-    );
+    console.log('✓ Removed unused _FILE_PATTERNS constant in consolidate-colors.js');
   }
 }
 
@@ -176,21 +163,21 @@ if (fs.existsSync(logosPath)) {
   if (!logosText.includes("import sharp from 'sharp'")) {
     logosText = logosText.replace(
       "import { exec } from 'child_process';",
-      "import { exec } from 'child_process';\nimport sharp from 'sharp';",
+      "import { exec } from 'child_process';\nimport sharp from 'sharp';"
     );
   }
   // Remove the tool-checking and external conversion functions
   logosText = logosText.replace(
     /async function checkTools\([\s\S]*?process\.exit\(1\);\s*}\s*/m,
-    '',
+    ''
   );
   logosText = logosText.replace(
     /const tool = await checkTools\(\);\s*[\s\S]*?console\.log\(`Using: .*?\n/,
-    '',
+    ''
   );
   logosText = logosText.replace(
     /async function convertWithImageMagick[\s\S]*?async function convertSvgToPng[\s\S]*?\}\s*}/,
-    '',
+    ''
   );
   // Replace conversion loop to use sharp
   logosText = logosText.replace(
@@ -206,12 +193,10 @@ if (fs.existsSync(logosPath)) {
             console.error(\`  ✗ Failed: \${output.name}\`);
             console.error(\`    \${error.message}\`);
             failed++;
-          }`,
+          }`
   );
   fs.writeFileSync(logosPath, logosText, 'utf8');
-  console.log(
-    '✓ Refactored generate-png-logos.js to use Sharp for SVG conversion',
-  );
+  console.log('✓ Refactored generate-png-logos.js to use Sharp for SVG conversion');
 }
 
 // 3.B Enhance regex in find-unused-css.js to catch single-quoted and multi-line class attributes
@@ -220,13 +205,11 @@ if (fs.existsSync(unusedCSSPath)) {
   const unusedText = fs.readFileSync(unusedCSSPath, 'utf8');
   const improvedRegexText = unusedText.replace(
     /matchAll\(\s*\/class="([^"]*)"\/g\)/,
-    "matchAll(/class=\"([^\"]*)\"|class='([^']*)'/g)",
+    'matchAll(/class="([^"]*)"|class=\'([^\']*)\'/g)'
   );
   if (improvedRegexText !== unusedText) {
     fs.writeFileSync(unusedCSSPath, improvedRegexText, 'utf8');
-    console.log(
-      '✓ Updated find-unused-css.js to capture single-quoted and multi-line classes',
-    );
+    console.log('✓ Updated find-unused-css.js to capture single-quoted and multi-line classes');
   }
 }
 
@@ -245,9 +228,7 @@ if (pkgData && pkgData.devDependencies) {
 // 4.B Write back package.json changes (scripts removed, engines added, versions pinned)
 if (pkgData) {
   fs.writeFileSync(pkgPath, JSON.stringify(pkgData, null, 2) + '\n', 'utf8');
-  console.log(
-    '✓ Updated package.json (engines field, removed old scripts, pinned versions)',
-  );
+  console.log('✓ Updated package.json (engines field, removed old scripts, pinned versions)');
 }
 
 // ===== Phase 5: Project Cleanup (Dead Code & Assets Removal) =====
@@ -306,9 +287,7 @@ if (fs.existsSync(sassDir)) {
     // Normalize by removing leading underscore from filename
     const segments = relPath.split('/');
     const fileName = segments.pop() || '';
-    const baseName = fileName.startsWith('_')
-      ? fileName.substring(1)
-      : fileName;
+    const baseName = fileName.startsWith('_') ? fileName.substring(1) : fileName;
     segments.push(baseName);
     const normPath = segments.join('/');
     if (!importedPaths.has(normPath)) {
@@ -381,9 +360,7 @@ if (fs.existsSync(includesDir)) {
       if (entry.isDirectory()) {
         gatherIncludes(entryPath);
       } else if (entry.isFile()) {
-        const relPath = path
-          .relative(includesDir, entryPath)
-          .replace(/\\/g, '/');
+        const relPath = path.relative(includesDir, entryPath).replace(/\\/g, '/');
         includeFiles.push(relPath);
       }
     });
@@ -394,10 +371,7 @@ if (fs.existsSync(includesDir)) {
   const searchDirs = ['_layouts', '_includes', 'pages', '_posts'];
   for (const incFile of includeFiles) {
     const incName = path.parse(incFile).name; // name without extension
-    const includePattern = new RegExp(
-      `{%-?\\s*include\\s+${incName}(?:\\.html)?\\s`,
-      'i',
-    );
+    const includePattern = new RegExp(`{%-?\\s*include\\s+${incName}(?:\\.html)?\\s`, 'i');
     let found = false;
     for (const dir of searchDirs) {
       if (!fs.existsSync(dir)) continue;
@@ -484,9 +458,7 @@ if (fs.existsSync(assetsImgDir)) {
           /* ignore */
         }
       } else if (entry.isFile()) {
-        const relPath = path
-          .relative(assetsImgDir, entryPath)
-          .replace(/\\/g, '/');
+        const relPath = path.relative(assetsImgDir, entryPath).replace(/\\/g, '/');
         // Consider both exact file name and path as recorded in usedImages (since usedImages might store just filename or subpath)
         const isUsed = usedImages.has(relPath) || usedImages.has(entry.name);
         if (!isUsed) {
@@ -524,11 +496,5 @@ const launchConfig = {
     },
   ],
 };
-fs.writeFileSync(
-  launchConfigPath,
-  JSON.stringify(launchConfig, null, 2) + '\n',
-  'utf8',
-);
-console.log(
-  '✓ Added VS Code launch configurations for build CSS and link checker debugging',
-);
+fs.writeFileSync(launchConfigPath, JSON.stringify(launchConfig, null, 2) + '\n', 'utf8');
+console.log('✓ Added VS Code launch configurations for build CSS and link checker debugging');

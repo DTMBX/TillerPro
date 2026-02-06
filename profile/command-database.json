@@ -3,27 +3,19 @@
     "name": "sync-repos",
     "description": "Pull and push changes for the current repository.",
     "tags": ["git", "repos"],
-    "commands": [
-      "git pull origin main",
-      "git push origin main"
-    ]
+    "commands": ["git pull origin main", "git push origin main"]
   },
   {
     "name": "rebuild-site",
     "description": "Clean and rebuild the Tillerstead.com Jekyll site.",
     "tags": ["jekyll", "site"],
-    "commands": [
-      "bundle exec jekyll clean",
-      "bundle exec jekyll build"
-    ]
+    "commands": ["bundle exec jekyll clean", "bundle exec jekyll build"]
   },
   {
     "name": "build-highend-site",
     "description": "Scaffold the FaithFrontier.org site with Minimal Mistakes.",
     "tags": ["jekyll", "scaffold"],
-    "commands": [
-      "jekyll new --force --template \"https://github.com/mmistakes/minimal-mistakes\""
-    ]
+    "commands": ["jekyll new --force --template \"https://github.com/mmistakes/minimal-mistakes\""]
   },
   {
     "name": "backup-all-websites",
@@ -47,18 +39,12 @@
     "name": "cleanup-temp",
     "description": "Clean the local temp directory with confirmation.",
     "tags": ["maintenance"],
-    "commands": [
-      "Clean-TempFiles -Confirm"
-    ]
+    "commands": ["Clean-TempFiles -Confirm"]
   },
   {
     "name": "daily-core-workflow",
     "description": "Sync repos, rebuild the site, and run a quick health check.",
     "tags": ["workflow"],
-    "includes": [
-      "sync-repos",
-      "rebuild-site",
-      "health-check"
-    ]
+    "includes": ["sync-repos", "rebuild-site", "health-check"]
   }
 ]

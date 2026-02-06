@@ -26,10 +26,7 @@ const log = {
   success: (msg) => console.log(`${colors.green}✓${colors.reset} ${msg}`),
   warning: (msg) => console.log(`${colors.yellow}⚠${colors.reset} ${msg}`),
   error: (msg) => console.log(`${colors.red}✗${colors.reset} ${msg}`),
-  section: (msg) =>
-    console.log(
-      `\n${colors.bright}${colors.cyan}━━━ ${msg} ━━━${colors.reset}\n`,
-    ),
+  section: (msg) => console.log(`\n${colors.bright}${colors.cyan}━━━ ${msg} ━━━${colors.reset}\n`),
 };
 
 // Configuration
@@ -66,13 +63,7 @@ async function checkStructure() {
     {
       name: 'Required directories exist',
       check: () => {
-        const requiredDirs = [
-          '_sass',
-          '_includes',
-          '_layouts',
-          'pages',
-          'assets',
-        ];
+        const requiredDirs = ['_sass', '_includes', '_layouts', 'pages', 'assets'];
         const missing = requiredDirs.filter((dir) => !fs.existsSync(dir));
         if (missing.length > 0) {
           issues.high.push(`Missing directories: ${missing.join(', ')}`);
@@ -81,14 +72,7 @@ async function checkStructure() {
         return true;
       },
       fix: () => {
-        const requiredDirs = [
-          '_sass',
-          '_includes',
-          '_layouts',
-          'pages',
-          'assets',
-          'reports',
-        ];
+        const requiredDirs = ['_sass', '_includes', '_layouts', 'pages', 'assets', 'reports'];
         requiredDirs.forEach((dir) => {
           if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir, { recursive: true });
@@ -110,18 +94,14 @@ async function checkStructure() {
         files.forEach((file) => {
           const basename = path.parse(file).name;
           if (basenames.has(basename)) {
-            duplicates.push(
-              `${basename}: ${basenames.get(basename)} and ${file}`,
-            );
+            duplicates.push(`${basename}: ${basenames.get(basename)} and ${file}`);
           } else {
             basenames.set(basename, file);
           }
         });
 
         if (duplicates.length > 0) {
-          issues.critical.push(
-            `Duplicate page files found: ${duplicates.join('; ')}`,
-          );
+          issues.critical.push(`Duplicate page files found: ${duplicates.join('; ')}`);
           return false;
         }
         return true;
@@ -215,9 +195,7 @@ async function checkStyles() {
           const matches = content.match(colorRegex);
           if (matches && matches.length > 5) {
             // Allow few for gradients
-            hardcodedColors.push(
-              `${filePath}: ${matches.length} hardcoded colors`,
-            );
+            hardcodedColors.push(`${filePath}: ${matches.length} hardcoded colors`);
           }
         };
 
@@ -236,9 +214,7 @@ async function checkStyles() {
         walkDir('_sass');
 
         if (hardcodedColors.length > 0) {
-          issues.medium.push(
-            `Hardcoded colors found: ${hardcodedColors.join('; ')}`,
-          );
+          issues.medium.push(`Hardcoded colors found: ${hardcodedColors.join('; ')}`);
           return false;
         }
         return true;
@@ -320,13 +296,8 @@ async function checkFunctionality() {
             if (formMatches) {
               formMatches.forEach((form) => {
                 // Check for action="#" or missing method
-                if (
-                  form.includes('action="#"') &&
-                  !form.includes('data-netlify')
-                ) {
-                  badForms.push(
-                    `${filePath}: Form with action="#" and no Netlify`,
-                  );
+                if (form.includes('action="#"') && !form.includes('data-netlify')) {
+                  badForms.push(`${filePath}: Form with action="#" and no Netlify`);
                 }
                 if (!form.includes('method=')) {
                   badForms.push(`${filePath}: Form missing method attribute`);
@@ -369,9 +340,7 @@ async function checkFunctionality() {
           const imgWithoutAlt = content.match(/<img(?![^>]*alt=)[^>]*>/g);
 
           if (imgWithoutAlt && imgWithoutAlt.length > 0) {
-            issues.high.push(
-              `${imgWithoutAlt.length} images missing alt attributes`,
-            );
+            issues.high.push(`${imgWithoutAlt.length} images missing alt attributes`);
             return false;
           }
         }
@@ -407,9 +376,7 @@ async function checkFunctionality() {
           }
 
           if (brokenLinks.length > 0) {
-            issues.medium.push(
-              `Potential broken links: ${brokenLinks.slice(0, 3).join('; ')}`,
-            );
+            issues.medium.push(`Potential broken links: ${brokenLinks.slice(0, 3).join('; ')}`);
             return false;
           }
         }
@@ -436,9 +403,7 @@ async function checkFunctionality() {
           });
 
           if (badScripts.length > 0) {
-            issues.medium.push(
-              `${badScripts.length} scripts without defer/async`,
-            );
+            issues.medium.push(`${badScripts.length} scripts without defer/async`);
             return false;
           }
         }
@@ -514,7 +479,7 @@ async function checkPerformance() {
 
         if (totalImages > 0 && webpCount / totalImages < 0.3) {
           issues.low.push(
-            `Only ${((webpCount / totalImages) * 100).toFixed(0)}% of images are WebP`,
+            `Only ${((webpCount / totalImages) * 100).toFixed(0)}% of images are WebP`
           );
           return false;
         }
@@ -529,9 +494,7 @@ async function checkPerformance() {
         if (fs.existsSync('_site/index.html')) {
           const content = fs.readFileSync('_site/index.html', 'utf8');
           const imgs = content.match(/<img[^>]*>/g) || [];
-          const lazyImgs = imgs.filter((img) =>
-            img.includes('loading="lazy"'),
-          ).length;
+          const lazyImgs = imgs.filter((img) => img.includes('loading="lazy"')).length;
 
           if (imgs.length > 3 && lazyImgs === 0) {
             issues.medium.push('No images use lazy loading');
@@ -574,10 +537,7 @@ function generateReport() {
   const reportPath = path.join('reports', `site-improvement-${timestamp}.md`);
 
   const totalIssues =
-    issues.critical.length +
-    issues.high.length +
-    issues.medium.length +
-    issues.low.length;
+    issues.critical.length + issues.high.length + issues.medium.length + issues.low.length;
 
   const report = `# Site Improvement Report
 
@@ -667,20 +627,17 @@ async function main() {
   if (mode === '--fix') {
     log.section('Applying Fixes');
 
-    [
-      ...structureChecks,
-      ...styleChecks,
-      ...functionalityChecks,
-      ...performanceChecks,
-    ].forEach(({ name, fix }) => {
-      if (fix) {
-        try {
-          fix();
-        } catch (e) {
-          log.error(`Failed to fix: ${name}`);
+    [...structureChecks, ...styleChecks, ...functionalityChecks, ...performanceChecks].forEach(
+      ({ name, fix }) => {
+        if (fix) {
+          try {
+            fix();
+          } catch (e) {
+            log.error(`Failed to fix: ${name}`);
+          }
         }
       }
-    });
+    );
   }
 
   // Generate report
@@ -690,10 +647,7 @@ async function main() {
   log.section('Summary');
 
   const totalIssues =
-    issues.critical.length +
-    issues.high.length +
-    issues.medium.length +
-    issues.low.length;
+    issues.critical.length + issues.high.length + issues.medium.length + issues.low.length;
 
   console.log(`
   Critical: ${colors.red}${issues.critical.length}${colors.reset}
@@ -709,17 +663,17 @@ async function main() {
 
   if (totalIssues === 0) {
     console.log(
-      `${colors.green}${colors.bright}✨ Site is in excellent condition! ✨${colors.reset}\n`,
+      `${colors.green}${colors.bright}✨ Site is in excellent condition! ✨${colors.reset}\n`
     );
     return 0;
   } else if (issues.critical.length > 0) {
     console.log(
-      `${colors.red}${colors.bright}⚠️  Critical issues require immediate attention!${colors.reset}\n`,
+      `${colors.red}${colors.bright}⚠️  Critical issues require immediate attention!${colors.reset}\n`
     );
     return 1;
   } else {
     console.log(
-      `${colors.yellow}${colors.bright}✓ Site is functional but has room for improvement${colors.reset}\n`,
+      `${colors.yellow}${colors.bright}✓ Site is functional but has room for improvement${colors.reset}\n`
     );
     return 0;
   }

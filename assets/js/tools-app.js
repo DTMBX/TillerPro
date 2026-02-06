@@ -4,7 +4,7 @@
  * Integrates with tillerstead-toolkit backend when available
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ==
@@ -27,8 +27,8 @@
       phone: '(609) 862-8808',
       email: 'support@tillerstead.com',
       website: 'tillerstead.com',
-      serviceArea: 'South Jersey & Shore Communities'
-    }
+      serviceArea: 'South Jersey & Shore Communities',
+    },
   };
 
   // ==
@@ -38,7 +38,7 @@
   function initSqFtHelpers(root = document) {
     if (!root || !root.querySelectorAll) return;
 
-    root.querySelectorAll('[data-sqft-helper]').forEach(helper => {
+    root.querySelectorAll('[data-sqft-helper]').forEach((helper) => {
       if (helper.dataset.sqftBound === '1') return;
       helper.dataset.sqftBound = '1';
 
@@ -64,8 +64,8 @@
         const l = readNumber(lengthEl);
         const h = readNumber(heightEl);
 
-        const floorSqFt = (w && l) ? (w * l) : null;
-        const wallSqFt = (w && l && h) ? (2 * h * (w + l)) : null;
+        const floorSqFt = w && l ? w * l : null;
+        const wallSqFt = w && l && h ? 2 * h * (w + l) : null;
 
         if (floorOut) floorOut.value = floorSqFt ? floorSqFt.toFixed(1) : '—';
         if (wallsOut) wallsOut.value = wallSqFt ? wallSqFt.toFixed(1) : '—';
@@ -88,7 +88,7 @@
       if (lengthEl) lengthEl.addEventListener('input', onInput);
       if (heightEl) heightEl.addEventListener('input', onInput);
 
-      helper.querySelectorAll('[data-sqft-action]').forEach(btn => {
+      helper.querySelectorAll('[data-sqft-action]').forEach((btn) => {
         btn.addEventListener('click', () => {
           const { floorSqFt, wallSqFt } = compute();
           const action = btn.dataset.sqftAction;
@@ -111,17 +111,17 @@
       type: 'NJ Home Improvement Contractor',
       number: '13VH10808800',
       status: 'Active',
-      verifyUrl: 'https://www.njconsumeraffairs.gov/regulated/Pages/Regulated-Business-Verify.aspx'
+      verifyUrl: 'https://www.njconsumeraffairs.gov/regulated/Pages/Regulated-Business-Verify.aspx',
     },
     standards: [
       { name: 'TCNA 2024', desc: 'Tile Council of North America Handbook', icon: '📘' },
       { name: 'ANSI A108/A118', desc: 'American National Standards Institute', icon: '✅' },
-      { name: 'NTCA', desc: 'National Tile Contractors Association Methods', icon: '🏆' }
+      { name: 'NTCA', desc: 'National Tile Contractors Association Methods', icon: '🏆' },
     ],
     insurance: {
       type: 'General Liability & Workers Comp',
-      status: 'Fully Insured'
-    }
+      status: 'Fully Insured',
+    },
   };
 
   // ==
@@ -130,60 +130,156 @@
 
   const PRO_TIPS = {
     tile: [
-      { tip: 'Always dry-lay tiles before installing to check pattern and minimize lippage.', source: 'TCNA' },
-      { tip: 'For large format tile (≥15"), back-butter plus notch trowel for 95% coverage.', source: 'TCNA EJ171' },
-      { tip: 'Order 10-15% extra for waste, cuts, and future repairs (attic stock).', source: 'Industry Standard' },
-      { tip: 'Rectified tile allows tighter grout joints (1/16"-1/8"), non-rectified needs 3/16"+.', source: 'ANSI A108' }
+      {
+        tip: 'Always dry-lay tiles before installing to check pattern and minimize lippage.',
+        source: 'TCNA',
+      },
+      {
+        tip: 'For large format tile (≥15"), back-butter plus notch trowel for 95% coverage.',
+        source: 'TCNA EJ171',
+      },
+      {
+        tip: 'Order 10-15% extra for waste, cuts, and future repairs (attic stock).',
+        source: 'Industry Standard',
+      },
+      {
+        tip: 'Rectified tile allows tighter grout joints (1/16"-1/8"), non-rectified needs 3/16"+.',
+        source: 'ANSI A108',
+      },
     ],
     mortar: [
-      { tip: 'Use polymer-modified thin-set for most applications—better bond and flexibility.', source: 'TCNA' },
-      { tip: 'Mix to "peanut butter" consistency—mortar should hold ridges without slumping.', source: 'NTCA' },
-      { tip: 'Let mortar slake 5-10 minutes after mixing, then remix briefly before use.', source: 'Manufacturer TDS' },
-      { tip: 'Never add water to mortar that has started to set—discard and mix fresh.', source: 'TCNA' }
+      {
+        tip: 'Use polymer-modified thin-set for most applications—better bond and flexibility.',
+        source: 'TCNA',
+      },
+      {
+        tip: 'Mix to "peanut butter" consistency—mortar should hold ridges without slumping.',
+        source: 'NTCA',
+      },
+      {
+        tip: 'Let mortar slake 5-10 minutes after mixing, then remix briefly before use.',
+        source: 'Manufacturer TDS',
+      },
+      {
+        tip: 'Never add water to mortar that has started to set—discard and mix fresh.',
+        source: 'TCNA',
+      },
     ],
     grout: [
-      { tip: 'Sanded grout for joints ≥1/8", unsanded for smaller joints to avoid scratching.', source: 'TCNA' },
-      { tip: 'Wait 24-48 hours after tile installation before grouting (check mortar TDS).', source: 'ANSI A108' },
-      { tip: 'Seal grout 2-4 weeks after installation when fully cured for stain protection.', source: 'Industry Standard' },
-      { tip: 'Work in small sections—grout has limited working time before it starts to set.', source: 'NTCA' }
+      {
+        tip: 'Sanded grout for joints ≥1/8", unsanded for smaller joints to avoid scratching.',
+        source: 'TCNA',
+      },
+      {
+        tip: 'Wait 24-48 hours after tile installation before grouting (check mortar TDS).',
+        source: 'ANSI A108',
+      },
+      {
+        tip: 'Seal grout 2-4 weeks after installation when fully cured for stain protection.',
+        source: 'Industry Standard',
+      },
+      {
+        tip: 'Work in small sections—grout has limited working time before it starts to set.',
+        source: 'NTCA',
+      },
     ],
     leveling: [
-      { tip: 'Always prime substrate before SLU—prevents dehydration and improves bond.', source: 'Manufacturer TDS' },
-      { tip: 'Check floor flatness with 10-ft straightedge—max 1/8" variation for tile.', source: 'TCNA' },
-      { tip: 'Pour SLU in continuous ribbons and use spike roller to release air bubbles.', source: 'NTCA' },
-      { tip: 'Temperature matters: SLU needs 50-80°F for proper curing.', source: 'Manufacturer TDS' }
+      {
+        tip: 'Always prime substrate before SLU—prevents dehydration and improves bond.',
+        source: 'Manufacturer TDS',
+      },
+      {
+        tip: 'Check floor flatness with 10-ft straightedge—max 1/8" variation for tile.',
+        source: 'TCNA',
+      },
+      {
+        tip: 'Pour SLU in continuous ribbons and use spike roller to release air bubbles.',
+        source: 'NTCA',
+      },
+      {
+        tip: 'Temperature matters: SLU needs 50-80°F for proper curing.',
+        source: 'Manufacturer TDS',
+      },
     ],
     slope: [
-      { tip: 'Standard shower floor slope is 1/4" per foot toward drain—code minimum.', source: 'IPC/IRC' },
-      { tip: 'Pre-slope under membrane, then sloped mortar bed on top for proper drainage.', source: 'TCNA B422' },
-      { tip: 'Use a level and slope gauge to verify consistent pitch across entire floor.', source: 'NTCA' }
+      {
+        tip: 'Standard shower floor slope is 1/4" per foot toward drain—code minimum.',
+        source: 'IPC/IRC',
+      },
+      {
+        tip: 'Pre-slope under membrane, then sloped mortar bed on top for proper drainage.',
+        source: 'TCNA B422',
+      },
+      {
+        tip: 'Use a level and slope gauge to verify consistent pitch across entire floor.',
+        source: 'NTCA',
+      },
     ],
     waterproof: [
-      { tip: 'Apply liquid membrane in 2 coats at 90° angles for complete coverage.', source: 'Manufacturer TDS' },
-      { tip: 'Embed reinforcing fabric in corners, seams, and transitions per TCNA.', source: 'TCNA B422' },
-      { tip: 'Flood test shower pan for 24 hours before installing tile.', source: 'IPC/Local Code' },
-      { tip: 'Extend waterproofing 3"+ above showerhead height on walls.', source: 'TCNA B422' }
+      {
+        tip: 'Apply liquid membrane in 2 coats at 90° angles for complete coverage.',
+        source: 'Manufacturer TDS',
+      },
+      {
+        tip: 'Embed reinforcing fabric in corners, seams, and transitions per TCNA.',
+        source: 'TCNA B422',
+      },
+      {
+        tip: 'Flood test shower pan for 24 hours before installing tile.',
+        source: 'IPC/Local Code',
+      },
+      { tip: 'Extend waterproofing 3"+ above showerhead height on walls.', source: 'TCNA B422' },
     ],
     'heated-floor': [
-      { tip: 'Radiant heat requires dedicated circuit—verify load with electrician.', source: 'NEC' },
+      {
+        tip: 'Radiant heat requires dedicated circuit—verify load with electrician.',
+        source: 'NEC',
+      },
       { tip: 'Use modified thin-set rated for radiant heat applications.', source: 'TCNA' },
-      { tip: 'Wait 28 days after installation before energizing heat system.', source: 'Manufacturer TDS' }
+      {
+        tip: 'Wait 28 days after installation before energizing heat system.',
+        source: 'Manufacturer TDS',
+      },
     ],
     deflection: [
-      { tip: 'Natural stone requires L/720 deflection; ceramic/porcelain allows L/360.', source: 'TCNA F150' },
-      { tip: 'Add 1/4" cement board over subfloor to increase stiffness and flatness.', source: 'TCNA F144' },
-      { tip: 'Joist sistering or blocking may be needed to meet deflection requirements.', source: 'TCNA' }
+      {
+        tip: 'Natural stone requires L/720 deflection; ceramic/porcelain allows L/360.',
+        source: 'TCNA F150',
+      },
+      {
+        tip: 'Add 1/4" cement board over subfloor to increase stiffness and flatness.',
+        source: 'TCNA F144',
+      },
+      {
+        tip: 'Joist sistering or blocking may be needed to meet deflection requirements.',
+        source: 'TCNA',
+      },
     ],
     labor: [
-      { tip: 'Account for substrate prep, waterproofing, and curing time in schedule.', source: 'Industry Standard' },
-      { tip: 'Complex patterns (herringbone, chevron) take 2-3x longer than straight lay.', source: 'NTCA' },
-      { tip: 'Large format tile requires more precision and time—plan accordingly.', source: 'TCNA' }
+      {
+        tip: 'Account for substrate prep, waterproofing, and curing time in schedule.',
+        source: 'Industry Standard',
+      },
+      {
+        tip: 'Complex patterns (herringbone, chevron) take 2-3x longer than straight lay.',
+        source: 'NTCA',
+      },
+      {
+        tip: 'Large format tile requires more precision and time—plan accordingly.',
+        source: 'TCNA',
+      },
     ],
     moisture: [
       { tip: 'Concrete must cure 28 days minimum before moisture testing.', source: 'ASTM F2170' },
-      { tip: 'RH >75% or MVER >5 lbs requires moisture mitigation before flooring.', source: 'ASTM F1869' },
-      { tip: 'Test multiple locations—moisture varies across slab, especially near walls.', source: 'ASTM F2170' }
-    ]
+      {
+        tip: 'RH >75% or MVER >5 lbs requires moisture mitigation before flooring.',
+        source: 'ASTM F1869',
+      },
+      {
+        tip: 'Test multiple locations—moisture varies across slab, especially near walls.',
+        source: 'ASTM F2170',
+      },
+    ],
   };
 
   // Get random pro tip for a calculator
@@ -207,53 +303,57 @@
       name: 'Home Depot',
       icon: '🏠',
       color: '#f96302',
-      searchUrl: (term) => `https://www.homedepot.com/s/${encodeURIComponent(term)}`
+      searchUrl: (term) => `https://www.homedepot.com/s/${encodeURIComponent(term)}`,
     },
     lowes: {
       name: "Lowe's",
       icon: '🔵',
       color: '#004990',
-      searchUrl: (term) => `https://www.lowes.com/search?searchTerm=${encodeURIComponent(term)}`
+      searchUrl: (term) => `https://www.lowes.com/search?searchTerm=${encodeURIComponent(term)}`,
     },
     flooranddecor: {
       name: 'Floor & Decor',
       icon: '🏪',
       color: '#00a651',
-      searchUrl: (term) => `https://www.flooranddecor.com/search?q=${encodeURIComponent(term)}`
+      searchUrl: (term) => `https://www.flooranddecor.com/search?q=${encodeURIComponent(term)}`,
     },
     amazon: {
       name: 'Amazon',
       icon: '📦',
       color: '#ff9900',
-      searchUrl: (term) => `https://www.amazon.com/s?k=${encodeURIComponent(term)}&tag=tillerstead-20`
+      searchUrl: (term) =>
+        `https://www.amazon.com/s?k=${encodeURIComponent(term)}&tag=tillerstead-20`,
     },
     msi: {
       name: 'MSI Surfaces',
       icon: '💎',
       color: '#1a1a1a',
-      searchUrl: (term) => `https://www.msisurfaces.com/search?q=${encodeURIComponent(term)}`
+      searchUrl: (term) => `https://www.msisurfaces.com/search?q=${encodeURIComponent(term)}`,
     },
     daltile: {
       name: 'Daltile',
       icon: '🔷',
       color: '#003366',
-      searchUrl: (term) => `https://www.daltile.com/search?search=${encodeURIComponent(term)}`
-    }
+      searchUrl: (term) => `https://www.daltile.com/search?search=${encodeURIComponent(term)}`,
+    },
   };
 
   // Shop search terms by calculator type
   const SHOP_SEARCH_TERMS = {
     tile: (inputs) => {
-      const size = inputs.tileWidth && inputs.tileHeight ? `${inputs.tileWidth}x${inputs.tileHeight}` : '';
+      const size =
+        inputs.tileWidth && inputs.tileHeight ? `${inputs.tileWidth}x${inputs.tileHeight}` : '';
       return size ? `${size} porcelain tile` : 'porcelain floor tile';
     },
-    mortar: (inputs) => inputs.backButter ? 'large format thin-set mortar' : 'thin-set mortar 50lb',
+    mortar: (inputs) =>
+      inputs.backButter ? 'large format thin-set mortar' : 'thin-set mortar 50lb',
     grout: (inputs) => {
       const jointSize = inputs.jointWidth || 0.125;
       return jointSize > 0.125 ? 'sanded grout' : 'unsanded grout';
     },
     leveling: () => 'self-leveling underlayment',
-    waterproof: (inputs) => inputs.membraneType === 'sheet' ? 'kerdi membrane' : 'redgard waterproofing',
+    waterproof: (inputs) =>
+      inputs.membraneType === 'sheet' ? 'kerdi membrane' : 'redgard waterproofing',
     slope: () => 'deck mud mortar mix',
     'heated-floor': (inputs) => `radiant floor heat mat ${inputs.voltage || 120}v`,
     deflection: () => 'floor leveling compound',
@@ -261,14 +361,15 @@
     primer: () => 'concrete primer SLU',
     'deck-mud': () => 'deck mud mortar sand mix',
     sealant: () => 'silicone caulk bathroom',
-    sealer: (inputs) => inputs.surface === 'natural_stone' ? 'natural stone sealer' : 'grout sealer',
+    sealer: (inputs) =>
+      inputs.surface === 'natural_stone' ? 'natural stone sealer' : 'grout sealer',
     movement: () => 'tile expansion joint',
     moisture: () => 'moisture barrier concrete',
     'bath-layout': () => 'bathroom fixtures',
     labor: () => 'tile installation tools',
     crown: () => 'crown molding',
     baseboard: () => 'baseboard molding MDF',
-    quarter: () => 'quarter round trim'
+    quarter: () => 'quarter round trim',
   };
 
   // Get shop links for a specific calculator
@@ -280,11 +381,12 @@
     const links = [];
 
     // Select relevant retailers based on calculator type
-    const retailerKeys = calcId === 'tile'
-      ? ['homedepot', 'lowes', 'flooranddecor', 'msi', 'daltile']
-      : ['homedepot', 'lowes', 'amazon'];
+    const retailerKeys =
+      calcId === 'tile'
+        ? ['homedepot', 'lowes', 'flooranddecor', 'msi', 'daltile']
+        : ['homedepot', 'lowes', 'amazon'];
 
-    retailerKeys.forEach(key => {
+    retailerKeys.forEach((key) => {
       const retailer = RETAILERS[key];
       if (retailer) {
         links.push({
@@ -293,7 +395,7 @@
           icon: retailer.icon,
           color: retailer.color,
           url: retailer.searchUrl(searchTerm),
-          searchTerm
+          searchTerm,
         });
       }
     });
@@ -313,36 +415,40 @@
       name: 'Tile Quantity',
       icon: '🧱',
       desc: 'Tiles and boxes needed',
-      tooltip: 'Calculate exact tile count with waste factors for different layouts. Supports mosaic sheets and large-format tile (LFT).',
+      tooltip:
+        'Calculate exact tile count with waste factors for different layouts. Supports mosaic sheets and large-format tile (LFT).',
       category: 'coverage',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'mortar',
       name: 'Mortar Coverage',
       icon: '🔧',
       desc: 'Thin-set bags needed',
-      tooltip: 'Estimate mortar bags based on trowel size. Automatically adds 25% for back-buttering LFT per TCNA standards.',
+      tooltip:
+        'Estimate mortar bags based on trowel size. Automatically adds 25% for back-buttering LFT per TCNA standards.',
       category: 'coverage',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'grout',
       name: 'Grout Calculator',
       icon: '🪣',
       desc: 'Grout volume & bags',
-      tooltip: 'Calculate grout needed based on tile size, joint width, and depth using TCNA formula. 10% waste included.',
+      tooltip:
+        'Calculate grout needed based on tile size, joint width, and depth using TCNA formula. 10% waste included.',
       category: 'coverage',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'waterproof',
       name: 'Waterproofing',
       icon: '💧',
       desc: 'Membrane coverage',
-      tooltip: 'Calculate liquid membrane gallons and reinforcing band feet for showers, tub surrounds, and wet areas.',
+      tooltip:
+        'Calculate liquid membrane gallons and reinforcing band feet for showers, tub surrounds, and wet areas.',
       category: 'coverage',
-      status: 'ready'
+      status: 'ready',
     },
 
     // ═══════════════════════════════════════════════════════════════════
@@ -353,27 +459,30 @@
       name: 'Shower Slope',
       icon: '📐',
       desc: 'Pre-slope rise & volume',
-      tooltip: 'Calculate shower floor pre-slope dimensions and deck mud volume. Standard is ¼" per foot to drain.',
+      tooltip:
+        'Calculate shower floor pre-slope dimensions and deck mud volume. Standard is ¼" per foot to drain.',
       category: 'structural',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'deflection',
       name: 'Structure Deflection',
       icon: '🏗️',
       desc: 'L/360 or L/720 check',
-      tooltip: 'Verify floor joist deflection meets TCNA requirements. Natural stone requires L/720, ceramic L/360.',
+      tooltip:
+        'Verify floor joist deflection meets TCNA requirements. Natural stone requires L/720, ceramic L/360.',
       category: 'structural',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'heated-floor',
       name: 'Heated Floor Load',
       icon: '♨️',
       desc: 'Watts, amps, breaker',
-      tooltip: 'Calculate electrical load for radiant floor heating. Determines amp draw and breaker/thermostat requirements.',
+      tooltip:
+        'Calculate electrical load for radiant floor heating. Determines amp draw and breaker/thermostat requirements.',
       category: 'structural',
-      status: 'ready'
+      status: 'ready',
     },
 
     // ═══════════════════════════════════════════════════════════════════
@@ -384,54 +493,60 @@
       name: 'Self-Leveling',
       icon: '📏',
       desc: 'SLU compound amounts',
-      tooltip: 'Calculate self-leveling underlayment (SLU) bags needed based on pour depth and area.',
+      tooltip:
+        'Calculate self-leveling underlayment (SLU) bags needed based on pour depth and area.',
       category: 'prepfinish',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'thinset-mix',
       name: 'Thinset Mixing',
       icon: '🌀',
       desc: 'Water ratio & yield',
-      tooltip: 'Calculate water-to-powder ratio and batch yield per TDS specs. Includes pot life guidance.',
+      tooltip:
+        'Calculate water-to-powder ratio and batch yield per TDS specs. Includes pot life guidance.',
       category: 'prepfinish',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'primer',
       name: 'Primer / SLU Prep',
       icon: '🧴',
       desc: 'Coat coverage',
-      tooltip: 'Estimate primer gallons for porous vs non-porous substrates. Supports double-priming calculations.',
+      tooltip:
+        'Estimate primer gallons for porous vs non-porous substrates. Supports double-priming calculations.',
       category: 'prepfinish',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'deck-mud',
       name: 'Deck Mud',
       icon: '🏔️',
       desc: 'Pan volume & bags',
-      tooltip: 'Calculate dry-pack mortar for shower pans and beds. Accounts for slope and minimum thickness.',
+      tooltip:
+        'Calculate dry-pack mortar for shower pans and beds. Accounts for slope and minimum thickness.',
       category: 'prepfinish',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'sealant',
       name: 'Sealant / Caulk',
       icon: '🧵',
       desc: 'Tubes needed',
-      tooltip: 'Calculate caulk/sealant tubes based on linear feet and bead diameter. Supports 10.1oz and 28oz sizes.',
+      tooltip:
+        'Calculate caulk/sealant tubes based on linear feet and bead diameter. Supports 10.1oz and 28oz sizes.',
       category: 'prepfinish',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'sealer',
       name: 'Sealer Coverage',
       icon: '🛡️',
       desc: 'Gallons by porosity',
-      tooltip: 'Estimate sealer gallons based on surface porosity (natural stone, grout, concrete) and coat count.',
+      tooltip:
+        'Estimate sealer gallons based on surface porosity (natural stone, grout, concrete) and coat count.',
       category: 'prepfinish',
-      status: 'ready'
+      status: 'ready',
     },
 
     // ═══════════════════════════════════════════════════════════════════
@@ -442,36 +557,40 @@
       name: 'Movement Joints',
       icon: '↔️',
       desc: 'EJ171 spacing grid',
-      tooltip: 'Calculate expansion joint spacing per TCNA EJ171. Accounts for interior/exterior exposure and temperature swing.',
+      tooltip:
+        'Calculate expansion joint spacing per TCNA EJ171. Accounts for interior/exterior exposure and temperature swing.',
       category: 'other',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'moisture',
       name: 'Moisture / RH',
       icon: '💨',
       desc: 'ASTM F1869/F2170',
-      tooltip: 'Evaluate moisture vapor emission rate (MVER) and relative humidity (RH) against adhesive/coating limits.',
+      tooltip:
+        'Evaluate moisture vapor emission rate (MVER) and relative humidity (RH) against adhesive/coating limits.',
       category: 'other',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'bath-layout',
       name: 'Bath Layout',
       icon: '🛁',
       desc: 'Fixture clearances',
-      tooltip: 'Plan bathroom fixture placement with IPC code-compliant clearances for tub, toilet, vanity, and shower.',
+      tooltip:
+        'Plan bathroom fixture placement with IPC code-compliant clearances for tub, toilet, vanity, and shower.',
       category: 'other',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'labor',
       name: 'Labor Estimate',
       icon: '⏱️',
       desc: 'Time & scheduling',
-      tooltip: 'Estimate installation time based on area, complexity, and additional work (prep, demo).',
+      tooltip:
+        'Estimate installation time based on area, complexity, and additional work (prep, demo).',
       category: 'other',
-      status: 'ready'
+      status: 'ready',
     },
     // Trim & Molding
     {
@@ -479,28 +598,31 @@
       name: 'Crown Molding',
       icon: '👑',
       desc: 'Trim & corners',
-      tooltip: 'Calculate crown molding pieces, inside/outside corners, and material costs by profile size.',
+      tooltip:
+        'Calculate crown molding pieces, inside/outside corners, and material costs by profile size.',
       category: 'other',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'baseboard',
       name: 'Baseboard',
       icon: '📋',
       desc: 'Wall base & chair rail',
-      tooltip: 'Calculate baseboard with door/window deductions. Includes wainscoting panel framing option.',
+      tooltip:
+        'Calculate baseboard with door/window deductions. Includes wainscoting panel framing option.',
       category: 'other',
-      status: 'ready'
+      status: 'ready',
     },
     {
       id: 'quarter',
       name: 'Quarter Round',
       icon: '🔘',
       desc: 'Floor trim',
-      tooltip: 'Calculate quarter round or shoe molding with deductions for doors, cabinets, and transitions.',
+      tooltip:
+        'Calculate quarter round or shoe molding with deductions for doors, cabinets, and transitions.',
       category: 'other',
-      status: 'ready'
-    }
+      status: 'ready',
+    },
   ];
 
   // Category metadata for grouping with enhanced descriptions
@@ -510,29 +632,33 @@
       icon: '🧱',
       order: 1,
       desc: 'Calculate tile, mortar, grout, and waterproofing materials',
-      longDesc: 'Essential calculators for determining material quantities with built-in waste factors and TCNA compliance.'
+      longDesc:
+        'Essential calculators for determining material quantities with built-in waste factors and TCNA compliance.',
     },
     structural: {
       name: 'Structural & Load',
       icon: '🏗️',
       order: 2,
       desc: 'Verify substrate requirements and electrical loads',
-      longDesc: 'Check floor deflection, shower slopes, and heated floor electrical requirements before installation.'
+      longDesc:
+        'Check floor deflection, shower slopes, and heated floor electrical requirements before installation.',
     },
     prepfinish: {
       name: 'Prep & Finishing',
       icon: '🧴',
       order: 3,
       desc: 'Surface prep, mixing ratios, and finishing products',
-      longDesc: 'Calculate leveling compound, mixing ratios, primers, sealants, and sealers for proper surface preparation.'
+      longDesc:
+        'Calculate leveling compound, mixing ratios, primers, sealants, and sealers for proper surface preparation.',
     },
     other: {
       name: 'Planning & Layout',
       icon: '📐',
       order: 4,
       desc: 'Project planning, layout, and trim work',
-      longDesc: 'Plan bathroom layouts, movement joints, moisture testing, labor estimates, and trim/molding calculations.'
-    }
+      longDesc:
+        'Plan bathroom layouts, movement joints, moisture testing, labor estimates, and trim/molding calculations.',
+    },
   };
 
   // ==
@@ -542,8 +668,22 @@
   // TCNA defines Large Format Tile (LFT) as any tile with any side ≥15"
   // LFT requires 95% mortar coverage, proper trowel selection, and back-buttering
   const TILE_PRESETS = [
-    { id: 'mosaic-1x1', name: '1×1 Mosaic (12×12 sheet)', width: 1, height: 1, isMosaic: true, sheetCoverage: 1 },
-    { id: 'mosaic-2x2', name: '2×2 Mosaic (12×12 sheet)', width: 2, height: 2, isMosaic: true, sheetCoverage: 1 },
+    {
+      id: 'mosaic-1x1',
+      name: '1×1 Mosaic (12×12 sheet)',
+      width: 1,
+      height: 1,
+      isMosaic: true,
+      sheetCoverage: 1,
+    },
+    {
+      id: 'mosaic-2x2',
+      name: '2×2 Mosaic (12×12 sheet)',
+      width: 2,
+      height: 2,
+      isMosaic: true,
+      sheetCoverage: 1,
+    },
     { id: '3x6', name: '3×6 Subway', width: 3, height: 6 },
     { id: '4x4', name: '4×4', width: 4, height: 4 },
     { id: '4x12', name: '4×12', width: 4, height: 12 },
@@ -555,19 +695,32 @@
     { id: '12x48', name: '12×48 Plank', width: 12, height: 48, isPlank: true, isLargeFormat: true },
     { id: '24x24', name: '24×24', width: 24, height: 24, isLargeFormat: true },
     { id: '24x48', name: '24×48', width: 24, height: 48, isLargeFormat: true },
-    { id: 'custom', name: 'Custom Size', width: 0, height: 0, isCustom: true }
+    { id: 'custom', name: 'Custom Size', width: 0, height: 0, isCustom: true },
   ];
 
   // Layout patterns with waste factors
   // TCNA restricts LFT offset to maximum 33% to minimize lippage risk
   const LAYOUT_PRESETS = [
-    { id: 'straight', name: 'Straight / Stacked', waste: 10, wasteFactor: 0.10 },
-    { id: 'subway-33', name: '1/3 Offset (Recommended for LFT)', waste: 12, wasteFactor: 0.12, lftSafe: true },
-    { id: 'subway-50', name: '50% Offset (Brick)', waste: 15, wasteFactor: 0.15, lippageRisk: true, lftWarning: 'NOT recommended for LFT—max 33% offset per TCNA' },
+    { id: 'straight', name: 'Straight / Stacked', waste: 10, wasteFactor: 0.1 },
+    {
+      id: 'subway-33',
+      name: '1/3 Offset (Recommended for LFT)',
+      waste: 12,
+      wasteFactor: 0.12,
+      lftSafe: true,
+    },
+    {
+      id: 'subway-50',
+      name: '50% Offset (Brick)',
+      waste: 15,
+      wasteFactor: 0.15,
+      lippageRisk: true,
+      lftWarning: 'NOT recommended for LFT—max 33% offset per TCNA',
+    },
     { id: 'brick', name: 'Running Bond', waste: 12, wasteFactor: 0.12 },
     { id: 'diagonal', name: 'Diagonal', waste: 18, wasteFactor: 0.18 },
     { id: 'herringbone', name: 'Herringbone', waste: 25, wasteFactor: 0.25 },
-    { id: 'mosaic', name: 'Mosaic Sheet', waste: 12, wasteFactor: 0.12 }
+    { id: 'mosaic', name: 'Mosaic Sheet', waste: 12, wasteFactor: 0.12 },
   ];
 
   // Trowel presets with TDS-verified coverage per 50 lb bag
@@ -576,9 +729,31 @@
     { id: '3/16-v', name: '3/16" V-Notch', min: 100, max: 130, forTiles: 'mosaic, small wall' },
     { id: '1/4-sq', name: '1/4" × 1/4" Square', min: 90, max: 100, forTiles: 'up to 8×8' },
     { id: '1/4x3/8-sq', name: '1/4" × 3/8" Square', min: 60, max: 67, forTiles: '8×8 to 13×13' },
-    { id: '1/2-sq', name: '1/2" × 1/2" Square', min: 42, max: 47, forTiles: 'not recommended for LFT', notForLFT: true },
-    { id: '3/4-u-45', name: '3/4" × 9/16" U-Notch @ 45°', min: 34, max: 38, forTiles: 'LFT ≥15"', forLFT: true },
-    { id: '3/4-u-30', name: '3/4" × 9/16" U-Notch @ 30°', min: 42, max: 47, forTiles: 'LFT ≥15" (best)', forLFT: true, recommended: true }
+    {
+      id: '1/2-sq',
+      name: '1/2" × 1/2" Square',
+      min: 42,
+      max: 47,
+      forTiles: 'not recommended for LFT',
+      notForLFT: true,
+    },
+    {
+      id: '3/4-u-45',
+      name: '3/4" × 9/16" U-Notch @ 45°',
+      min: 34,
+      max: 38,
+      forTiles: 'LFT ≥15"',
+      forLFT: true,
+    },
+    {
+      id: '3/4-u-30',
+      name: '3/4" × 9/16" U-Notch @ 30°',
+      min: 42,
+      max: 47,
+      forTiles: 'LFT ≥15" (best)',
+      forLFT: true,
+      recommended: true,
+    },
   ];
 
   // Joint width presets per ANSI A108.02
@@ -586,7 +761,7 @@
     { id: '1/16', name: '1/16" (minimum)', size: 0.0625, note: 'Absolute minimum per ANSI' },
     { id: '1/8', name: '1/8" (rectified)', size: 0.125, note: 'Standard for rectified tile' },
     { id: '3/16', name: '3/16" (calibrated)', size: 0.1875, note: 'Standard for non-rectified' },
-    { id: '1/4', name: '1/4" (rustic/handmade)', size: 0.25, note: 'Handmade/high-variation tile' }
+    { id: '1/4', name: '1/4" (rustic/handmade)', size: 0.25, note: 'Handmade/high-variation tile' },
   ];
 
   // Grout density constant: ~1.86 lbs per cubic inch for sanded cement grout
@@ -601,35 +776,132 @@
 
   // Crown molding profiles with standard dimensions and pricing tiers
   const CROWN_PRESETS = [
-    { id: '2.25-finger', name: '2-1/4" Finger-Joint Pine', size: 2.25, material: 'pine', pricePerFt: 1.25, paintGrade: true },
-    { id: '3.25-mdf', name: '3-1/4" MDF', size: 3.25, material: 'mdf', pricePerFt: 1.50, paintGrade: true },
-    { id: '3.625-pine', name: '3-5/8" Pine', size: 3.625, material: 'pine', pricePerFt: 2.00, paintGrade: true },
-    { id: '4.625-pine', name: '4-5/8" Pine', size: 4.625, material: 'pine', pricePerFt: 3.25, paintGrade: true },
-    { id: '5.25-poplar', name: '5-1/4" Poplar', size: 5.25, material: 'poplar', pricePerFt: 4.50, paintGrade: true },
-    { id: '4.5-oak', name: '4-1/2" Red Oak', size: 4.5, material: 'oak', pricePerFt: 6.50, stainGrade: true },
-    { id: 'custom', name: 'Custom Size', size: 0, isCustom: true }
+    {
+      id: '2.25-finger',
+      name: '2-1/4" Finger-Joint Pine',
+      size: 2.25,
+      material: 'pine',
+      pricePerFt: 1.25,
+      paintGrade: true,
+    },
+    {
+      id: '3.25-mdf',
+      name: '3-1/4" MDF',
+      size: 3.25,
+      material: 'mdf',
+      pricePerFt: 1.5,
+      paintGrade: true,
+    },
+    {
+      id: '3.625-pine',
+      name: '3-5/8" Pine',
+      size: 3.625,
+      material: 'pine',
+      pricePerFt: 2.0,
+      paintGrade: true,
+    },
+    {
+      id: '4.625-pine',
+      name: '4-5/8" Pine',
+      size: 4.625,
+      material: 'pine',
+      pricePerFt: 3.25,
+      paintGrade: true,
+    },
+    {
+      id: '5.25-poplar',
+      name: '5-1/4" Poplar',
+      size: 5.25,
+      material: 'poplar',
+      pricePerFt: 4.5,
+      paintGrade: true,
+    },
+    {
+      id: '4.5-oak',
+      name: '4-1/2" Red Oak',
+      size: 4.5,
+      material: 'oak',
+      pricePerFt: 6.5,
+      stainGrade: true,
+    },
+    { id: 'custom', name: 'Custom Size', size: 0, isCustom: true },
   ];
 
   // Baseboard and chair rail profiles
   const BASEBOARD_PRESETS = [
-    { id: '3.25-mdf', name: '3-1/4" MDF Baseboard', size: 3.25, type: 'baseboard', pricePerFt: 0.85 },
-    { id: '4.25-mdf', name: '4-1/4" MDF Baseboard', size: 4.25, type: 'baseboard', pricePerFt: 1.10 },
-    { id: '5.25-mdf', name: '5-1/4" MDF Baseboard', size: 5.25, type: 'baseboard', pricePerFt: 1.35 },
+    {
+      id: '3.25-mdf',
+      name: '3-1/4" MDF Baseboard',
+      size: 3.25,
+      type: 'baseboard',
+      pricePerFt: 0.85,
+    },
+    {
+      id: '4.25-mdf',
+      name: '4-1/4" MDF Baseboard',
+      size: 4.25,
+      type: 'baseboard',
+      pricePerFt: 1.1,
+    },
+    {
+      id: '5.25-mdf',
+      name: '5-1/4" MDF Baseboard',
+      size: 5.25,
+      type: 'baseboard',
+      pricePerFt: 1.35,
+    },
     { id: '6-mdf', name: '6" MDF Baseboard', size: 6, type: 'baseboard', pricePerFt: 1.65 },
-    { id: '7.25-mdf', name: '7-1/4" MDF Baseboard', size: 7.25, type: 'baseboard', pricePerFt: 2.10 },
+    {
+      id: '7.25-mdf',
+      name: '7-1/4" MDF Baseboard',
+      size: 7.25,
+      type: 'baseboard',
+      pricePerFt: 2.1,
+    },
     { id: '2.5-chair', name: '2-1/2" Chair Rail', size: 2.5, type: 'chair', pricePerFt: 1.75 },
     { id: '3-chair', name: '3" Chair Rail', size: 3, type: 'chair', pricePerFt: 2.25 },
-    { id: 'custom', name: 'Custom Size', size: 0, isCustom: true }
+    { id: 'custom', name: 'Custom Size', size: 0, isCustom: true },
   ];
 
   // Quarter round and shoe molding
   const QUARTER_PRESETS = [
-    { id: '0.5-pine', name: '1/2" Pine Quarter Round', size: 0.5, material: 'pine', pricePerFt: 0.45 },
-    { id: '0.75-pine', name: '3/4" Pine Quarter Round', size: 0.75, material: 'pine', pricePerFt: 0.65 },
-    { id: '0.75-mdf', name: '3/4" MDF Quarter Round', size: 0.75, material: 'mdf', pricePerFt: 0.55 },
-    { id: '0.5-shoe', name: '1/2" × 3/4" Shoe Molding', size: 0.5, material: 'pine', pricePerFt: 0.55, isShoe: true },
-    { id: '0.75-oak', name: '3/4" Red Oak Quarter Round', size: 0.75, material: 'oak', pricePerFt: 1.85 },
-    { id: 'custom', name: 'Custom Size', size: 0, isCustom: true }
+    {
+      id: '0.5-pine',
+      name: '1/2" Pine Quarter Round',
+      size: 0.5,
+      material: 'pine',
+      pricePerFt: 0.45,
+    },
+    {
+      id: '0.75-pine',
+      name: '3/4" Pine Quarter Round',
+      size: 0.75,
+      material: 'pine',
+      pricePerFt: 0.65,
+    },
+    {
+      id: '0.75-mdf',
+      name: '3/4" MDF Quarter Round',
+      size: 0.75,
+      material: 'mdf',
+      pricePerFt: 0.55,
+    },
+    {
+      id: '0.5-shoe',
+      name: '1/2" × 3/4" Shoe Molding',
+      size: 0.5,
+      material: 'pine',
+      pricePerFt: 0.55,
+      isShoe: true,
+    },
+    {
+      id: '0.75-oak',
+      name: '3/4" Red Oak Quarter Round',
+      size: 0.75,
+      material: 'oak',
+      pricePerFt: 1.85,
+    },
+    { id: 'custom', name: 'Custom Size', size: 0, isCustom: true },
   ];
 
   // Standard trim lengths (for calculating pieces needed)
@@ -637,15 +909,15 @@
     { id: '8', name: '8 ft', length: 8 },
     { id: '10', name: '10 ft', length: 10 },
     { id: '12', name: '12 ft', length: 12 },
-    { id: '16', name: '16 ft', length: 16 }
+    { id: '16', name: '16 ft', length: 16 },
   ];
 
   // Waste factors for trim work
   const TRIM_WASTE = {
-    simple: 0.10,      // Straight runs, few corners
-    moderate: 0.15,    // Standard room with corners
-    complex: 0.20,     // Many corners, angles, returns
-    coffered: 0.25     // Coffered ceilings, wainscoting panels
+    simple: 0.1, // Straight runs, few corners
+    moderate: 0.15, // Standard room with corners
+    complex: 0.2, // Many corners, angles, returns
+    coffered: 0.25, // Coffered ceilings, wainscoting panels
   };
 
   // ==
@@ -663,12 +935,12 @@
       autoCreateProject: true,
       notifications: true,
       darkMode: true,
-      units: 'imperial'
+      units: 'imperial',
     },
     calculatorInputs: {},
     calculatorResults: {},
     lastAutoSave: null,
-    shopLinksClicked: []
+    shopLinksClicked: [],
   };
 
   // ==
@@ -681,7 +953,7 @@
         const data = {
           projects: AppState.projects,
           settings: AppState.settings,
-          version: CONFIG.VERSION
+          version: CONFIG.VERSION,
         };
         localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
         return true;
@@ -711,7 +983,7 @@
         exportDate: new Date().toISOString(),
         version: CONFIG.VERSION,
         projects: AppState.projects,
-        settings: AppState.settings
+        settings: AppState.settings,
       };
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
@@ -739,7 +1011,7 @@
         }
       };
       reader.readAsText(file);
-    }
+    },
   };
 
   // ==
@@ -757,7 +1029,7 @@
         const timeoutId = setTimeout(() => controller.abort(), CONFIG.API_TIMEOUT);
 
         const response = await fetch(`${CONFIG.API_BASE_URL.replace('/api', '')}/health`, {
-          signal: controller.signal
+          signal: controller.signal,
         });
         clearTimeout(timeoutId);
 
@@ -778,8 +1050,12 @@
     updateConnectionUI(connected) {
       const indicator = document.getElementById('api-status');
       if (indicator) {
-        indicator.className = connected ? 'api-status api-status--connected' : 'api-status api-status--offline';
-        indicator.title = connected ? 'Connected to Toolkit API' : 'Offline Mode (Local Calculations)';
+        indicator.className = connected
+          ? 'api-status api-status--connected'
+          : 'api-status api-status--offline';
+        indicator.title = connected
+          ? 'Connected to Toolkit API'
+          : 'Offline Mode (Local Calculations)';
         indicator.innerHTML = connected
           ? '<span class="api-status__dot"></span><span>API</span>'
           : '<span class="api-status__dot"></span><span>Offline</span>';
@@ -796,9 +1072,9 @@
       const config = {
         headers: {
           'Content-Type': 'application/json',
-          ...options.headers
+          ...options.headers,
         },
-        ...options
+        ...options,
       };
 
       for (let attempt = 0; attempt < CONFIG.API_RETRY_ATTEMPTS; attempt++) {
@@ -816,7 +1092,7 @@
           return await response.json();
         } catch (e) {
           if (attempt === CONFIG.API_RETRY_ATTEMPTS - 1) throw e;
-          await new Promise(r => setTimeout(r, 500 * (attempt + 1)));
+          await new Promise((r) => setTimeout(r, 500 * (attempt + 1)));
         }
       }
     },
@@ -834,14 +1110,14 @@
     async createJob(data) {
       return this.request('/jobs', {
         method: 'POST',
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       });
     },
 
     async updateJob(id, data) {
       return this.request(`/jobs/${id}`, {
         method: 'PATCH',
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       });
     },
 
@@ -858,7 +1134,7 @@
     async createRoom(jobId, data) {
       return this.request('/rooms', {
         method: 'POST',
-        body: JSON.stringify({ job_id: jobId, ...data })
+        body: JSON.stringify({ job_id: jobId, ...data }),
       });
     },
 
@@ -871,7 +1147,7 @@
     async calculate(calculatorType, inputs) {
       return this.request(`/calculators/${calculatorType}/calculate`, {
         method: 'POST',
-        body: JSON.stringify(inputs)
+        body: JSON.stringify(inputs),
       });
     },
 
@@ -887,7 +1163,7 @@
 
     async exportBOM(jobId, format = 'json') {
       return this.request(`/exports/bom/${jobId}?format=${format}`);
-    }
+    },
   };
 
   // ==
@@ -897,23 +1173,23 @@
   const HybridCalculator = {
     // Map local calculator IDs to API types
     apiTypeMap: {
-      'tile': 'tile_floor',
-      'mortar': 'thinset_mortar',
-      'grout': 'grout',
-      'leveling': 'self_leveler',
-      'slope': 'shower_slope',
-      'waterproof': 'waterproofing',
-      'movement': 'movement_joints',
-      'deflection': 'deflection',
+      tile: 'tile_floor',
+      mortar: 'thinset_mortar',
+      grout: 'grout',
+      leveling: 'self_leveler',
+      slope: 'shower_slope',
+      waterproof: 'waterproofing',
+      movement: 'movement_joints',
+      deflection: 'deflection',
       'heated-floor': 'heated_floor',
-      'moisture': 'moisture_check',
+      moisture: 'moisture_check',
       'thinset-mix': 'thinset_mix',
-      'sealer': 'sealer',
+      sealer: 'sealer',
       'deck-mud': 'deck_mud',
-      'primer': 'primer',
-      'sealant': 'sealant',
+      primer: 'primer',
+      sealant: 'sealant',
       'bath-layout': 'bath_layout',
-      'labor': 'labor'
+      labor: 'labor',
     },
 
     // Calculate using API if available, otherwise local
@@ -946,13 +1222,13 @@
             round_up_to_box: true,
             tiles_per_box: inputs.tilesPerBox || 10,
             include_mortar: false,
-            include_grout: false
+            include_grout: false,
           };
         case 'mortar':
           return {
             area_sqft: inputs.area,
             trowel_notch_size: inputs.trowelSize,
-            back_butter: inputs.backButter || false
+            back_butter: inputs.backButter || false,
           };
         case 'movement':
           return {
@@ -960,7 +1236,7 @@
             width_ft: inputs.width || inputs.widthFt,
             exposure: inputs.exposure || 'interior',
             temp_swing_f: inputs.tempSwingF ?? 30,
-            sun_exposed: inputs.isSunExposed || false
+            sun_exposed: inputs.isSunExposed || false,
           };
         case 'deflection':
           return {
@@ -970,21 +1246,21 @@
             joist_depth_in: inputs.joistDepthInches,
             modulus_psi: inputs.modulusPsi || 1600000,
             live_load_psf: inputs.liveLoadPsft || 40,
-            dead_load_psf: inputs.deadLoadPsft || 10
+            dead_load_psf: inputs.deadLoadPsft || 10,
           };
         case 'heated-floor':
           return {
             area_sqft: inputs.areaSqFt || inputs.area,
             watts_per_sqft: inputs.wattsPerSqFt || 12,
             voltage: inputs.voltage || 120,
-            thermostat_max_amps: inputs.thermostatMaxAmps || 15
+            thermostat_max_amps: inputs.thermostatMaxAmps || 15,
           };
         case 'moisture':
           return {
             mver_lbs: inputs.mverLbs,
             rh_percent: inputs.rhPercent,
             limit_mver: inputs.productLimitMver || 5,
-            limit_rh: inputs.productLimitRh || 75
+            limit_rh: inputs.productLimitRh || 75,
           };
         case 'thinset-mix':
           return {
@@ -993,13 +1269,13 @@
             water_quarts_max: inputs.waterQuartsPerBagMax || 6,
             batch_weight_lbs: inputs.batchWeightLbs,
             pot_life_min: inputs.potLifeMinutes || 120,
-            yield_cuft_per_bag: inputs.yieldCuFtPerBag || 0.45
+            yield_cuft_per_bag: inputs.yieldCuFtPerBag || 0.45,
           };
         case 'sealer':
           return {
             area_sqft: inputs.areaSqFt || inputs.area,
             surface: inputs.surface || 'natural_stone',
-            coats: inputs.coats || 2
+            coats: inputs.coats || 2,
           };
         case 'deck-mud':
           return {
@@ -1007,19 +1283,19 @@
             run_ft: inputs.runFeet,
             min_thickness_in: inputs.minThicknessInches || 1.25,
             slope_in_per_ft: inputs.slopeInchesPerFoot || 0.25,
-            bag_yield_cuft: inputs.bagYieldCuFt || 0.5
+            bag_yield_cuft: inputs.bagYieldCuFt || 0.5,
           };
         case 'primer':
           return {
             area_sqft: inputs.areaSqFt || inputs.area,
             porosity: inputs.porosity || 'porous',
-            double_prime: inputs.doublePrime || false
+            double_prime: inputs.doublePrime || false,
           };
         case 'sealant':
           return {
             linear_ft: inputs.linearFeet,
             bead_diameter_in: inputs.beadDiameterInches || 0.25,
-            tube_volume_oz: inputs.tubeVolumeOz || 10.1
+            tube_volume_oz: inputs.tubeVolumeOz || 10.1,
           };
         default:
           return inputs;
@@ -1032,9 +1308,9 @@
         ...apiResult.summary,
         lineItems: apiResult.line_items,
         formulas: apiResult.formulas_used,
-        source: 'api'
+        source: 'api',
       };
-    }
+    },
   };
 
   // ==
@@ -1046,7 +1322,7 @@
       dashboard: () => Views.dashboard(),
       calculators: () => Views.calculators(),
       projects: () => Views.projects(),
-      settings: () => Views.settings()
+      settings: () => Views.settings(),
     },
 
     init() {
@@ -1073,7 +1349,7 @@
     },
 
     updateNav() {
-      document.querySelectorAll('[data-route]').forEach(link => {
+      document.querySelectorAll('[data-route]').forEach((link) => {
         const isActive = link.dataset.route === AppState.currentRoute;
         link.classList.toggle('is-active', isActive);
       });
@@ -1084,11 +1360,11 @@
         dashboard: 'Dashboard',
         calculators: 'Calculators',
         projects: 'Projects',
-        settings: 'Settings'
+        settings: 'Settings',
       };
       const el = document.getElementById('page-title');
       if (el) el.textContent = titles[AppState.currentRoute] || 'TillerPro';
-    }
+    },
   };
 
   // ==
@@ -1102,7 +1378,7 @@
         success: '✓',
         error: '✕',
         warning: '⚠',
-        info: 'ℹ'
+        info: 'ℹ',
       };
 
       const toast = document.createElement('div');
@@ -1131,7 +1407,7 @@
       toast.style.opacity = '0';
       toast.style.transform = 'translateX(100%)';
       setTimeout(() => toast.remove(), 300);
-    }
+    },
   };
 
   // ==
@@ -1173,14 +1449,14 @@
         footer: `
           <button class="btn btn--secondary" onclick="window.TillerApp.Modal.hide()">Cancel</button>
           <button class="btn btn--danger" id="modal-confirm-btn">Delete</button>
-        `
+        `,
       });
 
       document.getElementById('modal-confirm-btn').addEventListener('click', () => {
         this.hide();
         onConfirm();
       });
-    }
+    },
   };
 
   // ==
@@ -1197,7 +1473,7 @@
         calculations: {},
         notes: '',
         totalArea: 0,
-        rooms: []
+        rooms: [],
       };
 
       AppState.projects.unshift(project);
@@ -1207,12 +1483,12 @@
     },
 
     update(id, data) {
-      const index = AppState.projects.findIndex(p => p.id === id);
+      const index = AppState.projects.findIndex((p) => p.id === id);
       if (index !== -1) {
         AppState.projects[index] = {
           ...AppState.projects[index],
           ...data,
-          updatedAt: new Date().toISOString()
+          updatedAt: new Date().toISOString(),
         };
         Storage.save();
         return AppState.projects[index];
@@ -1221,13 +1497,13 @@
     },
 
     delete(id) {
-      AppState.projects = AppState.projects.filter(p => p.id !== id);
+      AppState.projects = AppState.projects.filter((p) => p.id !== id);
       Storage.save();
       this.updateCount();
     },
 
     get(id) {
-      return AppState.projects.find(p => p.id === id);
+      return AppState.projects.find((p) => p.id === id);
     },
 
     getRecent(limit = 5) {
@@ -1262,11 +1538,14 @@
       const project = this.get(id);
       if (project) {
         const text = this.formatProjectText(project);
-        navigator.clipboard.writeText(text).then(() => {
-          Toast.show('Copied to clipboard', 'success');
-        }).catch(() => {
-          Toast.show('Failed to copy', 'error');
-        });
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            Toast.show('Copied to clipboard', 'success');
+          })
+          .catch(() => {
+            Toast.show('Failed to copy', 'error');
+          });
       }
     },
 
@@ -1291,7 +1570,7 @@
 
       text += '\n---\nGenerated by TillerPro | tillerstead.com/tools/app/';
       return text;
-    }
+    },
   };
 
   // ==
@@ -1306,7 +1585,7 @@
         widthFt: inputs.width || inputs.widthFt,
         exposure: inputs.exposure || 'interior',
         tempSwingF: inputs.tempSwingF ?? 30,
-        isSunExposed: inputs.isSunExposed || false
+        isSunExposed: inputs.isSunExposed || false,
       });
     },
 
@@ -1319,7 +1598,7 @@
         joistDepthInches: inputs.joistDepthInches,
         modulusPsi: inputs.modulusPsi || 1600000,
         liveLoadPsft: inputs.liveLoadPsft || 40,
-        deadLoadPsft: inputs.deadLoadPsft || 10
+        deadLoadPsft: inputs.deadLoadPsft || 10,
       });
     },
 
@@ -1329,7 +1608,7 @@
         areaSqFt: inputs.areaSqFt || inputs.area,
         wattsPerSqFt: inputs.wattsPerSqFt || 12,
         voltage: inputs.voltage || 120,
-        thermostatMaxAmps: inputs.thermostatMaxAmps || 15
+        thermostatMaxAmps: inputs.thermostatMaxAmps || 15,
       });
     },
 
@@ -1339,7 +1618,7 @@
         mverLbs: inputs.mverLbs,
         rhPercent: inputs.rhPercent,
         productLimitMver: inputs.productLimitMver || 5,
-        productLimitRh: inputs.productLimitRh || 75
+        productLimitRh: inputs.productLimitRh || 75,
       });
     },
 
@@ -1351,7 +1630,7 @@
         waterQuartsPerBagMax: inputs.waterQuartsPerBagMax || 6,
         batchWeightLbs: inputs.batchWeightLbs,
         potLifeMinutes: inputs.potLifeMinutes || 120,
-        yieldCuFtPerBag: inputs.yieldCuFtPerBag || 0.45
+        yieldCuFtPerBag: inputs.yieldCuFtPerBag || 0.45,
       });
     },
 
@@ -1360,7 +1639,7 @@
       return estimateSealer({
         areaSqFt: inputs.areaSqFt || inputs.area,
         surface: inputs.surface || 'natural_stone',
-        coats: inputs.coats || 2
+        coats: inputs.coats || 2,
       });
     },
 
@@ -1371,7 +1650,7 @@
         runFeet: inputs.runFeet,
         minThicknessInches: inputs.minThicknessInches || 1.25,
         slopeInchesPerFoot: inputs.slopeInchesPerFoot || 0.25,
-        bagYieldCuFt: inputs.bagYieldCuFt || 0.5
+        bagYieldCuFt: inputs.bagYieldCuFt || 0.5,
       });
     },
 
@@ -1380,7 +1659,7 @@
       return estimatePrimer({
         areaSqFt: inputs.areaSqFt || inputs.area,
         porosity: inputs.porosity || 'porous',
-        doublePrime: inputs.doublePrime || false
+        doublePrime: inputs.doublePrime || false,
       });
     },
 
@@ -1389,7 +1668,7 @@
       return estimateSealantTubes({
         linearFeet: inputs.linearFeet,
         beadDiameterInches: inputs.beadDiameterInches || 0.25,
-        tubeVolumeOz: inputs.tubeVolumeOz || 10.1
+        tubeVolumeOz: inputs.tubeVolumeOz || 10.1,
       });
     },
 
@@ -1416,24 +1695,34 @@
         includeVanity: inputs.includeVanity ?? true,
         vanityWidthIn: inputs.vanityWidthIn ?? 48,
         vanityDepthIn: inputs.vanityDepthIn ?? 22,
-        vanityFrontClearIn: inputs.vanityFrontClearIn ?? 30
+        vanityFrontClearIn: inputs.vanityFrontClearIn ?? 30,
       });
     },
 
     tile(inputs) {
-      const { area, tileSize, layout, waste, tilesPerBox, sqftPerBox, atticStock, customWidth, customHeight } = inputs;
+      const {
+        area,
+        tileSize,
+        layout,
+        waste,
+        tilesPerBox,
+        sqftPerBox,
+        atticStock,
+        customWidth,
+        customHeight,
+      } = inputs;
 
       if (!area || area <= 0) return null;
 
       // Get tile data, handle custom sizes
-      let tile = TILE_PRESETS.find(t => t.id === tileSize) || TILE_PRESETS[8]; // default 12x12
+      let tile = TILE_PRESETS.find((t) => t.id === tileSize) || TILE_PRESETS[8]; // default 12x12
       if (tile.isCustom && customWidth && customHeight) {
         const w = parseFloat(customWidth);
         const h = parseFloat(customHeight);
         tile = { ...tile, width: w, height: h, isLargeFormat: Math.max(w, h) >= 15 };
       }
 
-      const layoutData = LAYOUT_PRESETS.find(l => l.id === layout) || LAYOUT_PRESETS[0];
+      const layoutData = LAYOUT_PRESETS.find((l) => l.id === layout) || LAYOUT_PRESETS[0];
       const wastePercent = waste || layoutData.waste;
 
       const areaWithWaste = area * (1 + wastePercent / 100);
@@ -1482,7 +1771,7 @@
         wastePercent,
         isLargeFormat: tile.isLargeFormat || false,
         note: notes.join('. '),
-        warning: warnings.join(' ')
+        warning: warnings.join(' '),
       };
     },
 
@@ -1491,8 +1780,8 @@
 
       if (!area || area <= 0) return null;
 
-      const trowelData = TROWEL_PRESETS.find(t => t.id === trowel) || TROWEL_PRESETS[1];
-      const tile = tileSize ? TILE_PRESETS.find(t => t.id === tileSize) : null;
+      const trowelData = TROWEL_PRESETS.find((t) => t.id === trowel) || TROWEL_PRESETS[1];
+      const tile = tileSize ? TILE_PRESETS.find((t) => t.id === tileSize) : null;
       const isLFT = tile?.isLargeFormat || false;
 
       let bagsMin = Math.ceil(area / trowelData.max);
@@ -1528,7 +1817,7 @@
         bagsMax,
         coverage: `${trowelData.min}–${trowelData.max} sq ft/bag`,
         note: notes.join('. '),
-        warning: warnings.join(' ')
+        warning: warnings.join(' '),
       };
     },
 
@@ -1542,7 +1831,7 @@
       let tileL = parseFloat(tileLength);
 
       if ((!tileW || !tileL) && tileSize) {
-        const tile = TILE_PRESETS.find(t => t.id === tileSize);
+        const tile = TILE_PRESETS.find((t) => t.id === tileSize);
         if (tile && tile.width > 0) {
           tileW = tile.width;
           tileL = tile.height;
@@ -1552,12 +1841,13 @@
       if (!tileW || !tileL) return null;
 
       // Joint dimensions
-      const jointW = parseFloat(jointWidth) || 0.125;  // default 1/8"
+      const jointW = parseFloat(jointWidth) || 0.125; // default 1/8"
       const jointD = parseFloat(tileThickness) || 0.375; // default 3/8" (typical tile)
 
       // TCNA Grout Coverage Formula using constant
       // Formula: Area × (L + W) / (L × W) × T × J × K where K = 1.86
-      const lbsPerSqFt = ((tileL + tileW) / (tileL * tileW)) * jointD * jointW * GROUT_DENSITY_LBS_PER_CUIN;
+      const lbsPerSqFt =
+        ((tileL + tileW) / (tileL * tileW)) * jointD * jointW * GROUT_DENSITY_LBS_PER_CUIN;
 
       // Coverage in sq ft per lb (inverse)
       const coverageSqFtPerLb = 1 / lbsPerSqFt;
@@ -1571,7 +1861,7 @@
         bags10lb: Math.ceil(groutLbs / 10),
         coverage: coverageSqFtPerLb.toFixed(1),
         lbsPerSqFt: lbsPerSqFt.toFixed(3),
-        note: `Sanded grout with 10% waste. ~${lbsPerSqFt.toFixed(2)} lbs/sq ft`
+        note: `Sanded grout with 10% waste. ~${lbsPerSqFt.toFixed(2)} lbs/sq ft`,
       };
     },
 
@@ -1595,7 +1885,10 @@
         bags,
         bagsMax,
         volume: volumeCuFt.toFixed(2),
-        note: bags !== bagsMax ? `Range: ${bags}–${bagsMax} bags (50lb)` : `Based on 50lb bags @ ${LEVELER_COVERAGE} cu ft/bag`
+        note:
+          bags !== bagsMax
+            ? `Range: ${bags}–${bagsMax} bags (50lb)`
+            : `Based on 50lb bags @ ${LEVELER_COVERAGE} cu ft/bag`,
       };
     },
 
@@ -1617,7 +1910,7 @@
       // Volume of cone = (1/3) × π × r² × h
       // For pre-slope (deck mud), we need the volume in cubic feet
       const riseFoots = riseInches / 12;
-      const volumeCuFt = (1/3) * Math.PI * Math.pow(distanceFt, 2) * riseFoots;
+      const volumeCuFt = (1 / 3) * Math.PI * Math.pow(distanceFt, 2) * riseFoots;
 
       // Deck mud: ~80 lbs per cubic foot, sold in 60lb bags
       const deckMudLbs = volumeCuFt * 80;
@@ -1628,7 +1921,7 @@
         area: areaSqFt.toFixed(1),
         deckMudCuFt: volumeCuFt.toFixed(2),
         bags60lb,
-        note: `${ratio}" per foot slope to drain`
+        note: `${ratio}" per foot slope to drain`,
       };
     },
 
@@ -1645,7 +1938,7 @@
         membrane: membraneGallons,
         bandFeet: bandLength,
         coats: 2,
-        note: 'Based on 50 sq ft/gallon, 2 coats'
+        note: 'Based on 50 sq ft/gallon, 2 coats',
       };
     },
 
@@ -1666,7 +1959,7 @@
         hours: Math.ceil(hours),
         days,
         rate: `${baseRate} sq ft/hour`,
-        note: 'Estimate only - varies by conditions'
+        note: 'Estimate only - varies by conditions',
       };
     },
 
@@ -1679,7 +1972,16 @@
      * Calculates linear feet, pieces, inside/outside corners
      */
     crown(inputs) {
-      const { perimeter, roomLength, roomWidth, profile, stockLength, complexity, insideCorners, outsideCorners } = inputs;
+      const {
+        perimeter,
+        roomLength,
+        roomWidth,
+        profile,
+        stockLength,
+        complexity,
+        insideCorners,
+        outsideCorners,
+      } = inputs;
 
       // Calculate perimeter from L×W or use direct input
       let totalPerimeter = parseFloat(perimeter) || 0;
@@ -1689,7 +1991,7 @@
 
       if (totalPerimeter <= 0) return null;
 
-      const crownProfile = CROWN_PRESETS.find(c => c.id === profile) || CROWN_PRESETS[1];
+      const crownProfile = CROWN_PRESETS.find((c) => c.id === profile) || CROWN_PRESETS[1];
       const stockLen = parseFloat(stockLength) || 12;
       const wasteFactor = TRIM_WASTE[complexity] || TRIM_WASTE.moderate;
 
@@ -1707,7 +2009,7 @@
       const cornerBlocksNeeded = inCorners + outCorners;
 
       // Material cost estimate
-      const materialCost = linearFtWithWaste * (crownProfile.pricePerFt || 2.00);
+      const materialCost = linearFtWithWaste * (crownProfile.pricePerFt || 2.0);
 
       // Build notes
       const notes = [];
@@ -1725,7 +2027,7 @@
         cornerBlocks: cornerBlocksNeeded,
         wastePercent: Math.round(wasteFactor * 100),
         materialCost: materialCost.toFixed(2),
-        note: notes.join('. ')
+        note: notes.join('. '),
       };
     },
 
@@ -1734,8 +2036,20 @@
      * Includes wainscoting panel framing calculations
      */
     baseboard(inputs) {
-      const { perimeter, roomLength, roomWidth, profile, stockLength, complexity,
-        doorOpenings, windowOpenings, includePanels, panelHeight, panelWidth, panelCount } = inputs;
+      const {
+        perimeter,
+        roomLength,
+        roomWidth,
+        profile,
+        stockLength,
+        complexity,
+        doorOpenings,
+        windowOpenings,
+        includePanels,
+        panelHeight,
+        panelWidth,
+        panelCount,
+      } = inputs;
 
       // Calculate perimeter
       let totalPerimeter = parseFloat(perimeter) || 0;
@@ -1745,7 +2059,7 @@
 
       if (totalPerimeter <= 0) return null;
 
-      const baseProfile = BASEBOARD_PRESETS.find(b => b.id === profile) || BASEBOARD_PRESETS[1];
+      const baseProfile = BASEBOARD_PRESETS.find((b) => b.id === profile) || BASEBOARD_PRESETS[1];
       const stockLen = parseFloat(stockLength) || 12;
       const wasteFactor = TRIM_WASTE[complexity] || TRIM_WASTE.moderate;
 
@@ -1763,29 +2077,32 @@
 
       if (includePanels && panelCount > 0) {
         const pHeight = parseFloat(panelHeight) || 24; // inches
-        const pWidth = parseFloat(panelWidth) || 18;   // inches
+        const pWidth = parseFloat(panelWidth) || 18; // inches
         const pCount = parseInt(panelCount) || 0;
 
         // Each panel frame: 2 vertical stiles + 2 horizontal rails
-        const panelPerimeter = 2 * (pHeight + pWidth) / 12; // convert to feet
+        const panelPerimeter = (2 * (pHeight + pWidth)) / 12; // convert to feet
         panelFramingFt = panelPerimeter * pCount * (1 + TRIM_WASTE.coffered);
 
         panelDetails = {
           count: pCount,
           framePerPanel: panelPerimeter.toFixed(1),
-          totalFraming: panelFramingFt.toFixed(1)
+          totalFraming: panelFramingFt.toFixed(1),
         };
       }
 
       const totalLinearFt = linearFtWithWaste + panelFramingFt;
       const totalPieces = Math.ceil(totalLinearFt / stockLen);
-      const materialCost = totalLinearFt * (baseProfile.pricePerFt || 1.10);
+      const materialCost = totalLinearFt * (baseProfile.pricePerFt || 1.1);
 
       // Build notes
       const notes = [];
       notes.push(`${baseProfile.name} @ ${stockLen}' lengths`);
       if (doorDeduction > 0) notes.push(`${doorOpenings} door(s) deducted (${doorDeduction} ft)`);
-      if (panelDetails) notes.push(`${panelDetails.count} wainscot panels (${panelDetails.totalFraming} ft framing)`);
+      if (panelDetails)
+        notes.push(
+          `${panelDetails.count} wainscot panels (${panelDetails.totalFraming} ft framing)`
+        );
 
       return {
         grossPerimeter: totalPerimeter.toFixed(1),
@@ -1798,7 +2115,7 @@
         wastePercent: Math.round(wasteFactor * 100),
         materialCost: materialCost.toFixed(2),
         panelDetails,
-        note: notes.join('. ')
+        note: notes.join('. '),
       };
     },
 
@@ -1807,8 +2124,17 @@
      * For flooring transitions and baseboards
      */
     quarter(inputs) {
-      const { perimeter, roomLength, roomWidth, profile, stockLength, complexity,
-        doorOpenings, cabinetRuns, transitionStrips } = inputs;
+      const {
+        perimeter,
+        roomLength,
+        roomWidth,
+        profile,
+        stockLength,
+        complexity,
+        doorOpenings,
+        cabinetRuns,
+        transitionStrips,
+      } = inputs;
 
       // Calculate perimeter
       let totalPerimeter = parseFloat(perimeter) || 0;
@@ -1818,13 +2144,13 @@
 
       if (totalPerimeter <= 0) return null;
 
-      const quarterProfile = QUARTER_PRESETS.find(q => q.id === profile) || QUARTER_PRESETS[1];
+      const quarterProfile = QUARTER_PRESETS.find((q) => q.id === profile) || QUARTER_PRESETS[1];
       const stockLen = parseFloat(stockLength) || 8; // Quarter round typically 8'
       const wasteFactor = TRIM_WASTE[complexity] || TRIM_WASTE.moderate;
 
       // Deductions
-      const doorDeduction = (parseInt(doorOpenings) || 0) * 3;      // 3' per door opening
-      const cabinetDeduction = parseFloat(cabinetRuns) || 0;        // Linear ft of cabinets
+      const doorDeduction = (parseInt(doorOpenings) || 0) * 3; // 3' per door opening
+      const cabinetDeduction = parseFloat(cabinetRuns) || 0; // Linear ft of cabinets
       const transitionDeduction = (parseInt(transitionStrips) || 0) * 3; // 3' per transition
 
       const totalDeductions = doorDeduction + cabinetDeduction + transitionDeduction;
@@ -1854,9 +2180,9 @@
         pieces: piecesNeeded,
         wastePercent: Math.round(wasteFactor * 100),
         materialCost: materialCost.toFixed(2),
-        note: notes.join('. ')
+        note: notes.join('. '),
       };
-    }
+    },
   };
 
   // ==
@@ -1894,11 +2220,11 @@
                 <div class="hero-stat__label">Projects</div>
               </div>
               <div class="hero-stat">
-                <div class="hero-stat__value">${CALCULATORS.filter(c => c.status === 'ready').length}</div>
+                <div class="hero-stat__value">${CALCULATORS.filter((c) => c.status === 'ready').length}</div>
                 <div class="hero-stat__label">Tools</div>
               </div>
               <div class="hero-stat">
-                <div class="hero-stat__value">${totalArea > 1000 ? (totalArea/1000).toFixed(1) + 'k' : totalArea}</div>
+                <div class="hero-stat__value">${totalArea > 1000 ? (totalArea / 1000).toFixed(1) + 'k' : totalArea}</div>
                 <div class="hero-stat__label">Sq Ft</div>
               </div>
             </div>
@@ -1981,10 +2307,13 @@
           </section>
 
           <!-- Calculator Sections by Category -->
-          ${sortedCategories.map(([catId, cat]) => {
-    const catCalcs = CALCULATORS.filter(c => c.category === catId && c.status === 'ready');
-    if (catCalcs.length === 0) return '';
-    return `
+          ${sortedCategories
+            .map(([catId, cat]) => {
+              const catCalcs = CALCULATORS.filter(
+                (c) => c.category === catId && c.status === 'ready'
+              );
+              if (catCalcs.length === 0) return '';
+              return `
               <section class="dashboard__section dashboard__section--category" id="dash-cat-${catId}">
                 <div class="dashboard__section-header">
                   <div class="dashboard__section-header-info">
@@ -1997,7 +2326,9 @@
                   <span class="dashboard__section-badge">${catCalcs.length} tools</span>
                 </div>
                 <div class="calc-grid calc-grid--${catId}">
-                  ${catCalcs.map(calc => `
+                  ${catCalcs
+                    .map(
+                      (calc) => `
                     <button class="calc-card" data-calc="${calc.id}" title="${calc.tooltip || calc.desc}">
                       <span class="calc-card__icon" aria-hidden="true">${calc.icon}</span>
                       <div class="calc-card__content">
@@ -2006,21 +2337,28 @@
                       </div>
                       <svg class="calc-card__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
                     </button>
-                  `).join('')}
+                  `
+                    )
+                    .join('')}
                 </div>
               </section>
             `;
-  }).join('')}
+            })
+            .join('')}
 
           <!-- Coming Soon -->
-          ${CALCULATORS.filter(c => c.status === 'coming').length > 0 ? `
+          ${
+            CALCULATORS.filter((c) => c.status === 'coming').length > 0
+              ? `
           <section class="dashboard__section dashboard__section--muted">
             <div class="dashboard__section-header">
               <h3 class="dashboard__section-title">Coming Soon</h3>
-              <span class="dashboard__section-badge dashboard__section-badge--muted">${CALCULATORS.filter(c => c.status === 'coming').length} planned</span>
+              <span class="dashboard__section-badge dashboard__section-badge--muted">${CALCULATORS.filter((c) => c.status === 'coming').length} planned</span>
             </div>
             <div class="calc-grid calc-grid--coming">
-              ${CALCULATORS.filter(c => c.status === 'coming').map(calc => `
+              ${CALCULATORS.filter((c) => c.status === 'coming')
+                .map(
+                  (calc) => `
                 <div class="calc-card calc-card--coming" aria-disabled="true">
                   <span class="calc-card__icon" aria-hidden="true">${calc.icon}</span>
                   <div class="calc-card__content">
@@ -2029,10 +2367,14 @@
                   </div>
                   <span class="calc-card__badge">Coming Soon</span>
                 </div>
-              `).join('')}
+              `
+                )
+                .join('')}
             </div>
           </section>
-          ` : ''}
+          `
+              : ''
+          }
 
           <!-- Recent Projects -->
           <section class="dashboard__section">
@@ -2043,9 +2385,13 @@
               </h3>
               ${recentProjects.length > 0 ? `<a href="#/projects" class="dashboard__section-action">View All →</a>` : ''}
             </div>
-            ${recentProjects.length > 0 ? `
+            ${
+              recentProjects.length > 0
+                ? `
               <ul class="recent-list">
-                ${recentProjects.map(p => `
+                ${recentProjects
+                  .map(
+                    (p) => `
                   <li class="recent-list__item" data-project-id="${p.id}">
                     <div class="recent-list__icon" aria-hidden="true">📋</div>
                     <div class="recent-list__content">
@@ -2054,15 +2400,19 @@
                     </div>
                     <svg class="recent-list__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
                   </li>
-                `).join('')}
+                `
+                  )
+                  .join('')}
               </ul>
-            ` : `
+            `
+                : `
               <div class="empty-state">
                 <div class="empty-state__icon" aria-hidden="true">📋</div>
                 <h4 class="empty-state__title">No projects yet</h4>
                 <p class="empty-state__text">Start calculating to create your first project.</p>
               </div>
-            `}
+            `
+            }
           </section>
 
           <!-- Why Choose TillerPro -->
@@ -2118,7 +2468,7 @@
       `;
 
       // Event listeners for recent projects
-      content.querySelectorAll('[data-project-id]').forEach(item => {
+      content.querySelectorAll('[data-project-id]').forEach((item) => {
         item.addEventListener('click', () => {
           AppState.activeProject = item.dataset.projectId;
           Router.navigate('calculators');
@@ -2126,7 +2476,7 @@
       });
 
       // Event listeners for quick calc cards
-      content.querySelectorAll('.calc-card').forEach(card => {
+      content.querySelectorAll('.calc-card').forEach((card) => {
         card.addEventListener('click', () => {
           AppState.activeCalculator = card.dataset.calc;
           Router.navigate('calculators');
@@ -2138,15 +2488,17 @@
       const content = document.getElementById('app-content');
       if (!content) return;
       const sortedCategories = Object.entries(CATEGORIES).sort((a, b) => a[1].order - b[1].order);
-      const filteredCalcs = CALCULATORS.filter(calc => {
+      const filteredCalcs = CALCULATORS.filter((calc) => {
         if (!AppState.searchQuery) return true;
         const q = AppState.searchQuery.toLowerCase();
-        return calc.name.toLowerCase().includes(q) ||
-               (calc.desc && calc.desc.toLowerCase().includes(q)) ||
-               (calc.tooltip && calc.tooltip.toLowerCase().includes(q));
+        return (
+          calc.name.toLowerCase().includes(q) ||
+          (calc.desc && calc.desc.toLowerCase().includes(q)) ||
+          (calc.tooltip && calc.tooltip.toLowerCase().includes(q))
+        );
       });
       const activeCalc = AppState.activeCalculator;
-      let activeData = CALCULATORS.find(c => c.id === activeCalc);
+      let activeData = CALCULATORS.find((c) => c.id === activeCalc);
       if (!activeData) {
         const fallback = filteredCalcs[0] || CALCULATORS[0];
         AppState.activeCalculator = fallback.id;
@@ -2158,12 +2510,16 @@
         <div class="calc-sticky-nav" aria-label="Calculator navigation" role="navigation">
           <div class="calc-sticky-nav__wrap">
             <div class="calc-sticky-nav__links">
-              ${sortedCategories.map(([catId, cat]) => `
+              ${sortedCategories
+                .map(
+                  ([catId, cat]) => `
                 <button class="calc-sticky-nav__link" data-target="calc-cat-${catId}" title="${cat.longDesc || cat.desc}">
                   <span class="calc-sticky-nav__icon">${cat.icon}</span>
                   <span class="calc-sticky-nav__label">${cat.name}</span>
                 </button>
-              `).join('')}
+              `
+                )
+                .join('')}
             </div>
             <div class="calc-sticky-nav__search">
               <label class="sr-only" for="calc-search-input">Search calculators</label>
@@ -2179,13 +2535,14 @@
           <aside class="calc-selector" aria-label="Calculator list">
             <div class="calc-selector__header">
               <h2 class="calc-selector__title">Calculators</h2>
-              <p class="calc-selector__subtitle">${CALCULATORS.filter(c => c.status === 'ready').length} tools • Grouped by workflow</p>
+              <p class="calc-selector__subtitle">${CALCULATORS.filter((c) => c.status === 'ready').length} tools • Grouped by workflow</p>
             </div>
             <nav class="calc-selector__list" role="tablist" aria-label="Calculator selection">
-              ${sortedCategories.map(([catId, cat]) => {
-    const catCalcs = filteredCalcs.filter(c => c.category === catId);
-    if (catCalcs.length === 0) return '';
-    return `
+              ${sortedCategories
+                .map(([catId, cat]) => {
+                  const catCalcs = filteredCalcs.filter((c) => c.category === catId);
+                  if (catCalcs.length === 0) return '';
+                  return `
                   <div class="calc-selector__group" id="calc-cat-${catId}">
                     <button class="calc-selector__group-header" aria-expanded="true" data-collapse="${catId}">
                       <div class="calc-selector__group-info">
@@ -2196,7 +2553,9 @@
                       <svg class="calc-selector__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
                     </button>
                     <div class="calc-selector__group-items" data-group="${catId}">
-                      ${catCalcs.map(calc => `
+                      ${catCalcs
+                        .map(
+                          (calc) => `
                         <button class="calc-selector__item ${calc.id === activeCalc ? 'is-active' : ''} ${calc.status === 'coming' ? 'is-coming' : ''}" 
                                 role="tab" 
                                 aria-selected="${calc.id === activeCalc}"
@@ -2210,11 +2569,14 @@
                           </div>
                           ${calc.status === 'ready' ? `<svg class="calc-selector__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>` : ''}
                         </button>
-                      `).join('')}
+                      `
+                        )
+                        .join('')}
                     </div>
                   </div>
                 `;
-  }).join('')}
+                })
+                .join('')}
             </nav>
           </aside>
 
@@ -2227,22 +2589,30 @@
                   <h2 class="calc-panel__title" id="calc-panel-title">${activeData.name}</h2>
                   <p class="calc-panel__desc">${activeData.desc}</p>
                 </div>
-                ${activeData.tooltip ? `
+                ${
+                  activeData.tooltip
+                    ? `
                   <button class="calc-panel__help" type="button" aria-label="Show help" title="More information">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                       <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
                     </svg>
                   </button>
-                ` : ''}
+                `
+                    : ''
+                }
               </div>
-              ${activeData.tooltip ? `
+              ${
+                activeData.tooltip
+                  ? `
                 <div class="calc-panel__tooltip" role="note" aria-label="Calculator guidance" hidden>
                   <div class="calc-panel__tooltip-content">
                     <strong>💡 Tip:</strong> ${activeData.tooltip}
                   </div>
                   <button class="calc-panel__tooltip-close" type="button" aria-label="Close tip">×</button>
                 </div>
-              ` : ''}
+              `
+                  : ''
+              }
               <div class="calc-panel__body">
                 ${this.renderCalculatorForm(activeCalc)}
               </div>
@@ -2254,23 +2624,31 @@
         <div class="calc-mobile-select" aria-label="Mobile calculator selection">
           <label class="form-label" for="calc-mobile-dropdown">Select Calculator</label>
           <select class="form-select calc-mobile-dropdown" id="calc-mobile-dropdown" aria-label="Select calculator">
-            ${sortedCategories.map(([catId, cat]) => {
-    const catCalcs = filteredCalcs.filter(c => c.category === catId && c.status === 'ready');
-    if (catCalcs.length === 0) return '';
-    return `
+            ${sortedCategories
+              .map(([catId, cat]) => {
+                const catCalcs = filteredCalcs.filter(
+                  (c) => c.category === catId && c.status === 'ready'
+                );
+                if (catCalcs.length === 0) return '';
+                return `
                 <optgroup label="${cat.icon} ${cat.name}">
-                  ${catCalcs.map(calc => `
+                  ${catCalcs
+                    .map(
+                      (calc) => `
                     <option value="${calc.id}" ${calc.id === activeCalc ? 'selected' : ''}>${calc.name}</option>
-                  `).join('')}
+                  `
+                    )
+                    .join('')}
                 </optgroup>
               `;
-  }).join('')}
+              })
+              .join('')}
           </select>
         </div>
       `;
 
       // Selector item clicks
-      content.querySelectorAll('.calc-selector__item').forEach(item => {
+      content.querySelectorAll('.calc-selector__item').forEach((item) => {
         item.addEventListener('click', () => {
           AppState.activeCalculator = item.dataset.calc;
           this.calculators();
@@ -2283,7 +2661,7 @@
       });
 
       // Collapsible category groups
-      content.querySelectorAll('.calc-selector__group-header[data-collapse]').forEach(header => {
+      content.querySelectorAll('.calc-selector__group-header[data-collapse]').forEach((header) => {
         header.addEventListener('click', () => {
           const catId = header.dataset.collapse;
           const items = content.querySelector(`.calc-selector__group-items[data-group="${catId}"]`);
@@ -2319,14 +2697,19 @@
           searchTimeout = setTimeout(() => {
             AppState.searchQuery = e.target.value;
             // Keep active calculator visible; if filtered out, pick first available
-            const visibleCalcs = CALCULATORS.filter(calc => {
+            const visibleCalcs = CALCULATORS.filter((calc) => {
               if (!AppState.searchQuery) return true;
               const q = AppState.searchQuery.toLowerCase();
-              return calc.name.toLowerCase().includes(q) ||
-                     (calc.desc && calc.desc.toLowerCase().includes(q)) ||
-                     (calc.tooltip && calc.tooltip.toLowerCase().includes(q));
+              return (
+                calc.name.toLowerCase().includes(q) ||
+                (calc.desc && calc.desc.toLowerCase().includes(q)) ||
+                (calc.tooltip && calc.tooltip.toLowerCase().includes(q))
+              );
             });
-            if (!visibleCalcs.some(c => c.id === AppState.activeCalculator) && visibleCalcs.length > 0) {
+            if (
+              !visibleCalcs.some((c) => c.id === AppState.activeCalculator) &&
+              visibleCalcs.length > 0
+            ) {
               AppState.activeCalculator = visibleCalcs[0].id;
             }
             this.calculators();
@@ -2334,14 +2717,17 @@
             const newSearchInput = document.getElementById('calc-search-input');
             if (newSearchInput) {
               newSearchInput.focus();
-              newSearchInput.setSelectionRange(newSearchInput.value.length, newSearchInput.value.length);
+              newSearchInput.setSelectionRange(
+                newSearchInput.value.length,
+                newSearchInput.value.length
+              );
             }
           }, 200);
         });
       }
 
       // Sticky nav links
-      content.querySelectorAll('.calc-sticky-nav__link').forEach(link => {
+      content.querySelectorAll('.calc-sticky-nav__link').forEach((link) => {
         link.addEventListener('click', () => {
           const targetId = link.dataset.target;
           const el = document.getElementById(targetId);
@@ -2374,7 +2760,7 @@
         targetFloorName,
         targetWallName,
         includeHeight = true,
-        note
+        note,
       }) => {
         const floorTargetAttr = targetFloorName ? ` data-target-floor="${targetFloorName}"` : '';
         const wallTargetAttr = targetWallName ? ` data-target-wall="${targetWallName}"` : '';
@@ -2397,7 +2783,9 @@
                   <span class="input-group__suffix">ft</span>
                 </div>
               </div>
-              ${includeHeight ? `
+              ${
+                includeHeight
+                  ? `
               <div class="form-field">
                 <label class="form-label">Height</label>
                 <div class="input-group">
@@ -2405,7 +2793,9 @@
                   <span class="input-group__suffix">ft</span>
                 </div>
               </div>
-              ` : ''}
+              `
+                  : ''
+              }
             </div>
 
             <div class="form-grid form-grid--2col">
@@ -2417,7 +2807,9 @@
                 </div>
                 <p class="form-help">≈ width × length</p>
               </div>
-              ${includeHeight ? `
+              ${
+                includeHeight
+                  ? `
               <div class="form-field">
                 <label class="form-label">Wall Area (4 walls)</label>
                 <div class="input-group">
@@ -2426,12 +2818,14 @@
                 </div>
                 <p class="form-help">≈ 2 × height × (width + length)</p>
               </div>
-              ` : ''}
+              `
+                  : ''
+              }
             </div>
 
             <div class="mt-lg" style="display:flex; gap: .75rem; flex-wrap: wrap;">
               ${targetFloorName ? `<button type="button" class="btn btn--secondary btn--sm" data-sqft-action="use-floor">Use floor area</button>` : ''}
-              ${(targetWallName && includeHeight) ? `<button type="button" class="btn btn--secondary btn--sm" data-sqft-action="use-walls">Use wall area</button>` : ''}
+              ${targetWallName && includeHeight ? `<button type="button" class="btn btn--secondary btn--sm" data-sqft-action="use-walls">Use wall area</button>` : ''}
             </div>
             ${note ? `<p class="form-help mt-sm">${note}</p>` : ''}
           </div>
@@ -2452,13 +2846,13 @@
             <div class="form-field">
               <label class="form-label">Tile Size</label>
               <select class="form-select" name="tileSize">
-                ${TILE_PRESETS.map(t => `<option value="${t.id}" ${inputs.tileSize === t.id ? 'selected' : ''}>${t.name}</option>`).join('')}
+                ${TILE_PRESETS.map((t) => `<option value="${t.id}" ${inputs.tileSize === t.id ? 'selected' : ''}>${t.name}</option>`).join('')}
               </select>
             </div>
             <div class="form-field">
               <label class="form-label">Layout Pattern</label>
               <select class="form-select" name="layout">
-                ${LAYOUT_PRESETS.map(l => `<option value="${l.id}" ${inputs.layout === l.id ? 'selected' : ''}>${l.name} (+${l.waste}% waste)</option>`).join('')}
+                ${LAYOUT_PRESETS.map((l) => `<option value="${l.id}" ${inputs.layout === l.id ? 'selected' : ''}>${l.name} (+${l.waste}% waste)</option>`).join('')}
               </select>
               <p class="form-help">Pattern affects waste factor</p>
             </div>
@@ -2505,7 +2899,7 @@
             <div class="form-field">
               <label class="form-label">Trowel Size</label>
               <select class="form-select" name="trowel">
-                ${TROWEL_PRESETS.map(t => `<option value="${t.id}" ${inputs.trowel === t.id ? 'selected' : ''}>${t.name}</option>`).join('')}
+                ${TROWEL_PRESETS.map((t) => `<option value="${t.id}" ${inputs.trowel === t.id ? 'selected' : ''}>${t.name}</option>`).join('')}
               </select>
               <p class="form-help">Larger tiles = larger trowel</p>
             </div>
@@ -2716,7 +3110,7 @@
               <div class="form-field">
                 <label class="form-label">Door Wall</label>
                 <select class="form-select" name="doorWall">
-                  <option value="primary" ${(!inputs.doorWall || inputs.doorWall === 'primary') ? 'selected' : ''}>Primary wall (legacy default)</option>
+                  <option value="primary" ${!inputs.doorWall || inputs.doorWall === 'primary' ? 'selected' : ''}>Primary wall (legacy default)</option>
                   <option value="length" ${inputs.doorWall === 'length' ? 'selected' : ''}>Length wall</option>
                   <option value="width" ${inputs.doorWall === 'width' ? 'selected' : ''}>Width wall</option>
                   <option value="none" ${inputs.doorWall === 'none' ? 'selected' : ''}>Not on fixture wall</option>
@@ -2739,7 +3133,7 @@
             <div class="form-grid form-grid--2col">
               <div class="form-field">
                 <label class="form-checkbox">
-                  <input type="checkbox" name="includeTub" ${inputs.includeTub ?? true ? 'checked' : ''}>
+                  <input type="checkbox" name="includeTub" ${(inputs.includeTub ?? true) ? 'checked' : ''}>
                   <span>Include Tub</span>
                 </label>
                 <div class="form-grid form-grid--2col mt-sm">
@@ -2797,7 +3191,7 @@
               </div>
               <div class="form-field">
                 <label class="form-checkbox">
-                  <input type="checkbox" name="includeToilet" ${inputs.includeToilet ?? true ? 'checked' : ''}>
+                  <input type="checkbox" name="includeToilet" ${(inputs.includeToilet ?? true) ? 'checked' : ''}>
                   <span>Include Toilet</span>
                 </label>
                 <div class="form-grid form-grid--2col mt-sm">
@@ -2826,7 +3220,7 @@
               </div>
               <div class="form-field">
                 <label class="form-checkbox">
-                  <input type="checkbox" name="includeVanity" ${inputs.includeVanity ?? true ? 'checked' : ''}>
+                  <input type="checkbox" name="includeVanity" ${(inputs.includeVanity ?? true) ? 'checked' : ''}>
                   <span>Include Vanity</span>
                 </label>
                 <div class="form-grid form-grid--2col mt-sm">
@@ -2893,13 +3287,13 @@
             <div class="form-field">
               <label class="form-label">Crown Profile</label>
               <select class="form-select" name="profile">
-                ${CROWN_PRESETS.map(c => `<option value="${c.id}" ${inputs.profile === c.id ? 'selected' : ''}>${c.name}${c.pricePerFt ? ' (~$' + c.pricePerFt + '/ft)' : ''}</option>`).join('')}
+                ${CROWN_PRESETS.map((c) => `<option value="${c.id}" ${inputs.profile === c.id ? 'selected' : ''}>${c.name}${c.pricePerFt ? ' (~$' + c.pricePerFt + '/ft)' : ''}</option>`).join('')}
               </select>
             </div>
             <div class="form-field">
               <label class="form-label">Stock Length</label>
               <select class="form-select" name="stockLength">
-                ${TRIM_LENGTHS.map(l => `<option value="${l.length}" ${inputs.stockLength == l.length ? 'selected' : ''}>${l.name}</option>`).join('')}
+                ${TRIM_LENGTHS.map((l) => `<option value="${l.length}" ${inputs.stockLength == l.length ? 'selected' : ''}>${l.name}</option>`).join('')}
               </select>
             </div>
             <div class="form-field">
@@ -2961,13 +3355,13 @@
             <div class="form-field">
               <label class="form-label">Profile Type</label>
               <select class="form-select" name="profile">
-                ${BASEBOARD_PRESETS.map(b => `<option value="${b.id}" ${inputs.profile === b.id ? 'selected' : ''}>${b.name}${b.pricePerFt ? ' (~$' + b.pricePerFt + '/ft)' : ''}</option>`).join('')}
+                ${BASEBOARD_PRESETS.map((b) => `<option value="${b.id}" ${inputs.profile === b.id ? 'selected' : ''}>${b.name}${b.pricePerFt ? ' (~$' + b.pricePerFt + '/ft)' : ''}</option>`).join('')}
               </select>
             </div>
             <div class="form-field">
               <label class="form-label">Stock Length</label>
               <select class="form-select" name="stockLength">
-                ${TRIM_LENGTHS.map(l => `<option value="${l.length}" ${inputs.stockLength == l.length ? 'selected' : ''}>${l.name}</option>`).join('')}
+                ${TRIM_LENGTHS.map((l) => `<option value="${l.length}" ${inputs.stockLength == l.length ? 'selected' : ''}>${l.name}</option>`).join('')}
               </select>
             </div>
             <div class="form-field">
@@ -3047,14 +3441,19 @@
             <div class="form-field">
               <label class="form-label">Profile Type</label>
               <select class="form-select" name="profile">
-                ${QUARTER_PRESETS.map(q => `<option value="${q.id}" ${inputs.profile === q.id ? 'selected' : ''}>${q.name}${q.pricePerFt ? ' (~$' + q.pricePerFt + '/ft)' : ''}</option>`).join('')}
+                ${QUARTER_PRESETS.map((q) => `<option value="${q.id}" ${inputs.profile === q.id ? 'selected' : ''}>${q.name}${q.pricePerFt ? ' (~$' + q.pricePerFt + '/ft)' : ''}</option>`).join('')}
               </select>
             </div>
             <div class="form-field">
               <label class="form-label">Stock Length</label>
               <select class="form-select" name="stockLength">
                 <option value="8" ${inputs.stockLength == 8 || !inputs.stockLength ? 'selected' : ''}>8 ft (standard)</option>
-                ${TRIM_LENGTHS.filter(l => l.length !== 8).map(l => `<option value="${l.length}" ${inputs.stockLength == l.length ? 'selected' : ''}>${l.name}</option>`).join('')}
+                ${TRIM_LENGTHS.filter((l) => l.length !== 8)
+                  .map(
+                    (l) =>
+                      `<option value="${l.length}" ${inputs.stockLength == l.length ? 'selected' : ''}>${l.name}</option>`
+                  )
+                  .join('')}
               </select>
             </div>
             <div class="form-field">
@@ -3558,11 +3957,11 @@
               </div>
             </div>
           </div>
-        `
+        `,
       };
 
       // Check if calculator is implemented
-      const calcData = CALCULATORS.find(c => c.id === calcId);
+      const calcData = CALCULATORS.find((c) => c.id === calcId);
       const isComingSoon = calcData?.status === 'coming' || !forms[calcId];
 
       if (isComingSoon) {
@@ -3603,33 +4002,33 @@
         tile: [
           { key: 'areaWithWaste', label: 'Area with Waste', suffix: ' sq ft' },
           { key: 'tilesNeeded', label: 'Tiles Needed' },
-          { key: 'boxes', label: 'Boxes', highlight: true }
+          { key: 'boxes', label: 'Boxes', highlight: true },
         ],
         mortar: [
           { key: 'bagsMin', label: 'Min Bags' },
           { key: 'bagsMax', label: 'Max Bags', highlight: true },
-          { key: 'coverage', label: 'Coverage' }
+          { key: 'coverage', label: 'Coverage' },
         ],
         grout: [
           { key: 'pounds', label: 'Grout (lbs)' },
           { key: 'bags25lb', label: '25 lb Bags', highlight: true },
           { key: 'bags10lb', label: '10 lb Bags' },
-          { key: 'coverage', label: 'Coverage', suffix: ' sqft/lb' }
+          { key: 'coverage', label: 'Coverage', suffix: ' sqft/lb' },
         ],
         leveling: [
           { key: 'volume', label: 'Volume', suffix: ' cu ft' },
-          { key: 'bags', label: 'Bags (50 lb)', highlight: true }
+          { key: 'bags', label: 'Bags (50 lb)', highlight: true },
         ],
         slope: [
           { key: 'riseAtWall', label: 'Rise at Wall', suffix: '"' },
           { key: 'area', label: 'Floor Area', suffix: ' sq ft' },
           { key: 'deckMudCuFt', label: 'Deck Mud', suffix: ' cu ft' },
-          { key: 'bags60lb', label: '60 lb Bags', highlight: true }
+          { key: 'bags60lb', label: '60 lb Bags', highlight: true },
         ],
         waterproof: [
           { key: 'membrane', label: 'Membrane', suffix: ' gal', highlight: true },
           { key: 'bandFeet', label: 'Seam Band', suffix: ' ft' },
-          { key: 'coats', label: 'Coats Required' }
+          { key: 'coats', label: 'Coats Required' },
         ],
         'bath-layout': [
           { key: 'layoutWall', label: 'Fixtures On' },
@@ -3638,12 +4037,12 @@
           { key: 'requiredWallIn', label: 'Required Wall', suffix: ' in' },
           { key: 'walkwayPass', label: 'Walkway OK' },
           { key: 'walkwayWidthIn', label: 'Clear Path', suffix: ' in', highlight: true },
-          { key: 'maxDepthClearIn', label: 'Deepest Fixture + Clear', suffix: ' in' }
+          { key: 'maxDepthClearIn', label: 'Deepest Fixture + Clear', suffix: ' in' },
         ],
         labor: [
           { key: 'hours', label: 'Est. Hours' },
           { key: 'days', label: 'Est. Days', highlight: true },
-          { key: 'rate', label: 'Production Rate' }
+          { key: 'rate', label: 'Production Rate' },
         ],
         // Trim calculator results
         crown: [
@@ -3652,71 +4051,90 @@
           { key: 'pieces', label: 'Pieces Needed', highlight: true },
           { key: 'insideCorners', label: 'Inside Corners' },
           { key: 'outsideCorners', label: 'Outside Corners' },
-          { key: 'materialCost', label: 'Est. Material', prefix: '$' }
+          { key: 'materialCost', label: 'Est. Material', prefix: '$' },
         ],
         baseboard: [
           { key: 'netPerimeter', label: 'Net Perimeter', suffix: ' ft' },
           { key: 'linearFt', label: 'Baseboard (w/ waste)', suffix: ' ft' },
           { key: 'panelFramingFt', label: 'Panel Framing', suffix: ' ft' },
           { key: 'totalPieces', label: 'Total Pieces', highlight: true },
-          { key: 'materialCost', label: 'Est. Material', prefix: '$' }
+          { key: 'materialCost', label: 'Est. Material', prefix: '$' },
         ],
         quarter: [
           { key: 'grossPerimeter', label: 'Gross Perimeter', suffix: ' ft' },
           { key: 'deductions', label: 'Deductions', suffix: ' ft' },
           { key: 'linearFt', label: 'Linear Ft (w/ waste)', suffix: ' ft' },
           { key: 'pieces', label: 'Pieces Needed', highlight: true },
-          { key: 'materialCost', label: 'Est. Material', prefix: '$' }
+          { key: 'materialCost', label: 'Est. Material', prefix: '$' },
         ],
         // Advanced calculators
         deflection: [
           { key: 'deflectionRatio', label: 'Deflection Ratio', prefix: 'L/' },
-          { key: 'passesCeramic', label: 'Ceramic (L/360)', transform: v => v ? '✅ Pass' : '❌ Fail' },
-          { key: 'passesStone', label: 'Stone (L/720)', transform: v => v ? '✅ Pass' : '❌ Fail', highlight: true },
-          { key: 'deltaInches', label: 'Max Deflection', suffix: '"' }
+          {
+            key: 'passesCeramic',
+            label: 'Ceramic (L/360)',
+            transform: (v) => (v ? '✅ Pass' : '❌ Fail'),
+          },
+          {
+            key: 'passesStone',
+            label: 'Stone (L/720)',
+            transform: (v) => (v ? '✅ Pass' : '❌ Fail'),
+            highlight: true,
+          },
+          { key: 'deltaInches', label: 'Max Deflection', suffix: '"' },
         ],
         'heated-floor': [
           { key: 'totalWatts', label: 'Total Watts', suffix: ' W' },
           { key: 'amps', label: 'Amp Draw', suffix: ' A', highlight: true },
           { key: 'breakerAmps', label: 'Breaker Size', suffix: ' A' },
           { key: 'circuits', label: 'Circuits Needed' },
-          { key: 'needsRelay', label: 'External Relay', transform: v => v ? '⚠️ Yes' : 'No' }
+          { key: 'needsRelay', label: 'External Relay', transform: (v) => (v ? '⚠️ Yes' : 'No') },
         ],
         'thinset-mix': [
           { key: 'batchWeightLbs', label: 'Batch Weight', suffix: ' lbs' },
-          { key: 'waterQuartsRange', label: 'Water Range', transform: v => v ? `${v[0]}–${v[1]} qt` : '—', highlight: true },
+          {
+            key: 'waterQuartsRange',
+            label: 'Water Range',
+            transform: (v) => (v ? `${v[0]}–${v[1]} qt` : '—'),
+            highlight: true,
+          },
           { key: 'estimatedYieldCuFt', label: 'Est. Yield', suffix: ' cu ft' },
-          { key: 'potLifeMinutes', label: 'Pot Life', suffix: ' min' }
+          { key: 'potLifeMinutes', label: 'Pot Life', suffix: ' min' },
         ],
         primer: [
           { key: 'gallons', label: 'Primer Needed', suffix: ' gal', highlight: true },
           { key: 'coats', label: 'Coats' },
-          { key: 'coverageUsed', label: 'Coverage Used', suffix: ' sf/gal' }
+          { key: 'coverageUsed', label: 'Coverage Used', suffix: ' sf/gal' },
         ],
         'deck-mud': [
           { key: 'volumeCuFt', label: 'Volume', suffix: ' cu ft' },
           { key: 'bags', label: 'Bags (50 lb)', highlight: true },
-          { key: 'avgThicknessInches', label: 'Avg Thickness', suffix: '"' }
+          { key: 'avgThicknessInches', label: 'Avg Thickness', suffix: '"' },
         ],
         sealant: [
           { key: 'tubes', label: 'Tubes Needed', highlight: true },
-          { key: 'totalVolumeCuIn', label: 'Total Volume', suffix: ' cu in' }
+          { key: 'totalVolumeCuIn', label: 'Total Volume', suffix: ' cu in' },
         ],
         sealer: [
           { key: 'gallons', label: 'Sealer Needed', suffix: ' gal', highlight: true },
-          { key: 'coverageUsedSqFtPerGal', label: 'Coverage Rate', suffix: ' sf/gal' }
+          { key: 'coverageUsedSqFtPerGal', label: 'Coverage Rate', suffix: ' sf/gal' },
         ],
         movement: [
           { key: 'spacingFt', label: 'Joint Spacing', suffix: ' ft', highlight: true },
           { key: 'jointsLong', label: 'Joints (Length)' },
           { key: 'jointsShort', label: 'Joints (Width)' },
-          { key: 'totalJoints', label: 'Total Joints' }
+          { key: 'totalJoints', label: 'Total Joints' },
         ],
         moisture: [
-          { key: 'mverPass', label: 'MVER Test', transform: v => v ? '✅ Pass' : '❌ Fail' },
-          { key: 'rhPass', label: 'RH Test', transform: v => v ? '✅ Pass' : '❌ Fail' },
-          { key: 'requiresMitigation', label: 'Needs Mitigation', transform: v => v ? '⚠️ Yes' : '✅ No', highlight: true }
-        ]
+          { key: 'mverPass', label: 'MVER Test', transform: (v) => (v ? '✅ Pass' : '❌ Fail') },
+          { key: 'rhPass', label: 'RH Test', transform: (v) => (v ? '✅ Pass' : '❌ Fail') },
+          {
+            key: 'requiresMitigation',
+            label: 'Needs Mitigation',
+            transform: (v) => (v ? '⚠️ Yes' : '✅ No'),
+            highlight: true,
+          },
+        ],
       };
 
       const fields = resultFields[calcId] || [];
@@ -3732,11 +4150,15 @@
       // Get shop links for this calculator
       const inputs = AppState.calculatorInputs[calcId] || {};
       const shopLinks = getShopLinks(calcId, inputs);
-      const shopLinksHtml = shopLinks.length > 0 ? `
+      const shopLinksHtml =
+        shopLinks.length > 0
+          ? `
         <div class="calc-results__shop">
           <h5 class="calc-results__shop-title">🛒 Shop This Material</h5>
           <div class="shop-links">
-            ${shopLinks.map(link => `
+            ${shopLinks
+              .map(
+                (link) => `
               <a href="${link.url}" 
                  class="shop-link" 
                  target="_blank" 
@@ -3747,22 +4169,27 @@
                 <span class="shop-link__icon">${link.icon}</span>
                 <span class="shop-link__name">${link.name}</span>
               </a>
-            `).join('')}
+            `
+              )
+              .join('')}
             <button type="button" class="shop-link shop-link--local" onclick="window.TillerApp.findLocalSuppliers('${calcId}')">
               <span class="shop-link__icon">📍</span>
               <span class="shop-link__name">Local Stores</span>
             </button>
           </div>
         </div>
-      ` : '';
+      `
+          : '';
 
       // Auto-save indicator
-      const autoSaveHtml = AppState.settings.autoSave ? `
+      const autoSaveHtml = AppState.settings.autoSave
+        ? `
         <div class="autosave-indicator" id="autosave-${calcId}">
           <span class="autosave-icon">💾</span>
           <span class="autosave-text">Auto-saved to project</span>
         </div>
-      ` : `
+      `
+        : `
         <button type="button" class="btn btn--secondary btn--sm" onclick="window.TillerApp.saveToProject('${calcId}')">
           💾 Save to Project
         </button>
@@ -3770,7 +4197,8 @@
 
       // Get pro tip for this calculator type
       const tip = getProTip(calcId);
-      const proTipHtml = tip ? `
+      const proTipHtml = tip
+        ? `
         <div class="result-pro-tip">
           <div class="result-pro-tip__header">
             <span class="result-pro-tip__icon">💡</span>
@@ -3778,26 +4206,31 @@
           </div>
           <p class="result-pro-tip__text">${tip.tip}</p>
         </div>
-      ` : '';
+      `
+        : '';
 
       return `
         <div class="calc-results">
           <h4 class="calc-results__title">Results</h4>
           <div class="calc-results__grid">
-            ${fields.map(f => `
+            ${fields
+              .map(
+                (f) => `
               <div class="calc-result">
                 <div class="calc-result__label">${f.label}</div>
                 <div class="calc-result__value ${f.highlight ? 'calc-result__value--highlight' : ''}">
                   ${getDisplayValue(f)}
                 </div>
               </div>
-            `).join('')}
+            `
+              )
+              .join('')}
           </div>
           ${results.note ? `<p class="calc-results__note">${results.note}</p>` : ''}
           ${results.warning ? `<p class="calc-results__warning">⚠️ ${results.warning}</p>` : ''}
-          ${results.assumptions?.length ? `<details class="calc-results__assumptions"><summary>Assumptions</summary><ul>${results.assumptions.map(a => `<li>${a}</li>`).join('')}</ul></details>` : ''}
-          ${results.warnings?.length ? `<div class="calc-results__warnings">${results.warnings.map(w => `<p class="calc-results__warning">⚠️ ${w}</p>`).join('')}</div>` : ''}
-          ${results.notes?.length ? `<details class="calc-results__notes"><summary>Notes</summary><ul>${results.notes.map(n => `<li>${n}</li>`).join('')}</ul></details>` : ''}
+          ${results.assumptions?.length ? `<details class="calc-results__assumptions"><summary>Assumptions</summary><ul>${results.assumptions.map((a) => `<li>${a}</li>`).join('')}</ul></details>` : ''}
+          ${results.warnings?.length ? `<div class="calc-results__warnings">${results.warnings.map((w) => `<p class="calc-results__warning">⚠️ ${w}</p>`).join('')}</div>` : ''}
+          ${results.notes?.length ? `<details class="calc-results__notes"><summary>Notes</summary><ul>${results.notes.map((n) => `<li>${n}</li>`).join('')}</ul></details>` : ''}
           ${proTipHtml}
           ${shopLinksHtml}
           <div class="mt-lg calc-results__actions">
@@ -3814,7 +4247,7 @@
     },
 
     attachCalculatorListeners() {
-      document.querySelectorAll('.calc-form').forEach(form => {
+      document.querySelectorAll('.calc-form').forEach((form) => {
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
           const calcId = form.dataset.calc;
@@ -3832,12 +4265,12 @@
             if (form.querySelector(`[name="${key}"]`)?.type === 'checkbox') {
               inputs[key] = form.querySelector(`[name="${key}"]`).checked;
             } else {
-              inputs[key] = value === '' ? null : (isNaN(value) ? value : parseFloat(value));
+              inputs[key] = value === '' ? null : isNaN(value) ? value : parseFloat(value);
             }
           });
 
           // Also get checkboxes that aren't checked
-          form.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          form.querySelectorAll('input[type="checkbox"]').forEach((cb) => {
             if (!inputs.hasOwnProperty(cb.name)) {
               inputs[cb.name] = cb.checked;
             }
@@ -3846,7 +4279,7 @@
           AppState.calculatorInputs[calcId] = inputs;
 
           // Brief delay for visual feedback
-          await new Promise(r => setTimeout(r, 150));
+          await new Promise((r) => setTimeout(r, 150));
 
           const calcFn = Calculations[calcId];
           if (calcFn) {
@@ -3869,7 +4302,7 @@
         });
 
         // Auto-calculate on input change
-        form.querySelectorAll('input, select').forEach(input => {
+        form.querySelectorAll('input, select').forEach((input) => {
           input.addEventListener('change', () => {
             const calcId = form.dataset.calc;
             const submitBtn = form.querySelector('button[type="submit"]');
@@ -3900,18 +4333,26 @@
                 <span>📥</span> Import
               </button>
               <input type="file" id="import-input" accept=".json" hidden onchange="window.TillerApp.Storage.importData(this.files[0])">
-              ${projects.length > 0 ? `
+              ${
+                projects.length > 0
+                  ? `
                 <button class="btn btn--secondary" onclick="window.TillerApp.Storage.exportData()">
                   <span>📤</span> Export All
                 </button>
-              ` : ''}
+              `
+                  : ''
+              }
             </div>
           </div>
 
-          ${projects.length > 0 ? `
+          ${
+            projects.length > 0
+              ? `
             <!-- Project Grid -->
             <div class="project-grid">
-              ${projects.map(p => `
+              ${projects
+                .map(
+                  (p) => `
                 <article class="project-card" data-project-id="${p.id}">
                   <div class="project-card__header">
                     <div class="project-card__icon">📋</div>
@@ -3952,9 +4393,12 @@
                     </div>
                   </div>
                 </article>
-              `).join('')}
+              `
+                )
+                .join('')}
             </div>
-          ` : `
+          `
+              : `
             <!-- Empty State -->
             <div class="empty-state empty-state--large">
               <div class="empty-state__icon">📁</div>
@@ -3964,7 +4408,8 @@
                 <span>➕</span> Create First Project
               </button>
             </div>
-          `}
+          `
+          }
         </div>
       `;
     },
@@ -4038,7 +4483,9 @@
                     Test Connection
                   </button>
                 </div>
-                ${apiConnected ? `
+                ${
+                  apiConnected
+                    ? `
                   <div class="setting-actions">
                     <button class="btn btn--sm btn--secondary" onclick="window.TillerApp.syncToToolkit()">
                       <span>⬆️</span> Push to Toolkit
@@ -4047,7 +4494,9 @@
                       <span>⬇️</span> Pull from Toolkit
                     </button>
                   </div>
-                ` : ''}
+                `
+                    : ''
+                }
               </div>
             </section>
 
@@ -4136,7 +4585,7 @@
       if (diffDays === 1) return 'Yesterday';
       if (diffDays < 7) return `${diffDays} days ago`;
       return date.toLocaleDateString();
-    }
+    },
   };
 
   // ==
@@ -4175,7 +4624,7 @@
           }
         }
       });
-    }
+    },
   };
 
   // ==
@@ -4185,11 +4634,12 @@
   const ServiceWorkerManager = {
     register() {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-          .then(reg => {
+        navigator.serviceWorker
+          .register('/sw.js')
+          .then((reg) => {
             // // // // // // // // // // // // // // // console.log('SW registered:', reg.scope); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
           })
-          .catch(err => {
+          .catch((err) => {
             // // // // // // // // // // // // // // // console.log('SW registration failed:', err); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
           });
       }
@@ -4204,7 +4654,7 @@
           ${isOnline ? 'Online' : 'Offline'}
         `;
       }
-    }
+    },
   };
 
   // ==
@@ -4238,11 +4688,13 @@
         ServiceWorkerManager.register();
 
         // Check toolkit API connection (non-blocking)
-        API.checkHealth().then(connected => {
-          if (connected) {
-            Toast.show('Connected to Toolkit API', 'success');
-          }
-        }).catch(() => {}); // Ignore API check errors
+        API.checkHealth()
+          .then((connected) => {
+            if (connected) {
+              Toast.show('Connected to Toolkit API', 'success');
+            }
+          })
+          .catch(() => {}); // Ignore API check errors
 
         // Periodic health check (every 30 seconds)
         setInterval(() => API.checkHealth(), 30000);
@@ -4278,7 +4730,9 @@
         });
 
         // New project button
-        document.getElementById('new-project-btn')?.addEventListener('click', () => this.createNewProject());
+        document
+          .getElementById('new-project-btn')
+          ?.addEventListener('click', () => this.createNewProject());
 
         // Save button
         document.getElementById('save-btn')?.addEventListener('click', () => {
@@ -4288,11 +4742,12 @@
 
         // Update project count
         Projects.updateCount();
-
       } catch (err) {
         console.error('TillerPro init error:', err);
         // Show error toast if available
-        try { Toast.show('App initialization error', 'error'); } catch (e) {}
+        try {
+          Toast.show('App initialization error', 'error');
+        } catch (e) {}
       } finally {
         // ALWAYS show the app, even if init had errors
         showApp();
@@ -4325,7 +4780,7 @@
         footer: `
           <button class="btn btn--secondary" onclick="window.TillerApp.Modal.hide()">Cancel</button>
           <button class="btn btn--primary" id="create-project-btn">Create</button>
-        `
+        `,
       });
 
       const input = document.getElementById('new-project-name');
@@ -4379,7 +4834,7 @@
         project.calculations[calcId] = {
           inputs: AppState.calculatorInputs[calcId],
           results: AppState.calculatorResults[calcId],
-          savedAt: new Date().toISOString()
+          savedAt: new Date().toISOString(),
         };
 
         // Update total area from tile calc
@@ -4396,7 +4851,11 @@
     autoSaveToProject(calcId, inputs, results) {
       // Create project if none exists
       if (!AppState.activeProject && AppState.settings.autoCreateProject) {
-        const today = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const today = new Date().toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        });
         const project = Projects.create(`Project ${today}`);
         AppState.activeProject = project.id;
         Projects.updateCount();
@@ -4414,7 +4873,7 @@
         inputs,
         results,
         savedAt: new Date().toISOString(),
-        shopLinksClicked: []
+        shopLinksClicked: [],
       };
 
       // Update project totals based on calculator type
@@ -4436,7 +4895,7 @@
         project.totals = {
           area: 0,
           materials: {},
-          estimatedCost: 0
+          estimatedCost: 0,
         };
       }
 
@@ -4449,20 +4908,24 @@
       // Track materials
       if (results) {
         const materialMap = {
-          tile: { key: 'tiles', unit: results.boxes ? 'boxes' : 'tiles', value: results.boxes || results.tilesNeeded },
+          tile: {
+            key: 'tiles',
+            unit: results.boxes ? 'boxes' : 'tiles',
+            value: results.boxes || results.tilesNeeded,
+          },
           mortar: { key: 'mortar', unit: 'bags', value: results.bags },
           grout: { key: 'grout', unit: 'bags', value: results.bags },
           leveling: { key: 'leveling', unit: 'bags', value: results.bags },
           waterproof: { key: 'waterproof', unit: 'gal', value: results.gallons },
           sealant: { key: 'sealant', unit: 'tubes', value: results.tubes },
-          sealer: { key: 'sealer', unit: 'gal', value: results.gallons }
+          sealer: { key: 'sealer', unit: 'gal', value: results.gallons },
         };
 
         const material = materialMap[calcId];
         if (material && material.value) {
           project.totals.materials[material.key] = {
             quantity: material.value,
-            unit: material.unit
+            unit: material.unit,
           };
         }
       }
@@ -4482,7 +4945,7 @@
         sealant: 'Caulk/Sealant',
         sealer: 'Sealer',
         primer: 'Primer',
-        'deck-mud': 'Deck Mud'
+        'deck-mud': 'Deck Mud',
       };
 
       Object.entries(project.calculations).forEach(([calcId, data]) => {
@@ -4493,13 +4956,14 @@
 
         // Map calculator results to shopping items
         if (calcId === 'tile' && results.tilesNeeded) {
-          const size = inputs.tileWidth && inputs.tileHeight ? `${inputs.tileWidth}×${inputs.tileHeight}` : '';
+          const size =
+            inputs.tileWidth && inputs.tileHeight ? `${inputs.tileWidth}×${inputs.tileHeight}` : '';
           shoppingList.push({
             item: size ? `${size} Tile` : 'Tile',
             quantity: results.boxes || Math.ceil(results.tilesNeeded / 10),
             unit: results.boxes ? 'boxes' : 'tiles',
             source: calcId,
-            spec: results.note || ''
+            spec: results.note || '',
           });
         }
 
@@ -4508,7 +4972,7 @@
             item: inputs.backButter ? 'LFT Thin-Set Mortar' : 'Thin-Set Mortar',
             quantity: results.bags,
             unit: 'bags (50 lb)',
-            source: calcId
+            source: calcId,
           });
         }
 
@@ -4518,7 +4982,7 @@
             item: jointSize > 0.125 ? 'Sanded Grout' : 'Unsanded Grout',
             quantity: results.bags,
             unit: 'bags',
-            source: calcId
+            source: calcId,
           });
         }
 
@@ -4527,7 +4991,7 @@
             item: 'Self-Leveling Underlayment',
             quantity: results.bags,
             unit: 'bags (50 lb)',
-            source: calcId
+            source: calcId,
           });
         }
 
@@ -4536,7 +5000,7 @@
             item: 'Waterproofing Membrane',
             quantity: results.gallons,
             unit: 'gallons',
-            source: calcId
+            source: calcId,
           });
         }
 
@@ -4545,7 +5009,7 @@
             item: 'Silicone Caulk',
             quantity: results.tubes,
             unit: 'tubes',
-            source: calcId
+            source: calcId,
           });
         }
 
@@ -4554,7 +5018,7 @@
             item: 'Grout/Stone Sealer',
             quantity: results.gallons,
             unit: 'gallons',
-            source: calcId
+            source: calcId,
           });
         }
       });
@@ -4578,7 +5042,7 @@
       AppState.shopLinksClicked.push({
         retailer: retailerId,
         calculator: calcId,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
 
       // Also save to project if active
@@ -4589,7 +5053,7 @@
           project.retailerClicks.push({
             retailer: retailerId,
             product: calcId,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
           });
 
           // Update shop links clicked in calculation
@@ -4610,7 +5074,9 @@
     // Find local tile suppliers
     findLocalSuppliers(calcId) {
       const searchTermFn = SHOP_SEARCH_TERMS[calcId];
-      const searchTerm = searchTermFn ? searchTermFn(AppState.calculatorInputs[calcId] || {}) : 'tile store';
+      const searchTerm = searchTermFn
+        ? searchTermFn(AppState.calculatorInputs[calcId] || {})
+        : 'tile store';
       const mapsUrl = `https://www.google.com/maps/search/tile+store+${encodeURIComponent(searchTerm)}+near+me`;
       window.open(mapsUrl, '_blank', 'noopener');
     },
@@ -4635,7 +5101,7 @@
           autoSave: true,
           notifications: true,
           darkMode: true,
-          units: 'imperial'
+          units: 'imperial',
         };
         Projects.updateCount();
         Router.navigate('dashboard');
@@ -4682,7 +5148,7 @@
 
         for (const job of jobs) {
           // Skip if we already have this job
-          const exists = AppState.projects.some(p => p.toolkit_id === job.id);
+          const exists = AppState.projects.some((p) => p.toolkit_id === job.id);
           if (!exists) {
             const project = this.jobToProject(job);
             Projects.add(project);
@@ -4714,7 +5180,7 @@
         notes: project.notes || null,
         labor_rate: 75.0,
         overhead_percent: 15.0,
-        profit_percent: 20.0
+        profit_percent: 20.0,
       };
     },
 
@@ -4735,9 +5201,9 @@
         rooms: [],
         calculations: {},
         createdAt: job.created_at,
-        updatedAt: job.updated_at
+        updatedAt: job.updated_at,
       };
-    }
+    },
   };
 
   // ==
@@ -4838,13 +5304,19 @@
       const shoppingList = activeProject?.shoppingList || [];
 
       Toast.show('Generating PDF...', 'info');
-      const result = await window.TillerPDF.downloadQuickEstimate(calcId, inputs, results, projectName, shoppingList);
+      const result = await window.TillerPDF.downloadQuickEstimate(
+        calcId,
+        inputs,
+        results,
+        projectName,
+        shoppingList
+      );
       if (result.success) {
         Toast.show(`Downloaded: ${result.filename}`, 'success');
       } else {
         Toast.show(`PDF failed: ${result.error}`, 'error');
       }
-    }
+    },
   };
 
   // Initialize on DOM ready
@@ -4853,5 +5325,4 @@
   } else {
     App.init();
   }
-
 })();

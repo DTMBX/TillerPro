@@ -2,20 +2,28 @@
 
 ## Overview
 
-Automated tool to audit, analyze, and clean up redundant Jekyll `_includes` files. Identifies duplicates, finds references, and safely archives unnecessary files while updating all references automatically.
+Automated tool to audit, analyze, and clean up redundant Jekyll `_includes`
+files. Identifies duplicates, finds references, and safely archives unnecessary
+files while updating all references automatically.
 
 ## Features
 
-- **🔍 Comprehensive Scanning**: Recursively scans all files in `_includes` directory
-- **🎯 Duplicate Detection**: 
+- **🔍 Comprehensive Scanning**: Recursively scans all files in `_includes`
+  directory
+- **🎯 Duplicate Detection**:
   - Exact duplicates (byte-for-byte identical via SHA256)
   - Normalized duplicates (same content, different whitespace/line endings)
   - Same-name conflicts (same filename, different locations)
-- **📊 Reference Tracking**: Finds all Liquid `{% include %}` and `{% include_relative %}` usage across the repository
-- **🧠 Smart Canonical Selection**: Scores files based on folder structure, naming conventions, and path depth to recommend the best version to keep
-- **🗄️ Safe Archiving**: Archives redundant files with full folder structure preservation and manifest tracking
-- **🔧 Automatic Reference Fixing**: Updates all `{% include %}` statements to point to canonical files
-- **✅ Safety First**: Report-only by default; all destructive actions require explicit confirmation
+- **📊 Reference Tracking**: Finds all Liquid `{% include %}` and
+  `{% include_relative %}` usage across the repository
+- **🧠 Smart Canonical Selection**: Scores files based on folder structure,
+  naming conventions, and path depth to recommend the best version to keep
+- **🗄️ Safe Archiving**: Archives redundant files with full folder structure
+  preservation and manifest tracking
+- **🔧 Automatic Reference Fixing**: Updates all `{% include %}` statements to
+  point to canonical files
+- **✅ Safety First**: Report-only by default; all destructive actions require
+  explicit confirmation
 
 ## Requirements
 
@@ -32,6 +40,7 @@ Automated tool to audit, analyze, and clean up redundant Jekyll `_includes` file
 ```
 
 **Outputs:**
+
 - `_reports/includes-inventory.csv` - Complete file inventory with hashes
 - `_reports/includes-duplicates.json` - Structured duplicate data
 - `_reports/includes-cleanup-plan.md` - Human-readable cleanup recommendations
@@ -87,40 +96,45 @@ bundle exec jekyll serve
 
 ## Canonical Scoring System
 
-The tool automatically determines the "best" file to keep using this scoring system:
+The tool automatically determines the "best" file to keep using this scoring
+system:
 
-| Criterion | Score |
-|-----------|-------|
-| **Preferred Folders** | |
-| `components/` | +50 |
-| `sections/`, `layout/` | +40 |
-| `navigation/` | +35 |
-| `forms/`, `schema/` | +30 |
-| Shorter path depth | +10 per level |
-| **Penalized Patterns** | |
-| `backup/`, `old/`, `temp/`, `archive/` | -100 |
-| `deprecated/` | -90 |
-| `legacy/` | -85 |
-| Contains "copy" | -80 |
-| Contains dates (YYYY-MM) | -70 |
-| Version numbers (v1, v2) | -60 |
-| Leading underscore | -20 |
+| Criterion                              | Score         |
+| -------------------------------------- | ------------- |
+| **Preferred Folders**                  |               |
+| `components/`                          | +50           |
+| `sections/`, `layout/`                 | +40           |
+| `navigation/`                          | +35           |
+| `forms/`, `schema/`                    | +30           |
+| Shorter path depth                     | +10 per level |
+| **Penalized Patterns**                 |               |
+| `backup/`, `old/`, `temp/`, `archive/` | -100          |
+| `deprecated/`                          | -90           |
+| `legacy/`                              | -85           |
+| Contains "copy"                        | -80           |
+| Contains dates (YYYY-MM)               | -70           |
+| Version numbers (v1, v2)               | -60           |
+| Leading underscore                     | -20           |
 
 ## Parameters
 
 - `-RepoRoot` - Path to repository root (default: current directory)
-- `-ArchiveRedundant` - Archive redundant files to `archive/includes-redundant/<timestamp>/`
+- `-ArchiveRedundant` - Archive redundant files to
+  `archive/includes-redundant/<timestamp>/`
 - `-FixReferences` - Rewrite `{% include %}` references to use canonical paths
-- `-DeleteAfterArchive` - Delete redundant files after archiving (requires `-ArchiveRedundant`)
+- `-DeleteAfterArchive` - Delete redundant files after archiving (requires
+  `-ArchiveRedundant`)
 - `-WhatIf` - Preview actions without making changes
 
 ## Safety Features
 
 - **Report-only by default**: No changes unless explicitly requested
 - **WhatIf support**: Preview all actions before execution
-- **Archive before delete**: Redundant files are copied to `archive/` before deletion
+- **Archive before delete**: Redundant files are copied to `archive/` before
+  deletion
 - **Manifest tracking**: JSON manifest created with every archive operation
-- **Confirmation prompts**: PowerShell's `ShouldProcess` for all destructive operations
+- **Confirmation prompts**: PowerShell's `ShouldProcess` for all destructive
+  operations
 - **Reference validation**: Verifies all include references before updating
 
 ## Archive Structure
@@ -170,16 +184,22 @@ archive/
 ## Troubleshooting
 
 ### "Includes directory not found"
-Ensure you're running the script from the repository root where `_includes/` exists.
+
+Ensure you're running the script from the repository root where `_includes/`
+exists.
 
 ### "Requires PowerShell 7.0+"
+
 Install PowerShell 7:
+
 ```powershell
 winget install Microsoft.PowerShell
 ```
 
 ### References not found correctly
+
 The tool searches for:
+
 - `{% include "file.html" %}`
 - `{% include 'file.html' %}`
 - `{% include file.html %}`

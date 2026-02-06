@@ -20,7 +20,9 @@
 }
 
 .hover-lift {
-  transition: transform var(--transition-base) ease-out, box-shadow var(--transition-base) ease-out;
+  transition:
+    transform var(--transition-base) ease-out,
+    box-shadow var(--transition-base) ease-out;
 }
 
 .hover-lift:hover {

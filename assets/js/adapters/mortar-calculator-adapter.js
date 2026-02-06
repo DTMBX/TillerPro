@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-(function() {
+(function () {
   'use strict';
 
   class MortarCalculatorAdapter {
@@ -45,7 +45,7 @@
         calcButton: document.getElementById('calc-mortar-btn'),
         results: document.getElementById('mortar-calc-results'),
         resultBags: document.getElementById('result-mortar-bags'),
-        mortarNote: document.getElementById('mortar-calc-note')
+        mortarNote: document.getElementById('mortar-calc-note'),
       };
     }
 
@@ -67,7 +67,7 @@
         const sizeKey = `${tile.size.width}x${tile.size.length}`;
         if (this.elements.tileSize) {
           const option = Array.from(this.elements.tileSize.options).find(
-            opt => opt.value === sizeKey
+            (opt) => opt.value === sizeKey
           );
           if (option) {
             this.elements.tileSize.value = sizeKey;
@@ -121,7 +121,7 @@
       }
 
       // Custom size change
-      [this.elements.customWidth, this.elements.customHeight].forEach(el => {
+      [this.elements.customWidth, this.elements.customHeight].forEach((el) => {
         if (el) {
           el.addEventListener('change', () => {
             const w = parseFloat(this.elements.customWidth?.value) || 0;
@@ -169,7 +169,9 @@
       }
 
       this.elements.trowel.value = recommendedTrowel;
-      console.log(`[MortarAdapter] Auto-recommended trowel: ${recommendedTrowel} for ${width}x${length}"`);
+      console.log(
+        `[MortarAdapter] Auto-recommended trowel: ${recommendedTrowel} for ${width}x${length}"`
+      );
     }
 
     setTrowelHint(text) {
@@ -188,7 +190,7 @@
         const sizeKey = `${width}x${length}`;
         if (this.elements.tileSize && !this.elements.tileSize.value) {
           const option = Array.from(this.elements.tileSize.options).find(
-            opt => opt.value === sizeKey
+            (opt) => opt.value === sizeKey
           );
           if (option) {
             this.elements.tileSize.value = sizeKey;
@@ -229,11 +231,11 @@
 
       // Mortar coverage rates (sq ft per 50 lb bag) vary by trowel size
       const coverageRates = {
-        '1/4x1/4x1/4': 90,  // Square notch small
+        '1/4x1/4x1/4': 90, // Square notch small
         '1/4x3/8x1/4': 75,
         '1/4x1/2x1/4': 60,
         '3/8x1/2x3/8': 50,
-        '1/2x1/2x1/2': 40   // Square notch large format
+        '1/2x1/2x1/2': 40, // Square notch large format
       };
 
       const coveragePerBag = coverageRates[trowelSize] || 60;
@@ -257,14 +259,14 @@
         bags: bagsNeeded,
         trowelSize,
         backButter,
-        substrate
+        substrate,
       });
 
       this.saveCalculationToState({
         trowelSize,
         backButter,
         substrate,
-        bagsNeeded
+        bagsNeeded,
       });
 
       console.log('[MortarAdapter] Calculation complete');
@@ -334,5 +336,4 @@
       adapter.init();
     }
   }
-
 })();

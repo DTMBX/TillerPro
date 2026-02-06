@@ -82,7 +82,7 @@ class AppShell {
       const newDoc = parser.parseFromString(html, 'text/html');
 
       // Wait for minimum transition time (prevents flash)
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, 300));
 
       // Update content
       this.updatePageContent(newDoc);
@@ -96,10 +96,9 @@ class AppShell {
       // Notify analytics
       if (typeof gtag !== 'undefined') {
         gtag('config', 'G-XXXXXXXX', {
-          page_path: url
+          page_path: url,
         });
       }
-
     } catch (error) {
       console.error('[AppShell] Navigation failed:', error);
       // Fallback to normal navigation
@@ -161,7 +160,7 @@ class AppShell {
 
     // Update Open Graph
     const ogTags = ['og:title', 'og:description', 'og:url', 'og:image'];
-    ogTags.forEach(tag => {
+    ogTags.forEach((tag) => {
       const newTag = newDoc.querySelector(`meta[property="${tag}"]`);
       const currentTag = document.querySelector(`meta[property="${tag}"]`);
       if (newTag && currentTag) {
@@ -183,7 +182,7 @@ class AppShell {
 
     // Re-attach event listeners for forms
     const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
+    forms.forEach((form) => {
       // Trigger custom event for form reinitialization
       form.dispatchEvent(new Event('reinitialize'));
     });
@@ -216,9 +215,9 @@ class AppShell {
   initCriticalPathOptimization() {
     // Defer non-critical CSS
     const nonCriticalCSS = document.querySelectorAll('link[rel="stylesheet"][data-defer]');
-    nonCriticalCSS.forEach(link => {
+    nonCriticalCSS.forEach((link) => {
       link.media = 'print';
-      link.onload = function() {
+      link.onload = function () {
         this.media = 'all';
       };
     });
@@ -226,7 +225,7 @@ class AppShell {
     // Lazy load images below the fold
     if ('loading' in HTMLImageElement.prototype) {
       const images = document.querySelectorAll('img[data-src]');
-      images.forEach(img => {
+      images.forEach((img) => {
         img.src = img.dataset.src;
         img.removeAttribute('data-src');
       });
@@ -257,7 +256,7 @@ class AppShell {
 
     // Prefetch primary CTAs immediately
     const ctaLinks = document.querySelectorAll('.cta-button, .btn-primary');
-    ctaLinks.forEach(link => {
+    ctaLinks.forEach((link) => {
       if (link.href && link.hostname === window.location.hostname) {
         this.prefetchPage(link.href);
       }
@@ -296,7 +295,7 @@ class AppShell {
               event_category: 'Web Vitals',
               event_label: 'LCP',
               value: Math.round(lastEntry.renderTime || lastEntry.loadTime),
-              non_interaction: true
+              non_interaction: true,
             });
           }
         });
@@ -310,7 +309,7 @@ class AppShell {
       try {
         const inpObserver = new PerformanceObserver((list) => {
           const entries = list.getEntries();
-          entries.forEach(entry => {
+          entries.forEach((entry) => {
             // // // // // // // // // // // // // // // console.log('[Performance] INP:', entry.processingStart - entry.startTime); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
           });
         });

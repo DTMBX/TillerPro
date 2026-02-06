@@ -3,12 +3,17 @@
 ## Date: January 29, 2026
 
 ## Summary
-This document lists CSS and HTML files that have been deprecated or removed as part of the mobile CSS correctness repair. These files contained unsafe global overrides, conflicting rules, and broken navigation implementations.
+
+This document lists CSS and HTML files that have been deprecated or removed as
+part of the mobile CSS correctness repair. These files contained unsafe global
+overrides, conflicting rules, and broken navigation implementations.
 
 ## Deprecated CSS Files (DO NOT USE)
 
 ### Emergency Fix Files - **REMOVED/REPLACED**
-These files forced `display: block !important` and `transform: none !important` globally, breaking all animations and the mobile navigation drawer.
+
+These files forced `display: block !important` and `transform: none !important`
+globally, breaking all animations and the mobile navigation drawer.
 
 1. **mobile-layout-emergency.css** → Replaced by `mobile-base.css`
    - Reason: Forced hiding of mobile nav drawer with `display: none !important`
@@ -26,6 +31,7 @@ These files forced `display: block !important` and `transform: none !important` 
    - Impact: Modals and drawers behind content
 
 ### Fix Cascade Conflicts - **DEPRECATED**
+
 Files that fought each other with !important declarations:
 
 4. **mobile-master-fix.css** → Consolidated into mobile-base.css
@@ -48,7 +54,8 @@ Files that fought each other with !important declarations:
 
 ### Duplicate/Redundant Files - **DEPRECATED**
 
-21. **tillerpro-contrast-fix.css** → Page-specific contrast in pages/tillerpro.css
+21. **tillerpro-contrast-fix.css** → Page-specific contrast in
+    pages/tillerpro.css
 22. **mobile-experience-fix-2026-01-28.css** → Consolidated into mobile-base.css
 23. **mobile-homepage-beautiful.css** → Page-specific home.css
 
@@ -59,17 +66,24 @@ Files that fought each other with !important declarations:
 **File**: `_includes/layout/page-shell.html`
 
 **Removed**: Inline `<style>` block (lines 4-50)
+
 ```html
 <!-- THIS WAS REMOVED - DO NOT ADD BACK -->
 <style>
   @media (max-width: 768px) {
-    * { animation: none !important; transform: none !important; }
-    .mobile-nav__toggle { display: none !important; }
+    * {
+      animation: none !important;
+      transform: none !important;
+    }
+    .mobile-nav__toggle {
+      display: none !important;
+    }
   }
 </style>
 ```
 
-**Reason**: 
+**Reason**:
+
 - Forced all content visible with `display: block !important`
 - Disabled all animations globally
 - **CRITICALLY**: Hid the mobile navigation toggle and drawer
@@ -81,10 +95,10 @@ Files that fought each other with !important declarations:
 
 **File**: `_includes/layout/head.html`
 
-**Before**: 73 CSS files loaded
-**After**: 18 CSS files loaded (75% reduction)
+**Before**: 73 CSS files loaded **After**: 18 CSS files loaded (75% reduction)
 
 **Removed duplicate/conflicting loads**:
+
 - mobile-layout-emergency.css (line 14, 112)
 - mobile-emergency-fix.css (line 15, 118)
 - mobile-critical-fix.css (line 213)
@@ -96,7 +110,8 @@ Files that fought each other with !important declarations:
 ### Replacement Files
 
 1. **mobile-base.css** - Proper mobile-first foundation
-   - CSS layers: `@layer reset, tokens, mobile-base, base, layout, components, utilities`
+   - CSS layers:
+     `@layer reset, tokens, mobile-base, base, layout, components, utilities`
    - NO blanket !important overrides
    - Proper mobile nav drawer implementation
    - Touch target sizing (WCAG 2.5.5)
@@ -113,12 +128,14 @@ Files that fought each other with !important declarations:
 ### Linting Infrastructure Added
 
 Created configuration files:
+
 - `.stylelintrc.json` - CSS linting
 - `.eslintrc.cjs` - JavaScript linting
 - `.htmlvalidate.json` - HTML validation
 - `.prettierrc.json` - Code formatting
 
 Added npm scripts:
+
 - `npm run lint` - Run all linters
 - `npm run lint:fix` - Auto-fix issues
 - `npm run lint:css` - CSS only
@@ -131,19 +148,23 @@ Added npm scripts:
 ### For Developers
 
 **DO THIS**:
+
 ```html
 <!-- Use the new clean head -->
 {% include layout/head-clean.html %}
 ```
 
 **DON'T DO THIS**:
+
 ```html
 <!-- Old bloated head with 73 CSS files -->
 {% include layout/head.html %}
 
 <!-- Inline emergency styles -->
 <style>
-  * { display: block !important; }
+  * {
+    display: block !important;
+  }
 </style>
 ```
 
@@ -158,6 +179,7 @@ Added npm scripts:
 ### Navigation Implementation
 
 **Correct pattern** (mobile-base.css):
+
 ```css
 /* Toggle visible */
 .ts-nav-toggle {
@@ -170,12 +192,13 @@ Added npm scripts:
 }
 
 /* Drawer visible when opened */
-.ts-mobile-nav[aria-hidden="false"] {
+.ts-mobile-nav[aria-hidden='false'] {
   transform: translateX(0);
 }
 ```
 
 **WRONG pattern** (deprecated emergency files):
+
 ```css
 /* This breaks navigation */
 .mobile-nav__toggle {
@@ -247,6 +270,7 @@ git checkout <commit-hash> -- assets/css/mobile-emergency-fix.css
 ```
 
 **However**: Restoring these files will break mobile navigation again. Instead:
+
 1. Check mobile-base.css for the correct pattern
 2. Verify navigation.js is loaded and error-free
 3. Ensure no inline styles override the drawer
@@ -255,6 +279,7 @@ git checkout <commit-hash> -- assets/css/mobile-emergency-fix.css
 ## Support
 
 Questions or issues? Check:
+
 1. This DEPRECATION.md document
 2. mobile-base.css comments
 3. navigation.js documentation
@@ -262,7 +287,9 @@ Questions or issues? Check:
 
 ## References
 
-- WCAG 2.5.5 Target Size: https://www.w3.org/WAI/WCAG21/Understanding/target-size.html
+- WCAG 2.5.5 Target Size:
+  https://www.w3.org/WAI/WCAG21/Understanding/target-size.html
 - CSS Cascade Layers: https://developer.mozilla.org/en-US/docs/Web/CSS/@layer
-- Mobile-First CSS: https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Responsive/Mobile_first
+- Mobile-First CSS:
+  https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Responsive/Mobile_first
 - ARIA Drawer Pattern: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/

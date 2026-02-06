@@ -31,8 +31,8 @@ const ADMIN_USERS = {
   admin: {
     username: 'admin',
     // Default password: 'tillerstead2026' - CHANGE THIS!
-    passwordHash: '$2b$10$K8OvMmzY5bD5x6FpN3rJNurKWn2VNx9.EoEQPV9zWqPGUoKnE8WDi'
-  }
+    passwordHash: '$2b$10$K8OvMmzY5bD5x6FpN3rJNurKWn2VNx9.EoEQPV9zWqPGUoKnE8WDi',
+  },
 };
 
 // Security headers
@@ -98,7 +98,7 @@ app.post('/api/auth/login', security.authLimiter, security.checkBruteForce, asyn
     return res.json({
       success: true,
       username,
-      require2FA: true
+      require2FA: true,
     });
   }
 
@@ -195,18 +195,20 @@ app.get('/api/content/files', requireAuth, async (req, res) => {
   try {
     const dataDir = path.join(__dirname, '..', '_data');
     const files = await fs.readdir(dataDir);
-    const ymlFiles = files.filter(f => f.endsWith('.yml'));
+    const ymlFiles = files.filter((f) => f.endsWith('.yml'));
 
-    const fileList = await Promise.all(ymlFiles.map(async (filename) => {
-      const filePath = path.join(dataDir, filename);
-      const stats = await fs.stat(filePath);
-      return {
-        name: filename,
-        path: filename,
-        size: stats.size,
-        modified: stats.mtime
-      };
-    }));
+    const fileList = await Promise.all(
+      ymlFiles.map(async (filename) => {
+        const filePath = path.join(dataDir, filename);
+        const stats = await fs.stat(filePath);
+        return {
+          name: filename,
+          path: filename,
+          size: stats.size,
+          modified: stats.mtime,
+        };
+      })
+    );
 
     res.json(fileList);
   } catch (error) {
@@ -231,7 +233,7 @@ app.get('/api/content/file/:filename', requireAuth, async (req, res) => {
     res.json({
       filename,
       content,
-      parsed: data
+      parsed: data,
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -307,7 +309,10 @@ app.put('/api/settings', requireAuth, async (req, res) => {
     // Write updated content
     await fs.writeFile(configPath, content, 'utf8');
 
-    res.json({ success: true, message: 'Site configuration updated. Restart Jekyll to apply changes.' });
+    res.json({
+      success: true,
+      message: 'Site configuration updated. Restart Jekyll to apply changes.',
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -322,7 +327,7 @@ function extractCalculatorConfig(toolsContent) {
     tilePresets: [],
     layoutPresets: [],
     jointPresets: [],
-    trowelPresets: []
+    trowelPresets: [],
   };
 
   // Extract TILE_PRESETS array
@@ -395,18 +400,18 @@ app.get('/api/security/overview', requireAuth, async (req, res) => {
   try {
     const logs = await security.auditLog.getRecentLogs(1000);
     const now = Date.now();
-    const oneDayAgo = now - (24 * 60 * 60 * 1000);
+    const oneDayAgo = now - 24 * 60 * 60 * 1000;
 
-    const loginAttempts = logs.filter(log =>
-      log.event === 'login_success' || log.event === 'login_failed'
-    ).filter(log => new Date(log.timestamp).getTime() > oneDayAgo).length;
+    const loginAttempts = logs
+      .filter((log) => log.event === 'login_success' || log.event === 'login_failed')
+      .filter((log) => new Date(log.timestamp).getTime() > oneDayAgo).length;
 
-    const failedLogins = logs.filter(log =>
-      log.event === 'login_failed'
-    ).filter(log => new Date(log.timestamp).getTime() > oneDayAgo).length;
+    const failedLogins = logs
+      .filter((log) => log.event === 'login_failed')
+      .filter((log) => new Date(log.timestamp).getTime() > oneDayAgo).length;
 
-    const highSeverity = logs.filter(log =>
-      log.severity === 'high' || log.severity === 'critical'
+    const highSeverity = logs.filter(
+      (log) => log.severity === 'high' || log.severity === 'critical'
     ).length;
 
     res.json({
@@ -418,7 +423,7 @@ app.get('/api/security/overview', requireAuth, async (req, res) => {
       blacklistCount: security.ipFilter.blacklist.size,
       highSeverity,
       suspicious: 0,
-      blocked: 0
+      blocked: 0,
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -434,7 +439,7 @@ app.post('/api/auth/2fa/setup', requireAuth, async (req, res) => {
 
     res.json({
       secret: secretData.secret,
-      qrCode
+      qrCode,
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -559,7 +564,7 @@ app.delete('/api/security/api-keys/:hash', requireAuth, async (req, res) => {
 app.get('/api/security/ip-filter', requireAuth, (req, res) => {
   res.json({
     whitelist: Array.from(security.ipFilter.whitelist),
-    blacklist: Array.from(security.ipFilter.blacklist)
+    blacklist: Array.from(security.ipFilter.blacklist),
   });
 });
 
@@ -611,9 +616,9 @@ app.get('/api/users/stats', requireAuth, (req, res) => {
 
   res.json({
     total: users.length,
-    active: users.filter(u => u.isActive).length,
-    admins: users.filter(u => u.role === 'admin').length,
-    sessions: sessions.length
+    active: users.filter((u) => u.isActive).length,
+    admins: users.filter((u) => u.role === 'admin').length,
+    sessions: sessions.length,
   });
 });
 
@@ -632,9 +637,15 @@ app.post('/api/users', requireAuth, async (req, res) => {
     const { username, email, password, role } = req.body;
     const newUser = await userManager.createUser(username, email, password, role);
 
-    security.auditLog.log('user_created', req.session.userId, {
-      username, role
-    }, req.ip);
+    security.auditLog.log(
+      'user_created',
+      req.session.userId,
+      {
+        username,
+        role,
+      },
+      req.ip
+    );
 
     emailNotifier.notifyNewUser(newUser, req.session.userId);
 
@@ -650,10 +661,15 @@ app.put('/api/users/:username', requireAuth, async (req, res) => {
     const updates = req.body;
     const updatedUser = await userManager.updateUser(req.params.username, updates);
 
-    security.auditLog.log('user_updated', req.session.userId, {
-      username: req.params.username,
-      updates: Object.keys(updates)
-    }, req.ip);
+    security.auditLog.log(
+      'user_updated',
+      req.session.userId,
+      {
+        username: req.params.username,
+        updates: Object.keys(updates),
+      },
+      req.ip
+    );
 
     res.json(updatedUser);
   } catch (error) {
@@ -666,9 +682,14 @@ app.delete('/api/users/:username', requireAuth, async (req, res) => {
   try {
     await userManager.deleteUser(req.params.username);
 
-    security.auditLog.log('user_deleted', req.session.userId, {
-      username: req.params.username
-    }, req.ip);
+    security.auditLog.log(
+      'user_deleted',
+      req.session.userId,
+      {
+        username: req.params.username,
+      },
+      req.ip
+    );
 
     emailNotifier.notifyUserDeleted(req.params.username, req.session.userId);
 
@@ -684,10 +705,15 @@ app.put('/api/users/:username/status', requireAuth, async (req, res) => {
     const { isActive } = req.body;
     const updatedUser = await userManager.toggleUserStatus(req.params.username, isActive);
 
-    security.auditLog.log('user_status_changed', req.session.userId, {
-      username: req.params.username,
-      isActive
-    }, req.ip);
+    security.auditLog.log(
+      'user_status_changed',
+      req.session.userId,
+      {
+        username: req.params.username,
+        isActive,
+      },
+      req.ip
+    );
 
     res.json(updatedUser);
   } catch (error) {
@@ -701,9 +727,14 @@ app.post('/api/users/:username/change-password', requireAuth, async (req, res) =
     const { currentPassword, newPassword } = req.body;
     await userManager.changePassword(req.params.username, currentPassword, newPassword);
 
-    security.auditLog.log('password_changed', req.session.userId, {
-      username: req.params.username
-    }, req.ip);
+    security.auditLog.log(
+      'password_changed',
+      req.session.userId,
+      {
+        username: req.params.username,
+      },
+      req.ip
+    );
 
     emailNotifier.notifyPasswordChanged(req.params.username);
 

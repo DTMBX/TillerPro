@@ -1,13 +1,13 @@
 ---
 layout: default
-title: "Tile Pattern Visualizer | Tillerstead"
-meta_title: "Free Tile Pattern Visualizer - Preview Layouts Before You Buy | Tillerstead"
-meta_description: "Interactive tile pattern designer for South Jersey homeowners. Preview straight, brick, herringbone, and diagonal patterns. Calculate materials, save designs, get instant quotes."
-description: "Design your tile layout before you buy. Choose patterns, tile sizes, and grout colors. Get instant material calculations and free estimates."
+title: 'Tile Pattern Visualizer | Tillerstead'
+meta_title: 'Free Tile Pattern Visualizer - Preview Layouts Before You Buy | Tillerstead'
+meta_description: 'Interactive tile pattern designer for South Jersey homeowners. Preview straight, brick, herringbone, and diagonal patterns. Calculate materials, save designs, get instant quotes.'
+description: 'Design your tile layout before you buy. Choose patterns, tile sizes, and grout colors. Get instant material calculations and free estimates.'
 permalink: /tile-visualizer/
 body_class: page-visualizer
 schema_type: WebApplication
-canonical_url: "https://tillerstead.com/tile-visualizer/"
+canonical_url: 'https://tillerstead.com/tile-visualizer/'
 priority: 0.9
 sitemap:
   changefreq: weekly
@@ -15,11 +15,10 @@ sitemap:
 robots: index, follow
 og_type: website
 og_image: /assets/images/og-visualizer.webp
-keywords: "tile pattern visualizer, bathroom tile designer, herringbone pattern calculator, tile layout planner, NJ tile design tool"
+keywords: 'tile pattern visualizer, bathroom tile designer, herringbone pattern calculator, tile layout planner, NJ tile design tool'
 ---
 
 <div class="visualizer-container">
-  
   <!-- Header -->
   <header class="visualizer-header">
     <h1 class="visualizer-title">🎨 Tile Pattern Visualizer</h1>
@@ -28,24 +27,20 @@ keywords: "tile pattern visualizer, bathroom tile designer, herringbone pattern 
 
   <!-- Main Visualizer Layout -->
   <div class="visualizer-layout">
-    
     <!-- Left Sidebar: Controls -->
     <aside class="visualizer-sidebar">
-      
       <!-- Room Dimensions -->
       <section class="control-section">
         <h3 class="control-title">📏 Room Dimensions</h3>
         <div class="control-group">
           <label for="room-width">Width (feet)</label>
-          <input type="number" id="room-width" min="3" max="20" value="8" step="0.5">
+          <input type="number" id="room-width" min="3" max="20" value="8" step="0.5" />
         </div>
         <div class="control-group">
           <label for="room-length">Length (feet)</label>
-          <input type="number" id="room-length" min="3" max="20" value="10" step="0.5">
+          <input type="number" id="room-length" min="3" max="20" value="10" step="0.5" />
         </div>
-        <div class="dimension-display">
-          <strong>Total Area:</strong> <span id="total-area">80.0</span> sq ft
-        </div>
+        <div class="dimension-display"><strong>Total Area:</strong> <span id="total-area">80.0</span> sq ft</div>
       </section>
 
       <!-- Tile Selection -->
@@ -64,9 +59,9 @@ keywords: "tile pattern visualizer, bathroom tile designer, herringbone pattern 
         <div class="control-group">
           <label>Custom Size (inches)</label>
           <div class="custom-size-inputs">
-            <input type="number" id="custom-width" placeholder="W" min="1" max="48" step="0.5">
+            <input type="number" id="custom-width" placeholder="W" min="1" max="48" step="0.5" />
             <span>×</span>
-            <input type="number" id="custom-height" placeholder="H" min="1" max="48" step="0.5">
+            <input type="number" id="custom-height" placeholder="H" min="1" max="48" step="0.5" />
             <button id="apply-custom" class="btn-small">Apply</button>
           </div>
         </div>
@@ -108,24 +103,39 @@ keywords: "tile pattern visualizer, bathroom tile designer, herringbone pattern 
         <h3 class="control-title">⚪ Grout</h3>
         <div class="control-group">
           <label for="grout-width">Width (1/16" to 1/2")</label>
-          <input type="range" id="grout-width" min="0.0625" max="0.5" step="0.0625" value="0.125">
+          <input type="range" id="grout-width" min="0.0625" max="0.5" step="0.0625" value="0.125" />
           <span class="grout-width-display">1/8"</span>
         </div>
         <div class="control-group">
           <label>Color</label>
           <div class="grout-color-grid">
-            <button class="grout-color-btn active" data-color="#CCCCCC" style="background: #CCCCCC;" title="Light Gray"></button>
-            <button class="grout-color-btn" data-color="#808080" style="background: #808080;" title="Medium Gray"></button>
-            <button class="grout-color-btn" data-color="#404040" style="background: #404040;" title="Dark Gray"></button>
-            <button class="grout-color-btn" data-color="#FFFFFF" style="background: #FFFFFF; border: 1px solid #ccc;" title="White"></button>
-            <button class="grout-color-btn" data-color="#000000" style="background: #000000;" title="Black"></button>
-            <button class="grout-color-btn" data-color="#D2B48C" style="background: #D2B48C;" title="Tan"></button>
-            <button class="grout-color-btn" data-color="#8B7355" style="background: #8B7355;" title="Brown"></button>
-            <button class="grout-color-btn" data-color="#4A5568" style="background: #4A5568;" title="Charcoal"></button>
+            <button
+              class="grout-color-btn active"
+              data-color="#CCCCCC"
+              style="background: #cccccc"
+              title="Light Gray"
+            ></button>
+            <button
+              class="grout-color-btn"
+              data-color="#808080"
+              style="background: #808080"
+              title="Medium Gray"
+            ></button>
+            <button class="grout-color-btn" data-color="#404040" style="background: #404040" title="Dark Gray"></button>
+            <button
+              class="grout-color-btn"
+              data-color="#FFFFFF"
+              style="background: #ffffff; border: 1px solid #ccc"
+              title="White"
+            ></button>
+            <button class="grout-color-btn" data-color="#000000" style="background: #000000" title="Black"></button>
+            <button class="grout-color-btn" data-color="#D2B48C" style="background: #d2b48c" title="Tan"></button>
+            <button class="grout-color-btn" data-color="#8B7355" style="background: #8b7355" title="Brown"></button>
+            <button class="grout-color-btn" data-color="#4A5568" style="background: #4a5568" title="Charcoal"></button>
           </div>
           <div class="custom-grout-color">
             <label for="custom-grout-color">Custom:</label>
-            <input type="color" id="custom-grout-color" value="#CCCCCC">
+            <input type="color" id="custom-grout-color" value="#CCCCCC" />
           </div>
         </div>
       </section>
@@ -134,22 +144,27 @@ keywords: "tile pattern visualizer, bathroom tile designer, herringbone pattern 
       <section class="control-section">
         <h3 class="control-title">🎨 Tile Color</h3>
         <div class="tile-color-grid">
-          <button class="tile-color-btn active" data-color="#F5F5DC" style="background: #F5F5DC;" title="Beige"></button>
-          <button class="tile-color-btn" data-color="#FFFFFF" style="background: #FFFFFF; border: 1px solid #ccc;" title="White"></button>
-          <button class="tile-color-btn" data-color="#E8E8E8" style="background: #E8E8E8;" title="Light Gray"></button>
-          <button class="tile-color-btn" data-color="#696969" style="background: #696969;" title="Dark Gray"></button>
-          <button class="tile-color-btn" data-color="#2C2C2C" style="background: #2C2C2C;" title="Black"></button>
-          <button class="tile-color-btn" data-color="#D2B48C" style="background: #D2B48C;" title="Tan"></button>
-          <button class="tile-color-btn" data-color="#8B7355" style="background: #8B7355;" title="Brown"></button>
-          <button class="tile-color-btn" data-color="#B0C4DE" style="background: #B0C4DE;" title="Light Blue"></button>
-          <button class="tile-color-btn" data-color="#2F4F4F" style="background: #2F4F4F;" title="Slate"></button>
-          <button class="tile-color-btn" data-color="#CD853F" style="background: #CD853F;" title="Terra Cotta"></button>
-          <button class="tile-color-btn" data-color="#556B2F" style="background: #556B2F;" title="Olive"></button>
-          <button class="tile-color-btn" data-color="#BC8F8F" style="background: #BC8F8F;" title="Rose"></button>
+          <button class="tile-color-btn active" data-color="#F5F5DC" style="background: #f5f5dc" title="Beige"></button>
+          <button
+            class="tile-color-btn"
+            data-color="#FFFFFF"
+            style="background: #ffffff; border: 1px solid #ccc"
+            title="White"
+          ></button>
+          <button class="tile-color-btn" data-color="#E8E8E8" style="background: #e8e8e8" title="Light Gray"></button>
+          <button class="tile-color-btn" data-color="#696969" style="background: #696969" title="Dark Gray"></button>
+          <button class="tile-color-btn" data-color="#2C2C2C" style="background: #2c2c2c" title="Black"></button>
+          <button class="tile-color-btn" data-color="#D2B48C" style="background: #d2b48c" title="Tan"></button>
+          <button class="tile-color-btn" data-color="#8B7355" style="background: #8b7355" title="Brown"></button>
+          <button class="tile-color-btn" data-color="#B0C4DE" style="background: #b0c4de" title="Light Blue"></button>
+          <button class="tile-color-btn" data-color="#2F4F4F" style="background: #2f4f4f" title="Slate"></button>
+          <button class="tile-color-btn" data-color="#CD853F" style="background: #cd853f" title="Terra Cotta"></button>
+          <button class="tile-color-btn" data-color="#556B2F" style="background: #556b2f" title="Olive"></button>
+          <button class="tile-color-btn" data-color="#BC8F8F" style="background: #bc8f8f" title="Rose"></button>
         </div>
         <div class="custom-tile-color">
           <label for="custom-tile-color">Custom:</label>
-          <input type="color" id="custom-tile-color" value="#F5F5DC">
+          <input type="color" id="custom-tile-color" value="#F5F5DC" />
         </div>
       </section>
 
@@ -161,7 +176,6 @@ keywords: "tile pattern visualizer, bathroom tile designer, herringbone pattern 
         <button id="export-image" class="btn-action">📸 Export Image</button>
         <button id="reset-design" class="btn-action btn-secondary">🔄 Reset</button>
       </section>
-
     </aside>
 
     <!-- Center: Canvas -->
@@ -178,57 +192,57 @@ keywords: "tile pattern visualizer, bathroom tile designer, herringbone pattern 
 
     <!-- Right Sidebar: Material Calculator -->
     <aside class="visualizer-results">
-      
       <!-- Material Calculator -->
       <section class="result-section">
         <h3 class="result-title">📊 Material Calculator</h3>
-        
+
         <div class="calc-item">
           <span class="calc-label">Tiles Needed:</span>
           <span class="calc-value" id="tiles-needed">0</span>
         </div>
-        
+
         <div class="calc-item">
           <span class="calc-label">Coverage:</span>
           <span class="calc-value" id="coverage-percent">0%</span>
         </div>
-        
+
         <div class="calc-item">
           <span class="calc-label">With 10% Waste:</span>
           <span class="calc-value" id="tiles-with-waste">0</span>
         </div>
-        
+
         <div class="calc-item">
           <span class="calc-label">Boxes Needed:</span>
           <span class="calc-value" id="boxes-needed">0</span>
         </div>
-        
+
         <div class="calc-separator"></div>
-        
+
         <div class="calc-item">
           <span class="calc-label">Grout Coverage:</span>
           <span class="calc-value" id="grout-coverage">0 sq ft</span>
         </div>
-        
+
         <div class="calc-item">
           <span class="calc-label">Thinset Needed:</span>
           <span class="calc-value" id="thinset-needed">0 lbs</span>
         </div>
-        
+
         <div class="calc-note">
-          💡 <strong>Note:</strong> Calculations include 10% waste factor for cuts and breakage. Always verify with your installer.
+          💡 <strong>Note:</strong> Calculations include 10% waste factor for cuts and breakage. Always verify with your
+          installer.
         </div>
       </section>
 
       <!-- Cost Estimator -->
       <section class="result-section">
         <h3 class="result-title">💰 Cost Estimator</h3>
-        
+
         <div class="control-group">
           <label for="tile-price">Tile Price ($/sq ft)</label>
-          <input type="number" id="tile-price" min="1" max="100" value="5" step="0.5">
+          <input type="number" id="tile-price" min="1" max="100" value="5" step="0.5" />
         </div>
-        
+
         <div class="cost-breakdown">
           <div class="cost-item">
             <span>Tile Material:</span>
@@ -247,7 +261,7 @@ keywords: "tile pattern visualizer, bathroom tile designer, herringbone pattern 
             <strong id="materials-total">$0</strong>
           </div>
         </div>
-        
+
         <div class="calc-note">
           💡 This is materials only. Professional installation typically costs $8-15/sq ft in South Jersey.
         </div>
@@ -257,7 +271,10 @@ keywords: "tile pattern visualizer, bathroom tile designer, herringbone pattern 
       <section class="result-section">
         <h3 class="result-title">ℹ️ Pattern Details</h3>
         <div id="pattern-info" class="pattern-info">
-          <p><strong>Straight Pattern:</strong> Classic grid layout. Easiest to install, minimal waste. Works well with any tile size.</p>
+          <p>
+            <strong>Straight Pattern:</strong> Classic grid layout. Easiest to install, minimal waste. Works well with
+            any tile size.
+          </p>
         </div>
       </section>
 
@@ -268,9 +285,7 @@ keywords: "tile pattern visualizer, bathroom tile designer, herringbone pattern 
         <a href="/contact/" class="btn-cta">Get Free Quote</a>
         <p class="cta-note">Licensed • Insured • TCNA-Compliant</p>
       </section>
-
     </aside>
-
   </div>
 
   <!-- Instructions Panel -->
@@ -303,8 +318,7 @@ keywords: "tile pattern visualizer, bathroom tile designer, herringbone pattern 
       </div>
     </div>
   </section>
-
 </div>
 
-<link rel="stylesheet" href="/assets/css/tile-visualizer.css">
+<link rel="stylesheet" href="/assets/css/tile-visualizer.css" />
 <script src="/assets/js/tile-visualizer.js"></script>

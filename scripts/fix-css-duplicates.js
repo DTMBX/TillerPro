@@ -49,7 +49,7 @@ const duplicatesToRemove = [
   { selector: '.container-sm', firstLine: 571 },
   { selector: '.container-md', firstLine: 575 },
   { selector: '.container-lg', firstLine: 579 },
-  { selector: '.container-2xl', firstLine: 587 }
+  { selector: '.container-2xl', firstLine: 587 },
 ];
 
 // Find and mark duplicate blocks for removal
@@ -61,18 +61,18 @@ const linesToRemove = new Set();
 for (let i = 0; i < lines.length; i++) {
   const line = lines[i];
   const lineNum = i + 1;
-  
+
   // Check if this line starts a duplicate selector
   for (const dup of duplicatesToRemove) {
     if (lineNum > dup.firstLine && line.trim().startsWith(dup.selector.split('\n')[0].trim())) {
       // Found a duplicate - mark this entire block for removal
       console.log(`🗑️  Found duplicate at line ${lineNum}: ${dup.selector.replace(/\n/g, ' ')}`);
-      
+
       // Find the end of this CSS block
       let braceCount = 0;
       let blockEnd = i;
       let foundOpenBrace = false;
-      
+
       for (let j = i; j < lines.length; j++) {
         const blockLine = lines[j];
         if (blockLine.includes('{')) {
@@ -87,23 +87,28 @@ for (let i = 0; i < lines.length; i++) {
           break;
         }
       }
-      
+
       // Also include preceding comments
       let blockStart = i;
       for (let j = i - 1; j >= 0; j--) {
         const prevLine = lines[j].trim();
-        if (prevLine.startsWith('/*') || prevLine.includes('*/') || prevLine === '' || prevLine.startsWith('=')) {
+        if (
+          prevLine.startsWith('/*') ||
+          prevLine.includes('*/') ||
+          prevLine === '' ||
+          prevLine.startsWith('=')
+        ) {
           blockStart = j;
         } else {
           break;
         }
       }
-      
+
       // Mark all lines in this block for removal
       for (let k = blockStart; k <= blockEnd; k++) {
         linesToRemove.add(k);
       }
-      
+
       console.log(`   Removing lines ${blockStart + 1} to ${blockEnd + 1}`);
       break;
     }

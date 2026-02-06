@@ -9,20 +9,20 @@
 
 :root {
   /* ===== PRIMARY BRAND COLORS ===== */
-  --brand-green-dark: #004d2b;   /* Dark backgrounds */
-  --brand-green: #006b3d;         /* Primary brand */
-  --brand-green-light: #00a35c;   /* Accents */
-  --brand-gold: #d4af37;          /* Premium accents */
-  --brand-gold-bright: #ffd700;   /* Highlights */
-  
+  --brand-green-dark: #004d2b; /* Dark backgrounds */
+  --brand-green: #006b3d; /* Primary brand */
+  --brand-green-light: #00a35c; /* Accents */
+  --brand-gold: #d4af37; /* Premium accents */
+  --brand-gold-bright: #ffd700; /* Highlights */
+
   /* ===== HIGH CONTRAST TEXT COLORS ===== */
-  --text-white: #ffffff;          /* On dark backgrounds - 21:1 ratio */
-  --text-black: #000000;          /* On light backgrounds - 21:1 ratio */
-  --text-dark: #0a0a0a;           /* Near-black - 19:1 ratio */
-  --text-gray-dark: #1a1a1a;      /* Dark gray - 16:1 ratio */
-  --text-gray: #333333;           /* Medium gray - 12:1 ratio */
-  --text-gray-light: #666666;     /* Light gray - 7:1 ratio (minimum) */
-  
+  --text-white: #ffffff; /* On dark backgrounds - 21:1 ratio */
+  --text-black: #000000; /* On light backgrounds - 21:1 ratio */
+  --text-dark: #0a0a0a; /* Near-black - 19:1 ratio */
+  --text-gray-dark: #1a1a1a; /* Dark gray - 16:1 ratio */
+  --text-gray: #333333; /* Medium gray - 12:1 ratio */
+  --text-gray-light: #666666; /* Light gray - 7:1 ratio (minimum) */
+
   /* ===== BACKGROUND COLORS ===== */
   --bg-black: #000000;
   --bg-dark: #0a0a0a;
@@ -30,12 +30,12 @@
   --bg-white: #ffffff;
   --bg-off-white: #f8f7f5;
   --bg-cream: #fdfcfa;
-  
+
   /* ===== STATUS COLORS (High Contrast) ===== */
-  --success-green: #00a35c;       /* Success messages */
-  --warning-orange: #ff8c00;      /* Warnings */
-  --error-red: #dc143c;           /* Errors */
-  --info-blue: #0066cc;           /* Information */
+  --success-green: #00a35c; /* Success messages */
+  --warning-orange: #ff8c00; /* Warnings */
+  --error-red: #dc143c; /* Errors */
+  --info-blue: #0066cc; /* Information */
 }
 
 /* ============================================================
@@ -45,10 +45,10 @@
 /* Force high contrast on dark backgrounds */
 .bg-dark,
 .bg-black,
-[style*="background: #000"],
-[style*="background-color: #000"],
-[style*="background: rgb(0, 0, 0)"],
-[class*="dark"] {
+[style*='background: #000'],
+[style*='background-color: #000'],
+[style*='background: rgb(0, 0, 0)'],
+[class*='dark'] {
   color: var(--text-white) !important;
 }
 
@@ -61,8 +61,8 @@
 .bg-white,
 .bg-off-white,
 .bg-cream,
-[style*="background: #fff"],
-[style*="background-color: #fff"] {
+[style*='background: #fff'],
+[style*='background-color: #fff'] {
   color: var(--text-dark) !important;
 }
 
@@ -71,15 +71,24 @@
    ============================================================ */
 
 /* Headings - Maximum Contrast */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--text-white) !important;
   text-shadow: 0 2px 8px rgb(0 0 0 / 80%) !important;
   font-weight: 900 !important;
 }
 
 /* On light backgrounds */
-.bg-white h1, .bg-white h2, .bg-white h3,
-.bg-off-white h1, .bg-off-white h2, .bg-off-white h3 {
+.bg-white h1,
+.bg-white h2,
+.bg-white h3,
+.bg-off-white h1,
+.bg-off-white h2,
+.bg-off-white h3 {
   color: var(--text-black) !important;
   text-shadow: none !important;
 }
@@ -92,20 +101,21 @@ p {
   text-shadow: 0 1px 3px rgb(0 0 0 / 60%) !important;
 }
 
-.bg-white p, .bg-off-white p {
+.bg-white p,
+.bg-off-white p {
   color: var(--text-dark) !important;
   text-shadow: none !important;
 }
 
 /* License/Badge text - CRITICAL VISIBILITY */
-[class*="license"],
-[class*="hic"],
-[class*="badge"],
+[class*='license'],
+[class*='hic'],
+[class*='badge'],
 .credential {
   color: var(--brand-gold-bright) !important;
   font-weight: 900 !important;
   font-size: 1.125rem !important;
-  text-shadow: 
+  text-shadow:
     0 2px 4px rgb(0 0 0 / 90%),
     0 0 20px rgb(0 0 0 / 50%) !important;
   background: rgb(0 107 61 / 90%) !important;
@@ -117,7 +127,7 @@ p {
 /* Testimonial text */
 .testimonial,
 .review,
-[class*="testimonial"] {
+[class*='testimonial'] {
   background: var(--bg-dark) !important;
   color: var(--text-white) !important;
   padding: 2rem !important;
@@ -134,7 +144,7 @@ p {
 /* Testimonial author names */
 .testimonial-author,
 .review-author,
-[class*="author"] {
+[class*='author'] {
   color: var(--brand-gold-bright) !important;
   font-weight: 900 !important;
   font-size: 1.25rem !important;
@@ -151,7 +161,7 @@ p {
 
 /* Service descriptions on dark backgrounds */
 .service-description,
-[class*="description"] {
+[class*='description'] {
   color: var(--text-white) !important;
   font-size: 1rem !important;
   font-weight: 600 !important;
@@ -162,8 +172,8 @@ p {
 /* Location/region text */
 .location,
 .region,
-[class*="location"],
-[class*="region"] {
+[class*='location'],
+[class*='region'] {
   color: var(--brand-gold-bright) !important;
   font-weight: 800 !important;
   text-shadow: 0 2px 4px rgb(0 0 0 / 80%) !important;
@@ -240,7 +250,7 @@ a:hover {
 /* Service cards */
 .card,
 .service-card,
-[class*="card"] {
+[class*='card'] {
   background: var(--bg-dark) !important;
   border: 3px solid var(--brand-green) !important;
   color: var(--text-white) !important;
@@ -320,22 +330,26 @@ label {
 
 @media (max-width: 768px) {
   /* Increase font weight on mobile */
-  p, span, div {
+  p,
+  span,
+  div {
     font-weight: 700 !important;
   }
-  
+
   /* Stronger shadows on mobile */
-  h1, h2, h3 {
-    text-shadow: 
+  h1,
+  h2,
+  h3 {
+    text-shadow:
       0 3px 10px rgb(0 0 0 / 90%),
       0 0 30px rgb(0 0 0 / 60%) !important;
   }
-  
+
   /* Make all text larger on mobile */
   body {
     font-size: 16px !important;
   }
-  
+
   p {
     font-size: 1.125rem !important;
   }
@@ -351,8 +365,13 @@ label {
     background: var(--bg-black) !important;
     color: var(--text-white) !important;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: var(--text-white) !important;
   }
 }
@@ -362,25 +381,25 @@ label {
    ============================================================ */
 
 /* NO gray text on black/dark backgrounds */
-[style*="color: #666"],
-[style*="color: #777"],
-[style*="color: #888"],
-[style*="color: #999"],
-[style*="color: gray"],
-[style*="color: grey"] {
+[style*='color: #666'],
+[style*='color: #777'],
+[style*='color: #888'],
+[style*='color: #999'],
+[style*='color: gray'],
+[style*='color: grey'] {
   color: var(--text-white) !important;
 }
 
 /* NO light text on light backgrounds */
-.bg-white [style*="color: #eee"],
-.bg-white [style*="color: #ddd"],
-.bg-white [style*="color: #ccc"] {
+.bg-white [style*='color: #eee'],
+.bg-white [style*='color: #ddd'],
+.bg-white [style*='color: #ccc'] {
   color: var(--text-black) !important;
 }
 
 /* Force visibility on any dark-on-dark combinations */
 .bg-dark .text-dark,
 .bg-black .text-dark,
-[style*="background: #000"][style*="color: #333"] {
+[style*='background: #000'][style*='color: #333'] {
   color: var(--text-white) !important;
 }

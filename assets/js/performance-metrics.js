@@ -6,11 +6,11 @@
 
 export async function measureWebVitals() {
   const vitals = {
-    lcp: null,  // Largest Contentful Paint
-    fid: null,  // First Input Delay
-    cls: null,  // Cumulative Layout Shift
-    fcp: null,  // First Contentful Paint
-    ttfb: null  // Time to First Byte
+    lcp: null, // Largest Contentful Paint
+    fid: null, // First Input Delay
+    cls: null, // Cumulative Layout Shift
+    fcp: null, // First Contentful Paint
+    ttfb: null, // Time to First Byte
   };
 
   // Performance Observer for Web Vitals
@@ -31,7 +31,7 @@ export async function measureWebVitals() {
     try {
       const fidObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries();
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.name === 'first-input') {
             vitals.fid = entry.processingStart - entry.startTime;
           }
@@ -68,7 +68,7 @@ export async function measureWebVitals() {
 
     // FCP - First Contentful Paint
     const paintEntries = performance.getEntriesByType('paint');
-    const fcpEntry = paintEntries.find(entry => entry.name === 'first-contentful-paint');
+    const fcpEntry = paintEntries.find((entry) => entry.name === 'first-contentful-paint');
     if (fcpEntry) {
       vitals.fcp = fcpEntry.startTime;
     }
@@ -110,7 +110,7 @@ async function measureAndReport() {
         value: Math.round(score),
         lcp: Math.round(vitals.lcp),
         fid: Math.round(vitals.fid || 0),
-        cls: vitals.cls ? vitals.cls.toFixed(3) : 0
+        cls: vitals.cls ? vitals.cls.toFixed(3) : 0,
       });
     }
   }, 3000); // Wait 3s for accurate measurements
@@ -174,15 +174,15 @@ export function analyzeResourceTiming() {
     js: [],
     images: [],
     fonts: [],
-    other: []
+    other: [],
   };
 
-  resources.forEach(resource => {
+  resources.forEach((resource) => {
     const entry = {
       name: resource.name.split('/').pop(),
       duration: Math.round(resource.duration),
       size: resource.transferSize,
-      cached: resource.transferSize === 0
+      cached: resource.transferSize === 0,
     };
 
     if (resource.name.endsWith('.css')) analysis.css.push(entry);

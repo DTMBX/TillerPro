@@ -113,7 +113,7 @@ class ShortcutManager {
       'ctrl+shift+z': () => this.triggerRedo(),
       'ctrl+k': () => this.focusSearch(),
       'ctrl+/': () => this.toggleShortcutsPanel(),
-      'esc': () => this.closeModals()
+      esc: () => this.closeModals(),
     };
     this.init();
   }
@@ -141,9 +141,10 @@ class ShortcutManager {
   }
 
   triggerSave() {
-    const saveBtn = document.getElementById('saveCalculatorConfig') ||
-                    document.getElementById('saveContentFile') ||
-                    document.getElementById('saveSettings');
+    const saveBtn =
+      document.getElementById('saveCalculatorConfig') ||
+      document.getElementById('saveContentFile') ||
+      document.getElementById('saveSettings');
     if (saveBtn && !saveBtn.disabled) {
       saveBtn.click();
     }
@@ -179,7 +180,7 @@ class ShortcutManager {
   }
 
   closeModals() {
-    document.querySelectorAll('.shortcuts-modal.active, .preview-panel.active').forEach(el => {
+    document.querySelectorAll('.shortcuts-modal.active, .preview-panel.active').forEach((el) => {
       el.classList.remove('active');
     });
   }
@@ -410,7 +411,7 @@ class SearchManager {
     const items = this.target.querySelectorAll('[data-searchable]');
     const normalizedQuery = query.toLowerCase().trim();
 
-    items.forEach(item => {
+    items.forEach((item) => {
       const text = item.textContent.toLowerCase();
       const matches = !normalizedQuery || text.includes(normalizedQuery);
       item.style.display = matches ? '' : 'none';
@@ -430,7 +431,7 @@ class ActivityLogger {
       id: Date.now(),
       action,
       details,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     this.activities.unshift(activity);
@@ -508,6 +509,6 @@ if (typeof module !== 'undefined' && module.exports) {
     ShortcutManager,
     HistoryManager,
     SearchManager,
-    ActivityLogger
+    ActivityLogger,
   };
 }

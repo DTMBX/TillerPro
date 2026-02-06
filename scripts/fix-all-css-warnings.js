@@ -24,10 +24,14 @@ let content = fs.readFileSync(BUNDLE_PATH, 'utf8');
 
 // Fix empty blocks
 console.log('   Removing empty @media and @supports blocks...');
-content = content.replace(/@media \(prefers-reduced-motion: reduce\) \{\s*\}/g, 
-  '@media (prefers-reduced-motion: reduce) {\n  * { animation: none !important; }\n}');
-content = content.replace(/@supports \(padding: env\(safe-area-inset-bottom\)\) \{\s*\}/g,
-  '@supports (padding: env(safe-area-inset-bottom)) {\n  body { padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }\n}');
+content = content.replace(
+  /@media \(prefers-reduced-motion: reduce\) \{\s*\}/g,
+  '@media (prefers-reduced-motion: reduce) {\n  * { animation: none !important; }\n}'
+);
+content = content.replace(
+  /@supports \(padding: env\(safe-area-inset-bottom\)\) \{\s*\}/g,
+  '@supports (padding: env(safe-area-inset-bottom)) {\n  body { padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }\n}'
+);
 
 // Fix duplicate properties - find and remove duplicates, keeping last occurrence
 const lines = content.split('\n');
@@ -38,7 +42,7 @@ let blockIndent = '';
 
 for (let i = 0; i < lines.length; i++) {
   const line = lines[i];
-  
+
   // Track if we're inside a CSS block
   if (line.includes('{') && !line.trim().startsWith('/*')) {
     insideBlock = true;
@@ -46,10 +50,10 @@ for (let i = 0; i < lines.length; i++) {
     blockIndent = line.match(/^\s*/)[0];
     continue;
   }
-  
+
   if (insideBlock) {
     blockLines.push(line);
-    
+
     if (line.includes('}')) {
       // Process this block to remove duplicate properties
       const processedBlock = removeDuplicateProperties(blockLines);
@@ -65,33 +69,33 @@ for (let i = 0; i < lines.length; i++) {
 function removeDuplicateProperties(blockLines) {
   const seenProps = new Map();
   const result = [];
-  
+
   // First line is the selector
   result.push(blockLines[0]);
-  
+
   // Process property lines
   for (let i = 1; i < blockLines.length - 1; i++) {
     const line = blockLines[i];
     const match = line.match(/^\s*([a-z-]+):/);
-    
+
     if (match) {
       const prop = match[1];
-      
+
       // Check for duplicate
       if (seenProps.has(prop)) {
         console.log(`   Removing duplicate property: ${prop}`);
         continue; // Skip duplicate
       }
-      
+
       seenProps.set(prop, true);
     }
-    
+
     result.push(line);
   }
-  
+
   // Last line is closing brace
   result.push(blockLines[blockLines.length - 1]);
-  
+
   return result;
 }
 
@@ -109,13 +113,10 @@ content = content.replace(
 );
 
 // Fix border-top-color followed by border
-content = content.replace(
-  /(border-top-color:[^;]+;[\s\S]*?)(border: [^;]+;)/g,
-  (match, p1, p2) => {
-    // Keep only border shorthand
-    return p2;
-  }
-);
+content = content.replace(/(border-top-color:[^;]+;[\s\S]*?)(border: [^;]+;)/g, (match, p1, p2) => {
+  // Keep only border shorthand
+  return p2;
+});
 
 // Add empty line before @keyframes rules
 console.log('   Adding empty lines before rules...');

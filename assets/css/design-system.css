@@ -1,4 +1,3 @@
-
 :root {
   --tiller-color-emerald: #00e184;
   --tiller-color-emerald-dark: #00b46a;
@@ -50,7 +49,7 @@
 }
 
 .ts-btn:disabled,
-.ts-btn[aria-disabled="true"] {
+.ts-btn[aria-disabled='true'] {
   opacity: 50%;
   cursor: not-allowed;
   pointer-events: none;
@@ -82,17 +81,27 @@
 }
 
 @keyframes ts-btn-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .ts-btn--primary {
-  background: linear-gradient(135deg, var(--tiller-color-gold, #d4af37) 0%, var(--tiller-color-gold-dark, #9c7a14) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--tiller-color-gold, #d4af37) 0%,
+    var(--tiller-color-gold-dark, #9c7a14) 100%
+  );
   color: var(--tiller-text-primary, #000000);
   border-color: var(--tiller-color-gold-dark, #9c7a14);
 }
 
 .ts-btn--primary:hover:not(:disabled) {
-  background: linear-gradient(135deg, var(--tiller-color-gold-bright, #ffe585) 0%, var(--tiller-color-gold, #d4af37) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--tiller-color-gold-bright, #ffe585) 0%,
+    var(--tiller-color-gold, #d4af37) 100%
+  );
   box-shadow: var(--btn-shadow-hover);
   transform: translateY(-2px);
 }
@@ -190,7 +199,7 @@
 
 @media (max-width: 640px) {
   .ts-btn--full-mobile {
-  width: 100%;
+    width: 100%;
   }
 }
 
@@ -235,7 +244,11 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--tiller-color-gold, #d4af37), var(--tiller-color-emerald, #00e184));
+  background: linear-gradient(
+    90deg,
+    var(--tiller-color-gold, #d4af37),
+    var(--tiller-color-emerald, #00e184)
+  );
   opacity: 0%;
   transition: opacity 0.3s ease;
 }
@@ -269,10 +282,11 @@
 }
 
 .ts-skeleton {
-  background: linear-gradient(90deg,
-  var(--tiller-bg-hover, #222222) 0%,
-  var(--tiller-bg-elevated, #0f0f0f) 50%,
-  var(--tiller-bg-hover, #222222) 100%
+  background: linear-gradient(
+    90deg,
+    var(--tiller-bg-hover, #222222) 0%,
+    var(--tiller-bg-elevated, #0f0f0f) 50%,
+    var(--tiller-bg-hover, #222222) 100%
   );
   background-size: 200% 100%;
   animation: ts-skeleton-loading 1.5s ease-in-out infinite;
@@ -280,8 +294,13 @@
 }
 
 @keyframes ts-skeleton-loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .ts-skeleton--text {
@@ -317,7 +336,9 @@
 }
 
 @keyframes ts-spinner-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .ts-spinner--sm {
@@ -334,35 +355,35 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .ts-fade-in {
-  animation: ts-fade-in 0.4s ease-out;
+    animation: ts-fade-in 0.4s ease-out;
   }
 
   @keyframes ts-fade-in {
-  from {
-  opacity: 0%;
-  transform: translateY(10px);
-  }
+    from {
+      opacity: 0%;
+      transform: translateY(10px);
+    }
 
-  to {
-  opacity: 100%;
-  transform: translateY(0);
-  }
+    to {
+      opacity: 100%;
+      transform: translateY(0);
+    }
   }
 
   .ts-slide-up {
-  animation: ts-slide-up 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: ts-slide-up 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   @keyframes ts-slide-up {
-  from {
-  opacity: 0%;
-  transform: translateY(30px);
-  }
+    from {
+      opacity: 0%;
+      transform: translateY(30px);
+    }
 
-  to {
-  opacity: 100%;
-  transform: translateY(0);
-  }
+    to {
+      opacity: 100%;
+      transform: translateY(0);
+    }
   }
 }
 
@@ -408,36 +429,47 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .ts-text-shimmer {
-  background: linear-gradient(90deg,
-  var(--tiller-color-gold, #d4af37) 0%,
-  var(--tiller-color-gold-bright, #ffe585) 50%,
-  var(--tiller-color-gold, #d4af37) 100%
-  );
-  background-size: 200% auto;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: ts-shimmer 3s linear infinite;
+    background: linear-gradient(
+      90deg,
+      var(--tiller-color-gold, #d4af37) 0%,
+      var(--tiller-color-gold-bright, #ffe585) 50%,
+      var(--tiller-color-gold, #d4af37) 100%
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: ts-shimmer 3s linear infinite;
   }
 
   @keyframes ts-shimmer {
-  to { background-position: 200% center; }
+    to {
+      background-position: 200% center;
+    }
   }
 }
 
 @media (max-width: 640px) {
-  .ts-hide-mobile { display: none !important; }
+  .ts-hide-mobile {
+    display: none !important;
+  }
 }
 
 @media (min-width: 641px) {
-  .ts-show-mobile { display: none !important; }
+  .ts-show-mobile {
+    display: none !important;
+  }
 }
 
 @media (max-width: 768px) {
-  .ts-hide-tablet { display: none !important; }
+  .ts-hide-tablet {
+    display: none !important;
+  }
 }
 
 @media (min-width: 769px) {
-  .ts-show-tablet { display: none !important; }
+  .ts-show-tablet {
+    display: none !important;
+  }
 }
 
 .ts-back-to-top {
@@ -450,7 +482,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--tiller-color-gold, #d4af37), var(--tiller-color-gold-dark, #9c7a14));
+  background: linear-gradient(
+    135deg,
+    var(--tiller-color-gold, #d4af37),
+    var(--tiller-color-gold-dark, #9c7a14)
+  );
   color: var(--tiller-text-primary, #000000);
   border: none;
   border-radius: 50%;
@@ -488,7 +524,7 @@ body.page-transition-in {
 
 @keyframes ts-page-fade-in {
   to {
-  opacity: 100%;
+    opacity: 100%;
   }
 }
 
@@ -498,7 +534,11 @@ body.page-transition-in {
   left: 0;
   width: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--tiller-color-gold, #d4af37), var(--tiller-color-emerald, #00e184));
+  background: linear-gradient(
+    90deg,
+    var(--tiller-color-gold, #d4af37),
+    var(--tiller-color-emerald, #00e184)
+  );
   z-index: 9999;
   transition: width 0.1s ease-out;
   box-shadow: 0 0 10px currentcolor;
@@ -508,18 +548,18 @@ body.page-transition-in {
   *,
   *::before,
   *::after {
-  animation-duration: 0.01ms !important;
-  animation-iteration-count: 1 !important;
-  transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 
   .ts-back-to-top:hover {
-  transform: none;
+    transform: none;
   }
 
   body.page-transition-out,
   body.page-transition-in {
-  animation: none;
-  opacity: 100%;
+    animation: none;
+    opacity: 100%;
   }
 }

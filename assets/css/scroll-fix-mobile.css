@@ -20,16 +20,16 @@ body:not(.nav-open) .ts-main-content {
 }
 
 /* Nav drawer should not block interaction when closed */
-.ts-drawer[aria-hidden="true"],
-#ts-mobile-nav[aria-hidden="true"],
-#mobile-nav-drawer[aria-hidden="true"] {
+.ts-drawer[aria-hidden='true'],
+#ts-mobile-nav[aria-hidden='true'],
+#mobile-nav-drawer[aria-hidden='true'] {
   pointer-events: none !important;
   touch-action: none !important;
 }
 
 /* Nav overlay should not block interaction when nav is closed */
 .nav-overlay:not(.is-open),
-.ts-drawer__overlay[aria-hidden="true"] {
+.ts-drawer__overlay[aria-hidden='true'] {
   pointer-events: none !important;
   visibility: hidden;
   opacity: 0%;
@@ -37,7 +37,7 @@ body:not(.nav-open) .ts-main-content {
 
 /* Ensure overlay allows interaction only when visible */
 .nav-overlay.is-open,
-.ts-drawer__overlay:not([aria-hidden="true"]) {
+.ts-drawer__overlay:not([aria-hidden='true']) {
   pointer-events: auto;
   visibility: visible;
   opacity: 100%;
@@ -60,14 +60,14 @@ body.menu-open {
     pointer-events: auto; /* Allow interaction with nav items */
     touch-action: manipulation; /* Allow proper touch handling */
   }
-  
+
   /* Ensure bottom nav links/buttons are clickable */
   .app-bottom-nav__link,
   .mobile-bottom-nav__link,
   .bottom-nav__link {
     pointer-events: auto;
   }
-  
+
   /* Main content should be scrollable and above bottom nav z-index */
   .ts-main-content,
   .app-main,
@@ -78,7 +78,7 @@ body.menu-open {
     position: relative;
     z-index: 1; /* Below bottom nav but scrollable */
   }
-  
+
   /* Prevent scroll lock on body unless nav drawer is open */
   body:not(.nav-open, .menu-open) {
     overflow-y: auto !important;
@@ -86,15 +86,15 @@ body.menu-open {
     position: static !important;
     height: auto !important;
   }
-  
+
   /* Fix: Don't let fixed elements block scroll */
   .ts-header,
   .app-header,
-  header[role="banner"] {
+  header[role='banner'] {
     pointer-events: auto;
     z-index: 10;
   }
-  
+
   /* Mobile nav hamburger should be above everything */
   .ts-nav-toggle,
   #mobile-menu-toggle,
@@ -102,7 +102,7 @@ body.menu-open {
     pointer-events: auto !important;
     z-index: 1001;
   }
-  
+
   /* Bottom nav should be high z-index but not block scroll */
   .app-bottom-nav,
   .mobile-bottom-nav {
@@ -120,17 +120,17 @@ body.menu-open {
     overflow: auto !important;
     height: auto !important;
   }
-  
+
   /* Mobile nav elements should have pointer-events:none on desktop */
-  .ts-drawer[aria-hidden="true"],
-  #ts-mobile-nav[aria-hidden="true"],
-  .mobile-nav-drawer[aria-hidden="true"] {
+  .ts-drawer[aria-hidden='true'],
+  #ts-mobile-nav[aria-hidden='true'],
+  .mobile-nav-drawer[aria-hidden='true'] {
     pointer-events: none !important;
   }
 }
 
 /* Emergency scroll restore (failsafe) */
-body[data-scroll-blocked="false"] {
+body[data-scroll-blocked='false'] {
   overflow-y: auto !important;
   pointer-events: auto !important;
 }
@@ -145,13 +145,13 @@ select:focus-visible {
 }
 
 /* Fix: A11y toolbar should not block scroll when closed */
-.a11y-toolbar:not([aria-expanded="true"]),
+.a11y-toolbar:not([aria-expanded='true']),
 .a11y-toolbar__panel[hidden] {
   pointer-events: none !important;
   visibility: hidden;
 }
 
-.a11y-toolbar[aria-expanded="true"],
+.a11y-toolbar[aria-expanded='true'],
 .a11y-toolbar__panel:not([hidden]) {
   pointer-events: auto;
   visibility: visible;

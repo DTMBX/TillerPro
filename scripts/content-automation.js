@@ -33,7 +33,7 @@ const CONFIG = {
 };
 
 // Ensure directories exist
-Object.values(CONFIG).forEach(dir => {
+Object.values(CONFIG).forEach((dir) => {
   if (typeof dir === 'string' && dir.includes('_')) {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
@@ -45,7 +45,6 @@ Object.values(CONFIG).forEach(dir => {
  * Content Publishing Automation
  */
 class ContentAutomation {
-
   /**
    * Generate content schedule for next N weeks
    */
@@ -64,7 +63,7 @@ class ContentAutomation {
     // Generate schedule for alternating weeks (every other Monday)
     for (let i = 0; i < weeks; i++) {
       const publishDate = new Date(currentDate);
-      publishDate.setDate(currentDate.getDate() + (i * 14)); // Every 2 weeks
+      publishDate.setDate(currentDate.getDate() + i * 14); // Every 2 weeks
 
       schedule.push({
         week: i + 1,
@@ -72,7 +71,7 @@ class ContentAutomation {
         dayOfWeek: 'Monday',
         time: CONFIG.publishTime,
         contentType: this.getContentType(i),
-        status: 'scheduled'
+        status: 'scheduled',
       });
     }
 
@@ -81,7 +80,7 @@ class ContentAutomation {
     fs.writeFileSync(schedulePath, JSON.stringify(schedule, null, 2));
 
     console.log('✅ Schedule generated:\n');
-    schedule.forEach(item => {
+    schedule.forEach((item) => {
       console.log(`Week ${item.week}: ${item.date} - ${item.contentType}`);
     });
 
@@ -108,9 +107,9 @@ class ContentAutomation {
     console.log(`\n📝 Creating ${type} from template...\n`);
 
     const templates = {
-      'blog': this.getBlogTemplate(),
+      blog: this.getBlogTemplate(),
       'case-study': this.getCaseStudyTemplate(),
-      'video-script': this.getVideoTemplate()
+      'video-script': this.getVideoTemplate(),
     };
 
     const template = templates[type];
@@ -477,7 +476,7 @@ featured: true
       facebook: this.generateFacebookPost(frontmatter),
       twitter: this.generateTwitterPost(frontmatter),
       linkedin: this.generateLinkedInPost(frontmatter),
-      instagram: this.generateInstagramPost(frontmatter)
+      instagram: this.generateInstagramPost(frontmatter),
     };
 
     // Save to file
@@ -504,10 +503,13 @@ featured: true
     if (!match) return {};
 
     const fm = {};
-    match[1].split('\n').forEach(line => {
+    match[1].split('\n').forEach((line) => {
       const [key, ...valueParts] = line.split(':');
       if (key && valueParts.length > 0) {
-        fm[key.trim()] = valueParts.join(':').trim().replace(/^["']|["']$/g, '');
+        fm[key.trim()] = valueParts
+          .join(':')
+          .trim()
+          .replace(/^["']|["']$/g, '');
       }
     });
 
@@ -529,7 +531,7 @@ Learn more and get expert insights on our blog 👇
 #TileContractor #BathroomRemodel #HomeImprovement #SouthJersey #NJ`,
       link: `https://tillerstead.com/blog/${frontmatter.date}-${frontmatter.slug || ''}`,
       image: frontmatter.image || '/assets/images/og-default.jpg',
-      cta: 'Learn More'
+      cta: 'Learn More',
     };
   }
 
@@ -548,7 +550,7 @@ Read more ↓
 
 #TileWork #Waterproofing #HomeReno #NJContractor`,
       link: `https://tillerstead.com/blog/`,
-      image: frontmatter.image
+      image: frontmatter.image,
     };
   }
 
@@ -571,7 +573,7 @@ Read the full article and learn how TCNA-compliant installation protects your in
 
 #ConstructionIndustry #TileInstallation #Waterproofing #NewJersey #HomeImprovement`,
       link: `https://tillerstead.com/blog/`,
-      image: frontmatter.image
+      image: frontmatter.image,
     };
   }
 
@@ -595,7 +597,7 @@ Link in bio for full article ☝️
 .
 #tillerstead #tileinstallation #bathroomremodel #homeimprovement #southjersey #atlanticcounty #oceancounty #capemay #njcontractor #tcna #waterproofing #beforeandafter #homerenovation #contractorlife`,
       images: [frontmatter.image],
-      carousel: true
+      carousel: true,
     };
   }
 
@@ -610,10 +612,10 @@ Link in bio for full article ☝️
       preheader: '',
       date: new Date().toISOString().split('T')[0],
       articles: [],
-      footer: this.getEmailFooter()
+      footer: this.getEmailFooter(),
     };
 
-    contentFiles.forEach(file => {
+    contentFiles.forEach((file) => {
       const content = fs.readFileSync(file, 'utf8');
       const fm = this.parseFrontmatter(content);
 
@@ -622,7 +624,7 @@ Link in bio for full article ☝️
         description: fm.description || fm.meta_description,
         link: `https://tillerstead.com/blog/`,
         image: fm.image,
-        cta: 'Read More'
+        cta: 'Read More',
       });
     });
 
@@ -655,7 +657,7 @@ Link in bio for full article ☝️
       email: 'contact@tillerstead.com',
       website: 'https://tillerstead.com',
       serviceAreas: 'Atlantic, Ocean & Cape May Counties, NJ',
-      unsubscribe: 'https://tillerstead.com/unsubscribe'
+      unsubscribe: 'https://tillerstead.com/unsubscribe',
     };
   }
 
@@ -959,11 +961,11 @@ WORKFLOW:
   6. Publish → Deploy to production
   7. Track analytics → Measure performance
 `);
-  }
+  },
 };
 
 // Execute command
-const [,, command, ...args] = process.argv;
+const [, , command, ...args] = process.argv;
 
 if (!command || !commands[command]) {
   commands.help();

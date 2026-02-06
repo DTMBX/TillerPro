@@ -11,7 +11,7 @@
  * @version 2.0.0
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ============================================================
@@ -23,7 +23,7 @@
     DROPDOWN_DELAY: 150,
     ANIMATION_DURATION: 300,
     SCROLL_THRESHOLD: 100,
-    DEBUG: location.hostname === 'localhost'
+    DEBUG: location.hostname === 'localhost',
   };
 
   // ============================================================
@@ -34,7 +34,7 @@
     navOpen: false,
     scrolled: false,
     activeDropdown: null,
-    lastScrollY: 0
+    lastScrollY: 0,
   };
 
   // ============================================================
@@ -45,7 +45,7 @@
     header: document.querySelector('.ts-header'),
     mobileToggle: document.querySelector('.mobile-nav__toggle'),
     mobileNav: document.querySelector('.mobile-nav'),
-    mobileClose: document.querySelector('.mobile-nav__close')
+    mobileClose: document.querySelector('.mobile-nav__close'),
   };
 
   // ============================================================
@@ -91,7 +91,7 @@
 
     // Close when navigating
     const links = el.mobileNav.querySelectorAll('a:not([href^="#"])');
-    links.forEach(link => {
+    links.forEach((link) => {
       link.addEventListener('click', () => setTimeout(closeMobileNav, 100));
     });
 
@@ -149,7 +149,7 @@
   function setupDesktopDropdowns() {
     const dropdowns = document.querySelectorAll('.desktop-nav__item--dropdown');
 
-    dropdowns.forEach(item => {
+    dropdowns.forEach((item) => {
       const trigger = item.querySelector('.desktop-nav__trigger');
       const menu = item.querySelector('.desktop-nav__dropdown');
       if (!trigger || !menu) return;
@@ -217,13 +217,15 @@
     trigger.setAttribute('aria-expanded', 'false');
     menu.style.opacity = '0';
     menu.style.transform = 'translateY(-10px)';
-    setTimeout(() => menu.style.display = 'none', 200);
+    setTimeout(() => (menu.style.display = 'none'), 200);
     state.activeDropdown = null;
   }
 
   function closeAllDropdowns() {
-    document.querySelectorAll('.desktop-nav__trigger').forEach(trigger => {
-      const menu = trigger.closest('.desktop-nav__item--dropdown')?.querySelector('.desktop-nav__dropdown');
+    document.querySelectorAll('.desktop-nav__trigger').forEach((trigger) => {
+      const menu = trigger
+        .closest('.desktop-nav__item--dropdown')
+        ?.querySelector('.desktop-nav__dropdown');
       if (menu) closeDropdown(trigger, menu);
     });
   }
@@ -232,14 +234,14 @@
   function setupMobileAccordions() {
     const triggers = document.querySelectorAll('.mobile-nav__accordion-trigger');
 
-    triggers.forEach(trigger => {
+    triggers.forEach((trigger) => {
       trigger.addEventListener('click', () => {
         const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
         const submenu = trigger.nextElementSibling;
         if (!submenu) return;
 
         // Close others
-        triggers.forEach(other => {
+        triggers.forEach((other) => {
           if (other !== trigger) {
             other.setAttribute('aria-expanded', 'false');
             other.classList.remove('is-active');
@@ -265,54 +267,61 @@
     let scrollTimeout;
     let lastScroll = 0;
 
-    window.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
+    window.addEventListener(
+      'scroll',
+      () => {
+        clearTimeout(scrollTimeout);
 
-      scrollTimeout = setTimeout(() => {
-        const currentScroll = window.scrollY;
-        const scrolled = currentScroll > 50;
+        scrollTimeout = setTimeout(() => {
+          const currentScroll = window.scrollY;
+          const scrolled = currentScroll > 50;
 
-        // Add/remove scrolled class
-        if (scrolled !== state.scrolled) {
-          state.scrolled = scrolled;
-          el.header?.classList.toggle('is-scrolled', scrolled);
-        }
+          // Add/remove scrolled class
+          if (scrolled !== state.scrolled) {
+            state.scrolled = scrolled;
+            el.header?.classList.toggle('is-scrolled', scrolled);
+          }
 
-        // Hide header on scroll down, show on scroll up
-        if (currentScroll > lastScroll && currentScroll > 200) {
-          el.header?.classList.add('header-hidden');
-        } else if (currentScroll < lastScroll) {
-          el.header?.classList.remove('header-hidden');
-        }
+          // Hide header on scroll down, show on scroll up
+          if (currentScroll > lastScroll && currentScroll > 200) {
+            el.header?.classList.add('header-hidden');
+          } else if (currentScroll < lastScroll) {
+            el.header?.classList.remove('header-hidden');
+          }
 
-        lastScroll = currentScroll;
-      }, 50);
-    }, { passive: true });
+          lastScroll = currentScroll;
+        }, 50);
+      },
+      { passive: true }
+    );
   }
 
   // ===== RESPONSIVE BEHAVIOR =====
   function setupResponsive() {
     let resizeTimeout;
 
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
+    window.addEventListener(
+      'resize',
+      () => {
+        clearTimeout(resizeTimeout);
 
-      resizeTimeout = setTimeout(() => {
-        const isMobile = window.innerWidth < CONFIG.MOBILE_BREAKPOINT;
+        resizeTimeout = setTimeout(() => {
+          const isMobile = window.innerWidth < CONFIG.MOBILE_BREAKPOINT;
 
-        // Close everything when switching viewports
-        if (!isMobile) {
-          closeMobileNav();
-        }
-        closeAllDropdowns();
-      }, 150);
-    }, { passive: true });
+          // Close everything when switching viewports
+          if (!isMobile) {
+            closeMobileNav();
+          }
+          closeAllDropdowns();
+        }, 150);
+      },
+      { passive: true }
+    );
   }
 
   // ===== INITIALIZATION =====
   function init() {
     if (!el.header) {
-
       return;
     }
 
@@ -330,7 +339,7 @@
     openMobile: openMobileNav,
     closeMobile: closeMobileNav,
     closeDropdowns: closeAllDropdowns,
-    state: () => ({ ...state })
+    state: () => ({ ...state }),
   };
 
   // Auto-initialize
@@ -339,5 +348,4 @@
   } else {
     init();
   }
-
 })();

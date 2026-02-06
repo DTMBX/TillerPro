@@ -43,7 +43,7 @@ class PWAFeatures {
       if (typeof gtag !== 'undefined') {
         gtag('event', 'pwa_install', {
           event_category: 'engagement',
-          event_label: 'app_installed'
+          event_label: 'app_installed',
         });
       }
     });
@@ -155,14 +155,13 @@ class PWAFeatures {
         applicationServerKey: this.urlBase64ToUint8Array(
           // Replace with your VAPID public key
           'YOUR_VAPID_PUBLIC_KEY'
-        )
+        ),
       });
 
       // // // // // // // // // // // // // // // console.log('[PWA] Push subscription created:', subscription); // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED // AUTO-DISABLED
 
       // Send subscription to server
       await this.sendSubscriptionToServer(subscription);
-
     } catch (error) {
       console.error('[PWA] Failed to subscribe to push:', error);
     }
@@ -174,10 +173,8 @@ class PWAFeatures {
   }
 
   urlBase64ToUint8Array(base64String) {
-    const padding = '='.repeat((4 - base64String.length % 4) % 4);
-    const base64 = (base64String + padding)
-      .replace(/-/g, '+')
-      .replace(/_/g, '/');
+    const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+    const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
 
     const rawData = window.atob(base64);
     const outputArray = new Uint8Array(rawData.length);
@@ -222,7 +219,7 @@ class PWAFeatures {
     const queue = JSON.parse(localStorage.getItem('tillerstead-form-queue') || '[]');
     queue.push({
       timestamp: Date.now(),
-      data
+      data,
     });
     localStorage.setItem('tillerstead-form-queue', JSON.stringify(queue));
 
@@ -231,14 +228,14 @@ class PWAFeatures {
       const registration = await navigator.serviceWorker.ready;
       await registration.sync.register('form-sync');
 
-      this.showOfflineMessage('Your message will be sent when you\'re back online');
+      this.showOfflineMessage("Your message will be sent when you're back online");
 
       if (window.haptics) {
         window.haptics.trigger('success');
       }
     } catch (error) {
       console.error('[PWA] Background sync registration failed:', error);
-      this.showOfflineMessage('Please try again when you\'re back online');
+      this.showOfflineMessage("Please try again when you're back online");
     }
   }
 
@@ -271,7 +268,7 @@ class PWAFeatures {
 
     // Check for updates periodically
     setInterval(() => {
-      navigator.serviceWorker.getRegistration().then(reg => {
+      navigator.serviceWorker.getRegistration().then((reg) => {
         if (reg) reg.update();
       });
     }, 60000); // Check every minute

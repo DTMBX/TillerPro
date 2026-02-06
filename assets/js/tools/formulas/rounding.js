@@ -86,7 +86,7 @@ export function toFractionString(value) {
     { decimal: 0.8125, display: '13/16' },
     { decimal: 0.875, display: '7/8' },
     { decimal: 0.9375, display: '15/16' },
-    { decimal: 1, display: '1' }
+    { decimal: 1, display: '1' },
   ];
 
   const whole = Math.floor(value);
@@ -139,7 +139,7 @@ export function formatInches(inches) {
 export function formatNumber(num, decimals = 0) {
   return num.toLocaleString('en-US', {
     minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
+    maximumFractionDigits: decimals,
   });
 }
 
@@ -153,7 +153,7 @@ export function formatCurrency(num) {
     style: 'currency',
     currency: 'USD',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 0,
   });
 }
 

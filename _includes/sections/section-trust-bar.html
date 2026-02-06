@@ -1,11 +1,5 @@
-{%- comment -%}
-  Homepage Trust Bar Section (data-driven)
-
-  Parameters:
-    - data: The trust_bar data object from _data/home.yml
-{%- endcomment -%}
-
-{%- assign trust = include.data -%}
+{%- comment -%} Homepage Trust Bar Section (data-driven) Parameters: - data: The trust_bar data object from
+_data/home.yml {%- endcomment -%} {%- assign trust = include.data -%}
 
 <section class="trust-bar" aria-label="{{ trust.aria_label | default: 'Credentials and protections' }}">
   <div class="container container--wide">

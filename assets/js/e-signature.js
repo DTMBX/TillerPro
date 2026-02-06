@@ -27,7 +27,7 @@
     requireAllSignatures: true, // All parties must sign
     reminderSchedule: [3, 7, 14], // Days to send reminders
     expirationDays: 30, // Quote expires after 30 days
-    documentRetention: 'permanent' // 'permanent' | '1year' | '3years' | '7years'
+    documentRetention: 'permanent', // 'permanent' | '1year' | '3years' | '7years'
   };
 
   // Provider API Endpoints (configurable per license)
@@ -37,27 +37,27 @@
       production: 'https://na3.docusign.net/restapi',
       authEndpoint: '/oauth/token',
       envelopeEndpoint: '/v2.1/accounts/{accountId}/envelopes',
-      statusEndpoint: '/v2.1/accounts/{accountId}/envelopes/{envelopeId}'
+      statusEndpoint: '/v2.1/accounts/{accountId}/envelopes/{envelopeId}',
     },
     hellosign: {
       sandbox: 'https://api.hellosign.com/v3',
       production: 'https://api.hellosign.com/v3',
       sendEndpoint: '/signature_request/send',
       statusEndpoint: '/signature_request/{requestId}',
-      downloadEndpoint: '/signature_request/files/{requestId}'
+      downloadEndpoint: '/signature_request/files/{requestId}',
     },
     adobesign: {
       sandbox: 'https://api.na1.adobesign.com/api/rest/v6',
       production: 'https://api.na1.adobesign.com/api/rest/v6',
       agreementEndpoint: '/agreements',
-      statusEndpoint: '/agreements/{agreementId}'
+      statusEndpoint: '/agreements/{agreementId}',
     },
     custom: {
       // Custom provider for white-label integrations
       endpoint: '',
       apiKey: '',
-      headers: {}
-    }
+      headers: {},
+    },
   };
 
   /**
@@ -65,7 +65,7 @@
    * Handles signature requests, status tracking, and notifications
    */
   class ESignatureManager {
-    constructor () {
+    constructor() {
       this.provider = config.provider;
       this.testMode = config.testMode;
       this.pendingRequests = this.loadPendingRequests();
@@ -78,7 +78,7 @@
      * @param {Blob} pdfBlob - Generated PDF blob
      * @returns {Promise<Object>} Signature request result
      */
-    async createSignatureRequest (quote, pdfBlob) {
+    async createSignatureRequest(quote, pdfBlob) {
       try {
         // Prepare signers
         const signers = this.prepareSigners(quote);
@@ -87,7 +87,7 @@
         const document = {
           name: `Quote ${quote.quoteNumber} - ${quote.customer.name}`,
           fileBlob: pdfBlob,
-          fileExtension: 'pdf'
+          fileExtension: 'pdf',
         };
 
         // Create request based on provider
@@ -125,7 +125,7 @@
     /**
      * Prepare signers list from quote
      */
-    prepareSigners (quote) {
+    prepareSigners(quote) {
       const signers = [];
 
       // Customer signer (required)
@@ -138,8 +138,8 @@
         fields: [
           { type: 'signature', page: 4, x: 50, y: 680, label: 'Customer Signature' },
           { type: 'date', page: 4, x: 350, y: 680, label: 'Date' },
-          { type: 'text', page: 4, x: 50, y: 710, label: 'Print Name' }
-        ]
+          { type: 'text', page: 4, x: 50, y: 710, label: 'Print Name' },
+        ],
       });
 
       // Contractor signer (if required)
@@ -154,8 +154,8 @@
           fields: [
             { type: 'signature', page: 4, x: 50, y: 750, label: 'Contractor Signature' },
             { type: 'date', page: 4, x: 350, y: 750, label: 'Date' },
-            { type: 'text', page: 4, x: 50, y: 780, label: 'Print Name' }
-          ]
+            { type: 'text', page: 4, x: 50, y: 780, label: 'Print Name' },
+          ],
         });
       }
 
@@ -165,8 +165,10 @@
     /**
      * DocuSign Integration
      */
-    async createDocuSignRequest (document, signers, quote) {
-      const apiBase = this.testMode ? providerAPIs.docusign.sandbox : providerAPIs.docusign.production;
+    async createDocuSignRequest(document, signers, quote) {
+      const apiBase = this.testMode
+        ? providerAPIs.docusign.sandbox
+        : providerAPIs.docusign.production;
 
       // In production, this would make actual API call
       // For now, return mock response for testing
@@ -180,11 +182,13 @@
 
       const envelopeDefinition = {
         emailSubject: `Please Sign: ${document.name}`,
-        documents: [{
-          documentId: '1',
-          name: document.name,
-          fileExtension: 'pdf'
-        }],
+        documents: [
+          {
+            documentId: '1',
+            name: document.name,
+            fileExtension: 'pdf',
+          },
+        ],
         recipients: {
           signers: signers.map((signer, idx) => ({
             recipientId: String(idx + 1),
@@ -192,58 +196,68 @@
             email: signer.email,
             routingOrder: signer.order,
             tabs: {
-              signHereTabs: signer.fields.filter(f => f.type === 'signature').map(f => ({
-                documentId: '1',
-                pageNumber: f.page,
-                xPosition: String(f.x),
-                yPosition: String(f.y)
-              })),
-              dateSignedTabs: signer.fields.filter(f => f.type === 'date').map(f => ({
-                documentId: '1',
-                pageNumber: f.page,
-                xPosition: String(f.x),
-                yPosition: String(f.y)
-              }))
-            }
-          }))
+              signHereTabs: signer.fields
+                .filter((f) => f.type === 'signature')
+                .map((f) => ({
+                  documentId: '1',
+                  pageNumber: f.page,
+                  xPosition: String(f.x),
+                  yPosition: String(f.y),
+                })),
+              dateSignedTabs: signer.fields
+                .filter((f) => f.type === 'date')
+                .map((f) => ({
+                  documentId: '1',
+                  pageNumber: f.page,
+                  xPosition: String(f.x),
+                  yPosition: String(f.y),
+                })),
+            },
+          })),
         },
-        status: 'sent'
+        status: 'sent',
       };
 
       // API call would happen here
       // const response = await fetch(`${apiBase}/v2.1/accounts/${accountId}/envelopes`, {...})
 
-      throw new Error('DocuSign production API not configured. Set API credentials in environment.');
+      throw new Error(
+        'DocuSign production API not configured. Set API credentials in environment.'
+      );
     }
 
     /**
      * HelloSign Integration
      */
-    async createHelloSignRequest (document, signers, quote) {
+    async createHelloSignRequest(document, signers, quote) {
       if (this.testMode) {
         return this.createMockRequest('hellosign', document, signers, quote);
       }
 
       // Production HelloSign API call
-      throw new Error('HelloSign production API not configured. Set API credentials in environment.');
+      throw new Error(
+        'HelloSign production API not configured. Set API credentials in environment.'
+      );
     }
 
     /**
      * Adobe Sign Integration
      */
-    async createAdobeSignRequest (document, signers, quote) {
+    async createAdobeSignRequest(document, signers, quote) {
       if (this.testMode) {
         return this.createMockRequest('adobesign', document, signers, quote);
       }
 
       // Production Adobe Sign API call
-      throw new Error('Adobe Sign production API not configured. Set API credentials in environment.');
+      throw new Error(
+        'Adobe Sign production API not configured. Set API credentials in environment.'
+      );
     }
 
     /**
      * Custom Provider Integration
      */
-    async createCustomRequest (document, signers, quote) {
+    async createCustomRequest(document, signers, quote) {
       if (this.testMode) {
         return this.createMockRequest('custom', document, signers, quote);
       }
@@ -255,7 +269,7 @@
     /**
      * Create mock signature request for testing
      */
-    createMockRequest (provider, document, signers, quote) {
+    createMockRequest(provider, document, signers, quote) {
       const requestId = `${provider.toUpperCase()}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       const expiresAt = new Date();
       expiresAt.setDate(expiresAt.getDate() + config.expirationDays);
@@ -266,26 +280,26 @@
         status: 'pending',
         quoteNumber: quote.quoteNumber,
         documentName: document.name,
-        signers: signers.map(s => ({
+        signers: signers.map((s) => ({
           role: s.role,
           name: s.name,
           email: s.email,
           status: 'awaiting_signature',
-          signedAt: null
+          signedAt: null,
         })),
         createdAt: new Date().toISOString(),
         expiresAt: expiresAt.toISOString(),
         viewUrl: `${window.location.origin}/tools-hub/#/signature/${requestId}`,
         embedUrl: this.testMode ? `https://demo.${provider}.com/signing/${requestId}` : null,
-        testMode: this.testMode
+        testMode: this.testMode,
       };
     }
 
     /**
      * Check signature request status
      */
-    async checkStatus (requestId) {
-      const request = this.pendingRequests.find(r => r.requestId === requestId);
+    async checkStatus(requestId) {
+      const request = this.pendingRequests.find((r) => r.requestId === requestId);
       if (!request) {
         throw new Error(`Signature request not found: ${requestId}`);
       }
@@ -314,8 +328,8 @@
     /**
      * Get mock status for testing
      */
-    getMockStatus (requestId) {
-      const request = this.pendingRequests.find(r => r.requestId === requestId);
+    getMockStatus(requestId) {
+      const request = this.pendingRequests.find((r) => r.requestId === requestId);
       if (!request) return null;
 
       // Simulate random status changes for demo
@@ -325,15 +339,15 @@
       return {
         ...request,
         status: randomStatus,
-        lastChecked: new Date().toISOString()
+        lastChecked: new Date().toISOString(),
       };
     }
 
     /**
      * Download signed document
      */
-    async downloadSignedDocument (requestId) {
-      const request = this.pendingRequests.find(r => r.requestId === requestId);
+    async downloadSignedDocument(requestId) {
+      const request = this.pendingRequests.find((r) => r.requestId === requestId);
       if (!request) {
         throw new Error(`Request not found: ${requestId}`);
       }
@@ -354,20 +368,20 @@
     /**
      * Get mock signed document
      */
-    getMockSignedDocument (requestId) {
+    getMockSignedDocument(requestId) {
       return {
         requestId,
         filename: `Signed_Quote_${requestId}.pdf`,
         mimeType: 'application/pdf',
         downloadUrl: '#',
-        message: 'Test mode: Actual signed PDF would be downloaded from provider API.'
+        message: 'Test mode: Actual signed PDF would be downloaded from provider API.',
       };
     }
 
     /**
      * Store pending request
      */
-    storePendingRequest (request) {
+    storePendingRequest(request) {
       this.pendingRequests.push(request);
       this.savePendingRequests();
     }
@@ -375,8 +389,8 @@
     /**
      * Move request to signed documents
      */
-    markAsCompleted (requestId) {
-      const idx = this.pendingRequests.findIndex(r => r.requestId === requestId);
+    markAsCompleted(requestId) {
+      const idx = this.pendingRequests.findIndex((r) => r.requestId === requestId);
       if (idx === -1) return;
 
       const request = this.pendingRequests[idx];
@@ -393,15 +407,17 @@
     /**
      * Schedule reminder emails
      */
-    scheduleReminders (requestId) {
-      const request = this.pendingRequests.find(r => r.requestId === requestId);
+    scheduleReminders(requestId) {
+      const request = this.pendingRequests.find((r) => r.requestId === requestId);
       if (!request) return;
 
-      config.reminderSchedule.forEach(days => {
+      config.reminderSchedule.forEach((days) => {
         const reminderDate = new Date();
         reminderDate.setDate(reminderDate.getDate() + days);
 
-        console.log(`[E-Signature] Reminder scheduled for ${requestId} on ${reminderDate.toLocaleDateString()}`);
+        console.log(
+          `[E-Signature] Reminder scheduled for ${requestId} on ${reminderDate.toLocaleDateString()}`
+        );
         // In production, this would integrate with email system
       });
     }
@@ -409,8 +425,8 @@
     /**
      * Send reminder email
      */
-    async sendReminder (requestId) {
-      const request = this.pendingRequests.find(r => r.requestId === requestId);
+    async sendReminder(requestId) {
+      const request = this.pendingRequests.find((r) => r.requestId === requestId);
       if (!request || request.status === 'completed') return;
 
       console.log(`[E-Signature] Sending reminder for ${requestId}`);
@@ -421,7 +437,7 @@
     /**
      * Persistence methods
      */
-    loadPendingRequests () {
+    loadPendingRequests() {
       try {
         const data = localStorage.getItem('tillerpro_pending_signatures');
         return data ? JSON.parse(data) : [];
@@ -430,7 +446,7 @@
       }
     }
 
-    savePendingRequests () {
+    savePendingRequests() {
       try {
         localStorage.setItem('tillerpro_pending_signatures', JSON.stringify(this.pendingRequests));
       } catch (e) {
@@ -438,7 +454,7 @@
       }
     }
 
-    loadSignedDocuments () {
+    loadSignedDocuments() {
       try {
         const data = localStorage.getItem('tillerpro_signed_documents');
         return data ? JSON.parse(data) : [];
@@ -447,7 +463,7 @@
       }
     }
 
-    saveSignedDocuments () {
+    saveSignedDocuments() {
       try {
         localStorage.setItem('tillerpro_signed_documents', JSON.stringify(this.signedDocuments));
       } catch (e) {
@@ -458,41 +474,44 @@
     /**
      * Get all pending requests
      */
-    getPendingRequests () {
+    getPendingRequests() {
       return [...this.pendingRequests];
     }
 
     /**
      * Get all signed documents
      */
-    getSignedDocuments () {
+    getSignedDocuments() {
       return [...this.signedDocuments];
     }
 
     /**
      * Get statistics
      */
-    getStats () {
+    getStats() {
       const now = new Date();
       const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
 
-      const recentSigned = this.signedDocuments.filter(doc => {
+      const recentSigned = this.signedDocuments.filter((doc) => {
         const completedAt = new Date(doc.completedAt);
         return completedAt >= thirtyDaysAgo;
       });
 
-      const avgSigningTime = recentSigned.reduce((sum, doc) => {
-        const created = new Date(doc.createdAt);
-        const completed = new Date(doc.completedAt);
-        return sum + (completed - created);
-      }, 0) / (recentSigned.length || 1);
+      const avgSigningTime =
+        recentSigned.reduce((sum, doc) => {
+          const created = new Date(doc.createdAt);
+          const completed = new Date(doc.completedAt);
+          return sum + (completed - created);
+        }, 0) / (recentSigned.length || 1);
 
       return {
         totalPending: this.pendingRequests.length,
         totalSigned: this.signedDocuments.length,
         signedLast30Days: recentSigned.length,
         averageSigningTimeHours: Math.round(avgSigningTime / (1000 * 60 * 60)),
-        conversionRate: this.signedDocuments.length / (this.signedDocuments.length + this.pendingRequests.length) || 0
+        conversionRate:
+          this.signedDocuments.length /
+            (this.signedDocuments.length + this.pendingRequests.length) || 0,
       };
     }
   }
@@ -504,6 +523,6 @@
     provider: config.provider,
     testMode: config.testMode,
     pending: window.ESignatureManager.getPendingRequests().length,
-    signed: window.ESignatureManager.getSignedDocuments().length
+    signed: window.ESignatureManager.getSignedDocuments().length,
   });
 })();

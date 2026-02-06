@@ -11,13 +11,17 @@
 
 # 1) Purpose
 
-This document defines quality, accessibility, and safety standards **without blocking unrelated deployments**.
+This document defines quality, accessibility, and safety standards **without
+blocking unrelated deployments**.
 
 **Core principle**:
 
-> A rule only blocks deployment if the modified file type is within that rule’s scope **and** the violation presents a real functional, accessibility, security, or legal risk.
+> A rule only blocks deployment if the modified file type is within that rule’s
+> scope **and** the violation presents a real functional, accessibility,
+> security, or legal risk.
 
-Formatting tweaks, copy edits, and unrelated documentation updates **must never be blocked** by CSS, JS, or HTML rules.
+Formatting tweaks, copy edits, and unrelated documentation updates **must never
+be blocked** by CSS, JS, or HTML rules.
 
 ---
 
@@ -31,13 +35,13 @@ All rules are classified by **severity** and **scope**.
 
 Used only when the issue causes:
 
-* Runtime failure
-* Security exposure
-* Accessibility failure (WCAG AA regression)
-* Broken build
-* Legal/compliance violation
+- Runtime failure
+- Security exposure
+- Accessibility failure (WCAG AA regression)
+- Broken build
+- Legal/compliance violation
 
-#### B. REQUIRED (must be fixed *only if applicable*)
+#### B. REQUIRED (must be fixed _only if applicable_)
 
 Must be fixed **when the modified file falls within the rule’s scope**.
 
@@ -73,28 +77,28 @@ Applies only to **new or renamed files**.
 
 #### HTML
 
-* `kebab-case.html`
-* Root pages: `index.html`, `404.html`, `success.html`
+- `kebab-case.html`
+- Root pages: `index.html`, `404.html`, `success.html`
 
 #### CSS / SCSS
 
-* `kebab-case.css`
-* SCSS partials must start with `_`
+- `kebab-case.css`
+- SCSS partials must start with `_`
 
 #### JavaScript
 
-* `camelCase.js` (preferred) or `kebab-case.js`
-* Be consistent within a directory
+- `camelCase.js` (preferred) or `kebab-case.js`
+- Be consistent within a directory
 
 #### Images / SVG
 
-* `kebab-case.svg|png|jpg|webp`
-* `icon-*`, `pattern-*` prefixes where applicable
+- `kebab-case.svg|png|jpg|webp`
+- `icon-*`, `pattern-*` prefixes where applicable
 
 #### Directories
 
-* `kebab-case/`
-* Underscore-prefixed only for system dirs (`_includes`, `_layouts`, `_sass`)
+- `kebab-case/`
+- Underscore-prefixed only for system dirs (`_includes`, `_layouts`, `_sass`)
 
 ---
 
@@ -102,35 +106,35 @@ Applies only to **new or renamed files**.
 
 ### HTML Severity
 
-* **BLOCKER**: Broken semantics, duplicate IDs, missing labels on form controls
-* **REQUIRED**: Semantic structure, meta basics
-* **RECOMMENDED**: Advanced SEO/perf enhancements
+- **BLOCKER**: Broken semantics, duplicate IDs, missing labels on form controls
+- **REQUIRED**: Semantic structure, meta basics
+- **RECOMMENDED**: Advanced SEO/perf enhancements
 
 ### Semantic & Accessibility (WCAG 2.1 AA)
 
-* One `<h1>` per page
-* Logical heading order
-* `<label for>` on all form inputs
-* `alt` text required for informative images
-* ARIA only when semantic HTML is insufficient
+- One `<h1>` per page
+- Logical heading order
+- `<label for>` on all form inputs
+- `alt` text required for informative images
+- ARIA only when semantic HTML is insufficient
 
 ### Meta & SEO (REQUIRED)
 
-* `<meta charset="UTF-8">`
-* `<meta name="viewport">`
-* Unique `<title>`
-* `<meta name="description">`
+- `<meta charset="UTF-8">`
+- `<meta name="viewport">`
+- Unique `<title>`
+- `<meta name="description">`
 
 ### Performance (RECOMMENDED unless regression detected)
 
-* `loading="lazy"` for non-critical images
-* Defer or module-load scripts
-* Responsive images via `srcset`
+- `loading="lazy"` for non-critical images
+- Defer or module-load scripts
+- Responsive images via `srcset`
 
 ### HTMLHint
 
-* **BLOCKER only if HTMLHint error affects rendering or accessibility**
-* Style-only warnings → **RECOMMENDED**
+- **BLOCKER only if HTMLHint error affects rendering or accessibility**
+- Style-only warnings → **RECOMMENDED**
 
 ---
 
@@ -138,28 +142,28 @@ Applies only to **new or renamed files**.
 
 ### CSS Severity
 
-* **BLOCKER**: Broken build, invalid CSS
-* **REQUIRED**: Token usage for theme-critical styles
-* **RECOMMENDED**: Optimization and architecture rules
+- **BLOCKER**: Broken build, invalid CSS
+- **REQUIRED**: Token usage for theme-critical styles
+- **RECOMMENDED**: Optimization and architecture rules
 
 ### Tokens
 
-* Prefer CSS variables and SCSS tokens
-* **Exception allowed** for:
-
-  * Third-party overrides
-  * One-off experimental components
-  * Temporary debug styling (must be removed before release)
+- Prefer CSS variables and SCSS tokens
+- **Exception allowed** for:
+  - Third-party overrides
+  - One-off experimental components
+  - Temporary debug styling (must be removed before release)
 
 ### Architecture
 
-* Mobile-first
-* Grid for layout, Flexbox for alignment
-* BEM-style naming preferred, not enforced
+- Mobile-first
+- Grid for layout, Flexbox for alignment
+- BEM-style naming preferred, not enforced
 
 ### Linting
 
-* Stylelint warnings do **not** block unless they cause invalid CSS or visual breakage
+- Stylelint warnings do **not** block unless they cause invalid CSS or visual
+  breakage
 
 ---
 
@@ -167,20 +171,20 @@ Applies only to **new or renamed files**.
 
 ### JS Severity
 
-* **BLOCKER**: Runtime errors, uncaught promise rejections, syntax failures
-* **REQUIRED**: ES6+, error handling in async code
-* **RECOMMENDED**: Performance optimizations
+- **BLOCKER**: Runtime errors, uncaught promise rejections, syntax failures
+- **REQUIRED**: ES6+, error handling in async code
+- **RECOMMENDED**: Performance optimizations
 
 ### Rules
 
-* Use `const` / `let`
-* Wrap async logic in `try/catch`
-* Fail gracefully — UI must not hard-crash
+- Use `const` / `let`
+- Wrap async logic in `try/catch`
+- Fail gracefully — UI must not hard-crash
 
 ### ESLint
 
-* Errors that break execution → **BLOCKER**
-* Style preferences → **RECOMMENDED**
+- Errors that break execution → **BLOCKER**
+- Style preferences → **RECOMMENDED**
 
 ---
 
@@ -190,9 +194,9 @@ Applies only to **new or renamed files**.
 
 Applies only to files with front matter or Liquid usage.
 
-* Front matter must include `layout`, `title`, `description`
-* Avoid heavy logic in templates
-* Prefer data files for complexity
+- Front matter must include `layout`, `title`, `description`
+- Avoid heavy logic in templates
+- Prefer data files for complexity
 
 ---
 
@@ -200,15 +204,15 @@ Applies only to files with front matter or Liquid usage.
 
 ### Performance Severity
 
-* **BLOCKER**: Regressions that materially degrade UX
-* **RECOMMENDED**: Target scores
+- **BLOCKER**: Regressions that materially degrade UX
+- **RECOMMENDED**: Target scores
 
 ### Targets (Goals, not gates)
 
-* Desktop: Perf ≥ 90
-* Mobile: Perf ≥ 85
-* Accessibility ≥ 95
-* CLS < 0.1, LCP < 2.5s
+- Desktop: Perf ≥ 90
+- Mobile: Perf ≥ 85
+- Accessibility ≥ 95
+- CLS < 0.1, LCP < 2.5s
 
 Performance budgets **must not block copy-only or doc-only commits**.
 
@@ -218,8 +222,8 @@ Performance budgets **must not block copy-only or doc-only commits**.
 
 ### Documentation Severity: REQUIRED (Scoped)
 
-* Update docs **only when behavior, structure, or usage changes**
-* No requirement to update README for cosmetic or copy edits
+- Update docs **only when behavior, structure, or usage changes**
+- No requirement to update README for cosmetic or copy edits
 
 ---
 
@@ -233,8 +237,8 @@ Conventional Commits format:
 type(scope): subject
 ```
 
-* Enforced only on **commit message**
-* Never blocks file content changes
+- Enforced only on **commit message**
+- Never blocks file content changes
 
 ---
 
@@ -242,9 +246,9 @@ type(scope): subject
 
 ### Severity: BLOCKER
 
-* Secrets, API keys, credentials
-* Personal data
-* Private client information
+- Secrets, API keys, credentials
+- Personal data
+- Private client information
 
 Use `.env` (gitignored) and environment config.
 
@@ -268,17 +272,15 @@ If a rule fails, the enforcement system **must output**:
 
 ### Only check what changed
 
-* [ ] Scope applies to modified files
-* [ ] No BLOCKER issues introduced
-* [ ] REQUIRED issues fixed where applicable
-* [ ] RECOMMENDED issues logged, not blocked
+- [ ] Scope applies to modified files
+- [ ] No BLOCKER issues introduced
+- [ ] REQUIRED issues fixed where applicable
+- [ ] RECOMMENDED issues logged, not blocked
 
 ---
 
-**Version**: 2.0.0 (deployment-safe)
-**Last Updated**: 2026-01-02
-**Authority**: SYSTEM.md, STYLE.md, DOMAIN.md, COMPLIANCE.md
-**Intent**: Enforce quality **without sabotaging velocity**
+**Version**: 2.0.0 (deployment-safe) **Last Updated**: 2026-01-02 **Authority**:
+SYSTEM.md, STYLE.md, DOMAIN.md, COMPLIANCE.md **Intent**: Enforce quality
+**without sabotaging velocity**
 
 ---
-

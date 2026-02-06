@@ -3,7 +3,7 @@
    Creates delightful, perfectly-timed notifications
    ============================================================ */
 
-(function() {
+(function () {
   'use strict';
 
   // Message queue for perfect timing
@@ -16,7 +16,7 @@
    * @param {string} type - success, error, warning, info
    * @param {number} duration - How long to show (ms)
    */
-  window.showToast = function(message, type = 'info', duration = 5000) {
+  window.showToast = function (message, type = 'info', duration = 5000) {
     const toast = document.createElement('div');
     toast.className = `toast toast--${type}`;
     toast.setAttribute('role', 'alert');
@@ -49,7 +49,7 @@
    * @param {string} message - Banner message
    * @param {number} duration - How long to show
    */
-  window.showBanner = function(message, duration = 10000) {
+  window.showBanner = function (message, duration = 10000) {
     // Remove existing banner
     const existing = document.querySelector('.notification-banner');
     if (existing) existing.remove();
@@ -84,7 +84,7 @@
    * Stagger multiple messages for perfect timing
    * @param {Array} messages - Array of {text, type} objects
    */
-  window.showMessages = function(messages, delayBetween = 800) {
+  window.showMessages = function (messages, delayBetween = 800) {
     messages.forEach((msg, index) => {
       setTimeout(() => {
         showToast(msg.text, msg.type || 'info', msg.duration || 5000);
@@ -95,7 +95,7 @@
   /**
    * Success message with confetti
    */
-  window.showSuccess = function(message, duration = 5000) {
+  window.showSuccess = function (message, duration = 5000) {
     const toast = document.createElement('div');
     toast.className = 'toast toast--success with-confetti';
     toast.setAttribute('role', 'alert');
@@ -116,7 +116,7 @@
   /**
    * Loading message
    */
-  window.showLoading = function(message = 'Loading...') {
+  window.showLoading = function (message = 'Loading...') {
     const loading = document.createElement('div');
     loading.className = 'toast loading-message';
     loading.innerHTML = `
@@ -128,10 +128,10 @@
     document.body.appendChild(loading);
 
     return {
-      hide: function() {
+      hide: function () {
         loading.classList.add('toast--exit');
         setTimeout(() => loading.remove(), 500);
-      }
+      },
     };
   };
 
@@ -145,7 +145,7 @@
     const sounds = {
       success: [480, 0.1, 'sine'],
       error: [240, 0.15, 'square'],
-      info: [360, 0.08, 'sine']
+      info: [360, 0.08, 'sine'],
     };
 
     const [frequency, duration, waveType] = sounds[type] || sounds.info;
@@ -176,11 +176,23 @@
    */
   function getSchedulingText() {
     const now = new Date();
-    const twoWeeks = new Date(now.getTime() + (14 * 24 * 60 * 60 * 1000));
-    const fourWeeks = new Date(now.getTime() + (28 * 24 * 60 * 60 * 1000));
+    const twoWeeks = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
+    const fourWeeks = new Date(now.getTime() + 28 * 24 * 60 * 60 * 1000);
 
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'];
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
 
     const twoWeeksMonth = monthNames[twoWeeks.getMonth()];
     const fourWeeksMonth = monthNames[fourWeeks.getMonth()];
@@ -196,7 +208,7 @@
   /**
    * Show narrow scheduling bar (header element)
    */
-  window.showSchedulingBar = function() {
+  window.showSchedulingBar = function () {
     // Remove existing bar
     const existing = document.querySelector('.scheduling-bar');
     if (existing) existing.remove();
@@ -238,11 +250,7 @@
     document.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.shiftKey && e.key === 'S') {
         window.soundsEnabled = !window.soundsEnabled;
-        showToast(
-          `Sounds ${window.soundsEnabled ? 'enabled' : 'disabled'}`,
-          'info',
-          2000
-        );
+        showToast(`Sounds ${window.soundsEnabled ? 'enabled' : 'disabled'}`, 'info', 2000);
       }
     });
 
@@ -255,5 +263,4 @@
   } else {
     init();
   }
-
 })();

@@ -21,7 +21,7 @@
 /* Enhanced focus for interactive elements */
 a:focus-visible,
 button:focus-visible,
-[role="button"]:focus-visible,
+[role='button']:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
@@ -47,13 +47,13 @@ textarea:focus-visible {
  * Minimum 44x44px touch targets
  */
 button,
-[role="button"],
+[role='button'],
 a.btn,
 .mobile-nav__link,
 .desktop-nav__link,
-input[type="submit"],
-input[type="button"],
-input[type="reset"],
+input[type='submit'],
+input[type='button'],
+input[type='reset'],
 .a11y-toolbar__btn,
 .cta-button {
   min-height: 44px;
@@ -62,11 +62,11 @@ input[type="reset"],
 }
 
 /* Ensure form inputs have adequate height */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="number"],
-input[type="url"],
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+input[type='number'],
+input[type='url'],
 select,
 textarea {
   min-height: 44px;
@@ -209,7 +209,9 @@ textarea {
   border-radius: 6px;
   font-family: inherit;
   font-size: 16px; /* Prevents mobile zoom */
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 input:hover,
@@ -227,9 +229,9 @@ textarea:focus {
 }
 
 /* Error states - consistent across forms */
-input[aria-invalid="true"],
-select[aria-invalid="true"],
-textarea[aria-invalid="true"],
+input[aria-invalid='true'],
+select[aria-invalid='true'],
+textarea[aria-invalid='true'],
 .form-field--error input,
 .form-field--error select,
 .form-field--error textarea {
@@ -238,7 +240,7 @@ textarea[aria-invalid="true"],
 }
 
 .form-error,
-[role="alert"].error-message {
+[role='alert'].error-message {
   color: #dc2626;
   font-size: 0.875rem;
   margin-top: 0.5rem;
@@ -248,12 +250,12 @@ textarea[aria-invalid="true"],
 }
 
 .form-error::before {
-  content: "⚠";
+  content: '⚠';
   flex-shrink: 0;
 }
 
 /* Success states */
-input[aria-invalid="false"],
+input[aria-invalid='false'],
 .form-field--success input {
   border-color: #10b981;
 }
@@ -268,7 +270,7 @@ input[aria-invalid="false"],
  */
 .btn,
 button.primary,
-[role="button"].primary,
+[role='button'].primary,
 .cta-button {
   display: inline-flex;
   align-items: center;
@@ -289,20 +291,24 @@ button.primary,
 /* Primary button - consistent gold */
 .btn--primary,
 .btn.primary,
-button[type="submit"] {
-  background: linear-gradient(135deg, var(--tiller-color-gold, #c9a227), var(--tiller-color-gold-dark, #9a7a1a));
+button[type='submit'] {
+  background: linear-gradient(
+    135deg,
+    var(--tiller-color-gold, #c9a227),
+    var(--tiller-color-gold-dark, #9a7a1a)
+  );
   color: #000000;
   border-color: var(--tiller-color-gold, #c9a227);
 }
 
 .btn--primary:hover,
-button[type="submit"]:hover {
+button[type='submit']:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgb(201 162 39 / 40%);
 }
 
 .btn--primary:active,
-button[type="submit"]:active {
+button[type='submit']:active {
   transform: translateY(0);
 }
 
@@ -401,7 +407,7 @@ section {
   section {
     padding: 2.5rem 0;
   }
-  
+
   .container,
   .ts-main-content {
     padding-left: 1rem;
@@ -420,7 +426,8 @@ p:last-child {
 }
 
 /* List spacing */
-ul, ol {
+ul,
+ol {
   margin-bottom: 1.25rem;
   padding-left: 1.5rem;
 }
@@ -438,32 +445,32 @@ li {
  * Enhanced contrast for accessibility
  * Triggered by user preference or a11y toolbar
  */
-[data-high-contrast="true"] {
+[data-high-contrast='true'] {
   --contrast-bg: #000000;
   --contrast-fg: #ffffff;
   --contrast-accent: #ffff00;
 }
 
-[data-high-contrast="true"] body {
+[data-high-contrast='true'] body {
   background: var(--contrast-bg);
   color: var(--contrast-fg);
 }
 
-[data-high-contrast="true"] a {
+[data-high-contrast='true'] a {
   color: var(--contrast-accent);
   text-decoration: underline;
   text-decoration-thickness: 2px;
 }
 
-[data-high-contrast="true"] button,
-[data-high-contrast="true"] .btn {
+[data-high-contrast='true'] button,
+[data-high-contrast='true'] .btn {
   border-width: 3px;
   border-color: var(--contrast-fg);
 }
 
-[data-high-contrast="true"] input,
-[data-high-contrast="true"] select,
-[data-high-contrast="true"] textarea {
+[data-high-contrast='true'] input,
+[data-high-contrast='true'] select,
+[data-high-contrast='true'] textarea {
   background: var(--contrast-bg);
   color: var(--contrast-fg);
   border: 3px solid var(--contrast-fg);
@@ -536,22 +543,27 @@ li {
   nav {
     display: none !important;
   }
-  
+
   a {
     text-decoration: underline;
     color: #000000;
   }
-  
+
   a[href]::after {
-    content: " (" attr(href) ")";
+    content: ' (' attr(href) ')';
     font-size: 0.8em;
     color: #666666;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     break-after: avoid;
   }
-  
+
   p {
     orphans: 3;
     widows: 3;

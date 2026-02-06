@@ -36,7 +36,7 @@ class QuoteValidator {
       valid: this.errors.length === 0,
       errors: this.errors,
       warnings: this.warnings,
-      canProceed: this.errors.length === 0
+      canProceed: this.errors.length === 0,
     };
   }
 
@@ -89,7 +89,10 @@ class QuoteValidator {
       this.addWarning('Project description recommended for clarity');
     }
 
-    if (!project.type || !['bathroom', 'kitchen', 'floor', 'shower', 'other'].includes(project.type)) {
+    if (
+      !project.type ||
+      !['bathroom', 'kitchen', 'floor', 'shower', 'other'].includes(project.type)
+    ) {
       this.addWarning('Project type not specified - may affect accuracy');
     }
 
@@ -110,17 +113,21 @@ class QuoteValidator {
     // Check minimum materials calculated
     const minMaterials = this.validationRules.minimumMaterialsCalculated || 1;
     if (materials.items.length < minMaterials) {
-      this.addWarning(`Only ${materials.items.length} material type(s) calculated. Recommend calculating all required materials.`);
+      this.addWarning(
+        `Only ${materials.items.length} material type(s) calculated. Recommend calculating all required materials.`
+      );
     }
 
     // Validate material quantities
-    materials.items.forEach(item => {
+    materials.items.forEach((item) => {
       if (!item.quantity || item.quantity <= 0) {
         this.addError(`Invalid quantity for ${item.description}: ${item.quantity}`);
       }
 
       if (item.quantity > this.validationRules.maxMaterialQuantity) {
-        this.addWarning(`Unusually high quantity for ${item.description}: ${item.quantity}. Please verify.`);
+        this.addWarning(
+          `Unusually high quantity for ${item.description}: ${item.quantity}. Please verify.`
+        );
       }
 
       if (!item.unitPrice || item.unitPrice <= 0) {
@@ -137,13 +144,17 @@ class QuoteValidator {
     const reportedSubtotal = materials.subtotal || 0;
 
     if (Math.abs(calculatedSubtotal - reportedSubtotal) > 0.01) {
-      this.addError(`Materials subtotal mismatch: calculated $${calculatedSubtotal.toFixed(2)}, reported $${reportedSubtotal.toFixed(2)}`);
+      this.addError(
+        `Materials subtotal mismatch: calculated $${calculatedSubtotal.toFixed(2)}, reported $${reportedSubtotal.toFixed(2)}`
+      );
     }
 
     // Check for essential materials
-    const hasTile = materials.items.some(item => item.category?.toLowerCase().includes('tile'));
-    const hasGrout = materials.items.some(item => item.category?.toLowerCase().includes('grout'));
-    const hasMortar = materials.items.some(item => item.category?.toLowerCase().includes('mortar'));
+    const hasTile = materials.items.some((item) => item.category?.toLowerCase().includes('tile'));
+    const hasGrout = materials.items.some((item) => item.category?.toLowerCase().includes('grout'));
+    const hasMortar = materials.items.some((item) =>
+      item.category?.toLowerCase().includes('mortar')
+    );
 
     if (!hasTile) {
       this.addWarning('No tile calculated - verify if this is intentional');
@@ -168,7 +179,9 @@ class QuoteValidator {
     }
 
     if (labor.hours > this.validationRules.maxLaborHours) {
-      this.addWarning(`Labor hours (${labor.hours}) exceeds ${this.validationRules.maxLaborHours}. Please verify estimate is accurate.`);
+      this.addWarning(
+        `Labor hours (${labor.hours}) exceeds ${this.validationRules.maxLaborHours}. Please verify estimate is accurate.`
+      );
     }
 
     if (labor.hours < 1) {
@@ -186,7 +199,9 @@ class QuoteValidator {
     // Verify labor calculation
     const calculatedTotal = (labor.hours || 0) * (labor.rate || 0);
     if (Math.abs(calculatedTotal - labor.total) > 0.01) {
-      this.addError(`Labor total mismatch: ${labor.hours} hrs × $${labor.rate}/hr = $${calculatedTotal.toFixed(2)}, but reported $${labor.total.toFixed(2)}`);
+      this.addError(
+        `Labor total mismatch: ${labor.hours} hrs × $${labor.rate}/hr = $${calculatedTotal.toFixed(2)}, but reported $${labor.total.toFixed(2)}`
+      );
     }
   }
 
@@ -201,29 +216,39 @@ class QuoteValidator {
 
     // Check minimum/maximum quote values
     if (totals.grandTotal < this.validationRules.minQuoteValue) {
-      this.addWarning(`Quote total ($${totals.grandTotal.toFixed(2)}) is below minimum ($${this.validationRules.minQuoteValue}). Verify this is accurate.`);
+      this.addWarning(
+        `Quote total ($${totals.grandTotal.toFixed(2)}) is below minimum ($${this.validationRules.minQuoteValue}). Verify this is accurate.`
+      );
     }
 
     if (totals.grandTotal > this.validationRules.maxQuoteValue) {
-      this.addWarning(`Quote total ($${totals.grandTotal.toFixed(2)}) exceeds $${this.validationRules.maxQuoteValue}. Recommend management review before sending.`);
+      this.addWarning(
+        `Quote total ($${totals.grandTotal.toFixed(2)}) exceeds $${this.validationRules.maxQuoteValue}. Recommend management review before sending.`
+      );
     }
 
     // Validate totals calculation
     const calculatedSubtotal = (totals.materials || 0) + (totals.labor || 0) + (totals.fees || 0);
     if (Math.abs(calculatedSubtotal - totals.subtotal) > 0.01) {
-      this.addError(`Subtotal mismatch: $${calculatedSubtotal.toFixed(2)} vs $${totals.subtotal.toFixed(2)}`);
+      this.addError(
+        `Subtotal mismatch: $${calculatedSubtotal.toFixed(2)} vs $${totals.subtotal.toFixed(2)}`
+      );
     }
 
     // Validate tax calculation
     const expectedTax = totals.subtotal * (totals.taxRate || 0);
     if (Math.abs(expectedTax - totals.tax) > 0.01) {
-      this.addError(`Tax calculation error: expected $${expectedTax.toFixed(2)}, got $${totals.tax.toFixed(2)}`);
+      this.addError(
+        `Tax calculation error: expected $${expectedTax.toFixed(2)}, got $${totals.tax.toFixed(2)}`
+      );
     }
 
     // Validate grand total
     const calculatedGrandTotal = totals.subtotal + totals.tax;
     if (Math.abs(calculatedGrandTotal - totals.grandTotal) > 0.01) {
-      this.addError(`Grand total mismatch: $${calculatedGrandTotal.toFixed(2)} vs $${totals.grandTotal.toFixed(2)}`);
+      this.addError(
+        `Grand total mismatch: $${calculatedGrandTotal.toFixed(2)} vs $${totals.grandTotal.toFixed(2)}`
+      );
     }
 
     // Check for negative values
@@ -319,7 +344,7 @@ class QuoteValidator {
     this.errors.push({
       type: 'error',
       message: message,
-      severity: 'high'
+      severity: 'high',
     });
   }
 
@@ -330,7 +355,7 @@ class QuoteValidator {
     this.warnings.push({
       type: 'warning',
       message: message,
-      severity: 'medium'
+      severity: 'medium',
     });
   }
 
@@ -343,9 +368,10 @@ class QuoteValidator {
       errors: this.errors.length,
       warnings: this.warnings.length,
       canProceed: this.errors.length === 0,
-      message: this.errors.length === 0
-        ? 'Quote passed all validation checks'
-        : `Found ${this.errors.length} error(s) and ${this.warnings.length} warning(s)`
+      message:
+        this.errors.length === 0
+          ? 'Quote passed all validation checks'
+          : `Found ${this.errors.length} error(s) and ${this.warnings.length} warning(s)`,
     };
   }
 }

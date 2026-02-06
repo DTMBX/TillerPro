@@ -2,22 +2,29 @@
 layout: default
 build_guide: true
 toc: true
-title: "Codes, Permits & Inspections"
-permalink: /build/nj-codes-permits/
+title: 'Codes, Permits & Inspections'
+permalink: /build/phase-01/
 order: 1
-meta_title: "NJ Building Codes, Permits & Inspections | Tillerstead Build Phase 1"
-meta_description: "Understanding New Jersey building codes, permit requirements, and inspection processes for bathroom and shower remodeling projects."
-description: "Before any tile gets set, understand the permit and code requirements that govern bathroom remodeling in New Jersey."
-parent: "Build Phases"
-parent_url: "/build/"
+meta_title:
+  'NJ Building Codes, Permits & Inspections | Tillerstead Build Phase 1'
+meta_description:
+  'Understanding New Jersey building codes, permit requirements, and inspection
+  processes for bathroom and shower remodeling projects.'
+description:
+  'Before any tile gets set, understand the permit and code requirements that
+  govern bathroom remodeling in New Jersey.'
+parent: 'Build Phases'
+parent_url: '/build/'
 prev_phase: null
-next_phase: "/build/shower-pans-slopes-drains/"
-next_phase_title: "Shower Pans, Slopes & Drains"
+next_phase: '/build/shower-pans-slopes-drains/'
+next_phase_title: 'Shower Pans, Slopes & Drains'
 ---
 
 ## Why Codes and Permits Matter
 
-In New Jersey, bathroom remodeling isn't just about aesthetics—it's about safety, structural integrity, and legal compliance. Understanding what requires a permit and what doesn't can save you time, money, and headaches.
+In New Jersey, bathroom remodeling isn't just about aesthetics—it's about
+safety, structural integrity, and legal compliance. Understanding what requires
+a permit and what doesn't can save you time, money, and headaches.
 
 ## What Requires a Permit in NJ?
 
@@ -28,13 +35,17 @@ Most structural, plumbing, and electrical work requires permits:
 - **Structural changes** (removing walls, altering floor joists)
 - **HVAC modifications** (adding/relocating exhaust fans)
 
-Simple cosmetic updates (paint, fixtures that don't require new rough-ins) typically don't require permits.
+Simple cosmetic updates (paint, fixtures that don't require new rough-ins)
+typically don't require permits.
 
 ## New Jersey HIC Requirements
 
-All contractors performing home improvement work in New Jersey must be registered with the Division of Consumer Affairs and hold a valid HIC (Home Improvement Contractor) license.
+All contractors performing home improvement work in New Jersey must be
+registered with the Division of Consumer Affairs and hold a valid HIC (Home
+Improvement Contractor) license.
 
 **Red flags:**
+
 - Contractor offers to "skip the permit to save money"
 - No HIC number provided
 - Suggests work can be done "under the table"
@@ -43,10 +54,12 @@ All contractors performing home improvement work in New Jersey must be registere
 
 Bathroom remodels typically require inspections at these stages:
 
-1. **Rough-in inspection** (framing, plumbing, electrical before walls are closed)
+1. **Rough-in inspection** (framing, plumbing, electrical before walls are
+   closed)
 2. **Final inspection** (completed work verified for code compliance)
 
-Some municipalities may require additional inspections for waterproofing or structural work.
+Some municipalities may require additional inspections for waterproofing or
+structural work.
 
 ## Standards Referenced
 

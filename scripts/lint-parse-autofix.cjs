@@ -52,7 +52,7 @@ function fixYAMLFrontMatter(file) {
 
 function fixAllYAML() {
   function walk(dir) {
-    fs.readdirSync(dir).forEach(f => {
+    fs.readdirSync(dir).forEach((f) => {
       const fp = path.join(dir, f);
       if (fs.statSync(fp).isDirectory()) walk(fp);
       else if (fp.endsWith('.html')) fixYAMLFrontMatter(fp);
@@ -71,4 +71,7 @@ async function main() {
   console.log('Repo-wide lint, parse, and auto-fix complete.');
 }
 
-main().catch(e => { console.error(e); process.exit(1); });
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

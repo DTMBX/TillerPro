@@ -13,7 +13,7 @@
  * @author Tillerstead LLC
  */
 
-(function(window) {
+(function (window) {
   'use strict';
 
   /**
@@ -29,7 +29,7 @@
       this.hooks = {
         before: [],
         after: [],
-        error: []
+        error: [],
       };
 
       // Initialize
@@ -58,7 +58,7 @@
         component: config.component,
         loader: config.loader,
         beforeEnter: config.beforeEnter,
-        meta: config.meta || {}
+        meta: config.meta || {},
       });
 
       console.log(`[Router] Registered route: ${path}`);
@@ -141,7 +141,6 @@
         if (this.container) {
           this.container.scrollTop = 0;
         }
-
       } catch (error) {
         console.error('[Router] Route error:', error);
         await this.runHooks('error', { error });
@@ -185,8 +184,7 @@
         else if (route.component && route.component.startsWith('/')) {
           const response = await fetch(route.component);
           content = await response.text();
-        }
-        else {
+        } else {
           throw new Error(`Invalid component type for route: ${route.name}`);
         }
 
@@ -197,7 +195,6 @@
         if (route.meta && route.meta.adapter) {
           await this.loadAdapter(route.meta.adapter);
         }
-
       } catch (error) {
         console.error('[Router] Failed to load component:', error);
         this.container.innerHTML = `
@@ -241,7 +238,7 @@
       }
 
       // Re-run any data-init scripts
-      this.container.querySelectorAll('[data-init]').forEach(el => {
+      this.container.querySelectorAll('[data-init]').forEach((el) => {
         const initFn = window[el.dataset.init];
         if (typeof initFn === 'function') {
           initFn(el);
@@ -249,9 +246,11 @@
       });
 
       // Dispatch event for other systems to hook into
-      window.dispatchEvent(new CustomEvent('toolshub:viewloaded', {
-        detail: { route: this.currentRoute }
-      }));
+      window.dispatchEvent(
+        new CustomEvent('toolshub:viewloaded', {
+          detail: { route: this.currentRoute },
+        })
+      );
     }
 
     /**
@@ -286,7 +285,7 @@
      */
     updateNavActiveStates(activePath) {
       // Remove all active states
-      document.querySelectorAll('[data-route]').forEach(el => {
+      document.querySelectorAll('[data-route]').forEach((el) => {
         el.classList.remove('active');
         el.setAttribute('aria-current', 'false');
       });
@@ -355,7 +354,7 @@
         'slope-calculator-adapter': 'SlopeCalculatorAdapter',
         'leveling-calculator-adapter': 'LevelingCalculatorAdapter',
         'labor-estimator-adapter': 'LaborEstimatorAdapter',
-        'quote-form-adapter': 'QuoteFormAdapter'
+        'quote-form-adapter': 'QuoteFormAdapter',
       };
 
       const className = adapterClasses[adapterName];
@@ -428,7 +427,7 @@
      * @param {number} ms - Milliseconds
      */
     wait(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
+      return new Promise((resolve) => setTimeout(resolve, ms));
     }
 
     /**
@@ -452,7 +451,7 @@
   // Create global instance
   const router = new ToolsHubRouter({
     defaultRoute: 'overview',
-    container: document.getElementById('app-content')
+    container: document.getElementById('app-content'),
   });
 
   // Register default routes
@@ -473,7 +472,7 @@
         const html = await response.text();
         return html;
       },
-      meta: { title: 'Project Overview', icon: '📊' }
+      meta: { title: 'Project Overview', icon: '📊' },
     });
 
     // Tile Calculator
@@ -489,8 +488,8 @@
         title: 'Tile Calculator',
         icon: '🧱',
         category: 'coverage',
-        adapter: '/assets/js/adapters/tile-calculator-adapter.js'
-      }
+        adapter: '/assets/js/adapters/tile-calculator-adapter.js',
+      },
     });
 
     // Grout Calculator
@@ -505,8 +504,8 @@
         title: 'Grout Calculator',
         icon: '🪣',
         category: 'coverage',
-        adapter: '/assets/js/adapters/grout-calculator-adapter.js'
-      }
+        adapter: '/assets/js/adapters/grout-calculator-adapter.js',
+      },
     });
 
     // Mortar Calculator
@@ -521,8 +520,8 @@
         title: 'Mortar Calculator',
         icon: '🔧',
         category: 'coverage',
-        adapter: '/assets/js/adapters/mortar-calculator-adapter.js'
-      }
+        adapter: '/assets/js/adapters/mortar-calculator-adapter.js',
+      },
     });
 
     // Waterproofing Calculator
@@ -537,8 +536,8 @@
         title: 'Waterproofing Calculator',
         icon: '💧',
         category: 'coverage',
-        adapter: '/assets/js/adapters/waterproofing-calculator-adapter.js'
-      }
+        adapter: '/assets/js/adapters/waterproofing-calculator-adapter.js',
+      },
     });
 
     // Professional Quote Generator
@@ -553,8 +552,8 @@
         title: 'Professional Quote Generator',
         icon: '📄',
         category: 'business',
-        adapter: null // Self-contained, no adapter needed
-      }
+        adapter: null, // Self-contained, no adapter needed
+      },
     });
 
     // Shower Slope Calculator
@@ -569,8 +568,8 @@
         title: 'Shower Slope Calculator',
         icon: '📐',
         category: 'structural',
-        adapter: '/assets/js/adapters/slope-calculator-adapter.js'
-      }
+        adapter: '/assets/js/adapters/slope-calculator-adapter.js',
+      },
     });
 
     // Self-Leveling Calculator
@@ -585,8 +584,8 @@
         title: 'Self-Leveling Calculator',
         icon: '📏',
         category: 'prepfinish',
-        adapter: '/assets/js/adapters/leveling-calculator-adapter.js'
-      }
+        adapter: '/assets/js/adapters/leveling-calculator-adapter.js',
+      },
     });
 
     // Labor Calculator
@@ -601,8 +600,8 @@
         title: 'Labor Estimate',
         icon: '⏱️',
         category: 'other',
-        adapter: '/assets/js/adapters/labor-estimator-adapter.js'
-      }
+        adapter: '/assets/js/adapters/labor-estimator-adapter.js',
+      },
     });
 
     // Pattern Visualizer
@@ -617,7 +616,7 @@
           </iframe>
         </div>
       `,
-      meta: { title: 'Pattern Visualizer', icon: '🎨' }
+      meta: { title: 'Pattern Visualizer', icon: '🎨' },
     });
 
     // Quote/Estimate
@@ -645,8 +644,8 @@
       meta: {
         title: 'Request Quote',
         icon: '💬',
-        adapter: '/assets/js/adapters/quote-form-adapter.js'
-      }
+        adapter: '/assets/js/adapters/quote-form-adapter.js',
+      },
     });
 
     // Export
@@ -669,7 +668,7 @@
           </div>
         `;
       },
-      meta: { title: 'Export Project', icon: '📤' }
+      meta: { title: 'Export Project', icon: '📤' },
     });
 
     // Dashboard (Enterprise)
@@ -684,8 +683,8 @@
         title: 'Multi-Location Dashboard',
         icon: '📊',
         category: 'enterprise',
-        requiresAuth: false // Set to true when auth is implemented
-      }
+        requiresAuth: false, // Set to true when auth is implemented
+      },
     });
 
     // Admin Settings (Enterprise)
@@ -700,11 +699,10 @@
         title: 'Admin Settings',
         icon: '⚙️',
         category: 'enterprise',
-        requiresAuth: false // Set to true when auth is implemented
-      }
+        requiresAuth: false, // Set to true when auth is implemented
+      },
     });
   }
 
   console.log('[Router] Ready - Default routes registered');
-
 })(window);

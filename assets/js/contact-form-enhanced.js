@@ -35,9 +35,7 @@
   // Validate single field
   function validateField(input) {
     const value = input.value;
-    const rules = input.dataset.validate
-      ? input.dataset.validate.split(',')
-      : [];
+    const rules = input.dataset.validate ? input.dataset.validate.split(',') : [];
     let isValid = true;
     let errorMessage = '';
 
@@ -119,8 +117,7 @@
   function removeError(input) {
     const formGroup = input.closest('.form-group, .form-field');
     const error =
-      formGroup?.querySelector('.field-error') ||
-      input.parentNode.querySelector('.field-error');
+      formGroup?.querySelector('.field-error') || input.parentNode.querySelector('.field-error');
 
     if (error) {
       error.remove();
@@ -241,19 +238,14 @@
       submitBtn.classList.add('btn-success');
       submitBtn.textContent = 'Sent!';
 
-      showNotification(
-        "Message sent successfully! We'll get back to you soon.",
-        'success',
-      );
+      showNotification("Message sent successfully! We'll get back to you soon.", 'success');
 
       // Reset form after delay
       setTimeout(() => {
         form.reset();
         inputs.forEach((input) => {
           input.classList.remove('is-valid', 'is-invalid');
-          input
-            .closest('.form-group, .field')
-            ?.classList.remove('has-success', 'has-error');
+          input.closest('.form-group, .field')?.classList.remove('has-success', 'has-error');
         });
         submitBtn.classList.remove('btn-success');
         submitBtn.disabled = false;
@@ -265,10 +257,7 @@
       submitBtn.disabled = false;
       submitBtn.textContent = originalText;
 
-      showNotification(
-        'Failed to send message. Please try again or call us directly.',
-        'error',
-      );
+      showNotification('Failed to send message. Please try again or call us directly.', 'error');
       console.error('Form submission error:', error);
     }
   });

@@ -52,7 +52,7 @@ function slugify(value) {
   if (!input) {
     console.error(
       'Usage: node scripts/slugify.js "Your Title"\n' +
-        'Example: node scripts/slugify.js "TCNA-Compliant Tile Installation"',
+        'Example: node scripts/slugify.js "TCNA-Compliant Tile Installation"'
     );
     process.exit(1);
   }
@@ -60,7 +60,7 @@ function slugify(value) {
   const result = slugify(input);
   if (!result) {
     console.error(
-      'Unable to generate slug from input. Ensure input contains alphanumeric characters.',
+      'Unable to generate slug from input. Ensure input contains alphanumeric characters.'
     );
     process.exit(1);
   }

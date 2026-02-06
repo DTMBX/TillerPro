@@ -1,17 +1,14 @@
-{% comment %} Tillerstead Portfolio Section - Displays portfolio items from
-site.data.portfolio - TCNA/New Jersey HIC compliant, accessible,
-conversion-optimized - Reference: /.ai/OUTPUT_RULES.md, /.ai/STYLE.md {%
-endcomment %} {% assign portfolio_items = site.data.portfolio.projects |
-default: site.data.portfolio_highlights.items %} {% assign section_id =
-include.section_id | default: 'ts-portfolio' %} {% assign heading_id =
-section_id | append: '-title' %}
+{% comment %} Tillerstead Portfolio Section - Displays portfolio items from site.data.portfolio - TCNA/New Jersey HIC
+compliant, accessible, conversion-optimized - Reference: /.ai/OUTPUT_RULES.md, /.ai/STYLE.md {% endcomment %} {% assign
+portfolio_items = site.data.portfolio.projects | default: site.data.portfolio_highlights.items %} {% assign section_id =
+include.section_id | default: 'ts-portfolio' %} {% assign heading_id = section_id | append: '-title' %}
 
 <section
   class="ts-portfolio ts-section"
   id="{{ section_id }}"
   aria-labelledby="{{ heading_id }}"
   style="
-    background-image: url(&quot;/assets/img/patterns/herringbone-subtle.svg&quot;);
+    background-image: url('/assets/img/patterns/herringbone-subtle.svg');
     background-size: 320px 160px;
     background-position: center;
   "
@@ -23,9 +20,8 @@ section_id | append: '-title' %}
         TCNA-Compliant Installations—Photo-Documented from Substrate to Grout
       </h2>
       <p class="lead">
-        Every project includes substrate assessment, flood-tested waterproofing,
-        and final inspection documentation. No hidden work, no assumptions—just
-        transparent, code-compliant craftsmanship.
+        Every project includes substrate assessment, flood-tested waterproofing, and final inspection documentation. No
+        hidden work, no assumptions—just transparent, code-compliant craftsmanship.
       </p>
     </header>
 
@@ -33,19 +29,14 @@ section_id | append: '-title' %}
     <div class="ts-portfolio__grid">
       {% for item in portfolio_items limit:9 %}
       <article class="ts-portfolio__item card ts-card">
-        {% if item.image or item.images %} {% assign portfolio_image =
-        item.image | default: item.images[0].src %} {% assign portfolio_webp =
-        portfolio_image | replace: '.jpg', '.webp' | replace: '.png', '.webp' %}
-        {% assign portfolio_alt = item.alt | default: item.images[0].alt |
-        default: item.title | append: ' - TCNA-compliant tile installation by
-        Tillerstead, New Jersey HIC #13VH10808800' %}
+        {% if item.image or item.images %} {% assign portfolio_image = item.image | default: item.images[0].src %} {%
+        assign portfolio_webp = portfolio_image | replace: '.jpg', '.webp' | replace: '.png', '.webp' %} {% assign
+        portfolio_alt = item.alt | default: item.images[0].alt | default: item.title | append: ' - TCNA-compliant tile
+        installation by Tillerstead, New Jersey HIC #13VH10808800' %}
 
         <figure class="ts-portfolio__figure">
           <picture>
-            <source
-              type="image/webp"
-              srcset="{{ portfolio_webp | relative_url }}"
-            />
+            <source type="image/webp" srcset="{{ portfolio_webp | relative_url }}" />
             <img
               src="{{ portfolio_image | relative_url }}"
               alt="{{ portfolio_alt }}"
@@ -66,4 +57,3 @@ section_id | append: '-title' %}
     {% endif %}
   </div>
 </section>
-

@@ -4,7 +4,9 @@
     <header class="tools-section__header">
       <span class="tools-section__badge">New!</span>
       <h2 id="cost-estimator-title" class="tools-section__title">Bathroom Remodel Cost Estimator</h2>
-      <p class="tools-section__desc">Get a ballpark estimate for your bathroom project based on 2025 South Jersey pricing.</p>
+      <p class="tools-section__desc">
+        Get a ballpark estimate for your bathroom project based on 2025 South Jersey pricing.
+      </p>
     </header>
 
     <div class="tools-card tools-card--premium">
@@ -46,7 +48,15 @@
         <div class="form-field">
           <label for="cost-tile-area" class="form-label">Tile Area</label>
           <div class="form-inline">
-            <input type="number" id="cost-tile-area" class="form-input" placeholder="100" min="10" max="500" value="100" />
+            <input
+              type="number"
+              id="cost-tile-area"
+              class="form-input"
+              placeholder="100"
+              min="10"
+              max="500"
+              value="100"
+            />
             <span class="form-inline__suffix">sq ft</span>
           </div>
         </div>
@@ -56,12 +66,9 @@
         </div>
       </div>
 
-      {% include components/c-sqft-helper.html
-        title="Sq Ft Helper"
-        enableHeight=true
-        targetFloor="#cost-sqft"
-        targetWall="#cost-tile-area"
-        note="Use floor area for bathroom size. Use wall area for surrounds/backsplashes, then adjust for openings and partial-height walls." %}
+      {% include components/c-sqft-helper.html title="Sq Ft Helper" enableHeight=true targetFloor="#cost-sqft"
+      targetWall="#cost-tile-area" note="Use floor area for bathroom size. Use wall area for surrounds/backsplashes,
+      then adjust for openings and partial-height walls." %}
 
       <!-- Scope Options -->
       <fieldset class="form-fieldset">
@@ -103,8 +110,17 @@
       </fieldset>
 
       <button type="button" class="btn btn--primary btn--lg" id="calc-cost-btn">
-        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        <svg
+          aria-hidden="true"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <line x1="12" y1="1" x2="12" y2="23" />
+          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
         </svg>
         Calculate Estimate
       </button>
@@ -112,7 +128,7 @@
       <!-- Results -->
       <div class="calc-results calc-results--featured" id="cost-calc-results" hidden>
         <h4 class="calc-results__title">Estimated Project Cost</h4>
-        
+
         <div class="cost-estimate-display">
           <div class="cost-estimate__range">
             <span class="cost-estimate__low" id="cost-result-low">$0</span>
@@ -145,7 +161,11 @@
         </div>
 
         <div class="cost-disclaimer">
-          <p><strong>⚠️ Important:</strong> This is a rough estimate for planning purposes only. Actual costs depend on site conditions, material selections, and specific project requirements. <a href="/contact/">Request a free on-site estimate</a> for accurate pricing.</p>
+          <p>
+            <strong>⚠️ Important:</strong> This is a rough estimate for planning purposes only. Actual costs depend on
+            site conditions, material selections, and specific project requirements.
+            <a href="/contact/">Request a free on-site estimate</a> for accurate pricing.
+          </p>
         </div>
 
         <div class="cost-cta">

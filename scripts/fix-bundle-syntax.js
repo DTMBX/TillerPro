@@ -20,19 +20,27 @@ const fixedLines = [];
 for (let i = 0; i < lines.length; i++) {
   const line = lines[i];
   const trimmed = line.trim();
-  
+
   // Skip orphaned closing braces
-  if (trimmed === '}' && i > 0 && lines[i-1].trim() === '}') {
-    console.log(`Removing orphaned } at line ${i+1}`);
+  if (trimmed === '}' && i > 0 && lines[i - 1].trim() === '}') {
+    console.log(`Removing orphaned } at line ${i + 1}`);
     continue;
   }
-  
+
   // Skip lines that are just properties without a selector (no leading spaces after a })
-  if (trimmed && !trimmed.startsWith('/*') && !trimmed.startsWith('*/') &&  !trimmed.includes('{') && trimmed.includes(':') && i > 0 && lines[i-1].trim() === '}') {
-    console.log(`Removing orphaned property at line ${i+1}: ${trimmed}`);
+  if (
+    trimmed &&
+    !trimmed.startsWith('/*') &&
+    !trimmed.startsWith('*/') &&
+    !trimmed.includes('{') &&
+    trimmed.includes(':') &&
+    i > 0 &&
+    lines[i - 1].trim() === '}'
+  ) {
+    console.log(`Removing orphaned property at line ${i + 1}: ${trimmed}`);
     continue;
   }
-  
+
   fixedLines.push(line);
 }
 

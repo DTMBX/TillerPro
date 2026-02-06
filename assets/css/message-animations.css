@@ -6,33 +6,31 @@
 /* ===== NOTIFICATION BANNER (Scheduling January) ===== */
 .notification-banner,
 .scheduling-banner,
-[class*="notification"],
-[class*="banner"][class*="schedule"] {
+[class*='notification'],
+[class*='banner'][class*='schedule'] {
   /* Initial state - hidden */
   opacity: 0%;
   transform: translateY(-100%) scale(0.95);
-  
+
   /* Perfect animation */
-  animation: 
+  animation:
     slideDownBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards,
     pulse 2s ease-in-out 1.5s infinite;
-  
+
   /* Beautiful styling */
-  background: linear-gradient(135deg, 
-    rgb(0 163 92 / 95%) 0%, 
-    rgb(0 107 61 / 95%) 100%) !important;
+  background: linear-gradient(135deg, rgb(0 163 92 / 95%) 0%, rgb(0 107 61 / 95%) 100%) !important;
   color: #ffffff !important;
   padding: 1rem 2rem !important;
   border-radius: 50px !important;
   border: 3px solid rgb(212 175 55 / 80%) !important;
-  box-shadow: 
+  box-shadow:
     0 4px 20px rgb(0 163 92 / 40%),
     0 0 40px rgb(212 175 55 / 20%),
     inset 0 1px 0 rgb(255 255 255 / 20%) !important;
   font-weight: 900 !important;
   font-size: 0.95rem !important;
   letter-spacing: 0.02em !important;
-  
+
   /* Positioning */
   position: fixed !important;
   top: 20px !important;
@@ -66,8 +64,9 @@
 
 /* Gentle pulse for attention */
 @keyframes pulse {
-  0%, 100% {
-    box-shadow: 
+  0%,
+  100% {
+    box-shadow:
       0 4px 20px rgb(0 163 92 / 40%),
       0 0 40px rgb(212 175 55 / 20%),
       inset 0 1px 0 rgb(255 255 255 / 20%);
@@ -75,7 +74,7 @@
   }
 
   50% {
-    box-shadow: 
+    box-shadow:
       0 6px 30px rgb(0 163 92 / 60%),
       0 0 60px rgb(212 175 55 / 40%),
       inset 0 1px 0 rgb(255 255 255 / 30%);
@@ -95,36 +94,42 @@
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 100%; }
-  50% { opacity: 30%; }
+  0%,
+  100% {
+    opacity: 100%;
+  }
+
+  50% {
+    opacity: 30%;
+  }
 }
 
 /* ===== TOAST NOTIFICATIONS ===== */
 .toast,
 .message,
 .alert,
-[role="alert"],
-[role="status"] {
+[role='alert'],
+[role='status'] {
   /* Initial state */
   opacity: 0%;
   transform: translateX(400px) scale(0.9);
-  
+
   /* Entrance animation */
-  animation: 
+  animation:
     slideInRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
     wiggle 0.5s ease-in-out 0.8s;
-  
+
   /* Styling */
   background: rgb(255 255 255 / 98%) !important;
   color: #0a0a0a !important;
   padding: 1.25rem 1.5rem !important;
   border-radius: 16px !important;
   border-left: 6px solid #00a35c !important;
-  box-shadow: 
+  box-shadow:
     0 10px 40px rgb(0 0 0 / 15%),
     0 0 0 1px rgb(0 0 0 / 5%) !important;
   font-weight: 700 !important;
-  
+
   /* Positioning */
   position: fixed !important;
   bottom: 30px !important;
@@ -157,18 +162,29 @@
 
 /* Playful wiggle */
 @keyframes wiggle {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-3deg); }
-  75% { transform: rotate(3deg); }
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-3deg);
+  }
+
+  75% {
+    transform: rotate(3deg);
+  }
 }
 
 /* Success toast */
 .toast--success,
 .message--success {
   border-left-color: #00a35c !important;
-  background: linear-gradient(135deg, 
-    rgb(255 255 255 / 98%) 0%, 
-    rgb(0 163 92 / 5%) 100%) !important;
+  background: linear-gradient(
+    135deg,
+    rgb(255 255 255 / 98%) 0%,
+    rgb(0 163 92 / 5%) 100%
+  ) !important;
 }
 
 .toast--success::before {
@@ -197,9 +213,11 @@
 .toast--error,
 .message--error {
   border-left-color: #dc143c !important;
-  background: linear-gradient(135deg, 
-    rgb(255 255 255 / 98%) 0%, 
-    rgb(220 20 60 / 5%) 100%) !important;
+  background: linear-gradient(
+    135deg,
+    rgb(255 255 255 / 98%) 0%,
+    rgb(220 20 60 / 5%) 100%
+  ) !important;
 }
 
 .toast--error::before {
@@ -212,18 +230,29 @@
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-10px); }
-  75% { transform: translateX(10px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-10px);
+  }
+
+  75% {
+    transform: translateX(10px);
+  }
 }
 
 /* Warning toast */
 .toast--warning,
 .message--warning {
   border-left-color: #ff8c00 !important;
-  background: linear-gradient(135deg, 
-    rgb(255 255 255 / 98%) 0%, 
-    rgb(255 140 0 / 5%) 100%) !important;
+  background: linear-gradient(
+    135deg,
+    rgb(255 255 255 / 98%) 0%,
+    rgb(255 140 0 / 5%) 100%
+  ) !important;
 }
 
 .toast--warning::before {
@@ -236,17 +265,25 @@
 }
 
 @keyframes flash {
-  0%, 100% { opacity: 100%; }
-  50% { opacity: 50%; }
+  0%,
+  100% {
+    opacity: 100%;
+  }
+
+  50% {
+    opacity: 50%;
+  }
 }
 
 /* Info toast */
 .toast--info,
 .message--info {
   border-left-color: #0066cc !important;
-  background: linear-gradient(135deg, 
-    rgb(255 255 255 / 98%) 0%, 
-    rgb(0 102 204 / 5%) 100%) !important;
+  background: linear-gradient(
+    135deg,
+    rgb(255 255 255 / 98%) 0%,
+    rgb(0 102 204 / 5%) 100%
+  ) !important;
 }
 
 .toast--info::before {
@@ -259,25 +296,45 @@
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 /* ===== BADGE ANIMATIONS ===== */
 .badge,
 .pill,
 .tag,
-[class*="badge"] {
+[class*='badge'] {
   animation: badgeFadeIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* Stagger animation for multiple badges */
-.badge:nth-child(1) { animation-delay: 0.1s; }
-.badge:nth-child(2) { animation-delay: 0.2s; }
-.badge:nth-child(3) { animation-delay: 0.3s; }
-.badge:nth-child(4) { animation-delay: 0.4s; }
-.badge:nth-child(5) { animation-delay: 0.5s; }
+.badge:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.badge:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.badge:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.badge:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.badge:nth-child(5) {
+  animation-delay: 0.5s;
+}
 
 @keyframes badgeFadeIn {
   0% {
@@ -298,7 +355,7 @@
 
 /* ===== LOADING STATES ===== */
 .loading-message,
-[class*="loading"] {
+[class*='loading'] {
   animation: fadeInScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
@@ -327,15 +384,16 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ===== EXIT ANIMATIONS ===== */
 .toast--exit,
 .notification--exit,
 .message--exit {
-  animation: 
-    fadeOutRight 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+  animation: fadeOutRight 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
 }
 
 @keyframes fadeOutRight {
@@ -377,7 +435,7 @@
     font-size: 0.875rem !important;
     padding: 0.875rem 1.25rem !important;
   }
-  
+
   @keyframes slideDownBounce {
     0% {
       opacity: 0%;
@@ -398,9 +456,10 @@
       transform: translateY(0) scale(1);
     }
   }
-  
+
   @keyframes pulse {
-    0%, 100% {
+    0%,
+    100% {
       transform: scale(1);
     }
 
@@ -408,7 +467,7 @@
       transform: scale(1.02);
     }
   }
-  
+
   .toast,
   .message {
     left: 10px !important;
@@ -426,20 +485,30 @@
   .badge {
     animation: simpleFadeIn 0.3s ease-in forwards !important;
   }
-  
+
   @keyframes simpleFadeIn {
-    from { opacity: 0%; }
-    to { opacity: 100%; }
+    from {
+      opacity: 0%;
+    }
+
+    to {
+      opacity: 100%;
+    }
   }
-  
+
   .toast--exit,
   .notification--exit {
     animation: simpleFadeOut 0.3s ease-out forwards !important;
   }
-  
+
   @keyframes simpleFadeOut {
-    from { opacity: 100%; }
-    to { opacity: 0%; }
+    from {
+      opacity: 100%;
+    }
+
+    to {
+      opacity: 0%;
+    }
   }
 }
 
@@ -480,18 +549,18 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgb(255 255 255 / 40%),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 40%), transparent);
   animation: shimmer 3s ease-in-out 2s infinite;
 }
 
 @keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
 }
 
 /* Slide up animation for closing scheduling bar */

@@ -3,7 +3,7 @@
  * Allows customers to upload photos, get detailed quotes, and receive PDF estimates
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ==
@@ -19,7 +19,7 @@
         areas: [],
         materials: [],
         timeline: null,
-        total: 0
+        total: 0,
       };
       this.init();
     }
@@ -88,7 +88,7 @@
             id: Date.now() + index,
             name: file.name,
             data: e.target.result,
-            notes: ''
+            notes: '',
           };
           this.photos.push(photo);
           this.renderPhotoGallery();
@@ -101,7 +101,9 @@
       const gallery = document.getElementById('photo-gallery');
       if (!gallery) return;
 
-      gallery.innerHTML = this.photos.map(photo => `
+      gallery.innerHTML = this.photos
+        .map(
+          (photo) => `
         <div class="photo-item" data-photo-id="${photo.id}">
           <img src="${photo.data}" alt="${photo.name}">
           <div class="photo-overlay">
@@ -114,16 +116,18 @@
           </div>
           ${photo.notes ? `<p class="photo-note">${photo.notes}</p>` : ''}
         </div>
-      `).join('');
+      `
+        )
+        .join('');
     }
 
     removePhoto(photoId) {
-      this.photos = this.photos.filter(p => p.id !== photoId);
+      this.photos = this.photos.filter((p) => p.id !== photoId);
       this.renderPhotoGallery();
     }
 
     addPhotoNote(photoId) {
-      const photo = this.photos.find(p => p.id === photoId);
+      const photo = this.photos.find((p) => p.id === photoId);
       if (!photo) return;
 
       const note = prompt('Add a note for this photo:', photo.notes);
@@ -149,7 +153,7 @@
         material: '',
         labor: 0,
         materials: 0,
-        subtotal: 0
+        subtotal: 0,
       };
 
       this.quoteData.areas.push(area);
@@ -160,7 +164,9 @@
       const container = document.getElementById('project-areas');
       if (!container) return;
 
-      container.innerHTML = this.quoteData.areas.map((area, index) => `
+      container.innerHTML = this.quoteData.areas
+        .map(
+          (area, index) => `
         <div class="quote-area-card" data-area-id="${area.id}">
           <div class="area-header">
             <h4>Area ${index + 1}</h4>
@@ -206,13 +212,15 @@
             </div>
           </div>
         </div>
-      `).join('');
+      `
+        )
+        .join('');
 
       this.calculateQuoteTotal();
     }
 
     updateArea(areaId, field, value) {
-      const area = this.quoteData.areas.find(a => a.id === areaId);
+      const area = this.quoteData.areas.find((a) => a.id === areaId);
       if (!area) return;
 
       area[field] = value;
@@ -228,19 +236,19 @@
     calculateAreaCost(area) {
       // Basic pricing (customize based on your actual pricing)
       const laborRates = {
-        'ceramic': 8,
-        'porcelain': 10,
+        ceramic: 8,
+        porcelain: 10,
         'natural-stone': 12,
-        'lft': 14,
-        'mosaic': 16
+        lft: 14,
+        mosaic: 16,
       };
 
       const materialRates = {
-        'ceramic': 5,
-        'porcelain': 8,
+        ceramic: 5,
+        porcelain: 8,
         'natural-stone': 15,
-        'lft': 12,
-        'mosaic': 20
+        lft: 12,
+        mosaic: 20,
       };
 
       const laborRate = laborRates[area.material] || 10;
@@ -252,7 +260,7 @@
     }
 
     removeArea(areaId) {
-      this.quoteData.areas = this.quoteData.areas.filter(a => a.id !== areaId);
+      this.quoteData.areas = this.quoteData.areas.filter((a) => a.id !== areaId);
       this.renderProjectAreas();
     }
 
@@ -361,8 +369,8 @@
           body: JSON.stringify({
             email,
             quoteData: this.quoteData,
-            html: quoteHTML
-          })
+            html: quoteHTML,
+          }),
         });
 
         if (response.ok) {
@@ -381,14 +389,18 @@
         <h1>Your Tillerstead Quote</h1>
         <p>Thank you for your interest in professional tile installation!</p>
         <h2>Project Summary</h2>
-        ${this.quoteData.areas.map((area, i) => `
+        ${this.quoteData.areas
+          .map(
+            (area, i) => `
           <div>
             <h3>${i + 1}. ${area.name}</h3>
             <p>Square Footage: ${area.sqft} sq ft</p>
             <p>Material: ${area.material}</p>
             <p>Subtotal: $${area.subtotal.toFixed(2)}</p>
           </div>
-        `).join('')}
+        `
+          )
+          .join('')}
         <h2>Total: $${this.quoteData.total.toFixed(2)}</h2>
       `;
     }
@@ -413,7 +425,7 @@
         id: Date.now(),
         date: new Date().toISOString(),
         data: this.quoteData,
-        photos: this.photos
+        photos: this.photos,
       };
       quotes.push(quote);
       localStorage.setItem('tillerstead_quotes', JSON.stringify(quotes));
@@ -428,9 +440,12 @@
       }
 
       // Show list to select from
-      const quoteList = quotes.map(q =>
-        `${new Date(q.date).toLocaleDateString()} - ${q.data.areas.length} areas - $${q.data.total.toFixed(2)}`
-      ).join('\n');
+      const quoteList = quotes
+        .map(
+          (q) =>
+            `${new Date(q.date).toLocaleDateString()} - ${q.data.areas.length} areas - $${q.data.total.toFixed(2)}`
+        )
+        .join('\n');
 
       const selection = prompt('Select a quote:\n' + quoteList);
       // Simplified - in production use a proper modal
@@ -450,5 +465,4 @@
   } else {
     window.quoteSystem = new PremiumQuoteSystem();
   }
-
 })();

@@ -19,8 +19,7 @@ class MobileAppFeatures {
   }
 
   isMobile() {
-    return window.matchMedia('(max-width: 768px)').matches ||
-           ('ontouchstart' in window);
+    return window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window;
   }
 
   /**
@@ -39,10 +38,10 @@ class MobileAppFeatures {
       { href: '/', icon: 'home', label: 'Home' },
       { href: '/tools/', icon: 'calculator', label: 'Tools' },
       { href: '/portfolio/', icon: 'gallery', label: 'Portfolio' },
-      { href: '/contact/', icon: 'message', label: 'Contact' }
+      { href: '/contact/', icon: 'message', label: 'Contact' },
     ];
 
-    navItems.forEach(item => {
+    navItems.forEach((item) => {
       const link = document.createElement('a');
       link.href = item.href;
       link.className = 'mobile-nav-item';
@@ -140,44 +139,57 @@ class MobileAppFeatures {
       return window.scrollY === 0 && !document.body.classList.contains('refreshing');
     };
 
-    document.addEventListener('touchstart', (e) => {
-      if (canPull()) {
-        startY = e.touches[0].clientY;
-      }
-    }, { passive: true });
-
-    document.addEventListener('touchmove', (e) => {
-      if (!canPull()) return;
-
-      const currentY = e.touches[0].clientY;
-      const pullDistance = Math.min(currentY - startY, maxPull);
-
-      if (pullDistance > 0) {
-        isPulling = true;
-        refreshIndicator.style.transform = `translateY(${pullDistance}px)`;
-        refreshIndicator.style.opacity = pullDistance / threshold;
-
-        if (pullDistance >= threshold) {
-          refreshIndicator.classList.add('ready');
-        } else {
-          refreshIndicator.classList.remove('ready');
+    document.addEventListener(
+      'touchstart',
+      (e) => {
+        if (canPull()) {
+          startY = e.touches[0].clientY;
         }
-      }
-    }, { passive: true });
+      },
+      { passive: true }
+    );
 
-    document.addEventListener('touchend', () => {
-      if (isPulling) {
-        const pullDistance = parseFloat(refreshIndicator.style.transform.replace(/[^\d.]/g, '')) || 0;
+    document.addEventListener(
+      'touchmove',
+      (e) => {
+        if (!canPull()) return;
 
-        if (pullDistance >= threshold) {
-          this.performRefresh(refreshIndicator);
-        } else {
-          this.resetRefresh(refreshIndicator);
+        const currentY = e.touches[0].clientY;
+        const pullDistance = Math.min(currentY - startY, maxPull);
+
+        if (pullDistance > 0) {
+          isPulling = true;
+          refreshIndicator.style.transform = `translateY(${pullDistance}px)`;
+          refreshIndicator.style.opacity = pullDistance / threshold;
+
+          if (pullDistance >= threshold) {
+            refreshIndicator.classList.add('ready');
+          } else {
+            refreshIndicator.classList.remove('ready');
+          }
         }
+      },
+      { passive: true }
+    );
 
-        isPulling = false;
-      }
-    }, { passive: true });
+    document.addEventListener(
+      'touchend',
+      () => {
+        if (isPulling) {
+          const pullDistance =
+            parseFloat(refreshIndicator.style.transform.replace(/[^\d.]/g, '')) || 0;
+
+          if (pullDistance >= threshold) {
+            this.performRefresh(refreshIndicator);
+          } else {
+            this.resetRefresh(refreshIndicator);
+          }
+
+          isPulling = false;
+        }
+      },
+      { passive: true }
+    );
   }
 
   performRefresh(indicator) {
@@ -208,7 +220,7 @@ class MobileAppFeatures {
   initAppShell() {
     // Add skeleton loaders for lazy-loaded content
     const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-    lazyImages.forEach(img => {
+    lazyImages.forEach((img) => {
       const wrapper = document.createElement('div');
       wrapper.className = 'skeleton-img-wrapper';
       img.parentNode.insertBefore(wrapper, img);
@@ -222,8 +234,13 @@ class MobileAppFeatures {
     // Show loading state for navigation
     document.addEventListener('click', (e) => {
       const link = e.target.closest('a');
-      if (link && link.href && !link.target && !link.download &&
-          link.hostname === window.location.hostname) {
+      if (
+        link &&
+        link.href &&
+        !link.target &&
+        !link.download &&
+        link.hostname === window.location.hostname
+      ) {
         // Don't show loader for anchor links
         if (!link.hash || link.pathname !== window.location.pathname) {
           this.showPageTransition();
@@ -262,7 +279,7 @@ class MobileAppFeatures {
       const patterns = {
         light: 10,
         medium: 20,
-        heavy: 30
+        heavy: 30,
       };
       navigator.vibrate(patterns[intensity] || 10);
     }

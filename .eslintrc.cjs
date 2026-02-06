@@ -12,11 +12,11 @@ module.exports = {
     'no-unused-vars': 'warn',
     'no-undef': 'error',
     'no-console': 'off',
-    'semi': ['error', 'always'],
-    'quotes': ['error', 'single', { 'avoidEscape': true }],
+    semi: ['error', 'always'],
+    quotes: ['error', 'single', { avoidEscape: true }],
   },
   globals: {
-    'gtag': 'readonly',
-    'dataLayer': 'readonly',
-  }
+    gtag: 'readonly',
+    dataLayer: 'readonly',
+  },
 };

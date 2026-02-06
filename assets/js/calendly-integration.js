@@ -4,7 +4,7 @@
  * Version: 1.0.0
  */
 
-(function() {
+(function () {
   'use strict';
 
   const CalendlyIntegration = {
@@ -14,15 +14,15 @@
       prefill: {
         name: '',
         email: '',
-        customAnswers: {}
+        customAnswers: {},
       },
       utm: {
         utmCampaign: '',
         utmSource: '',
         utmMedium: '',
         utmContent: '',
-        utmTerm: ''
-      }
+        utmTerm: '',
+      },
     },
 
     /**
@@ -30,7 +30,7 @@
      * @param {string} elementId - Container element ID
      * @param {Object} options - Custom options
      */
-    initInlineWidget: function(elementId, options = {}) {
+    initInlineWidget: function (elementId, options = {}) {
       const container = document.getElementById(elementId);
       if (!container) {
         console.warn(`Calendly: Element #${elementId} not found`);
@@ -50,14 +50,14 @@
     /**
      * Render inline widget
      */
-    renderWidget: function(container, options) {
+    renderWidget: function (container, options) {
       const settings = { ...this.config, ...options };
 
       window.Calendly.initInlineWidget({
         url: settings.url,
         parentElement: container,
         prefill: settings.prefill,
-        utm: settings.utm
+        utm: settings.utm,
       });
 
       this.trackEvent('Widget Loaded', settings.url);
@@ -67,7 +67,7 @@
      * Open Calendly popup
      * @param {Object} options - Custom options
      */
-    openPopup: function(options = {}) {
+    openPopup: function (options = {}) {
       const settings = { ...this.config, ...options };
 
       if (!window.Calendly) {
@@ -84,7 +84,7 @@
     /**
      * Load Calendly script dynamically
      */
-    loadScript: function(callback) {
+    loadScript: function (callback) {
       const script = document.createElement('script');
       script.src = 'https://assets.calendly.com/assets/external/widget.js';
       script.async = true;
@@ -101,10 +101,10 @@
     /**
      * Attach to buttons with data-calendly attribute
      */
-    attachToButtons: function() {
+    attachToButtons: function () {
       const buttons = document.querySelectorAll('[data-calendly]');
 
-      buttons.forEach(button => {
+      buttons.forEach((button) => {
         button.addEventListener('click', (e) => {
           e.preventDefault();
 
@@ -116,8 +116,8 @@
             url: url,
             prefill: {
               name: prefillName,
-              email: prefillEmail
-            }
+              email: prefillEmail,
+            },
           });
         });
       });
@@ -128,7 +128,7 @@
     /**
      * Prefill from URL parameters
      */
-    getPrefillFromURL: function() {
+    getPrefillFromURL: function () {
       const urlParams = new URLSearchParams(window.location.search);
       return {
         name: urlParams.get('name') || '',
@@ -136,33 +136,33 @@
         customAnswers: {
           a1: urlParams.get('project_type') || '',
           a2: urlParams.get('project_size') || '',
-          a3: urlParams.get('timeline') || ''
-        }
+          a3: urlParams.get('timeline') || '',
+        },
       };
     },
 
     /**
      * Get UTM parameters from URL
      */
-    getUTMFromURL: function() {
+    getUTMFromURL: function () {
       const urlParams = new URLSearchParams(window.location.search);
       return {
         utmCampaign: urlParams.get('utm_campaign') || '',
         utmSource: urlParams.get('utm_source') || '',
         utmMedium: urlParams.get('utm_medium') || '',
         utmContent: urlParams.get('utm_content') || '',
-        utmTerm: urlParams.get('utm_term') || ''
+        utmTerm: urlParams.get('utm_term') || '',
       };
     },
 
     /**
      * Track events with Google Analytics
      */
-    trackEvent: function(action, label) {
+    trackEvent: function (action, label) {
       if (typeof gtag !== 'undefined') {
         gtag('event', action, {
           event_category: 'Calendly',
-          event_label: label
+          event_label: label,
         });
       }
 
@@ -174,7 +174,7 @@
     /**
      * Initialize on page load
      */
-    init: function() {
+    init: function () {
       // Auto-attach to buttons
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
@@ -186,17 +186,17 @@
 
       // Auto-initialize inline widgets
       const inlineContainers = document.querySelectorAll('.calendly-inline-widget');
-      inlineContainers.forEach(container => {
+      inlineContainers.forEach((container) => {
         const url = container.dataset.url || this.config.url;
         this.initInlineWidget(container.id, { url: url });
       });
-    }
+    },
   };
 
   // Listen for Calendly events
-  window.addEventListener('message', function(e) {
+  window.addEventListener('message', function (e) {
     if (e.origin === 'https://calendly.com' && e.data.event) {
-      switch(e.data.event) {
+      switch (e.data.event) {
         case 'calendly.event_scheduled':
           CalendlyIntegration.trackEvent('Event Scheduled', 'Success');
           // Redirect to success page
