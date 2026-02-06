@@ -1,0 +1,27 @@
+{%- comment -%}
+  Default layout: uses canonical page shell and injects optional build-hero/TOC/phase-nav blocks.
+{%- endcomment -%}
+{%- include layout/build-blocks.html -%}
+{%- if page.build_guide -%}
+  {%- assign show_breadcrumbs = false -%}
+{%- else -%}
+  {%- assign show_breadcrumbs = true -%}
+{%- endif -%}
+{%- capture build_content -%}
+  {% comment %} Build Guide Hero - opt-in via front matter build_guide: true {% endcomment %}
+  {% if page.build_guide %}{{ build_hero }}{% endif %}
+
+  {{ build_toc_and_body }}
+
+  {{ build_phase_nav }}
+
+  <div class="default-cta text-center scroll-fade-in premium-cta mt-4">
+    {% include components/cta-buttons.html %}
+  </div>
+
+  {% include components/credential-badges.html class="mt-2 scroll-fade-in" style="text-align:center;" %}
+
+  {{ build_cta }}
+{%- endcapture -%}
+
+{% include layout/page-shell.html body=build_content show_breadcrumbs=show_breadcrumbs %}

@@ -1,0 +1,34 @@
+name: Dependency Audit
+
+on:
+  schedule:
+    - cron: '0 3 * * 1' # weekly, Monday 03:00 UTC
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit --ignore-scripts
+
+      - name: Run npm audit
+        run: |
+          npm audit --json > audit.json || true
+          node -e "const fs=require('fs');const a=JSON.parse(fs.readFileSync('audit.json'));const critical=(a.metadata? (a.metadata.vulnerabilities.critical||0):0);const high=(a.metadata? (a.metadata.vulnerabilities.high||0):0); if(critical>0){console.log('CRITICAL:'+critical);process.exit(1);} if(high>5){console.log('HIGH:'+high);process.exit(1);} console.log('Audit OK');"
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-report
+          path: audit.json

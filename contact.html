@@ -1,0 +1,34 @@
+---
+layout: default
+title: "Contact | Tillerstead | NJ Tile & Bathroom Remodeling"
+description: "Get in touch with Tillerstead LLC for TCNA-compliant tile and bathroom remodeling services in South Jersey. Licensed, insured, and owner-supervised."
+permalink: /contact/
+body_class: page-contact
+meta_title: "Contact Tillerstead | NJ Tile & Bathroom Remodeling Experts"
+meta_description: "Contact Tillerstead LLC for TCNA-compliant tile and bathroom remodeling services in South Jersey. Licensed, insured, and owner-supervised."
+stylesheets:
+  - /assets/css/pages/contact.css
+---
+
+<div class="gradient-mesh">
+<main class="ts-section ts-surface contact" aria-labelledby="contact-heading" role="main" tabindex="-1" data-animate="fade">
+  <header class="contact-intro">
+    <h1 id="contact-heading">Contact Tillerstead LLC</h1>
+    <p class="lead">
+      Ready for a tile or bathroom remodel done right? Tillerstead LLC is licensed, insured, and owner-supervised. We serve Atlantic, Ocean, and Cape May Counties with TCNA-compliant systems and clear, honest communication.
+    </p>
+    <ul class="ts-list">
+      <li><strong>Phone:</strong> <a href="tel:{{ site.company.phone_link }}">{{ site.company.phone_display }}</a></li>
+      <li><strong>Email:</strong> <a href="mailto:{{ site.company.email_support | default: site.company.email }}">{{ site.company.email_support | default: site.company.email }}</a></li>
+      <li><strong>HIC License:</strong> #{{ site.company.hic }} (New Jersey Home Improvement Contractor)</li>
+    </ul>
+  </header>
+
+  <section aria-labelledby="form-heading" data-animate="fade-up" data-delay="200">
+    <h2 id="form-heading">Request an Estimate or Consultation</h2>
+    <p>Contact us today to schedule a consultation or request a free estimate for your tile or bathroom remodeling project. We look forward to working with you to create a space that is both beautiful and functional.</p>
+    {% include forms/contact.html %}
+  </section>
+</main>
+</div>
+

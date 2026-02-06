@@ -1,0 +1,48 @@
+_site/
+.jekyll-cache/
+.vs/
+.mcp-agents/
+dist/
+reports/
+node_modules/
+
+# Playwright test artifacts
+playwright-report/
+test-results/
+.playwright-artifacts*/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+*.min.js.map
+*.min.css.map
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Encryption keys (NEVER COMMIT)
+.git-encrypt/encryption.key
+.git-encrypt/*.key
+.git-crypt-key

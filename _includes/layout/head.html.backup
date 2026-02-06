@@ -1,0 +1,135 @@
+<!-- Jekyll include: no DOCTYPE needed, ensure space indentation -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+
+<!-- Security Headers (Client-Side) -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+<meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';" />
+
+<meta name="color-scheme" content="light dark" />
+<meta name="theme-color" content="#10b981" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#059669" media="(prefers-color-scheme: dark)" />
+
+<!-- Early accessibility preference detection (runs before render to prevent flash) -->
+<script>
+(function(){
+  var d=document.documentElement,m=window.matchMedia;
+  // Reduced motion
+  if(m('(prefers-reduced-motion:reduce)').matches)d.classList.add('reduce-motion');
+  // High contrast / forced colors
+  if(m('(forced-colors:active)').matches||m('(prefers-contrast:more)').matches)d.setAttribute('data-high-contrast','true');
+  // Color scheme
+  if(m('(prefers-color-scheme:dark)').matches)d.setAttribute('data-color-scheme','dark');
+  // Touch device
+  if(m('(pointer:coarse)').matches){d.setAttribute('data-pointer','coarse');d.classList.add('touch-friendly');}
+  // No hover
+  if(m('(hover:none)').matches)d.setAttribute('data-hover','none');
+  // Reduced transparency
+  if(m('(prefers-reduced-transparency:reduce)').matches)d.setAttribute('data-reduced-transparency','true');
+  // Inverted colors
+  if(m('(inverted-colors:inverted)').matches)d.setAttribute('data-inverted-colors','true');
+  // Load saved user preferences
+  try{var p=JSON.parse(localStorage.getItem('tillerstead-a11y-prefs')||'{}');
+    if(p.highContrast)d.setAttribute('data-high-contrast','true');
+    if(p.textSize)d.setAttribute('data-text-size',p.textSize);
+    if(p.reducedMotion)d.classList.add('reduce-motion');
+  }catch(e){}
+})();
+</script>
+
+<title>{% if page.meta_title %}{{ page.meta_title | strip | escape }}{% elsif page.title %}{{ page.title | strip | escape }} | {{ site.title | strip | escape }}{% else %}{{ site.title | strip | escape }}{% endif %}</title>
+
+{% if page.meta_description %}
+<meta name="description" content="{{ page.meta_description | strip_html | strip_newlines | truncate: 160 | escape }}" />
+{% elsif page.description %}
+<meta name="description" content="{{ page.description | strip_html | strip_newlines | truncate: 160 | escape }}" />
+{% elsif site.description %}
+<meta name="description" content="{{ site.description | strip_html | strip_newlines | truncate: 160 | escape }}" />
+{% endif %}
+
+{% if page.keywords %}
+<meta name="keywords" content="{{ page.keywords | join: ', ' | escape }}" />
+{% elsif site.keywords %}
+<meta name="keywords" content="{{ site.keywords | join: ', ' | escape }}" />
+{% endif %}
+
+<meta name="author" content="Tillerstead LLC" />
+<meta name="robots" content="{{ page.robots | default: 'index, follow' }}" />
+
+<!-- DNS Prefetch & Preconnect for external resources -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="preconnect" href="https://www.thumbtack.com" crossorigin />
+
+<!-- Favicons & App Icons -->
+{% include icons/favicon-meta.html %}
+
+<!-- Resource Hints: Preload critical CSS (render-blocking) -->
+<link rel="preload" href="{{ '/assets/css/root-vars.css' | relative_url }}" as="style" />
+<link rel="preload" href="{{ '/assets/css/main.css' | relative_url }}" as="style" />
+{% if page.url == '/' %}
+<link rel="preload" href="{{ '/assets/css/pages/home.css' | relative_url }}" as="style" />
+{% endif %}
+
+<!-- Core & Utility CSS: Load variables first, then base, then layout, then components, then page/utilities -->
+<link rel="stylesheet" href="{{ '/assets/css/root-vars.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/design-system.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/mobile-optimizations.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/mobile-premium.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/mobile-app.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/mobile-personality.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/hero-patterns.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/tile-patterns.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/tile-integrations.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/retro-enhancements.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/logo-wolf-crest.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/footer.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/visual-enhancements.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/accessibility.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/nav-drawer.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/navigation.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/animations.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/professional-features.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/carousel-premium.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/form-premium.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/components/service-cards.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/components/forms.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/page-theme.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/card-grid-bg.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/4k-scaling.css' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/button-contrast-fix.css' | relative_url }}" />
+{% if page.layout == 'build-page' %}
+<link rel="stylesheet" href="{{ '/assets/css/build-guide.css' | relative_url }}" />
+{% endif %}
+{% if page.url == '/homeowner-resources/' %}
+<link rel="stylesheet" href="{{ '/assets/css/pages/resources.css' | relative_url }}" />
+{% endif %}
+{% if page.url == '/tile-visualizer.html' %}
+<link rel="stylesheet" href="{{ '/assets/css/tile-visualizer.css' | relative_url }}" />
+{% endif %}
+
+<!-- Page-specific stylesheets -->
+{% if page.stylesheets %}
+  {% for stylesheet in page.stylesheets %}
+  <link rel="stylesheet" href="{{ stylesheet | relative_url }}" />
+  {% endfor %}
+{% endif %}
+
+<!-- Page-specific scripts -->
+{% if page.scripts %}
+  {% for script in page.scripts %}
+  <script src="{{ script | relative_url }}" defer></script>
+  {% endfor %}
+{% endif %}
+
+<!-- Prefetch secondary pages for instant navigation -->
+{% if page.url == '/' %}
+<link rel="prefetch" href="{{ '/portfolio/' | relative_url }}" as="document" />
+<link rel="prefetch" href="{{ '/contact/' | relative_url }}" as="document" />
+<link rel="prefetch" href="{{ '/services/' | relative_url }}" as="document" />
+{% endif %}
+
+<!-- Page-specific styles/scripts can be added below -->
+{% if page.extra_head %}{{ page.extra_head }}{% endif %}
