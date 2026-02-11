@@ -6,14 +6,14 @@ build_pages[prev_i] %} {% assign next_p = build_pages[next_i] %}
 <nav class="build-prev-next" aria-label="Build phase navigation">
   <div class="build-prev-next__grid">
     {% if prev_p %}
-    <a class="build-prev-next__card build-prev-next__card--prev" href="{{ prev_p.url | relative_url }}">
+    <a class="build-prev-next__card build-prev-next__card--prev" href="{{ prev_p.url | relative_url }}" rel="prev">
       <span class="build-prev-next__eyebrow">Previous</span>
       <span class="build-prev-next__title">Step {{ prev_p.build_order }}: {{ prev_p.title }}</span>
     </a>
     {% else %}
     <div class="build-prev-next__card build-prev-next__card--empty" aria-hidden="true"></div>
     {% endif %} {% if next_p %}
-    <a class="build-prev-next__card build-prev-next__card--next" href="{{ next_p.url | relative_url }}">
+    <a class="build-prev-next__card build-prev-next__card--next" href="{{ next_p.url | relative_url }}" rel="next">
       <span class="build-prev-next__eyebrow">Next</span>
       <span class="build-prev-next__title">Step {{ next_p.build_order }}: {{ next_p.title }}</span>
     </a>

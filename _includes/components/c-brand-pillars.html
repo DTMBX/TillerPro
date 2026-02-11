@@ -11,7 +11,7 @@ include.show_icons | default: true -%} {%- assign heading = include.heading | de
     <h2 id="brand-pillars-heading" class="ts-brand-pillars__heading">{{ heading }}</h2>
     {% endif %}
 
-    <ul class="ts-brand-pillars__list">
+    <ul class="ts-brand-pillars__list" role="list">
       {% for pillar in brand.pillars %}
       <li class="ts-brand-pillars__item">
         {% if show_icons %}

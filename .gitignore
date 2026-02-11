@@ -4,6 +4,7 @@ _site/
 .mcp-agents/
 dist/
 reports/
+optimization-reports/
 node_modules/
 /.bundle
 vendor/bundle/
@@ -40,17 +41,28 @@ npm-debug.log*
 .env.local
 .env.*.local
 
-# Ruby version file
-.ruby-version
-
 # Build artifacts
 *.min.js.map
 *.min.css.map
+
+# Report/audit artifacts (generated, not source)
+bandit-report.json
+compliance-audit-report.json
+contrast-audit-report.json
+lighthouse-mobile-report.json
+npm-audit.json
+lighthouse-report.html
+lint-css-output.txt
+lint-js-output.txt
 
 # Temporary files
 *.tmp
 *.temp
 .cache/
+
+# Python virtual environments
+.venv/
+.venv-*/
 
 # Encryption keys (NEVER COMMIT)
 .git-encrypt/encryption.key

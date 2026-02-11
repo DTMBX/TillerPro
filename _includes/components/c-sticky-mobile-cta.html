@@ -72,34 +72,34 @@
 </div>
 <script>
   (function () {
-    var b = document.getElementById('sticky-mobile-cta');
-    if (!b) return;
+    var bar = document.getElementById('sticky-mobile-cta');
+    if (!bar) return;
 
-    function c() {
+    function updateVisibility() {
       if (window.innerWidth > 768) {
-        b.style.display = 'none';
+        bar.style.display = 'none';
         return;
       }
-      b.style.display = 'flex';
+      bar.style.display = 'flex';
     }
 
-    var t = false;
+    var ticking = false;
     window.addEventListener(
       'scroll',
       function () {
-        if (!t) {
+        if (!ticking) {
           window.requestAnimationFrame(function () {
-            c();
-            t = false;
+            updateVisibility();
+            ticking = false;
           });
-          t = true;
+          ticking = true;
         }
       },
       { passive: true }
     );
 
-    window.addEventListener('resize', c);
-    c();
+    window.addEventListener('resize', updateVisibility);
+    updateVisibility();
 
     // Connect accessibility button to panel
     var a11yBtn = document.getElementById('sticky-a11y-toggle');

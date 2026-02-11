@@ -262,147 +262,99 @@ forms:
   guide_redirect_path: "/download/nj-tile-guide/thank-you/"
   subject: "New Tillerstead LLC inquiry — TCNA/New Jersey HIC Compliant"
 
-# Exclusions
+# Exclusions — keep only site content, exclude everything else
 # ----------------------------
 exclude:
+  # Build tooling
   - node_modules
+  - vendor
   - .sass-cache
   - .jekyll-metadata
+  - .jekyll-cache
+  - _site
   - Gemfile
   - Gemfile.lock
-  - vendor
+  - package.json
+  - package-lock.json
+  - "*.gemspec"
+
+  # IDE / OS
   - .git
   - .github
   - .vscode
-  - scripts
+  - .vs
+  - .DS_Store
+  - .editorconfig
+  - .gitignore
+  - .gitattributes
+
+  # Linting / formatting configs
+  - eslint.config.js
+  - ".lighthouserc.json"
+  - ".htmlhintrc"
+  - ".htmlvalidate.json"
+  - ".hintrc"
+  - ".stylelintrc.json"
+  - ".stylelintignore"
+  - ".prettierrc.json"
+  - ".prettierignore"
+  - ".pa11yci.json"
+  - ".size-limit.cjs"
+  - ".npmrc"
+  - ".nvmrc"
+  - ".ruby-version"
+  - playwright.config.js
+  - browserconfig.xml
+
+  # Dev scripts and tools
+  - scripts/
   - tools/
-  - _audit
+  - admin/
   - docs/
-  - package.json
-  - package-lock.json
+  - codebooks/
+  - tillerstead-toolkit/
+  - _audit/
+  - _reports/
+
+  # Dev shell scripts
+  - "*.ps1"
+  - "*.sh"
+  - "*.bat"
+
+  # Non-content markdown in root
   - README.md
   - LICENSE
-  - "*.ps1"
-  - admin/
-  - "**/*-GUIDE.md"
+  - AI_IMPORTANT.md
+  - BRAND-GUIDELINES.md
+  - COLOR-STANDARD.md
+  - CODEOWNERS
   - "**/*-COMPLETE.md"
-  - "**/*-QUICKSTART.md"
-  - "**/*-DOCS.md"
-  - "**/*-ARCHITECTURE.md"
+  - "**/*-GUIDE.md"
   - "**/*-REPORT.md"
-  - "**/*-IMPLEMENTATION.md"
-  - "**/*-CHEATSHEET.*"
-  - "**/*-IMPROVEMENTS.md"
-  - "**/*-SYSTEM*.md"
-  - "**/*-ANALYSIS.md"
-  - "**/*-DEPLOYED.md"
-  - "**/*-FIX.md"
-  - tillerstead-toolkit/
-  - "**/.git-crypt*"
-  - "**/*-REF.md"
   - "**/*-STRATEGY.md"
-  - ACCESSIBILITY.md
-  - CONFIGURATION.md
-  - COMPLIANCE.md
-  - SECURITY-GUIDE.md
-  - BRAND-STRATEGY.md
-  - WORKFLOW-HEALTH-REPORT.md
-  - WEB-STANDARDS-COMPLIANCE-REPORT.md
-  - PREMIUM-UX-IMPLEMENTATION.md
-  - NETLIFY-DEPLOYMENT.md
+  - "**/*-IMPLEMENTATION.md"
 
-# Include critical files for Netlify
+  # Config files that aren't site content
+  - "*.config.js"
+  - "*.toml"
+  - render.yaml
+
+  # Backup patterns
+  - "*.bak"
+  - "*.bak.*"
+  - "**/*.bak"
+  - "**/*.bak.*"
+  - backup-pages/
+  - archive/
+
+# Include — only override exclusions for files Netlify/Jekyll needs
 # ----------------------------
 include:
   - _redirects
+  - _headers
   - .well-known
   - build/
-  - dist/
-  - logs/
-  - reports/
-  - tests/
-  - test-results/
-  - playwright-report/
-  - profile/
-  - tillerstead-toolkit/
-  - _backup-*/
-  - PREMIUM-UX-IMPLEMENTATION.md
-  - CONFIGURATION.md
-  - CONFIG-IMPROVEMENTS.md
-  - "*-IMPLEMENTATION.md"
-  - "*-COMPLETE.md"
-  - "*-GUIDE.md"
-  - "*-REPORT.md"
-  - "*-DOCS.md"
-  - "*-CHEATSHEET*"
-  - "*-SYSTEM*"
-  - "WORKFLOW-*.md"
-  - "WEB-*.md"
-  - "WCAG-*.md"
-  - "TILE-*.md"
-  - "SECURITY-*.md"
-  - "RETRO-*.md"
-  - "PREMIUM-*.md"
-  - "OPTIMIZATION-*.md"
-  - "MODERN-*.md"
-  - "LOGO-*.md"
-  - "LINT-*.md"
-  - "DESIGN-*.md"
-  - "CSS-*.md"
-  - "BRAND-*.md"
-  - "ADMIN-*.md"
-  - "90S-*.md"
-  - "BACKUP_*.md"
-  - "*.json"
-  - "*.gemspec"
-  - "*.toml"
-  - "*.config.js"
-  - ".editorconfig"
-  - ".gitignore"
-  - ".gitattributes"
-  - ".prettierrc"
-  - ".prettierignore"
-  - ".npmrc"
-  - "*.sh"
-  - "*.bak*"
-  - "**/*.bak*"
-  - "*.bak_keep_*"
-  - ".backups"
-  - "vendor/**"
-  - "root-archive/**"
-  - "reports"
-  - "dist"
-  - "vendor/bundle"
-  - "root-archive"
-  - "_backup/"
-  - "**/*.bak"
-  - "*.bak"
-  - "root-archive/README.md"
-  - "for-general-contractors.md"
-  - "recommended-products.md"
-  - "reviews.md"
-  - "terms/index.md"
-  - "root-archive/docs/"
-  - "root-archive/docs/**"
-  - "baseline/"
-  - "baseline/**"
-  - "*.bak.*"
-  - "**/*.bak.*"
-  - "_site"
-  - ".jekyll-cache"
-  - ".DS_Store"
-  - ".gitignore"
-  - "backup-pages"
-  - "backup-pages/**"
-  - "archive"
-  - "archive/**"
-  - "ACCESSIBILITY.md"
-  - "CHANGELOG*.md"
-  - "LOGO*.md"
-  - "README.md"
-  # Note: Don't use "*.md" - it excludes index.md and breaks the homepage
-  # Ensure assets/ or assets/css/ is NOT listed here
 
 keep_files:
-  - "CNAME"
-  - "assets/"
+  - CNAME
+  - assets/
