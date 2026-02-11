@@ -1,0 +1,638 @@
+/**
+ * ====================================
+ * MODERN UX REFRESH - TILLERSTEAD
+ * ====================================
+ * Easy-to-use design for all ages
+ * Focus: Clarity, accessibility, touch-friendly
+ */
+
+/* ====================================
+   ROOT ENHANCEMENTS - Better defaults
+   ==================================== */
+
+:root {
+  /* Larger base font for readability */
+  --ux-font-base: clamp(1rem, 1.05rem + 0.25vw, 1.125rem);
+  
+  /* Generous touch targets (48px minimum) */
+  --ux-touch-target: 48px;
+  --ux-touch-target-lg: 56px;
+  
+  /* Comfortable spacing */
+  --ux-space-xs: 0.5rem;
+  --ux-space-sm: 0.75rem;
+  --ux-space-md: 1.25rem;
+  --ux-space-lg: 2rem;
+  --ux-space-xl: 3rem;
+  
+  /* Smooth, gentle animations */
+  --ux-ease-gentle: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ux-transition-smooth: 0.3s var(--ux-ease-gentle);
+  
+  /* Focus ring for clarity */
+  --ux-focus-ring: 0 0 0 3px rgba(0, 225, 132, 0.5);
+  --ux-focus-ring-offset: 2px;
+  
+  /* Softer shadows for depth without harshness */
+  --ux-shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --ux-shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.2);
+  --ux-shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* ====================================
+   IMPROVED BODY & TEXT
+   ==================================== */
+
+body {
+  font-size: var(--ux-font-base);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Better paragraph spacing */
+p {
+  margin-bottom: 1.25em;
+  max-width: 75ch;
+}
+
+/* Clearer headings with breathing room */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+  line-height: 1.3;
+}
+
+/* ====================================
+   ACCESSIBLE BUTTONS - All Ages
+   ==================================== */
+
+.btn,
+button,
+[type="button"],
+[type="submit"] {
+  /* Generous touch target */
+  min-height: var(--ux-touch-target);
+  min-width: var(--ux-touch-target);
+  padding: 0.875rem 1.75rem;
+  
+  /* Readable text */
+  font-size: clamp(0.9375rem, 1rem + 0.1vw, 1.0625rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  
+  /* Clear visual boundary */
+  border-radius: 12px;
+  
+  /* Smooth interaction */
+  transition: 
+    transform var(--ux-transition-smooth),
+    box-shadow var(--ux-transition-smooth),
+    background-color var(--ux-transition-smooth);
+  
+  /* Visual feedback on interaction */
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Clearer hover state */
+.btn:hover,
+button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--ux-shadow-elevated);
+}
+
+/* Active state feedback */
+.btn:active,
+button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: var(--ux-shadow-soft);
+}
+
+/* Strong focus indicator */
+.btn:focus-visible,
+button:focus-visible,
+[type="button"]:focus-visible,
+[type="submit"]:focus-visible {
+  outline: none;
+  box-shadow: var(--ux-focus-ring);
+}
+
+/* Large button variant for primary actions */
+.btn--lg,
+.btn-large {
+  min-height: var(--ux-touch-target-lg);
+  padding: 1rem 2.5rem;
+  font-size: clamp(1rem, 1.125rem + 0.1vw, 1.25rem);
+  border-radius: 14px;
+}
+
+/* ====================================
+   FORM ELEMENTS - Easy to Use
+   ==================================== */
+
+input,
+textarea,
+select {
+  /* Readable size */
+  font-size: clamp(1rem, 1rem + 0.1vw, 1.125rem);
+  
+  /* Comfortable touch target */
+  min-height: var(--ux-touch-target);
+  padding: 0.875rem 1rem;
+  
+  /* Clear boundaries */
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  
+  /* Smooth transitions */
+  transition: 
+    border-color var(--ux-transition-smooth),
+    box-shadow var(--ux-transition-smooth),
+    background-color var(--ux-transition-smooth);
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--tiller-color-emerald, #00e184);
+  box-shadow: var(--ux-focus-ring);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Clearer placeholder text */
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+}
+
+/* Form labels - easy to read */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: clamp(0.9375rem, 1rem, 1.0625rem);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Required field indicator */
+label.required::after {
+  content: ' *';
+  color: #f87171;
+}
+
+/* Checkbox and radio - larger touch targets */
+input[type="checkbox"],
+input[type="radio"] {
+  width: 24px;
+  height: 24px;
+  min-height: 24px;
+  cursor: pointer;
+  accent-color: var(--tiller-color-emerald, #00e184);
+}
+
+/* ====================================
+   LINKS - Clear & Accessible
+   ==================================== */
+
+a {
+  /* Underline for clarity */
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  
+  /* Smooth hover effect */
+  transition: 
+    color var(--ux-transition-smooth),
+    text-decoration-color var(--ux-transition-smooth);
+}
+
+a:hover {
+  text-decoration-thickness: 3px;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--tiller-color-emerald, #00e184);
+  outline-offset: var(--ux-focus-ring-offset);
+  border-radius: 3px;
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--tiller-color-emerald, #00e184);
+  color: #000000;
+  padding: 1rem 2rem;
+  border-radius: 0 0 12px 12px;
+  font-weight: 700;
+  z-index: 10000;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ====================================
+   CARDS - Touch Friendly
+   ==================================== */
+
+.ts-card,
+.service-card,
+.testimonial-card,
+.card--post {
+  /* Comfortable padding */
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  
+  /* Rounded corners feel friendlier */
+  border-radius: 16px;
+  
+  /* Subtle shadow for depth */
+  box-shadow: var(--ux-shadow-medium);
+  
+  /* Smooth interactions */
+  transition: 
+    transform var(--ux-transition-smooth),
+    box-shadow var(--ux-transition-smooth);
+}
+
+.ts-card:hover,
+.service-card:hover,
+.testimonial-card:hover,
+.card--post:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--ux-shadow-elevated);
+}
+
+/* Card link areas should be generous */
+.service-link,
+.card-link {
+  padding: 0.75rem 0;
+  min-height: var(--ux-touch-target);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ====================================
+   NAVIGATION - Easy to Navigate
+   ==================================== */
+
+/* Navigation links - generous spacing */
+.desktop-nav__link,
+.mobile-nav__link,
+.footer-list a {
+  padding: 0.75rem 1rem;
+  min-height: var(--ux-touch-target);
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  transition: background-color var(--ux-transition-smooth);
+}
+
+.desktop-nav__link:hover,
+.mobile-nav__link:hover,
+.footer-list a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile hamburger - easy to tap */
+.mobile-nav-toggle,
+.hamburger-btn,
+[aria-label*="menu"],
+[aria-label*="Menu"] {
+  min-width: var(--ux-touch-target);
+  min-height: var(--ux-touch-target);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ====================================
+   SCROLL ENHANCEMENTS
+   ==================================== */
+
+/* Smooth scrolling with reduced motion respect */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Scroll padding for fixed headers */
+  html {
+    scroll-padding-top: 100px;
+  }
+}
+
+/* Better scrollbars */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+  background-clip: content-box;
+}
+
+/* ====================================
+   VISUAL HIERARCHY HELPERS
+   ==================================== */
+
+/* Highlighted section */
+.ux-highlight {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 225, 132, 0.1) 0%,
+    rgba(212, 175, 55, 0.1) 100%
+  );
+  border-left: 4px solid var(--tiller-color-emerald, #00e184);
+  padding: var(--ux-space-md) var(--ux-space-lg);
+  border-radius: 0 12px 12px 0;
+  margin: var(--ux-space-lg) 0;
+}
+
+/* Important callout */
+.ux-callout {
+  background: rgba(212, 175, 55, 0.15);
+  border: 2px solid var(--tiller-color-gold, #d4af37);
+  border-radius: 12px;
+  padding: var(--ux-space-md);
+  margin: var(--ux-space-lg) 0;
+}
+
+.ux-callout::before {
+  content: '💡';
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ====================================
+   LOADING STATES
+   ==================================== */
+
+/* Skeleton loading placeholder */
+.ux-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Button loading state */
+.btn--loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.btn--loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -10px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ====================================
+   FEEDBACK & NOTIFICATIONS
+   ==================================== */
+
+/* Toast notification */
+.ux-toast {
+  position: fixed;
+  bottom: var(--ux-space-lg);
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(0, 0, 0, 0.9);
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--ux-shadow-elevated);
+  z-index: 9999;
+  opacity: 0;
+  transition: 
+    transform 0.4s var(--ux-ease-gentle),
+    opacity 0.4s var(--ux-ease-gentle);
+}
+
+.ux-toast.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.ux-toast--success {
+  border-left: 4px solid var(--tiller-color-emerald, #00e184);
+}
+
+.ux-toast--error {
+  border-left: 4px solid #f87171;
+}
+
+/* ====================================
+   RESPONSIVE TOUCH IMPROVEMENTS
+   ==================================== */
+
+@media (max-width: 768px) {
+  /* Larger touch targets on mobile */
+  .btn,
+  button,
+  [type="button"],
+  [type="submit"] {
+    min-height: 52px;
+    padding: 1rem 1.5rem;
+  }
+  
+  /* Full width buttons on mobile for easy tapping */
+  .btn--mobile-full {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* More spacing between interactive elements */
+  .service-card,
+  .testimonial-card {
+    margin-bottom: var(--ux-space-md);
+  }
+  
+  /* Larger form fields */
+  input,
+  textarea,
+  select {
+    min-height: 52px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  /* Better thumb-reachable zones */
+  .footer-list a,
+  .mobile-nav__link {
+    min-height: 52px;
+    padding: 1rem;
+  }
+}
+
+/* ====================================
+   ACCESSIBILITY - Reduced Motion
+   ==================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .ux-skeleton {
+    animation: none;
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* ====================================
+   HIGH CONTRAST MODE
+   ==================================== */
+
+@media (prefers-contrast: more) {
+  .btn,
+  button {
+    border: 2px solid currentColor;
+  }
+  
+  a {
+    text-decoration-thickness: 3px;
+  }
+  
+  input,
+  textarea,
+  select {
+    border-width: 3px;
+  }
+  
+  .ts-card,
+  .service-card,
+  .testimonial-card {
+    border-width: 3px;
+  }
+}
+
+/* ====================================
+   LARGE TEXT MODE
+   ==================================== */
+
+@media (min-resolution: 1dppx) {
+  /* Ensure crisp text on standard displays */
+  body {
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* User prefers larger text */
+@media (min-width: 1200px) {
+  :root {
+    --ux-font-base: clamp(1.0625rem, 1.125rem + 0.15vw, 1.25rem);
+  }
+}
+
+/* ====================================
+   SENIOR-FRIENDLY ENHANCEMENTS
+   ==================================== */
+
+/* Opt-in larger mode class */
+.ux-large-mode {
+  --ux-font-base: 1.25rem;
+  --ux-touch-target: 56px;
+  --ux-touch-target-lg: 64px;
+}
+
+.ux-large-mode body {
+  font-size: var(--ux-font-base);
+  line-height: 1.8;
+}
+
+.ux-large-mode .btn,
+.ux-large-mode button {
+  font-size: 1.125rem;
+  padding: 1.125rem 2rem;
+}
+
+.ux-large-mode input,
+.ux-large-mode textarea,
+.ux-large-mode select {
+  font-size: 1.125rem;
+  padding: 1rem 1.25rem;
+}
+
+/* ====================================
+   PRINT STYLES
+   ==================================== */
+
+@media print {
+  .btn,
+  button,
+  .skip-link,
+  .ux-toast {
+    display: none !important;
+  }
+  
+  a {
+    color: #000000 !important;
+    text-decoration: underline !important;
+  }
+  
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.875em;
+    color: #666666;
+  }
+}
