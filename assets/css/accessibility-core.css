@@ -1,0 +1,443 @@
+/**
+ * ACCESSIBILITY.CSS - Core Accessibility Styles
+ * 
+ * This file contains essential accessibility features:
+ * - Skip links
+ * - Focus indicators  
+ * - Screen reader utilities
+ * - Reduced motion support
+ * - High contrast support
+ * 
+ * Load order: After theme.css, before component styles
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   SKIP LINKS
+   Allow keyboard users to skip repetitive navigation
+   ═══════════════════════════════════════════════════════════════ */
+
+.skip-links {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: var(--z-max, 9999);
+  pointer-events: none;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  pointer-events: auto;
+  
+  /* Visible styles for when focused */
+  padding: 1rem 2rem;
+  background: var(--ts-gold-700, #b8860b);
+  color: var(--ts-white, #ffffff);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: none; /* Instant appearance */
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  position: fixed;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  z-index: var(--z-max, 9999);
+  outline: 3px solid var(--ts-gold-600, #d4af37);
+  outline-offset: 2px;
+}
+
+.skip-link:hover:focus {
+  background: var(--ts-gold-800, #9c7a14);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOCUS INDICATORS
+   Ensure all interactive elements have visible focus states
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Global focus indicator */
+*:focus {
+  outline: 2px solid var(--focus-color, #d4af37);
+  outline-offset: 2px;
+}
+
+/* Enhanced focus for interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--focus-color, #d4af37);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.15);
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+/* Focus within (for container elements) */
+.focus-within:focus-within {
+  outline: 2px solid var(--focus-color, #d4af37);
+  outline-offset: 2px;
+}
+
+/* Remove focus outline from mouse clicks (keep for keyboard) */
+:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Exception: Never remove focus from skip link */
+.skip-link:focus {
+  outline: 3px solid var(--focus-color, #d4af37) !important;
+}
+
+/* Dark background focus (lighter color) */
+.bg-dark *:focus-visible,
+[data-theme="dark"] *:focus-visible {
+  outline-color: var(--ts-gold-400, #fbbf24);
+  box-shadow: 0 0 0 6px rgba(251, 191, 36, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCREEN READER UTILITIES
+   Content visible to screen readers but hidden visually
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Visually hidden but accessible to screen readers */
+.sr-only,
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Show on focus (for skip links) */
+.sr-only-focusable:focus,
+.visually-hidden-focusable:focus {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: inherit !important;
+  margin: inherit !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+}
+
+/* Hidden from everyone (including screen readers) */
+[hidden],
+[aria-hidden="true"],
+.hidden {
+  display: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   Respect user preference for reduced motion
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Exception: Loading spinners (functional, not decorative) */
+  .loading,
+  .spinner,
+  [role="progressbar"],
+  [aria-busy="true"] {
+    animation-duration: 1s !important;
+    animation-iteration-count: infinite !important;
+  }
+  
+  /* Exception: Fade in/out for modals (less jarring than instant) */
+  .modal,
+  .dialog,
+  [role="dialog"],
+  [role="alertdialog"] {
+    transition-duration: 0.2s !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HIGH CONTRAST MODE
+   Improve visibility in Windows High Contrast mode
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-contrast: high) {
+  /* Ensure borders are visible */
+  button,
+  input,
+  select,
+  textarea {
+    border: 2px solid currentColor !important;
+  }
+  
+  /* Ensure focus is extra visible */
+  *:focus-visible {
+    outline: 3px solid currentColor !important;
+    outline-offset: 3px !important;
+  }
+  
+  /* Ensure links are distinguishable */
+  a {
+    text-decoration: underline !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TOUCH TARGETS
+   Ensure minimum 44x44px touch targets on mobile
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  /* Minimum touch target size */
+  button,
+  a,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  .btn,
+  .link,
+  [role="button"],
+  [tabindex] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Ensure adequate spacing between touch targets */
+  nav a + a,
+  .btn-group > * + *,
+  .link-group > * + * {
+    margin-left: 8px;
+  }
+  
+  /* Forms */
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 16px; /* Prevents iOS zoom */
+  }
+  
+  /* Checkbox and radio (increase clickable area) */
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-width: 24px;
+    min-height: 24px;
+    margin: 10px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   KEYBOARD NAVIGATION INDICATORS
+   Show when user is navigating with keyboard
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Add keyboard navigation indicator class to body via JavaScript */
+body.keyboard-nav *:focus {
+  outline: 3px solid var(--focus-color, #d4af37) !important;
+  outline-offset: 2px !important;
+}
+
+body:not(.keyboard-nav) *:focus {
+  outline: none;
+}
+
+/* Always show focus on skip link */
+.skip-link:focus {
+  outline: 3px solid var(--focus-color, #d4af37) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ARIA LIVE REGIONS
+   Style for dynamic content updates
+   ═══════════════════════════════════════════════════════════════ */
+
+[aria-live="polite"],
+[aria-live="assertive"],
+[role="alert"],
+[role="status"] {
+  /* These should be visually styled by components */
+  /* This ensures they exist in the accessibility tree */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FORM ACCESSIBILITY
+   Error states and validation
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Required field indicator */
+[required],
+[aria-required="true"] {
+  /* Visual indicator handled by form styles */
+}
+
+/* Invalid/error state */
+[aria-invalid="true"],
+input:invalid,
+select:invalid,
+textarea:invalid {
+  border-color: var(--state-error, #b91c1c) !important;
+  border-width: 2px !important;
+}
+
+[aria-invalid="true"]:focus,
+input:invalid:focus,
+select:invalid:focus,
+textarea:invalid:focus {
+  outline-color: var(--state-error, #b91c1c) !important;
+  box-shadow: 0 0 0 4px rgba(185, 28, 28, 0.15) !important;
+}
+
+/* Error message styling */
+.error-message,
+[role="alert"].error,
+.field-error {
+  color: var(--state-error, #b91c1c);
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.error-message::before {
+  content: "⚠";
+  font-size: 1.2em;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SEMANTIC LANDMARKS
+   Ensure proper structure
+   ═══════════════════════════════════════════════════════════════ */
+
+/* These are semantic HTML elements, no styling needed */
+/* Listed here for documentation */
+
+/*
+  Required landmarks:
+  - <header> or role="banner"
+  - <nav> or role="navigation"
+  - <main> or role="main"
+  - <footer> or role="contentinfo"
+  - <aside> or role="complementary"
+  - <section> with aria-labelledby or aria-label
+*/
+
+/* ═══════════════════════════════════════════════════════════════
+   PRINT ACCESSIBILITY
+   Ensure content is accessible when printed
+   ═══════════════════════════════════════════════════════════════ */
+
+@media print {
+  /* Ensure links are visible */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: var(--ts-gray-600, #4b5563);
+  }
+  
+  /* Skip decorative images */
+  [role="presentation"],
+  [aria-hidden="true"] {
+    display: none !important;
+  }
+  
+  /* Ensure headings are bold */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700 !important;
+    color: #000 !important;
+  }
+  
+  /* Ensure sufficient contrast */
+  body {
+    color: #000 !important;
+    background: #fff !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   UTILITY CLASSES
+   Common accessibility utilities
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Focus visible utility */
+.focus-visible:focus-visible {
+  outline: 3px solid var(--focus-color, #d4af37);
+  outline-offset: 2px;
+}
+
+/* Disable pointer events but keep keyboard access */
+.keyboard-only {
+  pointer-events: none;
+}
+
+.keyboard-only:focus {
+  pointer-events: auto;
+}
+
+/* Force color inheritance (for high contrast mode) */
+.inherit-color {
+  color: inherit !important;
+}
+
+/* Ensure element is announced to screen readers */
+.announce {
+  position: relative !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   JAVASCRIPT HOOKS
+   Classes added/removed by accessibility JavaScript
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Keyboard navigation mode (added via JS) */
+.keyboard-nav {
+  /* Styles applied above */
+}
+
+/* Focus trap active (for modals/drawers) */
+.focus-trap-active {
+  /* Background content should be aria-hidden */
+}
+
+.focus-trap-active * {
+  /* Only elements within .focus-trap-container are accessible */
+}
+
+.focus-trap-container {
+  /* Container for trapped focus */
+}
