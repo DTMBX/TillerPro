@@ -49,7 +49,7 @@ jobs:
           JEKYLL_ENV: production
 
       - name: Run Lighthouse CI
-        uses: treosh/lighthouse-ci-action@v11
+        uses: treosh/lighthouse-ci-action@v12
         with:
           configPath: "./.lighthouserc.json"
           uploadArtifacts: true
@@ -89,7 +89,7 @@ jobs:
         run: npm ci || npm install --legacy-peer-deps
 
       - name: Run Lighthouse on Production
-        uses: treosh/lighthouse-ci-action@v11
+        uses: treosh/lighthouse-ci-action@v12
         with:
           urls: |
             https://tillerstead.com
