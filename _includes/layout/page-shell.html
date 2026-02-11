@@ -5,7 +5,7 @@
       {% if page.meta_title %}{{ page.meta_title | strip | escape }}{% elsif page.title %}{{ page.title | strip | escape
       }} | {{ site.title | strip | escape }}{% else %}{{ site.title | strip | escape }}{% endif %}
     </title>
-    {% include layout/head-clean.html %} {% include schema/schema-combined.js %} {% include layout/meta-open-graph.html
+    {% include layout/head.html %} {% include schema/schema-combined.js %} {% include layout/meta-open-graph.html
     %} {% include layout/meta-geo.html %} {% include layout/meta-canonical.html %} {% include
     layout/meta-success-confetti.html %} {% if page.url == "/contact/" %}{% include forms/contact-page.html %}{% endif
     %} {% if page.extra_head %}{{ page.extra_head }}{% endif %}
