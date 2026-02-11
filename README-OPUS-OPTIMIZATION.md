@@ -4,7 +4,7 @@
 **Date:** February 10, 2026  
 **Repo:** `DTMBX/TillerPro` (branch: main)  
 **Stack:** Jekyll 4.2 + Node 25 tooling · Dark-themed contractor site  
-**Deploy:** Netlify / Render (static) — NOT GitHub Pages
+**Deploy:** GitHub Pages (tillerstead.com)
 
 ---
 
