@@ -73,6 +73,10 @@
   "engines": {
     "node": ">=18"
   },
+<<<<<<< HEAD
+=======
+  "packageManager": "npm@11",
+>>>>>>> copilot/vscode-mlhda4uf-up48
   "author": "DTB396",
   "version": "1.0.0",
   "name": "tillerstead-com",
