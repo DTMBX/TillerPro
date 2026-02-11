@@ -1,0 +1,404 @@
+/**
+ * ENHANCED MICRO-INTERACTIONS
+ * 
+ * Subtle animations and feedback that improve UX without overwhelming users.
+ * All animations respect prefers-reduced-motion.
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   BUTTON INTERACTIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Subtle scale on active press */
+.btn:active:not(:disabled),
+button:active:not(:disabled),
+a.btn:active {
+  transform: scale(0.98);
+  transition-duration: 50ms;
+}
+
+/* Success feedback animation */
+@keyframes success-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+}
+
+.btn--success-pulse {
+  animation: success-pulse 0.6s ease-out;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FORM INTERACTIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Input label lift on focus */
+.ts-form-group {
+  position: relative;
+}
+
+.ts-label {
+  transition: all var(--transition-fast, 150ms);
+}
+
+.ts-input:focus ~ .ts-label,
+.ts-textarea:focus ~ .ts-label,
+.ts-select:focus ~ .ts-label {
+  color: var(--focus-color, #d4af37);
+}
+
+/* Shake animation for errors */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+.ts-form-group--error {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* Success checkmark animation */
+@keyframes check-in {
+  0% {
+    transform: scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(-45deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.ts-form-success::before {
+  animation: check-in 0.3s ease-out;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LINK HOVER EFFECTS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Underline grow on hover */
+a:not(.btn) {
+  position: relative;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--transition-fast, 150ms);
+}
+
+a:not(.btn):hover,
+a:not(.btn):focus-visible {
+  border-bottom-color: currentColor;
+}
+
+/* Link with icon - icon shifts on hover */
+a:has(svg):hover svg,
+a:has(.icon):hover .icon {
+  transform: translateX(2px);
+  transition: transform var(--transition-fast, 150ms);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CARD HOVER EFFECTS
+   ═══════════════════════════════════════════════════════════════ */
+
+.card,
+.ts-card,
+.service-card {
+  transition: 
+    transform var(--transition-base, 200ms) ease-out,
+    box-shadow var(--transition-base, 200ms) ease-out;
+}
+
+.card:hover,
+.ts-card:hover,
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Card glow effect on hover */
+@keyframes card-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 225, 132, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 225, 132, 0.2);
+  }
+}
+
+.card:hover::before,
+.ts-card:hover::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 225, 132, 0.1),
+    rgba(212, 175, 55, 0.1)
+  );
+  opacity: 0;
+  animation: card-glow 2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LOADING STATES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Skeleton loader pulse */
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--ts-gray-200) 25%,
+    var(--ts-gray-100) 50%,
+    var(--ts-gray-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+  border-radius: var(--radius-md, 6px);
+}
+
+/* Spinner for button loading states */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn--loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+/* Form loading state */
+.form--loading {
+  pointer-events: none;
+  opacity: 0.6;
+  position: relative;
+}
+
+.form--loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Fade in on scroll */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-scroll {
+  animation: fade-in 0.6s ease-out;
+}
+
+/* Staggered animation for lists */
+.animate-stagger > * {
+  opacity: 0;
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.animate-stagger > *:nth-child(2) { animation-delay: 0.1s; }
+.animate-stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.animate-stagger > *:nth-child(4) { animation-delay: 0.2s; }
+.animate-stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.animate-stagger > *:nth-child(6) { animation-delay: 0.3s; }
+
+/* ═══════════════════════════════════════════════════════════════
+   TOOLTIP & POPOVER MICRO-INTERACTIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  padding: 0.5rem 0.75rem;
+  background: var(--ts-gray-900);
+  color: var(--ts-white);
+  font-size: 0.875rem;
+  border-radius: var(--radius-md, 6px);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast, 150ms);
+  z-index: 1000;
+}
+
+[data-tooltip]:hover::after,
+[data-tooltip]:focus::after {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOCUS ENHANCEMENTS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Ripple effect on focus */
+@keyframes focus-ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 12px rgba(212, 175, 55, 0);
+  }
+}
+
+.btn:focus-visible,
+.ts-input:focus,
+.ts-textarea:focus,
+.ts-select:focus {
+  animation: focus-ripple 0.4s ease-out;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NOTIFICATION ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.notification {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+.notification--closing {
+  animation: slide-out-right 0.3s ease-in;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   REDUCED MOTION OVERRIDES
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  /* Keep functional animations */
+  .btn--loading::after,
+  .spinner,
+  [role="progressbar"] {
+    animation-duration: 1s !important;
+    animation-iteration-count: infinite !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   UTILITY CLASSES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Smooth scroll */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smooth-scroll {
+    scroll-behavior: auto;
+  }
+}
+
+/* Transition utilities */
+.transition-all {
+  transition: all var(--transition-base, 200ms) ease-in-out;
+}
+
+.transition-fast {
+  transition: all var(--transition-fast, 150ms) ease-in-out;
+}
+
+.transition-slow {
+  transition: all var(--transition-slow, 300ms) ease-in-out;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PERFORMANCE OPTIMIZATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Use GPU acceleration for animations */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+/* Remove will-change after animation */
+.will-animate:not(:hover):not(:focus):not(.animating) {
+  will-change: auto;
+}
+
+/* Optimize repaints */
+.hw-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
