@@ -51,22 +51,20 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.4'
+          ruby-version: '3.3'
           bundler-cache: true
       
-      - name: Build with Jekyll
-        run: bundle exec jekyll build
+      - name: Run Verification Script
+        run: chmod +x scripts/verify.sh && ./scripts/verify.sh
         env:
           JEKYLL_ENV: production
       
-      - name: Check Build Output
-        run: |
-          if [ ! -d "_site" ]; then
-            echo "❌ Build failed: _site directory not found"
-            exit 1
-          fi
-          echo "✅ Jekyll build successful"
-          echo "Files generated: $(find _site -type f | wc -l)"
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-build
+          path: _site/
+          retention-days: 7
 
   test:
     name: Run Tests

@@ -16,15 +16,19 @@ group :jekyll_plugins do
 end
 
 # Required dependencies
-gem "activesupport", "~> 7.0"
 gem "webrick", "~> 1.8"
-gem "bigdecimal", "~> 3.1"
 gem "faraday-retry", "~> 2.4"
 gem "tzinfo-data", "~> 1.2024", platforms: %i[mingw mswin x64_mingw jruby]
 
+# Base64 gem required by activesupport (fix for Ruby 3.2+)
+gem "base64"
+gem "csv"
+gem "logger"
+
 # Development dependencies
-group :development do
+group :development, :test do
   gem "jekyll-watch", "~> 2.2"
+  gem "html-proofer", "~> 5.0"  # Link checking and HTML validation
 end
 
 # Performance (versions compatible with github-pages)
