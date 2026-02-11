@@ -26,17 +26,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version-file: ".nvmrc"
           cache: "npm"
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v2
         with:
-          ruby-version: "3.4"
+          ruby-version-file: ".ruby-version"
           bundler-cache: true
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm ci || npm install --legacy-peer-deps
 
       - name: Install Bundler and Gems
         run: |
@@ -51,7 +51,7 @@ jobs:
       - name: Run Lighthouse CI
         uses: treosh/lighthouse-ci-action@v11
         with:
-          configPath: "./lighthouserc.cjs"
+          configPath: "./.lighthouserc.json"
           uploadArtifacts: true
           temporaryPublicStorage: true
 
@@ -82,11 +82,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version-file: ".nvmrc"
           cache: "npm"
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm ci || npm install --legacy-peer-deps
 
       - name: Run Lighthouse on Production
         uses: treosh/lighthouse-ci-action@v11
