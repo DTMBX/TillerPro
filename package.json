@@ -79,9 +79,9 @@
     "test:ux": "npm run verify:ux && bundle exec jekyll build && bundle exec jekyll serve"
   },
   "engines": {
-    "node": ">=18 <21"
+    "node": ">=18"
   },
-  "packageManager": "npm@9",
+  "packageManager": "npm@11",
   "author": "DTB396",
   "version": "1.0.0",
   "name": "tillerstead-com",
