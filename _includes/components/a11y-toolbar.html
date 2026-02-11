@@ -19,7 +19,7 @@
   id="a11y-toolbar"
   role="region"
   aria-label="Accessibility options"
-  style="position: fixed; bottom: 80px; right: 0; left: 0; z-index: 9999; pointer-events: none"
+  hidden
 >
   <button
     type="button"
@@ -28,7 +28,6 @@
     aria-expanded="false"
     aria-controls="a11y-toolbar-panel"
     aria-label="Open accessibility options"
-    style="display: none"
   >
     <svg
       aria-hidden="true"
@@ -53,16 +52,7 @@
     <h3 class="a11y-toolbar__title">Accessibility Options</h3>
 
     <!-- Read Aloud (Text-to-Speech) -->
-    <button
-      type="button"
-      class="a11y-toolbar__btn"
-      id="a11y-tts"
-      aria-pressed="false"
-      onclick="
-        a11yToggleTextToSpeech();
-        this.setAttribute('aria-pressed', document.documentElement.hasAttribute('data-tts-active'));
-      "
-    >
+    <button type="button" class="a11y-toolbar__btn" id="a11y-tts" aria-pressed="false">
       <svg
         aria-hidden="true"
         focusable="false"
@@ -81,7 +71,7 @@
     </button>
 
     <!-- Stop Reading -->
-    <button type="button" class="a11y-toolbar__btn" id="a11y-tts-stop" onclick="a11yStopReading()">
+    <button type="button" class="a11y-toolbar__btn" id="a11y-tts-stop">
       <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
         <rect x="6" y="6" width="12" height="12" rx="2" />
       </svg>
@@ -89,13 +79,7 @@
     </button>
 
     <!-- High Contrast -->
-    <button
-      type="button"
-      class="a11y-toolbar__btn"
-      id="a11y-contrast"
-      aria-pressed="false"
-      onclick="a11yToggleHighContrast()"
-    >
+    <button type="button" class="a11y-toolbar__btn" id="a11y-contrast" aria-pressed="false">
       <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
         <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
         <path d="M12 2a10 10 0 0 1 0 20V2z" />
@@ -104,13 +88,7 @@
     </button>
 
     <!-- Text Size -->
-    <button
-      type="button"
-      class="a11y-toolbar__btn"
-      id="a11y-textsize"
-      aria-pressed="false"
-      onclick="a11yToggleTextSize()"
-    >
+    <button type="button" class="a11y-toolbar__btn" id="a11y-textsize" aria-pressed="false">
       <svg
         aria-hidden="true"
         focusable="false"
@@ -128,18 +106,7 @@
     </button>
 
     <!-- Scroll to Top -->
-    <button
-      type="button"
-      class="a11y-toolbar__btn"
-      id="a11y-scroll-top"
-      onclick="
-        window.scrollTo({
-          top: 0,
-          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-        });
-        this.blur();
-      "
-    >
+    <button type="button" class="a11y-toolbar__btn" id="a11y-scroll-top">
       <svg
         aria-hidden="true"
         focusable="false"
@@ -156,13 +123,7 @@
     </button>
 
     <!-- Custom Cursor -->
-    <button
-      type="button"
-      class="a11y-toolbar__btn"
-      id="a11y-cursor"
-      aria-pressed="false"
-      onclick="a11yToggleCustomCursor()"
-    >
+    <button type="button" class="a11y-toolbar__btn" id="a11y-cursor" aria-pressed="false">
       <svg
         aria-hidden="true"
         focusable="false"
@@ -202,68 +163,101 @@
   </div>
 </aside>
 
-<script>
+<script defer>
   (function () {
-    // Toolbar toggle
+    const toolbar = document.getElementById('a11y-toolbar');
     const toggle = document.getElementById('a11y-toolbar-toggle');
     const panel = document.getElementById('a11y-toolbar-panel');
 
-    if (toggle && panel) {
-      toggle.addEventListener('click', function () {
-        const expanded = this.getAttribute('aria-expanded') === 'true';
-        this.setAttribute('aria-expanded', !expanded);
-        panel.hidden = expanded;
+    if (!toolbar || !toggle || !panel) return;
 
-        if (!expanded) {
-          panel.querySelector('button').focus();
-        }
-      });
-
-      // Close on escape
-      panel.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-          toggle.setAttribute('aria-expanded', 'false');
-          panel.hidden = true;
-          toggle.focus();
-        }
-      });
-    }
-
-    // Show toolbar if URL param present
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('a11y-tools') || urlParams.has('accessibility')) {
-      document.getElementById('a11y-toolbar').hidden = false;
-    }
-
-    // Keyboard shortcuts dialog
-    window.showKeyboardHelp = function () {
-      const dialog = document.getElementById('keyboard-help-dialog');
-      if (dialog && dialog.showModal) {
-        dialog.showModal();
-      }
+    const buttons = {
+      tts: document.getElementById('a11y-tts'),
+      ttsStop: document.getElementById('a11y-tts-stop'),
+      contrast: document.getElementById('a11y-contrast'),
+      textSize: document.getElementById('a11y-textsize'),
+      scrollTop: document.getElementById('a11y-scroll-top'),
+      cursor: document.getElementById('a11y-cursor'),
     };
 
-    // Update button states from preferences
-    document.addEventListener('DOMContentLoaded', function () {
-      try {
-        const prefs = JSON.parse(localStorage.getItem('tillerstead-a11y-prefs') || '{}');
-
-        if (prefs.highContrast) {
-          document.getElementById('a11y-contrast')?.setAttribute('aria-pressed', 'true');
-        }
-        if (prefs.textSize && prefs.textSize !== 'normal') {
-          document.getElementById('a11y-textsize')?.setAttribute('aria-pressed', 'true');
-        }
-        if (prefs.customCursor) {
-          document.getElementById('a11y-cursor')?.setAttribute('aria-pressed', 'true');
-        }
-        if (prefs.showToolbar) {
-          document.getElementById('a11y-toolbar').hidden = false;
-        }
-      } catch (e) {
-        // localStorage not available
+    // Event Listeners
+    toggle.addEventListener('click', () => {
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', !isExpanded);
+      panel.hidden = isExpanded;
+      if (!isExpanded) {
+        panel.querySelector('button').focus();
       }
     });
+
+    panel.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        toggle.setAttribute('aria-expanded', 'false');
+        panel.hidden = true;
+        toggle.focus();
+      }
+    });
+
+    buttons.tts?.addEventListener('click', function () {
+      if (typeof a11yToggleTextToSpeech === 'function') {
+        a11yToggleTextToSpeech();
+        this.setAttribute('aria-pressed', document.documentElement.hasAttribute('data-tts-active'));
+      }
+    });
+
+    buttons.ttsStop?.addEventListener('click', () => {
+      if (typeof a11yStopReading === 'function') {
+        a11yStopReading();
+      }
+    });
+
+    buttons.contrast?.addEventListener('click', () => {
+      if (typeof a11yToggleHighContrast === 'function') a11yToggleHighContrast();
+    });
+
+    buttons.textSize?.addEventListener('click', () => {
+      if (typeof a11yToggleTextSize === 'function') a11yToggleTextSize();
+    });
+
+    buttons.cursor?.addEventListener('click', () => {
+      if (typeof a11yToggleCustomCursor === 'function') a11yToggleCustomCursor();
+    });
+
+    buttons.scrollTop?.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      });
+      buttons.scrollTop.blur();
+    });
+
+    // Initialize
+    function applyPreferences() {
+      try {
+        const prefs = JSON.parse(localStorage.getItem('tillerstead-a11y-prefs') || '{}');
+        if (prefs.highContrast) buttons.contrast?.setAttribute('aria-pressed', 'true');
+        if (prefs.textSize && prefs.textSize !== 'normal') buttons.textSize?.setAttribute('aria-pressed', 'true');
+        if (prefs.customCursor) buttons.cursor?.setAttribute('aria-pressed', 'true');
+        if (prefs.showToolbar) toolbar.hidden = false;
+      } catch (e) {
+        console.error('Could not apply accessibility preferences from localStorage.', e);
+      }
+    }
+
+    function showToolbarOnParam() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('a11y-tools') || urlParams.has('accessibility')) {
+        toolbar.hidden = false;
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyPreferences);
+    } else {
+      applyPreferences();
+    }
+
+    showToolbarOnParam();
   })();
 </script>
 
@@ -274,13 +268,16 @@
     bottom: 1rem;
     right: 1rem;
     z-index: 9999;
-    font-family:
-      system-ui,
-      -apple-system,
-      sans-serif;
+    font-family: system-ui, -apple-system, sans-serif;
+    pointer-events: none;
+  }
+
+  .a11y-toolbar[hidden] {
+    display: none;
   }
 
   .a11y-toolbar__toggle {
+    pointer-events: auto;
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -304,7 +301,7 @@
   }
 
   .a11y-toolbar__toggle:hover,
-  .a11y-toolbar__toggle:focus {
+  .a11y-toolbar__toggle:focus-visible {
     transform: translateY(-2px) scale(1.05);
     background: linear-gradient(135deg, var(--tiller-color-gold, #c9a227), var(--tiller-color-gold-dark, #9a7a1a));
     color: #000;
@@ -327,71 +324,25 @@
     outline-offset: 4px;
   }
 
-  /* Mobile optimizations - smaller, less intrusive */
-  @media (max-width: 768px) {
-    .a11y-toolbar {
-      bottom: 0.75rem;
-      right: 0.75rem;
-    }
-
-    .a11y-toolbar__toggle {
-      width: 48px;
-      height: 48px;
-      border-width: 1.5px;
-      box-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.25),
-        0 0 15px rgba(16, 185, 129, 0.1);
-    }
-
-    .a11y-toolbar__toggle svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .a11y-toolbar__toggle:hover,
-    .a11y-toolbar__toggle:focus {
-      transform: translateY(-1px) scale(1.03);
-    }
-
-    .a11y-toolbar__panel {
-      bottom: 56px;
-      width: min(250px, calc(100vw - 2rem));
-    }
-  }
-
-  /* Extra small mobile - even more compact */
-  @media (max-width: 480px) {
-    .a11y-toolbar {
-      bottom: 0.625rem;
-      right: 0.625rem;
-    }
-
-    .a11y-toolbar__toggle {
-      width: 44px;
-      height: 44px;
-    }
-
-    .a11y-toolbar__toggle svg {
-      width: 18px;
-      height: 18px;
-    }
-  }
-
   .a11y-toolbar__panel {
+    pointer-events: auto;
     position: absolute;
-    bottom: 60px;
+    bottom: calc(100% + 0.5rem);
     right: 0;
-    width: 220px;
+    width: 240px;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .a11y-toolbar__title {
     font-size: 0.875rem;
     font-weight: 700;
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.25rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #eee;
     color: var(--tiller-color-primary, #1a2a3a);
@@ -400,15 +351,15 @@
   .a11y-toolbar__btn {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
     width: 100%;
     padding: 0.625rem;
-    margin-bottom: 0.375rem;
     border: 2px solid transparent;
     border-radius: 6px;
     background: #f5f5f5;
     color: #333;
     font-size: 0.875rem;
+    text-align: left;
     cursor: pointer;
     transition:
       background 0.2s,
@@ -442,125 +393,20 @@
     font-weight: 600;
     text-decoration: none;
     border: none;
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
   }
 
-  .a11y-toolbar__cta:hover {
+  .a11y-toolbar__cta:hover,
+  .a11y-toolbar__cta:focus-visible {
     background: linear-gradient(135deg, var(--tiller-color-gold, #c9a227), var(--tiller-color-gold-dark, #9a7a1a));
     color: #000;
   }
 
-  .a11y-toolbar__cta:focus-visible {
-    outline: 3px solid var(--tiller-color-gold, #c9a227);
-    outline-offset: 2px;
-  }
-
   .a11y-toolbar__note {
-    margin: 0.5rem 0 0;
+    margin: 0.25rem 0 0;
     color: #666;
     font-size: 0.75rem;
     text-align: center;
-  }
-
-  /* Keyboard Help Dialog */
-  .a11y-keyboard-dialog {
-    max-width: 500px;
-    padding: 1.5rem;
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
-  }
-
-  .a11y-keyboard-dialog::backdrop {
-    background: rgba(0, 0, 0, 0.5);
-  }
-
-  .a11y-keyboard-dialog header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid #eee;
-  }
-
-  .a11y-keyboard-dialog h2 {
-    margin: 0;
-    font-size: 1.25rem;
-  }
-
-  .dialog-close {
-    width: 36px;
-    height: 36px;
-    border: none;
-    background: #f0f0f0;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .dialog-close:hover,
-  .dialog-close:focus {
-    background: #e0e0e0;
-  }
-
-  .keyboard-shortcuts dl {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.5rem 1rem;
-    margin: 0.5rem 0 1rem;
-  }
-
-  .keyboard-shortcuts dt {
-    font-weight: normal;
-  }
-
-  .keyboard-shortcuts dd {
-    margin: 0;
-    color: #555;
-  }
-
-  .keyboard-shortcuts kbd {
-    display: inline-block;
-    padding: 0.2em 0.5em;
-    font-family: monospace;
-    font-size: 0.875em;
-    background: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-
-  .keyboard-shortcuts h3 {
-    font-size: 1rem;
-    margin: 1rem 0 0.5rem;
-    color: var(--tiller-color-primary, #1a2a3a);
-  }
-
-  .a11y-keyboard-dialog footer {
-    margin-top: 1rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid #eee;
-    text-align: right;
-  }
-
-  .a11y-keyboard-dialog footer button {
-    padding: 0.5rem 1.5rem;
-    background: var(--tiller-color-primary, #1a2a3a);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.875rem;
-  }
-
-  .a11y-keyboard-dialog footer button:hover,
-  .a11y-keyboard-dialog footer button:focus {
-    background: var(--tiller-color-gold, #c9a227);
-    color: #000;
   }
 
   /* High contrast mode adjustments for toolbar */
@@ -585,9 +431,35 @@
     color: #000;
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .a11y-toolbar {
+      bottom: 0.75rem;
+      right: 0.75rem;
+    }
+
     .a11y-toolbar__toggle {
+      width: 48px;
+      height: 48px;
+    }
+
+    .a11y-toolbar__toggle svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .a11y-toolbar__panel {
+      width: min(250px, calc(100vw - 2rem));
+      bottom: calc(100% + 0.375rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .a11y-toolbar__toggle,
+    .a11y-toolbar__toggle svg {
       transition: none;
     }
   }
+
+  /* Remove legacy dialog styles as they are not used in this component */
 </style>

@@ -6,9 +6,7 @@ between buttons (default: true) {% endcomment %} {%- assign primary_class = incl
 btn--primary btn--lg btn--pulse" -%} {%- assign secondary_class = include.secondary_class | default: "btn btn--ghost
 btn--lg" -%} {%- assign magnetic = include.magnetic | default: true -%} {%- assign gap = include.gap | default: true -%}
 
-<div class="cta-buttons{% if include.container_class %} {{ include.container_class }}{% endif %}">
-  <a href="/contact/" class="{{ primary_class }}" {% if magnetic %} data-magnetic{% endif %}>Request an Estimate</a>
-  {% if gap %}<span class="mr-2"></span>{% endif %}<a href="tel:+16098628808" class="{{ secondary_class }}"
-    >Call (609) 862-8808</a
-  >
+<div class="cta-buttons{% if include.container_class %} {{ include.container_class }}{% endif %}" role="group" aria-label="Contact options">
+  <a href="/contact/" class="{{ primary_class }}" {% if magnetic %}data-magnetic{% endif %}>Request an Estimate</a>
+  <a href="tel:+16098628808" class="{{ secondary_class }}">Call (609) 862-8808</a>
 </div>

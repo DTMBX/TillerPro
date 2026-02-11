@@ -1,5 +1,8 @@
-{%- comment -%} Build Phase CTA Include Promotes the Build Phase guides with a call-to-action. Usage: {% include
-features/build-phase-cta.html %} {%-comment -%}
+{%- comment -%}
+  Build Phase CTA Include
+  Promotes the Build Phase guides with a call-to-action.
+  Usage: {% include components/build-phase-cta.html %}
+{%- endcomment -%}
 
 <section class="ts-section ts-build-phase-cta bg-soft" aria-labelledby="build-phase-cta-title">
   <div class="container">
@@ -14,40 +17,40 @@ features/build-phase-cta.html %} {%-comment -%}
         <a href="/build/" class="btn btn--primary">Explore Build Phase Guides</a>
       </div>
       <div class="build-phase-cta-preview">
-        <div class="build-phase-list">
-          <div class="build-phase-item">
-            <span class="item-number">1</span>
-            <span class="item-title">Codes, Permits & Inspections</span>
-          </div>
-          <div class="build-phase-item">
-            <span class="item-number">2</span>
-            <span class="item-title">Shower Pans & Slopes</span>
-          </div>
-          <div class="build-phase-item">
-            <span class="item-number">3</span>
+        <ol class="build-phase-list" role="list">
+          <li class="build-phase-item">
+            <span class="item-number" aria-hidden="true">1</span>
+            <span class="item-title">Codes, Permits &amp; Inspections</span>
+          </li>
+          <li class="build-phase-item">
+            <span class="item-number" aria-hidden="true">2</span>
+            <span class="item-title">Shower Pans &amp; Slopes</span>
+          </li>
+          <li class="build-phase-item">
+            <span class="item-number" aria-hidden="true">3</span>
             <span class="item-title">Waterproofing Systems</span>
-          </div>
-          <div class="build-phase-item">
-            <span class="item-number">4</span>
-            <span class="item-title">Curbs & Thresholds</span>
-          </div>
-          <div class="build-phase-item">
-            <span class="item-number">5</span>
-            <span class="item-title">Framing & Benches</span>
-          </div>
-          <div class="build-phase-item">
-            <span class="item-number">6</span>
+          </li>
+          <li class="build-phase-item">
+            <span class="item-number" aria-hidden="true">4</span>
+            <span class="item-title">Curbs &amp; Thresholds</span>
+          </li>
+          <li class="build-phase-item">
+            <span class="item-number" aria-hidden="true">5</span>
+            <span class="item-title">Framing &amp; Benches</span>
+          </li>
+          <li class="build-phase-item">
+            <span class="item-number" aria-hidden="true">6</span>
             <span class="item-title">Tile Installation</span>
-          </div>
-          <div class="build-phase-item">
-            <span class="item-number">7</span>
+          </li>
+          <li class="build-phase-item">
+            <span class="item-number" aria-hidden="true">7</span>
             <span class="item-title">Flood Testing</span>
-          </div>
-          <div class="build-phase-item">
-            <span class="item-number">8</span>
+          </li>
+          <li class="build-phase-item">
+            <span class="item-number" aria-hidden="true">8</span>
             <span class="item-title">Common Failures</span>
-          </div>
-        </div>
+          </li>
+        </ol>
       </div>
     </div>
   </div>
@@ -74,6 +77,9 @@ features/build-phase-cta.html %} {%-comment -%}
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-sm);
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
   .build-phase-item {

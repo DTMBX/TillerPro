@@ -1,8 +1,19 @@
-/** * Accessible Responsive Image Component * Creates responsive image markup with WebP support and full accessibility *
-* Usage in templates: * {% include components/responsive-image.html * src="portfolio/bathroom.jpg" * alt="Modern
-bathroom with marble tile shower and heated floors" * sizes="(max-width: 768px) 100vw, 50vw" * decorative=false * %} * *
-WCAG 1.1.1 - Non-text Content: * - Always provide meaningful alt text for informative images * - Set decorative=true and
-alt="" for decorative images */
+{% comment %}
+  Accessible Responsive Image Component
+  Creates responsive image markup with WebP support and full accessibility
+
+  Usage in templates:
+    {% include components/responsive-image.html
+      src="portfolio/bathroom.jpg"
+      alt="Modern bathroom with marble tile shower and heated floors"
+      sizes="(max-width: 768px) 100vw, 50vw"
+      decorative=false
+    %}
+
+  WCAG 1.1.1 - Non-text Content:
+  - Always provide meaningful alt text for informative images
+  - Set decorative=true and alt="" for decorative images
+{% endcomment %}
 
 <!-- Responsive Picture Element with WebP Support and Accessibility -->
 {% assign img_base = include.src | remove: '.jpg' | remove: '.jpeg' | remove: '.png' %} {% assign img_sizes =
